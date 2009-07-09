@@ -57,7 +57,7 @@
   <body onload="loadDefaults();">
     <form action="<?php echo $masterPath; ?>"
 	enctype="multipart/form-data" method="post"
-	onsubmit="this.submit.disabled = true;">
+	onsubmit="document.forms[0].submit.disabled = true;">
       <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
       <table><tr>
 	<td>File:</td>
@@ -65,6 +65,9 @@
 	  <input name="file" type="file"/><br/>
 	  <small>current max file size: <?php echo $hMaxSize; ?></small>
 	</td>
+      </tr><tr>
+	<td>Comment:</td>
+	<td><input name="cmt" type="text"/></td>
       </tr><tr>
 	<td>Validity:</td>
 	<td>
@@ -82,7 +85,7 @@
 	<td><input name="nt" type="text"/> emails (comma separated)</td>
       </tr></table>
       <input type="submit" name="submit" value="Upload"/>
-      <input type="button" name="submit" value="Set as defaults" onclick="setDefaults();"/>
+      <input type="button" value="Set as defaults" onclick="setDefaults();"/>
     </form>
     <hr/>
     <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,

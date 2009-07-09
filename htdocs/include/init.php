@@ -56,7 +56,7 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
 
 // authorization
 session_start();
-$auth = $_SESSION["auth"];
+$auth = (isset($_SESSION["auth"])? $_SESSION["auth"]: false);
 if(isset($_REQUEST["p"]))
   $auth = $_SESSION["auth"] = ($_REQUEST["p"] == $masterPass);
 ?>

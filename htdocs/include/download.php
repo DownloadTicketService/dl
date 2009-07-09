@@ -1,7 +1,7 @@
 <?php
 // download a ticket
 
-// fetch the ticket it
+// fetch the ticket id
 if(!isset($_SERVER["PATH_INFO"]))
 {
   include("failed.php");
@@ -27,19 +27,38 @@ if($fd === false)
   exit();
 }
 
+// update range parameters
+if(!empty($_SERVER["HTTP_RANGE"]))
+  preg_match("/^bytes=(\d*)-(\d*)/", $_SERVER["HTTP_RANGE"], $range);
+if(empty($range[1]) || $range[1] < 0 || $range[1] >= $DATA["size"])
+  $range[1] = 0;
+if(empty($rage[2]) || $range[2] < $range[1] || $range[2] >= $DATA["size"])
+  $range[2] = $DATA["size"] - 1;
+$size = max(0, $range[2] - $range[1] + 1);
+$complete = ($size == $DATA["size"]);
+$last = ($range[2] == $DATA["size"] - 1);
+
 // update the record
 $DATA["lastTime"] = time();
-$DATA["downloads"]++;
+if($last) $DATA["downloads"]++;
 dba_replace($id, serialize($DATA), $tDb);
 
 // send the file
+header("ETag: $id");
 header("Pragma: private");
 header("Cache-Control: cache");
-// not yet: header("Accept-Ranges: bytes");
+header("Accept-Ranges: bytes");
 header("Content-Type: application/octet-stream");
-header("Content-Length: " . $DATA["size"]);
+if(!$complete)
+{
+  header("HTTP/1.1 206 Partial Content");
+  header("Content-Range: bytes $range[1]-$range[2]/" . $DATA["size"]);
+}
+header("Content-Length: $size");
 
-$left = $DATA["size"];
+// contents
+$left = $size;
+fseek($fd, $range[1]);
 while($left)
 {
   $data = fread($fd, 16384);
@@ -50,7 +69,7 @@ while($left)
 fclose($fd);
 
 // notify if requested
-if(!empty($DATA["email"]))
+if(!empty($DATA["email"]) && $last)
 {
   mail($DATA["email"], "[dl] $id download notification",
       $id . " (" . $DATA["name"] . ") was downloaded by " .

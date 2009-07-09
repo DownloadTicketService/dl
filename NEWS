@@ -1,0 +1,9 @@
+dl 0.2: Wed Oct 10 CEST 2007
+
+	* Renamed "aux.php" to "funcs.php" to avoid "reserved file name" errors
+          under Windows.
+	* Support commas in addition to semicolons as e-mail separators in the
+          notify field.
+	* Removed the 'ID' field in "active tickets" listings.
+	* Allow to attach a comment in any ticket.
+	* Byte-ranges support.

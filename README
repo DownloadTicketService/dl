@@ -2,10 +2,10 @@
 dl: minimalist download ticket service
 ======================================
 
-dl is a minimalist and rough download ticket service with automatic expiration,
-written in PHP. I've been using this service as an email-attachment replacement
-for my company, but there are no plans on extending it. It will remain minimal:
-no fancy features, just bug fixes.
+dl is a minimalist download ticket service with automatic expiration, written
+in PHP. I've been using this service as an email-attachment replacement for my
+company, but there are no plans on extending it beyond simple download ticket
+management.
 
 .. contents::
 
@@ -36,15 +36,30 @@ The maximal upload limit is determined by several PHP configuration parameters:
 * post_max_size: must be at least 1M larger than upload_max_filesize.
 
 The upload limit as shown in the submission form is determined automatically
-from the upload_max_filesize parameter. You can also set these parameters with
-ini_set() inside "include/config.php" or through apache's directives to
-localize them to the installation path.
+from the upload_max_filesize parameter. If you are allowed to do so, you can
+also set these parameters with ini_set() inside "include/config.php" or through
+Apache's directives (if PHP was built as an Apache module) to localize them to
+the installation path.
+
+Ticket expiration is performed automatically when any web page is
+requested. This means that expired downloads will still occupy space on the
+spool directory until a web page is first serviced. If you need to ensure that
+the spool is purged regularly (for very low traffic servers), setup a scheduled
+job that requests the "http://dl.example.com/d" page. Under UNIX, setup a cron
+entry like this::
+
+  0 0 * * * wget -q -O /dev/null "http://dl.example.com/d" > /dev/null
+
+
+PHP 4.3.4 or lower
+------------------
 
 There are several bugs in the dba_open() function in PHP 4.x which cannot be
-fixed. If you can, upgrade PHP to at least 4.3.5. If you cannot upgrade, you
-need to configure the "$dbHandler" parameter to something available to your PHP
-installation (usually db3/db2/dbm) and use the Berkeley's DB "db4_load" utility
-to create an empty database::
+circumvented automatically. If you can, upgrade PHP to at least 4.3.5.
+
+If you cannot upgrade, you need to configure the "$dbHandler" parameter to
+something available to your PHP installation (usually db3/db2/dbm) and use the
+Berkeley's DB "db4_load" utility to create an empty database::
 
   echo | db4_load /var/spool/dl/data.db
   echo | db4_load /var/spool/dl/user.db
@@ -56,24 +71,13 @@ of "db4_load". Sometimes these utilities are part of "db*-util" packages under
 several linux distributions. If you have PHP 4.3.5 or greater, this is done
 automatically.
 
-Ticket expiration is performed automatically when any web page is
-requested. This means that expired downloads will still occupy space on the
-spool directory until a web page is first serviced. If you need to ensure that
-the spool is purged regularly (for very low traffic servers), setup a scheduled
-job that requests the "http://dl.example.com/d/" page. Under UNIX, setup a cron
-entry like this::
-
-  0 0 * * * wget -q -O /dev/null "http://dl.example.com/d/" > /dev/null
-
 
 Known limitations/Browser support
 =================================
 
 * Tested with all mayor and minor browsers.
-* Tested with PHP 4.2/4.3.
-* Byte ranges are currently not supported.
-* The submit button is not disabled correctly with Internet Explorer 6 (works
-  on other graphical browsers however).
+* Tested with PHP 4.2/4.3/5.
+* The submit button is not disabled correctly in every browser.
 
 
 Support, Authors and Copyright

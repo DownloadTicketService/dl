@@ -7,13 +7,13 @@
       <table cellpadding="5">
        <tr bgcolor="#CCCCCC">
 	<th></th>
-	<th>ID</th>
 	<th>Name</th>
 	<th>Size</th>
 	<th>Date</th>
 	<th>Expiration</th>
+	<th>Downloads - last</th>
 	<th>Notify</th>
-	<th>Downloads/last</th>
+	<th>Comment</th>
        </tr>
 
 <?php
@@ -64,10 +64,8 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
   ++$n;
 
   // check
-  echo "<tr><td><input type=\"checkbox\" name=\"rm$n\" value=\"$key\"/></td>";
-
-  // id
-  echo "<td><small>$key</small></td>";
+  $color = ($n % 2? "": " bgcolor=\"#EEEEEE\"");
+  echo "<tr$color><td><input type=\"checkbox\" name=\"rm$n\" value=\"$key\"/></td>";
 
   // name
   echo "<td><a href=\"$masterPath?t=$key\">" .
@@ -100,13 +98,27 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
     echo "<strong>never</strong>";
   echo "</td>";
 
-  // notify
-  echo "<td>" . htmlentities($DATA["email"]) . "</td>";
-
   // downloads
   echo "<td>";
   if($DATA["downloads"])
     echo $DATA["downloads"] . " - " . date("d/m/Y", $DATA["lastTime"]);
+  echo "</td>";
+
+  // notify
+  echo "<td>";
+  $first = true;
+  foreach(explode(",", $DATA["email"]) as $email)
+  {
+    if($first) $first = false;
+    else echo ", ";
+    $email = trim($email);
+    echo "<a href=\"mailto:" . htmlentities($email) . "\">" .
+      htmlentities($email) . "</a>";
+  }
+
+  // comments
+  echo "<td>";
+  if($DATA["cmt"]) echo htmlentities($DATA["cmt"]);
   echo "</td>";
 
   echo "</tr>";
