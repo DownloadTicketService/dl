@@ -1,0 +1,85 @@
+======================================
+dl: minimalist download ticket service
+======================================
+
+dl is a minimalist and rough download ticket service with automatic expiration,
+written in PHP. I've been using this service as an email-attachment replacement
+for my company, but there are no plans on extending it. It will remain minimal:
+no fancy features, just bug fixes.
+
+.. contents::
+
+
+Installation
+============
+
+Copy the "htdocs" directory to a directory of choice under your web
+server. Configure the needed parameters inside "include/config.php" to reflect
+the external url, main password, etc. The "include" directory must *not* be
+accessible: if you use apache, the included .htaccess file should be
+sufficient; consult your web server documentation otherwise.
+
+A spool directory *outside of the web server root* must be accessible to the
+web server process. In the example "include/config.php" this is configured as
+"/var/spool/dl". If you web server runs as "nobody:nogroup", issue::
+
+  mkdir -p -m770 /var/spool/dl
+  chgrp nogroup /var/spool/dl
+
+to create correctly this directory.
+
+The maximal upload limit is determined by several PHP configuration parameters:
+
+* file_uploads: must be "On".
+* upload_tmp_dir: ensure enough space is available.
+* upload_max_filesize: change as needed.
+* post_max_size: must be at least 1M larger than upload_max_filesize.
+
+The upload limit as shown in the submission form is determined automatically
+from the upload_max_filesize parameter. You can also set these parameters with
+ini_set() inside "include/config.php" or through apache's directives to
+localize them to the installation path.
+
+There are several bugs in the dba_open() function in PHP 4.x which cannot be
+fixed. If you can, upgrade PHP to at least 4.3.5. If you cannot upgrade, you
+need to configure the "$dbHandler" parameter to something available to your PHP
+installation (usually db3/db2/dbm) and use the Berkeley's DB "db4_load" utility
+to create an empty database::
+
+  echo | db4_load /var/spool/dl/data.db
+  echo | db4_load /var/spool/dl/user.db
+  chmod 770 /var/spool/dl/*.db
+  chgrp nogroup /var/spool/dl/*.db
+
+Depending on your system, you may have to use "db3_load/db2_load/etc" instead
+of "db4_load". Sometimes these utilities are part of "db*-util" packages under
+several linux distributions. If you have PHP 4.3.5 or greater, this is done
+automatically.
+
+Ticket expiration is performed automatically when any web page is
+requested. This means that expired downloads will still occupy space on the
+spool directory until a web page is first serviced. If you need to ensure that
+the spool is purged regularly (for very low traffic servers), setup a scheduled
+job that requests the "http://dl.example.com/d/" page. Under UNIX, setup a cron
+entry like this::
+
+  0 0 * * * wget -q -O /dev/null "http://dl.example.com/d/" > /dev/null
+
+
+Known limitations/Browser support
+=================================
+
+* Tested with all mayor and minor browsers.
+* Tested with PHP 4.2/4.3.
+* Byte ranges are currently not supported.
+* The submit button is not disabled correctly with Internet Explorer 6 (works
+  on other graphical browsers however).
+
+
+Support, Authors and Copyright
+==============================
+
+Suggestions/comments are welcome at my email address.
+
+"dl" is distributed under a Revised BSD license (see COPYING) WITHOUT ANY
+WARRANTY. Copyright(c) 2003-2007 by wave++ "Yuri D'Elia" <wavexx@users.sf.net>.
