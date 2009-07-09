@@ -1,0 +1,58 @@
+/*
+ * Result of actions
+ */
+
+.action
+{
+    display: table;
+    border: solid red;
+    padding: 0.5em;
+}
+
+.label
+{
+    color: red;
+    font-weight: bold;
+}
+
+
+/*
+ * Formatting elements
+ */
+
+.id
+{
+    font-family: monospace;
+    font-stretch: condensed;
+}
+
+
+/*
+ * Tables
+ */
+
+.list {}
+
+th
+{
+    background: lightgrey;
+}
+
+table > tr > th:first-child { background: none; }
+
+table > .odd
+{
+    background: #EEEEEE;
+}
+
+
+/*
+ * Nav bar
+ */
+
+.nav
+{
+    border-top-width: 1px;
+    border-color: grey;
+    border-top-style: solid;
+}

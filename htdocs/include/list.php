@@ -1,11 +1,44 @@
 <html>
   <head>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
   </head>
+<?php
+
+// extract requested tickets
+$ids = array();
+foreach($_REQUEST as $key => $value)
+{
+  if(strncmp($key, "sel", 2)) continue;
+  $DATA = dba_fetch($value, $tDb);
+  if($DATA === false) continue;
+  $DATA = unserialize($DATA);
+  $DATA["id"] = $value;
+  $ids[$key] = $DATA;
+}
+
+if(count($ids))
+{
+  // purge immediately
+  echo "<div class=\"action\"><table><tr><td class=\"label\">Purged:</td>";
+  $first = true;
+  foreach($ids as $key => $value)
+  {
+    if($first) $first = false;
+    else echo "<tr><td></td>";
+    echo "<td class=\"id\">" . $value["id"] . ":</td><td>" .
+      htmlentities($value["name"]) . "</td></tr>";
+    purgeDl($value["id"], $value);
+  }
+
+  echo "</table></div><br/>";
+}
+
+?>
   <body>
     <form action="<?php echo $masterPath . "?l"; ?>" method="post">
       <input type="hidden" name="l"/>
-      <table cellpadding="5">
-       <tr bgcolor="#CCCCCC">
+      <table class="list" cellpadding="5">
+       <tr>
 	<th></th>
 	<th>Name</th>
 	<th>Size</th>
@@ -15,42 +48,7 @@
 	<th>Notify</th>
 	<th>Comment</th>
        </tr>
-
 <?php
-function humanSize($size)
-{
-  if($size > 1073741824)
-    return intval($size / 1073741824) . " gb";
-  else if($size > 1048576)
-    return intval($size / 1048576) . " mb";
-  else if($size > 1024)
-    return intval($size / 1024) . " kb";
-  return $size;
-}
-
-
-function humanTime($seconds)
-{
-  if($seconds > 86400)
-    return intval($seconds / 86400) . " days";
-  else if($seconds > 3600)
-    return intval($seconds / 3600) . " hours";
-  else if($seconds > 60)
-    return intval($seconds / 60) . " minutes";
-  return $seconds . " seconds";
-}
-
-
-// purge requested tickets
-foreach($_REQUEST as $key => $value)
-{
-  if(strncmp($key, "rm", 2)) continue;
-  $DATA = dba_fetch($value, $tDb);
-  if($DATA === false) continue;
-  $DATA = unserialize($DATA);
-  purgeDl($value, $DATA);
-}
-
 
 // list active tickets
 $totalSize = 0;
@@ -64,8 +62,10 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
   ++$n;
 
   // check
-  $color = ($n % 2? "": " bgcolor=\"#EEEEEE\"");
-  echo "<tr$color><td><input type=\"checkbox\" name=\"rm$n\" value=\"$key\"/></td>";
+  $color = ($n % 2? "": " class=\"odd\"");
+  echo "<tr$color><td>" .
+    "<input type=\"checkbox\" name=\"sel$n\" value=\"$key\"/>" .
+    "</td>";
 
   // name
   echo "<td><a href=\"$masterPath?t=$key\">" .
@@ -123,16 +123,17 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
 
   echo "</tr>";
 }
-?>
 
+?>
      </table>
      <input type="reset" value="Reload" onclick="document.location.reload();"/>
      <input type="reset" value="Reset"/>
      <input type="submit" value="Purge selected"/>
     </form>
-    Total archive size: <?php echo humanSize($totalSize); ?>
-    <hr/>
-    <a href="<?php echo $masterPath; ?>">Submit new ticket</a>,
-    <a href="<?php echo $masterPath; ?>?p">Logout</a>
+    <p>Total archive size: <?php echo humanSize($totalSize); ?></p>
+    <div class="nav">
+      <a href="<?php echo $masterPath; ?>">Submit new ticket</a>,
+      <a href="<?php echo $masterPath; ?>?p">Logout</a>
+    </div>
   </body>
 </html>

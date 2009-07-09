@@ -49,6 +49,9 @@ $perm = ($DATA["expire"] == 0 &&
 $url = $masterPath . "?t=" . $id;
 ?>
 <html>
+  <head>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+  </head>
   <body>
     Your ticket (<?php
 	echo htmlentities($DATA["name"]) . "): " .
@@ -58,9 +61,11 @@ $url = $masterPath . "?t=" . $id;
     <li>E-Mail: <a href="<?php echo "mailto:?body=$url"; ?>">send an email</a> with this ticket
     <li>Download: <a href="<?php echo $url; ?>">download directly</a>
     <li>URL: <?php echo $url; ?>
-    </ul><hr/>
-    <a href="<?php echo $masterPath; ?>">Submit another</a>,
-    <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
-    <a href="<?php echo $masterPath; ?>?p">Logout</a>
+    </ul>
+    <div class="nav">
+      <a href="<?php echo $masterPath; ?>">Submit another</a>,
+      <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
+      <a href="<?php echo $masterPath; ?>?p">Logout</a>
+    </div>
   </body>
 </html>
