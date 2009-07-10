@@ -1,9 +1,12 @@
 dl 0.3:
 
 	* CSS-ification
+	* New skin from Kim Thostrup <kim@thostrup.dk>
+	* Include IE5/6 PNG fix from Angus Turnbull http://www.twinhelix.com
+	* License changed to LGPL 3
 
 
-dl 0.2: 
+dl 0.2: 10/10/2007
 
 	* Renamed "aux.php" to "funcs.php" to avoid "reserved file name" errors
           under Windows.
@@ -12,3 +15,8 @@ dl 0.2:
 	* Removed the 'ID' field in "active tickets" listings.
 	* Allow to attach a comment in any ticket.
 	* Byte-ranges support.
+
+
+dl 0.1: 15/06/2007
+
+	* First release.

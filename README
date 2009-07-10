@@ -15,9 +15,9 @@ Installation
 
 Copy the "htdocs" directory to a directory of choice under your web
 server. Configure the needed parameters inside "include/config.php" to reflect
-the external url, main password, etc. The "include" directory must *not* be
-accessible: if you use apache, the included .htaccess file should be
-sufficient; consult your web server documentation otherwise.
+the external url, main password, etc. The "include" and "style/include"
+directories must *not* be accessible: if you use apache, the included .htaccess
+file should be sufficient; consult your web server documentation otherwise.
 
 A spool directory *outside of the web server root* must be accessible to the
 web server process. In the example "include/config.php" this is configured as
@@ -77,7 +77,6 @@ Known limitations/Browser support
 
 * Tested with all mayor and minor browsers.
 * Tested with PHP 4.2/4.3/5.
-* The submit button is not disabled correctly in every browser.
 
 
 Support, Authors and Copyright
@@ -85,5 +84,5 @@ Support, Authors and Copyright
 
 Suggestions/comments are welcome at my email address.
 
-"dl" is distributed under a Revised BSD license (see COPYING) WITHOUT ANY
-WARRANTY. Copyright(c) 2003-2007 by wave++ "Yuri D'Elia" <wavexx@users.sf.net>.
+"dl" is distributed under GNU LGPL 3, WITHOUT ANY WARRANTY.
+Copyright(c) 2007-2009 by Yuri D'Elia <wavexx@users.sf.net>.

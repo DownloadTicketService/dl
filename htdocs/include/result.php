@@ -68,9 +68,9 @@ htmlentities($DATA["cmt"]); ?></label>
 </ul>
 
 <div id="footer">
-  <a href="<?php echo $masterPath; ?>">Submit another</a>,
-  <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
-  <a href="<?php echo $masterPath; ?>?p">Logout</a>
+  <a href="<?=$masterPath?>">Submit another</a>,
+  <a href="<?=$masterPath?>?l">List active tickets</a>,
+  <a href="<?=$masterPath?>?p">Logout</a>
 </div>
 
 <?php

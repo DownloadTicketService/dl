@@ -1,3 +1,4 @@
+/*** General ***/
 body
 {
 	background:#CDDCEC;
@@ -15,28 +16,12 @@ body
 	width:640px;
 }
 
-#list_container
-{
-	background:#fff;
-	margin:0 auto;
-	text-align:left;
-	width:100%;
-}
-
 #top
 {
 	display:block;
 	height:10px;
 	margin:10px auto 0;
 	width:650px;
-}
-
-#top_container
-{
-	display:block;
-	height:10px;
-	margin:10px auto 0;
-	width:100%;
 }
 
 #footer
@@ -46,17 +31,6 @@ body
 	clear:both;
 	color:#999999;
 	text-align:center;
-	font-size: 85%;
-}
-
-#list_footer
-{
-	width:640px;
-	clear:both;
-	color:#999999;
-	text-align:center;
-	width:100%;
-	padding-bottom: 15px;
 	font-size: 85%;
 }
 
@@ -78,6 +52,12 @@ body
 {
 	margin:20px 20px 0;
 	padding:0 0 20px;
+}
+
+.ticketid
+{
+	font-family: monospace;
+	font-stretch: condensed;
 }
 
 /**** Logo Section  *****/
@@ -244,16 +224,6 @@ form li span label
 	padding-top:3px;
 }
 
-form li .datepicker
-{
-	cursor:pointer !important;
-	float:left;
-	height:16px;
-	margin:.1em 5px 0 0;
-	padding:0;
-	width:16px;
-}
-
 .form_description
 {
 	border-bottom:1px dotted #ccc;
@@ -287,16 +257,6 @@ form hr
 	display:none;
 }
 
-form li.section_break
-{
-	border-top:1px dotted #ccc;
-	margin-top:9px;
-	padding-bottom:0;
-	padding-left:9px;
-	padding-top:13px;
-	width:97% !important;
-}
-
 form ul li.first
 {
 	border-top:none !important;
@@ -304,29 +264,7 @@ form ul li.first
 	padding-top:0 !important;
 }
 
-form .section_break h3
-{
-	font-size:110%;
-	font-weight:400;
-	line-height:130%;
-	margin:0 0 2px;
-}
-
-form .section_break p
-{
-	font-size:85%;
-
-	margin:0 0 10px;
-}
-
 /**** Buttons ****/
-input.button_text
-{
-	overflow:visible;
-	padding:0 7px;
-	width:auto;
-}
-
 .buttons input
 {
 	font-size:120%;
@@ -343,12 +281,6 @@ label.description
 	font-weight:700;
 	line-height:150%;
 	padding:0 0 1px;
-}
-
-span.symbol
-{
-	font-size:115%;
-	line-height:130%;
 }
 
 input.text
@@ -397,12 +329,6 @@ select.select
 	border-left:1px solid #c3c3c3;
 	border-right:1px solid #c3c3c3;
 	border-top:1px solid #7c7c7c;
-}
-
-
-input.currency
-{
-	text-align:right;
 }
 
 input.checkbox
@@ -510,28 +436,6 @@ textarea.large
 	font-weight:bold;
 }
 
-#error_message_title
-{
-	color:#DF0000;
-	font-size:125%;
-	margin:7px 0 5px;
-	padding:0;
-}
-
-#error_message_desc
-{
-	color:#000;
-	font-size:100%;
-	margin:0 0 .8em;
-}
-
-#error_message_desc strong
-{
-	background-color:#FFDFDF;
-	color:red;
-	padding:2px 3px;
-}
-
 form li.error
 {
 	background-color:#FFDFDF !important;
@@ -599,37 +503,6 @@ form li:hover .guidelines
 	visibility:visible;
 }
 
-.no_guidelines .guidelines
-{
-	display:none !important;
-}
-
-.no_guidelines form li
-{
-	width:97%;
-}
-
-.no_guidelines li.section
-{
-	padding-left:9px;
-}
-
-/*** Success Message ****/
-.form_success 
-{
-	clear: both;
-	margin: 0;
-	padding: 90px 0pt 100px;
-	text-align: center
-}
-
-.form_success h2 {
-    clear:left;
-    font-size:160%;
-    font-weight:normal;
-    margin:0pt 0pt 3px;
-}
-
 /*** Password ****/
 ul.password{
     margin-top:60px;
@@ -684,10 +557,4 @@ form li.highlighted .fileinfo
 form li:hover .fileinfo
 {
 	visibility:visible;
-}
-
-.ticketid
-{
-	font-family: monospace;
-	font-stretch: condensed;
 }

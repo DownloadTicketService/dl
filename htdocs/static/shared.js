@@ -43,9 +43,3 @@ function setDefaults()
   setCookie("dln", document.forms[0].dln.value, expires);
   setCookie("nt", document.forms[0].nt.value, expires);
 }
-
-function setConds()
-{
-  document.getElementById("conds").style.display =
-    (document.forms[0].nl.checked? 'none': 'block');
-}

@@ -8,7 +8,7 @@ includeTemplate('style/include/header.php', compact('title'));
   <p>dl: minimalist download ticket service</p>
 </div>
 
-<form action="<?php echo $masterPath; ?>" method="post">
+<form action="<?=$masterPath?>" method="post">
   <ul >
     <!--
     <li>
