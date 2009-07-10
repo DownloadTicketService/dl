@@ -47,25 +47,32 @@ $perm = ($DATA["expire"] == 0 &&
 
 // final url
 $url = $masterPath . "?t=" . $id;
+$escUrl = htmlentities($url);
+$title = 'Result';
+includeTemplate('style/include/header.php', compact('title'));
 ?>
-<html>
-  <head>
-    <link href="style.css" rel="stylesheet" type="text/css"/>
-  </head>
-  <body>
-    Your ticket (<?php
-	echo htmlentities($DATA["name"]) . "): " .
-	  htmlentities($DATA["cmt"]); ?>
-    <ul>
-    <?php if($perm) echo "<li>Is a <strong>permanent</strong> ticket"; ?>
-    <li>E-Mail: <a href="<?php echo "mailto:?body=$url"; ?>">send an email</a> with this ticket
-    <li>Download: <a href="<?php echo $url; ?>">download directly</a>
-    <li>URL: <?php echo $url; ?>
-    </ul>
-    <div class="nav">
-      <a href="<?php echo $masterPath; ?>">Submit another</a>,
-      <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
-      <a href="<?php echo $masterPath; ?>?p">Logout</a>
-    </div>
-  </body>
-</html>
+
+<div class="form_description">
+  <h2>Upload result</h2>
+  <p>dl: minimalist download ticket service</p>
+</div>
+
+<label class="description">Your ticket (<?php
+echo htmlentities($DATA["name"]) . "): " .
+htmlentities($DATA["cmt"]); ?></label>
+<ul>
+  <?php if($perm) echo "<li>Is a <strong>permanent</strong> ticket"; ?>
+  <li>E-Mail: <a href="mailto:?body=<?=$escUrl?>">send an email</a> with this ticket
+  <li>Download: <a href="<?=$escUrl?>">download directly</a>
+  <li>URL: <?=$escUrl?>
+</ul>
+
+<div id="footer">
+  <a href="<?php echo $masterPath; ?>">Submit another</a>,
+  <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
+  <a href="<?php echo $masterPath; ?>?p">Logout</a>
+</div>
+
+<?php
+includeTemplate('style/include/footer.php');
+?>

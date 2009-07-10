@@ -1,5 +1,6 @@
 <?php
 // initialize the spool directory and authorization
+set_magic_quotes_runtime(0);
 
 // data
 require_once("config.php");

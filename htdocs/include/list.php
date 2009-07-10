@@ -1,9 +1,18 @@
-<html>
-  <head>
-    <link href="style.css" rel="stylesheet" type="text/css"/>
-  </head>
 <?php
+$title = 'Active Tickets';
+includeTemplate('style/include/header.php', compact('title'));
+?>
 
+<div class="form_description">
+  <h2><?=$title?></h2>
+  <p>dl: minimalist download ticket service</p>
+</div>
+
+<form action="<?php echo $masterPath . "?l"; ?>" method="post">
+  <input type="hidden" name="l"/>
+  <ul>
+
+<?php
 // extract requested tickets
 $ids = array();
 foreach($_REQUEST as $key => $value)
@@ -19,36 +28,19 @@ foreach($_REQUEST as $key => $value)
 if(count($ids))
 {
   // purge immediately
-  echo "<div class=\"action\"><table><tr><td class=\"label\">Purged:</td>";
+  echo "<li id=\"error_message\"><table><tr><td class=\"label\">Purged:</td>";
   $first = true;
   foreach($ids as $key => $value)
   {
     if($first) $first = false;
     else echo "<tr><td></td>";
-    echo "<td class=\"id\">" . $value["id"] . ":</td><td>" .
+    echo "<td class=\"ticketid\">" . $value["id"] . ":</td><td>" .
       htmlentities($value["name"]) . "</td></tr>";
     purgeDl($value["id"], $value);
   }
-
-  echo "</table></div><br/>";
+  
+  echo "</table></li>";
 }
-
-?>
-  <body>
-    <form action="<?php echo $masterPath . "?l"; ?>" method="post">
-      <input type="hidden" name="l"/>
-      <table class="list" cellpadding="5">
-       <tr>
-	<th></th>
-	<th>Name</th>
-	<th>Size</th>
-	<th>Date</th>
-	<th>Expiration</th>
-	<th>Downloads - last</th>
-	<th>Notify</th>
-	<th>Comment</th>
-       </tr>
-<?php
 
 // list active tickets
 $totalSize = 0;
@@ -61,24 +53,23 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
   $totalSize += $DATA["size"];
   ++$n;
 
-  // check
-  $color = ($n % 2? "": " class=\"odd\"");
-  echo "<tr$color><td>" .
-    "<input type=\"checkbox\" name=\"sel$n\" value=\"$key\"/>" .
-    "</td>";
+  echo "<li class=\"fileinfo\">";
 
   // name
-  echo "<td><a href=\"$masterPath?t=$key\">" .
-    htmlentities($DATA["name"]) . "</a></td>";
+  echo "<input type=\"checkbox\" name=\"sel$n\" value=\"$key\"/>";
+  echo "<label class=\"choice\"><a href=\"$masterPath?t=$key\">" .
+    htmlentities($DATA["name"]) . "</a>";
+  if($DATA["cmt"])
+    echo ": " . htmlentities($DATA["cmt"]);
+  echo "</label>";
 
-  // size
-  echo "<td>" . humanSize($DATA["size"]) . "</td>";
-
-  // date
-  echo "<td>" . date("d/m/Y", $DATA["time"]) . "</td>";
+  // parameters
+  echo "<div class=\"fileinfo\"><table>";
+  echo "<tr><th>Size: </th><td>" . humanSize($DATA["size"]) . "</td></tr>";
+  echo "<tr><th>Date: </th><td> " . date("d/m/Y", $DATA["time"]) . "</td></tr>";
 
   // expire
-  echo "<td>";
+  echo "<tr><th>Expiry: </th><td>";
   if($DATA["expireDln"] || $DATA["expireLast"])
   {
     if($DATA["expireLast"] && $DATA["lastTime"])
@@ -96,44 +87,51 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
     echo "In " . humanTime($DATA["expire"] - time());
   else
     echo "<strong>never</strong>";
-  echo "</td>";
+  echo "</td></tr>";
 
   // downloads
-  echo "<td>";
   if($DATA["downloads"])
-    echo $DATA["downloads"] . " - " . date("d/m/Y", $DATA["lastTime"]);
-  echo "</td>";
-
-  // notify
-  echo "<td>";
-  $first = true;
-  foreach(explode(",", $DATA["email"]) as $email)
   {
-    if($first) $first = false;
-    else echo ", ";
-    $email = trim($email);
-    echo "<a href=\"mailto:" . htmlentities($email) . "\">" .
-      htmlentities($email) . "</a>";
+    echo "<tr><th>Downloads: </th><td>" . $DATA["downloads"] . "</td></tr>"
+      . "<tr><th>Downloaded: </th><td>" . date("d/m/Y", $DATA["lastTime"]) . "</td</tr>";
   }
 
-  // comments
-  echo "<td>";
-  if($DATA["cmt"]) echo htmlentities($DATA["cmt"]);
-  echo "</td>";
+  // notify
+  if($DATA["email"])
+  {
+    echo "<tr><th>Notify: </th><td>";
+    $first = true;
+    foreach(explode(",", $DATA["email"]) as $email)
+    {
+      if($first) $first = false;
+      else echo ", ";
+      $email = trim($email);
+      echo "<a href=\"mailto:" . htmlentities($email) . "\">" .
+	htmlentities($email) . "</a>";
+    }
+    echo "</td></tr>";
+  }
 
-  echo "</tr>";
+  echo "</table></div></li>";
 }
 
 ?>
-     </table>
-     <input type="reset" value="Reload" onclick="document.location.reload();"/>
-     <input type="reset" value="Reset"/>
-     <input type="submit" value="Purge selected"/>
-    </form>
-    <p>Total archive size: <?php echo humanSize($totalSize); ?></p>
-    <div class="nav">
-      <a href="<?php echo $masterPath; ?>">Submit new ticket</a>,
-      <a href="<?php echo $masterPath; ?>?p">Logout</a>
-    </div>
-  </body>
-</html>
+
+    <li class="buttons">
+      <input type="reset" value="Reload" onclick="document.location.reload();"/>
+      <input type="reset" value="Reset"/>
+      <input type="submit" value="Purge selected"/>
+    </li>
+  </ul>
+</form>
+
+<p>Total archive size: <?php echo humanSize($totalSize); ?></p>
+
+<div id="footer">
+  <a href="<?php echo $masterPath; ?>">Submit new ticket</a>,
+  <a href="<?php echo $masterPath; ?>?p">Logout</a>
+</div>
+
+<?php
+includeTemplate('style/include/footer.php');
+?>

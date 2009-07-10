@@ -1,45 +1,85 @@
-<html>
-  <head>
-    <link href="style.css" rel="stylesheet" type="text/css"/>
-    <script src="shared.js" type="text/javascript"></script>
-  </head>
-  <body onload="loadDefaults();">
-    <form action="<?php echo $masterPath; ?>"
-	enctype="multipart/form-data" method="post"
-	onsubmit="document.forms[0].submit.disabled = true;">
-      <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
-      <table><tr>
-	<td>File:</td>
-	<td>
-	  <input name="file" type="file"/><br/>
-	  <small>current max file size: <?php echo $hMaxSize; ?></small>
-	</td>
-      </tr><tr>
-	<td>Comment:</td>
-	<td><input name="cmt" type="text"/></td>
-      </tr><tr>
-	<td>Validity:</td>
-	<td>
-	  <div>
-	    <input name="nl" type="checkbox" onclick="setConds();">Permanent ticket</input>
-	  </div><div id="conds">
-	    <input name="hr" type="text" value="168"/> total hours, or<br/>
-	    <input name="hra" type="text" value="24"/> hours after last download, or<br/>
-	    <input name="dln" type="text" value="0"/> downloads.<br/>
-	    <small>enter 0 to disable the condition</small>
-	  </div>
-	</td>
-      </tr><tr>
-	<td>Notify:</td>
-	<td><input name="nt" type="text"/> emails (comma separated)</td>
-      </tr></table>
-      <input type="submit" name="submit" value="Upload"/>
-      <input type="reset" value="Reset"/>
-      <input type="button" value="Set as defaults" onclick="setDefaults();"/>
-    </form>
-    <div class="nav">
-      <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
-      <a href="<?php echo $masterPath; ?>?p">Logout</a>
-    </div>
-  </body>
-</html>
+<?php
+$title = 'Upload Form';
+includeTemplate('style/include/header.php', compact('title'));
+?>
+
+<div class="form_description">
+  <h2><?=$title?></h2>
+  <p>dl: minimalist download ticket service</p>
+</div>
+
+<form enctype="multipart/form-data" method="post"
+      no-onsubmit="document.forms[0].submit.disabled = true;"
+      action="<?php echo $masterPath; ?>" >
+  <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
+  <ul>
+    <li>
+      <label class="description">Upload a File</label>
+      <div>
+	<input name="file" class="element file" type="file"/>
+      </div><p class="guidelines"><small>Chose wich file to upload.</small></p>
+    </li>
+
+    <li>
+      <label class="description">Comment</label>
+      <div>
+	<input name="cmt" class="element text medium" type="text" maxlength="255" value=""/>
+      </div><p class="guidelines"><small>Type a comment for your uploaded file.</small></p>
+    </li>
+
+    <li>
+      <label class="description">Expire in total # of hours</label>
+      <div>
+	<input name="hr" value="168" class="element text medium" type="text" maxlength="255" value=""/>
+      </div><p class="guidelines"><small>Type the number of hours the uploaded file is allowed to be kept on the server, after this number is reached the file will be deleted from the server.</small></p>
+    </li>
+
+    <li>
+      <label class="description">Expire in # of hours after last dl</label>
+      <div>
+	<input name="hra" value="24" class="element text medium" type="text" maxlength="255" value=""/>
+      </div><p class="guidelines"><small>Type the number of hours the uploaded file is allowed to be kept on the server, after this number is reached the file will be deleted from the server.</small></p>
+    </li>
+
+    <li>
+      <label class="description">Expire after # of downloads</label>
+      <div>
+	<input name="dln" value="0" class="element text medium" type="text" maxlength="255" value=""/>
+      </div><p class="guidelines"><small>Type the number of times the uploaded file is allowed to be downloaded in total, after this amount is reached the file will be deleted from the server.</small></p>
+    </li>
+
+    <li>
+      <label class="description">Permanent ticket / upload</label>
+      <span>
+	<input name="nl" class="element checkbox" type="checkbox" value="1"/>
+	<label class="choice">Do not expire</label>
+      </span><p class="guidelines"><small>Set this checkmark if you do not want the uploaded file to expire.</small></p>
+    </li>
+
+    <li>
+      <label class="description">Get notified by email</label>
+      <div>
+	<input name="nt" class="element text medium" type="text" maxlength="255" value=""/>
+      </div><p class="guidelines"><small>Type the email address that should be notified when the file is downloaded from the server.</small></p>
+    </li>
+
+    <li class="buttons">
+      <input class="button_text" type="submit" name="submit" value="Upload"/>
+      <input class="button_text" type="reset" name="submit" value="Reset"/>
+      <input class="button_text" type="button" name="submit" value="Set as defaults "onclick="setDefaults();"/>
+    </li>
+  </ul>
+</form>
+
+<div id="footer">
+  <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
+  <a href="<?php echo $masterPath; ?>?p">Logout</a>
+</div>
+
+<script>
+  loadDefaults();
+</script>
+
+<?php
+includeTemplate('style/include/footer.php');
+?>

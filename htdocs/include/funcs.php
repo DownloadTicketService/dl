@@ -37,4 +37,11 @@ function returnBytes($val)
   }
   return $val;
 }
+
+
+function includeTemplate($file, $vars = Array())
+{
+  extract($vars);
+  include($file);
+}
 ?>
