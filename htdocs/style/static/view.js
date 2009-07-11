@@ -1,12 +1,3 @@
-if (window.attachEvent) {
-  window["event_load" + initialize] = initialize;
-  window["load" + initialize] = function () {
-    window["event_load" + initialize](window.event)
-  };
-  window.attachEvent("onload", window["load" + initialize])
-} else {
-  window.addEventListener("load", initialize, false)
-}
 function initialize() {
   elements = getElementsByClassName(document, "*", "element");
   for (i = 0; i < elements.length; i++) {
@@ -62,4 +53,13 @@ function addClassName(_13, _14, _15) {
   } else {
     _13.className = _14
   }
+}
+if (window.attachEvent) {
+  window["event_load" + initialize] = initialize;
+  window["load" + initialize] = function () {
+    window["event_load" + initialize](window.event)
+  };
+  window.attachEvent("onload", window["load" + initialize])
+} else {
+  window.addEventListener("load", initialize, false)
 }

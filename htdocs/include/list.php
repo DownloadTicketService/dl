@@ -34,8 +34,10 @@ if(count($ids))
   {
     if($first) $first = false;
     else echo "<tr><td></td>";
-    echo "<td class=\"ticketid\">" . $value["id"] . ":</td><td>" .
-      htmlentities($value["name"]) . "</td></tr>";
+    echo "<td>" . htmlentities($value["name"]);
+    if($DATA["cmt"])
+      echo ": " . htmlentities($DATA["cmt"]);
+    echo "</td></tr>";
     purgeDl($value["id"], $value);
   }
   
@@ -56,12 +58,12 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
   echo "<li class=\"fileinfo\">";
 
   // name
-  echo "<input type=\"checkbox\" name=\"sel$n\" value=\"$key\"/>";
+  echo "<span><input class=\"element checkbox\" type=\"checkbox\" name=\"sel$n\" value=\"$key\"/>";
   echo "<label class=\"choice\"><a href=\"$masterPath?t=$key\">" .
     htmlentities($DATA["name"]) . "</a>";
   if($DATA["cmt"])
     echo ": " . htmlentities($DATA["cmt"]);
-  echo "</label>";
+  echo "</label></span>";
 
   // parameters
   echo "<div class=\"fileinfo\"><table>";
