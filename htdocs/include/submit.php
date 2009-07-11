@@ -3,6 +3,10 @@ $title = 'Upload Form';
 includeTemplate('style/include/header.php', compact('title'));
 ?>
 
+<script type="text/javascript">
+  window.addEventListener("load", loadDefaults, false)
+</script>
+
 <div class="form_description">
   <h2><?php echo $title; ?></h2>
   <p>dl: minimalist download ticket service</p>
@@ -11,7 +15,6 @@ includeTemplate('style/include/header.php', compact('title'));
 <form enctype="multipart/form-data" method="post"
       onsubmit="document.getElementById('submit').disabled = true;"
       action="<?php echo $masterPath; ?>" >
-  <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
   <ul>
     <li>
       <label class="description">Upload a File</label>
@@ -75,10 +78,6 @@ includeTemplate('style/include/header.php', compact('title'));
   <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
   <a href="<?php echo $masterPath; ?>?p">Logout</a>
 </div>
-
-<script>
-  loadDefaults();
-</script>
 
 <?php
 includeTemplate('style/include/footer.php');

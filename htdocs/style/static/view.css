@@ -68,17 +68,21 @@ h1
 	min-height:0;
 	padding:0;
 	text-decoration:none;
-	text-indent:-8000px;
-	
+}
+
+h1 img
+{
+	float: left;
+	padding-right: 0.5em;
 }
 
 h1 a
 {
-	
 	display:block;
 	height:100%;
-	min-height:40px;
+	min-height:35px;
 	overflow:hidden;
+	color: #182539;
 }
 
 

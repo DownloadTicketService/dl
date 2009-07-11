@@ -40,11 +40,6 @@ $DATA["path"] = $tmpFile;
 $DATA["size"] = $FILE["size"];
 dba_insert($id, serialize($DATA), $tDb);
 
-$perm = ($DATA["expire"] == 0 &&
-    $DATA["expireLast"] == 0 &&
-    $DATA["expireDln"] == 0);
-
-
 // final url
 $url = $masterPath . "?t=" . $id;
 $escUrl = htmlentities($url);

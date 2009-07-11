@@ -10,5 +10,8 @@
     <body id="main_body">
       <img id="top" src="style/static/top.png" alt=""/>
       <div id="form_container">
-	<h1><a><?php echo $title; ?></a></h1>
+	<h1><a>
+	  <img src="style/static/dl.png" alt=""/>
+	  Ticket Service
+	</a></h1>
 	<div class="appnitro">
