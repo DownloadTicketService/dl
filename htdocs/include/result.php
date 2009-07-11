@@ -57,15 +57,17 @@ includeTemplate('style/include/header.php', compact('title'));
   <p>dl: minimalist download ticket service</p>
 </div>
 
-<label class="description">Your ticket (<?php
+<div>
+  <label class="description">Your ticket (<?php
 echo htmlentities($DATA["name"]) . "): " .
 htmlentities($DATA["cmt"]); ?></label>
-<ul>
-  <?php if($perm) echo "<li>Is a <strong>permanent</strong> ticket"; ?>
-  <li>E-Mail: <a href="mailto:?body=<?php echo $escUrl; ?>">send an email</a> with this ticket
-  <li>Download: <a href="<?php echo $escUrl; ?>">download directly</a>
-  <li>URL: <?php echo $escUrl; ?>
-</ul>
+  <p><span class="ticketid"><?php echo $escUrl; ?></span></p>
+</div>
+
+<span class="buttons">
+  <input type="button" onclick="javascript:document.location='mailto:?body=<?php echo $escUrl; ?>'" value="Send via E-Mail"/>
+  <input type="button" onclick="javascript:document.location='<?php echo $escUrl; ?>'" value="Download"/>
+</span>
 
 <div id="footer">
   <a href="<?php echo $masterPath; ?>">Submit another</a>,

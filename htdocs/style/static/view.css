@@ -141,6 +141,7 @@ form li:after
 	clear:both;
 	display:block;
 	margin-top:10px;
+	width:100% !important;
 }
 
 * html form li
@@ -369,12 +370,6 @@ select.select[class]
 *:first-child+html select.select[class]
 {
 	margin:1px 0;
-}
-
-.safari select.select
-{
-	font-size:120% !important;
-	margin-bottom:1px;
 }
 
 input.small
