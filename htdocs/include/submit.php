@@ -4,20 +4,20 @@ includeTemplate('style/include/header.php', compact('title'));
 ?>
 
 <div class="form_description">
-  <h2><?=$title?></h2>
+  <h2><?php echo $title; ?></h2>
   <p>dl: minimalist download ticket service</p>
 </div>
 
 <form enctype="multipart/form-data" method="post"
       onsubmit="document.getElementById('submit').disabled = true;"
-      action="<?=$masterPath?>" >
-  <input type="hidden" name="max_file_size" value="<?=$iMaxSize?>"/>
+      action="<?php echo $masterPath; ?>" >
+  <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
   <ul>
     <li>
       <label class="description">Upload a File</label>
       <div>
 	<input name="file" class="element file" type="file"/>
-      </div><p class="guidelines"><small>Chose wich file to upload. You can upload up to <?=$hMaxSize?>.</small></p>
+      </div><p class="guidelines"><small>Chose wich file to upload. You can upload up to <?php echo $hMaxSize; ?>.</small></p>
     </li>
 
     <li>
@@ -72,8 +72,8 @@ includeTemplate('style/include/header.php', compact('title'));
 </form>
 
 <div id="footer">
-  <a href="<?=$masterPath?>?l">List active tickets</a>,
-  <a href="<?=$masterPath?>?p">Logout</a>
+  <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
+  <a href="<?php echo $masterPath; ?>?p">Logout</a>
 </div>
 
 <script>

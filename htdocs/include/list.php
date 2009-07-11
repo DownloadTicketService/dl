@@ -4,11 +4,11 @@ includeTemplate('style/include/header.php', compact('title'));
 ?>
 
 <div class="form_description">
-  <h2><?=$title?></h2>
+  <h2><?php echo $title; ?></h2>
   <p>dl: minimalist download ticket service</p>
 </div>
 
-<form action="<?=$masterPath?>?l" method="post">
+<form action="<?php echo $masterPath; ?>?l" method="post">
   <input type="hidden" name="l"/>
   <ul>
 
@@ -128,8 +128,8 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
 <p>Total archive size: <?php echo humanSize($totalSize); ?></p>
 
 <div id="footer">
-  <a href="<?=$masterPath?>">Submit new ticket</a>,
-  <a href="<?=$masterPath?>?p">Logout</a>
+  <a href="<?php echo $masterPath; ?>">Submit new ticket</a>,
+  <a href="<?php echo $masterPath; ?>?p">Logout</a>
 </div>
 
 <?php

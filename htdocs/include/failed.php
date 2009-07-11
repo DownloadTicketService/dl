@@ -4,7 +4,7 @@ includeTemplate('style/include/header.php', compact('title'));
 ?>
 
 <div class="form_description">
-  <h2><?=$title?></h2>
+  <h2><?php echo $title; ?></h2>
 </div>
 
 <label class="description">Sorry, the operation failed.</label>

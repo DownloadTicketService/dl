@@ -62,15 +62,15 @@ echo htmlentities($DATA["name"]) . "): " .
 htmlentities($DATA["cmt"]); ?></label>
 <ul>
   <?php if($perm) echo "<li>Is a <strong>permanent</strong> ticket"; ?>
-  <li>E-Mail: <a href="mailto:?body=<?=$escUrl?>">send an email</a> with this ticket
-  <li>Download: <a href="<?=$escUrl?>">download directly</a>
-  <li>URL: <?=$escUrl?>
+  <li>E-Mail: <a href="mailto:?body=<?php echo $escUrl; ?>">send an email</a> with this ticket
+  <li>Download: <a href="<?php echo $escUrl; ?>">download directly</a>
+  <li>URL: <?php echo $escUrl; ?>
 </ul>
 
 <div id="footer">
-  <a href="<?=$masterPath?>">Submit another</a>,
-  <a href="<?=$masterPath?>?l">List active tickets</a>,
-  <a href="<?=$masterPath?>?p">Logout</a>
+  <a href="<?php echo $masterPath; ?>">Submit another</a>,
+  <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
+  <a href="<?php echo $masterPath; ?>?p">Logout</a>
 </div>
 
 <?php
