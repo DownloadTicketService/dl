@@ -42,7 +42,11 @@ dba_insert($id, serialize($DATA), $tDb);
 
 // final url
 $url = $masterPath . "?t=" . $id;
-$escUrl = htmlentities($url);
+$subject = "download link to '" . $DATA["name"] . "'";
+if(!empty($DATA["cmt"]))
+  $subject .= " (" . $DATA["cmt"] . ")";
+$mailto = "mailto:?subject=$subject&body=" . urlencode($url);
+
 $title = 'Upload Result';
 includeTemplate('style/include/header.php', compact('title'));
 ?>
@@ -51,12 +55,12 @@ includeTemplate('style/include/header.php', compact('title'));
   <label class="description">Your ticket (<?php
 echo htmlentities($DATA["name"]) . "): " .
 htmlentities($DATA["cmt"]); ?></label>
-  <p><span class="ticketid"><?php echo $escUrl; ?></span></p>
+<p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
 </div>
 
 <span class="buttons">
-  <input type="button" onclick="javascript:document.location='mailto:?body=<?php echo $escUrl; ?>'" value="Send via E-Mail"/>
-  <input type="button" onclick="javascript:document.location='<?php echo $escUrl; ?>'" value="Download"/>
+  <input type="button" onclick="document.location=&quot;<?php echo htmlentities($mailto); ?>&quot;" value="Send via E-Mail"/>
+  <input type="button" onclick="document.location=&quot;<?php echo htmlentities($url); ?>&quot;" value="Download"/>
 </span>
 
 <div id="footer">
