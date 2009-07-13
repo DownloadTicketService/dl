@@ -1,6 +1,26 @@
 <?php
 // auxiliary functions
 
+function purgeDl($key, $DATA)
+{
+  global $tDb, $fromAddr, $masterPath;
+
+  if(dba_delete($key, $tDb))
+  {
+    unlink($DATA["path"]);
+
+    // notify if requested
+    if(!empty($DATA["email"]))
+    {
+      mail($DATA["email"], "[dl] $key purge notification",
+	  $key . " (" . $DATA["name"] . ") was purged after " .
+	  $DATA["downloads"] . " downloads from $masterPath\n",
+	  "From: $fromAddr");
+    }
+  }
+}
+
+
 function humanSize($size)
 {
   if($size > 1073741824)
@@ -39,7 +59,7 @@ function returnBytes($val)
 }
 
 
-function includeTemplate($file, $vars = Array())
+function includeTemplate($file, $vars = array())
 {
   extract($vars);
   include($file);

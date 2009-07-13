@@ -71,7 +71,7 @@ includeTemplate('style/include/header.php', compact('title'));
 
 <div id="footer">
   <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
-  <a href="<?php echo $masterPath; ?>?p">Logout</a>
+  <a href="<?php echo $masterPath; ?>?u">Logout</a>
 </div>
 
 <?php

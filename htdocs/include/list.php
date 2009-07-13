@@ -16,6 +16,7 @@ foreach($_REQUEST as $key => $value)
   $DATA = dba_fetch($value, $tDb);
   if($DATA === false) continue;
   $DATA = unserialize($DATA);
+  if(!$auth["admin"] && $DATA["user"] != $auth["user"]) continue;
   $DATA["id"] = $value;
   $ids[$key] = $DATA;
 }
@@ -47,6 +48,10 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
   $DATA = dba_fetch($key, $tDb);
   if($DATA === false) continue;
   $DATA = unserialize($DATA);
+
+  // this is _lame_, but necessary until we switch to a proper query
+  if(!$auth["admin"] && $DATA["user"] != $auth["user"]) continue;
+
   $totalSize += $DATA["size"];
   ++$n;
 
@@ -64,6 +69,8 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
   echo "<div class=\"fileinfo\"><table>";
   echo "<tr><th>Size: </th><td>" . humanSize($DATA["size"]) . "</td></tr>";
   echo "<tr><th>Date: </th><td> " . date("d/m/Y", $DATA["time"]) . "</td></tr>";
+  if($auth["admin"] && $DATA["user"] != $auth["user"])
+    echo "<tr><th>User: </th><td>" . htmlentities($DATA["user"]) . "</td></tr>";
 
   // expire
   echo "<tr><th>Expiry: </th><td>";
@@ -126,7 +133,7 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
 
 <div id="footer">
   <a href="<?php echo $masterPath; ?>">Submit new ticket</a>,
-  <a href="<?php echo $masterPath; ?>?p">Logout</a>
+  <a href="<?php echo $masterPath; ?>?u">Logout</a>
 </div>
 
 <?php

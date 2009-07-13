@@ -5,19 +5,17 @@ includeTemplate('style/include/header.php', compact('title'));
 
 <form action="<?php echo $masterPath; ?>" method="post">
   <ul >
-    <!--
     <li>
-      <label class="description">Username</label>
+      <label class="description">User</label>
       <div>
-	<input name="p" class="element text medium" type="password" maxlength="25"/>
-      </div><p class="guidelines"><small>Type in the password to access the filesharing service.</small></p>
+	<input name="u" class="element text medium" type="text" maxlength="255"/>
+      </div><p class="guidelines"><small>Type in the user name to access the filesharing service.</small></p>
     </li>
-    -->
 
     <li>
       <label class="description">Password</label>
       <div>
-	<input name="p" class="element text medium" type="password" maxlength="25"/>
+	<input name="p" class="element text medium" type="password" maxlength="255"/>
       </div><p class="guidelines"><small>Type in the password to access the filesharing service.</small></p>
     </li>
 

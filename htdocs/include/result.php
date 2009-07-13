@@ -19,6 +19,7 @@ if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
 // prepare data
 $DATA = array();
 $DATA["name"] = basename($FILE["name"]);
+$DATA["user"] = $auth["user"];
 $DATA["cmt"] = $_POST["cmt"];
 $DATA["time"] = time();
 $DATA["downloads"] = 0;
@@ -67,7 +68,7 @@ htmlentities($DATA["cmt"]); ?></label>
 <div id="footer">
   <a href="<?php echo $masterPath; ?>">Submit another</a>,
   <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
-  <a href="<?php echo $masterPath; ?>?p">Logout</a>
+  <a href="<?php echo $masterPath; ?>?u">Logout</a>
 </div>
 
 <?php

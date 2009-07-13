@@ -16,29 +16,8 @@ $dataDir = $spoolDir . "/data";
 
 // initialize the dbs
 $dbMode = (version_compare(PHP_VERSION, "4.3.5", "<")? "w": "c");
-$tDb = dba_popen($tDbPath, $dbMode, $dbHandler);
-$uDb = dba_popen($uDbPath, $dbMode, $dbHandler);
-
-// some utilities
-function purgeDl($key, $DATA)
-{
-  global $tDb, $fromAddr, $masterPath;
-
-  if(dba_delete($key, $tDb))
-  {
-    unlink($DATA["path"]);
-
-    // notify if requested
-    if(!empty($DATA["email"]))
-    {
-      mail($DATA["email"], "[dl] $key purge notification",
-	  $key . " (" . $DATA["name"] . ") was purged after " .
-	  $DATA["downloads"] . " downloads from $masterPath\n",
-	  "From: $fromAddr");
-    }
-  }
-}
-
+$tDb = dba_popen($tDbPath, $dbMode, $dbHandler) or die();
+$uDb = dba_popen($uDbPath, $dbMode, $dbHandler) or die();
 
 // expire tickets
 for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
@@ -55,9 +34,45 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
     purgeDl($key, $DATA);
 }
 
+
 // authorization
+function authenticate()
+{
+  global $uDb;
+
+  // authentication attempt
+  if(isset($_SERVER['REMOTE_USER']))
+    $user = $_SERVER['REMOTE_USER'];
+  else
+  {
+    if(empty($_REQUEST['u']) || !isset($_REQUEST['p']))
+      return false;
+
+    $user = $_REQUEST['u'];
+    $pass = $_REQUEST['p'];
+  }
+
+  // verify if we have administration rights
+  $DATA = dba_fetch($user, $uDb);
+  if($DATA === false)
+  {
+    $okpass = isset($_SERVER['REMOTE_USER']);
+    $admin = false;
+  }
+  else
+  {
+    $DATA = unserialize($DATA);
+    $okpass = (isset($_SERVER['REMOTE_USER']) || ($pass === $DATA['pass']));
+    $admin = $DATA['admin'];
+  }
+
+  if(!$okpass) return false;
+  return array('user' => $user, 'admin' => $admin);
+}
+
 session_start();
-$auth = (isset($_SESSION["auth"])? $_SESSION["auth"]: false);
-if(isset($_REQUEST["p"]))
-  $auth = $_SESSION["auth"] = ($_REQUEST["p"] == $masterPass);
+if(!isset($_SESSION["auth"]) || isset($_REQUEST['u']))
+  $_SESSION["auth"] = authenticate();
+$auth = &$_SESSION["auth"];
+
 ?>
