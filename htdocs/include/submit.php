@@ -1,16 +1,11 @@
 <?php
-$title = 'Upload Form';
+$title = 'Upload Request';
 includeTemplate('style/include/header.php', compact('title'));
 ?>
 
 <script type="text/javascript">
   window.addEventListener("load", loadDefaults, false)
 </script>
-
-<div class="form_description">
-  <h2><?php echo $title; ?></h2>
-  <p>dl: minimalist download ticket service</p>
-</div>
 
 <form enctype="multipart/form-data" method="post"
       onsubmit="document.getElementById('submit').disabled = true;"

@@ -1,12 +1,7 @@
 <?php
-$title = 'Login Form';
+$title = 'Login';
 includeTemplate('style/include/header.php', compact('title'));
 ?>
-
-<div class="form_description">
-  <h2><?php echo $title; ?></h2>
-  <p>dl: minimalist download ticket service</p>
-</div>
 
 <form action="<?php echo $masterPath; ?>" method="post">
   <ul >

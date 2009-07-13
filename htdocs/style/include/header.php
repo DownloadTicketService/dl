@@ -15,3 +15,6 @@
 	  Ticket Service
 	</a></h1>
 	<div class="appnitro">
+	  <div class="form_description">
+	    <h2><?php echo $title; ?></h2>
+	  </div>

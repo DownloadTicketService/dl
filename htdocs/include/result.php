@@ -43,14 +43,9 @@ dba_insert($id, serialize($DATA), $tDb);
 // final url
 $url = $masterPath . "?t=" . $id;
 $escUrl = htmlentities($url);
-$title = 'Result';
+$title = 'Upload Result';
 includeTemplate('style/include/header.php', compact('title'));
 ?>
-
-<div class="form_description">
-  <h2>Upload result</h2>
-  <p>dl: minimalist download ticket service</p>
-</div>
 
 <div>
   <label class="description">Your ticket (<?php
