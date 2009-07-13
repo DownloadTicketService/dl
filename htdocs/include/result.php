@@ -17,12 +17,13 @@ if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
 }
 
 // prepare data
+$DATA = array();
 $DATA["name"] = basename($FILE["name"]);
-$DATA["cmt"] = $_REQUEST["cmt"];
+$DATA["cmt"] = $_POST["cmt"];
 $DATA["time"] = time();
 $DATA["downloads"] = 0;
 $DATA["lastTime"] = 0;
-if(!empty($_REQUEST["nl"]))
+if(!empty($_POST["nl"]))
 {
   $DATA["expire"] = 0;
   $DATA["expireLast"] = 0;
@@ -30,12 +31,12 @@ if(!empty($_REQUEST["nl"]))
 }
 else
 {
-  $DATA["expire"] = (!empty($_REQUEST["hr"])?
-    $DATA["time"] + $_REQUEST["hr"] * 3600: 0);
-  $DATA["expireLast"] = (!empty($_REQUEST["hra"])? $_REQUEST["hra"] * 3600: 0);
-  $DATA["expireDln"] = (!empty($_REQUEST["dln"])? $_REQUEST["dln"]: 0);
+  $DATA["expire"] = (!empty($_POST["hr"])?
+    $DATA["time"] + $_POST["hr"] * 3600: 0);
+  $DATA["expireLast"] = (!empty($_POST["hra"])? $_POST["hra"] * 3600: 0);
+  $DATA["expireDln"] = (!empty($_POST["dln"])? $_POST["dln"]: 0);
 }
-$DATA["email"] = str_replace(array(";", "\n"), ",", $_REQUEST["nt"]);
+$DATA["email"] = str_replace(array(";", "\n"), ",", $_POST["nt"]);
 $DATA["path"] = $tmpFile;
 $DATA["size"] = $FILE["size"];
 dba_insert($id, serialize($DATA), $tDb);
