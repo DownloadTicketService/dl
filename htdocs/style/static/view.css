@@ -548,6 +548,16 @@ form li .fileinfo
 	z-index:1000;
 }
 
+form li .fileinfo th
+{
+	text-align: right;
+}
+
+form li .fileinfo td
+{
+	text-align: left;
+}
+
 form li.highlighted .fileinfo
 {
 	visibility:visible;
