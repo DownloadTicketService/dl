@@ -1,8 +1,8 @@
 dl 0.3:
 
-	* CSS-ification
-	* New skin from Kim Thostrup <kim@thostrup.dk>
+	* CSS-ification, with new skin from Kim Thostrup <kim@thostrup.dk>.
 	* Include IE5/6 PNG fix from Angus Turnbull http://www.twinhelix.com
+	* Multiuser support with HTTP authentication or internal user database.
 	* License changed to LGPL 3
 
 

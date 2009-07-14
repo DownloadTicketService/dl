@@ -24,12 +24,12 @@ function purgeDl($key, $DATA)
 function humanSize($size)
 {
   if($size > 1073741824)
-    return intval($size / 1073741824) . " gb";
+    return round($size / 1073741824, 3) . " gb";
   else if($size > 1048576)
-    return intval($size / 1048576) . " mb";
+    return round($size / 1048576, 3) . " mb";
   else if($size > 1024)
-    return intval($size / 1024) . " kb";
-  return $size;
+    return round($size / 1024, 3) . " kb";
+  return $size . " bytes";
 }
 
 

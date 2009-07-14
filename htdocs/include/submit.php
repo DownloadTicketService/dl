@@ -15,35 +15,59 @@ includeTemplate('style/include/header.php', compact('title'));
       <label class="description">Upload a File</label>
       <div>
 	<input name="file" class="element file" type="file"/>
-      </div><p class="guidelines"><small>Chose wich file to upload. You can upload up to <?php echo $hMaxSize; ?>.</small></p>
+      </div>
+      <p class="guidelines"><small>
+	  Choose which file to upload. You can upload up to <?php echo
+	  $hMaxSize; ?>.
+      </small></p>
     </li>
 
     <li>
       <label class="description">Comment</label>
       <div>
 	<input name="cmt" class="element text medium" type="text" maxlength="255" value=""/>
-      </div><p class="guidelines"><small>Type a comment for your uploaded file.</small></p>
+      </div>
+      <p class="guidelines"><small>
+	  Type an <em>optional</em> comment for your
+	  uploaded file. The comment will be shown along with the file name.
+      </small></p>
     </li>
 
     <li>
       <label class="description">Expire in total # of hours</label>
       <div>
 	<input name="hr" value="168" class="element text medium" type="text" maxlength="255" value=""/>
-      </div><p class="guidelines"><small>Type the number of hours the uploaded file is allowed to be kept on the server, after this number is reached the file will be deleted from the server.</small></p>
+      </div>
+      <p class="guidelines"><small>
+	  Type the <strong>maximal number of hours</strong> the uploaded file is allowed to be
+	  kept on the server. After this period is passed the file will be deleted from
+	  the server.
+      </small></p>
     </li>
 
     <li>
       <label class="description">Expire in # of hours after last dl</label>
       <div>
 	<input name="hra" value="24" class="element text medium" type="text" maxlength="255" value=""/>
-      </div><p class="guidelines"><small>Type the number of hours the uploaded file is allowed to be kept on the server, after this number is reached the file will be deleted from the server.</small></p>
+      </div>
+      <p class="guidelines"><small>
+	  Type the number of hours the uploaded file is allowed to be kept on
+	  the server <strong>after being downloaded</strong>. After this period
+	  is passed without activity, the file will be deleted from
+	  the server.
+      </small></p>
     </li>
 
     <li>
       <label class="description">Expire after # of downloads</label>
       <div>
 	<input name="dln" value="0" class="element text medium" type="text" maxlength="255" value=""/>
-      </div><p class="guidelines"><small>Type the number of times the uploaded file is allowed to be downloaded in total, after this amount is reached the file will be deleted from the server.</small></p>
+      </div>
+      <p class="guidelines"><small>
+	  Type the number of times the uploaded file is <strong>allowed to be
+	  downloaded</strong> in total. After this amount is reached the file will be
+	  deleted from the server.
+      </small></p>
     </li>
 
     <li>
@@ -51,14 +75,22 @@ includeTemplate('style/include/header.php', compact('title'));
       <span>
 	<input name="nl" class="element checkbox" type="checkbox" value="1"/>
 	<label class="choice">Do not expire</label>
-      </span><p class="guidelines"><small>Set this checkmark if you do not want the uploaded file to expire.</small></p>
+      </span>
+      <p class="guidelines"><small>
+	  Set this checkmark if you do not want the uploaded file to expire.
+      </small></p>
     </li>
 
     <li>
       <label class="description">Get notified by email</label>
       <div>
 	<input name="nt" class="element text medium" type="text" maxlength="255" value=""/>
-      </div><p class="guidelines"><small>Type the email address that should be notified when the file is downloaded from the server.</small></p>
+      </div>
+      <p class="guidelines"><small>
+	  Type an <em>optional</em> email address(es) that should be notified when the file is
+	  downloaded from the server. Separate multiple addresses with
+	  commas.
+      </small></p>
     </li>
 
     <li class="buttons">

@@ -3,80 +3,164 @@ dl: minimalist download ticket service
 ======================================
 
 dl is a minimalist download ticket service with automatic expiration, written
-in PHP. I've been using this service as an email-attachment replacement for my
-company, but there are no plans on extending it beyond simple download ticket
-management.
+in PHP. It allows you to upload any file to a Web server and generate a unique
+download ticket. The ticket is automatically expired according to the specified
+rules. dl is usually installed as a "email attachments replacement" due to its
+simplicity (though can be used for anything else).
 
 .. contents::
+
+
+Requirements
+============
+
+* PHP 4.3 or higher.
+* Web server access for installation and setup.
 
 
 Installation
 ============
 
-Copy the "htdocs" directory to a directory of choice under your web
-server. Configure the needed parameters inside "include/config.php" to reflect
-the external url, main password, etc. The "include" and "style/include"
-directories must *not* be accessible: if you use apache, the included .htaccess
-file should be sufficient; consult your web server documentation otherwise.
+DL installation
+---------------
 
-A spool directory *outside of the web server root* must be accessible to the
-web server process. In the example "include/config.php" this is configured as
-"/var/spool/dl". If you web server runs as "nobody:nogroup", issue::
+* Copy the ``htdocs`` directory contained in the archive to a directory of
+  choice under your web server.
 
-  mkdir -p -m770 /var/spool/dl
-  chgrp nogroup /var/spool/dl
+* Configure the parameters inside ``include/config.php`` as needed. This
+  usually means changing the URL and E-Mail of the service.
 
-to create correctly this directory.
+* Ensure the ``include`` and ``style/include`` directories are *not* directly
+  accessible externally. Type ``http://dl.example.com/include/config.php`` and
+  verify that you *correctly* get an "Access Denied" error.
 
-The maximal upload limit is determined by several PHP configuration parameters:
+  If you use Apache, the provided ``.htaccess`` files should be already
+  sufficient; consult your web server documentation otherwise.
 
-* file_uploads: must be "On".
-* upload_tmp_dir: ensure enough space is available.
-* upload_max_filesize: change as needed.
-* post_max_size: must be at least 1M larger than upload_max_filesize.
+* Create a spool directory that will be used by the service to store the files,
+  user and ticket information. This directory *should* be outside of the
+  document root of your web server. Fix the permissions so that PHP has
+  read/write access to it.
+
+  In the provided ``include/config.php`` this is configured as
+  ``/var/spool/dl``. If you web server runs as "nobody:nogroup", issue::
+
+    mkdir -p -m770 /var/spool/dl
+    chgrp nogroup /var/spool/dl
+
+  to create correctly this directory.
+
+
+PHP setup
+---------
+
+The maximal upload limit is determined by several PHP configuration
+parameters. Check your ``php.ini`` for:
+
+* ``file_uploads``: must be "On".
+* ``upload_tmp_dir``: ensure enough space is available.
+* ``upload_max_filesize``: change as needed.
+* ``post_max_size``: must be at least 1M larger than upload_max_filesize.
 
 The upload limit as shown in the submission form is determined automatically
-from the upload_max_filesize parameter. If you are allowed to do so, you can
-also set these parameters with ini_set() inside "include/config.php" or through
-Apache's directives (if PHP was built as an Apache module) to localize them to
-the installation path.
+from the ``upload_max_filesize`` parameter. If you are allowed to do so, you
+can also set these parameters with "ini_set()" directly inside
+``include/config.php`` (so that it only affects dl).
+
+If PHP was built as an Apache module you can also set them through
+``.htaccess`` (see http://www.php.net/manual/en/configuration.changes.php).
+
+
+Additional setup for old PHP versions (4.3.4 or lower)
+------------------------------------------------------
+
+There are several bugs in PHP 4.x which cannot be circumvented
+automatically. If you can, upgrade PHP to at least 4.3.5.
+
+If you cannot upgrade, you need to configure the "$dbHandler" parameter in
+``include/config.php`` to something available to your PHP installation (try in
+order with: "db3", "db2", "dbm") and use the appropriate Berkeley's DB
+``db*_load`` utility to create an empty database as shown::
+
+  cd /var/spool/dl
+  echo | db4.7_load data.db
+  echo | db4.7_load user.db
+  chmod 770 *.db
+  chgrp nogroup *.db
+
+Depending on your system, you have to use the appropriate ``db*_load`` version.
+Under several linux distributions these utilities are part of "db*-util"
+package.
+
+
+Simple DL setup
+---------------
+
+Once dl has been installed and PHP is set-up correctly, you have to create
+at least one user to be able to log in. User management is handled through the
+command line (there is no web-interface yet) by using the bundled
+``useradmin.php`` utility.
+
+On the server, execute the following commands *with the same user as your web
+server* (by using ``su`` or ``sudo`` if necessary)::
+
+  cd /your-installation-directory/include
+  php useradmin.php add "admin" "true" "change me"
+
+where:
+
+* ``admin`` is the user name
+* ``true`` (or ``false``) sets the administrator status
+* ``change me`` is the password
+
+Repeat as many times as necessary. You should now be able to use the web
+service.
+
+
+Advanced user management
+------------------------
+
+dl supports both "normal" users and "administrators". A normal user can only
+see and manage tickets created by himself. Administrators can see/manage all
+the tickets.
+
+dl can use the HTTP authentication provided by your web server. This should be
+the preferred form of authentication for corporate use since it supports
+whatever authentication scheme your web server already supports. dl will
+consider all users as "normal" by default. The only setup required is flagging
+the administrators with ``useradmin.php``.
+
+Users can be managed through ``useradmin.php``, which should be executed with
+*the same user as the web server*. Run::
+
+  cd /your-installation-directory/include
+  php useradmin.php help
+
+to get a list of all available commands (currently "add", "rm" and
+"list"). Passwords are optional since they are ignored when using HTTP
+authentication.
+
+
+Maintenance
+===========
 
 Ticket expiration is performed automatically when any web page is
 requested. This means that expired downloads will still occupy space on the
 spool directory until a web page is first serviced. If you need to ensure that
-the spool is purged regularly (for very low traffic servers), setup a scheduled
-job that requests the "http://dl.example.com/d" page. Under UNIX, setup a cron
-entry like this::
+the spool is purged regularly (for example, for very low traffic servers),
+setup a scheduled job that requests the ``http://dl.example.com/d`` page. Under
+UNIX, setup a cron entry like this::
 
   0 0 * * * wget -q -O /dev/null "http://dl.example.com/d" > /dev/null
 
-
-PHP 4.3.4 or lower
-------------------
-
-There are several bugs in the dba_open() function in PHP 4.x which cannot be
-circumvented automatically. If you can, upgrade PHP to at least 4.3.5.
-
-If you cannot upgrade, you need to configure the "$dbHandler" parameter to
-something available to your PHP installation (usually db3/db2/dbm) and use the
-Berkeley's DB "db4_load" utility to create an empty database::
-
-  echo | db4_load /var/spool/dl/data.db
-  echo | db4_load /var/spool/dl/user.db
-  chmod 770 /var/spool/dl/*.db
-  chgrp nogroup /var/spool/dl/*.db
-
-Depending on your system, you may have to use "db3_load/db2_load/etc" instead
-of "db4_load". Sometimes these utilities are part of "db*-util" packages under
-several linux distributions. If you have PHP 4.3.5 or greater, this is done
-automatically.
+In the future, a proper command line script will be provided.
 
 
 Known limitations/Browser support
 =================================
 
-* Tested with all mayor and minor browsers.
-* Tested with PHP 4.2/4.3/5.
+* Tested with Safari 3.x/4.x, Firefox 3.x, Explorer 7/8, w3m.
+* Tested with PHP 4.x/5.x.
 
 
 Support, Authors and Copyright
