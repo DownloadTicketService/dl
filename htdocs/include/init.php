@@ -8,7 +8,6 @@ require_once("funcs.php");
 
 // derived data
 $iMaxSize = returnBytes($maxSize);
-$hMaxSize = round($iMaxSize / 1048576, 3) . "MB";
 $tDbPath = $spoolDir . "/data.db";
 $uDbPath = $spoolDir . "/user.db";
 $Path = $spoolDir . "/data.db";
