@@ -2,7 +2,7 @@
 // process a file submission
 
 // import some data
-$FILE = $_FILES["file"];
+$FILE = &$_FILES["file"];
 
 // generate new unique data
 if(!file_exists($dataDir)) mkdir($dataDir);
@@ -10,9 +10,10 @@ $tmpFile = tempnam($dataDir, "");
 $id = md5(rand() . "/" . microtime() . "/" . $tmpFile . "/" . $FILE["name"]);
 
 // move data in the right place
-if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
+if($FILE['error'] != UPLOAD_ERR_OK
+|| !move_uploaded_file($FILE["tmp_name"], $tmpFile))
 {
-  include("failed.php");
+  include("submit.php");
   exit();
 }
 
@@ -40,7 +41,11 @@ else
 $DATA["email"] = str_replace(array(";", "\n"), ",", $_POST["nt"]);
 $DATA["path"] = $tmpFile;
 $DATA["size"] = $FILE["size"];
-dba_insert($id, serialize($DATA), $tDb);
+if(!dba_insert($id, serialize($DATA), $tDb))
+{
+  include("failed.php");
+  exit();
+}
 
 // final url
 $url = $masterPath . "?t=" . $id;

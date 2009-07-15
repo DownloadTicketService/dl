@@ -5,7 +5,8 @@
 $DATA = dba_fetch($_REQUEST["t"], $tDb);
 if($DATA === false)
 {
-  include("failed.php");
+  includeTemplate("style/include/noticket.php",
+      array('title' => 'Unknown ticket', 'id' => $_REQUEST["t"]));
   exit();
 }
 $DATA = unserialize($DATA);
