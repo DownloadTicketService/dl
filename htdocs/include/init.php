@@ -39,9 +39,15 @@ function authenticate()
 {
   global $uDb;
 
-  // authentication attempt
+  // external authentication precedence
   if(isset($_SERVER['REMOTE_USER']))
-    $user = $_SERVER['REMOTE_USER'];
+    $remoteUser = $_SERVER['REMOTE_USER'];
+  elseif(isset($_SERVER['PHP_AUTH_USER']))
+    $remoteUser = $_SERVER['PHP_AUTH_USER'];
+
+  // authentication attempt
+  if(isset($remoteUser))
+    $user = $remoteUser;
   else
   {
     if(empty($_REQUEST['u']) || !isset($_REQUEST['p']))
@@ -55,13 +61,13 @@ function authenticate()
   $DATA = dba_fetch($user, $uDb);
   if($DATA === false)
   {
-    $okpass = isset($_SERVER['REMOTE_USER']);
+    $okpass = isset($remoteUser);
     $admin = false;
   }
   else
   {
     $DATA = unserialize($DATA);
-    $okpass = (isset($_SERVER['REMOTE_USER']) || ($pass === $DATA['pass']));
+    $okpass = (isset($remoteUser) || ($pass === $DATA['pass']));
     $admin = $DATA['admin'];
   }
 
