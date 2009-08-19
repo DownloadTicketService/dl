@@ -54,7 +54,7 @@ function authenticate()
       return false;
 
     $user = $_REQUEST['u'];
-    $pass = $_REQUEST['p'];
+    $pass = md5($_REQUEST['p']);
   }
 
   // verify if we have administration rights

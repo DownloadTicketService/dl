@@ -43,11 +43,11 @@ if($argv[1] == 'list')
   exit(0);
 }
 
-if($argv[1] == 'add' && $argc > 3)
+if($argv[1] == 'add' && $argc > 3 && $argc < 6)
 {
   $user = $argv[2];
   $admin = !strcasecmp($argv[3], "true");
-  $pass = $argv[4];
+  $pass = ($argc > 4? md5($argv[4]): false);
 
   $DATA = array('admin' => $admin, 'pass' => $pass);
   @dba_insert($user, serialize($DATA), $uDb) or
