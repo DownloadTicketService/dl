@@ -141,6 +141,24 @@ to get a list of all available commands (currently "add", "rm" and
 authentication.
 
 
+HTTP/External authentication
+----------------------------
+
+Only ``index.php`` needs to be password-protected, *not the whole
+directory*. With Apache, this can be achieved with the following
+configuration::
+
+  <Directory /your-installation-directory>
+      DirectoryIndex index.php
+      <Files index.php>
+         AuthType Basic
+         AuthName "Restricted Area"
+         ...
+         Require valid-user
+      </Files>
+   </Directory>
+
+
 Maintenance
 ===========
 
