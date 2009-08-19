@@ -35,11 +35,8 @@ function loadDefaults()
 
 function setDefaults()
 {
-  var expires = new Date();
-  expires.setTime(expires.getTime() + 60*60*24*90);
-  
-  setCookie("hr", document.forms[0].hr.value, expires);
-  setCookie("hra", document.forms[0].hra.value, expires);
-  setCookie("dln", document.forms[0].dln.value, expires);
-  setCookie("nt", document.forms[0].nt.value, expires);
+  setCookie("hr", document.forms[0].hr.value);
+  setCookie("hra", document.forms[0].hra.value);
+  setCookie("dln", document.forms[0].dln.value);
+  setCookie("nt", document.forms[0].nt.value);
 }
