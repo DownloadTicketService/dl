@@ -12,5 +12,6 @@ if($DATA === false)
 $DATA = unserialize($DATA);
 
 // fix IE total crap by moving to a new location
-header("Location: " . $masterPath. "d$phpExt/" . $_REQUEST["t"] . "/" . $DATA["name"]);
+header("Location: " . $masterPath. "d$phpExt/"
+    . $_REQUEST["t"] . "/" . urlencode($DATA["name"]));
 ?>
