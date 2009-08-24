@@ -2,7 +2,7 @@
 // process a file submission
 
 // import some data
-$FILE = &$_FILES["file"];
+$FILE = $_FILES["file"];
 
 // generate new unique data
 if(!file_exists($dataDir)) mkdir($dataDir);
