@@ -75,6 +75,7 @@ function authenticate()
   return array('user' => $user, 'admin' => $admin);
 }
 
+session_name($sessionName);
 session_start();
 if(!isset($_SESSION["auth"]) || isset($_REQUEST['u']))
   $_SESSION["auth"] = authenticate();
