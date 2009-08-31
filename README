@@ -145,18 +145,38 @@ HTTP/External authentication
 ----------------------------
 
 Only ``index.php`` needs to be password-protected, *not the whole
-directory*. With Apache, this can be achieved with the following
+directory*. With Apache, this can be achieved with the following simple
 configuration::
 
   <Directory /your-installation-directory>
       DirectoryIndex index.php
       <Files index.php>
-         AuthType Basic
-         AuthName "Restricted Area"
-         ...
-         Require valid-user
+	 AuthType Basic
+	 AuthName "Restricted Area"
+	 ...
+	 Require valid-user
       </Files>
    </Directory>
+
+If you are using PHP as a CGI or FastCGI, more setup is required. The
+environment variable ``REMOTE_AUTHORIZATION`` is expected to contain the
+``Authorization`` header. This can be achieved on Apache with the "rewrite"
+module, as follows::
+
+  <Directory /your-installation-directory>
+      DirectoryIndex index.php
+      <Files index.php>
+	 RewriteEngine on
+	 RewriteRule .* - [E=REMOTE_AUTHORIZATION:%{HTTP:Authorization},L]
+	 AuthType Basic
+	 AuthName "Restricted Area"
+	 ...
+	 Require valid-user
+      </Files>
+   </Directory>
+
+Only *Basic* authentication is supported by using this method, which transmits
+the password in clear-text unless you use SSL.
 
 
 Maintenance

@@ -39,11 +39,28 @@ function authenticate()
 {
   global $uDb;
 
-  // external authentication precedence
-  if(isset($_SERVER['REMOTE_USER']))
-    $remoteUser = $_SERVER['REMOTE_USER'];
-  elseif(isset($_SERVER['PHP_AUTH_USER']))
-    $remoteUser = $_SERVER['PHP_AUTH_USER'];
+  // external authentication (built-in methods)
+  foreach(Array('PHP_AUTH_USER', 'REMOTE_USER', 'REDIRECT_REMOTE_USER') as $key)
+  {
+    if(isset($_SERVER[$key]))
+    {
+      $remoteUser = $_SERVER[$key];
+      break;
+    }
+  }
+
+  // external authentication (external methods)
+  if(!isset($remoteUser))
+  {
+    foreach(Array('REMOTE_AUTHORIZATION', 'REDIRECT_REMOTE_AUTHORIZATION') as $key)
+    {
+      if(isset($_SERVER[$key]))
+      {
+	list($remoteUser) = explode(':', base64_decode(substr($_SERVER[$key], 6)));
+	break;
+      }
+    }
+  }
 
   // authentication attempt
   if(isset($remoteUser))
