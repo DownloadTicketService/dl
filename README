@@ -157,6 +157,22 @@ configuration::
       </Files>
    </Directory>
 
+To make "Logout" work, you must also set the *same* authentication realm in
+both ``AuthName`` and ``include/config.php``. Logout with HTTP authentication
+is not guaranteed to work: users should simply **close their browser** to clear
+their session (closing a tab or window is not enough). Currently, logout works
+as expected on:
+
+* Firefox 3.x
+* Safari 4.x
+* Google Chrome
+* Chromium
+
+Logout does not work on:
+
+* Internet Explorer 7/8.
+* Opera 9/10.
+
 If you are using PHP as a CGI or FastCGI, more setup is required. The
 environment variable ``REMOTE_AUTHORIZATION`` is expected to contain the
 ``Authorization`` header. This can be achieved on Apache with the "rewrite"

@@ -26,6 +26,11 @@ $phpExt = ".php";
 //          note that changing maxSize does *not* enforce upload_max_filesize
 $maxSize = ini_get('upload_max_filesize');
 
+// authRealm: HTTP authentication realm
+//            When using HTTP authentication, authRealm should match the HTTP
+//            realm name in order for "logout" to have any effect.
+$authRealm = "Restricted Area";
+
 // dbHandler: default dba backend (db4 works for most PHP versions)
 //            change to db3/db2/dbm/flatfile depending on your php version
 //            see http://us.php.net/manual/en/dba.requirements.php

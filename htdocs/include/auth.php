@@ -3,7 +3,7 @@
 
 function authenticate()
 {
-  global $uDb;
+  global $uDb, $authRealm;
 
   // external authentication (built-in methods)
   foreach(Array('PHP_AUTH_USER', 'REMOTE_USER', 'REDIRECT_REMOTE_USER') as $key)
@@ -29,15 +29,29 @@ function authenticate()
   }
 
   // authentication attempt
-  if(isset($remoteUser))
-    $user = $remoteUser;
-  else
+  if(!isset($remoteUser))
   {
     if(empty($_REQUEST['u']) || !isset($_REQUEST['p']))
+    {
+      // simple logout
       return false;
+    }
 
     $user = $_REQUEST['u'];
     $pass = md5($_REQUEST['p']);
+  }
+  else
+  {
+    if(isset($_REQUEST['u']) && empty($_REQUEST['u']))
+    {
+      // remote logout
+      Header('HTTP/1.0 401 Unauthorized');
+      Header('WWW-Authenticate: Basic realm="' . $authRealm . '"');
+      includeTemplate('style/include/rmtlogout.php');
+      exit();
+    }
+
+    $user = $remoteUser;
   }
 
   // verify if we have administration rights
