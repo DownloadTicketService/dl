@@ -49,6 +49,7 @@ header("Pragma: private");
 header("Cache-Control: cache");
 header("Accept-Ranges: bytes");
 header("Content-Type: application/octet-stream");
+header("Content-Disposition: attachment; filename=" . urlencode($DATA["name"]));
 if(!$complete)
 {
   header("HTTP/1.1 206 Partial Content");

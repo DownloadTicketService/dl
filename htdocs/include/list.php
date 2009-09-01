@@ -3,7 +3,7 @@ $title = 'Active Tickets';
 includeTemplate('style/include/header.php', compact('title'));
 ?>
 
-<form action="<?php echo $masterPath; ?>?l" method="post">
+<form action="<?php echo $adminPath; ?>?l" method="post">
   <input type="hidden" name="l"/>
   <ul>
 
@@ -36,7 +36,7 @@ if(count($ids))
     echo "</td></tr>";
     purgeDl($value["id"], $value);
   }
-  
+
   echo "</table></li>";
 }
 
@@ -132,8 +132,8 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
 <p>Total archive size: <?php echo humanSize($totalSize); ?></p>
 
 <div id="footer">
-  <a href="<?php echo $masterPath; ?>">Submit new ticket</a>,
-  <a href="<?php echo $masterPath; ?>?u">Logout</a>
+  <a href="<?php echo $adminPath; ?>">Submit new ticket</a>,
+  <a href="<?php echo $adminPath; ?>?u">Logout</a>
 </div>
 
 <?php

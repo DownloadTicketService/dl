@@ -3,7 +3,7 @@ $title = 'Login';
 includeTemplate('style/include/header.php', compact('title'));
 ?>
 
-<form action="<?php echo $masterPath; ?>" method="post">
+<form action="<?php echo $adminPath; ?>" method="post">
   <ul >
     <li>
       <label class="description">User</label>

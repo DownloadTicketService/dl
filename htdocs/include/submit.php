@@ -9,7 +9,7 @@ includeTemplate('style/include/header.php', compact('title'));
 
 <form enctype="multipart/form-data" method="post"
       onsubmit="document.getElementById('submit').disabled = true;"
-      action="<?php echo $masterPath; ?>" >
+      action="<?php echo $adminPath; ?>" >
   <ul>
 
 <?php
@@ -127,8 +127,8 @@ includeTemplate('style/include/header.php', compact('title'));
 </form>
 
 <div id="footer">
-  <a href="<?php echo $masterPath; ?>?l">List active tickets</a>,
-  <a href="<?php echo $masterPath; ?>?u">Logout</a>
+  <a href="<?php echo $adminPath; ?>?l">List active tickets</a>,
+  <a href="<?php echo $adminPath; ?>?u">Logout</a>
 </div>
 
 <?php

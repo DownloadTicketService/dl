@@ -144,13 +144,12 @@ authentication.
 HTTP/External authentication
 ----------------------------
 
-Only ``index.php`` needs to be password-protected, *not the whole
+Only ``admin.php`` needs to be password-protected, *not the whole
 directory*. With Apache, this can be achieved with the following simple
 configuration::
 
   <Directory /your-installation-directory>
-      DirectoryIndex index.php
-      <Files index.php>
+      <Files admin.php>
 	 AuthType Basic
 	 AuthName "Restricted Area"
 	 ...
@@ -164,8 +163,7 @@ environment variable ``REMOTE_AUTHORIZATION`` is expected to contain the
 module, as follows::
 
   <Directory /your-installation-directory>
-      DirectoryIndex index.php
-      <Files index.php>
+      <Files admin.php>
 	 RewriteEngine on
 	 RewriteRule .* - [E=REMOTE_AUTHORIZATION:%{HTTP:Authorization},L]
 	 AuthType Basic
@@ -175,8 +173,8 @@ module, as follows::
       </Files>
    </Directory>
 
-Only *Basic* authentication is supported by using this method, which transmits
-the password in clear-text unless you use SSL.
+Only *Basic* authentication is supported, which transmits the password in
+clear-text unless you use SSL.
 
 
 Maintenance
@@ -186,10 +184,10 @@ Ticket expiration is performed automatically when any web page is
 requested. This means that expired downloads will still occupy space on the
 spool directory until a web page is first serviced. If you need to ensure that
 the spool is purged regularly (for example, for very low traffic servers),
-setup a scheduled job that requests the ``http://dl.example.com/d`` page. Under
-UNIX, setup a cron entry like this::
+setup a scheduled job that requests the index page. Under UNIX, setup a cron
+entry like this::
 
-  0 0 * * * wget -q -O /dev/null "http://dl.example.com/d" > /dev/null
+  0 0 * * * wget -q -O /dev/null "http://dl.example.com/" > /dev/null
 
 In the future, a proper command line script will be provided.
 
@@ -197,7 +195,7 @@ In the future, a proper command line script will be provided.
 Known limitations/Browser support
 =================================
 
-* Tested with Safari 3.x/4.x, Firefox 3.x, Explorer 7/8, w3m.
+* Tested with Safari 3.x/4.x, Firefox 3.x, Explorer 7/8, Google Chrome and w3m.
 * Tested with PHP 4.x/5.x.
 
 
