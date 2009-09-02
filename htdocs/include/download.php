@@ -4,7 +4,7 @@
 // fetch the ticket id
 if(!isset($_SERVER["PATH_INFO"]))
 {
-  include("failed.php");
+  header("HTTP/1.0 400 Bad Request");
   exit();
 }
 
@@ -23,7 +23,7 @@ $DATA = unserialize($DATA);
 $fd = fopen($DATA["path"], "r");
 if($fd === false)
 {
-  include("failed.php");
+  header("HTTP/1.0 500 Internal Server Error");
   exit();
 }
 
