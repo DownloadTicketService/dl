@@ -215,10 +215,22 @@ Known limitations/Browser support
 * Tested with PHP 4.x/5.x.
 
 
-Support, Authors and Copyright
-==============================
+General/General/support mailing list
+====================================
 
-Suggestions/comments are welcome at my email address.
+If you feel to discuss improvements, customizations and suggestions, you can
+subscribe to `dl-ticket-service` by either sending an empty email to
+<dl-ticket-service+subscribe@thregr.org>, using GMane_ (group
+"gmane.comp.web.dl-ticket-service.general") or by contacting the author at
+<wavexx@users.sf.net>. The archives are accessible via web through
+http://news.gmane.org/gmane.comp.web.dl-ticket-service.general or via news
+directly.
+
+.. _GMane: http://www.gname.org/
+
+
+Authors and Copyright
+=====================
 
 "dl" is distributed under GNU LGPL 3, WITHOUT ANY WARRANTY.
 Copyright(c) 2007-2009 by Yuri D'Elia <wavexx@users.sf.net>.
