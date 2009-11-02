@@ -6,7 +6,7 @@ dl is a minimalist download ticket service with automatic expiration, written
 in PHP. It allows you to upload any file to a Web server and generate a unique
 download ticket. The ticket is automatically expired according to the specified
 rules. dl is usually installed as a "email attachments replacement" due to its
-simplicity (though can be used for anything else).
+simplicity (though can be used in other ways).
 
 .. contents::
 
@@ -165,32 +165,72 @@ as expected on:
 
 * Firefox 3.x
 * Safari 4.x
-* Google Chrome
-* Chromium
+* Google Chrome/Chromium
 
 Logout does not work on:
 
 * Internet Explorer 7/8.
 * Opera 9/10.
 
-If you are using PHP as a CGI or FastCGI, more setup is required. The
-environment variable ``REMOTE_AUTHORIZATION`` is expected to contain the
-``Authorization`` header. This can be achieved on Apache with the "rewrite"
-module, as follows::
-
-  <Directory /your-installation-directory>
-      <Files admin.php>
-	 RewriteEngine on
-	 RewriteRule .* - [E=REMOTE_AUTHORIZATION:%{HTTP:Authorization},L]
-	 AuthType Basic
-	 AuthName "Restricted Area"
-	 ...
-	 Require valid-user
-      </Files>
-   </Directory>
-
 Only *Basic* authentication is supported, which transmits the password in
 clear-text unless you use SSL.
+
+
+PHP/FastCGI
+===========
+
+Apache
+------
+
+FastCGI support in Apache up to 2.2.x is severely lacking with all the
+available modules: ``mod_fcgi``, ``mod_fcgid`` (now merged officially into
+Apache's ``mod_fcgi``) and ``mod_fastcgi``.
+
+* ``mod_fcgi`` and ``mod_fcgid`` buffer the entire request in memory before
+  handing-off the request to PHP, meaning that the maximal upload limit is
+  bound to your available memory at the time of the request, independently of
+  how PHP is setup. This is a known, old bug_ that's still present in both
+  ``mod_fcgi`` 2.2.14 and ``mod_fcgid`` 2.3.4. There is no known work-around:
+  either use ``mod_php`` or use a different server.
+
+* ``mod_fastcgi`` has been proved to be slow (and sometimes unstable) in most
+  configurations. It is not advisable to use PHP with ``mod_fastcgi``.
+
+* For HTTP/External authentication to work, ``mod_rewrite`` needs to be
+  enabled, and a different setup is required, as shown::
+
+    <Directory /your-installation-directory>
+      <Files admin.php>
+	RewriteEngine on
+       	RewriteCond %{HTTP:Authorization} ^(.*)
+      	RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+	AuthType Basic
+	AuthName "Restricted Area"
+	...
+	Require valid-user
+      </Files>
+    </Directory>
+
+.. _bug: http://sourceforge.net/mailarchive/forum.php?thread_name=48485BDC.1020204@oxeva.fr&forum_name=mod-fcgid-users
+
+
+Lighttpd
+--------
+
+PHP/FastCGI works fine with Lighttpd 1.4.x without any special setup. The
+following configuration is required to protect the include directories::
+
+  $HTTP["url"] =~ "^/dl(?:/|/.*/)include/" {
+    url.access-deny = ( "" )
+  }
+
+You can also enable external authentication with the following::
+
+  auth.require   += ( "/dl/admin.php" => (
+      "method"   => "basic",
+      "realm"    => "Restricted Area",
+      "require"  => "valid-user"
+  ) )
 
 
 Maintenance
@@ -211,7 +251,7 @@ In the future, a proper command line script will be provided.
 Known limitations/Browser support
 =================================
 
-* Tested with Safari 3.x/4.x, Firefox 3.x, Explorer 7/8, Google Chrome and w3m.
+* Tested with Safari 3.x/4.x, Firefox 3.x, Explorer 7/8, Google Chrome/Chromium.
 * Tested with PHP 4.x/5.x.
 
 

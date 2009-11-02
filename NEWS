@@ -1,4 +1,9 @@
-dl 0.3: 15/10/2009
+dl 0.4:
+
+	*
+
+
+dl 0.3: 02/09/2009
 
 	* CSS-ification, with new skin from Kim Thostrup <kim@thostrup.dk>.
 	* Include IE5/6 PNG fix from Angus Turnbull http://www.twinhelix.com

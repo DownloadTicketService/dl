@@ -15,19 +15,6 @@ function authenticate()
     }
   }
 
-  // external authentication (external methods)
-  if(!isset($remoteUser))
-  {
-    foreach(Array('REMOTE_AUTHORIZATION', 'REDIRECT_REMOTE_AUTHORIZATION') as $key)
-    {
-      if(isset($_SERVER[$key]))
-      {
-	list($remoteUser) = explode(':', base64_decode(substr($_SERVER[$key], 6)));
-	break;
-      }
-    }
-  }
-
   // authentication attempt
   if(!isset($remoteUser))
   {
