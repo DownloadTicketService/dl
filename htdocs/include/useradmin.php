@@ -3,8 +3,7 @@ set_magic_quotes_runtime(0);
 if(!isset($argc)) die("not running from the command line\n");
 
 // data
-require_once("config.php");
-$uDbPath = $spoolDir . "/user.db";
+require_once("confwrap.php");
 
 // initialize the dbs
 $dbMode = (version_compare(PHP_VERSION, "4.3.5", "<")? "w": "c");

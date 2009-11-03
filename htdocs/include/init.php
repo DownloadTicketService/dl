@@ -3,17 +3,7 @@
 set_magic_quotes_runtime(0);
 
 // data
-require_once("config.php");
-require_once("funcs.php");
-
-// derived data
-$iMaxSize = returnBytes($maxSize);
-$tDbPath = $spoolDir . "/data.db";
-$uDbPath = $spoolDir . "/user.db";
-$Path = $spoolDir . "/data.db";
-$dataDir = $spoolDir . "/data";
-$adminPath = $masterPath . "admin$phpExt";
-$dPath = $masterPath . "d$phpExt";
+require_once("confwrap.php");
 
 // initialize the dbs
 $dbMode = (version_compare(PHP_VERSION, "4.3.5", "<")? "w": "c");
