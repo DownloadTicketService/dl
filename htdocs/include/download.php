@@ -69,12 +69,7 @@ while($left)
 }
 fclose($fd);
 
-// notify if requested
-if(!empty($DATA["email"]) && $last)
-{
-  mail($DATA["email"], "[dl] $id download notification",
-      $id . " (" . $DATA["name"] . ") was downloaded by " .
-      $_SERVER["REMOTE_ADDR"] . " from $masterPath\n",
-      "From: $fromAddr");
-}
+// trigger download hooks
+if($last) onDownload($DATA);
+
 ?>

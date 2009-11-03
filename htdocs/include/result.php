@@ -20,6 +20,7 @@ if($FILE['error'] != UPLOAD_ERR_OK
 
 // prepare data
 $DATA = array();
+$DATA["id"] = $id;
 $DATA["name"] = basename($FILE["name"]);
 $DATA["user"] = $auth["user"];
 $DATA["cmt"] = $_POST["cmt"];
@@ -50,6 +51,9 @@ $subject = "download link to '" . $DATA["name"] . "'";
 if(!empty($DATA["cmt"]))
   $subject .= " (" . $DATA["cmt"] . ")";
 $mailto = "mailto:?subject=$subject&body=" . urlencode($url);
+
+// trigger creation hooks
+onCreate($DATA);
 
 $title = 'Upload Result';
 includeTemplate('style/include/header.php', compact('title'));

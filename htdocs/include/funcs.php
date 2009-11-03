@@ -1,22 +1,35 @@
 <?php
 // auxiliary functions
+require_once("hooks.php");
 
-function purgeDl($key, $DATA)
+
+function purgeDl($DATA, $auto = true)
 {
-  global $tDb, $fromAddr, $masterPath;
+  global $tDb;
 
-  if(dba_delete($key, $tDb))
+  if(dba_delete($DATA["id"], $tDb))
   {
     unlink($DATA["path"]);
+    onPurge($DATA, $auto);
+  }
+}
 
-    // notify if requested
-    if(!empty($DATA["email"]))
-    {
-      mail($DATA["email"], "[dl] $key purge notification",
-	  $key . " (" . $DATA["name"] . ") was purged after " .
-	  $DATA["downloads"] . " downloads from $masterPath\n",
-	  "From: $fromAddr");
-    }
+
+function logEvent($logLine)
+{
+  global $logFile, $useSysLog, $logFd;
+  if(empty($logFile)) return;
+
+  if($useSysLog)
+    syslog(LOG_INFO, $logLine);
+  elseif(isset($logFd))
+  {
+    $logLine = "[" . date(DATE_RSS) . "] " . $logLine . "\n";
+    flock($logFd, LOCK_EX);
+    fseek($logFd, 0, SEEK_END);
+    fwrite($logFd, $logLine);
+    fflush($logFd);
+    flock($logFd, LOCK_UN);
   }
 }
 

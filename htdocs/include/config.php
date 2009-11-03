@@ -20,6 +20,12 @@ $spoolDir = "/var/spool/dl/";
 // cfgVersion: configuration file version
 $cfgVersion = "0.3";
 
+// logFile: set this if you want new tickets, downloads and purges logged to a
+//          file. If the setting contains no slashes, it will be used as a tag
+//          and the message will go to syslog. By default, do not log.
+//$logFile = "/var/log/dl/ticket.log"; // log to file
+//$logFile = "dl_ticket"; // log via syslog
+
 // phpExt: external PHP extension
 //         you can use "" to hide PHP exposure if you enable apache's
 //         MultiViews option or use an URL rewriting mechanism

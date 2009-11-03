@@ -10,6 +10,12 @@ $dbMode = (version_compare(PHP_VERSION, "4.3.5", "<")? "w": "c");
 $tDb = dba_popen($tDbPath, $dbMode, $dbHandler) or die();
 $uDb = dba_popen($uDbPath, $dbMode, $dbHandler) or die();
 
+// initialize logging
+if($useSysLog)
+   openlog($logFile, 0, LOG_LOCAL0);
+elseif(!empty($logFile))
+  $logFd = fopen($logFile, "at");
+
 // expire tickets
 for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
 {
@@ -22,7 +28,7 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
 	  ($DATA["expireLast"] + $DATA["lastTime"]) < time()) ||
       ($DATA["expireDln"] && $DATA["downloads"] >= $DATA["expireDln"])
      )
-    purgeDl($key, $DATA);
+    purgeDl($DATA);
 }
 
 ?>

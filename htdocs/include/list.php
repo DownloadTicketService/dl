@@ -17,7 +17,6 @@ foreach($_REQUEST as $key => $value)
   if($DATA === false) continue;
   $DATA = unserialize($DATA);
   if(!$auth["admin"] && $DATA["user"] != $auth["user"]) continue;
-  $DATA["id"] = $value;
   $ids[$key] = $DATA;
 }
 
@@ -34,7 +33,7 @@ if(count($ids))
     if($DATA["cmt"])
       echo ": " . htmlentities($DATA["cmt"]);
     echo "</td></tr>";
-    purgeDl($value["id"], $value);
+    purgeDl($value, false);
   }
 
   echo "</table></li>";

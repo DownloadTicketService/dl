@@ -12,6 +12,7 @@ if(!isset($dbHandler)) $dbHandler = "db4";
 if(!isset($sessionName)) $sessionName = "DL" . md5($masterPath);
 
 // derived data
+$useSysLog = (!empty($logFile) && strstr($logFile, "/") === FALSE);
 $iMaxSize = returnBytes($maxSize);
 $tDbPath = $spoolDir . "/data.db";
 $uDbPath = $spoolDir . "/user.db";
