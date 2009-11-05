@@ -1,7 +1,12 @@
+// defaults
+var cookieLifetime = 60000 * 60 * 24 * 90;
+
+
+// cookie helpers
 function setCookie(name, value, expire)
 {
   document.cookie = name + "=" + escape(value)
-    + ((expire == null) ? "" : ("; expires=" + expire.toGMTString()));
+    + ((expire == null) ? "" : ("; expires=" + expire.toUTCString()));
 }
 
 function getCookie(name)
@@ -21,22 +26,36 @@ function getCookie(name)
   return false;
 }
 
+function refreshCookie(name, lifetime)
+{
+  var v = getCookie(name);
+  var expire = new Date();
+  expire.setTime(expire.getTime() + lifetime);
+  setCookie(name, v, expire);
+  return v;
+}
+
+
+// defaults
 function loadDefaults()
 {
-  var hr = getCookie("hr");
+  var hr = refreshCookie("hr", cookieLifetime);
   if(hr !== false) document.forms[0].hr.value = hr;
-  var hra = getCookie("hra");
+  var hra = refreshCookie("hra", cookieLifetime);
   if(hra !== false) document.forms[0].hra.value = hra;
-  var dln = getCookie("dln");
+  var dln = refreshCookie("dln", cookieLifetime);
   if(dln !== false) document.forms[0].dln.value = dln;
-  var nt = getCookie("nt");
+  var nt = refreshCookie("nt", cookieLifetime);
   if(nt !== false) document.forms[0].nt.value = nt;
 }
 
 function setDefaults()
 {
-  setCookie("hr", document.forms[0].hr.value);
-  setCookie("hra", document.forms[0].hra.value);
-  setCookie("dln", document.forms[0].dln.value);
-  setCookie("nt", document.forms[0].nt.value);
+  var expire = new Date();
+  expire.setTime(expire.getTime() + cookieLifetime);
+
+  setCookie("hr", document.forms[0].hr.value, expire);
+  setCookie("hra", document.forms[0].hra.value, expire);
+  setCookie("dln", document.forms[0].dln.value, expire);
+  setCookie("nt", document.forms[0].nt.value, expire);
 }
