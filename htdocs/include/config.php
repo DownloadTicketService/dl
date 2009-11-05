@@ -18,7 +18,7 @@ $spoolDir = "/var/spool/dl/";
  */
 
 // cfgVersion: configuration file version
-$cfgVersion = "0.3";
+$cfgVersion = "0.4";
 
 // logFile: set this if you want new tickets, downloads and purges logged to a
 //          file. If the setting contains no slashes, it will be used as a tag

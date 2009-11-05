@@ -4,7 +4,7 @@ require_once("config.php");
 require_once("funcs.php");
 
 // variables
-if(!isset($cfgVersion)) $cfgVersion = "0.3";
+if(!isset($cfgVersion)) $cfgVersion = "0.4";
 if(!isset($phpExt)) $phpExt = ".php";
 if(!isset($maxSize)) $maxSize = ini_get('upload_max_filesize');
 if(!isset($authReal)) $authRealm = "Restricted Area";

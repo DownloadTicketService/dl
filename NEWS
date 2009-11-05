@@ -1,6 +1,6 @@
 dl 0.4:
 
-	*
+	* dl can now log ticket activity to syslog or a file.
 
 
 dl 0.3: 02/09/2009
