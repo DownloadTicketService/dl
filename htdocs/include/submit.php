@@ -59,12 +59,12 @@ includeTemplate('style/include/header.php', compact('title'));
     </li>
 
     <li>
-      <label class="description">Expire in total # of hours</label>
+      <label class="description">Expire in total # of days</label>
       <div>
-	<input name="hr" value="168" class="element text medium" type="text" maxlength="255" value=""/>
+	<input name="dn" value="7" class="element text medium" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
-	  Type the <strong>maximal number of hours</strong> the uploaded file is allowed to be
+	  Type the <strong>maximal number of days</strong> the uploaded file is allowed to be
 	  kept on the server. After this period is passed the file will be deleted from
 	  the server.
       </small></p>

@@ -35,8 +35,8 @@ if(!empty($_POST["nl"]))
 }
 else
 {
-  $DATA["expire"] = (!empty($_POST["hr"])?
-    $DATA["time"] + $_POST["hr"] * 3600: 0);
+  $DATA["expire"] = (!empty($_POST["dn"])?
+    $DATA["time"] + $_POST["dn"] * 3600 * 24: 0);
   $DATA["expireLast"] = (!empty($_POST["hra"])? $_POST["hra"] * 3600: 0);
   $DATA["expireDln"] = (!empty($_POST["dln"])? $_POST["dln"]: 0);
 }

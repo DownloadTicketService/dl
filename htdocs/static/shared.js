@@ -39,8 +39,8 @@ function refreshCookie(name, lifetime)
 // defaults
 function loadDefaults()
 {
-  var hr = refreshCookie("hr", cookieLifetime);
-  if(hr !== false) document.forms[0].hr.value = hr;
+  var dn = refreshCookie("dn", cookieLifetime);
+  if(dn !== false) document.forms[0].dn.value = dn;
   var hra = refreshCookie("hra", cookieLifetime);
   if(hra !== false) document.forms[0].hra.value = hra;
   var dln = refreshCookie("dln", cookieLifetime);
@@ -54,7 +54,7 @@ function setDefaults()
   var expire = new Date();
   expire.setTime(expire.getTime() + cookieLifetime);
 
-  setCookie("hr", document.forms[0].hr.value, expire);
+  setCookie("dn", document.forms[0].dn.value, expire);
   setCookie("hra", document.forms[0].hra.value, expire);
   setCookie("dln", document.forms[0].dln.value, expire);
   setCookie("nt", document.forms[0].nt.value, expire);
