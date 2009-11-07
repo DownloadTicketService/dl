@@ -8,32 +8,25 @@ includeTemplate('style/include/header.php', compact('title'));
   <ul>
 
 <?php
-// extract requested tickets
-$ids = array();
-foreach($_REQUEST as $key => $value)
-{
-  if(strncmp($key, "sel", 2)) continue;
-  $DATA = dba_fetch($value, $tDb);
-  if($DATA === false) continue;
-  $DATA = unserialize($DATA);
-  if(!$auth["admin"] && $DATA["user"] != $auth["user"]) continue;
-  $ids[$key] = $DATA;
-}
-
-if(count($ids))
+if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 {
   // purge immediately
   echo "<li id=\"error_message\"><table><tr><td class=\"label\">Purged:</td>";
+
   $first = true;
-  foreach($ids as $key => $value)
+  foreach($_REQUEST["sel"] as $id)
   {
+    $sql = "SELECT * FROM tickets WHERE id = " . $db->quote($id);
+    $DATA = $db->query($sql)->fetch();
+    if($DATA === false) continue;
+
     if($first) $first = false;
     else echo "<tr><td></td>";
-    echo "<td>" . htmlentities($value["name"]);
+    echo "<td>" . htmlentities($DATA["name"]);
     if($DATA["cmt"])
       echo ": " . htmlentities($DATA["cmt"]);
     echo "</td></tr>";
-    purgeDl($value, false);
+    purgeDl($DATA, false);
   }
 
   echo "</table></li>";
@@ -41,24 +34,20 @@ if(count($ids))
 
 // list active tickets
 $totalSize = 0;
-$n = 0;
-for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
+
+$sql = "SELECT t.*, u.name AS user FROM tickets t"
+  . " LEFT JOIN users u ON u.id = t.owner";
+if(!$auth["admin"]) $sql .= " WHERE owner = " . $auth["id"];
+
+foreach($db->query($sql) as $DATA)
 {
-  $DATA = dba_fetch($key, $tDb);
-  if($DATA === false) continue;
-  $DATA = unserialize($DATA);
-
-  // this is _lame_, but necessary until we switch to a proper query
-  if(!$auth["admin"] && $DATA["user"] != $auth["user"]) continue;
-
   $totalSize += $DATA["size"];
-  ++$n;
 
   echo "<li class=\"fileinfo\">";
 
   // name
-  echo "<span><input class=\"element checkbox\" type=\"checkbox\" name=\"sel$n\" value=\"$key\"/>";
-  echo "<label class=\"choice\"><a href=\"$masterPath?t=$key\">" .
+  echo "<span><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/>";
+  echo "<label class=\"choice\"><a href=\"$masterPath?t=" . $DATA['id'] . "\">" .
     htmlentities($DATA["name"]) . "</a>";
   if($DATA["cmt"])
     echo ": " . htmlentities($DATA["cmt"]);
@@ -68,23 +57,23 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
   echo "<div class=\"fileinfo\"><table>";
   echo "<tr><th>Size: </th><td>" . humanSize($DATA["size"]) . "</td></tr>";
   echo "<tr><th>Date: </th><td> " . date("d/m/Y", $DATA["time"]) . "</td></tr>";
-  if($auth["admin"] && $DATA["user"] != $auth["user"])
+  if($DATA["owner"] != $auth["id"])
     echo "<tr><th>User: </th><td>" . htmlentities($DATA["user"]) . "</td></tr>";
 
   // expire
   echo "<tr><th>Expiry: </th><td>";
-  if($DATA["expireDln"] || $DATA["expireLast"])
+  if($DATA["expire_dln"] || $DATA["expire_last"])
   {
-    if($DATA["expireLast"] && $DATA["lastTime"])
-      echo "Maybe in " . humanTime($DATA["lastTime"] + $DATA["expireLast"]- time());
-    else if($DATA["expireDln"] && $DATA["downloads"])
-      echo "Maybe in " . ($DATA["expireDln"] - $DATA["downloads"]) . " downloads";
+    if($DATA["expire_last"] && $DATA["last_time"])
+      echo "Maybe in " . humanTime($DATA["last_time"] + $DATA["expire_last"]- time());
+    else if($DATA["expire_dln"] && $DATA["downloads"])
+      echo "Maybe in " . ($DATA["expire_dln"] - $DATA["downloads"]) . " downloads";
     else if($DATA["expire"])
       echo "Maybe in " . humanTime($DATA["expire"] - time());
-    else if($DATA["expireDln"])
-      echo "After " . $DATA["expireDln"] . " downloads";
+    else if($DATA["expire_dln"])
+      echo "After " . $DATA["expire_dln"] . " downloads";
     else
-      echo "After next download, in " . humanTime($DATA["expireLast"]);
+      echo "After next download, in " . humanTime($DATA["expire_last"]);
   }
   else if($DATA["expire"])
     echo "In " . humanTime($DATA["expire"] - time());
@@ -96,7 +85,7 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
   if($DATA["downloads"])
   {
     echo "<tr><th>Downloads: </th><td>" . $DATA["downloads"] . "</td></tr>"
-      . "<tr><th>Downloaded: </th><td>" . date("d/m/Y", $DATA["lastTime"]) . "</td</tr>";
+      . "<tr><th>Downloaded: </th><td>" . date("d/m/Y", $DATA["last_time"]) . "</td</tr>";
   }
 
   // notify
@@ -123,7 +112,7 @@ for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
     <li class="buttons">
       <input type="reset" value="Reload" onclick="document.location.reload();"/>
       <input type="reset" value="Reset"/>
-      <input type="submit" value="Purge selected"/>
+      <input type="submit" name="purge" value="Purge selected"/>
     </li>
   </ul>
 </form>

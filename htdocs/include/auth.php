@@ -3,7 +3,7 @@
 
 function authenticate()
 {
-  global $uDb, $authRealm;
+  global $db, $authRealm;
 
   // external authentication (built-in methods)
   foreach(Array('PHP_AUTH_USER', 'REMOTE_USER', 'REDIRECT_REMOTE_USER') as $key)
@@ -42,21 +42,34 @@ function authenticate()
   }
 
   // verify if we have administration rights
-  $DATA = dba_fetch($user, $uDb);
-  if($DATA === false)
-  {
-    $okpass = isset($remoteUser);
-    $admin = false;
-  }
+  $sql = "SELECT u.id, u.name, md5, admin FROM users u"
+    . " LEFT JOIN roles r ON r.id = u.role_id"
+    . " WHERE u.name = " . $db->quote($user);
+  $DATA = $db->query($sql)->fetch();
+  if($DATA !== false)
+    $okpass = (isset($remoteUser) || ($pass === $DATA['pass']));
   else
   {
-    $DATA = unserialize($DATA);
-    $okpass = (isset($remoteUser) || ($pass === $DATA['pass']));
-    $admin = $DATA['admin'];
+    $okpass = isset($remoteUser);
+    if($okpass)
+    {
+      // create a stub user and get the id
+      $sql = "INSERT INTO users (name, role_id) VALUES (";
+      $sql .= $db->quote($user);
+      $sql .= ", (SELECT id FROM roles WHERE name = 'user')";
+      $sql .= ")";
+      if($db->exec($sql) != 1) return false;
+
+      // fetch defaults
+      $sql = "SELECT u.id, u.name, admin FROM users";
+      $sql .= " LEFT JOIN roles r ON r.id = u.role_id";
+      $sql .= " WHERE ROWID = last_insert_rowid()";
+      $DATA = $db->query($sql)->fetch();
+    }
   }
 
   if(!$okpass) return false;
-  return array('user' => $user, 'admin' => $admin);
+  return $DATA;
 }
 
 session_name($sessionName);

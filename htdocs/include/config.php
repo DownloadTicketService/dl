@@ -40,10 +40,8 @@ $cfgVersion = "0.4";
 //            realm name in order for "logout" to have any effect.
 //$authRealm = "Restricted Area";
 
-// dbHandler: default dba backend (db4 works for most PHP versions)
-//            change to db3/db2/dbm/flatfile depending on your php version
-//            see http://us.php.net/manual/en/dba.requirements.php
-//$dbHandler = "db4";
+// dsn: set the DSN of your database (read the installation manual)
+//$dsn = "sqlite:$dataDir/data.sdb";
 
 // sessionName: PHP session name (to ensure session uniqueness)
 //		The default name is generated thus:

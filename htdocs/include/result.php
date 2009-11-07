@@ -1,49 +1,60 @@
 <?php
 // process a file submission
 
-// import some data
-$FILE = $_FILES["file"];
-
-// generate new unique data
-if(!file_exists($dataDir)) mkdir($dataDir);
-$tmpFile = tempnam($dataDir, "");
-do { $id = md5(rand() . "/" . microtime() . "/" . $tmpFile . "/" . $FILE["name"]); }
-while(!dba_insert($id, FALSE, $tDb));
-
-// move data in the right place
-if($FILE['error'] != UPLOAD_ERR_OK
-|| !move_uploaded_file($FILE["tmp_name"], $tmpFile))
+function fail($tmpFile = false)
 {
+  if($tmpFile) unlink($tmpFile);
   include("submit.php");
   exit();
 }
 
+$FILE = $_FILES["file"];
+if($FILE['error'] != UPLOAD_ERR_OK)
+  fail();
+
+// generate new unique id/file name
+if(!file_exists($dataDir)) mkdir($dataDir);
+do
+{
+  $id = md5(rand() . "/" . microtime() . "/" . $FILE["name"]);
+  $tmpFile = "$dataDir/$id";
+}
+while(fopen($tmpFile, "x") === FALSE);
+if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
+  fail($tmpFile);
+
 // prepare data
-$DATA = array();
-$DATA["id"] = $id;
-$DATA["name"] = basename($FILE["name"]);
-$DATA["user"] = $auth["user"];
-$DATA["cmt"] = $_POST["cmt"];
-$DATA["time"] = time();
-$DATA["downloads"] = 0;
-$DATA["lastTime"] = 0;
+$sql = "INSERT INTO tickets (id, owner, name, path, size, cmt, time"
+  . ", expire, expire_last, expire_dln, notify_email) VALUES (";
+$sql .= $db->quote($id);
+$sql .= ", " . $auth['id'];
+$sql .= ", " . $db->quote(basename($FILE["name"]));
+$sql .= ", " . $db->quote($tmpFile);
+$sql .= ", " . $FILE["size"];
+$sql .= ", " . (empty($_POST["cmt"])? 'NULL': $db->quote($_POST["cmt"]));
+$sql .= ", " . time();
 if(!empty($_POST["nl"]))
 {
-  $DATA["expire"] = 0;
-  $DATA["expireLast"] = 0;
-  $DATA["expireDln"] = 0;
+  $sql .= ", NULL";
+  $sql .= ", NULL";
+  $sql .= ", NULL";
 }
 else
 {
-  $DATA["expire"] = (!empty($_POST["dn"])?
-    $DATA["time"] + $_POST["dn"] * 3600 * 24: 0);
-  $DATA["expireLast"] = (!empty($_POST["hra"])? $_POST["hra"] * 3600: 0);
-  $DATA["expireDln"] = (!empty($_POST["dln"])? $_POST["dln"]: 0);
+  $sql .= ", " . (empty($_POST["dn"])? 'NULL': time() + $_POST["dn"] * 3600 * 24);
+  $sql .= ", " . (empty($_POST["hra"])? 'NULL': $_POST["hra"] * 3600);
+  $sql .= ", " . (empty($_POST["dln"])? 'NULL': (int)$_POST["dln"]);
 }
-$DATA["email"] = str_replace(array(";", "\n"), ",", $_POST["nt"]);
-$DATA["path"] = $tmpFile;
-$DATA["size"] = $FILE["size"];
-dba_replace($id, serialize($DATA), $tDb);
+$sql .= ", " . (empty($_POST["nt"])? 'NULL':
+    $db->quote(str_replace(array(";", "\n"), ",", $_POST["nt"])));
+$sql .= ")";
+
+if($db->exec($sql) != 1)
+  fail($tmpFile);
+
+// fetch defaults
+$sql = "SELECT * FROM tickets WHERE ROWID = last_insert_rowid()";
+$DATA = $db->query($sql)->fetch();
 
 // final url
 $url = $masterPath . "?t=" . $id;

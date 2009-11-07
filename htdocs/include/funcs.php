@@ -5,9 +5,9 @@ require_once("hooks.php");
 
 function purgeDl($DATA, $auto = true)
 {
-  global $tDb;
+  global $db;
 
-  if(dba_delete($DATA["id"], $tDb))
+  if($db->exec("DELETE FROM tickets WHERE id = ". $db->quote($DATA["id"])) == 1)
   {
     unlink($DATA["path"]);
     onPurge($DATA, $auto);

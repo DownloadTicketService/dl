@@ -14,7 +14,7 @@ simplicity (though can be used in other ways).
 Requirements
 ============
 
-* PHP 4.3 or higher.
+* PHP 5.0 (with PDO) or higher.
 * Web server access for installation and setup.
 
 
@@ -51,6 +51,31 @@ DL installation
   to create correctly this directory.
 
 
+Database setup
+--------------
+
+TODO: incomplete section
+
+
+New database
+~~~~~~~~~~~~
+TODO: incomplete section
+
+
+Upgrading from DB <= 0.3
+~~~~~~~~~~~~~~~~~~~~~~~~
+TODO: incomplete section
+
+* Backup your current config.php file and spool directory.
+* Overwrite the DL installation directory with the new copy
+* Customize your config.php
+* Copy the $dbHandler setting from your old config.php file over the new.
+* Run ``dbupgrade.php`` as your web server user.
+* Test your setup.
+* Remove $dbHandler from the new configuration file.
+* Remove ``data.db`` and ``user.db`` from the spool directory.
+
+
 PHP setup
 ---------
 
@@ -71,30 +96,8 @@ If PHP was built as an Apache module you can also set them through
 ``.htaccess`` (see http://www.php.net/manual/en/configuration.changes.php).
 
 
-Additional setup for old PHP versions (4.3.4 or lower)
-------------------------------------------------------
-
-There are several bugs in PHP 4.x which cannot be circumvented
-automatically. If you can, upgrade PHP to at least 4.3.5.
-
-If you cannot upgrade, you need to configure the "$dbHandler" parameter in
-``include/config.php`` to something available to your PHP installation (try in
-order with: "db3", "db2", "dbm") and use the appropriate Berkeley's DB
-``db*_load`` utility to create an empty database as shown::
-
-  cd /var/spool/dl
-  echo | db4.7_load data.db
-  echo | db4.7_load user.db
-  chmod 770 *.db
-  chgrp nogroup *.db
-
-Depending on your system, you have to use the appropriate ``db*_load`` version.
-Under several linux distributions these utilities are part of "db*-util"
-package.
-
-
-Simple DL setup
----------------
+Minimal user setup
+------------------
 
 Once dl has been installed and PHP is set-up correctly, you have to create
 at least one user to be able to log in. User management is handled through the
@@ -252,7 +255,7 @@ Known limitations/Browser support
 =================================
 
 * Tested with Safari 3.x/4.x, Firefox 3.x, Explorer 7/8, Google Chrome/Chromium.
-* Tested with PHP 4.x/5.x.
+* Tested with PHP 5.x.
 
 
 General/General/support mailing list

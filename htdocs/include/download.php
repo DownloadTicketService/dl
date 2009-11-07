@@ -11,13 +11,13 @@ if(!isset($_SERVER["PATH_INFO"]))
 list(, $id) = explode("/", $_SERVER["PATH_INFO"]);
 
 // try to fetch the id
-$DATA = dba_fetch($id, $tDb);
+$sql = "SELECT * FROM tickets WHERE id = " . $db->quote($id);
+$DATA = $db->query($sql)->fetch();
 if($DATA === false)
 {
   header("HTTP/1.0 404 Not Found");
   exit();
 }
-$DATA = unserialize($DATA);
 
 // open the file first
 $fd = fopen($DATA["path"], "r");
@@ -38,10 +38,10 @@ $size = max(0, $range[2] - $range[1] + 1);
 $complete = ($size == $DATA["size"]);
 $last = ($range[2] == $DATA["size"] - 1);
 
-// update the record
-$DATA["lastTime"] = time();
-if($last) $DATA["downloads"]++;
-dba_replace($id, serialize($DATA), $tDb);
+// update the record for the next query
+$sql = "UPDATE tickets SET last_time = " . time()
+  . ", downloads = downloads + 1 WHERE id = " . $db->quote($id);
+$db->exec($sql);
 
 // send the file
 header("ETag: $id");
