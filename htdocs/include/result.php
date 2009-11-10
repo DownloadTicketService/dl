@@ -57,10 +57,8 @@ $sql = "SELECT * FROM tickets WHERE ROWID = last_insert_rowid()";
 $DATA = $db->query($sql)->fetch();
 
 // final url
-$url = $masterPath . "?t=" . $id;
-$subject = "download link to '" . $DATA["name"] . "'";
-if(!empty($DATA["cmt"]))
-  $subject .= " (" . $DATA["cmt"] . ")";
+$url = ticketUrl($DATA);
+$subject = 'download link to ' . humanTicketStr($DATA);
 $mailto = "mailto:?subject=$subject&body=" . urlencode($url);
 
 // trigger creation hooks
@@ -71,9 +69,9 @@ includeTemplate('style/include/header.php', compact('title'));
 ?>
 
 <div>
-  <label class="description">Your ticket (<?php
-echo htmlentities($DATA["name"]) . "): " .
-htmlentities($DATA["cmt"]); ?></label>
+  <label class="description">Your ticket
+<?php echo htmlentities(humanTicketStr($DATA)); ?>
+  </label>
 <p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
 </div>
 

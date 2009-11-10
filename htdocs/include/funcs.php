@@ -17,20 +17,29 @@ function purgeDl($DATA, $auto = true)
 
 function logEvent($logLine)
 {
-  global $logFile, $useSysLog, $logFd;
+  global $logFile, $useSysLog, $logFd, $auth;
   if(empty($logFile)) return;
+
+  if(isset($auth))
+    $logLine = $auth['name'] . ': ' . $logLine;
 
   if($useSysLog)
     syslog(LOG_INFO, $logLine);
   elseif(isset($logFd))
   {
-    $logLine = "[" . date(DATE_RSS) . "] " . $logLine . "\n";
+    $logLine = "[" . date(DATE_RSS) . "] $logLine\n";
     flock($logFd, LOCK_EX);
     fseek($logFd, 0, SEEK_END);
     fwrite($logFd, $logLine);
     fflush($logFd);
     flock($logFd, LOCK_UN);
   }
+}
+
+
+function logTicketEvent($DATA, $logLine)
+{
+  logEvent(ticketStr($DATA) . ": $logLine");
 }
 
 
@@ -55,6 +64,30 @@ function humanTime($seconds)
   else if($seconds > 60)
     return intval($seconds / 60) . " minutes";
   return $seconds . " seconds";
+}
+
+
+function humanTicketStr($DATA)
+{
+  $str = '"' . $DATA['name'] . '"';
+  if(!empty($DATA['cmt'])) $str .= ' (' . $DATA['cmt'] . ')';
+  return $str;
+}
+
+
+function ticketStr($DATA)
+{
+  $str = $DATA['id'] . ' (' . $DATA['name'];
+  if(!empty($DATA['cmt'])) $str .= ': ' . $DATA['cmt'];
+  $str .= ')';
+  return $str;
+}
+
+
+function ticketUrl($DATA)
+{
+  global $masterPath;
+  return $masterPath . "?t=" . $DATA['id'];
 }
 
 

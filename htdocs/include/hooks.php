@@ -3,26 +3,26 @@
 
 function onCreate($DATA)
 {
-  logEvent("(" . $DATA["name"] . "): " . $DATA["cmt"] . ": "
-      . (!$DATA["expire"]? "permanent": "temporary") . " ticket created");
+  global $fromAddr, $masterPath;
+
+  // log
+  $type = (!$DATA["expire"]? "permanent": "temporary");
+  logTicketEvent($DATA, "$type ticket created");
 }
 
 
 function onDownload($DATA)
 {
-  global $fromAddr;
+  global $fromAddr, $masterPath;
+
+  // log
+  logTicketEvent($DATA, "downloaded by " . $_SERVER["REMOTE_ADDR"]);
 
   // notify if request
   if(!empty($DATA["email"]))
-    mail($DATA["email"], "[dl] " . $DATA["id"] . " download notification",
-	$DATA["id"] . " (" . $DATA["name"] . ") was downloaded by "
-	. $_SERVER["REMOTE_ADDR"] . " from $masterPath\n",
-	"From: $fromAddr");
-
-  // log
-  logEvent("(" . $DATA["name"] . "): "
-      . $DATA["cmt"] . ": downloaded by "
-      . $_SERVER["REMOTE_ADDR"]);
+    mail($DATA["email"], "[dl] " . ticketStr($DATA) . " download notification",
+	humanTicketStr($DATA) . " was downloaded by " . $_SERVER["REMOTE_ADDR"]
+	. " from $masterPath\n", "From: $fromAddr");
 }
 
 
@@ -30,20 +30,16 @@ function onPurge($DATA, $auto)
 {
   global $fromAddr, $masterPath;
 
-  // notify if requested
-  if(!empty($DATA["email"]))
-  {
-    mail($DATA["email"], "[dl] " . $DATA["id"] . " purge notification",
-	$DATA["id"] . " (" . $DATA["name"] . ") was purged after "
-	. $DATA["downloads"] . " downloads from $masterPath\n",
-	"From: $fromAddr");
-  }
-
   // log
   $reason = ($auto? "automatically": "manually");
-  logEvent("(" . $DATA["name"] . "): "
-      . $DATA["cmt"] . ": purged $reason after "
+  logTicketEvent($DATA, "purged $reason after "
       . $DATA["downloads"] . " downloads");
+
+  // notify if requested
+  if(!empty($DATA["email"]))
+    mail($DATA["email"], "[dl] " . ticketStr($DATA) . " purge notification",
+	humanTicketStr($DATA) . " was purged after " . $DATA["downloads"]
+	. " downloads from $masterPath\n", "From: $fromAddr");
 }
 
 ?>

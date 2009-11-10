@@ -47,7 +47,7 @@ foreach($db->query($sql) as $DATA)
 
   // name
   echo "<span><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/>";
-  echo "<label class=\"choice\"><a href=\"$masterPath?t=" . $DATA['id'] . "\">" .
+  echo "<label class=\"choice\"><a href=\"" . ticketUrl($DATA) . "\">" .
     htmlentities($DATA["name"]) . "</a>";
   if($DATA["cmt"])
     echo ": " . htmlentities($DATA["cmt"]);
