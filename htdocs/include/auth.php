@@ -47,7 +47,7 @@ function authenticate()
     . " WHERE u.name = " . $db->quote($user);
   $DATA = $db->query($sql)->fetch();
   if($DATA !== false)
-    $okpass = (isset($remoteUser) || ($pass === $DATA['pass']));
+    $okpass = (isset($remoteUser) || ($pass === $DATA['md5']));
   else
   {
     $okpass = isset($remoteUser);
