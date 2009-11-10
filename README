@@ -107,7 +107,7 @@ command line (there is no web-interface yet) by using the bundled
 On the server, execute the following commands *with the same user as your web
 server* (by using ``su`` or ``sudo`` if necessary)::
 
-  cd /your-installation-directory/include
+  cd /your-installation-directory/include/scripts
   php useradmin.php add "admin" "true" "change me"
 
 where:
@@ -136,7 +136,7 @@ the administrators with ``useradmin.php``.
 Users can be managed through ``useradmin.php``, which should be executed with
 *the same user as the web server*. Run::
 
-  cd /your-installation-directory/include
+  cd /your-installation-directory/include/scripts
   php useradmin.php help
 
 to get a list of all available commands (currently "add", "rm" and

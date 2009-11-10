@@ -1,0 +1,12 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE roles (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR UNIQUE NOT NULL, admin BOOLEAN NOT NULL, parent_role INTEGER REFERENCES roles (id));
+INSERT INTO "roles" VALUES(1,'admin',1,NULL);
+INSERT INTO "roles" VALUES(2,'user',0,1);
+DELETE FROM sqlite_sequence;
+INSERT INTO "sqlite_sequence" VALUES('roles',2);
+CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR UNIQUE NOT NULL, md5 VARCHAR(32), role_id INTEGER not null REFERENCES roles (id));
+CREATE TABLE tickets (id VARCHAR(32) PRIMARY KEY, owner INTEGER NOT NULL REFERENCES users (id), name VARCHAR NOT NULL, path VARCHAR NOT NULL, size INTEGER NOT NULL, cmt VARCHAR, time INTEGER NOT NULL, downloads INTEGER, last_time INTEGER, expire INTEGER, expire_last INTEGER, expire_dln INTEGER, notify_email VARCHAR);
+CREATE INDEX i_expire on tickets ( expire );
+CREATE INDEX i_expire_last on tickets ( expire_last );
+COMMIT;
