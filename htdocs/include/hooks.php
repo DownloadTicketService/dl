@@ -8,6 +8,14 @@ function onCreate($DATA)
   // log
   $type = (!$DATA["expire"]? "permanent": "temporary");
   logTicketEvent($DATA, "$type ticket created");
+
+  // send emails to recipient
+  foreach(getEMailAddrs($DATA['st']) as $email)
+  {
+    logTicketEvent($DATA, "sending link to $email");
+    mail($email, "download link to " . humanTicketStr($DATA),
+	ticketUrl($DATA), "From: $fromAddr");
+  }
 }
 
 
@@ -20,9 +28,12 @@ function onDownload($DATA)
 
   // notify if request
   if(!empty($DATA["email"]))
+  {
+    logTicketEvent($DATA, "sending notification to " . $DATA["email"]);
     mail($DATA["email"], "[dl] " . ticketStr($DATA) . " download notification",
 	humanTicketStr($DATA) . " was downloaded by " . $_SERVER["REMOTE_ADDR"]
 	. " from $masterPath\n", "From: $fromAddr");
+  }
 }
 
 
@@ -37,9 +48,12 @@ function onPurge($DATA, $auto)
 
   // notify if requested
   if(!empty($DATA["email"]))
+  {
+    logTicketEvent($DATA, "sending notification to " . $DATA["email"]);
     mail($DATA["email"], "[dl] " . ticketStr($DATA) . " purge notification",
 	humanTicketStr($DATA) . " was purged after " . $DATA["downloads"]
 	. " downloads from $masterPath\n", "From: $fromAddr");
+  }
 }
 
 ?>

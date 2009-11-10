@@ -1,6 +1,12 @@
 <?php
 // process a file submission
 
+function fixEMailAddrs($str)
+{
+  $addrs = split(",", str_replace(array(";", "\n"), ",", $str));
+  return join(",", array_filter(array_map(trim, $addrs)));
+}
+
 function fail($tmpFile = false)
 {
   if($tmpFile) unlink($tmpFile);
@@ -45,8 +51,7 @@ else
   $sql .= ", " . (empty($_POST["hra"])? 'NULL': $_POST["hra"] * 3600);
   $sql .= ", " . (empty($_POST["dln"])? 'NULL': (int)$_POST["dln"]);
 }
-$sql .= ", " . (empty($_POST["nt"])? 'NULL':
-    $db->quote(str_replace(array(";", "\n"), ",", $_POST["nt"])));
+$sql .= ", " . (empty($_POST["nt"])? 'NULL': $db->quote(fixEMailAddrs($_POST["nt"])));
 $sql .= ")";
 
 if($db->exec($sql) != 1)
@@ -55,6 +60,7 @@ if($db->exec($sql) != 1)
 // fetch defaults
 $sql = "SELECT * FROM tickets WHERE ROWID = last_insert_rowid()";
 $DATA = $db->query($sql)->fetch();
+$DATA['st'] = (empty($_POST["st"])? NULL: fixEMailAddrs($_POST["st"]));
 
 // final url
 $url = ticketUrl($DATA);
@@ -73,6 +79,19 @@ includeTemplate('style/include/header.php', compact('title'));
 <?php echo htmlentities(humanTicketStr($DATA)); ?>
   </label>
 <p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
+<?php
+  if($DATA['st'])
+  {
+    echo "A download link has been sent to ";
+    $addrs = getEMailAddrs($DATA['st']);
+    foreach($addrs as &$addr)
+    {
+      $addr = '<a href="mailto:' . urlencode($addr) . '">'
+	. htmlentities($addr) . '</a>';
+    }
+    echo join(', ', $addrs) . '.';
+  }
+?>
 </div>
 
 <span class="buttons">

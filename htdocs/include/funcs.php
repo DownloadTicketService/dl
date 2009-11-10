@@ -105,6 +105,12 @@ function returnBytes($val)
 }
 
 
+function getEMailAddrs($str)
+{
+  return split(",", $str);
+}
+
+
 function includeTemplate($file, $vars = array())
 {
   extract($vars);

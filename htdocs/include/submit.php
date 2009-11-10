@@ -112,9 +112,21 @@ includeTemplate('style/include/header.php', compact('title'));
 	<input name="nt" class="element text medium" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
-	  Type an <em>optional</em> email address(es) that should be notified when the file is
-	  downloaded from the server. Separate multiple addresses with
-	  commas.
+	  Type an <em>optional</em> email address (or addresses) that should be
+	  notified when the file is downloaded from the server. You can
+	  separate multiple addresses with commas.
+      </small></p>
+    </li>
+
+    <li>
+      <label class="description">Send link to email</label>
+      <div>
+	<input name="st" class="element text medium" type="text" maxlength="255" value=""/>
+      </div>
+      <p class="guidelines"><small>
+	  Type an <em>optional</em> email address (or addresses) that should
+	  immediately receive the link to the ticket. You can
+	  separate multiple addresses with commas.
       </small></p>
     </li>
 

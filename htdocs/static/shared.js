@@ -1,5 +1,6 @@
 // defaults
-var cookieLifetime = 60000 * 60 * 24 * 90;
+var cookieLifetime = 1000 * 60 * 60 * 24 * 90;
+var fields = Array('dn', 'hra', 'dln', 'nt', 'st');
 
 
 // cookie helpers
@@ -39,14 +40,12 @@ function refreshCookie(name, lifetime)
 // defaults
 function loadDefaults()
 {
-  var dn = refreshCookie("dn", cookieLifetime);
-  if(dn !== false) document.forms[0].dn.value = dn;
-  var hra = refreshCookie("hra", cookieLifetime);
-  if(hra !== false) document.forms[0].hra.value = hra;
-  var dln = refreshCookie("dln", cookieLifetime);
-  if(dln !== false) document.forms[0].dln.value = dln;
-  var nt = refreshCookie("nt", cookieLifetime);
-  if(nt !== false) document.forms[0].nt.value = nt;
+  for(var i = 0; i != fields.length; ++i)
+  {
+    var name = fields[i];
+    var v = refreshCookie(name, cookieLifetime);
+    if(v !== false) document.forms[0][name].value = v;
+  }
 }
 
 function setDefaults()
@@ -54,8 +53,9 @@ function setDefaults()
   var expire = new Date();
   expire.setTime(expire.getTime() + cookieLifetime);
 
-  setCookie("dn", document.forms[0].dn.value, expire);
-  setCookie("hra", document.forms[0].hra.value, expire);
-  setCookie("dln", document.forms[0].dln.value, expire);
-  setCookie("nt", document.forms[0].nt.value, expire);
+  for(var i = 0; i != fields.length; ++i)
+  {
+    var name = fields[i];
+    setCookie(name, document.forms[0][name].value, expire);
+  }
 }
