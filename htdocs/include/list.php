@@ -59,6 +59,8 @@ foreach($db->query($sql) as $DATA)
   echo "<tr><th>Date: </th><td> " . date("d/m/Y", $DATA["time"]) . "</td></tr>";
   if($DATA["user_id"] != $auth["id"])
     echo "<tr><th>User: </th><td>" . htmlentities($DATA["user"]) . "</td></tr>";
+  if(isset($DATA['pass_md5']))
+    echo "<tr><th>Password: </th><td>" . str_repeat("&bull;", 5) . "</td>";
 
   // expire
   echo "<tr><th>Expiry: </th><td>";
