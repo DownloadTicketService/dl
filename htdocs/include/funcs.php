@@ -107,7 +107,7 @@ function returnBytes($val)
 
 function getEMailAddrs($str)
 {
-  return split(",", $str);
+  return (empty($str)? array(): split(",", $str));
 }
 
 

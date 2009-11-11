@@ -25,5 +25,6 @@ foreach($db->query($sql) as $DATA)
 // start the session
 session_name($sessionName);
 session_start();
+$auth = &$_SESSION["auth"];
 
 ?>

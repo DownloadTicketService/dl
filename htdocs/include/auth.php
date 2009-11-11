@@ -74,6 +74,5 @@ function authenticate()
 
 if(!isset($_SESSION["auth"]) || isset($_REQUEST['u']))
   $_SESSION["auth"] = authenticate();
-$auth = &$_SESSION["auth"];
 
 ?>
