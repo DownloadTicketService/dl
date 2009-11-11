@@ -30,8 +30,8 @@ if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
   fail($tmpFile);
 
 // prepare data
-$sql = "INSERT INTO tickets (id, owner, name, path, size, cmt, pass_md5"
-  . ", time, expire, expire_last, expire_dln, notify_email) VALUES (";
+$sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_md5"
+  . ", time, last_time, expire, expire_dln, notify_email) VALUES (";
 $sql .= $db->quote($id);
 $sql .= ", " . $auth['id'];
 $sql .= ", " . $db->quote(basename($FILE["name"]));
@@ -48,8 +48,8 @@ if(!empty($_POST["nl"]))
 }
 else
 {
-  $sql .= ", " . (empty($_POST["dn"])? 'NULL': time() + $_POST["dn"] * 3600 * 24);
   $sql .= ", " . (empty($_POST["hra"])? 'NULL': $_POST["hra"] * 3600);
+  $sql .= ", " . (empty($_POST["dn"])? 'NULL': time() + $_POST["dn"] * 3600 * 24);
   $sql .= ", " . (empty($_POST["dln"])? 'NULL': (int)$_POST["dln"]);
 }
 $sql .= ", " . (empty($_POST["nt"])? 'NULL': $db->quote(fixEMailAddrs($_POST["nt"])));
@@ -59,7 +59,7 @@ if($db->exec($sql) != 1)
   fail($tmpFile);
 
 // fetch defaults
-$sql = "SELECT * FROM tickets WHERE ROWID = last_insert_rowid()";
+$sql = "SELECT * FROM ticket WHERE ROWID = last_insert_rowid()";
 $DATA = $db->query($sql)->fetch();
 $DATA['pass'] = (empty($_POST["pass"])? NULL: $_POST["pass"]);
 $DATA['st'] = (empty($_POST["st"])? NULL: fixEMailAddrs($_POST["st"]));

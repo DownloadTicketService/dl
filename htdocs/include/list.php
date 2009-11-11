@@ -16,7 +16,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
   $first = true;
   foreach($_REQUEST["sel"] as $id)
   {
-    $sql = "SELECT * FROM tickets WHERE id = " . $db->quote($id);
+    $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
     $DATA = $db->query($sql)->fetch();
     if($DATA === false) continue;
 
@@ -35,9 +35,9 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 // list active tickets
 $totalSize = 0;
 
-$sql = "SELECT t.*, u.name AS user FROM tickets t"
-  . " LEFT JOIN users u ON u.id = t.owner";
-if(!$auth["admin"]) $sql .= " WHERE owner = " . $auth["id"];
+$sql = "SELECT t.*, u.name AS user FROM ticket t"
+  . " LEFT JOIN user u ON u.id = t.user_id";
+if(!$auth["admin"]) $sql .= " WHERE user_id = " . $auth["id"];
 
 foreach($db->query($sql) as $DATA)
 {
@@ -57,15 +57,15 @@ foreach($db->query($sql) as $DATA)
   echo "<div class=\"fileinfo\"><table>";
   echo "<tr><th>Size: </th><td>" . humanSize($DATA["size"]) . "</td></tr>";
   echo "<tr><th>Date: </th><td> " . date("d/m/Y", $DATA["time"]) . "</td></tr>";
-  if($DATA["owner"] != $auth["id"])
+  if($DATA["user_id"] != $auth["id"])
     echo "<tr><th>User: </th><td>" . htmlentities($DATA["user"]) . "</td></tr>";
 
   // expire
   echo "<tr><th>Expiry: </th><td>";
-  if($DATA["expire_dln"] || $DATA["expire_last"])
+  if($DATA["expire_dln"] || $DATA["last_time"])
   {
-    if($DATA["expire_last"] && $DATA["last_time"])
-      echo "Maybe in " . humanTime($DATA["last_time"] + $DATA["expire_last"]- time());
+    if($DATA["expire_last"])
+      echo "Maybe in " . humanTime($DATA["expire_last"] - time());
     else if($DATA["expire_dln"] && $DATA["downloads"])
       echo "Maybe in " . ($DATA["expire_dln"] - $DATA["downloads"]) . " downloads";
     else if($DATA["expire"])
@@ -73,7 +73,7 @@ foreach($db->query($sql) as $DATA)
     else if($DATA["expire_dln"])
       echo "After " . $DATA["expire_dln"] . " downloads";
     else
-      echo "After next download, in " . humanTime($DATA["expire_last"]);
+      echo "After next download, in " . humanTime($DATA["last_time"]);
   }
   else if($DATA["expire"])
     echo "In " . humanTime($DATA["expire"] - time());
@@ -85,7 +85,7 @@ foreach($db->query($sql) as $DATA)
   if($DATA["downloads"])
   {
     echo "<tr><th>Downloads: </th><td>" . $DATA["downloads"] . "</td></tr>"
-      . "<tr><th>Downloaded: </th><td>" . date("d/m/Y", $DATA["last_time"]) . "</td</tr>";
+      . "<tr><th>Downloaded: </th><td>" . date("d/m/Y", $DATA["last_stamp"]) . "</td</tr>";
   }
 
   // notify

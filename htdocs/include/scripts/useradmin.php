@@ -31,7 +31,7 @@ if($argv[1] == 'list')
 {
   echo "#user\tadm\n";
 
-  $sql = "SELECT u.name, admin FROM users u LEFT JOIN roles r ON r.id = u.role_id";
+  $sql = "SELECT u.name, admin FROM user u LEFT JOIN role r ON r.id = u.role_id";
   foreach($db->query($sql) as $DATA)
     echo $DATA["name"] . "\t" . ($DATA["admin"]? "true": "false") . "\n";
 
@@ -45,10 +45,10 @@ if($argv[1] == 'add' && $argc > 3 && $argc < 6)
   $pass = ($argc > 4? md5($argv[4]): false);
 
   // prepare the SQL
-  $sql = "INSERT INTO users (name, pass_md5, role_id) VALUES (";
+  $sql = "INSERT INTO user (name, pass_md5, role_id) VALUES (";
   $sql .= $db->quote($user);
   $sql .= ", " . (empty($pass)? 'NULL': $db->quote($pass));
-  $sql .= ", (SELECT id FROM roles WHERE name = '"
+  $sql .= ", (SELECT id FROM role WHERE name = '"
     . ($admin? 'admin': 'user') . "')";
   $sql .= ")";
 
@@ -61,7 +61,7 @@ if($argv[1] == 'add' && $argc > 3 && $argc < 6)
 if($argv[1] == 'rm' && $argc > 2)
 {
   $user = $argv[2];
-  $sql = "DELETE FROM users WHERE name = " . $db->quote($user);
+  $sql = "DELETE FROM user WHERE name = " . $db->quote($user);
   if($db->exec($sql) != 1)
     die("cannot remove user '$user'\n");
 

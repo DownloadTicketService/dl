@@ -3,7 +3,7 @@
 
 // try to fetch the ticket
 $id = $_REQUEST["t"];
-$sql = "SELECT * FROM tickets WHERE id = " . $db->quote($id);
+$sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
 $DATA = $db->query($sql)->fetch();
 if($DATA === false)
 {

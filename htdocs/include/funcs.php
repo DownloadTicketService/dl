@@ -7,7 +7,7 @@ function purgeDl($DATA, $auto = true)
 {
   global $db;
 
-  if($db->exec("DELETE FROM tickets WHERE id = ". $db->quote($DATA["id"])) == 1)
+  if($db->exec("DELETE FROM ticket WHERE id = ". $db->quote($DATA["id"])) == 1)
   {
     unlink($DATA["path"]);
     onPurge($DATA, $auto);

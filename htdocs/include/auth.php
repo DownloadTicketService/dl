@@ -42,8 +42,8 @@ function authenticate()
   }
 
   // verify if we have administration rights
-  $sql = "SELECT u.id, u.name, pass_md5, admin FROM users u"
-    . " LEFT JOIN roles r ON r.id = u.role_id"
+  $sql = "SELECT u.id, u.name, pass_md5, admin FROM user u"
+    . " LEFT JOIN role r ON r.id = u.role_id"
     . " WHERE u.name = " . $db->quote($user);
   $DATA = $db->query($sql)->fetch();
   if($DATA !== false)
@@ -54,15 +54,15 @@ function authenticate()
     if($okpass)
     {
       // create a stub user and get the id
-      $sql = "INSERT INTO users (name, role_id) VALUES (";
+      $sql = "INSERT INTO user (name, role_id) VALUES (";
       $sql .= $db->quote($user);
-      $sql .= ", (SELECT id FROM roles WHERE name = 'user')";
+      $sql .= ", (SELECT id FROM role WHERE name = 'user')";
       $sql .= ")";
       if($db->exec($sql) != 1) return false;
 
       // fetch defaults
-      $sql = "SELECT u.id, u.name, admin FROM users";
-      $sql .= " LEFT JOIN roles r ON r.id = u.role_id";
+      $sql = "SELECT u.id, u.name, admin FROM user";
+      $sql .= " LEFT JOIN role r ON r.id = u.role_id";
       $sql .= " WHERE ROWID = last_insert_rowid()";
       $DATA = $db->query($sql)->fetch();
     }

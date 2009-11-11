@@ -11,7 +11,7 @@ if(!isset($_SERVER["PATH_INFO"]))
 list(, $id) = explode("/", $_SERVER["PATH_INFO"]);
 
 // try to fetch the id
-$sql = "SELECT * FROM tickets WHERE id = " . $db->quote($id);
+$sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
 $DATA = $db->query($sql)->fetch();
 if($DATA === false)
 {
@@ -46,7 +46,8 @@ $complete = ($size == $DATA["size"]);
 $last = ($range[2] == $DATA["size"] - 1);
 
 // update the record for the next query
-$sql = "UPDATE tickets SET last_time = " . time()
+$sql = "UPDATE ticket SET last_stamp = " . time()
+  . ", expire_last = " . time() . " + last_time"
   . ", downloads = downloads + 1 WHERE id = " . $db->quote($id);
 $db->exec($sql);
 

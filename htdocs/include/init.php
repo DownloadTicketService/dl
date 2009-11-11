@@ -16,8 +16,8 @@ elseif(!empty($logFile))
   $logFd = fopen($logFile, "at");
 
 // expire tickets before serving any request
-$sql = "SELECT * FROM tickets WHERE expire < " . time();
-$sql .= " OR expire_last + last_time < " . time();
+$sql = "SELECT * FROM ticket WHERE expire < " . time();
+$sql .= " OR expire_last < " . time();
 $sql .= " OR expire_dln <= downloads";
 foreach($db->query($sql) as $DATA)
   purgeDl($DATA);
