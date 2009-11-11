@@ -301,7 +301,7 @@ input.text
 	padding:2px 0;
 }
 
-input.file
+input.file, input.button
 {
 	color:#333;
 	font-size:100%;

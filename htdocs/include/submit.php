@@ -59,6 +59,18 @@ includeTemplate('style/include/header.php', compact('title'));
     </li>
 
     <li>
+      <label class="description">Password</label>
+      <div>
+	<input name="pass" class="element text medium" type="text" maxlength="255" value=""/>
+        <input class="element button" type="button" value="Generate" onclick="passGen();"/>
+      </div>
+      <p class="guidelines"><small>
+          Type an <em>optional</em> password that will be required to download
+	  the file, as an additional security measure.
+      </small></p>
+    </li>
+
+    <li>
       <label class="description">Expire in total # of days</label>
       <div>
 	<input name="dn" value="7" class="element text medium" type="text" maxlength="255" value=""/>

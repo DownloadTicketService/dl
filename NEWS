@@ -4,6 +4,9 @@ dl 0.4:
 	* PDO is now used for the users/tickets database
 	  (defaulting to a sqlite database)
 	* The minimal required PHP version is now 5.0.
+	* The submission form now allows to automatically send a link
+	  of the ticket to the specified address.
+	* A ticket can now require a password to be downloaded.
 
 
 dl 0.3: 02/09/2009

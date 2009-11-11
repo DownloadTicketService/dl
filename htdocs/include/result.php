@@ -30,14 +30,15 @@ if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
   fail($tmpFile);
 
 // prepare data
-$sql = "INSERT INTO tickets (id, owner, name, path, size, cmt, time"
-  . ", expire, expire_last, expire_dln, notify_email) VALUES (";
+$sql = "INSERT INTO tickets (id, owner, name, path, size, cmt, pass_md5"
+  . ", time, expire, expire_last, expire_dln, notify_email) VALUES (";
 $sql .= $db->quote($id);
 $sql .= ", " . $auth['id'];
 $sql .= ", " . $db->quote(basename($FILE["name"]));
 $sql .= ", " . $db->quote($tmpFile);
 $sql .= ", " . $FILE["size"];
 $sql .= ", " . (empty($_POST["cmt"])? 'NULL': $db->quote($_POST["cmt"]));
+$sql .= ", " . (empty($_POST["pass"])? 'NULL': $db->quote(md5($_POST["pass"])));
 $sql .= ", " . time();
 if(!empty($_POST["nl"]))
 {
@@ -60,12 +61,14 @@ if($db->exec($sql) != 1)
 // fetch defaults
 $sql = "SELECT * FROM tickets WHERE ROWID = last_insert_rowid()";
 $DATA = $db->query($sql)->fetch();
+$DATA['pass'] = (empty($_POST["pass"])? NULL: $_POST["pass"]);
 $DATA['st'] = (empty($_POST["st"])? NULL: fixEMailAddrs($_POST["st"]));
 
 // final url
 $url = ticketUrl($DATA);
 $subject = 'download link to ' . humanTicketStr($DATA);
-$mailto = "mailto:?subject=$subject&body=" . urlencode($url);
+$body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
+$mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode($body);
 
 // trigger creation hooks
 onCreate($DATA);
@@ -80,23 +83,30 @@ includeTemplate('style/include/header.php', compact('title'));
   </label>
 <p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
 <?php
+  if($DATA['pass'])
+  {
+    echo "<p>The required password is: <tt>"
+      . htmlentities($DATA['pass']) . "</tt></p>";
+  }
+
   if($DATA['st'])
   {
-    echo "A download link has been sent to ";
+    echo "<p>A download link has been sent to: ";
     $addrs = getEMailAddrs($DATA['st']);
     foreach($addrs as &$addr)
     {
       $addr = '<a href="mailto:' . urlencode($addr) . '">'
 	. htmlentities($addr) . '</a>';
     }
-    echo join(', ', $addrs) . '.';
+    echo join(', ', $addrs);
+    echo '</p>';
   }
 ?>
 </div>
 
 <span class="buttons">
-  <input type="button" onclick="document.location=&quot;<?php echo htmlentities($mailto); ?>&quot;" value="Send via E-Mail"/>
-  <input type="button" onclick="document.location=&quot;<?php echo htmlentities($url); ?>&quot;" value="Download"/>
+  <input type="button" onclick="document.location='<?php echo htmlentities($mailto); ?>';" value="Send via E-Mail"/>
+  <input type="button" onclick="document.location='<?php echo htmlentities($url); ?>';" value="Download"/>
 </span>
 
 <div id="footer">

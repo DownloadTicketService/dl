@@ -4,7 +4,7 @@ includeTemplate('style/include/header.php', compact('title'));
 ?>
 
 <form action="<?php echo $adminPath; ?>" method="post">
-  <ul >
+  <ul>
     <li>
       <label class="description">User</label>
       <div>
@@ -20,7 +20,7 @@ includeTemplate('style/include/header.php', compact('title'));
     </li>
 
     <li class="buttons">
-      <input id="saveForm" type="submit" name="submit" value="Login"/>
+      <input type="submit" name="submit" value="Login"/>
     </li>
   </ul>
 </form>

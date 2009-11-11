@@ -45,7 +45,7 @@ if($argv[1] == 'add' && $argc > 3 && $argc < 6)
   $pass = ($argc > 4? md5($argv[4]): false);
 
   // prepare the SQL
-  $sql = "INSERT INTO users (name, md5, role_id) VALUES (";
+  $sql = "INSERT INTO users (name, pass_md5, role_id) VALUES (";
   $sql .= $db->quote($user);
   $sql .= ", " . (empty($pass)? 'NULL': $db->quote($pass));
   $sql .= ", (SELECT id FROM roles WHERE name = '"

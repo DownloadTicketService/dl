@@ -19,6 +19,13 @@ if($DATA === false)
   exit();
 }
 
+// check for password
+if(isset($DATA['pass_md5']) && !isset($_SESSION['t'][$id]))
+{
+  header("HTTP/1.0 400 Bad Request");
+  exit();
+}
+
 // open the file first
 $fd = fopen($DATA["path"], "r");
 if($fd === false)

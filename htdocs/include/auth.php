@@ -42,12 +42,12 @@ function authenticate()
   }
 
   // verify if we have administration rights
-  $sql = "SELECT u.id, u.name, md5, admin FROM users u"
+  $sql = "SELECT u.id, u.name, pass_md5, admin FROM users u"
     . " LEFT JOIN roles r ON r.id = u.role_id"
     . " WHERE u.name = " . $db->quote($user);
   $DATA = $db->query($sql)->fetch();
   if($DATA !== false)
-    $okpass = (isset($remoteUser) || ($pass === $DATA['md5']));
+    $okpass = (isset($remoteUser) || ($pass === $DATA['pass_md5']));
   else
   {
     $okpass = isset($remoteUser);

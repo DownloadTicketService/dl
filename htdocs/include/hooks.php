@@ -13,8 +13,11 @@ function onCreate($DATA)
   foreach(getEMailAddrs($DATA['st']) as $email)
   {
     logTicketEvent($DATA, "sending link to $email");
+
+    $url = ticketUrl($DATA);
+    $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
     mail($email, "download link to " . humanTicketStr($DATA),
-	ticketUrl($DATA), "From: $fromAddr");
+	$body, "From: $fromAddr");
   }
 }
 

@@ -31,7 +31,7 @@ for($key = dba_firstkey($uDb); $key; $key = dba_nextkey($uDb))
   echo " ... $key\n";
 
   // prepare the SQL
-  $sql = "INSERT INTO users (name, md5, role_id) VALUES (";
+  $sql = "INSERT INTO users (name, pass_md5, role_id) VALUES (";
   $sql .= $db->quote($key);
   $sql .= ", " . (empty($DATA["pass"])?
       'NULL': $db->quote($DATA["pass"]));
