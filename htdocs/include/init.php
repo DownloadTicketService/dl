@@ -22,4 +22,8 @@ $sql .= " OR expire_dln <= downloads";
 foreach($db->query($sql) as $DATA)
   purgeDl($DATA);
 
+// start the session
+session_name($sessionName);
+session_start();
+
 ?>

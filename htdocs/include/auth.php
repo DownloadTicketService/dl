@@ -72,8 +72,6 @@ function authenticate()
   return $DATA;
 }
 
-session_name($sessionName);
-session_start();
 if(!isset($_SESSION["auth"]) || isset($_REQUEST['u']))
   $_SESSION["auth"] = authenticate();
 $auth = &$_SESSION["auth"];
