@@ -61,7 +61,7 @@ function handleUpload($FILE)
     return failUpload($tmpFile);
 
   // fetch defaults
-  $sql = "SELECT * FROM ticket WHERE ROWID = last_insert_rowid()";
+  $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
   $DATA = $db->query($sql)->fetch();
   $DATA['pass'] = (empty($_POST["pass"])? NULL: $_POST["pass"]);
   $DATA['st'] = (empty($_POST["st"])? NULL: fixEMailAddrs($_POST["st"]));
