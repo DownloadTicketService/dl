@@ -20,6 +20,11 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
     $DATA = $db->query($sql)->fetch();
     if($DATA === false) continue;
 
+    // check for permissions
+    if(!$auth["admin"] && $DATA["user_id"] != $auth["id"])
+      continue;
+
+    // actually purge the ticket
     if($first) $first = false;
     else echo "<tr><td></td>";
     echo "<td>" . htmlentities($DATA["name"]);
