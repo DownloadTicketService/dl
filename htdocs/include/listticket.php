@@ -1,10 +1,10 @@
 <?php
-$title = 'Active Tickets';
-includeTemplate('style/include/header.php', compact('title'));
+require_once("include/pages.php");
+$act = "tlist";
+pageHeader();
 ?>
 
-<form action="<?php echo $adminPath; ?>?l" method="post">
-  <input type="hidden" name="l"/>
+<form action="<?php echo currentPage(); ?>" method="post">
   <ul>
 
 <?php
@@ -121,11 +121,6 @@ foreach($db->query($sql) as $DATA)
 
 <p>Total archive size: <?php echo humanSize($totalSize); ?></p>
 
-<div id="footer">
-  <a href="<?php echo $adminPath; ?>">Submit new ticket</a>,
-  <a href="<?php echo $adminPath; ?>?u">Logout</a>
-</div>
-
 <?php
-includeTemplate('style/include/footer.php');
+pageFooter();
 ?>

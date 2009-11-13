@@ -3,12 +3,16 @@
 include("include/init.php");
 include("include/auth.php");
 
-if(!$auth)
+$act = (empty($_REQUEST["a"])? false: $_REQUEST["a"]);
+
+if(!$auth || $act == "login")
   include("include/login.php");
-else if(isset($_FILES["file"]) && is_uploaded_file($_FILES["file"]["tmp_name"]))
-  include("include/result.php");
-else if(isset($_REQUEST["l"]))
-  include("include/list.php");
+elseif($act == "tlist")
+  include("include/listticket.php");
+elseif($act == "grant")
+  include("include/newgrant.php");
+elseif($act == "glist")
+  include("include/listgrant.php");
 else
-  include("include/submit.php");
+  include("include/newticket.php");
 ?>

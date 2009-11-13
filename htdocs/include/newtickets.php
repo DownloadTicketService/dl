@@ -1,6 +1,7 @@
 <?php
-$title = 'Upload Request';
-includeTemplate('style/include/header.php', compact('title'));
+require_once("pages.php");
+$act = "newt";
+pageHeader();
 ?>
 
 <script type="text/javascript">
@@ -9,7 +10,7 @@ includeTemplate('style/include/header.php', compact('title'));
 
 <form enctype="multipart/form-data" method="post"
       onsubmit="document.getElementById('submit').disabled = true;"
-      action="<?php echo $adminPath; ?>" >
+      action="<?php echo currentPage(); ?>" >
   <ul>
 
 <?php
@@ -150,11 +151,6 @@ includeTemplate('style/include/header.php', compact('title'));
   </ul>
 </form>
 
-<div id="footer">
-  <a href="<?php echo $adminPath; ?>?l">List active tickets</a>,
-  <a href="<?php echo $adminPath; ?>?u">Logout</a>
-</div>
-
 <?php
-includeTemplate('style/include/footer.php');
+pageFooter();
 ?>
