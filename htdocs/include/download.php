@@ -78,6 +78,6 @@ while($left)
 fclose($fd);
 
 // trigger download hooks
-if($last) onDownload($DATA);
+if($last) onTicketDownload($DATA);
 
 ?>

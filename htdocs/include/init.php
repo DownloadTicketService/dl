@@ -20,7 +20,12 @@ $sql = "SELECT * FROM ticket WHERE expire < " . time();
 $sql .= " OR expire_last < " . time();
 $sql .= " OR expire_dln <= downloads";
 foreach($db->query($sql) as $DATA)
-  purgeDl($DATA);
+  ticketPurge($DATA);
+
+// expire grants
+$sql = "SELECT * FROM grant WHERE grant_expire < " . time();
+foreach($db->query($sql) as $DATA)
+  grantPurge($DATA);
 
 // start the session
 session_name($sessionName);

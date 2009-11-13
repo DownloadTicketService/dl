@@ -3,15 +3,24 @@
 require_once("hooks.php");
 
 
-function purgeDl($DATA, $auto = true)
+function ticketPurge($DATA, $auto = true)
 {
   global $db;
 
   if($db->exec("DELETE FROM ticket WHERE id = ". $db->quote($DATA["id"])) == 1)
   {
     unlink($DATA["path"]);
-    onPurge($DATA, $auto);
+    onTicketPurge($DATA, $auto);
   }
+}
+
+
+function grantPurge($DATA, $auto = true)
+{
+  global $db;
+
+  if($db->exec("DELETE FROM grant WHERE id = ". $db->quote($DATA["id"])) == 1)
+    onGrantPurge($DATA, $auto);
 }
 
 
@@ -39,7 +48,13 @@ function logEvent($logLine)
 
 function logTicketEvent($DATA, $logLine)
 {
-  logEvent(ticketStr($DATA) . ": $logLine");
+  logEvent('t/' . ticketStr($DATA) . ": $logLine");
+}
+
+
+function logGrantEvent($DATA, $logLine)
+{
+  logEvent('g/' . grantStr($DATA) . ": $logLine");
 }
 
 
@@ -91,6 +106,21 @@ function ticketUrl($DATA)
 }
 
 
+function grantStr($DATA)
+{
+  $str = $DATA['id'];
+  if(!empty($DATA['cmt'])) $str .= ' (' . $DATA['cmt'] . ')';
+  return $str;
+}
+
+
+function grantUrl($DATA)
+{
+  global $masterPath;
+  return $masterPath . "?g=" . $DATA['id'];
+}
+
+
 function returnBytes($val)
 {
   $val = trim($val);
@@ -102,6 +132,13 @@ function returnBytes($val)
   case 'k': $val *= 1024;
   }
   return $val;
+}
+
+
+function fixEMailAddrs($str)
+{
+  $addrs = split(",", str_replace(array(";", "\n"), ",", $str));
+  return join(",", array_filter(array_map(trim, $addrs)));
 }
 
 

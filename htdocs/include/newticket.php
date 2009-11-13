@@ -1,21 +1,13 @@
 <?php
 // process a file submission
 
-// helpers
-function fixEMailAddrs($str)
-{
-  $addrs = split(",", str_replace(array(";", "\n"), ",", $str));
-  return join(",", array_filter(array_map(trim, $addrs)));
-}
-
+// upload handler
 function failUpload($file)
 {
   unlink($file);
   return false;
 }
 
-
-// upload handler
 function handleUpload($FILE)
 {
   global $auth, $dataDir, $db;
@@ -24,7 +16,8 @@ function handleUpload($FILE)
   if(!file_exists($dataDir)) mkdir($dataDir);
   do
   {
-    $id = md5(rand() . "/" . microtime() . "/" . $FILE["name"]);
+    list($usec, $sec) = microtime();
+    $id = md5(rand() . "/$usec/$sec/" . $FILE["name"]);
     $tmpFile = "$dataDir/$id";
   }
   while(fopen($tmpFile, "x") === FALSE);
@@ -66,18 +59,22 @@ function handleUpload($FILE)
   $DATA['pass'] = (empty($_POST["pass"])? NULL: $_POST["pass"]);
   $DATA['st'] = (empty($_POST["st"])? NULL: fixEMailAddrs($_POST["st"]));
 
+  // trigger creation hooks
+  onTicketCreate($DATA);
+
   return $DATA;
 }
 
 
 // handle the request
+$DATA = false;
 if(isset($_FILES["file"])
 && is_uploaded_file($_FILES["file"]["tmp_name"])
 && $_FILES["file"]["error"] == UPLOAD_ERR_OK)
   $DATA = handleUpload($_FILES["file"]);
 
 // resulting page
-if(is_array($DATA))
+if($DATA !== false)
   include("include/newticketr.php");
 else
   include("include/newtickets.php");

@@ -1,7 +1,7 @@
 <?php
 // dl ticket event hooks
 
-function onCreate($DATA)
+function onTicketCreate($DATA)
 {
   global $fromAddr, $masterPath;
 
@@ -15,7 +15,7 @@ function onCreate($DATA)
     logTicketEvent($DATA, "sending link to $email");
 
     // please note that address splitting is performed to avoid
-    // disclosing the recipient list (not needed elsewere)
+    // disclosing the recipient list (not normally needed)
     $url = ticketUrl($DATA);
     $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
     mail($email, "download link to " . humanTicketStr($DATA),
@@ -24,7 +24,7 @@ function onCreate($DATA)
 }
 
 
-function onDownload($DATA)
+function onTicketDownload($DATA)
 {
   global $fromAddr, $masterPath;
 
@@ -35,14 +35,15 @@ function onDownload($DATA)
   if(!empty($DATA["notify_email"]))
   {
     logTicketEvent($DATA, "sending notification to " . $DATA["notify_email"]);
-    mail($DATA["notify_email"], "[dl] " . ticketStr($DATA) . " download notification",
-	humanTicketStr($DATA) . " was downloaded by " . $_SERVER["REMOTE_ADDR"]
+    mail($DATA["notify_email"], "[dl] ticket " . ticketStr($DATA)
+	. " download notification", "The ticket " . humanTicketStr($DATA)
+	. " was downloaded by " . $_SERVER["REMOTE_ADDR"]
 	. " from $masterPath\n", "From: $fromAddr");
   }
 }
 
 
-function onPurge($DATA, $auto)
+function onTicketPurge($DATA, $auto)
 {
   global $fromAddr, $masterPath;
 
@@ -55,9 +56,51 @@ function onPurge($DATA, $auto)
   if(!empty($DATA["notify_email"]))
   {
     logTicketEvent($DATA, "sending notification to " . $DATA["notify_email"]);
-    mail($DATA["notify_email"], "[dl] " . ticketStr($DATA) . " purge notification",
-	humanTicketStr($DATA) . " was purged after " . $DATA["downloads"]
+    mail($DATA["notify_email"], "[dl] ticket " . ticketStr($DATA)
+	. " purge notification", "The ticket " . humanTicketStr($DATA)
+	. " was purged $reason after " . $DATA["downloads"]
 	. " downloads from $masterPath\n", "From: $fromAddr");
+  }
+}
+
+
+function onGrantCreate($DATA)
+{
+  global $fromAddr, $masterPath;
+
+  // log
+  $type = (!$DATA["expire"]? "permanent": "temporary");
+  logGrantEvent($DATA, "$type grant created");
+
+  // send emails to recipient
+  foreach(getEMailAddrs($DATA['st']) as $email)
+  {
+    logGrantEvent($DATA, "sending link to $email");
+
+    // please note that address splitting is performed to avoid
+    // disclosing the recipient list (not normally needed)
+    $url = grantUrl($DATA);
+    $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
+    mail($email, "upload grant link", $body, "From: $fromAddr");
+  }
+}
+
+
+function onGrantPurge($DATA, $auto)
+{
+  global $fromAddr, $masterPath;
+
+  // log
+  $reason = ($auto? "automatically": "manually");
+  logGrantEvent($DATA, "purged $reason");
+
+  // notify if requested
+  if(!empty($DATA["notify_email"]))
+  {
+    logGrantEvent($DATA, "sending notification to " . $DATA["notify_email"]);
+    mail($DATA["notify_email"], "[dl] grant " . grantStr($DATA)
+	. " purge notification", "The grant " . grantStr($DATA)
+	. " was purged $reason from $masterPath\n", "From: $fromAddr");
   }
 }
 

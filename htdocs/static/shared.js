@@ -1,7 +1,7 @@
 // defaults
 var cookieLifetime = 1000 * 60 * 60 * 24 * 90;
 var pwdLength = 16;
-var fields = Array('dn', 'hra', 'dln', 'nt', 'st');
+var fields = Array('gn', 'dn', 'hra', 'dln', 'nt', 'st');
 
 
 // cookie helpers
@@ -45,6 +45,7 @@ function loadDefaults()
   for(var i = 0; i != fields.length; ++i)
   {
     var name = fields[i];
+    if(!document.forms[0][name]) continue;
     var v = refreshCookie(name, cookieLifetime);
     if(v !== null) document.forms[0][name].value = v;
   }
@@ -58,6 +59,7 @@ function setDefaults()
   for(var i = 0; i != fields.length; ++i)
   {
     var name = fields[i];
+    if(!document.forms[0][name]) continue;
     setCookie(name, document.forms[0][name].value, expire);
   }
 }
@@ -66,7 +68,7 @@ function setDefaults()
 // password generator
 function passGen()
 {
-  var chrs = "abcdefhjmnpqrstuvwxyz23456789ABCDEFGHJKLMNPQRSTUVWYXZ";
+  var chrs = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   var passwd = '';
 
   for(var i = 0; i != pwdLength; ++i)
