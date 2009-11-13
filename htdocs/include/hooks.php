@@ -14,6 +14,8 @@ function onCreate($DATA)
   {
     logTicketEvent($DATA, "sending link to $email");
 
+    // please note that address splitting is performed to avoid
+    // disclosing the recipient list (not needed elsewere)
     $url = ticketUrl($DATA);
     $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
     mail($email, "download link to " . humanTicketStr($DATA),
@@ -30,10 +32,10 @@ function onDownload($DATA)
   logTicketEvent($DATA, "downloaded by " . $_SERVER["REMOTE_ADDR"]);
 
   // notify if request
-  if(!empty($DATA["email"]))
+  if(!empty($DATA["notify_email"]))
   {
-    logTicketEvent($DATA, "sending notification to " . $DATA["email"]);
-    mail($DATA["email"], "[dl] " . ticketStr($DATA) . " download notification",
+    logTicketEvent($DATA, "sending notification to " . $DATA["notify_email"]);
+    mail($DATA["notify_email"], "[dl] " . ticketStr($DATA) . " download notification",
 	humanTicketStr($DATA) . " was downloaded by " . $_SERVER["REMOTE_ADDR"]
 	. " from $masterPath\n", "From: $fromAddr");
   }
@@ -50,10 +52,10 @@ function onPurge($DATA, $auto)
       . $DATA["downloads"] . " downloads");
 
   // notify if requested
-  if(!empty($DATA["email"]))
+  if(!empty($DATA["notify_email"]))
   {
-    logTicketEvent($DATA, "sending notification to " . $DATA["email"]);
-    mail($DATA["email"], "[dl] " . ticketStr($DATA) . " purge notification",
+    logTicketEvent($DATA, "sending notification to " . $DATA["notify_email"]);
+    mail($DATA["notify_email"], "[dl] " . ticketStr($DATA) . " purge notification",
 	humanTicketStr($DATA) . " was purged after " . $DATA["downloads"]
 	. " downloads from $masterPath\n", "From: $fromAddr");
   }
