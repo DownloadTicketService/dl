@@ -1,11 +1,15 @@
-======================================
-dl: minimalist download ticket service
-======================================
+===========================
+dl: download ticket service
+===========================
 
-dl is a minimalist download ticket service with automatic expiration, written
-in PHP. It allows you to upload any file to a Web server and generate a unique
-download ticket. The ticket is automatically expired according to the specified
-rules. dl is usually installed as a "email attachments replacement" due to its
+dl is a file exchange service that allows you to upload any file to a web
+server and generate a unique download ticket for others to download. The ticket
+is automatically expired according to the specified rules, so that you don't
+need to keep track or cleanup afterward. dl also allows you to grant an
+anonymous, one-time upload for others to send *you* a file, without the
+requirement of account management.
+
+dl is usually installed as a "email attachments replacement" due to its
 simplicity (though can be used in other ways).
 
 .. contents::
@@ -54,26 +58,48 @@ DL installation
 Database setup
 --------------
 
-TODO: incomplete section
+DL needs a database to store the ticket and user information. By default, DL
+will use an embedded "sqlite" database stored within the spool directory, but
+some manual setup is still required.
 
+To create the database, you need the ``sqlite`` or ``sqlite3`` command,
+and execute the provided SQL batch for sqlite *with the same user as your web
+server* (by using ``su`` or ``sudo`` if necessary)::
 
-New database
-~~~~~~~~~~~~
-TODO: incomplete section
+  cd /var/spool/dl/
+  sqlite data.sdb < /your-installation-directory/include/scripts/sqlite.sql
+  chmod 770 data.sdb
+
+If you want to change the database path, or use a real database server, you
+need to properly configure the $dsn parameter in ``include/config.php``
+according to your setup.
 
 
 Upgrading from DB <= 0.3
 ~~~~~~~~~~~~~~~~~~~~~~~~
-TODO: incomplete section
 
-* Backup your current config.php file and spool directory.
-* Overwrite the DL installation directory with the new copy
-* Customize your config.php
-* Copy the $dbHandler setting from your old config.php file over the new.
-* Run ``dbupgrade.php`` as your web server user.
-* Test your setup.
-* Remove $dbHandler from the new configuration file.
-* Remove ``data.db`` and ``user.db`` from the spool directory.
+Upgrading from the earlier DL 0.3 is possible without loosing any data by using
+the bundled ``include/scripts/dbupgrade.php`` script. *After* creating a new
+database as described above, you need proceed as follows:
+
+* Backup your current ``config.php`` file and spool directory.
+
+* Overwrite the DL installation directory with the new copy.
+
+* Customize the new ``config.php`` file.
+
+* If you had to change the "$dbHandler" parameter in DL 0.3,
+  copy the same setting into the new configuration file.
+
+* Run ``dbupgrade.php`` as your web server user::
+
+    cd /your-installation-directory/include/scripts
+    php dbupgrade.php
+
+* Test your new setup.
+
+* You can now remove "$dbHandler" from the new configuration file and
+  ``data.db``, ``user.db`` from the spool directory.
 
 
 PHP setup
@@ -236,15 +262,23 @@ You can also enable external authentication with the following::
   ) )
 
 
+Usage
+=====
+
+DL should be usable by users without any training. The interface must be
+self-explanatory. If you find the usage to be difficult or that the interface
+could be improved, **it's a bug**. Please let us know.
+
+
 Maintenance
 ===========
 
-Ticket expiration is performed automatically when any web page is
-requested. This means that expired downloads will still occupy space on the
-spool directory until a web page is first serviced. If you need to ensure that
-the spool is purged regularly (for example, for very low traffic servers),
-setup a scheduled job that requests the index page. Under UNIX, setup a cron
-entry like this::
+DL does not require any manual maintenance. Ticket expiration is performed
+automatically when any web page is requested. This means that expired downloads
+will still occupy space on the spool directory until a web page is first
+serviced. If you need to ensure that the spool is purged regularly (for
+example, for very low traffic servers), setup a scheduled job that requests the
+index page. Under UNIX, setup a cron entry like this::
 
   0 0 * * * wget -q -O /dev/null "http://dl.example.com/" > /dev/null
 
