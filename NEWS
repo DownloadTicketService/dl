@@ -7,6 +7,8 @@ dl 0.4:
 	* The submission form now allows to automatically send a link
 	  of the ticket to the specified address.
 	* A ticket can now require a password to be downloaded.
+	* "Upload grants" can now be created, allowing others to send you
+	  a single file through DL.
 
 
 dl 0.3: 02/09/2009

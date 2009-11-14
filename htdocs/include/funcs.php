@@ -153,4 +153,23 @@ function includeTemplate($file, $vars = array())
   extract($vars);
   include($file);
 }
+
+
+function genTicketId($seed)
+{
+  global $dataDir;
+
+  // generate new unique id/file name
+  if(!file_exists($dataDir)) mkdir($dataDir);
+  do
+  {
+    list($usec, $sec) = microtime();
+    $id = md5(rand() . "/$usec/$sec/" . $seed);
+    $tmpFile = "$dataDir/$id";
+  }
+  while(fopen($tmpFile, "x") === FALSE);
+
+  return array($id, $tmpFile);
+}
+
 ?>

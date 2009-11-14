@@ -13,14 +13,7 @@ function handleUpload($FILE)
   global $auth, $dataDir, $db;
 
   // generate new unique id/file name
-  if(!file_exists($dataDir)) mkdir($dataDir);
-  do
-  {
-    list($usec, $sec) = microtime();
-    $id = md5(rand() . "/$usec/$sec/" . $FILE["name"]);
-    $tmpFile = "$dataDir/$id";
-  }
-  while(fopen($tmpFile, "x") === FALSE);
+  list($id, $tmpFile) = genTicketId($FILE["name"]);
   if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
     return failUpload($tmpFile);
 

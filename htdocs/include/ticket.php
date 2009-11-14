@@ -7,8 +7,8 @@ $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
 $DATA = $db->query($sql)->fetch();
 if($DATA === false)
 {
-  includeTemplate("style/include/noticket.php",
-      array('title' => 'Unknown ticket', 'id' => $id));
+  includeTemplate("style/include/noid.php",
+      array('title' => 'Unknown ticket', 'type' => 'ticket', 'id' => $id));
   exit();
 }
 
@@ -23,7 +23,7 @@ if(isset($DATA['pass_md5']))
   }
   else
   {
-    include("include/password.php");
+    include("include/ticketp.php");
     exit();
   }
 }

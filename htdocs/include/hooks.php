@@ -104,4 +104,25 @@ function onGrantPurge($DATA, $auto)
   }
 }
 
+
+function onGrantUse($GRANT, $DATA)
+{
+  global $fromAddr, $masterPath;
+
+  // log
+  logGrantEvent($GRANT, "genenerated ticket " . $DATA['id']
+      . " by " . $_SERVER["REMOTE_ADDR"]);
+
+  // notify
+  if(!empty($GRANT['notify_email']))
+  {
+    logGrantEvent($GRANT, "sending link to " . $GRANT["notify_email"]);
+    mail($GRANT["notify_email"], "download link for grant "
+	. grantStr($GRANT), 'Your grant ' . $GRANT['id']
+	. ' has been used by ' . $_SERVER["REMOTE_ADDR"]
+	. '. The uploaded file is now available to be downloaded at '
+	. ticketUrl($DATA), "From: $fromAddr");
+  }
+}
+
 ?>
