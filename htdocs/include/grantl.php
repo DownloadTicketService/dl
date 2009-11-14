@@ -94,8 +94,6 @@ foreach($db->query($sql) as $DATA)
   </ul>
 </form>
 
-<p>Total archive size: <?php echo humanSize($totalSize); ?></p>
-
 <?php
 pageFooter();
 ?>
