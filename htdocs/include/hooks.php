@@ -18,7 +18,7 @@ function onTicketCreate($DATA)
     // disclosing the recipient list (not normally needed)
     $url = ticketUrl($DATA);
     $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
-    mail($email, "download link to " . humanTicketStr($DATA),
+    mail($email, "[dl] download link to " . humanTicketStr($DATA),
 	$body, "From: $fromAddr");
   }
 }
@@ -81,7 +81,7 @@ function onGrantCreate($DATA)
     // disclosing the recipient list (not normally needed)
     $url = grantUrl($DATA);
     $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
-    mail($email, "upload grant link", $body, "From: $fromAddr");
+    mail($email, "[dl] upload grant link", $body, "From: $fromAddr");
   }
 }
 
@@ -117,7 +117,7 @@ function onGrantUse($GRANT, $DATA)
   if(!empty($GRANT['notify_email']))
   {
     logGrantEvent($GRANT, "sending link to " . $GRANT["notify_email"]);
-    mail($GRANT["notify_email"], "download link for grant "
+    mail($GRANT["notify_email"], "[dl] download link for grant "
 	. grantStr($GRANT), 'Your grant ' . $GRANT['id']
 	. ' has been used by ' . $_SERVER["REMOTE_ADDR"]
 	. '. The uploaded file is now available to be downloaded at '

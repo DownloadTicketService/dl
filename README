@@ -3,11 +3,11 @@ dl: download ticket service
 ===========================
 
 dl is a file exchange service that allows you to upload any file to a web
-server and generate a unique download ticket for others to download. The ticket
-is automatically expired according to the specified rules, so that you don't
-need to keep track or cleanup afterward. dl also allows you to grant an
-anonymous, one-time upload for others to send *you* a file, without the
-requirement of account management.
+server and generate a unique ticket for others to download. The ticket is
+automatically expired according to the specified rules, so that you don't need
+to keep track or cleanup afterward. dl also allows you to grant an anonymous,
+one-time upload for others to send *you* a file, without the requirement of
+account management.
 
 dl is usually installed as a "email attachments replacement" due to its
 simplicity (though can be used in other ways).
@@ -75,18 +75,19 @@ need to properly configure the $dsn parameter in ``include/config.php``
 according to your setup.
 
 
-Upgrading from DB <= 0.3
-~~~~~~~~~~~~~~~~~~~~~~~~
+Upgrading from DL <= 0.3
+------------------------
 
-Upgrading from the earlier DL 0.3 is possible without loosing any data by using
-the bundled ``include/scripts/dbupgrade.php`` script. *After* creating a new
-database as described above, you need proceed as follows:
+Upgrading from DL 0.3 or earlier is possible without loosing any data by using
+the bundled ``include/scripts/dbupgrade.php`` script. Proceed as follows:
 
 * Backup your current ``config.php`` file and spool directory.
 
 * Overwrite the DL installation directory with the new copy.
 
 * Customize the new ``config.php`` file.
+
+* Create a new database as described above in `Database setup`_.
 
 * If you had to change the "$dbHandler" parameter in DL 0.3,
   copy the same setting into the new configuration file.

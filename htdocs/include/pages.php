@@ -5,7 +5,7 @@ $pages = array
 (
   'newt'  => 'New ticket',
   'tlist' => 'Active tickets',
-  'grant' => 'New grant',
+  'newg'  => 'New grant',
   'glist' => 'Active grants',
 );
 
