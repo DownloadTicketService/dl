@@ -38,10 +38,13 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 $sql = "SELECT g.*, u.name AS user FROM grant g"
   . " LEFT JOIN user u ON u.id = g.user_id";
 if(!$auth["admin"]) $sql .= " WHERE user_id = " . $auth["id"];
+$sql .= " ORDER BY (user_id <> " . $auth["id"] . "), user_id, time";
 
 foreach($db->query($sql) as $DATA)
 {
-  echo "<li class=\"fileinfo\">";
+  $our = ($DATA["user_id"] == $auth["id"]);
+  $class = ($our? "fileinfo": "fileinfo alien");
+  echo "<li class=\"$class\">";
 
   // name
   echo "<span><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/>";
@@ -53,7 +56,7 @@ foreach($db->query($sql) as $DATA)
   // parameters
   echo "<div class=\"fileinfo\"><table>";
   echo "<tr><th>Date: </th><td> " . date("d/m/Y", $DATA["time"]) . "</td></tr>";
-  if($DATA["user_id"] != $auth["id"])
+  if(!$our)
     echo "<tr><th>User: </th><td>" . htmlentities($DATA["user"]) . "</td></tr>";
   if(isset($DATA['pass_md5']))
     echo "<tr><th>Password: </th><td>" . str_repeat("&bull;", 5) . "</td>";

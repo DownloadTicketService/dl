@@ -463,7 +463,7 @@ form .required
 }
 
 /**** Guidelines and Error Highlight ****/
-form li.highlighted
+form li.highlighted, li.highlighted.alien
 {
 	background-color:#fff7c0;
 }
@@ -528,6 +528,12 @@ ul.password{
 form li.fileinfo
 {
 	width:50%;
+}
+
+form li.alien
+{
+	background:#fafafa;
+	border:1px dashed #e6e6e6;
 }
 
 form li .fileinfo
