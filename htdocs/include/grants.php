@@ -1,6 +1,10 @@
 <?php
 $title = 'Upload grant';
 includeTemplate('style/include/header.php', compact('title'));
+
+require_once("progress.php");
+$up = newUploadProgress();
+uploadProgressHdr($up);
 ?>
 
 <form enctype="multipart/form-data" method="post"
@@ -35,6 +39,7 @@ includeTemplate('style/include/header.php', compact('title'));
       <label class="description">Upload a File</label>
       <div>
         <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
+        <?php uploadProgressField($up); ?>
 	<input name="file" class="element file" type="file"/>
       </div>
       <p class="guidelines"><small>
@@ -45,6 +50,7 @@ includeTemplate('style/include/header.php', compact('title'));
 
     <li class="buttons">
       <input id="submit" type="submit" name="submit" value="Upload"/>
+      <?php uploadProgressHtml($up); ?>
     </li>
   </ul>
 </form>

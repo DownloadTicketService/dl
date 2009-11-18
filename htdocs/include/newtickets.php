@@ -2,9 +2,13 @@
 require_once("pages.php");
 $act = "newt";
 pageHeader();
+
+require_once("progress.php");
+$up = newUploadProgress();
 ?>
 
 <script type="text/javascript" src="static/defaults.js"></script>
+<?php uploadProgressHdr($up); ?>
 
 <form enctype="multipart/form-data" method="post"
       onsubmit="document.getElementById('submit').disabled = true;"
@@ -38,6 +42,7 @@ pageHeader();
       <label class="description">Upload a File</label>
       <div>
         <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
+        <?php uploadProgressField($up); ?>
 	<input name="file" class="element file" type="file"/>
       </div>
       <p class="guidelines"><small>
@@ -145,6 +150,7 @@ pageHeader();
       <input id="submit" type="submit" name="submit" value="Upload"/>
       <input type="reset" name="submit" value="Reset"/>
       <input type="button" name="submit" value="Set as defaults "onclick="setDefaults();"/>
+      <?php uploadProgressHtml($up); ?>
     </li>
   </ul>
 </form>
