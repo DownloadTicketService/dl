@@ -3,6 +3,9 @@ var cookieLifetime = 1000 * 60 * 60 * 24 * 90;
 var pwdLength = 16;
 var fields = Array('gn', 'dn', 'hra', 'dln', 'nt', 'st');
 
+// hooks
+window.addEventListener("load", loadDefaults, false);
+
 
 // cookie helpers
 function setCookie(name, value, expire)

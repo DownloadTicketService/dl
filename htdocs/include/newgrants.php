@@ -4,9 +4,7 @@ $act = "newg";
 pageHeader();
 ?>
 
-<script type="text/javascript">
-  window.addEventListener("load", loadDefaults, false)
-</script>
+<script type="text/javascript" src="static/defaults.js"></script>
 
 <form enctype="multipart/form-data" method="post"
       action="<?php echo currentPage(); ?>" >

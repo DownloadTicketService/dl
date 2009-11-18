@@ -94,12 +94,6 @@ img
 
 
 /**** Form Section ****/
-.appnitro
-{
-	font-family:Lucida Grande, Tahoma, Arial, Verdana, sans-serif;
-	font-size:small;
-}
-
 .appnitro li
 {
 	width:61%;
@@ -234,12 +228,8 @@ form li span label
 	border-bottom:1px dotted #ccc;
 	clear:both;
 	display:inline-block;
-	margin:0 0 1em;
-}
-
-.form_description[class]
-{
 	display:block;
+	margin:0 0 1em;
 }
 
 .form_description h2
@@ -248,13 +238,6 @@ form li span label
 	font-size:160%;
 	font-weight:400;
 	margin:0 0 3px;
-}
-
-.form_description p
-{
-	font-size:95%;
-	line-height:130%;
-	margin:0 0 12px;
 }
 
 form hr
