@@ -13,7 +13,11 @@ pageHeader();
     <h3>Grant parameters</h3>
 
     <li>
-      <label class="description">Notification email</label>
+      <?php
+        $error = (isset($_POST["submit"]) && empty($_POST["nt"]));
+        $class = "description" . ($error? " required": "");
+      ?>
+      <label class="<?php echo $class; ?>">Notification email</label>
       <div>
 	<input name="nt" class="element text medium" type="text" maxlength="255" value=""/>
       </div>
@@ -122,9 +126,10 @@ pageHeader();
     </li>
 
     <li class="buttons">
-      <input id="submit" type="submit" name="submit" value="Create"/>
-      <input type="reset" name="submit" value="Reset"/>
-      <input type="button" name="submit" value="Set as defaults "onclick="setDefaults();"/>
+      <input type="hidden" name="submit" value="1"/>
+      <input id="submit" type="submit" value="Create"/>
+      <input type="reset" value="Reset"/>
+      <input type="button" value="Set as defaults "onclick="setDefaults();"/>
     </li>
   </ul>
 </form>

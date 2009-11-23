@@ -11,7 +11,11 @@ includeTemplate('style/include/header.php', compact('title'));
 <form action="<?php echo "$masterPath?t=$id"; ?>" method="post">
   <ul>
     <li>
-      <label class="description">Password</label>
+      <?php
+        $error = (isset($_POST["submit"]) && !isset($_SESSION['t'][$id]));
+        $class = "description" . ($error? " required": "");
+      ?>
+      <label class="<?php echo $class; ?>">Password</label>
       <div>
 	<input name="p" class="element text medium" type="password" maxlength="255"/>
       </div><p class="guidelines"><small>Type in the password required to unlock this ticket.</small></p>

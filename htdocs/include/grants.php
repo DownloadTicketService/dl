@@ -36,7 +36,11 @@ uploadProgressHdr($up);
 ?>
 
     <li>
-      <label class="description">Upload a File</label>
+      <?php
+        $error = (isset($_POST["submit"]) && empty($_FILES["file"]["name"]));
+        $class = "description" . ($error? " required": "");
+      ?>
+      <label class="<?php echo $class; ?>">Upload a File</label>
       <div>
         <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
         <?php uploadProgressField($up); ?>
@@ -49,7 +53,8 @@ uploadProgressHdr($up);
     </li>
 
     <li class="buttons">
-      <input id="submit" type="submit" name="submit" value="Upload"/>
+      <input type="hidden" name="submit" value="1"/>
+      <input id="submit" type="submit" value="Upload"/>
       <?php uploadProgressHtml($up); ?>
     </li>
   </ul>

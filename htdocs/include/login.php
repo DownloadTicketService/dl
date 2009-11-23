@@ -1,19 +1,22 @@
 <?php
 $title = 'Login';
 includeTemplate('style/include/header.php', compact('title'));
+
+$error = (isset($_POST["submit"]) && !isset($auth));
+$class = "description" . ($error? " required": "");
 ?>
 
 <form action="<?php echo $adminPath; ?>" method="post">
   <ul>
     <li>
-      <label class="description">User</label>
+      <label class="<?php echo $class; ?>">User</label>
       <div>
 	<input name="u" class="element text medium" type="text" maxlength="255"/>
       </div><p class="guidelines"><small>Type in the user name to access the filesharing service.</small></p>
     </li>
 
     <li>
-      <label class="description">Password</label>
+      <label class="<?php echo $class; ?>">Password</label>
       <div>
 	<input name="p" class="element text medium" type="password" maxlength="255"/>
       </div><p class="guidelines"><small>Type in the password to access the filesharing service.</small></p>

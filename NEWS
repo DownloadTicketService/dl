@@ -11,6 +11,7 @@ dl 0.4:
 * "Upload grants" can now be created, allowing others to send you a single file
   through DL.
 * Progress-bar indicator during uploads.
+* Required fields are highlighted when missing.
 
 
 dl 0.3: 02/09/2009
