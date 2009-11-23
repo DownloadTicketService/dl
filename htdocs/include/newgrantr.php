@@ -6,7 +6,7 @@ pageHeader(array('title' => 'Grant result'));
 // final url
 $url = grantUrl($DATA);
 $subject = 'upload grant link';
-$body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
+$body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass'] . "\n");
 $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode($body);
 ?>
 

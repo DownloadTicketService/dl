@@ -1,36 +1,40 @@
 dl 0.4:
+------------------
 
-	* Ticket activity can be logged to syslog or a file.
-	* The minimal required PHP version is now 5.0.
-	* PDO is now used for the users/tickets database (defaulting to a
-	  sqlite database). Upgrading instructions in the README.
-	* The submission form now allows to automatically send a link of the
-	  ticket to the specified address/es.
-	* A ticket can now require a password to be downloaded.
-	* "Upload grants" can now be created, allowing others to send you a
-	  single file through DL.
-	* Progress-bar indicator during uploads.
+* Ticket activity can be logged to syslog or a file.
+* The minimal required PHP version is now 5.0.
+* PDO is now used for the users/tickets database (defaulting to a sqlite
+  database). Upgrading instructions in the README.
+* The submission form now allows to automatically send a link of the ticket to
+  the specified address/es.
+* A ticket can now require a password to be downloaded.
+* "Upload grants" can now be created, allowing others to send you a single file
+  through DL.
+* Progress-bar indicator during uploads.
 
 
 dl 0.3: 02/09/2009
+------------------
 
-	* CSS-ification, with new skin from Kim Thostrup <kim@thostrup.dk>.
-	* Include IE5/6 PNG fix from Angus Turnbull http://www.twinhelix.com
-	* Multiuser support with HTTP authentication or internal user database.
-	* License changed to LGPL 3
+* CSS-ification, with new skin from Kim Thostrup <kim@thostrup.dk>.
+* Include IE5/6 PNG fix from Angus Turnbull http://www.twinhelix.com
+* Multiuser support with HTTP authentication or internal user database.
+* License changed to LGPL 3
 
 
 dl 0.2: 10/10/2007
+------------------
 
-	* Renamed "aux.php" to "funcs.php" to avoid "reserved file name" errors
-          under Windows.
-	* Support commas in addition to semicolons as e-mail separators in the
-          notify field.
-	* Removed the 'ID' field in "active tickets" listings.
-	* Allow to attach a comment in any ticket.
-	* Byte-ranges support.
+* Renamed "aux.php" to "funcs.php" to avoid "reserved file name" errors
+  under Windows.
+* Support commas in addition to semicolons as e-mail separators in the
+  notify field.
+* Removed the 'ID' field in "active tickets" listings.
+* Allow to attach a comment in any ticket.
+* Byte-ranges support.
 
 
 dl 0.1: 15/06/2007
+------------------
 
-	* First release.
+* First release.

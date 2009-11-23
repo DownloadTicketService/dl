@@ -6,7 +6,7 @@ pageHeader(array('title' => 'Upload result'));
 // final url
 $url = ticketUrl($DATA);
 $subject = 'download link to ' . humanTicketStr($DATA);
-$body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
+$body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass'] . "\n");
 $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode($body);
 ?>
 

@@ -17,7 +17,7 @@ function onTicketCreate($DATA)
     // please note that address splitting is performed to avoid
     // disclosing the recipient list (not normally needed)
     $url = ticketUrl($DATA);
-    $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
+    $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass'] . "\n");
     mail($email, "[dl] download link to " . humanTicketStr($DATA),
 	$body, "From: $fromAddr");
   }
@@ -80,7 +80,7 @@ function onGrantCreate($DATA)
     // please note that address splitting is performed to avoid
     // disclosing the recipient list (not normally needed)
     $url = grantUrl($DATA);
-    $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass']);
+    $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass'] . "\n");
     mail($email, "[dl] upload grant link", $body, "From: $fromAddr");
   }
 }

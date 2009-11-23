@@ -1,4 +1,3 @@
 * Keep expired ticket IDs into the DB to avoid possible reuse?
-* Upload progress-bar (patch available)
 * Domain/ip locking of tickets (patch available)
 * File picking from a directory (patch available)
