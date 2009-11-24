@@ -41,6 +41,31 @@ for($key = dba_firstkey($uDb); $key; $key = dba_nextkey($uDb))
   $db->exec($sql);
 }
 
+$xUsers = array();
+
+for($key = dba_firstkey($tDb); $key; $key = dba_nextkey($tDb))
+{
+  $DATA = dba_fetch($key, $tDb);
+  if($DATA === false) continue;
+  $DATA = unserialize($DATA);
+
+  $xUsers[$DATA["user"]] = true;
+}
+
+foreach($xUsers as $key => $value)
+{
+  echo " ... $key\n";
+
+  // prepare the SQL
+  $sql = "INSERT INTO user (name, pass_md5, role_id) VALUES (";
+  $sql .= $db->quote($key);
+  $sql .= ", NULL";
+  $sql .= ", $userId";
+  $sql .= ")";
+
+  $db->exec($sql);
+}
+
 echo "done\n";
 
 

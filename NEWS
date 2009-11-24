@@ -1,4 +1,4 @@
-dl 0.4: 23/11/2009
+dl 0.4: 24/11/2009
 ------------------
 
 * Ticket activity can be logged to syslog or a file.
