@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+
+      // defaults
+      var uploadProgressDelay = 1000;
+      var uploadProgressInterval = 750;
+
+      // hooks
+      $(document).ready(function()
+      {
+	$("#submit", parent.document).click(function() { setTimeout("beginUpload()", uploadProgressDelay); });
+      });
+
+
+      // upload status
+      function beginUpload()
+      {
+        parent.progress.slideDown();
+	showUpload();
+      }
+
+
+      function showUpload()
+      {
+	$.getJSON("../index.php?s=" + parent.progressKey, function(data)
+	{
+	  var pc = parseInt(data['percent']);
+	  parent.progress.progressBar(pc);
+	});
+	setTimeout("showUpload()", uploadProgressInterval);
+      }
+
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -27,10 +27,28 @@ function uploadProgressHdr($data)
 
 ?>
   <script type="text/javascript" src="static/jquery.js"></script>
-  <script type="text/javascript" src="static/jquery.progressbar.min.js"></script>
-  <script type="text/javascript" src="static/progress.js"></script>
+  <script type="text/javascript" src="static/jquery.progressbar.js"></script>
+  <iframe style="display: none;" src="static/progress.html"></iframe>
   <script type="text/javascript">
-   var progressKey = '<?php echo $data; ?>';
+
+    var progressKey = '<?php echo $data; ?>';
+    var progress;
+
+    $(document).ready(function()
+    {
+      progress = $("#uploadprogressbar");
+      progress.progressBar(
+      {
+	boxImage: 'static/images/progressbar.gif',
+	barImage:
+	{
+	  0: 'static/images/progressbg_red.gif',
+	  30: 'static/images/progressbg_orange.gif',
+	  70: 'static/images/progressbg_green.gif'
+	},
+      });
+    });
+
   </script>
 <?php
 }
