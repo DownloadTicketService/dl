@@ -138,7 +138,7 @@ function returnBytes($val)
 function fixEMailAddrs($str)
 {
   $addrs = split(",", str_replace(array(";", "\n"), ",", $str));
-  return join(",", array_filter(array_map(trim, $addrs)));
+  return join(",", array_filter(array_map('trim', $addrs)));
 }
 
 
