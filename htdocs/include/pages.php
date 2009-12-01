@@ -28,10 +28,12 @@ function pageFooter($vars = array())
   $first = true;
   foreach($pages as $page => $title)
   {
-    if($page == $act) continue;
     if($first) $first = false;
     else echo ", ";
-    echo "<a href=\"$adminPath?a=$page\">$title</a>";
+
+    $title = htmlentities($title);
+    if($page == $act) echo $title;
+    else echo "<a href=\"$adminPath?a=$page\">$title</a>";
   }
 
   echo ", <a href=\"$adminPath?u\">Logout</a></div>";
