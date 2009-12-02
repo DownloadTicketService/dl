@@ -1,8 +1,9 @@
 <?php
+$act = 'login';
 $title = 'Login';
 includeTemplate('style/include/header.php', compact('title'));
 
-$error = (isset($_POST["submit"]) && !isset($auth));
+$error = ((@$_REQUEST["submit"] === $act) && $auth === false);
 $class = "description" . ($error? " required": "");
 ?>
 
@@ -23,7 +24,8 @@ $class = "description" . ($error? " required": "");
     </li>
 
     <li class="buttons">
-      <input type="submit" name="submit" value="Login"/>
+      <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
+      <input type="submit" value="Login"/>
     </li>
   </ul>
 </form>

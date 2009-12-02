@@ -1,4 +1,5 @@
 <?php
+$act = 'ticketp';
 $title = 'Password required';
 includeTemplate('style/include/header.php', compact('title'));
 ?>
@@ -12,7 +13,7 @@ includeTemplate('style/include/header.php', compact('title'));
   <ul>
     <li>
       <?php
-        $error = (isset($_POST["submit"]) && !isset($_SESSION['t'][$id]));
+        $error = ((@$_POST["submit"] === $act) && !isset($_SESSION['t'][$id]));
         $class = "description" . ($error? " required": "");
       ?>
       <label class="<?php echo $class; ?>">Password</label>
@@ -22,7 +23,8 @@ includeTemplate('style/include/header.php', compact('title'));
     </li>
 
     <li class="buttons">
-      <input type="submit" name="submit" value="Download"/>
+      <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
+      <input type="submit" value="Download"/>
     </li>
   </ul>
 </form>

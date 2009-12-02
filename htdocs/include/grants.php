@@ -1,4 +1,5 @@
 <?php
+$act = 'grants';
 $title = 'Upload grant';
 includeTemplate('style/include/header.php', compact('title'));
 
@@ -37,7 +38,7 @@ uploadProgressHdr($up);
 
     <li>
       <?php
-        $error = (isset($_POST["submit"]) && empty($_FILES["file"]["name"]));
+        $error = ((@$_POST["submit"] === $act) && empty($_FILES["file"]["name"]));
         $class = "description" . ($error? " required": "");
       ?>
       <label class="<?php echo $class; ?>">Upload a File</label>
@@ -53,7 +54,7 @@ uploadProgressHdr($up);
     </li>
 
     <li class="buttons">
-      <input type="hidden" name="submit" value="1"/>
+      <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
       <input id="submit" type="submit" value="Upload"/>
       <?php uploadProgressHtml($up); ?>
     </li>

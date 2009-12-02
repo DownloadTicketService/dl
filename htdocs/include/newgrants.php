@@ -14,7 +14,7 @@ pageHeader();
 
     <li>
       <?php
-        $error = (isset($_POST["submit"]) && empty($_POST["nt"]));
+        $error = ((@$_POST["submit"] === $act) && empty($_POST["nt"]));
         $class = "description" . ($error? " required": "");
       ?>
       <label class="<?php echo $class; ?>">Notification email</label>
@@ -126,7 +126,7 @@ pageHeader();
     </li>
 
     <li class="buttons">
-      <input type="hidden" name="submit" value="1"/>
+      <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
       <input id="submit" type="submit" value="Create"/>
       <input type="reset" value="Reset"/>
       <input type="button" value="Set as defaults "onclick="setDefaults();"/>
