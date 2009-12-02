@@ -29,7 +29,7 @@ function logEvent($logLine)
   global $logFile, $useSysLog, $logFd, $auth;
   if(empty($logFile)) return;
 
-  if(isset($auth))
+  if(isset($auth['name']))
     $logLine = $auth['name'] . ': ' . $logLine;
 
   if($useSysLog)
