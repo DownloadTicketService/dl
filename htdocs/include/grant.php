@@ -7,8 +7,8 @@ $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
 $GRANT = $db->query($sql)->fetch();
 if($GRANT === false)
 {
-  includeTemplate("style/include/noid.php",
-      array('title' => 'Unknown grant', 'type' => 'grant', 'id' => $id));
+  includeTemplate("style/include/nogrant.php",
+      array('title' => _("Unknown grant"), 'id' => htmlentities($id)));
   exit();
 }
 

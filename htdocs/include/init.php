@@ -32,4 +32,11 @@ session_name($sessionName);
 session_start();
 $auth = &$_SESSION["auth"];
 
+// language support
+$_SESSION["locale"] = $locale;
+$locale = &$_SESSION["locale"];
+setlocale(LC_ALL, $locale . ".utf8");
+bindtextdomain('messages', 'include/locale');
+textdomain('messages');
+
 ?>

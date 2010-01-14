@@ -3,10 +3,10 @@
 
 $pages = array
 (
-  'newt'  => 'New ticket',
-  'tlist' => 'Active tickets',
-  'newg'  => 'New grant',
-  'glist' => 'Active grants',
+  'newt'  => _("New ticket"),
+  'tlist' => _("Active tickets"),
+  'newg'  => _("New grant"),
+  'glist' => _("Active grants"),
 );
 
 
@@ -31,12 +31,11 @@ function pageFooter($vars = array())
     if($first) $first = false;
     else echo ", ";
 
-    $title = htmlentities($title);
     if($page == $act) echo $title;
     else echo "<a href=\"$adminPath?a=$page\">$title</a>";
   }
 
-  echo ", <a href=\"$adminPath?u\">Logout</a></div>";
+  echo ", <a href=\"$adminPath?u\">" . _("Logout") . "</a></div>";
   includeTemplate('style/include/footer.php', $vars);
 }
 

@@ -1,13 +1,13 @@
 <?php
 $act = 'ticketp';
-$title = 'Password required';
+$title = _("Password required");
 includeTemplate('style/include/header.php', compact('title'));
-?>
 
-<p>
-  The ticket <span class="ticketid"><?php echo $id; ?></span> is
-  protected. Please enter the password to unlock the content.
-</p>
+echo "<p>";
+printf(_("The ticket %s is protected. Please enter the password to"
+	. " unlock the content."), "<span class=\"ticketid\">$id</span>");
+echo "</p>";
+?>
 
 <form action="<?php echo "$masterPath?t=$id"; ?>" method="post">
   <ul>
@@ -16,15 +16,20 @@ includeTemplate('style/include/header.php', compact('title'));
         $error = ((@$_POST["submit"] === $act) && !isset($_SESSION['t'][$id]));
         $class = "description" . ($error? " required": "");
       ?>
-      <label class="<?php echo $class; ?>">Password</label>
+      <label class="<?php echo $class; ?>"><?php echo _("Password"); ?></label>
       <div>
 	<input name="p" class="element text medium" type="password" maxlength="255"/>
-      </div><p class="guidelines"><small>Type in the password required to unlock this ticket.</small></p>
+      </div>
+      <p class="guidelines"><small>
+	  <?php
+	    echo _("Type the password required to unlock this ticket.");
+          ?>
+      </small></p>
     </li>
 
     <li class="buttons">
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
-      <input type="submit" value="Download"/>
+      <input type="submit" value="<?php echo _("Download"); ?>"/>
     </li>
   </ul>
 </form>

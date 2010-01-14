@@ -7,8 +7,8 @@ $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
 $DATA = $db->query($sql)->fetch();
 if($DATA === false)
 {
-  includeTemplate("style/include/noid.php",
-      array('title' => 'Unknown ticket', 'type' => 'ticket', 'id' => $id));
+  includeTemplate("style/include/noticket.php",
+      array('title' => _("Unknown ticket"), 'id' => htmlentities($id)));
   exit();
 }
 

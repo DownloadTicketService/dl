@@ -1,13 +1,13 @@
 <?php
 $act = 'grantp';
-$title = 'Password required';
+$title = _("Password required");
 includeTemplate('style/include/header.php', compact('title'));
-?>
 
-<p>
-  The grant <span class="ticketid"><?php echo $id; ?></span> is
-  protected. Please enter the password to proceed to the upload.
-</p>
+echo "<p>";
+printf(_("The grant %s is protected. Please enter the password to"
+	. " proceed to the upload."), "<span class=\"ticketid\">$id</span>");
+echo "</p>";
+?>
 
 <form action="<?php echo "$masterPath?g=$id"; ?>" method="post">
   <ul>
@@ -16,10 +16,15 @@ includeTemplate('style/include/header.php', compact('title'));
         $error = ((@$_POST["submit"] === $act) && !isset($_SESSION['g'][$id]));
         $class = "description" . ($error? " required": "");
       ?>
-      <label class="<?php echo $class; ?>">Password</label>
+      <label class="<?php echo $class; ?>"><?php echo _("Password"); ?></label>
       <div>
 	<input name="p" class="element text medium" type="password" maxlength="255"/>
-      </div><p class="guidelines"><small>Type in the password required for the upload.</small></p>
+      </div>
+      <p class="guidelines"><small>
+	  <?php
+	    echo _("Type the password required for the upload.");
+          ?>
+      </small></p>
     </li>
 
     <li class="buttons">

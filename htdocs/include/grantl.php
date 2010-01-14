@@ -11,7 +11,8 @@ pageHeader();
 if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 {
   // purge immediately
-  echo "<li id=\"error_message\"><table><tr><td class=\"label\">Purged:</td>";
+  echo "<li id=\"error_message\"><table><tr><td class=\"label\">"
+    . _("Purged:") . "</td>";
 
   $first = true;
   foreach($_REQUEST["sel"] as $id)
@@ -55,24 +56,24 @@ foreach($db->query($sql) as $DATA)
 
   // parameters
   echo "<div class=\"fileinfo\"><table>";
-  echo "<tr><th>Date: </th><td> " . date("d/m/Y", $DATA["time"]) . "</td></tr>";
+  echo "<tr><th>" . _("Date:") . " </th><td> " . date("d/m/Y", $DATA["time"]) . "</td></tr>";
   if(!$our)
-    echo "<tr><th>User: </th><td>" . htmlentities($DATA["user"]) . "</td></tr>";
+    echo "<tr><th>" . _("User:") . " </th><td>" . htmlentities($DATA["user"]) . "</td></tr>";
   if(isset($DATA['pass_md5']))
-    echo "<tr><th>Password: </th><td>" . str_repeat("&bull;", 5) . "</td>";
+    echo "<tr><th>" . _("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
 
   // expire
-  echo "<tr><th>Expiry: </th><td>";
+  echo "<tr><th>" . _("Expiry:") . " </th><td>";
   if($DATA["grant_expire"])
     echo "In " . humanTime($DATA["grant_expire"] - time());
   else
-    echo "<strong>never</strong>";
+    echo "<strong>" . _("never") . "</strong>";
   echo "</td></tr>";
 
   // notify
   if($DATA["notify_email"])
   {
-    echo "<tr><th>Notify: </th><td>";
+    echo "<tr><th>" . _("Notify:") . " </th><td>";
     $first = true;
     foreach(getEMailAddrs($DATA['notify_email']) as $email)
     {
@@ -90,9 +91,9 @@ foreach($db->query($sql) as $DATA)
 ?>
 
     <li class="buttons">
-      <input type="reset" value="Reload" onclick="document.location.reload();"/>
-      <input type="reset" value="Reset"/>
-      <input type="submit" name="purge" value="Purge selected"/>
+      <input type="reset" value="<?php echo _("Reload"); ?>" onclick="document.location.reload();"/>
+      <input type="reset" value="<?php echo _("Reset"); ?>"/>
+      <input type="submit" name="purge" value="<?php echo _("Purge selected"); ?>"/>
     </li>
   </ul>
 </form>

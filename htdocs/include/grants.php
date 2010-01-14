@@ -1,6 +1,6 @@
 <?php
 $act = 'grants';
-$title = 'Upload grant';
+$title = _("Upload grant");
 includeTemplate('style/include/header.php', compact('title'));
 
 require_once("progress.php");
@@ -16,21 +16,23 @@ uploadProgressHdr($up);
 <?php
   if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
   {
-    echo "<li id=\"error_message\"><label>Upload failed:</label> ";
+    echo "<li id=\"error_message\"><label>"
+      . _("Upload failed:") . "</label> ";
+
     switch($_FILES["file"]["error"])
     {
     case UPLOAD_ERR_INI_SIZE:
     case UPLOAD_ERR_FORM_SIZE:
-      echo "file too big";
+      echo _("file too big");
       break;
 
     case UPLOAD_ERR_PARTIAL:
     case UPLOAD_ERR_NO_FILE:
-      echo "upload interrupted";
+      echo _("upload interrupted");
       break;
 
     default:
-      echo "internal error";
+      echo _("internal error");
     }
     echo "</li>";
   }
@@ -41,21 +43,23 @@ uploadProgressHdr($up);
         $error = ((@$_POST["submit"] === $act) && empty($_FILES["file"]["name"]));
         $class = "description" . ($error? " required": "");
       ?>
-      <label class="<?php echo $class; ?>">Upload a File</label>
+      <label class="<?php echo $class; ?>"><?php echo _("Upload a file"); ?></label>
       <div>
         <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
         <?php uploadProgressField($up); ?>
 	<input name="file" class="element file" type="file"/>
       </div>
       <p class="guidelines"><small>
-	  Choose which file to upload. You can upload up to
-          <?php echo humanSize($iMaxSize); ?>.
+	  <?php
+            printf(_("Choose which file to upload. You can upload up to %s."),
+		humanSize($iMaxSize));
+          ?>
       </small></p>
     </li>
 
     <li class="buttons">
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
-      <input id="submit" type="submit" value="Upload"/>
+      <input id="submit" type="submit" value="<?php echo _("Upload"); ?>"/>
       <?php uploadProgressHtml($up); ?>
     </li>
   </ul>

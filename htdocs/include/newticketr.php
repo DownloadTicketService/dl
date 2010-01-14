@@ -1,30 +1,30 @@
 <?php
 require_once("include/pages.php");
 $act = false;
-pageHeader(array('title' => 'Upload result'));
+pageHeader(array('title' => _("Upload result")));
 
 // final url
 $url = ticketUrl($DATA);
-$subject = 'download link to ' . humanTicketStr($DATA);
-$body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass'] . "\n");
+$subject = sprintf(_("download link to %s"), humanTicketStr($DATA));
+$body = (!isset($DATA['pass'])? $url: (_("URL:") . " $url\n" .  _("Password:") . " " . $DATA['pass'] . "\n"));
 $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode($body);
 ?>
 
 <div>
-  <label class="description">Your ticket
-<?php echo htmlentities(humanTicketStr($DATA)); ?>
+  <label class="description">
+    <?php printf(_("Your ticket %s"), htmlentities(humanTicketStr($DATA))); ?>
   </label>
 <p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
 <?php
   if($DATA['pass'])
   {
-    echo "<p>The required password is: <tt>"
+    echo "<p>" . _("The required password is:") . " <tt>"
       . htmlentities($DATA['pass']) . "</tt></p>";
   }
 
   if($DATA['st'])
   {
-    echo "<p>A download link has been sent to: ";
+    echo "<p>" . _("A download link has been sent to:") . " ";
     $addrs = getEMailAddrs($DATA['st']);
     foreach($addrs as &$addr)
     {
@@ -38,8 +38,8 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
 </div>
 
 <span class="buttons">
-  <input type="button" onclick="document.location='<?php echo htmlentities($mailto); ?>';" value="Send via E-Mail"/>
-  <input type="button" onclick="document.location='<?php echo htmlentities($url); ?>';" value="Download"/>
+  <input type="button" onclick="document.location='<?php echo htmlentities($mailto); ?>';" value="<?php echo _("Send via e-mail"); ?>"/>
+  <input type="button" onclick="document.location='<?php echo htmlentities($url); ?>';" value="<?php echo _("Download"); ?>"/>
 </span>
 
 <?php

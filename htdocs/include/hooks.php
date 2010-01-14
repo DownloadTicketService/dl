@@ -17,8 +17,8 @@ function onTicketCreate($DATA)
     // please note that address splitting is performed to avoid
     // disclosing the recipient list (not normally needed)
     $url = ticketUrl($DATA);
-    $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass'] . "\n");
-    mail($email, "[dl] download link to " . humanTicketStr($DATA),
+    $body = (!isset($DATA['pass'])? $url: (_("URL:") . " $url\n" .  _("Password:") . " " . $DATA['pass'] . "\n"));
+    mail($email, sprintf(_("[dl] download link to %s"), humanTicketStr($DATA)),
 	$body, "From: $fromAddr");
   }
 }
@@ -35,10 +35,11 @@ function onTicketDownload($DATA)
   if(!empty($DATA["notify_email"]))
   {
     logTicketEvent($DATA, "sending notification to " . $DATA["notify_email"]);
-    mail($DATA["notify_email"], "[dl] ticket " . ticketStr($DATA)
-	. " download notification", "The ticket " . humanTicketStr($DATA)
-	. " was downloaded by " . $_SERVER["REMOTE_ADDR"]
-	. " from $masterPath\n", "From: $fromAddr");
+    mail($DATA["notify_email"],
+	sprintf(_("[dl] ticket %s download notification"), ticketStr($DATA)),
+	sprintf(_("The ticket %s was downloaded by %s from %s"),
+	    humanTicketStr($DATA), $_SERVER["REMOTE_ADDR"], $masterPath),
+	"From: $fromAddr");
   }
 }
 
@@ -56,10 +57,13 @@ function onTicketPurge($DATA, $auto)
   if(!empty($DATA["notify_email"]))
   {
     logTicketEvent($DATA, "sending notification to " . $DATA["notify_email"]);
-    mail($DATA["notify_email"], "[dl] ticket " . ticketStr($DATA)
-	. " purge notification", "The ticket " . humanTicketStr($DATA)
-	. " was purged $reason after " . $DATA["downloads"]
-	. " downloads from $masterPath\n", "From: $fromAddr");
+
+    $reason = ($auto? _("automatically"): _("manually"));
+    mail($DATA["notify_email"],
+	sprintf(_("[dl] ticket %s purge notification"), ticketStr($DATA)),
+	sprintf(_("The ticket %s was purged %s after %d downloads from %s"),
+	    humanTicketStr($DATA), $reason, $DATA["downloads"], $masterPath),
+	"From: $fromAddr");
   }
 }
 
@@ -80,8 +84,8 @@ function onGrantCreate($DATA)
     // please note that address splitting is performed to avoid
     // disclosing the recipient list (not normally needed)
     $url = grantUrl($DATA);
-    $body = (!isset($DATA['pass'])? $url: "URL: $url\nPassword: " . $DATA['pass'] . "\n");
-    mail($email, "[dl] upload grant link", $body, "From: $fromAddr");
+    $body = (!isset($DATA['pass'])? $url: (_("URL:") . " $url\n" .  _("Password:") . " " . $DATA['pass'] . "\n"));
+    mail($email, _("[dl] upload grant link"), $body, "From: $fromAddr");
   }
 }
 
@@ -98,9 +102,13 @@ function onGrantPurge($DATA, $auto)
   if(!empty($DATA["notify_email"]))
   {
     logGrantEvent($DATA, "sending notification to " . $DATA["notify_email"]);
-    mail($DATA["notify_email"], "[dl] grant " . grantStr($DATA)
-	. " purge notification", "The grant " . grantStr($DATA)
-	. " was purged $reason from $masterPath\n", "From: $fromAddr");
+
+    $reason = ($auto? _("automatically"): _("manually"));
+    mail($DATA["notify_email"],
+	sprintf(_("[dl] grant %s purge notification"), grantStr($DATA)),
+	sprintf(_("The grant %s was purged %s from %s"),
+	    grantStr($DATA), $reason, $masterPath),
+	"From: $fromAddr");
   }
 }
 
@@ -117,11 +125,13 @@ function onGrantUse($GRANT, $DATA)
   if(!empty($GRANT['notify_email']))
   {
     logGrantEvent($GRANT, "sending link to " . $GRANT["notify_email"]);
-    mail($GRANT["notify_email"], "[dl] download link for grant "
-	. grantStr($GRANT), 'Your grant ' . $GRANT['id']
-	. ' has been used by ' . $_SERVER["REMOTE_ADDR"]
-	. '. The uploaded file is now available to be downloaded at '
-	. ticketUrl($DATA), "From: $fromAddr");
+    mail($GRANT["notify_email"],
+	sprintf(_("[dl] download link for grant %s"), grantStr($GRANT)),
+	sprintf(_("Your grant %s has been used by %s."
+		. " The uploaded file is now available to be"
+		. " downloaded at %s"),
+	    grantStr($GRANT), $_SERVER["REMOTE_ADDR"], ticketUrl($DATA)),
+	"From: $fromAddr");
   }
 }
 
