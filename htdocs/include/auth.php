@@ -61,7 +61,7 @@ function authenticate()
       if($db->exec($sql) != 1) return false;
 
       // fetch defaults
-      $sql = "SELECT u.id, u.name, admin FROM user";
+      $sql = "SELECT u.id, u.name, admin FROM user u";
       $sql .= " LEFT JOIN role r ON r.id = u.role_id";
       $sql .= " WHERE u.name = " . $db->quote($user);
       $DATA = $db->query($sql)->fetch();
