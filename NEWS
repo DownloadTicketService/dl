@@ -2,7 +2,8 @@ dl 0.5:
 ------------------
 
 * Fix upload progress-bar on Chrome and Safari.
-* Minor UI and usability fixes.
+* Minor bug, UI and usability fixes.
+* Internationalization support.
 
 
 dl 0.4: 24/11/2009

@@ -104,7 +104,7 @@ foreach($db->query($sql) as $DATA)
     {
       if($first) $first = false;
       else echo ", ";
-      echo "<a href=\"mailto:" . htmlentities($email) . "\">" .
+      echo "<a href=\"mailto:" . urlencode($email) . "\">" .
 	htmlentities($email) . "</a>";
     }
     echo "</td></tr>";
