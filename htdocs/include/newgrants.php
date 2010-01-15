@@ -1,13 +1,14 @@
 <?php
 require_once("pages.php");
 $act = "newg";
+$ref = "$adminPath?a=$act";
 pageHeader();
 ?>
 
 <script type="text/javascript" src="static/defaults.js"></script>
 
 <form enctype="multipart/form-data" method="post"
-      action="<?php echo currentPage(); ?>" >
+      action="<?php echo $ref; ?>" >
   <ul>
 
     <h3><?php echo _("Grant parameters"); ?></h3>
@@ -48,7 +49,7 @@ pageHeader();
       <label class="description"><?php echo _("Password"); ?></label>
       <div>
 	<input name="pass" class="element text medium" type="text" maxlength="255" value=""/>
-        <input class="element button" type="button" value="Generate" onclick="passGen();"/>
+        <input class="element button" type="button" value="<?php echo _("Generate"); ?>" onclick="passGen();"/>
       </div>
       <p class="guidelines"><small>
 	  <?php

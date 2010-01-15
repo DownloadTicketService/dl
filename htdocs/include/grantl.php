@@ -1,13 +1,11 @@
 <?php
 require_once("include/pages.php");
 $act = "glist";
+$ref = "$adminPath?a=$act";
 pageHeader();
-?>
 
-<form action="<?php echo currentPage(); ?>" method="post">
-  <ul>
+echo "<form action=\"$ref\" method=\"post\"><ul>";
 
-<?php
 if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 {
   // purge immediately

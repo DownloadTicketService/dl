@@ -1,6 +1,7 @@
 <?php
 require_once("pages.php");
 $act = "newt";
+$ref = "$adminPath?a=$act";
 pageHeader();
 
 require_once("progress.php");
@@ -12,7 +13,7 @@ $up = newUploadProgress();
 
 <form enctype="multipart/form-data" method="post"
       onsubmit="document.getElementById('submit').disabled = true;"
-      action="<?php echo currentPage(); ?>" >
+      action="<?php echo $ref; ?>" >
   <ul>
 
 <?php

@@ -13,7 +13,6 @@ $pages = array
 function pageHeader($vars = array())
 {
   global $act, $pages;
-
   if(empty($vars['title'])) $vars['title'] = $pages[$act];
   includeTemplate('style/include/header.php', $vars);
 }
@@ -37,13 +36,6 @@ function pageFooter($vars = array())
 
   echo ", <a href=\"$adminPath?u\">" . _("Logout") . "</a></div>";
   includeTemplate('style/include/footer.php', $vars);
-}
-
-
-function currentPage()
-{
-  global $adminPath, $act;
-  return "$adminPath?a=$act";
 }
 
 ?>

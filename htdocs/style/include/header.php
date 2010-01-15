@@ -13,6 +13,24 @@
 	  <img src="style/static/dl.png" alt=""/>
 	  Ticket Service
 	</a></h1>
+	<?php
+          if(!empty($ref))
+	  {
+	    echo '<div id="langmap">';
+
+	    $first = true;
+            foreach($langData as $k => $v)
+	    {
+	      if($first) $first = false;
+	      else echo " | ";
+
+	      $K = strtoupper($k);
+	      if($locale == $v) echo $K;
+	      else echo "<a href=\"$ref&lang=$k\">$K</a>";
+	    }
+	    echo '</div>';
+	  }
+          ?>
 	<div class="appnitro">
 	  <div class="form_description">
 	    <h2><?php echo $title; ?></h2>
