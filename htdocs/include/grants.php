@@ -10,7 +10,7 @@ uploadProgressHdr($up);
 
 <form enctype="multipart/form-data" method="post"
       onsubmit="document.getElementById('submit').disabled = true;"
-      action="<?php echo "$masterPath?g=$id"; ?>" >
+      action="<?php echo $ref; ?>" >
   <ul>
 
 <?php

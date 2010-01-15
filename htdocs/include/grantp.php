@@ -9,7 +9,7 @@ printf(_("The grant %s is protected. Please enter the password to"
 echo "</p>";
 ?>
 
-<form action="<?php echo "$masterPath?g=$id"; ?>" method="post">
+<form action="<?php echo $ref; ?>" method="post">
   <ul>
     <li>
       <?php

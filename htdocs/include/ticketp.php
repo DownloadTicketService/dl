@@ -9,7 +9,7 @@ printf(_("The ticket %s is protected. Please enter the password to"
 echo "</p>";
 ?>
 
-<form action="<?php echo "$masterPath?t=$id"; ?>" method="post">
+<form action="<?php echo $ref; ?>" method="post">
   <ul>
     <li>
       <?php

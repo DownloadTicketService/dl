@@ -3,6 +3,8 @@
 
 // try to fetch the ticket
 $id = $_REQUEST["t"];
+$ref = "$masterPath?t=$id";
+
 $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
 $DATA = $db->query($sql)->fetch();
 if($DATA === false)

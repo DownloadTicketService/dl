@@ -1,5 +1,6 @@
 <?php
 $act = 'login';
+$ref = "$masterPath?";
 $title = _("Login");
 includeTemplate('style/include/header.php', compact('title'));
 

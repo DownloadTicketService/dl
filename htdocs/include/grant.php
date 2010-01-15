@@ -3,6 +3,8 @@
 
 // try to fetch the grant
 $id = $_REQUEST["g"];
+$ref = "$masterPath?g=$id";
+
 $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
 $GRANT = $db->query($sql)->fetch();
 if($GRANT === false)
@@ -88,8 +90,12 @@ if(isset($_FILES["file"])
   $DATA = handleUpload($GRANT, $_FILES["file"]);
 
 // resulting page
-if($DATA !== false)
-  includeTemplate("style/include/grantr.php");
-else
+if($DATA === false)
   include("include/grants.php");
+else
+{
+  unset($ref);
+  includeTemplate("style/include/grantr.php");
+}
+
 ?>
