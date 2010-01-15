@@ -12,13 +12,16 @@ $fromAddr = "ticket service <nobody@example.com>";
 // spoolDir: spool directory for uploaded files, ticket and user databases
 $spoolDir = "/var/spool/dl/";
 
+// defLocale: default locale (the charset is always UTF-8)
+$defLocale = "en_EN";
+
 
 /*
  * Advanced settings (defaults commented)
  */
 
 // cfgVersion: configuration file version
-$cfgVersion = "0.4";
+$cfgVersion = "0.5";
 
 // logFile: set this if you want new tickets, downloads and purges logged to a
 //          file. If the setting contains no slashes, it will be used as a tag
