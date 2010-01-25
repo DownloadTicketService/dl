@@ -173,4 +173,13 @@ function genTicketId($seed)
   return array($id, $tmpFile);
 }
 
+
+function mailUTF8($addr, $subject, $body, $hdr)
+{
+  $hdr .= "\nContent-type: text/plain; charset=UTF-8";
+  $hdr .= "\nContent-Transfer-Encoding: 8bit";
+  $subject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+  return mail($addr, $subject, $body, $hdr);
+}
+
 ?>
