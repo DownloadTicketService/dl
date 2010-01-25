@@ -12,14 +12,14 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
 
 <div>
   <label class="description">
-    <?php printf(_("Your ticket %s"), htmlentities(humanTicketStr($DATA))); ?>
+    <?php printf(_("Your ticket %s"), htmlEntUTF8(humanTicketStr($DATA))); ?>
   </label>
 <p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
 <?php
   if($DATA['pass'])
   {
     echo "<p>" . _("The required password is:") . " <tt>"
-      . htmlentities($DATA['pass']) . "</tt></p>";
+      . htmlEntUTF8($DATA['pass']) . "</tt></p>";
   }
 
   if($DATA['st'])

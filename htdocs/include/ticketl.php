@@ -26,7 +26,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
     // actually purge the ticket
     if($first) $first = false;
     else echo "<tr><td></td>";
-    echo "<td>" . htmlentities(humanTicketStr($DATA)) . "</td></tr>";
+    echo "<td>" . htmlEntUTF8(humanTicketStr($DATA)) . "</td></tr>";
     echo "</td></tr>";
     ticketPurge($DATA, false);
   }
@@ -51,9 +51,8 @@ foreach($db->query($sql) as $DATA)
 
   // name
   echo "<span><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/>";
-  echo "<label class=\"choice\"><a href=\"" . ticketUrl($DATA) . "\">" .
-    htmlentities($DATA["name"]) . "</a>";
-  if($DATA["cmt"]) echo ' ' . htmlentities($DATA["cmt"]);
+  echo "<label class=\"choice\"><a href=\"" . ticketUrl($DATA) . "\">" . htmlEntUTF8($DATA["name"]) . "</a>";
+  if($DATA["cmt"]) echo ' ' . htmlEntUTF8($DATA["cmt"]);
   echo "</label></span>";
 
   // parameters
@@ -61,7 +60,7 @@ foreach($db->query($sql) as $DATA)
   echo "<tr><th>" . _("Size:") . " </th><td>" . humanSize($DATA["size"]) . "</td></tr>";
   echo "<tr><th>" . _("Date:") . " </th><td>" . date("d/m/Y", $DATA["time"]) . "</td></tr>";
   if(!$our)
-    echo "<tr><th>" . _("User:") . " </th><td>" . htmlentities($DATA["user"]) . "</td></tr>";
+    echo "<tr><th>" . _("User:") . " </th><td>" . htmlEntUTF8($DATA["user"]) . "</td></tr>";
   if(isset($DATA['pass_md5']))
     echo "<tr><th>" . _("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
 
@@ -103,7 +102,7 @@ foreach($db->query($sql) as $DATA)
       if($first) $first = false;
       else echo ", ";
       echo "<a href=\"mailto:" . urlencode($email) . "\">" .
-	htmlentities($email) . "</a>";
+	htmlEntUTF8($email) . "</a>";
     }
     echo "</td></tr>";
   }

@@ -174,6 +174,12 @@ function genTicketId($seed)
 }
 
 
+function htmlEntUTF8($string, $style = ENT_COMPAT)
+{
+  return htmlentities($string, $style, 'UTF-8');
+}
+
+
 function mailUTF8($addr, $subject, $body, $hdr)
 {
   $hdr .= "\nContent-type: text/plain; charset=UTF-8";
