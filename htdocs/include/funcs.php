@@ -61,24 +61,24 @@ function logGrantEvent($DATA, $logLine)
 function humanSize($size)
 {
   if($size > 1073741824)
-    return sprintf(_("%s gb"), round($size / 1073741824, 3));
+    return sprintf(T_("%s gb"), round($size / 1073741824, 3));
   else if($size > 1048576)
-    return sprintf(_("%s mb"), round($size / 1048576, 3));
+    return sprintf(T_("%s mb"), round($size / 1048576, 3));
   else if($size > 1024)
-    return sprintf(_("%s kb"), round($size / 1024, 3));
-  return sprintf(_("%s bytes"), $size);
+    return sprintf(T_("%s kb"), round($size / 1024, 3));
+  return sprintf(T_("%s bytes"), $size);
 }
 
 
 function humanTime($seconds)
 {
   if($seconds > 86400)
-    return sprintf(_("%d days"), intval($seconds / 86400));
+    return sprintf(T_("%d days"), intval($seconds / 86400));
   else if($seconds > 3600)
-    return sprintf(_("%d hours"), intval($seconds / 3600));
+    return sprintf(T_("%d hours"), intval($seconds / 3600));
   else if($seconds > 60)
-    return sprintf(_("%d minutes"), intval($seconds / 60));
-  return sprintf(_("%d seconds"), $seconds);
+    return sprintf(T_("%d minutes"), intval($seconds / 60));
+  return sprintf(T_("%d seconds"), $seconds);
 }
 
 

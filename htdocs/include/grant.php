@@ -10,7 +10,7 @@ $GRANT = $db->query($sql)->fetch();
 if($GRANT === false)
 {
   includeTemplate("style/include/nogrant.php",
-      array('title' => _("Unknown grant"), 'id' => htmlentities($id)));
+      array('title' => T_("Unknown grant"), 'id' => htmlentities($id)));
   exit();
 }
 

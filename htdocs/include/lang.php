@@ -1,6 +1,9 @@
 <?php
 // language initialization and support
+require_once("gettext/gettext.inc");
 
+
+// list of available and supported translations
 $langData = array
 (
   "EN" => "en_EN",
@@ -34,6 +37,6 @@ if(!isset($locale) && !empty($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
 
 // initialize language support
 if(!isset($locale)) $locale = $defLocale;
-setlocale(LC_ALL, $locale . ".utf8");
-bindtextdomain('messages', 'include/locale');
-textdomain('messages');
+T_setlocale(LC_ALL, $locale . ".utf8");
+T_bindtextdomain('messages', 'include/locale');
+T_textdomain('messages');

@@ -1,30 +1,30 @@
 <?php
 require_once("include/pages.php");
 $act = false;
-pageHeader(array('title' => _("Grant result")));
+pageHeader(array('title' => T_("Grant result")));
 
 // final url
 $url = grantUrl($DATA);
-$subject = _("upload grant link");
-$body = (!isset($DATA['pass'])? $url: (_("URL:") . " $url\n" .  _("Password:") . " " . $DATA['pass'] . "\n"));
+$subject = T_("upload grant link");
+$body = (!isset($DATA['pass'])? $url: (T_("URL:") . " $url\n" .  T_("Password:") . " " . $DATA['pass'] . "\n"));
 $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode($body);
 ?>
 
 <div>
   <label class="description">
-    <?php printf(_("Your grant %s"), htmlEntUTF8(grantStr($DATA))); ?>
+    <?php printf(T_("Your grant %s"), htmlEntUTF8(grantStr($DATA))); ?>
   </label>
 <p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
 <?php
   if($DATA['pass'])
   {
-    echo "<p>" . _("The required password is:") . " <tt>"
+    echo "<p>" . T_("The required password is:") . " <tt>"
       . htmlEntUTF8($DATA['pass']) . "</tt></p>";
   }
 
   if($DATA['st'])
   {
-    echo "<p>" . _("A grant link has been sent to:") . " ";
+    echo "<p>" . T_("A grant link has been sent to:") . " ";
     $addrs = getEMailAddrs($DATA['st']);
     foreach($addrs as &$addr)
     {
@@ -38,8 +38,8 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
 </div>
 
 <span class="buttons">
-  <input type="button" onclick="document.location='<?php echo htmlentities($mailto); ?>';" value="<?php echo _("Send via e-mail"); ?>"/>
-  <input type="button" onclick="document.location='<?php echo htmlentities($url); ?>';" value="<?php echo _("Upload"); ?>"/>
+  <input type="button" onclick="document.location='<?php echo htmlentities($mailto); ?>';" value="<?php echo T_("Send via e-mail"); ?>"/>
+  <input type="button" onclick="document.location='<?php echo htmlentities($url); ?>';" value="<?php echo T_("Upload"); ?>"/>
 </span>
 
 <?php

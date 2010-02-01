@@ -10,7 +10,7 @@ $DATA = $db->query($sql)->fetch();
 if($DATA === false)
 {
   includeTemplate("style/include/noticket.php",
-      array('title' => _("Unknown ticket"), 'id' => htmlentities($id)));
+      array('title' => T_("Unknown ticket"), 'id' => htmlentities($id)));
   exit();
 }
 

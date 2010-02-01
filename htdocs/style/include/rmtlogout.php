@@ -1,9 +1,9 @@
 <?php
-includeTemplate('style/include/header.php', array('title' => _("Logged-out")));
+includeTemplate('style/include/header.php', array('title' => T_("Logged-out")));
 ?>
 
 <label class="description">
-  <?php echo _("<em>Close the browser</em> to complete the logout."); ?>
+  <?php echo T_("<em>Close the browser</em> to complete the logout."); ?>
 </label>
 
 <?php

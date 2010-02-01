@@ -1,10 +1,10 @@
 <?php
 $act = 'grantp';
-$title = _("Password required");
+$title = T_("Password required");
 includeTemplate('style/include/header.php', compact('title'));
 
 echo "<p>";
-printf(_("The grant %s is protected. Please enter the password to"
+printf(T_("The grant %s is protected. Please enter the password to"
 	. " proceed to the upload."), "<span class=\"ticketid\">$id</span>");
 echo "</p>";
 ?>
@@ -16,13 +16,13 @@ echo "</p>";
         $error = ((@$_POST["submit"] === $act) && !isset($_SESSION['g'][$id]));
         $class = "description" . ($error? " required": "");
       ?>
-      <label class="<?php echo $class; ?>"><?php echo _("Password"); ?></label>
+      <label class="<?php echo $class; ?>"><?php echo T_("Password"); ?></label>
       <div>
 	<input name="p" class="element text medium" type="password" maxlength="255"/>
       </div>
       <p class="guidelines"><small>
 	  <?php
-	    echo _("Type the password required for the upload.");
+	    echo T_("Type the password required for the upload.");
           ?>
       </small></p>
     </li>
