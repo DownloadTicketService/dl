@@ -140,7 +140,7 @@ pageHeader();
       <label class="description"><?php echo _("Permanent ticket / upload"); ?></label>
       <span>
 	<input name="nl" class="element checkbox" type="checkbox" value="1"/>
-	<label class="choice">Do not expire</label>
+	<label class="choice"><?php echo _("Do not expire"); ?></label>
       </span>
       <p class="guidelines"><small>
 	  <?php
