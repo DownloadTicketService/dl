@@ -285,7 +285,7 @@ msgstr ""
 #: ../../../hooks.php:109
 #, php-format
 msgid "The grant %s was purged %s from %s"
-msgstr "La concessione %s e' stata eliminata %s da %s"
+msgstr "La concessione %s è stata eliminata %s da %s"
 
 #: ../../../newticketr.php:21 ../../../newgrantr.php:21
 msgid "The required password is:"
@@ -302,12 +302,12 @@ msgstr ""
 #: ../../../hooks.php:40
 #, php-format
 msgid "The ticket %s was downloaded by %s from %s"
-msgstr "Il ticket %s e' stato scaricato da %s tramite %s"
+msgstr "Il ticket %s è stato scaricato da %s tramite %s"
 
 #: ../../../hooks.php:64
 #, php-format
 msgid "The ticket %s was purged %s after %d downloads from %s"
-msgstr "Il ticket %s e' stato eliminato %s dopo %d scaricamenti da %s"
+msgstr "Il ticket %s è stato eliminato %s dopo %d scaricamenti da %s"
 
 #: ../../../newgrants.php:91
 msgid "Ticket parameters"
@@ -510,7 +510,7 @@ msgid ""
 "Your grant %s has been used by %s. The uploaded file is now available to be "
 "downloaded at %s"
 msgstr ""
-"La vostra concessione %s e' stata utilizzata da %s. Il file inviato &egrave; "
+"La vostra concessione %s è stata utilizzata da %s. Il file inviato è "
 "ora disponibile per lo scaricamento presso %s"
 
 #: ../../../newticketr.php:15
