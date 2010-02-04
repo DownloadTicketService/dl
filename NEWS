@@ -4,6 +4,7 @@ dl 0.5:
 * Fix upload progress-bar on Chrome and Safari.
 * Minor bug, UI and usability fixes.
 * Internationalization support.
+* License changed to GNU GPL 2.
 
 
 dl 0.4: 24/11/2009
