@@ -12,31 +12,44 @@ $langData = array
 );
 
 
-// language selection/detection
-if(!empty($_REQUEST['lang']))
+function detectLocale($locale)
 {
-  // abide to user preferences
-  if(isset($langData[$_REQUEST['lang']]))
-    $locale = $langData[$_REQUEST['lang']];
-}
+  global $defLocale, $langData;
 
-// try to detect browser preferences
-if(!isset($locale) && !empty($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
-{
-  // TODO: shoud use something like PECL's http_negotiate_language
-  $accept = split(",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-  foreach($accept as $al)
+  // language selection/detection
+  if(!empty($_REQUEST['lang']))
   {
-    if(array_search($all, $langData))
+    // abide to user preferences
+    if(isset($langData[$_REQUEST['lang']]))
+      $locale = $langData[$_REQUEST['lang']];
+  }
+  
+  // try to detect browser preferences
+  if(!isset($locale) && !empty($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
+  {
+    // TODO: shoud use something like PECL's http_negotiate_language
+    $accept = split(",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+    foreach($accept as $al)
     {
-      $locale = $al;
-      break;
+      if(array_search($all, $langData))
+      {
+        $locale = $al;
+        break;
+      }
     }
   }
+
+  return (isset($locale)? $locale: $defLocale);
 }
 
-// initialize language support
-if(!isset($locale)) $locale = $defLocale;
-T_setlocale(LC_ALL, $locale . ".utf8");
-T_bindtextdomain('messages', 'include/locale');
-T_textdomain('messages');
+
+function switchLocale($locale)
+{
+  T_setlocale(LC_ALL, $locale . ".utf8");
+  T_bindtextdomain('messages', 'include/locale');
+  T_textdomain('messages');
+}
+
+
+// internal encoding is always UTF-8
+mb_internal_encoding("UTF-8");

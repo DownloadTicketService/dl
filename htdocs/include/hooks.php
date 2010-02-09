@@ -57,12 +57,10 @@ function onTicketPurge($DATA, $auto)
   if(!empty($DATA["notify_email"]))
   {
     logTicketEvent($DATA, "sending notification to " . $DATA["notify_email"]);
-
-    $reason = ($auto? T_("automatically"): T_("manually"));
     mailUTF8($DATA["notify_email"],
 	sprintf(T_("[dl] ticket %s purge notification"), ticketStr($DATA)),
 	sprintf(T_("The ticket %s was purged %s after %d downloads from %s"),
-	    humanTicketStr($DATA), $reason, $DATA["downloads"], $masterPath),
+	    humanTicketStr($DATA), T_($reason), $DATA["downloads"], $masterPath),
 	"From: $fromAddr");
   }
 }
@@ -102,12 +100,10 @@ function onGrantPurge($DATA, $auto)
   if(!empty($DATA["notify_email"]))
   {
     logGrantEvent($DATA, "sending notification to " . $DATA["notify_email"]);
-
-    $reason = ($auto? T_("automatically"): T_("manually"));
     mailUTF8($DATA["notify_email"],
 	sprintf(T_("[dl] grant %s purge notification"), grantStr($DATA)),
 	sprintf(T_("The grant %s was purged %s from %s"),
-	    grantStr($DATA), $reason, $masterPath),
+	    grantStr($DATA), T_($reason), $masterPath),
 	"From: $fromAddr");
   }
 }

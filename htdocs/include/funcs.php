@@ -182,9 +182,10 @@ function htmlEntUTF8($string, $style = ENT_COMPAT)
 
 function mailUTF8($addr, $subject, $body, $hdr)
 {
-  $hdr .= "\nContent-type: text/plain; charset=UTF-8";
+  $hdr .= "\nMIME-Version: 1.0";
+  $hdr .= "\nContent-Type: text/plain; charset=UTF-8";
   $hdr .= "\nContent-Transfer-Encoding: 8bit";
-  $subject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+  $subject = mb_encode_mimeheader($subject);
   return mail($addr, $subject, $body, $hdr);
 }
 

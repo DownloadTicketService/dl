@@ -4,6 +4,7 @@ set_magic_quotes_runtime(0);
 
 // data
 require_once("confwrap.php");
+require_once("lang.php");
 
 // initialize the db
 $db = new PDO($dsn);
@@ -14,6 +15,9 @@ if($useSysLog)
    openlog($logFile, 0, LOG_LOCAL0);
 elseif(!empty($logFile))
   $logFd = fopen($logFile, "at");
+
+// set default locale for notifications
+switchLocale($defLocale);
 
 // expire tickets before serving any request
 $sql = "SELECT * FROM ticket WHERE expire < " . time();
@@ -32,8 +36,9 @@ session_name($sessionName);
 session_start();
 $auth = &$_SESSION["auth"];
 
-// initialize the locale
+// set session's locale
 $locale = &$_SESSION["locale"];
-include("lang.php");
+$locale = detectLocale($locale);
+switchLocale($locale);
 
 ?>
