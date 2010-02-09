@@ -1,9 +1,10 @@
-dl 0.5:
+dl 0.5: 09/02/2010
 ------------------
 
 * Fix upload progress-bar on Chrome and Safari.
 * Minor bug, UI and usability fixes.
 * Internationalization support.
+* Italian and German translation.
 * License changed to GNU GPL 2.
 
 
