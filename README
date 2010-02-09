@@ -137,8 +137,8 @@ only reported to work on ``mod_php`` currently.
 Minimal user setup
 ------------------
 
-Once dl has been installed and PHP is set-up correctly, you have to create
-at least one user to be able to log in. User management is handled through the
+Once dl has been installed and PHP is set-up correctly, you have to create at
+least one user to be able to log in. User management is handled through the
 command line (there is no web-interface yet) by using the bundled
 ``useradmin.php`` utility.
 
@@ -304,6 +304,20 @@ Known limitations/Browser support
 * Tested with PHP 5.x.
 
 
+Internationalization support
+============================
+
+DL is fully translated in English, German and Italian. DL will attempt to
+detect the correct locale of the browser and use it if available, otherwise
+switch to the customizable default. The user can however switch the language
+anytime.
+
+Adding a new translation is easy for anyone familiar with the `gettext` tools:
+you don't need programming knowledge. If you want to contribute a new language,
+simply subscribe to the mailing list and ask for guidance. We really appreciate
+your help.
+
+
 General/General/support mailing list
 ====================================
 
@@ -322,4 +336,4 @@ Authors and Copyright
 =====================
 
 "dl" is distributed under GNU GPL 2, WITHOUT ANY WARRANTY.
-Copyright(c) 2007-2009 by Yuri D'Elia <wavexx@users.sf.net>.
+Copyright(c) 2007-2010 by Yuri D'Elia <wavexx@users.sf.net>.
