@@ -88,7 +88,7 @@ msgstr "Nach %d Downloads"
 #: ../../../ticketl.php:83 ../../../ticketl.php:83
 #, php-format
 msgid "After next download, in %s"
-msgstr "Nach dem n&auml;chtsten Download, in %s"
+msgstr "%s nach dem n&auml;chtsten Download"
 
 #: ../../../newtickets.php:57 ../../../grants.php:54
 #: ../../../newtickets.php:57
@@ -557,7 +557,7 @@ msgstr "Ticket %s"
 #: ../../../hooks.php:129
 #, php-format
 msgid "[dl] download link for grant %s"
-msgstr "[dl] Upload-Link %s für ???"
+msgstr "[dl] Upload-Link für %s"
 
 #: ../../../hooks.php:21
 #, php-format
