@@ -44,6 +44,8 @@ $sql .= " ORDER BY (user_id <> " . $auth["id"] . "), user_id, time";
 
 foreach($db->query($sql) as $DATA)
 {
+  if(isTicketExpired($DATA)) continue;
+
   $totalSize += $DATA["size"];
   $our = ($DATA["user_id"] == $auth["id"]);
   $class = ($our? "fileinfo": "fileinfo alien");

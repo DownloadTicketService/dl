@@ -13,7 +13,7 @@ list(, $id) = explode("/", $_SERVER["PATH_INFO"]);
 // try to fetch the id
 $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
 $DATA = $db->query($sql)->fetch();
-if($DATA === false)
+if($DATA === false || isTicketExpired($DATA))
 {
   header("HTTP/1.0 404 Not Found");
   exit();

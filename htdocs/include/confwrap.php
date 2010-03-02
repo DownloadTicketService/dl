@@ -5,12 +5,14 @@ require_once("funcs.php");
 
 // variables
 if(!isset($defLocale)) $defLocale = "en_US";
-if(!isset($cfgVersion)) $cfgVersion = "0.5";
+if(!isset($cfgVersion)) $cfgVersion = "0.6";
 if(!isset($phpExt)) $phpExt = ".php";
 if(!isset($maxSize)) $maxSize = ini_get('upload_max_filesize');
 if(!isset($authReal)) $authRealm = "Restricted Area";
 if(!isset($sessionName)) $sessionName = "DL" . md5($masterPath);
 if(!isset($dsn)) $dsn = "sqlite:$spoolDir/data.sdb";
+if(!isset($gcProbability)) $gcProbability = 1.0;
+if(!isset($gcLimit)) $gcLimit = 0;
 
 // derived data
 $useSysLog = (!empty($logFile) && strstr($logFile, "/") === FALSE);

@@ -1,7 +1,7 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 CREATE TABLE config (name VARCHAR PRIMARY KEY, value VARCHAR);
-INSERT INTO "config" VALUES('version','0.5');
+INSERT INTO "config" VALUES('version','0.6');
 CREATE TABLE role (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR UNIQUE NOT NULL, admin BOOLEAN NOT NULL, parent_role_id INTEGER REFERENCES role (id));
 INSERT INTO "role" VALUES(1,'admin',1,NULL);
 INSERT INTO "role" VALUES(2,'user',0,1);

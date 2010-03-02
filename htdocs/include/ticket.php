@@ -7,7 +7,7 @@ $ref = "$masterPath?t=$id";
 
 $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
 $DATA = $db->query($sql)->fetch();
-if($DATA === false)
+if($DATA === false || isTicketExpired($DATA))
 {
   includeTemplate("style/include/noticket.php",
       array('title' => T_("Unknown ticket"), 'id' => htmlentities($id)));

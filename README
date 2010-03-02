@@ -285,16 +285,18 @@ could be improved, **it's a bug**. Please let us know.
 Maintenance
 ===========
 
-DL does not require any manual maintenance. Ticket expiration is performed
-automatically when any web page is requested. This means that expired downloads
-will still occupy space on the spool directory until a web page is first
-serviced. If you need to ensure that the spool is purged regularly (for
-example, for very low traffic servers), setup a scheduled job that requests the
-index page. Under UNIX, setup a cron entry like this::
+DL does not require any manual maintenance. By default, ticket expiration is
+performed aggressively at every page request. You can control this behavior
+(thus reducing the DB pressure) by tuning the $gcProbability and $gcLimit
+parameters.
 
-  0 0 * * * wget -q -O /dev/null "http://dl.example.com/" > /dev/null
+If you notice too much load on your DB, start by lowering $gcProbability to
+0.5 and set $gcLimit to roughly the number of active tickets currently present
+in your DB.
 
-In the future, a proper command line script will be provided.
+Continue to lower $gcProbability even further until the load become
+acceptable. When the load is acceptable, but queries take too long, reduce
+$gcLimit.
 
 
 Known limitations/Browser support
@@ -318,8 +320,8 @@ simply subscribe to the mailing list and ask for guidance. We really appreciate
 your help.
 
 
-General/General/support mailing list
-====================================
+General/support mailing list
+============================
 
 If you feel to discuss improvements, customizations and suggestions, you can
 subscribe to `dl-ticket-service` by either sending an empty email to

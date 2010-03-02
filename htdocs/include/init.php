@@ -20,16 +20,24 @@ elseif(!empty($logFile))
 switchLocale($defLocale);
 
 // expire tickets before serving any request
-$sql = "SELECT * FROM ticket WHERE expire < " . time();
-$sql .= " OR expire_last < " . time();
-$sql .= " OR expire_dln <= downloads";
-foreach($db->query($sql) as $DATA)
-  ticketPurge($DATA);
+if(($gcProbability === 1.)
+|| (mt_rand() / mt_getrandmax() < $gcProbability))
+{
+  $now = time();
 
-// expire grants
-$sql = "SELECT * FROM grant WHERE grant_expire < " . time();
-foreach($db->query($sql) as $DATA)
-  grantPurge($DATA);
+  $sql = "SELECT * FROM ticket WHERE expire < $now";
+  $sql .= " OR expire_last < $now";
+  $sql .= " OR expire_dln <= downloads";
+  if($gcLimit) $sql .= " LIMIT $gcLimit";
+  foreach($db->query($sql) as $DATA)
+    ticketPurge($DATA);
+  
+  // expire grants
+  $sql = "SELECT * FROM grant WHERE grant_expire < $now";
+  if($gcLimit) $sql .= " LIMIT $gcLimit";
+  foreach($db->query($sql) as $DATA)
+    grantPurge($DATA);
+}
 
 // start the session
 session_name($sessionName);

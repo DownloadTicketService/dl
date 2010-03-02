@@ -7,7 +7,7 @@ $ref = "$masterPath?g=$id";
 
 $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
 $GRANT = $db->query($sql)->fetch();
-if($GRANT === false)
+if($GRANT === false || isGrantExpired($DATA))
 {
   includeTemplate("style/include/nogrant.php",
       array('title' => T_("Unknown grant"), 'id' => htmlentities($id)));

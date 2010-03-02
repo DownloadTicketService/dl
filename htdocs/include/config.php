@@ -21,7 +21,7 @@ $defLocale = "en_EN";
  */
 
 // cfgVersion: configuration file version
-$cfgVersion = "0.5";
+$cfgVersion = "0.6";
 
 // logFile: set this if you want new tickets, downloads and purges logged to a
 //          file. If the setting contains no slashes, it will be used as a tag
@@ -47,6 +47,15 @@ $cfgVersion = "0.5";
 //$dsn = "sqlite:$dataDir/data.sdb";
 
 // sessionName: PHP session name (to ensure session uniqueness)
-//		The default name is generated thus:
+//		The default name is generated as:
 //$sessionName = "DL" . md5($masterPath);
+
+// gcProbability: Probability that a page request triggers the automatic
+//                expiration of old tickets. A number ranging from 0 to 1,
+//                where 1 means that any request will purge old tickets.
+//$gcProbability = 1.;
+
+// gcLimit: Maximum number of tickets to remove at every expiration.
+//          If 0 is used, all expired tickets are removed at once.
+//$gcLimit = 0;
 ?>

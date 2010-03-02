@@ -3,6 +3,15 @@
 require_once("hooks.php");
 
 
+function isTicketExpired($DATA, $now = NULL)
+{
+  if(!isset($now)) $now = time();
+  return ($DATA["expire"] < $now
+       || $DATA["expire_last"] < $now
+       || $DATA["expire_dln"] <= $DATA["downloads"]);
+}
+
+
 function ticketPurge($DATA, $auto = true)
 {
   global $db;
@@ -12,6 +21,13 @@ function ticketPurge($DATA, $auto = true)
     unlink($DATA["path"]);
     onTicketPurge($DATA, $auto);
   }
+}
+
+
+function isGrantExpired($DATA, $now = NULL)
+{
+  if(!isset($now)) $now = time();
+  return ($DATA["grant_expire"] < $now);
 }
 
 
