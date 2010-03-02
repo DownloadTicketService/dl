@@ -14,14 +14,25 @@ $langData = array
 
 function detectLocale($locale)
 {
-  global $defLocale, $langData;
+  global $defLocale, $langData, $cookieLifetime;
 
   // language selection/detection
   if(!empty($_REQUEST['lang']))
   {
-    // abide to user preferences
-    if(isset($langData[$_REQUEST['lang']]))
-      $locale = $langData[$_REQUEST['lang']];
+    if(!empty($_GET['lang']))
+      $lang = $_GET['lang'];
+    elseif(!empty($_POST['lang']))
+      $lang = $_POST['lang'];
+    else
+      $lang = $_COOKIE['lang'];
+
+    if(isset($langData[$lang]))
+    {
+      // abide to user preferences
+      $locale = $langData[$lang];
+      if(!empty($_GET['lang']) || !empty($_POST['lang']))
+	setcookie('lang', $lang, time() + $cookieLifetime);
+    }
   }
   
   // try to detect browser preferences
