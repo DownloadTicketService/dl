@@ -3,6 +3,8 @@ dl 0.6:
 
 * Allow to tune the DB expiration process with $gcProbability and $gcLimit.
 * Remember the selected language with a cookie.
+* German translation update.
+* PHP 5.3 warning fixes.
 
 
 dl 0.5: 09/02/2010

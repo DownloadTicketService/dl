@@ -201,7 +201,7 @@ function mailUTF8($addr, $subject, $body, $hdr)
   $hdr .= "\nMIME-Version: 1.0";
   $hdr .= "\nContent-Type: text/plain; charset=UTF-8";
   $hdr .= "\nContent-Transfer-Encoding: 8bit";
-  $subject = mb_encode_mimeheader($subject);
+  $subject = mb_encode_mimeheader($subject, mb_internal_encoding(), 'Q', "\n");
   return mail($addr, $subject, $body, $hdr);
 }
 

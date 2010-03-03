@@ -1,6 +1,10 @@
 <?php
 // initialize the spool directory and authorization
-set_magic_quotes_runtime(0);
+
+// setup the runtime
+if(get_magic_quotes_runtime())
+  set_magic_quotes_runtime(0);
+ob_start();
 
 // data
 require_once("confwrap.php");

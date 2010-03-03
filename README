@@ -111,6 +111,13 @@ the bundled ``include/scripts/dbupgrade.php`` script. Proceed as follows:
 PHP setup
 ---------
 
+The following parameters are required to be set in your ``php.ini`` (these
+values are defaults since PHP 5.0, but they might be different in your setup):
+
+* ``magic_quotes_gpc``: must be "Off".
+* ``magic_quotes_runtime``: must be "Off".
+* ``date.timezone``: must be set to your system preference.
+
 The maximal upload limit is determined by several PHP configuration
 parameters. Check your ``php.ini`` for:
 
@@ -118,7 +125,6 @@ parameters. Check your ``php.ini`` for:
 * ``upload_tmp_dir``: ensure enough space is available.
 * ``upload_max_filesize``: change as needed.
 * ``post_max_size``: must be at least 1M larger than upload_max_filesize.
-* ``magic_quotes_gpc``: must be "Off".
 * ``apc.rfc1867``: must be "On" for the upload progress-bar to work.
 
 The upload limit as shown in the submission form is determined automatically

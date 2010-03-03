@@ -64,6 +64,7 @@ if(!$complete)
   header("Content-Range: bytes $range[1]-$range[2]/" . $DATA["size"]);
 }
 header("Content-Length: $size");
+ob_end_flush();
 
 // contents
 $left = $size;
