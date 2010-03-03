@@ -1,8 +1,9 @@
-dl 0.6: 
+dl 0.6: 03/03/2010
 ------------------
 
-* Allow to tune the DB expiration process with $gcProbability and $gcLimit.
 * Remember the selected language with a cookie.
+* Allow to tune the DB expiration process to improve the performance.
+* Fixed E-Mail subject encoding.
 * German translation update.
 * PHP 5.3 warning fixes.
 
