@@ -6,9 +6,9 @@ require_once("hooks.php");
 function isTicketExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
-  return ($DATA["expire"] < $now
-       || $DATA["expire_last"] < $now
-       || $DATA["expire_dln"] <= $DATA["downloads"]);
+  return ((isset($DATA["expire"]) && $DATA["expire"] < $now)
+       || (isset($DATA["expire_last"]) && $DATA["expire_last"] < $now)
+       || (isset($DATA["expire_dln"]) && $DATA["expire_dln"] <= $DATA["downloads"]));
 }
 
 
@@ -27,7 +27,7 @@ function ticketPurge($DATA, $auto = true)
 function isGrantExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
-  return ($DATA["grant_expire"] < $now);
+  return (isset($$DATA["grant_expire"]) && $DATA["grant_expire"] < $now);
 }
 
 
