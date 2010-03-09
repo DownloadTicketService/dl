@@ -68,7 +68,7 @@ if(isset($_FILES["file"])
 
 // resulting page
 if($DATA !== false)
-  include("include/newticketr.php");
+  include("newticketr.php");
 else
-  include("include/newtickets.php");
+  include("newtickets.php");
 ?>

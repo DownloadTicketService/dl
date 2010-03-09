@@ -1,5 +1,5 @@
 <?php
-require_once("include/pages.php");
+require_once("pages.php");
 $act = false;
 pageHeader(array('title' => T_("Upload result")));
 

@@ -1,5 +1,5 @@
 <?php
-require_once("include/pages.php");
+require_once("pages.php");
 $act = "tlist";
 $ref = "$adminPath?a=$act";
 pageHeader();

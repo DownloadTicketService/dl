@@ -31,7 +31,7 @@ if(isset($GRANT['pass_md5']) && !isset($_SESSION['g'][$id]))
   }
   else
   {
-    include("include/grantp.php");
+    include("grantp.php");
     exit();
   }
 }
@@ -98,7 +98,7 @@ if(isset($_FILES["file"])
 
 // resulting page
 if($DATA === false)
-  include("include/grants.php");
+  include("grants.php");
 else
 {
   unset($ref);

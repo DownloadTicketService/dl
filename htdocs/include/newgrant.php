@@ -55,7 +55,7 @@ if(!empty($_POST["nt"]) && isset($_POST["gn"]))
   $DATA = handleGrant();
 
 if($DATA !== false)
-  include("include/newgrantr.php");
+  include("newgrantr.php");
 else
-  include("include/newgrants.php");
+  include("newgrants.php");
 ?>

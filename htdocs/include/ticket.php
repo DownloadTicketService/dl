@@ -32,7 +32,7 @@ if(isset($DATA['pass_md5']))
   }
   else
   {
-    include("include/ticketp.php");
+    include("ticketp.php");
     exit();
   }
 }
