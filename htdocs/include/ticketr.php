@@ -9,6 +9,11 @@ if(!isset($_SERVER["PATH_INFO"]))
 }
 
 list(, $id) = explode("/", $_SERVER["PATH_INFO"]);
+if(!isTicketId($id))
+{
+  header("HTTP/1.0 404 Not Found");
+  exit();
+}
 
 // try to fetch the id
 $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);

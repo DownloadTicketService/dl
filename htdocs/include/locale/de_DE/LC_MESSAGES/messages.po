@@ -290,10 +290,30 @@ msgstr "Gr&ouml;&szlig;e:"
 msgid "Sorry, the grant %s does not exist or is expired."
 msgstr "Die Upload-Genehmigung %s existiert nicht oder ist verfallen."
 
+#: ../../../../style/include/nogrant.php:7
+#, php-format
+msgid "Invalid grant"
+msgstr "Ungültige Upload-Genehmigung"
+
+#: ../../../../style/include/nogrant.php:7
+#, php-format
+msgid "Sorry, the grant is invalid."
+msgstr "Diese Upload-Genehmigung ist ungültig."
+
 #: ../../../../style/include/noticket.php:7
 #, php-format
 msgid "Sorry, the ticket %s does not exist or is expired."
 msgstr "Das Ticket %s existiert nicht, oder ist verfallen."
+
+#: ../../../../style/include/noticket.php:7
+#, php-format
+msgid "Invalid ticket"
+msgstr "Ungültiges Ticket"
+
+#: ../../../../style/include/noticket.php:7
+#, php-format
+msgid "Sorry, the ticket is invalid."
+msgstr "Dieses Ticket ist ungültig."
 
 #: ../../../grantp.php:7
 #, php-format

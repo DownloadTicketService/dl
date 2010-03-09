@@ -3,6 +3,12 @@
 require_once("hooks.php");
 
 
+function isTicketId($str)
+{
+  return (strlen($str) == 32 && preg_match("/^[a-zA-Z0-9]{32}$/", $str));
+}
+
+
 function isTicketExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
@@ -21,6 +27,12 @@ function ticketPurge($DATA, $auto = true)
     unlink($DATA["path"]);
     onTicketPurge($DATA, $auto);
   }
+}
+
+
+function isGrantId($str)
+{
+  return isTicketId($str);
 }
 
 

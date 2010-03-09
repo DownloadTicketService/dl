@@ -3,14 +3,21 @@
 
 // try to fetch the ticket
 $id = $_REQUEST["t"];
-$ref = "$masterPath?t=$id";
+if(!isTicketId($id))
+{
+  $id = false;
+  $DATA = false;
+}
+else
+{
+  $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
+  $DATA = $db->query($sql)->fetch();
+}
 
-$sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
-$DATA = $db->query($sql)->fetch();
+$ref = "$masterPath?t=$id";
 if($DATA === false || isTicketExpired($DATA))
 {
-  includeTemplate("style/include/noticket.php",
-      array('title' => T_("Unknown ticket"), 'id' => htmlentities($id)));
+  includeTemplate("style/include/noticket.php", array('id' => $id));
   exit();
 }
 

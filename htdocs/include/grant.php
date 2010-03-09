@@ -3,14 +3,21 @@
 
 // try to fetch the grant
 $id = $_REQUEST["g"];
-$ref = "$masterPath?g=$id";
+if(!isGrantId($id))
+{
+  $id = false;
+  $GRANT = false;
+}
+else
+{
+  $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
+  $GRANT = $db->query($sql)->fetch();
+}
 
-$sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
-$GRANT = $db->query($sql)->fetch();
+$ref = "$masterPath?g=$id";
 if($GRANT === false || isGrantExpired($DATA))
 {
-  includeTemplate("style/include/nogrant.php",
-      array('title' => T_("Unknown grant"), 'id' => htmlentities($id)));
+  includeTemplate("style/include/nogrant.php", array('id' => $id));
   exit();
 }
 

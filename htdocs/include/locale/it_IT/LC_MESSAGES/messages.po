@@ -269,10 +269,30 @@ msgstr "Dimensione:"
 msgid "Sorry, the grant %s does not exist or is expired."
 msgstr "Spiacenti, la concessione %s non esiste o &egrave; scaduta."
 
+#: ../../../../style/include/nogrant.php:7
+#, php-format
+msgid "Invalid grant"
+msgstr "Concessione invalida"
+
+#: ../../../../style/include/nogrant.php:7
+#, php-format
+msgid "Sorry, the grant is invalid."
+msgstr "Spiacenti, la concessione &egrave; invalida."
+
 #: ../../../../style/include/noticket.php:7
 #, php-format
 msgid "Sorry, the ticket %s does not exist or is expired."
 msgstr "Spiacenti, il ticket %s non esiste o &egrave; scaduto."
+
+#: ../../../../style/include/noticket.php:7
+#, php-format
+msgid "Invalid ticket"
+msgstr "Ticket invalido"
+
+#: ../../../../style/include/noticket.php:7
+#, php-format
+msgid "Sorry, the ticket is invalid."
+msgstr "Spiacenti, il ticket &egrave; invalido."
 
 #: ../../../grantp.php:7
 #, php-format
