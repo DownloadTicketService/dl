@@ -5,7 +5,7 @@ require_once("funcs.php");
 
 // variables
 if(!isset($defLocale)) $defLocale = "en_US";
-if(!isset($cfgVersion)) $cfgVersion = "0.6";
+if(!isset($cfgVersion)) $cfgVersion = "0.7";
 if(!isset($phpExt)) $phpExt = ".php";
 if(!isset($maxSize)) $maxSize = ini_get('upload_max_filesize');
 if(!isset($authReal)) $authRealm = "Restricted Area";

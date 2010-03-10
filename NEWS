@@ -1,4 +1,4 @@
-dl 0.7:
+dl 0.7: 10/03/2010
 ------------------
 
 * Fix XSS vulnerability for unknown ticket IDs (discovered by Sven Eric Neuz)
