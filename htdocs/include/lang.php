@@ -42,7 +42,7 @@ function detectLocale($locale)
     $accept = split(",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
     foreach($accept as $al)
     {
-      if(array_search($all, $langData))
+      if(array_search($al, $langData))
       {
         $locale = $al;
         break;
