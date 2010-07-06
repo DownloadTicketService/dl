@@ -51,9 +51,10 @@ $complete = ($size == $DATA["size"]);
 $last = ($range[2] == $DATA["size"] - 1);
 
 // update the record for the next query
-$sql = "UPDATE ticket SET last_stamp = " . time()
-  . ", expire_last = " . time() . " + last_time"
-  . ", downloads = downloads + 1 WHERE id = " . $db->quote($id);
+$now = time();
+$sql = "UPDATE ticket SET last_stamp = $now"
+  . ", expire_last = $now + last_time"
+  . " WHERE id = " . $db->quote($id);
 $db->exec($sql);
 
 // send the file
@@ -83,7 +84,25 @@ while($left)
 }
 fclose($fd);
 
-// trigger download hooks
-if($last) onTicketDownload($DATA);
+if($last && !connection_aborted())
+{
+  ++$DATA["downloads"];
+
+  // trigger download hooks
+  onTicketDownload($DATA);
+
+  // check for validity after download
+  if(isTicketExpired($DATA))
+    ticketPurge($DATA);
+  else
+  {
+    // update download count
+    $now = time();
+    $sql = "UPDATE ticket SET last_stamp = $now"
+      . ", expire_last = $now + last_time"
+      . ", downloads = downloads + 1 WHERE id = " . $db->quote($id);
+    $db->exec($sql);
+  }
+}
 
 ?>
