@@ -8,6 +8,7 @@ dl 0.8:
 * Purge tickets immediately after the download, when possible.
 * useradmin now allows to reset/change user role and password.
 * All notifications are now sent using the default locale.
+* Ticket expiration can be performed with an external utility.
 
 
 dl 0.7: 10/03/2010

@@ -184,6 +184,27 @@ function includeTemplate($file, $vars = array())
 }
 
 
+function runGc()
+{
+  global $db, $gcLimit;
+
+  $now = time();
+
+  $sql = "SELECT * FROM ticket WHERE expire < $now";
+  $sql .= " OR expire_last < $now";
+  $sql .= " OR expire_dln <= downloads";
+  if($gcLimit) $sql .= " LIMIT $gcLimit";
+  foreach($db->query($sql)->fetchAll() as $DATA)
+    ticketPurge($DATA);
+
+  // expire grants
+  $sql = "SELECT * FROM grant WHERE grant_expire < $now";
+  if($gcLimit) $sql .= " LIMIT $gcLimit";
+  foreach($db->query($sql)->fetchAll() as $DATA)
+    grantPurge($DATA);
+}
+
+
 function genTicketId($seed)
 {
   global $dataDir;

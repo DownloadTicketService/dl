@@ -288,21 +288,42 @@ self-explanatory. If you find the usage to be difficult or that the interface
 could be improved, **it's a bug**. Please let us know.
 
 
-Maintenance
-===========
+Ticket expiration
+=================
 
-DL does not require any manual maintenance. By default, ticket expiration is
-performed aggressively at every page request. You can control this behavior
-(thus reducing the DB pressure) by tuning the $gcProbability and $gcLimit
-parameters.
+Ticket expiration can be either performed internally to DL (the default), or by
+using the external ``include/scripts/expire.php`` utility with a cron job. This
+preference can be set by controlling the ''$gcInternal'' parameter.
 
-If you notice too much load on your DB, start by lowering $gcProbability to
-0.5 and set $gcLimit to roughly the number of active tickets currently present
-in your DB.
+The internal method requires no setup, but the external method has the added
+advantage of not interrupting the web interface during the expiration process,
+and also ensures that the spool is emptied when DL itself is not used actively.
 
-Continue to lower $gcProbability even further until the load become
+
+Internal method
+---------------
+
+Expiration is usually performed aggressively at every page request. You can
+control this behavior (thus reducing the DB pressure) by tuning the
+''$gcProbability'' and ''$gcLimit'' parameters.
+
+If you notice too much load on your DB, start by lowering ''$gcProbability'' to
+0.5 and set ''$gcLimit'' to roughly the number of active tickets currently
+present in your DB.
+
+Continue to lower ''$gcProbability'' even further until the load become
 acceptable. When the load is acceptable, but queries take too long, reduce
-$gcLimit.
+''$gcLimit''.
+
+
+External method
+---------------
+
+Simply call ``include/scripts/expire.php`` within a cron job, which should be
+executed with *the same user as the web server*. Executing the script once a
+day is sufficient for low traffic websites, but can be executed as often as
+needed. ''$gcLimit'' still controls how many tickets are expired for each run
+to limit the execution time.
 
 
 Known limitations/Browser support

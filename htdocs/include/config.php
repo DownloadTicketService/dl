@@ -50,9 +50,17 @@ $cfgVersion = "0.7";
 //		The default name is generated as:
 //$sessionName = "DL" . md5($masterPath);
 
-// gcProbability: Probability that a page request triggers the automatic
-//                expiration of old tickets. A number ranging from 0 to 1,
-//                where 1 means that any request will purge old tickets.
+// gcInternal: Sets the ticket expiration method. If "true", tickets are expired
+//             automatically by DL itself, at some page request (controlled by
+//             gcProbability). If "false", ticket expiration should be performed
+//             manually by calling the extenal "scripts/expire.php" utility.
+//$gcInternal = true;
+
+// gcProbability: Probability that, when using the internal expiration
+//                method, a page request triggers the automatic expiration
+//		  of old tickets. A number ranging from 0 to 1, where 1 means
+//                that any request will purge old tickets. Ignored when using
+//                the external expiration method.
 //$gcProbability = 1.;
 
 // gcLimit: Maximum number of tickets to remove at every expiration.

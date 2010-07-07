@@ -1,5 +1,5 @@
 <?php
-// initialize the spool directory and authorization
+// basic initialization
 
 // setup the runtime
 if(get_magic_quotes_runtime())
@@ -20,37 +20,6 @@ if($useSysLog)
 elseif(!empty($logFile))
   $logFd = fopen($logFile, "at");
 
-// set default locale for notifications
+// set the initial default locale
 switchLocale($defLocale);
-
-// expire tickets before serving any request
-if(($gcProbability === 1.)
-|| (mt_rand() / mt_getrandmax() < $gcProbability))
-{
-  $now = time();
-
-  $sql = "SELECT * FROM ticket WHERE expire < $now";
-  $sql .= " OR expire_last < $now";
-  $sql .= " OR expire_dln <= downloads";
-  if($gcLimit) $sql .= " LIMIT $gcLimit";
-  foreach($db->query($sql)->fetchAll() as $DATA)
-    ticketPurge($DATA);
-
-  // expire grants
-  $sql = "SELECT * FROM grant WHERE grant_expire < $now";
-  if($gcLimit) $sql .= " LIMIT $gcLimit";
-  foreach($db->query($sql)->fetchAll() as $DATA)
-    grantPurge($DATA);
-}
-
-// start the session
-session_name($sessionName);
-session_start();
-$auth = &$_SESSION["auth"];
-
-// set session's locale
-$locale = &$_SESSION["locale"];
-$locale = detectLocale($locale);
-switchLocale($locale);
-
 ?>
