@@ -1,5 +1,6 @@
 <?php
-set_magic_quotes_runtime(0);
+if(get_magic_quotes_runtime())
+  set_magic_quotes_runtime(0);
 if(!isset($argc)) die("not running from the command line\n");
 
 // data
