@@ -81,7 +81,7 @@ according to your setup.
 
 
 Upgrading from DL <= 0.3
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Upgrading from DL 0.3 or earlier is possible without loosing any data by using
 the bundled ``include/scripts/dbupgrade.php`` script. Proceed as follows:
@@ -131,6 +131,10 @@ The upload limit as shown in the submission form is determined automatically
 from the ``upload_max_filesize`` parameter. If you are allowed to do so, you
 can also set these parameters with "ini_set()" directly inside
 ``include/config.php`` (so that it only affects dl).
+
+Any upload beyond ``post_max_size`` will be completely ignored: users will get
+a blank page instead of an error message. You should raise ``post_max_size``
+above ``upload_max_filesize`` to get an acceptable "error window".
 
 If PHP was built as an Apache module you can also set them through
 ``.htaccess`` (see http://www.php.net/manual/en/configuration.changes.php).
@@ -364,8 +368,8 @@ directly.
 Customisation and development
 =============================
 
-You are encouraged to change DL as you see fit.
-DL's GIT repository is publicly accessible at::
+You are encouraged to change DL as you see fit under the terms of the GNU GPL
+2. DL's GIT repository is publicly accessible at::
 
   git://src.thregr.org/dl
 
