@@ -183,9 +183,9 @@ Users can be managed through ``useradmin.php``, which should be executed with
   cd /your-installation-directory/include/scripts
   php useradmin.php help
 
-to get a list of all available commands (currently "add", "rm" and
-"list"). Passwords are optional since they are ignored when using HTTP
-authentication.
+to get a list of all available commands. Passwords are optional since they are
+ignored when using HTTP authentication (though an empty password will *not* be
+accepted during user login).
 
 
 HTTP/External authentication

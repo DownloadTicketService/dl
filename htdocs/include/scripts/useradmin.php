@@ -20,6 +20,8 @@ Usage: $argv[0] command [args]
   add user adm [pass]: add "user", setting its administrator status with
                        "adm" ("true" or "false") and the optional
                        password "pass".
+  rst user adm [pass]: reset the admin status or password for "user".
+  passwd user [pass] : just reset the password for "user".
   rm user            : remove "user"
 
 EOD
@@ -54,6 +56,41 @@ if($argv[1] == 'add' && $argc > 3 && $argc < 6)
 
   if($db->exec($sql) != 1)
     die("cannot add user '$user'\n");
+
+  exit(0);
+}
+
+if($argv[1] == 'rst' && $argc > 3 && $argc < 6)
+{
+  $user = $argv[2];
+  $admin = !strcasecmp($argv[3], "true");
+  $pass = ($argc > 4? md5($argv[4]): false);
+
+  // prepare the SQL
+  $sql = "UPDATE user SET pass_md5 = ";
+  $sql .= (empty($pass)? 'NULL': $db->quote($pass));
+  $sql .= ", role_id = (SELECT id FROM role WHERE name = '"
+    . ($admin? 'admin': 'user') . "')";
+  $sql .= " WHERE name = " . $db->quote($user);
+
+  if($db->exec($sql) != 1)
+    die("cannot reset user '$user'\n");
+
+  exit(0);
+}
+
+if($argv[1] == 'passwd' && $argc > 2 && $argc < 5)
+{
+  $user = $argv[2];
+  $pass = ($argc > 3? md5($argv[3]): false);
+
+  // prepare the SQL
+  $sql = "UPDATE user SET pass_md5 = ";
+  $sql .= (empty($pass)? 'NULL': $db->quote($pass));
+  $sql .= " WHERE name = " . $db->quote($user);
+
+  if($db->exec($sql) != 1)
+    die("cannot reset password for '$user'\n");
 
   exit(0);
 }
