@@ -94,7 +94,7 @@ the bundled ``include/scripts/dbupgrade.php`` script. Proceed as follows:
 
 * Create a new database as described above in `Database setup`_.
 
-* If you had to change the "$dbHandler" parameter in DL 0.3,
+* If you had to change the ''$dbHandler'' parameter in DL 0.3,
   copy the same setting into the new configuration file.
 
 * Run ``dbupgrade.php`` as your web server user::
@@ -104,7 +104,7 @@ the bundled ``include/scripts/dbupgrade.php`` script. Proceed as follows:
 
 * Test your new setup.
 
-* You can now remove "$dbHandler" from the new configuration file and
+* You can now remove ''$dbHandler'' from the new configuration file and
   ``data.db``, ``user.db`` from the spool directory.
 
 
@@ -128,24 +128,35 @@ parameters. Check your ``php.ini`` for:
 * ``apc.rfc1867``: must be "On" for the upload progress-bar to work.
 
 The upload limit as shown in the submission form is determined automatically
-from the ``upload_max_filesize`` parameter. If you are allowed to do so, you
-can also set these parameters with "ini_set()" directly inside
-``include/config.php`` (so that it only affects dl).
+from the ``upload_max_filesize`` parameter.
 
 Any upload beyond ``post_max_size`` will be completely ignored: users will get
 a blank page instead of an error message. You should raise ``post_max_size``
 above ``upload_max_filesize`` to get an acceptable "error window".
 
-If PHP was built as an Apache module you can also set them through
-``.htaccess`` (see http://www.php.net/manual/en/configuration.changes.php).
+If you are allowed to do so, you can also set these parameters with "ini_set()"
+directly inside ``include/config.php`` (so that it only affects dl). If PHP was
+built as an Apache module you can also set them through ``.htaccess`` (see
+http://www.php.net/manual/en/configuration.changes.php).
 
 The upload progress-bar is only available when the PHP APC module in installed,
 and the ``apc.rfc1867`` setting is explicitly enabled. The PHP APC module is
 only reported to work on ``mod_php`` currently.
 
 
-Minimal user setup
-------------------
+User setup
+----------
+
+DL can use both an internal and an external user database, by trusting the
+authentication credentials provided by your web server.
+
+dl supports both "normal" users and "administrators". A normal user can only
+see and manage tickets created by himself. Administrators can see/manage all
+the tickets.
+
+
+Internal authentication
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Once dl has been installed and PHP is set-up correctly, you have to create at
 least one user to be able to log in. User management is handled through the
@@ -168,51 +179,24 @@ Repeat as many times as necessary. You should now be able to use the web
 service.
 
 
-Advanced user management
-------------------------
+External authentication
+~~~~~~~~~~~~~~~~~~~~~~~
 
-dl supports both "normal" users and "administrators". A normal user can only
-see and manage tickets created by himself. Administrators can see/manage all
-the tickets.
+External authentication should be the preferred form of authentication for
+corporate use since it supports whatever authentication scheme your web server
+already supports (for example, LDAP, ActiveDirectory, etc).
 
-dl can use the HTTP authentication provided by your web server. This should be
-the preferred form of authentication for corporate use since it supports
-whatever authentication scheme your web server already supports. dl will
-consider all users as "normal" by default. The only setup required is flagging
-the administrators with ``useradmin.php``.
-
-Users can be managed through ``useradmin.php``, which should be executed with
-*the same user as the web server*. Run::
-
-  cd /your-installation-directory/include/scripts
-  php useradmin.php help
-
-to get a list of all available commands. Passwords are optional since they are
-ignored when using HTTP authentication (though an empty password will *not* be
-accepted during user login).
-
-
-HTTP/External authentication
-----------------------------
-
-Only ``admin.php`` needs to be password-protected, *not the whole
-directory*. With Apache, this can be achieved with the following simple
-configuration::
-
-  <Directory /your-installation-directory>
-      <Files admin.php>
-	 AuthType Basic
-	 AuthName "Restricted Area"
-	 ...
-	 Require valid-user
-      </Files>
-   </Directory>
+To enable external authentication, simply protect the file (and only the file)
+``admin.php`` using a "Basic" authentication scheme. DL will implicitly trust
+the credentials provided by the web server. All users are logged in as "normal"
+by default. The only setup required is adding the administrators with
+``useradmin.php`` without using any password.
 
 To make "Logout" work, you must also set the *same* authentication realm in
-both ``AuthName`` and ``include/config.php``. Logout with HTTP authentication
-is not guaranteed to work: users should simply **close their browser** to clear
-their session (closing a tab or window is not enough). Currently, logout works
-as expected on:
+both your web-server and ``include/config.php``. Logout with HTTP
+authentication is not guaranteed to work: users should simply **close their
+browser** to clear their session (closing a tab or window is not
+enough). Currently, logout works as expected on:
 
 * Firefox 3.x
 * Safari 4.x
@@ -223,15 +207,58 @@ Logout does not work on:
 * Internet Explorer 7/8.
 * Opera 9/10.
 
-Only *Basic* authentication is supported, which transmits the password in
-clear-text unless you use SSL.
+Again, only the *Basic* authentication is supported, which transmits the
+password in clear-text unless you use SSL.
 
 
-PHP/FastCGI
-===========
+Web-server Configuration
+========================
 
-Apache
-------
+Apache/mod_php
+--------------
+
+With internal authentication::
+
+  <Directory /your-installation-directory>
+    AllowOverride Limit
+    Options -Indexes
+  </Directory>
+
+With external authentication::
+
+  <Directory /your-installation-directory>
+    AllowOverride Limit
+    Options -Indexes
+    <Files admin.php>
+      AuthType Basic
+      AuthName "Restricted Area"
+      ...
+      Require valid-user
+    </Files>
+  </Directory>
+
+With LDAP or ActiveDirectory authentication::
+
+  <Directory /your-installation-directory>
+    AllowOverride Limit
+    Options -Indexes
+    <Files admin.php>
+      AuthType Basic
+      AuthName "Restricted Area"
+      AuthBasicProvider ldap
+      AuthzLDAPAuthoritative off
+      AuthLDAPURL ldap://XXXXXX:XXXX/ou=XXXX,dc=XXXX,dc=XXX?sAMAccountName?sub?(objectClass=*)
+      AuthLDAPBindDN "cn=XXXX,ou=XXXXX,dc=XXX,dc=XXX"
+      AuthLDAPBindPassword "XXXXX"
+      ...
+      Require valid-user
+      Satisfy any
+    </Files>
+  </Directory>
+
+
+Apache/FastCGI
+--------------
 
 FastCGI support in Apache up to 2.2.x is severely lacking with all the
 available modules: ``mod_fcgi``, ``mod_fcgid`` (now merged officially into
@@ -247,22 +274,24 @@ Apache's ``mod_fcgi``) and ``mod_fastcgi``.
 * ``mod_fastcgi`` has been proved to be slow (and sometimes unstable) in most
   configurations. It is not advisable to use PHP with ``mod_fastcgi``.
 
-* For HTTP/External authentication to work, ``mod_rewrite`` needs to be
-  enabled, and a different setup is required, as shown::
-
-    <Directory /your-installation-directory>
-      <Files admin.php>
-	RewriteEngine on
-       	RewriteCond %{HTTP:Authorization} ^(.*)
-      	RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
-	AuthType Basic
-	AuthName "Restricted Area"
-	...
-	Require valid-user
-      </Files>
-    </Directory>
-
 .. _bug: http://sourceforge.net/mailarchive/forum.php?thread_name=48485BDC.1020204@oxeva.fr&forum_name=mod-fcgid-users
+
+For HTTP/External authentication to work, ``mod_rewrite`` needs to be enabled,
+and a different setup is required, as shown::
+
+  <Directory /your-installation-directory>
+    AllowOverride Limit
+    Options -Indexes
+    <Files admin.php>
+      RewriteEngine on
+      RewriteCond %{HTTP:Authorization} ^(.*)
+      RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+      AuthType Basic
+      AuthName "Restricted Area"
+      ...
+      Require valid-user
+    </Files>
+  </Directory>
 
 
 Lighttpd
