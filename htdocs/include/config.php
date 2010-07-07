@@ -21,7 +21,7 @@ $defLocale = "en_EN";
  */
 
 // cfgVersion: configuration file version
-$cfgVersion = "0.7";
+$cfgVersion = "0.8";
 
 // logFile: set this if you want new tickets, downloads and purges logged to a
 //          file. If the setting contains no slashes, it will be used as a tag

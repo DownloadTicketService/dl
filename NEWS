@@ -6,7 +6,7 @@ dl 0.8:
 * Fix ticket expiration when using sqlite3 (table locking issues).
 * Do not purge tickets prematurely after an unsuccessful download.
 * Purge tickets immediately after the download, when possible.
-* useradmin now allows to reset/change user role and password.
+* "useradmin.php" now allows to reset/change user role and password.
 * All notifications are now sent using the default locale.
 * Ticket expiration can be performed with an external utility.
 
