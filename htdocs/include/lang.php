@@ -62,5 +62,20 @@ function switchLocale($locale)
 }
 
 
+function withLocale($locale, $func, $params)
+{
+  $curLocale = $GLOBALS['locale'];
+  switchLocale($locale);
+  call_user_func_array($func, $params);
+  switchLocale($curLocale);
+}
+
+
+function withDefLocale($func, $params)
+{
+  withLocale($GLOBALS['defLocale'], $func, $params);
+}
+
+
 // internal encoding is always UTF-8
 mb_internal_encoding("UTF-8");

@@ -88,6 +88,9 @@ if($last && !connection_aborted())
 {
   ++$DATA["downloads"];
 
+  // set default locale for notifications
+  switchLocale($defLocale);
+
   // trigger download hooks
   onTicketDownload($DATA);
 

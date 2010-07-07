@@ -35,7 +35,7 @@ if(($gcProbability === 1.)
   if($gcLimit) $sql .= " LIMIT $gcLimit";
   foreach($db->query($sql)->fetchAll() as $DATA)
     ticketPurge($DATA);
-  
+
   // expire grants
   $sql = "SELECT * FROM grant WHERE grant_expire < $now";
   if($gcLimit) $sql .= " LIMIT $gcLimit";

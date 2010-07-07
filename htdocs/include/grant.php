@@ -15,7 +15,7 @@ else
 }
 
 $ref = "$masterPath?g=$id";
-if($GRANT === false || isGrantExpired($DATA))
+if($GRANT === false || isGrantExpired($GRANT))
 {
   includeTemplate("style/include/nogrant.php", array('id' => $id));
   exit();
@@ -83,7 +83,7 @@ function handleUpload($GRANT, $FILE)
   $DATA = $db->query($sql)->fetch();
 
   // trigger use hooks
-  onGrantUse($GRANT, $DATA);
+  withDefLocale('onGrantUse', array($GRANT, $DATA));
 
   return $DATA;
 }
