@@ -599,3 +599,7 @@ msgstr "collegamento alla concessione"
 #: ../../../newtickets.php:33 ../../../grants.php:31
 msgid "upload interrupted"
 msgstr "invio interrotto"
+
+#: ../../../pages.php:39
+msgid "Help"
+msgstr "Aiuto"

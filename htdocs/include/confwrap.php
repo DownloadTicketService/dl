@@ -20,6 +20,7 @@ $useSysLog = (!empty($logFile) && strstr($logFile, "/") === FALSE);
 $iMaxSize = returnBytes($maxSize);
 $dataDir = $spoolDir . "/data";
 $adminPath = $masterPath . "admin$phpExt";
+$helpRoot = "static/guide";
 $dPath = $masterPath . "d$phpExt";
 
 // constants

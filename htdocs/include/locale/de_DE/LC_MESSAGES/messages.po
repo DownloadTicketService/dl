@@ -638,3 +638,7 @@ msgstr "Link f&uuml;r Upload-Genehmgiung"
 #: ../../../newtickets.php:33
 msgid "upload interrupted"
 msgstr "Upload abgebrochen"
+
+#: ../../../pages.php:39
+msgid "Help"
+msgstr "Hilfe"

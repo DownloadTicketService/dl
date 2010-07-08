@@ -56,9 +56,18 @@ function detectLocale($locale)
 
 function switchLocale($locale)
 {
+  global $helpPath, $helpRoot, $masterPath, $defLocale;
+
   T_setlocale(LC_ALL, $locale . ".utf8");
   T_bindtextdomain('messages', 'include/locale');
   T_textdomain('messages');
+
+  if(file_exists("$helpRoot/$locale"))
+    $helpPath = "$masterPath/$helpRoot/$locale/";
+  elseif(file_exists("$helpRoot/$defLocale"))
+    $helpPath = "$masterPath/$helpRoot/$defLocale/";
+  else
+    $helpPath = "$masterPath/$helpRoot/en_EN/";
 }
 
 

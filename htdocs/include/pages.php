@@ -20,7 +20,7 @@ function pageHeader($vars = array())
 
 function pageFooter($vars = array())
 {
-  global $act, $pages, $adminPath;
+  global $act, $pages, $adminPath, $helpPath;
 
   echo '<div id="footer">';
 
@@ -34,7 +34,8 @@ function pageFooter($vars = array())
     else echo "<a href=\"$adminPath?a=$page\">$title</a>";
   }
 
-  echo ", <a href=\"$adminPath?u\">" . T_("Logout") . "</a></div>";
+  echo ", <a href=\"$adminPath?u\">" . T_("Logout") . "</a>"
+    . ", <a href=\"$helpPath\">" . T_("Help") . "</a></div>";
   includeTemplate('style/include/footer.php', $vars);
 }
 

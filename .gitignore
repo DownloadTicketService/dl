@@ -1,1 +1,2 @@
 *.mo
+/htdocs/static/guide/*/*.html
