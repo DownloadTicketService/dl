@@ -344,7 +344,7 @@ If you notice too much load on your DB, start by lowering ''$gcProbability'' to
 0.5 and set ''$gcLimit'' to roughly the number of active tickets currently
 present in your DB.
 
-Continue to lower ''$gcProbability'' even further until the load become
+Continue to lower ''$gcProbability'' even further until the load becomes
 acceptable. When the load is acceptable, but queries take too long, reduce
 ''$gcLimit''.
 
@@ -398,7 +398,7 @@ Customisation and development
 =============================
 
 You are encouraged to change DL as you see fit under the terms of the GNU GPL
-2. DL's GIT repository is publicly accessible at::
+2 license. DL's GIT repository is publicly accessible at::
 
   git://src.thregr.org/dl
 
