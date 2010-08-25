@@ -165,14 +165,14 @@ function returnBytes($val)
 
 function fixEMailAddrs($str)
 {
-  $addrs = split(",", str_replace(array(";", "\n"), ",", $str));
+  $addrs = explode(",", str_replace(array(";", "\n"), ",", $str));
   return join(",", array_filter(array_map('trim', $addrs)));
 }
 
 
 function getEMailAddrs($str)
 {
-  return (empty($str)? array(): split(",", $str));
+  return (empty($str)? array(): explode(",", $str));
 }
 
 

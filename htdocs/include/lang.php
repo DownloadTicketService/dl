@@ -39,7 +39,7 @@ function detectLocale($locale)
   if(!isset($locale) && !empty($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
   {
     // TODO: shoud use something like PECL's http_negotiate_language
-    $accept = split(",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+    $accept = explode(",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
     foreach($accept as $al)
     {
       if(array_search($al, $langData))
