@@ -16,11 +16,11 @@ function getCookie(name)
   var search = name + "=";
   if(document.cookie.length > 0)
   {
-    offset = document.cookie.indexOf(search);
+    var offset = document.cookie.indexOf(search);
     if (offset != -1)
     {
       offset += search.length;
-      end = document.cookie.indexOf(";", offset);
+      var end = document.cookie.indexOf(";", offset);
       if (end == -1) end = document.cookie.length;
       return unescape(document.cookie.substring(offset, end));
     }
@@ -66,7 +66,7 @@ function setDefaults(set)
     setCookie(set + '_' + name, document.forms[0][name].value, expire);
   }
 
-  var v = $('#advanced').hasClass('active')
+  var v = $('#advanced').hasClass('active');
   setCookie(set + '_advanced', (v? 0: 1), expire);
 }
 
