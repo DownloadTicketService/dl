@@ -67,7 +67,7 @@ function setDefaults(set)
   }
 
   var v = $('#advanced').hasClass('active')
-  setCookie(set + '_advanced', (v? 1: 0), expire);
+  setCookie(set + '_advanced', (v? 0: 1), expire);
 }
 
 

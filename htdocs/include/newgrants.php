@@ -50,8 +50,8 @@ pageHeader();
     </li>
 
   </ul>
-  <a id="toggler" href="#" onclick="toggleAdvanced();"><?php echo T_('Advanced'); ?></a>
-  <ul id="advanced">
+  <a id="toggler" class="active" href="#" onclick="toggleAdvanced();"><?php echo T_('Advanced'); ?></a>
+  <ul id="advanced" class="active">
 
     <li>
       <label class="description"><?php echo T_("Password"); ?></label>
