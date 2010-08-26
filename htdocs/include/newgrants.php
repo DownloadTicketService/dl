@@ -5,7 +5,11 @@ $ref = "$adminPath?a=$act";
 pageHeader();
 ?>
 
-<script type="text/javascript" src="static/defaults.js"></script>
+<script type="text/javascript" src="static/jquery.js"></script>
+<script type="text/javascript" src="static/dl.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { loadDefaults('newgrant'); });
+</script>
 
 <form enctype="multipart/form-data" method="post"
       action="<?php echo $ref; ?>" >
@@ -44,6 +48,10 @@ pageHeader();
           ?>
       </small></p>
     </li>
+
+  </ul>
+  <a id="toggler" href="#" onclick="toggleAdvanced();"><?php echo T_('Advanced'); ?></a>
+  <ul id="advanced">
 
     <li>
       <label class="description"><?php echo T_("Password"); ?></label>
@@ -149,11 +157,13 @@ pageHeader();
       </small></p>
     </li>
 
+  </ul>
+  <ul>
     <li class="buttons">
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
       <input id="submit" type="submit" value="<?php echo T_("Create"); ?>"/>
       <input type="reset" value="<?php echo T_("Reset"); ?>"/>
-      <input type="button" value="<?php echo T_("Set as defaults"); ?>" onclick="setDefaults();"/>
+      <input type="button" value="<?php echo T_("Set as defaults"); ?>" onclick="setDefaults('newgrant');"/>
     </li>
   </ul>
 </form>

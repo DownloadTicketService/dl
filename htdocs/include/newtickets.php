@@ -8,7 +8,11 @@ require_once("progress.php");
 $up = newUploadProgress();
 ?>
 
-<script type="text/javascript" src="static/defaults.js"></script>
+<script type="text/javascript" src="static/jquery.js"></script>
+<script type="text/javascript" src="static/dl.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { loadDefaults('newticket'); });
+</script>
 <?php uploadProgressHdr($up); ?>
 
 <form enctype="multipart/form-data" method="post"
@@ -73,6 +77,10 @@ $up = newUploadProgress();
 	  ?>
       </small></p>
     </li>
+
+  </ul>
+  <a id="toggler" href="#" onclick="toggleAdvanced();"><?php echo T_('Advanced'); ?></a>
+  <ul id="advanced">
 
     <li>
       <label class="description"><?php echo T_("Password"); ?></label>
@@ -174,11 +182,13 @@ $up = newUploadProgress();
       </small></p>
     </li>
 
+  </ul>
+  <ul>
     <li class="buttons">
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
       <input id="submit" type="submit" value="<?php echo T_("Upload"); ?>"/>
       <input type="reset" value="<?php echo T_("Reset"); ?>"/>
-      <input type="button" value="<?php echo T_("Set as defaults"); ?>" onclick="setDefaults();"/>
+      <input type="button" value="<?php echo T_("Set as defaults"); ?>" onclick="setDefaults('newticket');"/>
       <?php uploadProgressHtml($up); ?>
     </li>
   </ul>

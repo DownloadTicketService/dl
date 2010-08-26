@@ -3,9 +3,6 @@ var cookieLifetime = 1000 * 60 * 60 * 24 * 90;
 var pwdLength = 16;
 var fields = Array('gn', 'dn', 'hra', 'dln', 'nt', 'st');
 
-// hooks
-window.addEventListener("load", loadDefaults, false);
-
 
 // cookie helpers
 function setCookie(name, value, expire)
@@ -43,18 +40,21 @@ function refreshCookie(name, lifetime)
 
 
 // defaults
-function loadDefaults()
+function loadDefaults(set)
 {
   for(var i = 0; i != fields.length; ++i)
   {
     var name = fields[i];
     if(!document.forms[0][name]) continue;
-    var v = refreshCookie(name, cookieLifetime);
+    var v = refreshCookie(set + '_' + name, cookieLifetime);
     if(v !== null) document.forms[0][name].value = v;
   }
+
+  var v = refreshCookie(set + '_advanced', cookieLifetime);
+  if(parseInt(v)) toggleAdvanced(true);
 }
 
-function setDefaults()
+function setDefaults(set)
 {
   var expire = new Date();
   expire.setTime(expire.getTime() + cookieLifetime);
@@ -63,8 +63,11 @@ function setDefaults()
   {
     var name = fields[i];
     if(!document.forms[0][name]) continue;
-    setCookie(name, document.forms[0][name].value, expire);
+    setCookie(set + '_' + name, document.forms[0][name].value, expire);
   }
+
+  var v = $('#advanced').hasClass('active')
+  setCookie(set + '_advanced', (v? 1: 0), expire);
 }
 
 
@@ -79,4 +82,13 @@ function passGen()
   document.forms[0].pass.value = passwd;
 
   return true;
+}
+
+
+// UI
+function toggleAdvanced(set)
+{
+  $('#toggler').toggleClass("active");
+  var t = $('#advanced').toggleClass("active");
+  if(!set) t.slideToggle("fast"); else t.toggle();
 }

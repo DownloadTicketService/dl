@@ -103,7 +103,7 @@ img
 /**** Form Section ****/
 .appnitro li
 {
-	width:61%;
+	width:64%;
 }
 
 form ul
@@ -130,6 +130,27 @@ form li:after
 	display:block;
 	height:0;
 	visibility:hidden;
+}
+
+#advanced
+{
+	display:none;
+	border:1px dotted #ccc;
+	padding-top: 0.6em;
+	margin-top: -0.6em;
+}
+
+#toggler
+{
+	color:#999;
+	background:#fff url(toggle-right.gif) no-repeat 0 50%;
+	white-space: nowrap;
+	padding:0 10px 0 10px;
+}
+
+#toggler.active
+{
+	background:#fff url(toggle-down.gif) no-repeat 0 50%;
 }
 
 .buttons:after
