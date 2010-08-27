@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <title><?php echo $title; ?></title>
       <link rel="stylesheet" type="text/css" href="style/static/view.css" media="all"/>
+      <script type="text/javascript" src="static/jquery.js"></script>
+      <script type="text/javascript" src="static/dl.js"></script>
       <script type="text/javascript" src="style/static/view.js"></script>
     </head>
     <body>

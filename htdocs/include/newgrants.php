@@ -5,8 +5,6 @@ $ref = "$adminPath?a=$act";
 pageHeader();
 ?>
 
-<script type="text/javascript" src="static/jquery.js"></script>
-<script type="text/javascript" src="static/dl.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { loadDefaults('newgrant'); });
 </script>

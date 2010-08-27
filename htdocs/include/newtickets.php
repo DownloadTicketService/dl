@@ -6,14 +6,12 @@ pageHeader();
 
 require_once("progress.php");
 $up = newUploadProgress();
+uploadProgressHdr($up);
 ?>
 
-<script type="text/javascript" src="static/jquery.js"></script>
-<script type="text/javascript" src="static/dl.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { loadDefaults('newticket'); });
 </script>
-<?php uploadProgressHdr($up); ?>
 
 <form enctype="multipart/form-data" method="post"
       onsubmit="document.getElementById('submit').disabled = true;"
