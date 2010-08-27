@@ -49,6 +49,20 @@ pageHeader();
       </small></p>
     </li>
 
+    <li>
+      <label class="description"><?php echo T_("Send link to e-mail"); ?></label>
+      <div>
+	<input name="st" class="element text medium" type="text" maxlength="255" value=""/>
+      </div>
+      <p class="guidelines"><small>
+	  <?php
+            echo T_("Type an <em>optional</em> e-mail address (or addresses)"
+		. " that should immediately receive the link to the upload"
+		. " grant. You can separate multiple addresses with commas.");
+          ?>
+      </small></p>
+    </li>
+
   </ul>
   <a id="toggler" class="active" href="#" onclick="toggleAdvanced();"><?php echo T_('Advanced'); ?></a>
   <ul id="advanced" class="active">
@@ -79,20 +93,6 @@ pageHeader();
 		. " should wait for the upload grant to be used.  After this"
 		. " period is passed without activity, the grant is removed the"
 		. " server.");
-          ?>
-      </small></p>
-    </li>
-
-    <li>
-      <label class="description"><?php echo T_("Send link to e-mail"); ?></label>
-      <div>
-	<input name="st" class="element text medium" type="text" maxlength="255" value=""/>
-      </div>
-      <p class="guidelines"><small>
-	  <?php
-            echo T_("Type an <em>optional</em> e-mail address (or addresses)"
-		. " that should immediately receive the link to the upload"
-		. " grant. You can separate multiple addresses with commas.");
           ?>
       </small></p>
     </li>
