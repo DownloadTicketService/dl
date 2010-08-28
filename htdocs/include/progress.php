@@ -44,7 +44,7 @@ function uploadProgressHdr($data)
 	  0: 'static/images/progressbg_red.gif',
 	  30: 'static/images/progressbg_orange.gif',
 	  70: 'static/images/progressbg_green.gif'
-	},
+	}
       });
     });
 

@@ -116,7 +116,13 @@ function validateForm()
 function validate(event)
 {
   if(!validateForm())
-    event.preventDefault();
+  {
+    // IE crap
+    if(event.preventDefault)
+      event.preventDefault();
+    else
+      event.returnValue = false;
+  }
   else
   {
     $('#submit').attr('disabled', true);
