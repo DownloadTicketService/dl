@@ -290,7 +290,7 @@ form ul li.first
 label.description
 {
 	border:none;
-	color:#222;
+	color:#444;
 	display:block;
 	font-size:95%;
 	font-weight:700;
@@ -467,8 +467,12 @@ form p.error
 
 form .required
 {
+	color:#000;
+}
+
+form .error
+{
 	color:red;
-	float:none;
 	font-weight:700;
 }
 

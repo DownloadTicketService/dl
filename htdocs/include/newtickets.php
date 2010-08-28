@@ -14,8 +14,7 @@ uploadProgressHdr($up);
 </script>
 
 <form enctype="multipart/form-data" method="post"
-      onsubmit="document.getElementById('submit').disabled = true;"
-      action="<?php echo $ref; ?>" >
+      onsubmit="validate(event);" action="<?php echo $ref; ?>" >
   <ul>
 
 <?php
@@ -47,13 +46,13 @@ uploadProgressHdr($up);
     <li>
       <?php
         $error = ((@$_POST["submit"] === $act) && empty($_FILES["file"]["name"]));
-        $class = "description" . ($error? " required": "");
+        $class = "description required" . ($error? " error": "");
       ?>
-      <label class="<?php echo $class; ?>"><? echo T_("Upload a file"); ?></label>
+      <label class="<?php echo $class; ?>"><?php echo T_("Upload a file"); ?></label>
       <div>
         <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
         <?php uploadProgressField($up); ?>
-	<input name="file" class="element file" type="file"/>
+	<input name="file" class="element file required" type="file"/>
       </div>
       <p class="guidelines"><small>
 	  <?php

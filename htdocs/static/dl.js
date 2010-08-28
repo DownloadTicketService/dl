@@ -85,10 +85,48 @@ function passGen()
 }
 
 
-// UI
+// UI/form
 function toggleAdvanced(set)
 {
   $('#toggler').toggleClass("active");
   var t = $('#advanced').toggleClass("active");
   if(!set) t.slideToggle("fast"); else t.toggle();
+}
+
+function validateForm()
+{
+  var ok = true;
+
+  $('label.required').each(function()
+  {
+    var label = $(this);
+    var value = $('input.required', label.next()).val();
+    if(value.length)
+      label.removeClass('error');
+    else
+    {
+      label.addClass('error');
+      ok = false;
+    }
+  });
+
+  return ok;
+}
+
+function validate(event)
+{
+  if(!validateForm())
+    event.preventDefault();
+  else
+  {
+    $('#submit').attr('disabled', true);
+    $('.onsubmit').submit();
+  }
+}
+
+function validateHook(fun)
+{
+  var hook = $('<div class="onsubmit" style="display: none;">');
+  hook.appendTo(document.body);
+  hook[0].onsubmit = fun;
 }

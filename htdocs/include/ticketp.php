@@ -9,16 +9,16 @@ printf(T_("The ticket %s is protected. Please enter the password to"
 echo "</p>";
 ?>
 
-<form action="<?php echo $ref; ?>" method="post">
+<form action="<?php echo $ref; ?>" method="post" onsubmit="validate(event);">
   <ul>
     <li>
       <?php
         $error = ((@$_POST["submit"] === $act) && !isset($_SESSION['t'][$id]));
-        $class = "description" . ($error? " required": "");
+        $class = "description required" . ($error? " error": "");
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Password"); ?></label>
       <div>
-	<input name="p" class="element text medium" type="password" maxlength="255"/>
+	<input name="p" class="element text medium required" type="password" maxlength="255"/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -29,7 +29,7 @@ echo "</p>";
 
     <li class="buttons">
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
-      <input type="submit" value="<?php echo T_("Download"); ?>"/>
+      <input id="submit" type="submit" value="<?php echo T_("Download"); ?>"/>
     </li>
   </ul>
 </form>

@@ -10,14 +10,17 @@
       // hooks
       $(document).ready(function()
       {
-	$("#submit", parent.document).click(function() { setTimeout("beginUpload()", uploadProgressDelay); });
+	parent.validateHook(function()
+	{
+	  setTimeout("beginUpload();", uploadProgressDelay);
+	});
       });
 
 
       // upload status
       function beginUpload()
       {
-        parent.progress.slideDown();
+	parent.progress.slideDown();
 	showUpload();
       }
 
@@ -29,7 +32,7 @@
 	  var pc = parseInt(data['percent']);
 	  parent.progress.progressBar(pc);
 	});
-	setTimeout("showUpload()", uploadProgressInterval);
+	setTimeout("showUpload();", uploadProgressInterval);
       }
 
     </script>

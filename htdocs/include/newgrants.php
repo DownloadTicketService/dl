@@ -10,7 +10,7 @@ pageHeader();
 </script>
 
 <form enctype="multipart/form-data" method="post"
-      action="<?php echo $ref; ?>" >
+      onsubmit="validate(event);" action="<?php echo $ref; ?>" >
   <ul>
 
     <h3><?php echo T_("Grant parameters"); ?></h3>
@@ -18,11 +18,11 @@ pageHeader();
     <li>
       <?php
         $error = ((@$_POST["submit"] === $act) && empty($_POST["nt"]));
-        $class = "description" . ($error? " required": "");
+        $class = "description required" . ($error? " error": "");
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Notification e-mail"); ?></label>
       <div>
-	<input name="nt" class="element text medium" type="text" maxlength="255" value=""/>
+	<input name="nt" class="element text medium required" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
