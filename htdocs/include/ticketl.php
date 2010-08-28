@@ -27,7 +27,6 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
     if($first) $first = false;
     else echo "<tr><td></td>";
     echo "<td>" . htmlEntUTF8(humanTicketStr($DATA)) . "</td></tr>";
-    echo "</td></tr>";
     ticketPurge($DATA, false);
   }
 
