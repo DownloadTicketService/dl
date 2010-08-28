@@ -1,3 +1,12 @@
+dl 0.9: 
+------------------
+
+* The settings of tickets and grants are now stored independently.
+* Most ticket and grant options are now moved into an "advanced" panel.
+* Form validation is now also performed in JavaScript.
+* Minor bug and UI fixes.
+
+
 dl 0.8: 10/07/2010
 ------------------
 
