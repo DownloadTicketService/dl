@@ -2,17 +2,14 @@
 // download ticket system
 include("include/sess.php");
 include("include/auth.php");
+include("include/entry.php");
 
 $act = (empty($_REQUEST["a"])? false: $_REQUEST["a"]);
 
-if(!$auth || $act == "login")
-  include("include/login.php");
-elseif($act == "tlist")
-  include("include/ticketl.php");
-elseif($act == "newg")
-  include("include/newgrant.php");
-elseif($act == "glist")
-  include("include/grantl.php");
+if(!$auth || $act == $entryAuth)
+  include($entry[$entryAuth]['entry']);
+elseif(isset($entry[$act]) && (!$entry[$act]['admin'] || $auth['admin']))
+  include($entry[$act]['entry']);
 else
-  include("include/newticket.php");
+  include($entry[$entryDefault]['entry']);
 ?>

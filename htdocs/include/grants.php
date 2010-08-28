@@ -1,7 +1,6 @@
 <?php
 $act = 'grants';
-$title = T_("Upload grant");
-includeTemplate('style/include/header.php', compact('title'));
+includeTemplate('style/include/header.php', array('title' => T_("Upload grant")));
 
 require_once("progress.php");
 $up = newUploadProgress();

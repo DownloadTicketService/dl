@@ -1,7 +1,6 @@
 <?php
 $act = 'ticketp';
-$title = T_("Password required");
-includeTemplate('style/include/header.php', compact('title'));
+includeTemplate('style/include/header.php', array('title' => T_("Password required")));
 
 echo "<p>";
 printf(T_("The ticket %s is protected. Please enter the password to"

@@ -7,6 +7,7 @@ $pages = array
   'tlist' => T_("Active tickets"),
   'newg'  => T_("New grant"),
   'glist' => T_("Active grants"),
+  'users' => T_("Users managements"),
 );
 
 
@@ -20,13 +21,16 @@ function pageHeader($vars = array())
 
 function pageFooter($vars = array())
 {
-  global $act, $pages, $adminPath, $helpPath;
+  global $act, $pages, $entry, $auth, $adminPath, $helpPath;
 
   echo '<div id="footer">';
 
   $first = true;
   foreach($pages as $page => $title)
   {
+    if($entry[$page]['admin'] && !$auth['admin'])
+      continue;
+
     if($first) $first = false;
     else echo ", ";
 
