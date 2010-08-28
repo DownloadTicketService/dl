@@ -51,7 +51,7 @@ function loadDefaults(set)
   }
 
   var v = refreshCookie(set + '_advanced', cookieLifetime);
-  if(parseInt(v)) toggleAdvanced(true);
+  if(v === null || parseInt(v)) toggleAdvanced(true);
 }
 
 function setDefaults(set)
