@@ -39,7 +39,7 @@ function pageFooter($vars = array())
   }
 
   echo ", <a href=\"$adminPath?u\">" . T_("Logout") . "</a>"
-    . ", <a href=\"$helpPath\">" . T_("Help") . "</a></div>";
+    . ", <a href=\"$helpPath\" target=\"_blank\">" . T_("Help") . "</a></div>";
   includeTemplate('style/include/footer.php', $vars);
 }
 

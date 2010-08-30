@@ -63,11 +63,11 @@ function switchLocale($locale)
   T_textdomain('messages');
 
   if(file_exists("$helpRoot/$locale"))
-    $helpPath = "$masterPath/$helpRoot/$locale/";
+    $helpPath = "$masterPath$helpRoot/$locale/";
   elseif(file_exists("$helpRoot/$defLocale"))
-    $helpPath = "$masterPath/$helpRoot/$defLocale/";
+    $helpPath = "$masterPath$helpRoot/$defLocale/";
   else
-    $helpPath = "$masterPath/$helpRoot/en_EN/";
+    $helpPath = "$masterPath$helpRoot/en_EN/";
 }
 
 
