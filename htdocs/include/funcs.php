@@ -94,7 +94,7 @@ function humanSize($size)
     return sprintf(T_("%s mb"), round($size / 1048576, 3));
   else if($size > 1024)
     return sprintf(T_("%s kb"), round($size / 1024, 3));
-  return sprintf(T_("%s bytes"), $size);
+  return sprintf(T_("%s bytes"), ($size? $size: 0));
 }
 
 
@@ -106,7 +106,7 @@ function humanTime($seconds)
     return sprintf(T_("%d hours"), intval($seconds / 3600));
   else if($seconds > 60)
     return sprintf(T_("%d minutes"), intval($seconds / 60));
-  return sprintf(T_("%d seconds"), $seconds);
+  return sprintf(T_("%d seconds"), ($seconds? $seconds: 0));
 }
 
 
