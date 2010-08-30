@@ -603,3 +603,6 @@ msgstr "invio interrotto"
 #: ../../../pages.php:39
 msgid "Help"
 msgstr "Aiuto"
+
+msgid "Advanced"
+msgstr "Avanzate"

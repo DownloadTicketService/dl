@@ -642,3 +642,6 @@ msgstr "Upload abgebrochen"
 #: ../../../pages.php:39
 msgid "Help"
 msgstr "Hilfe"
+
+msgid "Advanced"
+msgstr "Weitere Optionen"
