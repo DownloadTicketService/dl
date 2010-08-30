@@ -114,8 +114,9 @@ foreach($db->query($sql) as $DATA)
 ?>
 
     <li class="buttons">
-      <input type="reset" value="<?php echo T_("Reload"); ?>" onclick="document.location.reload();"/>
+      <input type="button" value="<?php echo T_("Reload"); ?>" onclick="document.location.reload();"/>
       <input type="reset" value="<?php echo T_("Reset"); ?>"/>
+      <input type="button" value="<?php echo T_("Select all"); ?>" onclick="selectAll();"/>
       <input type="submit" name="purge" value="<?php echo T_("Purge selected"); ?>"/>
     </li>
   </ul>

@@ -93,6 +93,13 @@ function toggleAdvanced(set)
   if(!set) t.slideToggle("fast"); else t.toggle();
 }
 
+
+function selectAll()
+{
+  $('input:checkbox', document.forms[0]).attr('checked', true);
+}
+
+
 function validateForm()
 {
   var ok = true;
