@@ -94,9 +94,10 @@ function toggleAdvanced(set)
 }
 
 
-function selectAll()
+function selectAll(v)
 {
-  $('input:checkbox', document.forms[0]).attr('checked', true);
+  if(v === null) v = true;
+  $('input:checkbox', document.forms[0]).attr('checked', v);
 }
 
 

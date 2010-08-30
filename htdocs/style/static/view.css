@@ -132,6 +132,39 @@ form li:after
 	visibility:hidden;
 }
 
+form > table
+{
+	width:100%;
+	padding:4px 0 2px 0;
+}
+
+form > table th
+{
+	border-bottom:1px dotted #ccc;
+}
+
+form > table td + td,
+form > table th + th
+{
+	border-left: 1px dotted #ccc;
+}
+
+form > table tr:hover
+{
+	background-color:#fff7c0;
+}
+
+form > table#users tr > td:nth-child(4),
+form > table#users tr > td:nth-child(5)
+{
+	text-align: right;
+}
+
+form > table#users tr:last-child td
+{
+	text-align: left;
+}
+
 #advanced
 {
 	border:1px dotted #ccc;
@@ -336,10 +369,8 @@ textarea.textarea
 select.select
 {
 	color:#333;
-	font-size:100%;
 	margin:1px 0;
 	padding:1px 0 0;
-	background:#fff url(shadow.gif) repeat-x top;
 	border-bottom:1px solid #ddd;
 	border-left:1px solid #c3c3c3;
 	border-right:1px solid #c3c3c3;
@@ -437,8 +468,8 @@ textarea.large
 	background:#fff;
 	border:1px dotted red;
 	margin-bottom:1em;
-        padding:10px;
-        width:580px;
+	padding:10px;
+	width:580px;
 	color:red;
 	font-weight:bold;
 }
@@ -477,7 +508,7 @@ form .error
 }
 
 /**** Guidelines and Error Highlight ****/
-form li.highlighted, li.highlighted.alien
+form li.highlighted, tr.highlighted, li.highlighted.alien
 {
 	background-color:#fff7c0;
 }
