@@ -238,4 +238,22 @@ function mailUTF8($addr, $subject, $body, $hdr)
   return mail($addr, $subject, $body, $hdr);
 }
 
+
+function errorMessage($hdr, $lines)
+{
+  if(!is_array($lines) || count($lines) == 1)
+  {
+    if(is_array($lines)) $lines = $lines[0];
+    echo "<div id=\"error_message\"><label>$hdr:</label> $lines</div>";
+  }
+  else
+  {
+    echo "<div id=\"error_message\"><table><tr><td class=\"label\">"
+      . "$hdr:</td><td>$lines[0]</td></tr>";
+    for($i = 1; $i != count($lines); ++$i)
+      echo "<tr><td></td><td>$lines[$i]</td></tr>";
+    echo "</table></div>";
+  }
+}
+
 ?>

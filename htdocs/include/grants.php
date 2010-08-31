@@ -8,25 +8,20 @@ uploadProgressHdr($up);
 
 if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
 {
-  echo "<div id=\"error_message\"><label>"
-    . T_("Upload failed:") . "</label> ";
-
+  $msg = false;
   switch($_FILES["file"]["error"])
   {
   case UPLOAD_ERR_INI_SIZE:
   case UPLOAD_ERR_FORM_SIZE:
-    echo T_("file too big");
+    $msg = T_("file too big");
     break;
 
   case UPLOAD_ERR_PARTIAL:
   case UPLOAD_ERR_NO_FILE:
-    echo T_("upload interrupted");
+    $msg = T_("upload interrupted");
     break;
-
-  default:
-    echo T_("internal error");
   }
-  echo "</div>";
+  errorMessage(T_("Upload failed"), ($msg? $msg: T_("internal error")));
 }
 ?>
 

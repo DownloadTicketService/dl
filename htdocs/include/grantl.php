@@ -6,11 +6,9 @@ pageHeader();
 
 if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 {
-  // purge immediately
-  echo "<div id=\"error_message\"><table><tr><td class=\"label\">"
-    . T_("Purged:") . "</td>";
+  $list = array();
 
-  $first = true;
+  // purge immediately
   foreach($_REQUEST["sel"] as $id)
   {
     $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
@@ -22,13 +20,12 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
       continue;
 
     // actually purge the grant
-    if($first) $first = false;
-    else echo "<tr><td></td>";
-    echo "<td>" . htmlEntUTF8(grantStr($DATA)) . "</td></tr>";
+    $list[] = htmlEntUTF8(grantStr($DATA));
     grantPurge($DATA, false);
   }
 
-  echo "</table></div>";
+  if(count($list))
+    errorMessage(T_("Purged"), $list);
 }
 
 // list active grants
