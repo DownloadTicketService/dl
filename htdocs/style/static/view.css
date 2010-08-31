@@ -13,7 +13,7 @@ body
 	background:#fff;
 	margin:0 auto;
 	text-align:left;
-	width:640px;
+	width:800px;
 }
 
 #top
@@ -21,7 +21,7 @@ body
 	display:block;
 	height:10px;
 	margin:10px auto 0;
-	width:650px;
+	width:810px;
 }
 
 #langmap
@@ -38,13 +38,14 @@ body
 	clear:both;
 	color:#999999;
 	text-align:center;
-	font-size: 85%;
+	font-size:85%;
 }
 
-#footer a{
+#footer a
+{
 	color:#999999;
-	text-decoration: none;
-	border-bottom: 1px dotted #999999;
+	text-decoration:none;
+	border-bottom:1px dotted #999999;
 }
 
 #bottom
@@ -52,7 +53,7 @@ body
 	display:block;
 	height:10px;
 	margin:0 auto;
-	width:650px;
+	width:810px;
 }
 
 .appnitro
@@ -63,8 +64,8 @@ body
 
 .ticketid
 {
-	font-family: monospace;
-	font-stretch: condensed;
+	font-family:monospace;
+	font-stretch:condensed;
 }
 
 /**** Logo Section  *****/
@@ -79,8 +80,8 @@ h1
 
 h1 img
 {
-	float: left;
-	padding-right: 0.5em;
+	float:left;
+	padding-right:0.5em;
 }
 
 h1 a
@@ -89,7 +90,7 @@ h1 a
 	height:100%;
 	min-height:35px;
 	overflow:hidden;
-	color: #182539;
+	color:#182539;
 }
 
 
@@ -103,7 +104,7 @@ img
 /**** Form Section ****/
 .appnitro li
 {
-	width:64%;
+	width:40%;
 }
 
 form ul
@@ -140,43 +141,51 @@ form > table
 
 form > table th
 {
+	text-align: left;
 	border-bottom:1px dotted #ccc;
+	white-space:nowrap;
 }
 
 form > table td + td,
 form > table th + th
 {
-	border-left: 1px dotted #ccc;
+	border-left:1px dotted #ccc;
 }
 
-form > table tr:hover
+form > table#users tr > td:nth-child(3)
 {
-	background-color:#fff7c0;
+	width:15%;
 }
 
-form > table#users tr > td:nth-child(4),
-form > table#users tr > td:nth-child(5)
+form > table#users tr > td:nth-child(4)
 {
-	text-align: right;
+	width:1%;
+}
+
+form > table#users tr > td:nth-child(5),
+form > table#users tr > td:nth-child(6),
+form > table#users tr > td:nth-child(7)
+{
+	text-align:right;
 }
 
 form > table#users tr:last-child td
 {
-	text-align: left;
+	text-align:left;
 }
 
 #advanced
 {
 	border:1px dotted #ccc;
-	padding-top: 0.6em;
-	margin-top: -0.6em;
+	padding-top:0.6em;
+	margin-top:-0.6em;
 }
 
 #toggler
 {
 	color:#999;
 	background:#fff url(toggle-right.gif) no-repeat 0 50%;
-	white-space: nowrap;
+	white-space:nowrap;
 	padding:0 10px 0 10px;
 }
 
@@ -222,65 +231,12 @@ form li div
 	color:#444;
 	margin:0 4px 0 0;
 	padding:0 0 8px;
-}
-
-form li span
-{
-	color:#444;
-	float:left;
-	margin:0 4px 0 0;
-	padding:0 0 8px;
-}
-
-form li div.left
-{
-	display:inline;
-	float:left;
-	width:48%;
-}
-
-form li div.right
-{
-	display:inline;
-	float:right;
-	width:48%;
-}
-
-form li div.left .medium
-{
-	width:100%;
-}
-
-form li div.right .medium
-{
-	width:100%;
+	white-space:nowrap;
 }
 
 .clear
 {
 	clear:both;
-}
-
-form li div label
-{
-	clear:both;
-	color:#444;
-	display:block;
-	font-size:9px;
-	line-height:9px;
-	margin:0;
-	padding-top:3px;
-}
-
-form li span label
-{
-	clear:both;
-	color:#444;
-	display:block;
-	font-size:9px;
-	line-height:9px;
-	margin:0;
-	padding-top:3px;
 }
 
 .form_description
@@ -300,23 +256,11 @@ form li span label
 	margin:0 0 3px;
 }
 
-form hr
-{
-	display:none;
-}
-
 form ul li.first
 {
 	border-top:none !important;
 	margin-top:0 !important;
 	padding-top:0 !important;
-}
-
-/**** Buttons ****/
-.buttons input
-{
-	font-size:120%;
-	margin-right:5px;
 }
 
 /**** Inputs and Labels ****/
@@ -329,6 +273,7 @@ label.description
 	font-weight:700;
 	line-height:150%;
 	padding:0 0 1px;
+	white-space:nowrap;
 }
 
 input.text
@@ -342,6 +287,7 @@ input.text
 	font-size:100%;
 	margin:0;
 	padding:2px 0;
+	width:99%;
 }
 
 input.file, input.button
@@ -366,6 +312,16 @@ textarea.textarea
 	width:99%;
 }
 
+input.element.password
+{
+	width:65%;
+}
+
+input.button.password
+{
+	width:32%;
+}
+
 select.select
 {
 	color:#333;
@@ -375,24 +331,6 @@ select.select
 	border-left:1px solid #c3c3c3;
 	border-right:1px solid #c3c3c3;
 	border-top:1px solid #7c7c7c;
-}
-
-input.checkbox
-{
-	display:block;
-	height:13px;
-	line-height:1.4em;
-	margin:6px 0 0 3px;
-	width:13px;
-}
-
-input.radio
-{
-	display:block;
-	height:13px;
-	line-height:1.4em;
-	margin:6px 0 0 3px;
-	width:13px;
 }
 
 label.choice
@@ -417,51 +355,6 @@ select.select[class]
 	margin:1px 0;
 }
 
-input.small
-{
-	width:25%;
-}
-
-select.small
-{
-	width:25%;
-}
-
-input.medium
-{
-	width:50%;
-}
-
-select.medium
-{
-	width:50%;
-}
-
-input.large
-{
-	width:99%;
-}
-
-select.large
-{
-	width:100%;
-}
-
-textarea.small
-{
-	height:5.5em;
-}
-
-textarea.medium
-{
-	height:10em;
-}
-
-textarea.large
-{
-	height:20em;
-}
-
 /**** Errors ****/
 #error_message
 {
@@ -469,7 +362,6 @@ textarea.large
 	border:1px dotted red;
 	margin-bottom:1em;
 	padding:10px;
-	width:580px;
 	color:red;
 	font-weight:bold;
 }
@@ -526,13 +418,8 @@ form .guidelines
 	position:absolute;
 	top:0;
 	visibility:hidden;
-	width:42%;
+	width:127%;
 	z-index:1000;
-}
-
-form .guidelines small
-{
-	font-size:105%;
 }
 
 form li.highlighted .guidelines
@@ -545,34 +432,10 @@ form li:hover .guidelines
 	visibility:visible;
 }
 
-/*** Password ****/
-ul.password{
-    margin-top:60px;
-    margin-bottom: 60px;
-    text-align: center;
-}
-.password h2{
-    color:#DF0000;
-    font-weight:bold;
-    margin:0pt auto 10px;
-}
-
-.password input.text {
-   font-size:170% !important;
-   width:380px;
-   text-align: center;
-}
-.password label{
-   display:block;
-   font-size:120% !important;
-   padding-top:10px;
-   font-weight:bold;
-}
-
 /*** File info ***/
 form li.fileinfo
 {
-	width:50%;
+	width:57%;
 }
 
 form li.alien
@@ -587,24 +450,26 @@ form li .fileinfo
 	border:1px solid #e6e6e6;
 	color:#444;
 	font-size:80%;
-	width:80%;
+	width:64%;
 	margin:0 0 0 8px;
 	padding:8px 10px 9px;
 	position:absolute;
 	top:0;
 	visibility:hidden;
-	left: 100%;
+	left:100%;
 	z-index:1000;
+	white-space:normal;
 }
 
 form li .fileinfo th
 {
-	text-align: right;
+	vertical-align:top;
+	text-align:right;
 }
 
 form li .fileinfo td
 {
-	text-align: left;
+	text-align:left;
 }
 
 form li.highlighted .fileinfo

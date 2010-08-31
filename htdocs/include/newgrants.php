@@ -22,7 +22,7 @@ pageHeader();
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Notification e-mail"); ?></label>
       <div>
-	<input name="nt" class="element text medium required" type="text" maxlength="255" value=""/>
+	<input name="nt" class="element text required" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -36,7 +36,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Comment"); ?></label>
       <div>
-	<input name="cmt" class="element text medium" type="text" maxlength="255" value=""/>
+	<input name="cmt" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -50,7 +50,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Send link to e-mail"); ?></label>
       <div>
-	<input name="st" class="element text medium" type="text" maxlength="255" value=""/>
+	<input name="st" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -68,8 +68,8 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Password"); ?></label>
       <div>
-	<input name="pass" class="element text medium" type="text" maxlength="255" value=""/>
-        <input class="element button" type="button" value="<?php echo T_("Generate"); ?>" onclick="passGen();"/>
+	<input name="pass" class="element text password" type="text" maxlength="255" value=""/>
+        <input class="element button password" type="button" value="<?php echo T_("Generate"); ?>" onclick="passGen();"/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -83,7 +83,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
       <div>
-	<input name="gn" value="7" class="element text medium" type="text" maxlength="255" value=""/>
+	<input name="gn" value="7" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -100,7 +100,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
       <div>
-	<input name="dn" value="7" class="element text medium" type="text" maxlength="255" value=""/>
+	<input name="dn" value="7" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -115,7 +115,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Expire in # of hours after last dl"); ?></label>
       <div>
-	<input name="hra" value="24" class="element text medium" type="text" maxlength="255" value=""/>
+	<input name="hra" value="24" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -130,7 +130,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Expire after # of downloads"); ?></label>
       <div>
-	<input name="dln" value="0" class="element text medium" type="text" maxlength="255" value=""/>
+	<input name="dln" value="0" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php

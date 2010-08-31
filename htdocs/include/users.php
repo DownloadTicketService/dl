@@ -36,7 +36,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 function htmlRole($name, $selected)
 {
   // role
-  $ret = "<select class=\"element large select\" name=\"$name\">";
+  $ret = "<select class=\"element select\" name=\"$name\">";
   foreach(array("Administrator" => 1, "User" => 0) as $role => $admin)
   {
     $ret .= "<option value=\"1\"";
@@ -98,7 +98,7 @@ foreach($db->query($sql) as $DATA)
 ?>
     <tr>
       <td></td>
-      <td><input class="element large text" type="text"></td>
+      <td><input class="element text" type="text"></td>
       <td><?php echo htmlRole("newRole", 0); ?></td>
       <td colspan="3">
 	<input class="element" type="submit" name="create" value="<?php echo T_("Create"); ?>"/>

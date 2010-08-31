@@ -4,12 +4,10 @@ $act = "glist";
 $ref = "$adminPath?a=$act";
 pageHeader();
 
-echo "<form action=\"$ref\" method=\"post\"><ul>";
-
 if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 {
   // purge immediately
-  echo "<li id=\"error_message\"><table><tr><td class=\"label\">"
+  echo "<div id=\"error_message\"><table><tr><td class=\"label\">"
     . T_("Purged:") . "</td>";
 
   $first = true;
@@ -30,7 +28,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
     grantPurge($DATA, false);
   }
 
-  echo "</table></li>";
+  echo "</table></div>";
 }
 
 // list active grants
@@ -38,6 +36,8 @@ $sql = "SELECT g.*, u.name AS user FROM grant g"
   . " LEFT JOIN user u ON u.id = g.user_id";
 if(!$auth["admin"]) $sql .= " WHERE user_id = " . $auth["id"];
 $sql .= " ORDER BY (user_id <> " . $auth["id"] . "), user_id, time";
+
+echo "<form action=\"$ref\" method=\"post\"><ul>";
 
 foreach($db->query($sql) as $DATA)
 {

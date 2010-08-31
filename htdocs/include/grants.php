@@ -5,53 +5,50 @@ includeTemplate('style/include/header.php', array('title' => T_("Upload grant"))
 require_once("progress.php");
 $up = newUploadProgress();
 uploadProgressHdr($up);
+
+if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
+{
+  echo "<div id=\"error_message\"><label>"
+    . T_("Upload failed:") . "</label> ";
+
+  switch($_FILES["file"]["error"])
+  {
+  case UPLOAD_ERR_INI_SIZE:
+  case UPLOAD_ERR_FORM_SIZE:
+    echo T_("file too big");
+    break;
+
+  case UPLOAD_ERR_PARTIAL:
+  case UPLOAD_ERR_NO_FILE:
+    echo T_("upload interrupted");
+    break;
+
+  default:
+    echo T_("internal error");
+  }
+  echo "</div>";
+}
 ?>
 
 <form enctype="multipart/form-data" method="post"
       onsubmit="validate(event);" action="<?php echo $ref; ?>" >
   <ul>
-
-<?php
-  if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
-  {
-    echo "<li id=\"error_message\"><label>"
-      . T_("Upload failed:") . "</label> ";
-
-    switch($_FILES["file"]["error"])
-    {
-    case UPLOAD_ERR_INI_SIZE:
-    case UPLOAD_ERR_FORM_SIZE:
-      echo T_("file too big");
-      break;
-
-    case UPLOAD_ERR_PARTIAL:
-    case UPLOAD_ERR_NO_FILE:
-      echo T_("upload interrupted");
-      break;
-
-    default:
-      echo T_("internal error");
-    }
-    echo "</li>";
-  }
-?>
-
     <li>
       <?php
-        $error = ((@$_POST["submit"] === $act) && empty($_FILES["file"]["name"]));
-        $class = "description required" . ($error? " error": "");
+	$error = ((@$_POST["submit"] === $act) && empty($_FILES["file"]["name"]));
+	$class = "description required" . ($error? " error": "");
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Upload a file"); ?></label>
       <div>
-        <input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
-        <?php uploadProgressField($up); ?>
+	<input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
+	<?php uploadProgressField($up); ?>
 	<input name="file" class="element file required" type="file"/>
       </div>
       <p class="guidelines"><small>
 	  <?php
-            printf(T_("Choose which file to upload. You can upload up to %s."),
+	    printf(T_("Choose which file to upload. You can upload up to %s."),
 		humanSize($iMaxSize));
-          ?>
+	  ?>
       </small></p>
     </li>
 

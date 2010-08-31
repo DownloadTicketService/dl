@@ -94,7 +94,7 @@ function humanSize($size)
     return sprintf(T_("%s mb"), round($size / 1048576, 3));
   else if($size > 1024)
     return sprintf(T_("%s kb"), round($size / 1024, 3));
-  return sprintf(T_("%s bytes"), ($size? $size: 0));
+  return sprintf(T_("%s b"), ($size? $size: 0));
 }
 
 
