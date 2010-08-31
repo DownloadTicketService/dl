@@ -4,33 +4,63 @@ $act = "users";
 $ref = "$adminPath?a=$act";
 pageHeader();
 
-echo "<form action=\"$ref\" method=\"post\">";
-
-if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
+if(isset($_REQUEST['create']) && !empty($_REQUEST['newUser'])
+&& !empty($_REQUEST['newRole']))
 {
-  // purge immediately
-  echo "<ul><li id=\"error_message\"><table><tr><td class=\"label\">"
-    . T_("Purged:") . "</td>";
+  // create user
+  $user = $_REQUEST['newUser'];
+  $pass = (!empty($_REQUEST['newPass'])? $_REQUEST['newPass']: false);
+  $admin = ($_REQUEST['newRole'] == 1);
+  if(userAdd($user, $pass, $admin))
+    errorMessage(T_("Created"), htmlEntUTF8($user));
+  else
+    errorMessage(T_("Creation failed"),
+	    sprintf(T_("user \"%s\" already exists"),
+		htmlEntUTF8($user)));
+}
 
-  $first = true;
-  foreach($_REQUEST["sel"] as $id)
+if(isset($_REQUEST["delete"]) && !empty($_REQUEST["sel"]))
+{
+  $list = array();
+
+  // delete users
+  foreach($_REQUEST["sel"] as $name)
+    if(userDel($name)) $list[] = htmlEntUTF8($name);
+
+  if(count($list))
+    errorMessage(T_("Deleted"), $list);
+}
+
+if(isset($_REQUEST['apply'])
+&& !empty($_REQUEST['user']) && is_array($_REQUEST['user'])
+&& !empty($_REQUEST['role']) && is_array($_REQUEST['role'])
+&& !empty($_REQUEST['pass']) && is_array($_REQUEST['pass'])
+&& count($_REQUEST['user']) == count($_REQUEST['role'])
+&& count($_REQUEST['role']) == count($_REQUEST['pass']))
+{
+  $user = $_REQUEST['user'];
+  $role = $_REQUEST['role'];
+  $pass = $_REQUEST['pass'];
+  $list = array();
+
+  for($i = 0; $i != count($user); ++$i)
   {
-    $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
-    $DATA = $db->query($sql)->fetch();
-    if($DATA === false) continue;
+    $o = userAdm($user[$i]);
+    if(is_null($o)) continue;
 
-    // check for permissions
-    if(!$auth["admin"] && $DATA["user_id"] != $auth["id"])
-      continue;
+    $role[$i] = ($role[$i] == 1);
+    $sameRole = ($o == $role[$i]);
+    $samePass = empty($pass[$i]);
+    if($sameRole && $samePass) continue;
 
-    // actually purge the grant
-    if($first) $first = false;
-    else echo "<tr><td></td>";
-    echo "<td>" . htmlEntUTF8(grantStr($DATA)) . "</td></tr>";
-    grantPurge($DATA, false);
+    if(userUpd($user[$i],
+	    ($samePass? null: $pass[$i]),
+	    ($sameRole? null: $role[$i])))
+      $list[] = htmlEntUTF8($user[$i]);
   }
 
-  echo "</table></ul>";
+  if(count($list))
+    errorMessage(T_("Updated"), $list);
 }
 
 function htmlRole($name, $selected)
@@ -39,7 +69,7 @@ function htmlRole($name, $selected)
   $ret = "<select class=\"element select\" name=\"$name\">";
   foreach(array("Administrator" => 1, "User" => 0) as $role => $admin)
   {
-    $ret .= "<option value=\"1\"";
+    $ret .= "<option value=\"$admin\"";
     if($selected == $admin) $ret .= " selected=\"selected\"";
     $ret .= ">" . T_($role) . "</option>";
   }
@@ -68,10 +98,12 @@ $sql = <<<EOF
 EOF;
 
 ?>
+<form action="<?php echo $ref; ?>" method="post">
   <table id="users">
     <tr>
       <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
       <th><?php echo T_("User"); ?></th>
+      <th><?php echo T_("Password"); ?></th>
       <th><?php echo T_("Role"); ?></th>
       <th><?php echo T_("Tickets"); ?></th>
       <th><?php echo T_("Grants"); ?></th>
@@ -82,10 +114,14 @@ EOF;
 foreach($db->query($sql) as $DATA)
 {
   // selection
-  echo "<tr><td><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\"/></td>";
+  echo "<tr><td><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\""
+    . htmlEntUTF8($DATA['name']) . "\"/></td>";
 
-  // name
+  // name/password
   echo "<td><label>" . htmlEntUTF8($DATA['name']) . "</label></td>";
+  echo "<td><input type=\"hidden\" name=\"user[]\" value=\""
+    . htmlEntUTF8($DATA['name']) . "\"/><input class=\"element text\""
+    . " type=\"text\" name=\"pass[]\"></td>";
 
   // role
   echo "<td>" . htmlRole("role[]", $DATA['admin']) . "</td>";
@@ -98,7 +134,8 @@ foreach($db->query($sql) as $DATA)
 ?>
     <tr>
       <td></td>
-      <td><input class="element text" type="text"></td>
+      <td><input class="element text" type="text" name="newUser"></td>
+      <td><input class="element text" type="text" name="newPass"></td>
       <td><?php echo htmlRole("newRole", 0); ?></td>
       <td colspan="3">
 	<input class="element" type="submit" name="create" value="<?php echo T_("Create"); ?>"/>
@@ -111,7 +148,7 @@ foreach($db->query($sql) as $DATA)
       <input type="button" value="<?php echo T_("Reload"); ?>" onclick="document.location.reload();"/>
       <input type="reset" value="<?php echo T_("Reset"); ?>"/>
       <input type="submit" name="delete" value="<?php echo T_("Delete selected"); ?>"/>
-      <input type="submit" name="delete" value="<?php echo T_("Update"); ?>"/>
+      <input type="submit" name="apply" value="<?php echo T_("Apply changes"); ?>"/>
     </li>
   </ul>
 </form>

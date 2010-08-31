@@ -101,10 +101,23 @@ function userUpd($user, $pass = null, $admin = null)
       . ($admin? 'admin': 'user') . "')";
   }
 
-  $sql .= "UPDATE user SET " . implode(", ", $fields)
+  $sql = "UPDATE user SET " . implode(", ", $fields)
     . " WHERE name = " . $db->quote($user);
 
   return ($db->exec($sql) == 1);
+}
+
+
+function userAdm($user)
+{
+  global $db;
+
+  $sql = "SELECT u.name, admin FROM user u"
+    . " LEFT JOIN role r ON r.id = u.role_id"
+    . " WHERE u.name = " . $db->quote($user);
+  $DATA = $db->query($sql)->fetch();
+
+  return ($DATA? $DATA['admin']: null);
 }
 
 ?>
