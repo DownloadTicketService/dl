@@ -82,6 +82,8 @@ performed.
 Advanced upload parameters
 --------------------------
 
+.. image:: t-advanced.png
+
 Expire in total # of hours:
 
   Type the maximal number of hours the uploaded file is allowed to be kept on
