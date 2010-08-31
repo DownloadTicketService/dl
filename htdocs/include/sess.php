@@ -1,6 +1,7 @@
 <?php
 // initialize the session and locale
 include("init.php");
+require_once("admfuncs.php");
 
 // expire tickets before serving any request
 if($gcInternal === true

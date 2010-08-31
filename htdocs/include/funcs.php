@@ -18,18 +18,6 @@ function isTicketExpired($DATA, $now = NULL)
 }
 
 
-function ticketPurge($DATA, $auto = true)
-{
-  global $db;
-
-  if($db->exec("DELETE FROM ticket WHERE id = ". $db->quote($DATA["id"])) == 1)
-  {
-    unlink($DATA["path"]);
-    onTicketPurge($DATA, $auto);
-  }
-}
-
-
 function isGrantId($str)
 {
   return isTicketId($str);
@@ -40,15 +28,6 @@ function isGrantExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
   return (isset($$DATA["grant_expire"]) && $DATA["grant_expire"] < $now);
-}
-
-
-function grantPurge($DATA, $auto = true)
-{
-  global $db;
-
-  if($db->exec("DELETE FROM grant WHERE id = ". $db->quote($DATA["id"])) == 1)
-    onGrantPurge($DATA, $auto);
 }
 
 
@@ -181,45 +160,6 @@ function includeTemplate($file, $vars = array())
   global $ref, $langData, $locale;
   extract($vars);
   include($file);
-}
-
-
-function runGc()
-{
-  global $db, $gcLimit;
-
-  $now = time();
-
-  $sql = "SELECT * FROM ticket WHERE expire < $now";
-  $sql .= " OR expire_last < $now";
-  $sql .= " OR expire_dln <= downloads";
-  if($gcLimit) $sql .= " LIMIT $gcLimit";
-  foreach($db->query($sql)->fetchAll() as $DATA)
-    ticketPurge($DATA);
-
-  // expire grants
-  $sql = "SELECT * FROM grant WHERE grant_expire < $now";
-  if($gcLimit) $sql .= " LIMIT $gcLimit";
-  foreach($db->query($sql)->fetchAll() as $DATA)
-    grantPurge($DATA);
-}
-
-
-function genTicketId($seed)
-{
-  global $dataDir;
-
-  // generate new unique id/file name
-  if(!file_exists($dataDir)) mkdir($dataDir);
-  do
-  {
-    list($usec, $sec) = microtime();
-    $id = md5(rand() . "/$usec/$sec/" . $seed);
-    $tmpFile = "$dataDir/$id";
-  }
-  while(fopen($tmpFile, "x") === FALSE);
-
-  return array($id, $tmpFile);
 }
 
 

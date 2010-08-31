@@ -6,6 +6,7 @@ if(!isset($argc)) die("not running from the command line\n");
 
 // data
 require_once("../confwrap.php");
+require_once("../admfuncs.php");
 
 // initialize the db
 $db = new PDO($dsn);
@@ -46,17 +47,8 @@ if($argv[1] == 'add' && $argc > 3 && $argc < 6)
 {
   $user = $argv[2];
   $admin = !strcasecmp($argv[3], "true");
-  $pass = ($argc > 4? md5($argv[4]): false);
-
-  // prepare the SQL
-  $sql = "INSERT INTO user (name, pass_md5, role_id) VALUES (";
-  $sql .= $db->quote($user);
-  $sql .= ", " . (empty($pass)? 'NULL': $db->quote($pass));
-  $sql .= ", (SELECT id FROM role WHERE name = '"
-    . ($admin? 'admin': 'user') . "')";
-  $sql .= ")";
-
-  if($db->exec($sql) != 1)
+  $pass = ($argc > 4? $argv[4]: false);
+  if(!userAdd($user, $pass, $admin))
     die("cannot add user '$user'\n");
 
   exit(0);
@@ -66,16 +58,8 @@ if($argv[1] == 'rst' && $argc > 3 && $argc < 6)
 {
   $user = $argv[2];
   $admin = !strcasecmp($argv[3], "true");
-  $pass = ($argc > 4? md5($argv[4]): false);
-
-  // prepare the SQL
-  $sql = "UPDATE user SET pass_md5 = ";
-  $sql .= (empty($pass)? 'NULL': $db->quote($pass));
-  $sql .= ", role_id = (SELECT id FROM role WHERE name = '"
-    . ($admin? 'admin': 'user') . "')";
-  $sql .= " WHERE name = " . $db->quote($user);
-
-  if($db->exec($sql) != 1)
+  $pass = ($argc > 4? $argv[4]: false);
+  if(!userUpd($user, $pass, $admin))
     die("cannot reset user '$user'\n");
 
   exit(0);
@@ -84,14 +68,8 @@ if($argv[1] == 'rst' && $argc > 3 && $argc < 6)
 if($argv[1] == 'passwd' && $argc > 2 && $argc < 5)
 {
   $user = $argv[2];
-  $pass = ($argc > 3? md5($argv[3]): false);
-
-  // prepare the SQL
-  $sql = "UPDATE user SET pass_md5 = ";
-  $sql .= (empty($pass)? 'NULL': $db->quote($pass));
-  $sql .= " WHERE name = " . $db->quote($user);
-
-  if($db->exec($sql) != 1)
+  $pass = ($argc > 3? $argv[3]: false);
+  if(!userUpd($user, $pass))
     die("cannot reset password for '$user'\n");
 
   exit(0);
@@ -100,8 +78,7 @@ if($argv[1] == 'passwd' && $argc > 2 && $argc < 5)
 if($argv[1] == 'rm' && $argc > 2)
 {
   $user = $argv[2];
-  $sql = "DELETE FROM user WHERE name = " . $db->quote($user);
-  if($db->exec($sql) != 1)
+  if(!userDel($user))
     die("cannot remove user '$user'\n");
 
   exit(0);

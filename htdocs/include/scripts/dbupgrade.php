@@ -6,6 +6,7 @@ if(!isset($argc)) die("not running from the command line\n");
 
 // data
 require_once("../confwrap.php");
+require_once("../admfuncs.php");
 
 // initialize the old 0.3 dbs
 if(!isset($dbHandler)) $dbHandler = "db4";
