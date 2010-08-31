@@ -228,8 +228,8 @@ msgid "Purge selected"
 msgstr "Elimina selezionati"
 
 #: ../../../ticketl.php:15 ../../../grantl.php:15
-msgid "Purged:"
-msgstr "Eliminati:"
+msgid "Purged"
+msgstr "Eliminati"
 
 #: ../../../ticketl.php:119 ../../../grantl.php:94
 msgid "Reload"
@@ -496,8 +496,8 @@ msgid "Upload a file"
 msgstr "Invia un file"
 
 #: ../../../newtickets.php:22 ../../../grants.php:20
-msgid "Upload failed:"
-msgstr "Invio fallito:"
+msgid "Upload failed"
+msgstr "Invio fallito"
 
 #: ../../../grants.php:3
 msgid "Upload grant"
@@ -606,3 +606,27 @@ msgstr "Aiuto"
 
 msgid "Advanced"
 msgstr "Avanzate"
+
+msgid "Users management"
+msgstr "Gestione utenti"
+
+msgid "Role"
+msgstr "Ruolo"
+
+msgid "Tickets"
+msgstr "Ticket"
+
+msgid "Grants"
+msgstr "Concessioni"
+
+msgid "Total size"
+msgstr "Spazio totale"
+
+msgid "Delete selected"
+msgstr "Elimina selezionati"
+
+msgid "Administrator"
+msgstr "Amministratore"
+
+msgid "Apply changes"
+msgstr "Applica modifiche"
