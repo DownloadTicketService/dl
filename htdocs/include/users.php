@@ -5,7 +5,7 @@ $ref = "$adminPath?a=$act";
 pageHeader();
 
 if(isset($_REQUEST['create']) && !empty($_REQUEST['newUser'])
-&& !empty($_REQUEST['newRole']))
+&& isset($_REQUEST['newRole']))
 {
   // create user
   $user = $_REQUEST['newUser'];
