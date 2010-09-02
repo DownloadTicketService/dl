@@ -66,7 +66,9 @@ Handy upload parameters
 -----------------------
 
 Before uploading a file, you can customize how the download and cleanup is
-performed.
+performed by setting some "Advanced" parameters:
+
+.. image:: t-advanced.png
 
 * *If you want your file to never be deleted* please check the "Permanent
   ticket" checkbox. Your file will always be available until you manually
@@ -82,8 +84,6 @@ performed.
 Advanced upload parameters
 --------------------------
 
-.. image:: t-advanced.png
-
 Expire in total # of hours:
 
   Type the maximal number of hours the uploaded file is allowed to be kept on
@@ -93,8 +93,17 @@ Expire in total # of hours:
 Expire in # of hours after last dl:
 
   Type the number of hours the uploaded file is allowed to be kept on the
-  server after being downloaded. After this period is passed without activity,
-  the file will be deleted from the server.
+  server after being downloaded. Another download will extend the lifetime of
+  the ticket for the specified number of hours. After this period is passed
+  without activity, the file is be deleted from the server.
+
+  This feature, when used with a long period (days or weeks), allows "hot"
+  tickets to be kept alive only until used, and be deleted automatically
+  afterward.
+
+  When used with a short period (24 hours or less), allows to remove the ticket
+  as soon as being downloaded, allowing the recipient some margin to download
+  the file more than once.
 
 Expire after # of downloads:
 
