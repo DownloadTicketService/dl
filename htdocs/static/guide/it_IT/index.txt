@@ -100,7 +100,7 @@ Scadenza in # ore dopo l'ultimo scaricamento:
   permette di mantenere ticket molto utilizzati attivi per un periodo
   indefinito, e rimuoverli automaticamente alla cessazione di utilizzo.
 
-  Usata invece con periodi previ (24 ore o meno), consente di eliminare il
+  Usata invece con periodi brevi (24 ore o meno), consente di eliminare il
   ticket rapidamente dopo lo scaricamento, dando al destinatario del margine
   per effettuarne altri.
 
