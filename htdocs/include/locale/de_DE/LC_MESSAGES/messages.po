@@ -239,8 +239,8 @@ msgid "Purge selected"
 msgstr "Markierte l&ouml;schen"
 
 #: ../../../ticketl.php:15 ../../../grantl.php:15 ../../../ticketl.php:15
-msgid "Purged:"
-msgstr "Gel&ouml;scht:"
+msgid "Purged"
+msgstr "Gel&ouml;scht"
 
 #: ../../../ticketl.php:119 ../../../grantl.php:94 ../../../ticketl.php:119
 msgid "Reload"
@@ -531,8 +531,8 @@ msgstr "Datei"
 
 #: ../../../newtickets.php:22 ../../../grants.php:20
 #: ../../../newtickets.php:22
-msgid "Upload failed:"
-msgstr "Upload fehlgeschlagen:"
+msgid "Upload failed"
+msgstr "Upload fehlgeschlagen"
 
 #: ../../../grants.php:3
 msgid "Upload grant"
@@ -645,3 +645,28 @@ msgstr "Hilfe"
 
 msgid "Advanced"
 msgstr "Weitere Optionen"
+
+#####
+msgid "Users management"
+msgstr "Bentzerverwaltung"
+
+msgid "Role"
+msgstr "Gruppe"
+
+msgid "Tickets"
+msgstr "Tickets"
+
+msgid "Grants"
+msgstr "Uploads"
+
+msgid "Total size"
+msgstr "Gesamtgr&ouml;&szlig;e"
+
+msgid "Delete selected"
+msgstr "Markierte l&ouml;schen"
+
+msgid "Administrator"
+msgstr "Administrator"
+
+msgid "Apply changes"
+msgstr "&Auml;nderungen &uuml;bernehmen"
