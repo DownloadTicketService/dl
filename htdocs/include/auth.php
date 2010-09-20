@@ -35,7 +35,7 @@ function authenticate()
       Header('HTTP/1.0 401 Unauthorized');
       Header('WWW-Authenticate: Basic realm="' . $authRealm . '"');
       includeTemplate('style/include/rmtlogout.php');
-      exit();
+      return null;
     }
 
     $user = $remoteUser;
@@ -73,6 +73,13 @@ function authenticate()
 }
 
 if(!isset($_SESSION["auth"]) || isset($_REQUEST['u']))
+{
   $_SESSION["auth"] = authenticate();
+  if($_SESSION["auth"] === null)
+  {
+    session_destroy();
+    exit();
+  }
+}
 
 ?>
