@@ -89,20 +89,9 @@ function humanTime($seconds)
 }
 
 
-function humanTicketStr($DATA)
-{
-  $str = '"' . $DATA['name'] . '"';
-  if(!empty($DATA['cmt'])) $str .= ' (' . $DATA['cmt'] . ')';
-  return $str;
-}
-
-
 function ticketStr($DATA)
 {
-  $str = $DATA['id'] . ' (' . $DATA['name'];
-  if(!empty($DATA['cmt'])) $str .= ': ' . $DATA['cmt'];
-  $str .= ')';
-  return $str;
+  return ($DATA['id'] . ' (' . $DATA['name'] . ')');
 }
 
 
@@ -115,9 +104,7 @@ function ticketUrl($DATA)
 
 function grantStr($DATA)
 {
-  $str = $DATA['id'];
-  if(!empty($DATA['cmt'])) $str .= ' (' . $DATA['cmt'] . ')';
-  return $str;
+  return $DATA['id'];
 }
 
 

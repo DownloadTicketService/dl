@@ -20,7 +20,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
       continue;
 
     // actually purge the ticket
-    $list[] = htmlEntUTF8(humanTicketStr($DATA));
+    $list[] = htmlEntUTF8(ticketStr($DATA));
     ticketPurge($DATA, false);
   }
 
@@ -49,9 +49,9 @@ foreach($db->query($sql) as $DATA)
 
   // name
   echo "<span><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/>";
-  echo "<label class=\"choice\"><a href=\"" . ticketUrl($DATA) . "\">" . htmlEntUTF8($DATA["name"]) . "</a>";
-  if($DATA["cmt"]) echo ' ' . htmlEntUTF8($DATA["cmt"]);
-  echo "</label></span>";
+  echo "<label class=\"choice\"><a href=\"" . ticketUrl($DATA) . "\">" . htmlEntUTF8($DATA["name"]) . "</a></label>";
+  if($DATA["cmt"]) echo "<p class=\"comment\">" . htmlEntUTF8($DATA["cmt"]) . "</p>";
+  echo "</span>";
 
   // parameters
   echo "<div class=\"fileinfo\"><table>";

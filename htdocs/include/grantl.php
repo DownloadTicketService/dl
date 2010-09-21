@@ -46,9 +46,9 @@ foreach($db->query($sql) as $DATA)
 
   // name
   echo "<span><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/>";
-  echo "<label class=\"choice\"><a href=\"" . grantUrl($DATA) . "\">" . htmlEntUTF8($DATA["id"]) . "</a>";
-  if($DATA["cmt"]) echo ' ' . htmlEntUTF8($DATA["cmt"]);
-  echo "</label></span>";
+  echo "<label class=\"choice ticketid\"><a href=\"" . grantUrl($DATA) . "\">" . htmlEntUTF8($DATA["id"]) . "</a></label>";
+  if($DATA["cmt"]) echo "<p class=\"comment\">" . htmlEntUTF8($DATA["cmt"]) . "</p>";
+  echo "</span>";
 
   // parameters
   echo "<div class=\"fileinfo\"><table>";

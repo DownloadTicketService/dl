@@ -4,17 +4,16 @@ $act = false;
 pageHeader(array('title' => T_("Upload result")));
 
 // final url
+msgTicketCreate($DATA, $subject, $body);
 $url = ticketUrl($DATA);
-$subject = sprintf(T_("download link to %s"), humanTicketStr($DATA));
-$body = (!isset($DATA['pass'])? $url: (T_("URL:") . " $url\n" .  T_("Password:") . " " . $DATA['pass'] . "\n"));
 $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode($body);
 ?>
 
 <div>
   <label class="description">
-    <?php printf(T_("Your ticket %s"), htmlEntUTF8(humanTicketStr($DATA))); ?>
+    <?php printf(T_("Your ticket %s"), htmlEntUTF8(ticketStr($DATA))); ?>
   </label>
-<p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
+  <p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
 <?php
   if($DATA['pass'])
   {

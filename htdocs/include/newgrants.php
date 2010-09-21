@@ -36,7 +36,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Comment"); ?></label>
       <div>
-	<input name="cmt" class="element text" type="text" maxlength="255" value=""/>
+	<textarea name="cmt" class="element textarea"></textarea>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -50,7 +50,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Send link to e-mail"); ?></label>
       <div>
-	<input name="st" class="element text" type="text" maxlength="255" value=""/>
+	<input name="st" class="element text" type="text" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php

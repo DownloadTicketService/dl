@@ -4,9 +4,8 @@ $act = false;
 pageHeader(array('title' => T_("Grant result")));
 
 // final url
+msgGrantCreate($DATA, $subject, $body);
 $url = grantUrl($DATA);
-$subject = T_("upload grant link");
-$body = (!isset($DATA['pass'])? $url: (T_("URL:") . " $url\n" .  T_("Password:") . " " . $DATA['pass'] . "\n"));
 $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode($body);
 ?>
 
@@ -14,7 +13,7 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
   <label class="description">
     <?php printf(T_("Your grant %s"), htmlEntUTF8(grantStr($DATA))); ?>
   </label>
-<p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
+  <p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
 <?php
   if($DATA['pass'])
   {
