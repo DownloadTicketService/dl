@@ -34,7 +34,7 @@ function pageFooter($vars = array())
     if($first) $first = false;
     else echo ", ";
 
-    if($page == $act) echo $title;
+    if($page == $act) echo "<span>$title</span>";
     else echo "<a href=\"$adminPath?a=$page\">$title</a>";
   }
 
