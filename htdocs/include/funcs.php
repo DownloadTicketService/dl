@@ -68,12 +68,12 @@ function logGrantEvent($DATA, $logLine)
 function humanSize($size)
 {
   if($size > 1073741824)
-    return sprintf(T_("%s gb"), round($size / 1073741824, 3));
+    return sprintf(T_("%s GiB"), round($size / 1073741824, 1));
   else if($size > 1048576)
-    return sprintf(T_("%s mb"), round($size / 1048576, 3));
+    return sprintf(T_("%s MiB"), round($size / 1048576, 1));
   else if($size > 1024)
-    return sprintf(T_("%s kb"), round($size / 1024, 3));
-  return sprintf(T_("%s b"), ($size? $size: 0));
+    return sprintf(T_("%s KiB"), round($size / 1024, 1));
+  return sprintf(T_("%s B"), ($size? $size: 0));
 }
 
 
