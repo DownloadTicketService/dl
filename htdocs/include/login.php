@@ -35,7 +35,7 @@ $class = "description required" . ($error? " error": "");
 
     <li class="buttons">
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
-      <input id="submit" type="submit"/>
+      <input id="submit" type="submit" value="<?php echo T_("Login"); ?>"/>
     </li>
   </ul>
 </form>

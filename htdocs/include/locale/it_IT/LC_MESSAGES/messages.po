@@ -630,3 +630,6 @@ msgstr "Amministratore"
 
 msgid "Apply changes"
 msgstr "Applica modifiche"
+
+msgid "Submit"
+msgstr "Invia"
