@@ -36,16 +36,18 @@ body
 	border-top:1px dotted #ccc;
 	margin:1em 0 0;
 	clear:both;
-	color:#999999;
 	text-align:center;
-	font-size:85%;
+	font-size:90%;
+	color:#182539;
+	font-weight: bold;
 }
 
 #footer a
 {
-	color:#999999;
+	color:#555;
 	text-decoration:none;
-	border-bottom:1px dotted #999999;
+	border-bottom:1px dotted #555;
+	font-weight: normal;
 }
 
 #bottom
@@ -183,7 +185,7 @@ form > table#users tr:last-child td
 
 #toggler
 {
-	color:#999;
+	color:#555;
 	background:#fff url(toggle-right.gif) no-repeat 0 50%;
 	white-space:nowrap;
 	padding:0 10px 0 10px;
@@ -430,7 +432,7 @@ form .guidelines
 	font-size:80%;
 	left:100%;
 	line-height:130%;
-	margin:0 0 0 8px;
+	margin:2em 0 0 8px;
 	padding:8px 10px 9px;
 	position:absolute;
 	top:0;
