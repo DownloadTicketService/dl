@@ -7,7 +7,7 @@ $pages = array
   'tlist' => T_("Active tickets"),
   'newg'  => T_("New grant"),
   'glist' => T_("Active grants"),
-  'users' => T_("Users management"),
+  'users' => T_("Manage users"),
 );
 
 
