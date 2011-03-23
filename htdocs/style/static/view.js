@@ -7,5 +7,5 @@ $(document).ready(function()
     e.blur(function() { $(this).parent().parent().removeClass("highlighted"); });
   });
 
-  $("p.comment").click(function() { $(this).toggleClass("expanded"); } );
+  $("tr.file.comment").click(function() { $(this).toggleClass("expanded"); } );
 });

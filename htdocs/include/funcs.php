@@ -183,4 +183,13 @@ function errorMessage($hdr, $lines)
   }
 }
 
+
+function truncAtWord($str, $len, $thr = 5, $ell = "...")
+{
+  $min = max(0, $len - $thr);
+  $max = $len - 1;
+  $re = '/^(.{' . "$min,$max" . '}\S\b|.{' . $len . '}).*/u';
+  return preg_replace($re, '$1...', str_replace("\n", "", $str));
+}
+
 ?>

@@ -94,6 +94,20 @@ function toggleAdvanced(set)
 }
 
 
+function hideComments()
+{
+  $('tr.file.expanded').removeClass('expanded');
+  $('tr.file.comment').hide();
+}
+
+
+function toggleComment(id)
+{
+  $('tr.file.' + id).toggleClass('expanded');
+  $('tr.file.comment.' + id).toggle();
+}
+
+
 function selectAll(v)
 {
   if(v === undefined) v = true;

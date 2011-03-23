@@ -9,6 +9,7 @@ dl 0.9:
 * French, Italian and German translation.
 * Multi-line comments can be attached to tickets and grants.
 * Improved the e-mail notification text.
+* Improved ticket and grant listings.
 * Minor bug and UI fixes.
 
 

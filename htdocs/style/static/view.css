@@ -44,7 +44,7 @@ body
 #footer span
 {
 	color:#182539;
-	font-weight: bold;
+	font-weight:bold;
 }
 
 #footer a
@@ -147,7 +147,7 @@ form > table
 
 form > table th
 {
-	text-align: left;
+	text-align:left;
 	border-bottom:1px dotted #ccc;
 	white-space:nowrap;
 }
@@ -156,28 +156,6 @@ form > table td + td,
 form > table th + th
 {
 	border-left:1px dotted #ccc;
-}
-
-form > table#users tr > td:nth-child(3)
-{
-	width:15%;
-}
-
-form > table#users tr > td:nth-child(4)
-{
-	width:1%;
-}
-
-form > table#users tr > td:nth-child(5),
-form > table#users tr > td:nth-child(6),
-form > table#users tr > td:nth-child(7)
-{
-	text-align:right;
-}
-
-form > table#users tr:last-child td
-{
-	text-align:left;
 }
 
 #advanced
@@ -342,31 +320,6 @@ select.select
 	border-top:1px solid #7c7c7c;
 }
 
-p.comment
-{
-	color:#444;
-	font-size:100%;
-	line-height:1.4em;
-	margin:0 0 0.2em 1.2em;
-	width:90%;
-	white-space:nowrap;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	-o-text-overflow:ellipsis;
-}
-
-p.comment:hover
-{
-	cursor:pointer;
-	color:#666;
-}
-
-p.comment.expanded
-{
-	white-space:pre-wrap;
-	overflow:auto;
-}
-
 select.select[class]
 {
 	margin:0;
@@ -423,7 +376,7 @@ form .error
 }
 
 /**** Guidelines and Error Highlight ****/
-form li.highlighted, tr.highlighted, li.highlighted.alien
+form li.highlighted, tr.highlighted
 {
 	background-color:#fff7c0;
 }
@@ -455,57 +408,138 @@ form li:hover .guidelines
 	visibility:visible;
 }
 
-/*** File info ***/
-form li.fileinfo
+/*** Tables ***/
+form > table#tickets > tbody > tr > td:nth-child(1),
+form > table#tickets > tbody > tr > td:nth-child(2),
+form > table#tickets > tbody > tr > td:nth-child(3),
+form > table#tickets > tbody > tr > td:nth-child(4),
+form > table#tickets > tbody > tr > td:nth-child(5)
 {
-	width:57%;
+	width:16px;
 }
 
-form li.fileinfo + .fileinfo
+form > table#tickets > tbody > tr > th:nth-child(7),
+form > table#tickets > tbody > tr > td:nth-child(7)
 {
-	border-top:1px dotted #ccc;
-}
-
-form li.alien
-{
-	background:#fafafa;
-	border:1px dashed #e6e6e6;
-}
-
-form li .fileinfo
-{
-	background:#f5f5f5;
-	border:1px solid #e6e6e6;
-	color:#444;
-	font-size:80%;
-	width:64%;
-	margin:0 0 0 8px;
-	padding:8px 10px 9px;
-	position:absolute;
-	top:0;
-	visibility:hidden;
-	left:100%;
-	z-index:1000;
-	white-space:normal;
-}
-
-form li .fileinfo th
-{
-	vertical-align:top;
+	width:7em;
 	text-align:right;
 }
 
-form li .fileinfo td
+form > table#tickets > tbody > tr > td:nth-child(8)
+{
+	width:7em;
+}
+
+form > table#tickets > tbody > tr.file.comment
+{
+	vertical-align:top;
+}
+
+form > table#tickets > tbody > tr.file.comment > td
+{
+	border-bottom:1px dotted #ccc;
+}
+
+form > table#tickets > tbody > tr.file.alien
+{
+	background:#fafafa;
+}
+
+form > table#grants > tbody > tr > td:nth-child(1),
+form > table#grants > tbody > tr > td:nth-child(2),
+form > table#grants > tbody > tr > td:nth-child(3)
+{
+	width:16px;
+}
+
+form > table#grants > tbody > tr > td:nth-child(5),
+form > table#grants > tbody > tr > td:nth-child(6)
+{
+	width:7em;
+}
+
+form > table#grants > tbody > tr.file.comment
+{
+	vertical-align:top;
+}
+
+form > table#grants > tbody > tr.file.comment > td
+{
+	border-bottom:1px dotted #ccc;
+}
+
+form > table#grants > tbody > tr.file.alien
+{
+	background:#fafafa;
+}
+
+form > table#users > tbody > tr > td:nth-child(3)
+{
+	width:15%;
+}
+
+form > table#users > tbody > tr > td:nth-child(4)
+{
+	width:1%;
+}
+
+form > table#users > tbody > tr > th:nth-child(5),
+form > table#users > tbody > tr > td:nth-child(5),
+form > table#users > tbody > tr > th:nth-child(6),
+form > table#users > tbody > tr > td:nth-child(6),
+form > table#users > tbody > tr > th:nth-child(7),
+form > table#users > tbody > tr > td:nth-child(7)
+{
+	text-align:right;
+}
+
+form > table#users > tbody > tr:last-child > td
 {
 	text-align:left;
 }
 
-form li.highlighted .fileinfo
+/*** File info ***/
+.fileinfo
 {
-	visibility:visible;
+	background:#f5f5f5;
+	color:#444;
 }
 
-form li:hover .fileinfo
+.fileinfo th
 {
-	visibility:visible;
+	vertical-align:top;
+	text-align:right;
+	border:none;
+	width:45%;
+}
+
+.fileinfo td
+{
+	text-align:left;
+}
+
+/*** Comment ***/
+tr.file td.filename
+{
+	cursor:pointer;
+}
+
+tr.file td.filename:hover
+{
+	text-decoration:underline;
+}
+
+tr.file span.comment
+{
+	color:#555;
+}
+
+tr.file.expanded span.comment
+{
+	display:none;
+}
+
+tr.file.comment td.comment
+{
+	white-space:pre-line;
 }

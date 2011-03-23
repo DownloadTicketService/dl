@@ -1,5 +1,6 @@
 <?php
 require_once("pages.php");
+require_once("style/include/style.php");
 $act = "tlist";
 $ref = "$adminPath?a=$act";
 pageHeader();
@@ -7,9 +8,11 @@ pageHeader();
 if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 {
   $list = array();
+  $sel = &$_REQUEST["sel"];
+  if(!is_array($sel)) $sel = array($sel);
 
   // purge immediately
-  foreach($_REQUEST["sel"] as $id)
+  foreach($sel as $id)
   {
     $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
     $DATA = $db->query($sql)->fetch();
@@ -36,7 +39,24 @@ $sql = "SELECT t.*, u.name AS user FROM ticket t"
 if(!$auth["admin"]) $sql .= " WHERE user_id = " . $auth["id"];
 $sql .= " ORDER BY (user_id <> " . $auth["id"] . "), user_id, time";
 
-echo "<form action=\"$ref\" method=\"post\"><ul>";
+?>
+<script type="text/javascript">
+  $(document).ready(function() { hideComments(); });
+</script>
+
+<form action="<?php echo $ref; ?>" method="post">
+  <table id="tickets">
+    <tr>
+      <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th><?php echo T_("Ticket"); ?></th>
+      <th><?php echo T_("Size"); ?></th>
+      <th><?php echo T_("Date"); ?> <img src="style/static/down.png"/></th>
+    </tr>
+<?php
 
 foreach($db->query($sql) as $DATA)
 {
@@ -44,44 +64,84 @@ foreach($db->query($sql) as $DATA)
 
   $totalSize += $DATA["size"];
   $our = ($DATA["user_id"] == $auth["id"]);
-  $class = ($our? "fileinfo": "fileinfo alien");
-  echo "<li class=\"$class\">";
+  $class = "file expanded " . $DATA['id'];
+  if(!$our) $class .= " alien";
+  echo "<tr class=\"$class\">";
+
+  // selection
+  echo "<td><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/></td>";
+
+  // tick
+  echo "<td>";
+  if($DATA["downloads"]) echo "<img src=\"style/static/tick.png\"/>";
+  echo "</td>";
+
+  // save
+  echo "<td><a href=\"" . ticketUrl($DATA) . "\">"
+    . "<img src=\"style/static/save.png\"/></a></td>";
+
+  // delete
+  echo "<td><a href=\"$ref&purge&sel=" . $DATA['id'] . "\">"
+    . "<img src=\"style/static/cross.png\"/></a></td>";
+
+  // edit
+  echo "<td><a><img src=\"style/static/edit.png\"/></a></td>";
 
   // name
-  echo "<span><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/>";
-  echo "<label class=\"choice\"><a href=\"" . ticketUrl($DATA) . "\">" . htmlEntUTF8($DATA["name"]) . "</a></label>";
-  if($DATA["cmt"]) echo "<p class=\"comment\">" . htmlEntUTF8($DATA["cmt"]) . "</p>";
-  echo "</span>";
+  echo "<td onclick=\"toggleComment('" . $DATA['id'] . "');\" "
+    . "class=\"filename\">" . htmlEntUTF8($DATA["name"]);
+  $maxLen = ($styleTicketMaxLen - strlen($DATA['name']) - 3);
+  if($DATA["cmt"] && $maxLen > 0)
+  {
+    echo ": <span class=\"comment\">";
+    echo htmlEntUTF8(truncAtWord($DATA["cmt"], $maxLen));
+    echo "</span>";
+  }
+  echo "</td>";
 
-  // parameters
-  echo "<div class=\"fileinfo\"><table>";
-  echo "<tr><th>" . T_("Size:") . " </th><td>" . humanSize($DATA["size"]) . "</td></tr>";
-  echo "<tr><th>" . T_("Date:") . " </th><td>" . date("d/m/Y", $DATA["time"]) . "</td></tr>";
-  if(!$our)
-    echo "<tr><th>" . T_("User:") . " </th><td>" . htmlEntUTF8($DATA["user"]) . "</td></tr>";
-  if(isset($DATA['pass_md5']))
-    echo "<tr><th>" . T_("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
+  // size/date
+  echo "<td>" . humanSize($DATA["size"]) . "</td>";
+  echo "<td>" . date("d/m/Y", $DATA["time"]) . "</td>";
+
+  echo "</tr>";
+  echo "<tr class=\"$class comment\">";
+  // note: css madness
+  for($i = 0; $i != 5; ++$i) echo "<td></td>";
+
+  // comment
+  echo "<td class=\"comment\">";
+  if($DATA["cmt"]) echo htmlEntUTF8($DATA["cmt"]);
+  echo "</td>";
+
+  // parameters */
+  echo "<td class=\"fileinfo\" colspan=\"2\"><table>";
 
   // expire
   echo "<tr><th>" . T_("Expiry:") . " </th><td>";
   if($DATA["expire_dln"] || $DATA["last_time"])
   {
     if($DATA["expire_last"])
-      printf(T_("Maybe in %s"), humanTime($DATA["expire_last"] - time()));
+      printf(T_("About %s"), humanTime($DATA["expire_last"] - time()));
     elseif($DATA["expire_dln"] && $DATA["downloads"])
-      printf(T_("Maybe in %d downloads"), ($DATA["expire_dln"] - $DATA["downloads"]));
+      printf(T_("About %d downloads"), ($DATA["expire_dln"] - $DATA["downloads"]));
     elseif($DATA["expire"])
-      printf(T_("Maybe in %s"), humanTime($DATA["expire"] - time()));
+      printf(T_("About %s"), humanTime($DATA["expire"] - time()));
     elseif($DATA["expire_dln"])
       printf(T_("After %d downloads"), $DATA["expire_dln"]);
     else
-      printf(T_("After next download, in %s"), humanTime($DATA["last_time"]));
+      printf(T_("%s after next download"), humanTime($DATA["last_time"]));
   }
   elseif($DATA["expire"])
     printf(T_("In %s"), humanTime($DATA["expire"] - time()));
   else
     echo "<strong>" . T_("never") . "</strong>";
   echo "</td></tr>";
+
+  // owner
+  if(!$our)
+    echo "<tr><th>" . T_("User:") . " </th><td>" . htmlEntUTF8($DATA["user"]) . "</td></tr>";
+  if(isset($DATA['pass_md5']))
+    echo "<tr><th>" . T_("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
 
   // downloads
   if($DATA["downloads"])
@@ -105,13 +165,15 @@ foreach($db->query($sql) as $DATA)
     echo "</td></tr>";
   }
 
-  echo "</table></div></li>";
+  echo "</table></td></tr>";
 }
 
 ?>
+  </table>
 
+  <ul>
     <li class="buttons">
-      <input type="button" value="<?php echo T_("Reload"); ?>" onclick="document.location.reload();"/>
+      <input type="submit" name="reload" value="<?php echo T_("Reload"); ?>"/>
       <input type="reset" value="<?php echo T_("Reset"); ?>"/>
       <input type="button" value="<?php echo T_("Select all"); ?>" onclick="selectAll();"/>
       <input type="submit" name="purge" value="<?php echo T_("Purge selected"); ?>"/>
