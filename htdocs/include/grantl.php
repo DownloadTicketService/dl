@@ -14,6 +14,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
   // purge immediately
   foreach($sel as $id)
   {
+    if(!isGrantId($id)) continue;
     $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
     $DATA = $db->query($sql)->fetch();
     if($DATA === false) continue;
