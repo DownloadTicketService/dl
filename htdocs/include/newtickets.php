@@ -147,10 +147,10 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
 
     <li>
       <label class="description"><?php echo T_("Permanent ticket / upload"); ?></label>
-      <span>
-	<input name="nl" class="element checkbox" type="checkbox" value="1"/>
-	<label class="choice"><?php echo T_("Do not expire"); ?></label>
-      </span>
+      <div>
+	<input name="nl" id="nl" class="element checkbox" type="checkbox" value="1"/>
+	<label for="nl" class="choice"><?php echo T_("Do not expire"); ?></label>
+      </div>
       <p class="guidelines"><small>
 	  <?php
 	    echo T_("Set this checkmark if you do not want the uploaded file to expire.");
