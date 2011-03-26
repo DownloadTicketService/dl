@@ -235,4 +235,55 @@ function truncAtWord($str, $len, $thr = 5, $ell = "...")
   return preg_replace($re, '$1...', str_replace("\n", "", $str));
 }
 
+
+function is_numeric_int($str)
+{
+  return (is_int($str) || (int)$str == $str);
+}
+
+
+function anyOf()
+{
+  foreach(func_get_args() as $arg)
+    if(isset($arg)) return $arg;
+  return NULL;
+}
+
+
+function not_empty(&$v)
+{
+  return !empty($v);
+}
+
+
+function validateParams(&$params, &$array)
+{
+  $found = false;
+  $error = false;
+
+  foreach($params as $k => $v)
+  {
+    $p = &$array[$k];
+    if(isset($p))
+    {
+      if(!is_array($v))
+	$v = array($v);
+
+      foreach($v as $i)
+      {
+	if(call_user_func($i, $p))
+	  $found = true;
+	else
+	{
+	  $error = true;
+	  unset($array[$k]);
+	  break;
+	}
+      }
+    }
+  }
+
+  return ($found && !$error);
+}
+
 ?>

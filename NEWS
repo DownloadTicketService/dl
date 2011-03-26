@@ -11,6 +11,7 @@ dl 0.9:
 * Multi-line comments can be attached to tickets and grants.
 * Improved the e-mail notification text.
 * Improved ticket and grant listings.
+* Tickets can now be edited after being created.
 * Minor bug and UI fixes.
 
 

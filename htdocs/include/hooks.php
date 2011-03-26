@@ -24,6 +24,12 @@ function onTicketCreate($DATA)
 }
 
 
+function onTicketUpdate($DATA)
+{
+  // stub
+}
+
+
 function onTicketDownload($DATA)
 {
   global $fromAddr;

@@ -86,7 +86,8 @@ foreach($db->query($sql) as $DATA)
     . "<img src=\"style/static/cross.png\"/></a></td>";
 
   // edit
-  echo "<td><a><img src=\"style/static/edit.png\"/></a></td>";
+  echo "<td><a href=\"$adminPath?a=tedit&id=" . $DATA['id'] . "\">"
+    . "<img src=\"style/static/edit.png\"/></a></td>";
 
   // name
   echo "<td onclick=\"toggleComment('" . $DATA['id'] . "');\" "
