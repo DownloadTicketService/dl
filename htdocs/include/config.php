@@ -17,6 +17,19 @@ $defLocale = "en_EN";
 
 
 /*
+ * Ticket/grant defaults
+ */
+
+// Ticket defaults
+$defaultTicketTotalDays = 7;
+$defaultTicketLastDl = 24;
+$defaultTicketMaxDl = 0;
+
+// Grant defaults
+$defaultGrantTotalDays = 7;
+
+
+/*
  * Advanced settings (defaults commented)
  */
 

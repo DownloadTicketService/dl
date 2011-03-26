@@ -14,6 +14,9 @@ if(!isset($dsn)) $dsn = "sqlite:$spoolDir/data.sdb";
 if(!isset($gcProbability)) $gcProbability = 1.0;
 if(!isset($gcInternal)) $gcInternal = true;
 if(!isset($gcLimit)) $gcLimit = 0;
+if(!isset($defaultTotalDays)) $defaultTotalDays = 7;
+if(!isset($defaultLastDl)) $defaultLastDl = 24;
+if(!isset($defaultMaxDl)) $defaultMaxDl = 0;
 
 // derived data
 $useSysLog = (!empty($logFile) && strstr($logFile, "/") === FALSE);
