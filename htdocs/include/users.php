@@ -12,7 +12,7 @@ if(isset($_REQUEST['create']) && !empty($_REQUEST['newUser'])
   $pass = (!empty($_REQUEST['newPass'])? $_REQUEST['newPass']: false);
   $admin = ($_REQUEST['newRole'] == 1);
   if(userAdd($user, $pass, $admin))
-    errorMessage(T_("Created"), htmlEntUTF8($user));
+    infoMessage(T_("Created"), htmlEntUTF8($user));
   else
     errorMessage(T_("Creation failed"),
 	    sprintf(T_("user \"%s\" already exists"),
@@ -28,7 +28,7 @@ if(isset($_REQUEST["delete"]) && !empty($_REQUEST["sel"]))
     if(userDel($name)) $list[] = htmlEntUTF8($name);
 
   if(count($list))
-    errorMessage(T_("Deleted"), $list);
+    infoMessage(T_("Deleted"), $list);
 }
 
 if(isset($_REQUEST['apply'])

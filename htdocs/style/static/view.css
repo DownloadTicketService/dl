@@ -331,10 +331,18 @@ select.select[class]
 	margin:1px 0;
 }
 
-/**** Errors ****/
-#error_message
+/**** Errors and messages ****/
+.info_message
 {
-	background:#fff;
+	border:1px dotted blue;
+	margin-bottom:1em;
+	padding:10px;
+	color:blue;
+	font-weight:bold;
+}
+
+.error_message
+{
 	border:1px dotted red;
 	margin-bottom:1em;
 	padding:10px;

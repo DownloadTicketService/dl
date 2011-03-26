@@ -29,7 +29,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
   }
 
   if(count($list))
-    errorMessage(T_("Purged"), $list);
+    infoMessage(T_("Purged"), $list);
 }
 
 // list active grants
