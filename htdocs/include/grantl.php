@@ -89,12 +89,7 @@ foreach($db->query($sql) as $DATA)
   echo "</td>";
 
   // expire
-  echo "<td>";
-  if($DATA["grant_expire"])
-    echo "In " . humanTime($DATA["grant_expire"] - time());
-  else
-    echo "<strong>" . T_("Never") . "</strong>";
-  echo "</td>";
+  echo "<td>" . grantExpiry($DATA) . "</td>";
 
   // date
   echo "<td>" . date("d/m/Y", $DATA["time"]) . "</td>";

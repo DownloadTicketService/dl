@@ -102,6 +102,28 @@ function ticketUrl($DATA)
 }
 
 
+function ticketExpiry($DATA)
+{
+  if($DATA["expire_dln"] || $DATA["last_time"])
+  {
+    if($DATA["expire_last"])
+      return sprintf(T_("About %s"), humanTime($DATA["expire_last"] - time()));
+    elseif($DATA["expire_dln"] && $DATA["downloads"])
+      return sprintf(T_("About %d downloads"), ($DATA["expire_dln"] - $DATA["downloads"]));
+    elseif($DATA["expire"])
+      return sprintf(T_("About %s"), humanTime($DATA["expire"] - time()));
+    elseif($DATA["expire_dln"])
+      return sprintf(T_("After %d downloads"), $DATA["expire_dln"]);
+    else
+      return sprintf(T_("%s after next download"), humanTime($DATA["last_time"]));
+  }
+  elseif($DATA["expire"])
+    return sprintf(T_("In %s"), humanTime($DATA["expire"] - time()));
+
+  return ("<strong>" . T_("Never") . "</strong>");
+}
+
+
 function grantStr($DATA)
 {
   return $DATA['id'];
@@ -112,6 +134,15 @@ function grantUrl($DATA)
 {
   global $masterPath;
   return $masterPath . "?g=" . $DATA['id'];
+}
+
+
+function grantExpiry($DATA)
+{
+  if($DATA["grant_expire"])
+    return sprintf(T_("In %s"), humanTime($DATA["grant_expire"] - time()));
+
+  return ("<strong>" . T_("Never") . "</strong>");
 }
 
 

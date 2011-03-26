@@ -118,25 +118,8 @@ foreach($db->query($sql) as $DATA)
   echo "<td class=\"fileinfo\" colspan=\"2\"><table>";
 
   // expire
-  echo "<tr><th>" . T_("Expiry:") . " </th><td>";
-  if($DATA["expire_dln"] || $DATA["last_time"])
-  {
-    if($DATA["expire_last"])
-      printf(T_("About %s"), humanTime($DATA["expire_last"] - time()));
-    elseif($DATA["expire_dln"] && $DATA["downloads"])
-      printf(T_("About %d downloads"), ($DATA["expire_dln"] - $DATA["downloads"]));
-    elseif($DATA["expire"])
-      printf(T_("About %s"), humanTime($DATA["expire"] - time()));
-    elseif($DATA["expire_dln"])
-      printf(T_("After %d downloads"), $DATA["expire_dln"]);
-    else
-      printf(T_("%s after next download"), humanTime($DATA["last_time"]));
-  }
-  elseif($DATA["expire"])
-    printf(T_("In %s"), humanTime($DATA["expire"] - time()));
-  else
-    echo "<strong>" . T_("never") . "</strong>";
-  echo "</td></tr>";
+  echo "<tr><th>" . T_("Expiry:") . " </th><td>"
+    . ticketExpiry($DATA) . "</td></tr>";
 
   // owner
   if(!$our)
