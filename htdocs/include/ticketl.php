@@ -112,7 +112,8 @@ foreach($db->query($sql) as $DATA)
 
   // comment
   echo "<td class=\"comment\">";
-  if($DATA["cmt"]) echo htmlEntUTF8($DATA["cmt"]);
+  if($DATA["cmt"])
+    echo htmlEntUTF8(sliceWords($DATA["cmt"], $styleTicketLineLen));
   echo "</td>";
 
   // parameters */

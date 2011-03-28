@@ -227,12 +227,19 @@ function infoMessage($hdr, $lines)
 }
 
 
-function truncAtWord($str, $len, $thr = 5, $ell = "...")
+function truncAtWord($str, $len, $thr = 5, $ell = "\xE2\x80\xA6")
 {
   $min = max(0, $len - $thr);
   $max = $len - 1;
   $re = '/^(.{' . "$min,$max" . '}\S\b|.{' . $len . '}).*/u';
-  return preg_replace($re, '$1...', str_replace("\n", "", $str));
+  $rp = '$1' . $ell;
+  return preg_replace($re, $rp, str_replace("\n", "", $str));
+}
+
+
+function sliceWords($str, $len)
+{
+  return preg_replace('/(\S{' . $len . '})/u', "$1\xE2\x80\x8B", $str);
 }
 
 
