@@ -27,7 +27,7 @@ if(isset($GRANT['pass_md5']) && !isset($_SESSION['g'][$id]))
   if($pass === $GRANT['pass_md5'])
   {
     // authorize the grant for this session
-    $_SESSION['g'][$id] = $pass;
+    $_SESSION['g'][$id] = array('pass' => $_REQUEST["p"]);
   }
   else
   {
@@ -81,6 +81,7 @@ function handleUpload($GRANT, $FILE)
   // fetch defaults
   $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
   $DATA = $db->query($sql)->fetch();
+  if(!empty($GRANT['pass'])) $DATA['pass'] = $GRANT['pass'];
 
   // trigger use hooks
   withDefLocale('onGrantUse', array($GRANT, $DATA));
@@ -94,7 +95,11 @@ $DATA = false;
 if(isset($_FILES["file"])
 && is_uploaded_file($_FILES["file"]["tmp_name"])
 && $_FILES["file"]["error"] == UPLOAD_ERR_OK)
+{
+  if(!empty($_SESSION['g'][$id]['pass']))
+    $GRANT['pass'] = $_SESSION['g'][$id]['pass'];
   $DATA = handleUpload($GRANT, $_FILES["file"]);
+}
 
 // resulting page
 if($DATA === false)
@@ -103,6 +108,10 @@ else
 {
   unset($ref);
   includeTemplate("style/include/grantr.php");
+
+  // kill the session ASAP
+  if($auth === false)
+    session_destroy();
 }
 
 ?>

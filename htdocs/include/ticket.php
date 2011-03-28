@@ -28,7 +28,7 @@ if(isset($DATA['pass_md5']))
   if($pass === $DATA['pass_md5'])
   {
     // authorize the ticket for this session
-    $_SESSION['t'][$id] = $pass;
+    $_SESSION['t'][$id] = array('pass' => $_REQUEST["p"]);
   }
   else
   {

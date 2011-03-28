@@ -4,6 +4,7 @@ dl 0.9:
 * The settings of tickets and grants are now stored independently.
 * Default ticket/grant settings can be specified in the config file.
 * Most ticket and grant options are now moved into an "advanced" panel.
+* Grant notifications now include the ticket password in the message.
 * Form validation is now also performed in JavaScript.
 * Enlarged the width of the interface to 800px.
 * Users management is now available through the web interface.

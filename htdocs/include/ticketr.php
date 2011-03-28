@@ -106,6 +106,10 @@ if($last && !connection_aborted())
       . ", downloads = downloads + 1 WHERE id = " . $db->quote($id);
     $db->exec($sql);
   }
+
+  // kill the session ASAP
+  if($auth === false)
+    session_destroy();
 }
 
 ?>
