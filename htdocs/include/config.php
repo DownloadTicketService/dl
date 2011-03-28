@@ -34,7 +34,7 @@ $defaultGrantTotalDays = 7;
  */
 
 // cfgVersion: configuration file version
-$cfgVersion = "0.8";
+$cfgVersion = "0.9";
 
 // logFile: set this if you want new tickets, downloads and purges logged to a
 //          file. If the setting contains no slashes, it will be used as a tag
@@ -57,7 +57,7 @@ $cfgVersion = "0.8";
 //$authRealm = "Restricted Area";
 
 // dsn: set the DSN of your database (read the installation manual)
-//$dsn = "sqlite:$dataDir/data.sdb";
+//$dsn = "sqlite:$spoolDir/data/data.sdb";
 
 // sessionName: PHP session name (to ensure session uniqueness)
 //		The default name is generated as:
