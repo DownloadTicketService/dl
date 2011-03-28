@@ -68,12 +68,14 @@ foreach($db->query($sql) as $DATA)
   echo "<td><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/></td>";
 
   // upload
-  echo "<td><a href=\"" . grantUrl($DATA) . "\">"
-    . "<img src=\"style/static/upload.png\"/></a></td>";
+  echo '<td><a href="' . grantUrl($DATA) . '">'
+    . '<img title="' . T_("Upload")
+    . '" src="style/static/upload.png"/></a></td>';
 
   // delete
   echo "<td><a href=\"$ref&purge&sel=" . $DATA['id'] . "\">"
-    . "<img src=\"style/static/cross.png\"/></a></td>";
+    . "<img title=\"" . T_("Purge")
+    . "\" src=\"style/static/cross.png\"/></a></td>";
 
   // name
   echo "<td onclick=\"toggleComment('" . $DATA['id'] . "');\" "

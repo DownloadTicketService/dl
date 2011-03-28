@@ -74,20 +74,27 @@ foreach($db->query($sql) as $DATA)
 
   // tick
   echo "<td>";
-  if($DATA["downloads"]) echo "<img src=\"style/static/tick.png\"/>";
+  if($DATA["downloads"])
+  {
+    echo '<img title="' . T_("Successfully downloaded")
+      . '" src="style/static/tick.png"/>';
+  }
   echo "</td>";
 
-  // save
-  echo "<td><a href=\"" . ticketUrl($DATA) . "\">"
-    . "<img src=\"style/static/save.png\"/></a></td>";
+  // download
+  echo '<td><a href="' . ticketUrl($DATA) . '">'
+    . '<img title="' . T_("Download")
+    . '" src="style/static/save.png"/></a></td>';
 
   // delete
   echo "<td><a href=\"$ref&purge&sel=" . $DATA['id'] . "\">"
-    . "<img src=\"style/static/cross.png\"/></a></td>";
+    . "<img title=\"" . T_("Purge")
+    . "\" src=\"style/static/cross.png\"/></a></td>";
 
   // edit
   echo "<td><a href=\"$adminPath?a=tedit&id=" . $DATA['id'] . "\">"
-    . "<img src=\"style/static/edit.png\"/></a></td>";
+    . "<img title=\"" . T_("Edit")
+    . "\" src=\"style/static/edit.png\"/></a></td>";
 
   // name
   echo "<td onclick=\"toggleComment('" . $DATA['id'] . "');\" "
