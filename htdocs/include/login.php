@@ -3,7 +3,7 @@ $act = 'login';
 $ref = "$masterPath?";
 includeTemplate('style/include/header.php', array('title' => T_("Login")));
 
-$error = ((@$_REQUEST["submit"] === $act) && $auth === false);
+$error = ((@$_POST["submit"] === $act) && $auth === false);
 $class = "description required" . ($error? " error": "");
 ?>
 

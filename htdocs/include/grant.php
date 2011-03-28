@@ -23,11 +23,11 @@ if($GRANT === false || isGrantExpired($GRANT))
 
 if(isset($GRANT['pass_md5']) && !isset($_SESSION['g'][$id]))
 {
-  $pass = (empty($_REQUEST["p"])? false: md5($_REQUEST["p"]));
+  $pass = (empty($_POST["p"])? false: md5($_POST["p"]));
   if($pass === $GRANT['pass_md5'])
   {
     // authorize the grant for this session
-    $_SESSION['g'][$id] = array('pass' => $_REQUEST["p"]);
+    $_SESSION['g'][$id] = array('pass' => $_POST["p"]);
   }
   else
   {

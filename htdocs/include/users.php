@@ -4,13 +4,13 @@ $act = "users";
 $ref = "$adminPath?a=$act";
 pageHeader();
 
-if(isset($_REQUEST['create']) && !empty($_REQUEST['newUser'])
-&& isset($_REQUEST['newRole']))
+if(isset($_POST['create']) && !empty($_POST['newUser'])
+&& isset($_POST['newRole']))
 {
   // create user
-  $user = $_REQUEST['newUser'];
-  $pass = (!empty($_REQUEST['newPass'])? $_REQUEST['newPass']: false);
-  $admin = ($_REQUEST['newRole'] == 1);
+  $user = $_POST['newUser'];
+  $pass = (!empty($_POST['newPass'])? $_POST['newPass']: false);
+  $admin = ($_POST['newRole'] == 1);
   if(userAdd($user, $pass, $admin))
     infoMessage(T_("Created"), htmlEntUTF8($user));
   else
@@ -19,28 +19,28 @@ if(isset($_REQUEST['create']) && !empty($_REQUEST['newUser'])
 		htmlEntUTF8($user)));
 }
 
-if(isset($_REQUEST["delete"]) && !empty($_REQUEST["sel"]))
+if(isset($_POST["delete"]) && !empty($_POST["sel"]))
 {
   $list = array();
 
   // delete users
-  foreach($_REQUEST["sel"] as $name)
+  foreach($_POST["sel"] as $name)
     if(userDel($name)) $list[] = htmlEntUTF8($name);
 
   if(count($list))
     infoMessage(T_("Deleted"), $list);
 }
 
-if(isset($_REQUEST['apply'])
-&& !empty($_REQUEST['user']) && is_array($_REQUEST['user'])
-&& !empty($_REQUEST['role']) && is_array($_REQUEST['role'])
-&& !empty($_REQUEST['pass']) && is_array($_REQUEST['pass'])
-&& count($_REQUEST['user']) == count($_REQUEST['role'])
-&& count($_REQUEST['role']) == count($_REQUEST['pass']))
+if(isset($_POST['apply'])
+&& !empty($_POST['user']) && is_array($_POST['user'])
+&& !empty($_POST['role']) && is_array($_POST['role'])
+&& !empty($_POST['pass']) && is_array($_POST['pass'])
+&& count($_POST['user']) == count($_POST['role'])
+&& count($_POST['role']) == count($_POST['pass']))
 {
-  $user = $_REQUEST['user'];
-  $role = $_REQUEST['role'];
-  $pass = $_REQUEST['pass'];
+  $user = $_POST['user'];
+  $role = $_POST['role'];
+  $pass = $_POST['pass'];
   $list = array();
 
   for($i = 0; $i != count($user); ++$i)

@@ -18,14 +18,14 @@ function authenticate()
   // authentication attempt
   if(!isset($remoteUser))
   {
-    if(empty($_REQUEST['u']) || !isset($_REQUEST['p']))
+    if(empty($_REQUEST['u']) || !isset($_POST['p']))
     {
       // simple logout
       return false;
     }
 
     $user = $_REQUEST['u'];
-    $pass = md5($_REQUEST['p']);
+    $pass = md5($_POST['p']);
   }
   else
   {
