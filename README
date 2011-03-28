@@ -104,7 +104,7 @@ the bundled ``include/scripts/dbupgrade.php`` script. Proceed as follows:
 
 * Test your new setup.
 
-* You can now remove ''$dbHandler'' from the new configuration file and
+* You must now remove ''$dbHandler'' from the new configuration file and
   ``data.db``, ``user.db`` from the spool directory.
 
 
