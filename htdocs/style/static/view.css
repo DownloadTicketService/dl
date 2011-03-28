@@ -417,23 +417,22 @@ form li:hover .guidelines
 }
 
 /*** Tables ***/
-form > table#tickets > tbody > tr > td:nth-child(1),
-form > table#tickets > tbody > tr > td:nth-child(2),
-form > table#tickets > tbody > tr > td:nth-child(3),
-form > table#tickets > tbody > tr > td:nth-child(4),
-form > table#tickets > tbody > tr > td:nth-child(5)
+form > table#tickets > tbody > tr > :nth-child(1),
+form > table#tickets > tbody > tr > :nth-child(2),
+form > table#tickets > tbody > tr > :nth-child(3),
+form > table#tickets > tbody > tr > :nth-child(4),
+form > table#tickets > tbody > tr > :nth-child(5)
 {
 	width:16px;
 }
 
-form > table#tickets > tbody > tr > th:nth-child(7),
-form > table#tickets > tbody > tr > td:nth-child(7)
+form > table#tickets > tbody > tr > :nth-child(7)
 {
 	width:7em;
 	text-align:right;
 }
 
-form > table#tickets > tbody > tr > td:nth-child(8)
+form > table#tickets > tbody > tr > :nth-child(8)
 {
 	width:7em;
 }
@@ -453,15 +452,15 @@ form > table#tickets > tbody > tr.file.alien
 	background:#fafafa;
 }
 
-form > table#grants > tbody > tr > td:nth-child(1),
-form > table#grants > tbody > tr > td:nth-child(2),
-form > table#grants > tbody > tr > td:nth-child(3)
+form > table#grants > tbody > tr > :nth-child(1),
+form > table#grants > tbody > tr > :nth-child(2),
+form > table#grants > tbody > tr > :nth-child(3)
 {
 	width:16px;
 }
 
-form > table#grants > tbody > tr > td:nth-child(5),
-form > table#grants > tbody > tr > td:nth-child(6)
+form > table#grants > tbody > tr > :nth-child(5),
+form > table#grants > tbody > tr > :nth-child(6)
 {
 	width:7em;
 }
@@ -481,22 +480,19 @@ form > table#grants > tbody > tr.file.alien
 	background:#fafafa;
 }
 
-form > table#users > tbody > tr > td:nth-child(3)
+form > table#users > tbody > tr > :nth-child(3)
 {
 	width:15%;
 }
 
-form > table#users > tbody > tr > td:nth-child(4)
+form > table#users > tbody > tr > :nth-child(4)
 {
 	width:1%;
 }
 
-form > table#users > tbody > tr > th:nth-child(5),
-form > table#users > tbody > tr > td:nth-child(5),
-form > table#users > tbody > tr > th:nth-child(6),
-form > table#users > tbody > tr > td:nth-child(6),
-form > table#users > tbody > tr > th:nth-child(7),
-form > table#users > tbody > tr > td:nth-child(7)
+form > table#users > tbody > tr > :nth-child(5),
+form > table#users > tbody > tr > :nth-child(6),
+form > table#users > tbody > tr > :nth-child(7)
 {
 	text-align:right;
 }
