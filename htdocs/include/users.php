@@ -67,11 +67,11 @@ function htmlRole($name, $selected)
 {
   // role
   $ret = "<select class=\"element select\" name=\"$name\">";
-  foreach(array("Administrator" => 1, "User" => 0) as $role => $admin)
+  foreach(array(T_("Administrator") => 1, T_("User") => 0) as $role => $admin)
   {
     $ret .= "<option value=\"$admin\"";
     if($selected == $admin) $ret .= " selected=\"selected\"";
-    $ret .= ">" . T_($role) . "</option>";
+    $ret .= ">$role</option>";
   }
   $ret .= "</select>";
   return $ret;

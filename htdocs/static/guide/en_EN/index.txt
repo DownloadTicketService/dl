@@ -47,7 +47,6 @@ You should be presented with this page:
 
 .. image:: g-step-2.png
 
-
 2) Enter *your* email address.
 
 3) Click "Create" to generate an upload grant:
