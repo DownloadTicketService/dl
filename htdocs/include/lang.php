@@ -8,7 +8,8 @@ $langData = array
 (
   "EN" => "en_EN",
   "IT" => "it_IT",
-  "DE" => "de_DE"
+  "DE" => "de_DE",
+  "FR" => "fr_FR",
 );
 
 
