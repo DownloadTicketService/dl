@@ -42,6 +42,9 @@ Important
 * Use file templates instead of hard-coded messages to compose the e-mails.
   See a lot of good suggestions sent by Morkani.
 
+* Move config.php to (or at least reading from) /etc/ on unix platform,
+  to simplify update process.
+
 
 Nice to have
 ------------

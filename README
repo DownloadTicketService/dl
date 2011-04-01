@@ -108,6 +108,23 @@ the bundled ``include/scripts/dbupgrade.php`` script. Proceed as follows:
   ``data.db``, ``user.db`` from the spool directory.
 
 
+Upgrading from DL 0.3 and any later version
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Backup your current ``config.php`` file and spool directory.
+
+* Overwrite the DL installation directory with the new copy.
+
+* Either copy over the old ``config.php`` file or customize the new version.
+
+* Run ``dbupgrade.php`` as your web server user::
+
+    cd /your-installation-directory/include/scripts
+    php dbupgrade.php
+
+* Test your new setup.
+
+
 PHP setup
 ---------
 

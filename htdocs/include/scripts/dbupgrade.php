@@ -114,6 +114,7 @@ if(!$version && file_exists($tDbPath) && file_exists($uDbPath))
     $db->exec($sql);
   }
 
+  echo "warning: please remember to move away $tDbPath/$uDbPath\n";
   $version = "0.3";
 }
 
