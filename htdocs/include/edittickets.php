@@ -11,7 +11,7 @@ $cmt = anyOf(@$_POST['cmt'], $DATA['cmt']);
 $hasPass = isset($DATA['pass_md5']);
 $pass = anyOf(@$_POST['pass'], "");
 $clr = anyOf(@$_POST['clr'], "");
-$nl = anyOf(@$_POST['nl'], !$DATA['expire']);
+$nl = anyOf(@$_POST['nl'], !($DATA['expire'] || $DATA["last_time"] || $DATA["expire_dln"]));
 $nt = anyOf(@$_POST['nt'], join(", ", getEMailAddrs($DATA['notify_email'])));
 
 // current expiration values
@@ -19,22 +19,28 @@ if(isset($_POST['dn']))
   $dn = $_POST['dn'];
 elseif($DATA["expire"])
   $dn = ceil(($DATA["expire"] - time()) / (3600 * 24));
-else
+elseif($nl)
   $dn = $defaultTicketTotalDays;
+else
+  $dn = 0;
 
 if(isset($_POST['hra']))
   $hra = $_POST['hra'];
 elseif($DATA["last_time"])
   $hra = ceil($DATA["last_time"] / 3600);
-else
+elseif($nl)
   $hra = $defaultTicketLastDl;
+else
+  $hra = 0;
 
 if(isset($_POST['dln']))
   $dln = $_POST['dln'];
 elseif($DATA["expire_dln"])
   $dln = ($DATA["expire_dln"] - $DATA["downloads"]);
-else
+elseif($nl)
   $dln = $defaultTicketMaxDl;
+else
+  $dln = 0;
 
 // current expiry
 infoMessage('Current expiry', ticketExpiry($DATA));

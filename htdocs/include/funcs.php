@@ -12,9 +12,9 @@ function isTicketId($str)
 function isTicketExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
-  return ((isset($DATA["expire"]) && $DATA["expire"] < $now)
-       || (isset($DATA["expire_last"]) && $DATA["expire_last"] < $now)
-       || (isset($DATA["expire_dln"]) && $DATA["expire_dln"] <= $DATA["downloads"]));
+  return (($DATA["expire"] && $DATA["expire"] < $now)
+       || ($DATA["expire_last"] && $DATA["expire_last"] < $now)
+       || ($DATA["expire_dln"] && $DATA["expire_dln"] <= $DATA["downloads"]));
 }
 
 
@@ -27,7 +27,7 @@ function isGrantId($str)
 function isGrantExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
-  return (isset($$DATA["grant_expire"]) && $DATA["grant_expire"] < $now);
+  return ($DATA["grant_expire"] && $DATA["grant_expire"] < $now);
 }
 
 
