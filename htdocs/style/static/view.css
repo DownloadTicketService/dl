@@ -110,7 +110,7 @@ img
 /**** Form Section ****/
 .appnitro li
 {
-	width:40%;
+	width:98%;
 }
 
 form ul
@@ -128,15 +128,6 @@ form li
 	margin:0;
 	padding:4px 5px 2px 9px;
 	position:relative;
-}
-
-form li:after
-{
-	clear:both;
-	content:".";
-	display:block;
-	height:0;
-	visibility:hidden;
 }
 
 form > table
@@ -176,15 +167,6 @@ form > table th + th
 #toggler.active
 {
 	background:#fff url(toggle-down.gif) no-repeat 0 50%;
-}
-
-.buttons:after
-{
-	clear:both;
-	content:".";
-	display:block;
-	height:0;
-	visibility:hidden;
 }
 
 .buttons
@@ -272,7 +254,7 @@ input.text
 	font-size:100%;
 	margin:0;
 	padding:2px 0;
-	width:99%;
+	width:42%;
 }
 
 input.file, input.button
@@ -281,6 +263,7 @@ input.file, input.button
 	font-size:100%;
 	margin:0;
 	padding:2px 0;
+	width:42%;
 }
 
 textarea.textarea
@@ -295,18 +278,18 @@ textarea.textarea
 	font-size:100%;
 	margin:0;
 	padding:2px 0;
-	width:99%;
+	width:42%;
 	resize:vertical;
 }
 
 input.element.password
 {
-	width:65%;
+	width:25%;
 }
 
 input.button.password
 {
-	width:32%;
+	width:16%;
 }
 
 select.select
@@ -384,9 +367,14 @@ form .error
 }
 
 /**** Guidelines and Error Highlight ****/
-form li.highlighted, tr.highlighted
+form li.highlighted
 {
-	background-color:#fff7c0;
+	background:#fff url(highlight.png) repeat-y;
+}
+
+tr.highlighted
+{
+	background-color:#fff7c0 !important;
 }
 
 form .guidelines
@@ -395,14 +383,14 @@ form .guidelines
 	border:1px solid #e6e6e6;
 	color:#444;
 	font-size:80%;
-	left:100%;
+	left:43%;
 	line-height:130%;
 	margin:2em 0 0 8px;
 	padding:8px 10px 9px;
 	position:absolute;
 	top:0;
 	visibility:hidden;
-	width:127%;
+	width:52%;
 	z-index:1000;
 }
 
@@ -417,6 +405,16 @@ form li:hover .guidelines
 }
 
 /*** Tables ***/
+form > table input.text
+{
+	width:99% !important;
+}
+
+form > table input.button
+{
+	width:auto !important;
+}
+
 form > table#tickets > tbody > tr > :nth-child(1),
 form > table#tickets > tbody > tr > :nth-child(2),
 form > table#tickets > tbody > tr > :nth-child(3),

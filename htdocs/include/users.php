@@ -138,7 +138,7 @@ foreach($db->query($sql) as $DATA)
       <td><input class="element text" type="text" name="newPass"></td>
       <td><?php echo htmlRole("newRole", 0); ?></td>
       <td colspan="3">
-	<input class="element" type="submit" name="create" value="<?php echo T_("Create"); ?>"/>
+	<input class="element button" type="submit" name="create" value="<?php echo T_("Create"); ?>"/>
       </td>
     </tr>
   </table>
