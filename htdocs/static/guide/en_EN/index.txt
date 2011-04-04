@@ -61,8 +61,8 @@ itself. Once he uploads the file into the server, you will receive an email
 containing another link to the file just uploaded.
 
 
-Handy upload parameters
------------------------
+Advanced upload parameters
+--------------------------
 
 Before uploading a file, you can customize how the download and cleanup is
 performed by setting some "Advanced" parameters:
@@ -78,10 +78,6 @@ performed by setting some "Advanced" parameters:
   notifications every time the file is successfully downloaded or removed from
   the server. This is great if you want extra confirmation that your email has
   been acted upon.
-
-
-Advanced upload parameters
---------------------------
 
 Expire in total # of hours:
 

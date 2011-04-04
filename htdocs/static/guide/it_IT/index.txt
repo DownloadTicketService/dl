@@ -60,13 +60,13 @@ La schermata iniziale si presenta come segue:
    utilizzo tramite e-mail ad un qualsiasi destinatario.
 
 Il destinatario, una volta ricevuto il collegamento alla concessione, dovrà
-semplicemente seguire le istruzioni a video. Quando il destinatario avrà
-terminato l'invio del file, riceverete immediatamente (tramite e-mail) conferma
-ed un collegamento al file appena trasferito.
+semplicemente seguire le indicazioni. Quando il destinatario avrà terminato
+l'invio del file, riceverete immediatamente (tramite e-mail) conferma ed un
+collegamento al file appena trasferito.
 
 
-Impostazioni comuni
--------------------
+Parametri avanzati
+------------------
 
 Prima di procedere all'invio di un file, è possibile impostare la sua
 scadenza accedendo ai parametri avanzati:
@@ -79,10 +79,6 @@ scadenza accedendo ai parametri avanzati:
 * *Se desiderate ricevere notifica per ogni singolo scaricamento*, inserite il
   vostro indirizzo e-mail nella casella "Notifica via e-mail", disponibile nel
   pannello avanzate.
-
-
-Parametri avanzati
-------------------
 
 Scadenza in # giorni:
 

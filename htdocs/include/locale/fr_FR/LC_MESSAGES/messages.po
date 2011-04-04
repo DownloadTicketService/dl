@@ -209,22 +209,22 @@ msgstr "Réinitialiser"
 #: ../funcs.php:71
 #, php-format
 msgid "%s GiB"
-msgstr "%s "
+msgstr ""
 
 #: ../funcs.php:73
 #, php-format
 msgid "%s MiB"
-msgstr "%s Mb"
+msgstr ""
 
 #: ../funcs.php:75
 #, php-format
 msgid "%s KiB"
-msgstr "%s Kb"
+msgstr ""
 
 #: ../funcs.php:76
 #, php-format
 msgid "%s B"
-msgstr "%s B"
+msgstr ""
 
 #: ../funcs.php:83
 #, php-format
