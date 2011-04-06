@@ -1,4 +1,4 @@
-dl 0.9: 
+dl 0.9: 06/04/2011
 ------------------
 
 * The settings of tickets and grants are now stored independently.
@@ -8,7 +8,7 @@ dl 0.9:
 * Form validation is now also performed in JavaScript.
 * Enlarged the width of the interface to 800px.
 * Users management is now available through the web interface.
-* French, Italian and German translation.
+* French, Italian, Spanish and German translation.
 * Multi-line comments can be attached to tickets and grants.
 * Improved the e-mail notification text.
 * Improved ticket and grant listings.

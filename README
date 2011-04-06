@@ -30,6 +30,16 @@ Optionals:
 Installation
 ============
 
+The installation is divided into three steps:
+
+1) Installation of the files
+2) Database creation/setup or database upgrade
+3) Initial user creation
+
+Due to the number of possible configurations, the installation must be carried
+on manually.
+
+
 DL installation
 ---------------
 
@@ -177,8 +187,7 @@ Internal authentication
 
 Once dl has been installed and PHP is set-up correctly, you have to create at
 least one user to be able to log in. User management is handled through the
-command line (there is no web-interface yet) by using the bundled
-``useradmin.php`` utility.
+command line by using the bundled ``useradmin.php`` utility.
 
 On the server, execute the following commands *with the same user as your web
 server* (by using ``su`` or ``sudo`` if necessary)::
@@ -193,7 +202,7 @@ where:
 * ``change me`` is the password
 
 Repeat as many times as necessary. You should now be able to use the web
-service.
+service. Other users/administrators can be added through the web interface.
 
 
 External authentication
@@ -215,7 +224,7 @@ authentication is not guaranteed to work: users should simply **close their
 browser** to clear their session (closing a tab or window is not
 enough). Currently, logout works as expected on:
 
-* Firefox 3.x
+* Firefox 3.x/4.x
 * Safari 4.x
 * Google Chrome/Chromium
 
@@ -379,22 +388,58 @@ to limit the execution time.
 Known limitations/Browser support
 =================================
 
-* Tested with Safari 3.x/4.x, Firefox 3.x, Explorer 7/8, Google Chrome/Chromium.
+* Tested with Safari 3.x/4.x, Firefox 3.x/4.x, Explorer 7/8,
+  Google Chrome/Chromium.
 * Tested with PHP 5.x.
 
 
 Internationalization support
 ============================
 
-DL is fully translated in English, German and Italian. DL will attempt to
-detect the correct locale of the browser and use it if available, otherwise
-switch to the customizable default. The user can however switch the language
-anytime.
+DL is fully translated in English, German, French, Spanish and Italian. DL will
+attempt to detect the correct locale of the browser and use it if available,
+otherwise switch to the customizable default. The user can however switch the
+language anytime.
 
 Adding a new translation is easy for anyone familiar with the `gettext` tools:
 you don't need programming knowledge. If you want to contribute a new language,
-simply subscribe to the mailing list and ask for guidance. We really appreciate
-your help.
+we recommend to subscribe to the mailing list and ask for guidance. We really
+appreciate your help.
+
+
+Contributing a new translation
+------------------------------
+
+Contributing a new translation is easy enough:
+
+* Edit ``include/lang.php`` and add your new language name and alias to
+  ``$langData``, as done for the other languages.
+
+* Execute::
+
+    mkdir -p include/locale/lang/LC_MESSAGES/
+    cd include/scripts/
+    ./langgen.php > ../locale/lang/LC_MESSAGES/messages.po
+
+  where *lang* is the full locale name you just added.
+
+* Translate the freshly generated ``messages.po`` using a text editor, or
+  by using PoEdit_, or any other "po" editing tool.
+
+* To test/update the translations run ``langupd.php``::
+
+    cd include/scripts/
+    ./langupd.php
+
+* Optionally translate the user guide, which is located in
+  ``include/static/guide/``.
+
+  Copy the english directory tree into a new tree with the new locale name and
+  translate ``index.txt``. ``index.html`` is regenerated automatically with
+  docutils_ by running ``langupd.php`` as before.
+
+.. _PoEdit: http://poedit.sourceforge.net/
+.. _docutils: http://docutils.sourceforge.net/
 
 
 General/support mailing list

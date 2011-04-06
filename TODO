@@ -45,6 +45,11 @@ Important
 * Move config.php to (or at least reading from) /etc/ on unix platform,
   to simplify update process.
 
+* Hash-based file references, required to implement de-duplication,
+  multiple tickets, e-mail tracking. See:
+
+  http://thread.gmane.org/gmane.comp.web.dl-ticket-service.general/140
+
 
 Nice to have
 ------------
