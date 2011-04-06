@@ -693,3 +693,5 @@ msgstr "Supprimer la sélection"
 msgid "Apply changes"
 msgstr "Appliquer les changements"
 
+msgid "Current expiry"
+msgstr "Expiration actuelle"

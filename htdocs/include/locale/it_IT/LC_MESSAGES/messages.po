@@ -696,3 +696,6 @@ msgstr "Elimina selezionati"
 #: ../users.php:151
 msgid "Apply changes"
 msgstr "Applica modifiche"
+
+msgid "Current expiry"
+msgstr "Scadenza attuale"
