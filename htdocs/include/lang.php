@@ -6,10 +6,11 @@ require_once("gettext/gettext.inc");
 // list of available and supported translations
 $langData = array
 (
-  "EN" => "en_EN",
-  "IT" => "it_IT",
   "DE" => "de_DE",
+  "EN" => "en_EN",
+  "ES" => "es_ES",
   "FR" => "fr_FR",
+  "IT" => "it_IT",
 );
 
 
