@@ -43,7 +43,7 @@ else
   $dln = 0;
 
 // current expiry
-infoMessage('Current expiry', ticketExpiry($DATA));
+infoMessage(T_('Current expiry'), ticketExpiry($DATA));
 
 ?>
 

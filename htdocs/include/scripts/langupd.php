@@ -7,7 +7,7 @@ if(!isset($argc)) die("not running from the command line\n");
 // data
 require_once("../lang.php");
 
-// cycle through configured language and regenerate them
+// cycle through configured languages and regenerate them
 foreach($langData as $lang => $dir)
 {
   $dir = "../locale/$dir/LC_MESSAGES";
@@ -20,7 +20,7 @@ foreach($langData as $lang => $dir)
   $moSt = @stat($mo);
   if(!$moSt || $moSt['mtime'] < $poSt['mtime'])
   {
-    echo "regenerating...";
+    echo "regenerating... ";
     system("cd " . escapeshellarg($dir) . " && msgfmt messages.po");
   }
   echo "ok\n";
@@ -39,8 +39,9 @@ foreach($langData as $lang => $dir)
   $htmlSt = @stat($html);
   if(!$htmlSt || $htmlSt['mtime'] < $txtSt['mtime'])
   {
-    echo "regenerating...";
-    system("cd " . escapeshellarg($dir) . " && rst2html index.txt > index.html");
+    echo "regenerating... ";
+    $lang = strtolower($lang);
+    system("cd " . escapeshellarg($dir) . " && rst2html -l '$lang' index.txt > index.html");
   }
   echo "ok\n";
 }

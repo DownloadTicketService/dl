@@ -3,7 +3,6 @@ body
 {
 	background:#CDDCEC;
 	font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
-	font-size:small;
 	margin:8px 0 16px;
 	text-align:center;
 }
@@ -208,7 +207,7 @@ form li div
 .form_description
 {
 	border-bottom:1px dotted #ccc;
-	line-height:1em;
+	line-height:1.5em;
 	clear:both;
 	display:inline-block;
 	display:block;
@@ -344,15 +343,6 @@ form li.error
 form li.error label
 {
 	color:#DF0000 !important;
-}
-
-form p.error
-{
-	clear:both;
-	color:red;
-	font-size:10px;
-	font-weight:700;
-	margin:0 0 5px;
 }
 
 form .required
