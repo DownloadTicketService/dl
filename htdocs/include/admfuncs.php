@@ -75,7 +75,9 @@ function userAdd($user, $pass, $admin)
     . ($admin? 'admin': 'user') . "')";
   $sql .= ")";
 
-  return ($db->exec($sql) == 1);
+  $ret = ($db->exec($sql) == 1);
+  logEvent("adding user $user: " . ($ret? "success": "fail"));
+  return $ret;
 }
 
 
@@ -83,7 +85,9 @@ function userDel($user)
 {
   global $db;
   $sql = "DELETE FROM user WHERE name = " . $db->quote($user);
-  return ($db->exec($sql) == 1);
+  $ret = ($db->exec($sql) == 1);
+  logEvent("deleting user $user: " . ($ret? "success": "fail"));
+  return $ret;
 }
 
 
@@ -100,11 +104,19 @@ function userUpd($user, $pass = null, $admin = null)
     $fields[] = "role_id = (SELECT id FROM role WHERE name = '"
       . ($admin? 'admin': 'user') . "')";
   }
+  if(!count($fields))
+    return false;
 
   $sql = "UPDATE user SET " . implode(", ", $fields)
     . " WHERE name = " . $db->quote($user);
+  $ret = ($db->exec($sql) == 1);
 
-  return ($db->exec($sql) == 1);
+  $msg = array();
+  if(!is_null($pass)) $msg[] = "password";
+  if(!is_null($admin)) $msg[] = "role";
+  logEvent("updating user $user (" . join(", ", $msg)
+    . "): " . ($ret? "success": "fail"));
+  return $ret;
 }
 
 
