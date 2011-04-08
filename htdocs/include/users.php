@@ -83,13 +83,13 @@ $sql = <<<EOF
   FROM user u
   LEFT JOIN role r ON r.id = u.role_id
   LEFT JOIN (
-      SELECT u.id, count(t.id) as count, sum(t.size) as size
+      SELECT u.id AS id, count(t.id) as count, sum(t.size) as size
       FROM user u
       LEFT JOIN ticket t ON t.user_id = u.id
       GROUP BY u.id
     ) t ON t.id = u.id
   LEFT JOIN (
-      SELECT u.id, count(g.id) as count
+      SELECT u.id AS id, count(g.id) as count
       FROM user u
       LEFT JOIN grant g ON g.user_id = u.id
       GROUP BY u.id
