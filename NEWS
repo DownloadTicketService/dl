@@ -6,7 +6,7 @@ dl 0.10:
   found in the include/ directory, configuration is read from "/etc/dl.php".
 * Notifications of tickets and grants now use the same locale that was used
   during creation.
-* Minor bug fixes.
+* Minor bug and UI fixes.
 
 
 dl 0.9: 06/04/2011
