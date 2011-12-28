@@ -1,12 +1,6 @@
 <?php
 // basic initialization
-
-// setup the runtime
-if(get_magic_quotes_runtime())
-  set_magic_quotes_runtime(0);
-ob_start();
-
-// data
+require_once("prelude.php");
 require_once("confwrap.php");
 require_once("lang.php");
 

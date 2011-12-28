@@ -1,7 +1,19 @@
 <?php
 // version-indepenent configuration variables
-require_once("config.php");
-require_once("funcs.php");
+require_once("basefuncs.php");
+
+// read the configuration values from a nearby location
+$cfgPath = "/etc/dl.php";
+foreach(explode(PATH_SEPARATOR, get_include_path()) as $path)
+{
+  $tmp = "$path/config.php";
+  if(is_file($tmp))
+  {
+    $cfgPath = $tmp;
+    break;
+  }
+}
+require_once($cfgPath);
 
 // variables
 if(!isset($defLocale)) $defLocale = "en_US";

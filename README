@@ -46,8 +46,9 @@ DL installation
 * Copy the ``htdocs`` directory contained in the archive to a directory of
   choice under your web server.
 
-* Configure the parameters inside ``include/config.php`` as needed. This
-  usually means changing the URL and E-Mail of the service.
+* Copy ``include/config.php.dist`` to either ``include/config.php`` or
+  ``/etc/dl.php`` and customize as needed. This usually means changing the URL
+  and E-Mail of the service.
 
 * Ensure the ``include`` and ``style/include`` directories are *not* directly
   accessible externally. Type ``http://dl.example.com/include/config.php`` and

@@ -146,20 +146,6 @@ function grantExpiry($DATA)
 }
 
 
-function returnBytes($val)
-{
-  $val = trim($val);
-  $last = strtolower($val{strlen($val)-1});
-  switch($last)
-  {
-  case 'g': $val *= 1024;
-  case 'm': $val *= 1024;
-  case 'k': $val *= 1024;
-  }
-  return $val;
-}
-
-
 function fixEMailAddrs($str)
 {
   $addrs = explode(",", str_replace(array(";", "\n"), ",", $str));

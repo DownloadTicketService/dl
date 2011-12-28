@@ -1,12 +1,11 @@
 #!/usr/bin/env php
 <?php
-if(get_magic_quotes_runtime())
-  set_magic_quotes_runtime(0);
 if(!isset($argc)) die("not running from the command line\n");
 
 // data
-require_once("../confwrap.php");
-require_once("../admfuncs.php");
+require_once("../prelude.php");
+require_once("confwrap.php");
+require_once("admfuncs.php");
 
 // initialize the db
 $db = new PDO($dsn);
