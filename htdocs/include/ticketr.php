@@ -8,8 +8,9 @@ if(!isset($_SERVER["PATH_INFO"]))
   exit();
 }
 
-list(, $id) = explode("/", $_SERVER["PATH_INFO"]);
-if(!isTicketId($id))
+$id = false;
+if(preg_match("/^\/([^\/]+)/", $_SERVER["PATH_INFO"], $tmp)) $id = $tmp[1];
+if($id === false || !isTicketId($id))
 {
   header("HTTP/1.0 404 Not Found");
   exit();

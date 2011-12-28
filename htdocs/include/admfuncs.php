@@ -47,17 +47,25 @@ function runGc()
 
 function genTicketId($seed)
 {
-  global $dataDir;
+  global $dataDir, $maxUUTries;
 
   // generate new unique id/file name
   if(!file_exists($dataDir)) mkdir($dataDir);
+
+  $tries = $maxUUTries;
   do
   {
     list($usec, $sec) = microtime();
     $id = md5(rand() . "/$usec/$sec/" . $seed);
     $tmpFile = "$dataDir/$id";
   }
-  while(fopen($tmpFile, "x") === FALSE);
+  while(fopen($tmpFile, "x") === FALSE && --$tries);
+  if(!$tries)
+  {
+    logEvent("cannot generate unique ticket ID");
+    header("HTTP/1.0 500 Internal Server Error");
+    exit();
+  }
 
   return array($id, $tmpFile);
 }
