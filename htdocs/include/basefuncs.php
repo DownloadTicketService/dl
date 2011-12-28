@@ -14,19 +14,4 @@ function returnBytes($val)
   return $val;
 }
 
-function includeCfg()
-{
-  $cfgPath = "/etc/dl.php";
-  foreach(explode(PATH_SEPARATOR, get_include_path()) as $path)
-  {
-    $tmp = "$path/config.php";
-    if(is_file($tmp))
-    {
-      $cfgPath = $tmp;
-      break;
-    }
-  }
-  require_once($cfgPath);
-}
-
 ?>
