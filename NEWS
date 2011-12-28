@@ -3,7 +3,10 @@ dl 0.10:
 
 * The default configuration file has been renamed to "config.php.dist" and must
   be manually copied/renamed to be used. If a suitable "config.php" is not
-  found in the include/ directory, it is read from "/etc/dl.php".
+  found in the include/ directory, configuration is read from "/etc/dl.php".
+* Notifications of tickets and grants now use the same locale that was used
+  during creation.
+* Minor bug fixes.
 
 
 dl 0.9: 06/04/2011

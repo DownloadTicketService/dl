@@ -21,10 +21,10 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
       . htmlEntUTF8($DATA['pass']) . "</tt></p>";
   }
 
-  if($DATA['st'])
+  if($DATA['sent_email'])
   {
     echo "<p>" . T_("A download link has been sent to:") . " ";
-    $addrs = getEMailAddrs($DATA['st']);
+    $addrs = getEMailAddrs($DATA['sent_email']);
     foreach($addrs as &$addr)
     {
       $addr = '<a href="mailto:' . urlencode($addr) . '">'

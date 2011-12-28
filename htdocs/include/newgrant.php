@@ -3,7 +3,7 @@
 
 function handleGrant()
 {
-  global $auth, $db;
+  global $auth, $locale, $db;
 
   // generate new unique id
   list($usec, $sec) = microtime();
@@ -11,7 +11,7 @@ function handleGrant()
 
   // prepare data
   $sql = "INSERT INTO grant (id, user_id, grant_expire, cmt, pass_md5"
-    . ", time, last_time, expire, expire_dln, notify_email) VALUES (";
+    . ", time, last_time, expire, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
   $sql .= ", " . (empty($_POST["gn"])? 'NULL': time() + $_POST["gn"] * 3600 * 24);
@@ -31,6 +31,8 @@ function handleGrant()
     $sql .= ", " . (empty($_POST["dln"])? 'NULL': (int)$_POST["dln"]);
   }
   $sql .= ", " . (empty($_POST["nt"])? 'NULL': $db->quote(fixEMailAddrs($_POST["nt"])));
+  $sql .= ", " . (empty($_POST["st"])? 'NULL': $db->quote(fixEMailAddrs($_POST["st"])));
+  $sql .= ", " . $db->quote($locale);
   $sql .= ")";
 
   if($db->exec($sql) != 1)
@@ -40,7 +42,6 @@ function handleGrant()
   $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
   $DATA = $db->query($sql)->fetch();
   $DATA['pass'] = (empty($_POST["pass"])? NULL: $_POST["pass"]);
-  $DATA['st'] = (empty($_POST["st"])? NULL: fixEMailAddrs($_POST["st"]));
 
   // trigger creation hooks
   onGrantCreate($DATA);

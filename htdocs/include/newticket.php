@@ -10,7 +10,7 @@ function failUpload($file)
 
 function handleUpload($FILE)
 {
-  global $auth, $dataDir, $db;
+  global $auth, $locale, $dataDir, $db;
 
   // generate new unique id/file name
   list($id, $tmpFile) = genTicketId($FILE["name"]);
@@ -19,7 +19,7 @@ function handleUpload($FILE)
 
   // prepare data
   $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_md5"
-    . ", time, last_time, expire, expire_dln, notify_email) VALUES (";
+    . ", time, last_time, expire, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
   $sql .= ", " . $db->quote(basename($FILE["name"]));
@@ -41,6 +41,8 @@ function handleUpload($FILE)
     $sql .= ", " . (empty($_POST["dln"])? 'NULL': (int)$_POST["dln"]);
   }
   $sql .= ", " . (empty($_POST["nt"])? 'NULL': $db->quote(fixEMailAddrs($_POST["nt"])));
+  $sql .= ", " . (empty($_POST["st"])? 'NULL': $db->quote(fixEMailAddrs($_POST["st"])));
+  $sql .= ", " . $db->quote($locale);
   $sql .= ")";
 
   if($db->exec($sql) != 1)
@@ -50,7 +52,6 @@ function handleUpload($FILE)
   $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
   $DATA = $db->query($sql)->fetch();
   $DATA['pass'] = (empty($_POST["pass"])? NULL: $_POST["pass"]);
-  $DATA['st'] = (empty($_POST["st"])? NULL: fixEMailAddrs($_POST["st"]));
 
   // trigger creation hooks
   onTicketCreate($DATA);

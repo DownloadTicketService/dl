@@ -76,15 +76,15 @@ function switchLocale($locale)
 function withLocale($locale, $func, $params)
 {
   $curLocale = $GLOBALS['locale'];
-  switchLocale($locale);
-  call_user_func_array($func, $params);
-  switchLocale($curLocale);
-}
-
-
-function withDefLocale($func, $params)
-{
-  withLocale($GLOBALS['defLocale'], $func, $params);
+  if(!$locale) $locale = $GLOBALS['defLocale'];
+  if($curLocale == $locale)
+    call_user_func_array($func, $params);
+  else
+  {
+    switchLocale($locale);
+    call_user_func_array($func, $params);
+    switchLocale($curLocale);
+  }
 }
 
 

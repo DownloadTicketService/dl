@@ -57,7 +57,7 @@ function handleUpload($GRANT, $FILE)
   $db->beginTransaction();
 
   $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_md5"
-    . ", time, last_time, expire, expire_dln) VALUES (";
+    . ", time, last_time, expire, expire_dln, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $GRANT['user_id'];
   $sql .= ", " . $db->quote(basename($FILE["name"]));
@@ -69,6 +69,7 @@ function handleUpload($GRANT, $FILE)
   $sql .= ", " . (empty($GRANT["last_time"])? 'NULL': $GRANT['last_time']);
   $sql .= ", " . (empty($GRANT["expire"])? 'NULL': $GRANT['expire']);
   $sql .= ", " . (empty($GRANT["expire_dln"])? 'NULL': $GRANT['expire_dln']);
+  $sql .= ", " . (empty($GRANT["locale"])? 'NULL': $db->quote($GRANT['locale']));
   $sql .= ")";
   $db->exec($sql);
 
@@ -84,7 +85,7 @@ function handleUpload($GRANT, $FILE)
   if(!empty($GRANT['pass'])) $DATA['pass'] = $GRANT['pass'];
 
   // trigger use hooks
-  withDefLocale('onGrantUse', array($GRANT, $DATA));
+  onGrantUse($GRANT, $DATA);
 
   return $DATA;
 }

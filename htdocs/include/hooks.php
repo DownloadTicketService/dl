@@ -12,13 +12,13 @@ function onTicketCreate($DATA)
   logTicketEvent($DATA, "$type ticket created");
 
   // send emails to recipient
-  foreach(getEMailAddrs($DATA['st']) as $email)
+  foreach(getEMailAddrs($DATA['sent_email']) as $email)
   {
     logTicketEvent($DATA, "sending link to $email");
 
     // please note that address splitting is performed to avoid
     // disclosing the recipient list (not normally needed)
-    msgTicketCreate($DATA, $subject, $body);
+    withLocale($DATA['locale'], 'msgTicketCreate', array($DATA, &$subject, &$body));
     mailUTF8($email, $subject, $body, "From: $fromAddr");
   }
 }
@@ -41,7 +41,7 @@ function onTicketDownload($DATA)
   if(!empty($DATA["notify_email"]))
   {
     logTicketEvent($DATA, "sending notification to " . $DATA["notify_email"]);
-    msgTicketDownload($DATA, $subject, $body);
+    withLocale($DATA['locale'], 'msgTicketDownload', array($DATA, &$subject, &$body));
     mailUTF8($DATA["notify_email"], $subject, $body, "From: $fromAddr");
   }
 }
@@ -60,8 +60,9 @@ function onTicketPurge($DATA, $auto)
   if(!empty($DATA["notify_email"]))
   {
     logTicketEvent($DATA, "sending notification to " . $DATA["notify_email"]);
-    if($auto) msgTicketExpire($DATA, $subject, $body);
-    else msgTicketPurge($DATA, $subject, $body);
+    withLocale($DATA['locale'],
+	($auto? 'msgTicketExpire': 'msgTicketPurge'),
+	array($DATA, &$subject, &$body));
     mailUTF8($DATA["notify_email"], $subject, $body, "From: $fromAddr");
   }
 }
@@ -76,13 +77,13 @@ function onGrantCreate($DATA)
   logGrantEvent($DATA, "$type grant created");
 
   // send emails to recipient
-  foreach(getEMailAddrs($DATA['st']) as $email)
+  foreach(getEMailAddrs($DATA['sent_email']) as $email)
   {
     logGrantEvent($DATA, "sending link to $email");
 
     // please note that address splitting is performed to avoid
     // disclosing the recipient list (not normally needed)
-    msgGrantCreate($DATA, $subject, $body);
+    withLocale($DATA['locale'], 'msgGrantCreate', array($DATA, &$subject, &$body));
     mailUTF8($email, $subject, $body, "From: $fromAddr");
   }
 }
@@ -100,8 +101,9 @@ function onGrantPurge($DATA, $auto)
   if(!empty($DATA["notify_email"]))
   {
     logGrantEvent($DATA, "sending notification to " . $DATA["notify_email"]);
-    if($auto) msgGrantExpire($DATA, $subject, $body);
-    else msgGrantPurge($DATA, $subject, $body);
+    withLocale($DATA['locale'],
+	($auto? 'msgGrantExpire': 'msgGrantPurge'),
+	array($DATA, &$subject, &$body));
     mailUTF8($DATA["notify_email"], $subject, $body, "From: $fromAddr");
   }
 }
@@ -119,7 +121,7 @@ function onGrantUse($GRANT, $DATA)
   if(!empty($GRANT['notify_email']))
   {
     logGrantEvent($GRANT, "sending link to " . $GRANT["notify_email"]);
-    msgGrantUse($GRANT, $DATA, $subject, $body);
+    withLocale($GRANT['locale'], 'msgGrantUse', array($GRANT, $DATA, &$subject, &$body));
     mailUTF8($GRANT["notify_email"], $subject, $body, "From: $fromAddr");
   }
 }
