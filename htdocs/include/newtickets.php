@@ -15,22 +15,7 @@ uploadProgressHdr($up);
 
 <?php
 if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
-{
-  $msg = false;
-  switch($_FILES["file"]["error"])
-  {
-  case UPLOAD_ERR_INI_SIZE:
-  case UPLOAD_ERR_FORM_SIZE:
-    $msg = T_("file too big");
-    break;
-
-  case UPLOAD_ERR_PARTIAL:
-  case UPLOAD_ERR_NO_FILE:
-    $msg = T_("upload interrupted");
-    break;
-  }
-  errorMessage(T_("Upload failed"), ($msg? $msg: T_("internal error")));
-}
+  errorMessage(T_("Upload failed"), uploadErrorStr($_FILES["file"]));
 ?>
 
 <form enctype="multipart/form-data" method="post"

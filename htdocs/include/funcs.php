@@ -182,6 +182,28 @@ function infoMessage($hdr, $lines)
 }
 
 
+function uploadErrorStr($FILE)
+{
+  switch($FILE["error"])
+  {
+  case UPLOAD_ERR_INI_SIZE:
+  case UPLOAD_ERR_FORM_SIZE:
+    $msg = T_("file too big");
+    break;
+
+  case UPLOAD_ERR_PARTIAL:
+  case UPLOAD_ERR_NO_FILE:
+    $msg = T_("upload interrupted");
+    break;
+
+  default:
+    $msg = T_("internal error");
+  }
+
+  return $msg;
+}
+
+
 function truncAtWord($str, $len, $thr = 5, $ell = "\xE2\x80\xA6")
 {
   $min = max(0, $len - $thr);
