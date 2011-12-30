@@ -1,5 +1,6 @@
 <?php
 // download a ticket
+require_once("ticketfuncs.php");
 
 // fetch the ticket id
 if(!isset($_SERVER["PATH_INFO"]))

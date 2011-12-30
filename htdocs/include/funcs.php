@@ -9,15 +9,6 @@ function isTicketId($str)
 }
 
 
-function isTicketExpired($DATA, $now = NULL)
-{
-  if(!isset($now)) $now = time();
-  return (($DATA["expire"] && $DATA["expire"] < $now)
-       || ($DATA["expire_last"] && $DATA["expire_last"] < $now)
-       || ($DATA["expire_dln"] && $DATA["expire_dln"] <= $DATA["downloads"]));
-}
-
-
 function isGrantId($str)
 {
   return isTicketId($str);
@@ -99,28 +90,6 @@ function ticketUrl($DATA)
 {
   global $masterPath;
   return $masterPath . "?t=" . $DATA['id'];
-}
-
-
-function ticketExpiry($DATA)
-{
-  if($DATA["expire_dln"] || $DATA["last_time"])
-  {
-    if($DATA["expire_last"])
-      return sprintf(T_("About %s"), humanTime($DATA["expire_last"] - time()));
-    elseif($DATA["expire_dln"] && $DATA["downloads"])
-      return sprintf(T_("About %d downloads"), ($DATA["expire_dln"] - $DATA["downloads"]));
-    elseif($DATA["expire"])
-      return sprintf(T_("About %s"), humanTime($DATA["expire"] - time()));
-    elseif($DATA["expire_dln"])
-      return sprintf(T_("After %d downloads"), $DATA["expire_dln"]);
-    else
-      return sprintf(T_("%s after next download"), humanTime($DATA["last_time"]));
-  }
-  elseif($DATA["expire"])
-    return sprintf(T_("In %s"), humanTime($DATA["expire"] - time()));
-
-  return ("<strong>" . T_("Never") . "</strong>");
 }
 
 

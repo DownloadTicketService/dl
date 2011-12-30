@@ -1,5 +1,6 @@
 <?php
 // process a ticket
+require_once("ticketfuncs.php");
 
 // try to fetch the ticket
 $id = $_REQUEST["t"];

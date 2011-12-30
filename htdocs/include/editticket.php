@@ -1,5 +1,6 @@
 <?php
 // process a ticket update
+require_once("ticketfuncs.php");
 
 function handleUpdate($id)
 {
@@ -75,20 +76,7 @@ else
 // handle update
 if($DATA)
 {
-  $params = array
-  (
-    'name' => array('is_string', 'not_empty'),
-    'cmt'  => 'is_string',
-    'pass' => 'is_string',
-    'clr'  => 'is_numeric_int',
-    'dn'   => 'is_numeric',
-    'hra'  => 'is_numeric',
-    'dln'  => 'is_numeric_int',
-    'nl'   => 'is_numeric_int',
-    'nt'   => 'is_string',
-  );
-
-  if(validateParams($params, $_POST))
+  if(validateParams($ticketEditParams, $_POST))
   {
     // if update succeeds, return to listings
     if(handleUpdate($id))

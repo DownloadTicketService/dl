@@ -1,5 +1,6 @@
 <?php
 require_once("pages.php");
+require_once("ticketfuncs.php");
 require_once("style/include/style.php");
 $act = "tlist";
 $ref = "$adminPath?a=$act";
