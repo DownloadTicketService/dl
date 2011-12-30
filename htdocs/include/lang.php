@@ -36,7 +36,7 @@ function detectLocale($locale)
 	setcookie('lang', $lang, time() + $cookieLifetime);
     }
   }
-  
+
   // try to detect browser preferences
   if(!isset($locale) && !empty($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
   {
@@ -46,8 +46,8 @@ function detectLocale($locale)
     {
       if(array_search($al, $langData))
       {
-        $locale = $al;
-        break;
+	$locale = $al;
+	break;
       }
     }
   }
@@ -86,7 +86,3 @@ function withLocale($locale, $func, $params)
     switchLocale($curLocale);
   }
 }
-
-
-// internal encoding is always UTF-8
-mb_internal_encoding("UTF-8");

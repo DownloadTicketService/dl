@@ -140,4 +140,39 @@ function userAdm($user)
   return ($DATA? $DATA['admin']: null);
 }
 
+
+function userLogin($user, $pass, $rmt)
+{
+  global $db;
+
+  // validate the user
+  $sql = "SELECT u.id, u.name, pass_md5, admin FROM user u"
+    . " LEFT JOIN role r ON r.id = u.role_id"
+    . " WHERE u.name = " . $db->quote($user);
+  $DATA = $db->query($sql)->fetch();
+  if($DATA !== false)
+    $okpass = (isset($rmt) || ($pass === $DATA['pass_md5']));
+  else
+  {
+    $okpass = isset($rmt);
+    if($okpass)
+    {
+      // create a stub user and get the id
+      $sql = "INSERT INTO user (name, role_id) VALUES (";
+      $sql .= $db->quote($user);
+      $sql .= ", (SELECT id FROM role WHERE name = 'user')";
+      $sql .= ")";
+      if($db->exec($sql) != 1) return false;
+
+      // fetch defaults
+      $sql = "SELECT u.id, u.name, admin FROM user u";
+      $sql .= " LEFT JOIN role r ON r.id = u.role_id";
+      $sql .= " WHERE u.name = " . $db->quote($user);
+      $DATA = $db->query($sql)->fetch();
+    }
+  }
+
+  return ($okpass? $DATA: false);
+}
+
 ?>

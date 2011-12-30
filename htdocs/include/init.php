@@ -15,5 +15,6 @@ elseif(!empty($logFile))
   $logFd = fopen($logFile, "at");
 
 // set the initial default locale
-switchLocale($defLocale);
+$locale = $defLocale;
+switchLocale($locale);
 ?>

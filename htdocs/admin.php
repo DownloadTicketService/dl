@@ -1,7 +1,7 @@
 <?php
 // download ticket system
-include("include/sess.php");
-include("include/auth.php");
+include("include/sesslang.php");
+include("include/sessauth.php");
 include("include/entry.php");
 
 $act = (empty($_REQUEST["a"])? false: $_REQUEST["a"]);
