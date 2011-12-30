@@ -15,4 +15,20 @@ $entry = array
   'users' => array('admin' => true,  'entry' => 'include/users.php'),
 );
 
+$rest = array
+(
+  'info' => array
+  (
+    'admin' => false,
+    'entry' => 'include/restinfo.php',
+    'func'  => 'info',
+  ),
+  'newticket' => array
+  (
+    'admin' => false,
+    'entry' => 'include/restnewticket.php',
+    'func'  => 'newticket'
+  ),
+);
+
 ?>

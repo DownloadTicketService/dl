@@ -60,7 +60,7 @@ function handleUpload($FILE, $params)
   $sql .= ", " . (empty($params["cmt"])? 'NULL': $db->quote($params["cmt"]));
   $sql .= ", " . (empty($params["pass"])? 'NULL': $db->quote(md5($params["pass"])));
   $sql .= ", " . time();
-  if(!empty($params["nl"]))
+  if(!empty($params["nl"]) || @$params["perm"])
   {
     $sql .= ", NULL";
     $sql .= ", NULL";
@@ -103,6 +103,7 @@ $ticketNewParams = array
   'dln'  => 'is_numeric_int',
   'nl'   => 'is_numeric_int',
   'nt'   => 'is_string',
+  'perm' => 'is_bool',
 );
 
 $ticketEditParams = $ticketNewParams;
