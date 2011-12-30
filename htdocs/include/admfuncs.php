@@ -1,6 +1,7 @@
 <?php
 // administrative functions
 require_once("funcs.php");
+require_once("fatal.php");
 
 
 function ticketPurge($DATA, $auto = true)
@@ -63,8 +64,7 @@ function genTicketId($seed)
   if(!$tries)
   {
     logEvent("cannot generate unique ticket ID");
-    header("HTTP/1.0 500 Internal Server Error");
-    exit();
+    httpInternalError();
   }
 
   return array($id, $tmpFile);

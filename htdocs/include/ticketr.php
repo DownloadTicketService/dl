@@ -3,42 +3,27 @@
 
 // fetch the ticket id
 if(!isset($_SERVER["PATH_INFO"]))
-{
-  header("HTTP/1.0 400 Bad Request");
-  exit();
-}
+  httpBadRequest();
 
 $id = false;
 if(preg_match("/^\/([^\/]+)/", $_SERVER["PATH_INFO"], $tmp)) $id = $tmp[1];
 if($id === false || !isTicketId($id))
-{
-  header("HTTP/1.0 404 Not Found");
-  exit();
-}
+  httpNotFound();
 
 // try to fetch the id
 $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
 $DATA = $db->query($sql)->fetch();
 if($DATA === false || isTicketExpired($DATA))
-{
-  header("HTTP/1.0 404 Not Found");
-  exit();
-}
+  httpNotFound();
 
 // check for password
 if(isset($DATA['pass_md5']) && !isset($_SESSION['t'][$id]))
-{
-  header("HTTP/1.0 400 Bad Request");
-  exit();
-}
+  httpBadRequest();
 
 // open the file first
 $fd = fopen($DATA["path"], "r");
 if($fd === false)
-{
-  header("HTTP/1.0 500 Internal Server Error");
-  exit();
-}
+  httpInternalError();
 
 // update range parameters
 if(!empty($_SERVER["HTTP_RANGE"]))
