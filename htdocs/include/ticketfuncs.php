@@ -106,6 +106,10 @@ $ticketNewParams = array
 );
 
 $ticketEditParams = $ticketNewParams;
-$ticketEditParams['name'] = array('is_string', 'not_empty');
+$ticketEditParams['name'] = array
+(
+  'required' => true,
+  'funcs'    => array('is_string', 'not_empty'),
+);
 
 ?>

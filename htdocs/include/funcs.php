@@ -242,7 +242,17 @@ function not_empty(&$v)
 
 function validateParams(&$params, &$array)
 {
-  $found = false;
+  // check required parameters first
+  foreach($params as $k => $v)
+  {
+    if(!is_array($v) || !@$v['required'])
+      continue;
+
+    if(!isset($array[$k]))
+      return false;
+  }
+
+  // validation functions
   $error = false;
 
   foreach($params as $k => $v)
@@ -251,13 +261,11 @@ function validateParams(&$params, &$array)
     if(isset($p))
     {
       if(!is_array($v))
-	$v = array($v);
+	$v = array('funcs' => array($v));
 
-      foreach($v as $i)
+      foreach($v['funcs'] as $i)
       {
-	if(call_user_func($i, $p))
-	  $found = true;
-	else
+	if(!call_user_func($i, $p))
 	{
 	  $error = true;
 	  unset($array[$k]);
@@ -267,7 +275,7 @@ function validateParams(&$params, &$array)
     }
   }
 
-  return ($found && !$error);
+  return !$error;
 }
 
 ?>
