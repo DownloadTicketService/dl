@@ -51,9 +51,9 @@ $cfgVersion = "0.9";
 //          note that changing maxSize does *not* enforce upload_max_filesize
 //$maxSize = ini_get('upload_max_filesize');
 
-// authRealm: HTTP authentication realm
-//            When using HTTP authentication, authRealm should match the HTTP
-//            realm name in order for "logout" to have any effect.
+// authRealm: Enables HTTP authentication
+//            When using HTTP authentication, you should set authRealm to the
+//            realm name as used on your web server.
 //$authRealm = "Restricted Area";
 
 // dsn: set the DSN of your database (read the installation manual)
