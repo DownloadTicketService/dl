@@ -27,7 +27,7 @@ if(!isset($auth) || isset($_POST["auth"]))
     $remoteUser = false;
     $authData = json_decode($_POST["auth"], true, 2);
   }
-  else
+  elseif($authRealm)
   {
     // external authentication
     foreach(Array('PHP_AUTH_USER', 'REMOTE_USER', 'REDIRECT_REMOTE_USER') as $key)
@@ -51,7 +51,7 @@ if(isset($authData))
 if(empty($auth) || ($rest[$act]['admin'] && !$auth['admin']))
 {
   header('HTTP/1.0 401 Unauthorized');
-  header('WWW-Authenticate: Basic realm="' . $authRealm . '"');
+  if($authRealm) header('WWW-Authenticate: Basic realm="' . $authRealm . '"');
   exit();
 }
 

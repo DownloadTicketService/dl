@@ -7,12 +7,15 @@ function authenticate()
   global $db, $authRealm;
 
   // external authentication (built-in methods)
-  foreach(Array('PHP_AUTH_USER', 'REMOTE_USER', 'REDIRECT_REMOTE_USER') as $key)
+  if($authRealm)
   {
-    if(isset($_SERVER[$key]))
+    foreach(Array('PHP_AUTH_USER', 'REMOTE_USER', 'REDIRECT_REMOTE_USER') as $key)
     {
-      $remoteUser = $_SERVER[$key];
-      break;
+      if(isset($_SERVER[$key]))
+      {
+	$remoteUser = $_SERVER[$key];
+	break;
+      }
     }
   }
 
