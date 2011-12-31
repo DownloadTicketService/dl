@@ -29,7 +29,7 @@ function authenticate()
     }
 
     $user = $_REQUEST['u'];
-    $pass = md5($_POST['p']);
+    $pass = $_POST['p'];
   }
   else
   {
@@ -46,7 +46,7 @@ function authenticate()
   }
 
   // verify if we have administration rights
-  return userLogin($user, $pass, $remoteUser);
+  return userLogin($user, $pass, isset($remoteUser));
 }
 
 if(!isset($auth) || isset($_REQUEST['u']))

@@ -151,10 +151,10 @@ function userLogin($user, $pass, $rmt)
     . " WHERE u.name = " . $db->quote($user);
   $DATA = $db->query($sql)->fetch();
   if($DATA !== false)
-    $okpass = (isset($rmt) || ($pass === $DATA['pass_md5']));
+    $okpass = ($rmt || (md5($pass) === $DATA['pass_md5']));
   else
   {
-    $okpass = isset($rmt);
+    $okpass = $rmt;
     if($okpass)
     {
       // create a stub user and get the id

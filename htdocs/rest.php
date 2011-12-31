@@ -24,7 +24,7 @@ if(!isset($auth) || isset($_POST["auth"]))
 {
   if(isset($_POST["auth"]))
   {
-    $remoteUser = false;
+    $rmt = false;
     $authData = json_decode($_POST["auth"], true, 2);
   }
   elseif($authRealm)
@@ -34,7 +34,7 @@ if(!isset($auth) || isset($_POST["auth"]))
     {
       if(isset($_SERVER[$key]))
       {
-	$remoteUser = true;
+	$rmt = true;
 	$authData = array("user" => $_SERVER[$key], "pass" => false);
 	break;
       }
@@ -43,9 +43,9 @@ if(!isset($auth) || isset($_POST["auth"]))
 }
 if(isset($authData))
 {
-  if(empty($authData["user"]) || (!$remoteUser && empty($authData["pass"])))
+  if(empty($authData["user"]) || (!$rmt && empty($authData["pass"])))
     httpBadRequest();
-  $auth = userLogin($authData["user"], $authData["pass"], $remoteUser);
+  $auth = userLogin($authData["user"], $authData["pass"], $rmt);
   unset($authData);
 }
 if(empty($auth) || ($rest[$act]['admin'] && !$auth['admin']))
