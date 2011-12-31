@@ -36,8 +36,8 @@ function authenticate()
     if(isset($_REQUEST['u']) && empty($_REQUEST['u']))
     {
       // remote logout
-      Header('HTTP/1.0 401 Unauthorized');
-      Header('WWW-Authenticate: Basic realm="' . $authRealm . '"');
+      header('HTTP/1.0 401 Unauthorized');
+      header('WWW-Authenticate: Basic realm="' . $authRealm . '"');
       includeTemplate('style/include/rmtlogout.php');
       return null;
     }
