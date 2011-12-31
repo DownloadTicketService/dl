@@ -1,3 +1,11 @@
+dl 0.9.1: 31/12/2011
+--------------------
+
+* Fixed a grave security issue: unauthorized parties can perform login as any
+  arbitrary user when using the built-in authentication mechanism by supplying
+  an authorization header. DL versions down to 0.3 are affected.
+
+
 dl 0.9: 06/04/2011
 ------------------
 
