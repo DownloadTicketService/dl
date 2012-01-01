@@ -2,10 +2,13 @@ dl 0.10:
 -------------------
 
 * The default configuration file has been renamed to "config.php.dist" and must
-  be manually copied/renamed to be used. If a suitable "config.php" is not
+  now be manually copied/renamed to be used. If a suitable "config.php" is not
   found in the include/ directory, configuration is read from "/etc/dl.php".
 * Notifications of tickets and grants now use the same locale that was used
-  during creation.
+  during the creation of the ticket/grant itself.
+* A new REST API has been implemented, allowing external applications to use the
+  service programmatically.
+* A command-line python client is now included in the distribution.
 * Minor bug and UI fixes.
 
 

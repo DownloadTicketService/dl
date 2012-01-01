@@ -1,0 +1,111 @@
+DL REST API
+===========
+
+Since version 0.10 DL offers a ''RESTful'' HTTP API that allows inter-operation
+between other services and/or native programs easily.
+
+.. contents::
+
+
+Outline of the API
+------------------
+
+Every request is gated through the "/rest" page (or "/rest.php", depending on
+the configuration), which is directly on the root of the web service. With the
+following configuration::
+
+  $masterPath = "https://dl.example.com";
+  $phpExt = "";
+
+the gateway is at::
+
+  $restGateway = "$masterPath/rest$phpExt";
+
+or "https://dl.example.com/rest" in human terms.
+
+Each action is directly appended to the URI space, followed by parameters (if any)::
+
+  /rest/request[/parameters]
+
+Every request must be performed via ''POST'', and must include:
+
+* Either HTTP's "BASIC" authorization credentials (required when DL is used
+  with external authentication), or
+* A JSON-encoded "auth" parameter, with the following terms:
+
+  * "user": user name accessing the service
+  * "pass": password for the service
+
+* A JSON-encoded "msg" parameter, with arguments defined by the request. This
+  parameter should always be present, even when empty.
+* When needed, a "file" parameter to be attached.
+
+A minimal viable request looks as follows::
+
+  POST /rest/info HTTP/1.0
+  Content-Length: 262
+  Host: dl.example.com
+  Content-Type: multipart/form-data; boundary=---6e79d17befc2
+
+  ---6e79d17befc2
+  Content-Disposition: form-data; name="msg"
+
+  {}
+  ---6e79d17befc2
+  Content-Disposition: form-data; name="auth"
+
+  {"user":"test","pass":"test"}
+  ---6e79d17befc2--
+
+The output of every request can be:
+
+* An HTTP error code only (400, 401, 500, etc).
+* An HTTP error code with a JSON-encoded message with an "error" term::
+
+    {"error":"error description"}
+
+* A successful HTTP status (200), with a JSON-encoded message (even if empty)
+  containing the specific request output.
+
+
+Available requests
+------------------
+
+info
+~~~~
+
+An "info" requests takes no parameters and no message data. It simply returns
+the following terms:
+
+* version (string): DL version.
+* masterpath (string): root URL of the service.
+* url (string): configurable reference URL for the service.
+* maxsize (integer): maximum upload size (in bytes).
+* defaults: service defaults:
+
+  * dn (integer): maximal number of days.
+  * hra (integer): maximal number of hours after last download.
+  * dln (integer): maximal number of downloads for the ticket.
+
+
+newticket
+~~~~~~~~~
+
+A "newticket" request creates a new ticket. A "file" parameter containing the
+attached file *must be present* in the request.
+
+The "msg" parameter can contain any of the following terms:
+
+* cmt (string): comment for the ticket.
+* pass (string): password required for the ticket.
+* dn (integer): maximal number of days.
+* hra (integer): maximal number of hours after last download.
+* dln (integer): maximal number of downloads for the ticket.
+* nt (string): notification addresses (comma-separated list of e-mails).
+* st (string): send-link-to addresses (comma-separated list of e-mails).
+* perm (boolean): mutually exclusive with hra/dn/dln, sets a permanent ticket.
+
+The result contains the following terms:
+
+* id (string): ticket ID.
+* url (string): ticket URL.

@@ -218,9 +218,14 @@ External authentication should be the preferred form of authentication for
 corporate use since it supports whatever authentication scheme your web server
 already supports (for example, LDAP, ActiveDirectory, etc).
 
-To enable external authentication you have to protect the file (and only the
-file) ``admin.php`` using a "Basic" authentication scheme. You should then set
-''$authRealm'' to the same realm used in your web server.
+To enable external authentication you have to protect the two files:
+
+* `admin.php``
+* ``rest.php``
+
+using a "Basic" authentication scheme. You should then set ''$authRealm'' to
+the same authentication realm used in your web server. The other files *must
+not* be protected.
 
 DL will implicitly trust the credentials provided by the web server. All users
 are logged in as "normal" by default. The only setup required is adding the
@@ -261,7 +266,7 @@ With external authentication::
   <Directory /your-installation-directory>
     AllowOverride Limit
     Options -Indexes
-    <Files admin.php>
+    <Files admin.php rest.php>
       AuthType Basic
       AuthName "Restricted Area"
       ...
@@ -274,7 +279,7 @@ With LDAP or ActiveDirectory authentication::
   <Directory /your-installation-directory>
     AllowOverride Limit
     Options -Indexes
-    <Files admin.php>
+    <Files admin.php rest.php>
       AuthType Basic
       AuthName "Restricted Area"
       AuthBasicProvider ldap
@@ -314,7 +319,7 @@ and a different setup is required, as shown::
   <Directory /your-installation-directory>
     AllowOverride Limit
     Options -Indexes
-    <Files admin.php>
+    <Files admin.php rest.php>
       RewriteEngine on
       RewriteCond %{HTTP:Authorization} ^(.*)
       RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
@@ -338,7 +343,7 @@ following configuration is required to protect the include directories::
 
 You can also enable external authentication with the following::
 
-  auth.require   += ( "/dl/admin.php" => (
+  auth.require   += ( "/dl/(?:admin|rest).php" => (
       "method"   => "basic",
       "realm"    => "Restricted Area",
       "require"  => "valid-user"
