@@ -97,16 +97,17 @@ $ticketNewParams = array
 (
   'cmt'  => 'is_string',
   'pass' => 'is_string',
-  'clr'  => 'is_numeric_int',
   'dn'   => 'is_numeric',
   'hra'  => 'is_numeric',
   'dln'  => 'is_numeric_int',
   'nl'   => 'is_numeric_int',
   'nt'   => 'is_string',
+  'st'   => 'is_string',
   'perm' => 'is_bool',
 );
 
 $ticketEditParams = $ticketNewParams;
+$ticketEditParams['clr'] = 'is_numeric_int';
 $ticketEditParams['name'] = array
 (
   'required' => true,
