@@ -6,20 +6,19 @@ function info($msg, $params = null)
   global $dlVersion, $bannerUrl, $masterPath, $rPath, $iMaxSize;
   global $defaultTotalDays, $defaultLastDl, $defaultMaxDl;
 
-  return array
+  return array(false, array
   (
     'version'    => $dlVersion,
     'url'        => $bannerUrl,
     'masterpath' => $masterPath,
-    'restpath'   => $rPath,
     'maxsize'    => $iMaxSize,
     'defaults'   => array
     (
-      'totaldays' => $defaultTotalDays,
-      'lastdl' => $defaultLastDl,
-      'maxdl' => $defaultMaxDl,
+      'dn'  => $defaultTotalDays,
+      'hra' => $defaultLastDl,
+      'dln' => $defaultMaxDl,
     ),
-  );
+  ));
 }
 
 ?>

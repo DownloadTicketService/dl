@@ -63,7 +63,12 @@ if(!isset($msg))
 // handling
 array_unshift($args, $msg);
 include $rest[$act]['entry'];
-$ret = call_user_func_array($rest[$act]['func'], $args);
+list($error, $ret) = call_user_func_array($rest[$act]['func'], $args);
+if($error !== false)
+{
+  call_user_func($error);
+  $ret = array("error" => $ret);
+}
 echo json_encode($ret);
 
 ?>

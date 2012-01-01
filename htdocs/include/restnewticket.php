@@ -18,17 +18,17 @@ function newticket($msg, $params = null)
   {
     // ticket creation unsucessfull
     if($validated && !empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
-      return array("error" => uploadErrorStr($_FILES["file"]));
+      return array('httpInternalError', uploadErrorStr($_FILES["file"]));
     else
-      return array("error" => "bad parameters");
+      return array('httpBadRequest', "bad parameters");
   }
 
   // return ticket instance
-  return array
+  return array(false, array
   (
     "id"  => $DATA['id'],
     "url" => ticketUrl($DATA),
-  );
+  ));
 }
 
 ?>
