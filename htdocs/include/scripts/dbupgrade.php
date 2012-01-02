@@ -1,12 +1,11 @@
 #!/usr/bin/env php
 <?php
-if(get_magic_quotes_runtime())
-  set_magic_quotes_runtime(0);
 if(!isset($argc)) die("not running from the command line\n");
 
 // data
-require_once("../confwrap.php");
-require_once("../admfuncs.php");
+require_once("../prelude.php");
+require_once("confwrap.php");
+require_once("admfuncs.php");
 
 // initialize the db connection
 $db = new PDO($dsn);
@@ -45,7 +44,7 @@ if(!$version && file_exists($tDbPath) && file_exists($uDbPath))
     $sql = "INSERT INTO user (name, pass_md5, role_id) VALUES (";
     $sql .= $db->quote($key);
     $sql .= ", " . (empty($DATA["pass"])?
-        'NULL': $db->quote($DATA["pass"]));
+	'NULL': $db->quote($DATA["pass"]));
     $sql .= ", " . ($DATA["admin"]? $adminId: $userId);
     $sql .= ")";
 
@@ -132,11 +131,18 @@ if($version == "0.4"
 || $version == "0.5"
 || $version == "0.6"
 || $version == "0.7"
-|| $version == "0.8")
+|| $version == "0.8"
+|| $version == "0.9")
 {
-  echo "upgrading 0.4 => 0.9 ...\n";
-  $db->exec("UPDATE config SET value = '0.9' WHERE name = 'version'");
-  $version = "0.9";
+  echo "upgrading 0.4 => 0.10 ...\n";
+
+  $db->exec("ALTER TABLE ticket ADD sent_email VARCHAR");
+  $db->exec("ALTER TABLE ticket ADD locale VARCHAR");
+  $db->exec("ALTER TABLE grant ADD sent_email VARCHAR");
+  $db->exec("ALTER TABLE grant ADD locale VARCHAR");
+  $db->exec("UPDATE config SET value = '0.10' WHERE name = 'version'");
+
+  $version = "0.10";
 }
 
 echo "done\n";

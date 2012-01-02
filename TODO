@@ -4,6 +4,11 @@ TODO
 Important
 ---------
 
+* User preferences page. Required for:
+
+  - Allowing users to change their passwords (important!).
+  - Setting a default notification address.
+
 * Multiple-file support vs grant re-use (allow more than one grant, grant
   timeout).
 
@@ -20,30 +25,11 @@ Important
   problem, this should result in a single email. Tickets would need to be
   grouped in some way, probably with a new "group" table.
 
-* Save send-link-to addresses into the DB.
-  Required for e-mail tracking, and nice to have anyway as a reminder.
-
 * Move alien tickets/grants from the administrator's lists to a separated page.
   My take: definitely important, high priority.
 
-* Do something about passwords through e-mail (either always send the password,
-  or never). Important. See:
-
-  http://thread.gmane.org/gmane.comp.web.dl-ticket-service.general/95
-
-  And [private] discussions with Mokrani, Emanuele.
-
-  This will require storing the password of grants in the DB.
-
-* Store the current language when creating a ticket/grant, so that notification
-  emails are sent with the same locale. Important/easy. See [private]
-  discussion with Mokrani.
-
 * Use file templates instead of hard-coded messages to compose the e-mails.
   See a lot of good suggestions sent by Morkani.
-
-* Move config.php to (or at least reading from) /etc/ on unix platform,
-  to simplify update process.
 
 * Hash-based file references, required to implement de-duplication,
   multiple tickets, e-mail tracking. See:
@@ -73,11 +59,14 @@ Nice to have
 * Support e-mail tracking when using send-link-to.
   Nice to have, but not critical.
 
-* Set sidewide defaults for tickets in config.php.
+* Set sidewide limits for ticket/grants in config.php.
 
 * Enforce sitewide ticket/grants limits.
 
 * Some sort of quota mechanism to avoid uncontrolled server fill-up.
+
+* Switch from md5 for password hashing to some salted hash (using crypt()).
+  Low priority, since passwords are actually sent in clear-text all over the place.
 
 
 Suggestions

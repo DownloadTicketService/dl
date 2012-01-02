@@ -1,3 +1,25 @@
+dl 0.10: 
+-------------------
+
+* The default configuration file has been renamed to "config.php.dist" and must
+  now be manually copied/renamed to be used. If a suitable "config.php" is not
+  found in the include/ directory, configuration is read from "/etc/dl.php".
+* Notifications of tickets and grants now use the same locale that was used
+  during the creation of the ticket/grant itself.
+* A new REST API has been implemented, allowing external applications to use the
+  service programmatically.
+* A command-line python client is now included in the distribution.
+* Minor bug and UI fixes.
+
+
+dl 0.9.1: 31/12/2011
+--------------------
+
+* Fixed a grave security issue: unauthorized parties can perform login as any
+  arbitrary user when using the built-in authentication mechanism by supplying
+  an authorization header. DL versions down to 0.3 are affected.
+
+
 dl 0.9: 06/04/2011
 ------------------
 

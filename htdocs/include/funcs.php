@@ -9,15 +9,6 @@ function isTicketId($str)
 }
 
 
-function isTicketExpired($DATA, $now = NULL)
-{
-  if(!isset($now)) $now = time();
-  return (($DATA["expire"] && $DATA["expire"] < $now)
-       || ($DATA["expire_last"] && $DATA["expire_last"] < $now)
-       || ($DATA["expire_dln"] && $DATA["expire_dln"] <= $DATA["downloads"]));
-}
-
-
 function isGrantId($str)
 {
   return isTicketId($str);
@@ -102,28 +93,6 @@ function ticketUrl($DATA)
 }
 
 
-function ticketExpiry($DATA)
-{
-  if($DATA["expire_dln"] || $DATA["last_time"])
-  {
-    if($DATA["expire_last"])
-      return sprintf(T_("About %s"), humanTime($DATA["expire_last"] - time()));
-    elseif($DATA["expire_dln"] && $DATA["downloads"])
-      return sprintf(T_("About %d downloads"), ($DATA["expire_dln"] - $DATA["downloads"]));
-    elseif($DATA["expire"])
-      return sprintf(T_("About %s"), humanTime($DATA["expire"] - time()));
-    elseif($DATA["expire_dln"])
-      return sprintf(T_("After %d downloads"), $DATA["expire_dln"]);
-    else
-      return sprintf(T_("%s after next download"), humanTime($DATA["last_time"]));
-  }
-  elseif($DATA["expire"])
-    return sprintf(T_("In %s"), humanTime($DATA["expire"] - time()));
-
-  return ("<strong>" . T_("Never") . "</strong>");
-}
-
-
 function grantStr($DATA)
 {
   return $DATA['id'];
@@ -143,20 +112,6 @@ function grantExpiry($DATA)
     return sprintf(T_("In %s"), humanTime($DATA["grant_expire"] - time()));
 
   return ("<strong>" . T_("Never") . "</strong>");
-}
-
-
-function returnBytes($val)
-{
-  $val = trim($val);
-  $last = strtolower($val{strlen($val)-1});
-  switch($last)
-  {
-  case 'g': $val *= 1024;
-  case 'm': $val *= 1024;
-  case 'k': $val *= 1024;
-  }
-  return $val;
 }
 
 
@@ -227,6 +182,28 @@ function infoMessage($hdr, $lines)
 }
 
 
+function uploadErrorStr($FILE)
+{
+  switch($FILE["error"])
+  {
+  case UPLOAD_ERR_INI_SIZE:
+  case UPLOAD_ERR_FORM_SIZE:
+    $msg = T_("file too big");
+    break;
+
+  case UPLOAD_ERR_PARTIAL:
+  case UPLOAD_ERR_NO_FILE:
+    $msg = T_("upload interrupted");
+    break;
+
+  default:
+    $msg = T_("internal error");
+  }
+
+  return $msg;
+}
+
+
 function truncAtWord($str, $len, $thr = 5, $ell = "\xE2\x80\xA6")
 {
   $min = max(0, $len - $thr);
@@ -265,7 +242,17 @@ function not_empty(&$v)
 
 function validateParams(&$params, &$array)
 {
-  $found = false;
+  // check required parameters first
+  foreach($params as $k => $v)
+  {
+    if(!is_array($v) || !@$v['required'])
+      continue;
+
+    if(!isset($array[$k]))
+      return false;
+  }
+
+  // validation functions
   $error = false;
 
   foreach($params as $k => $v)
@@ -274,13 +261,11 @@ function validateParams(&$params, &$array)
     if(isset($p))
     {
       if(!is_array($v))
-	$v = array($v);
+	$v = array('funcs' => array($v));
 
-      foreach($v as $i)
+      foreach($v['funcs'] as $i)
       {
-	if(call_user_func($i, $p))
-	  $found = true;
-	else
+	if(!call_user_func($i, $p))
 	{
 	  $error = true;
 	  unset($array[$k]);
@@ -290,7 +275,7 @@ function validateParams(&$params, &$array)
     }
   }
 
-  return ($found && !$error);
+  return !$error;
 }
 
 ?>

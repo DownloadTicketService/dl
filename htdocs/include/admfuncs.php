@@ -1,6 +1,7 @@
 <?php
 // administrative functions
 require_once("funcs.php");
+require_once("fatal.php");
 
 
 function ticketPurge($DATA, $auto = true)
@@ -47,17 +48,24 @@ function runGc()
 
 function genTicketId($seed)
 {
-  global $dataDir;
+  global $dataDir, $maxUUTries;
 
   // generate new unique id/file name
   if(!file_exists($dataDir)) mkdir($dataDir);
+
+  $tries = $maxUUTries;
   do
   {
     list($usec, $sec) = microtime();
     $id = md5(rand() . "/$usec/$sec/" . $seed);
     $tmpFile = "$dataDir/$id";
   }
-  while(fopen($tmpFile, "x") === FALSE);
+  while(fopen($tmpFile, "x") === FALSE && --$tries);
+  if(!$tries)
+  {
+    logEvent("cannot generate unique ticket ID");
+    httpInternalError();
+  }
 
   return array($id, $tmpFile);
 }
@@ -130,6 +138,41 @@ function userAdm($user)
   $DATA = $db->query($sql)->fetch();
 
   return ($DATA? $DATA['admin']: null);
+}
+
+
+function userLogin($user, $pass, $rmt)
+{
+  global $db;
+
+  // validate the user
+  $sql = "SELECT u.id, u.name, pass_md5, admin FROM user u"
+    . " LEFT JOIN role r ON r.id = u.role_id"
+    . " WHERE u.name = " . $db->quote($user);
+  $DATA = $db->query($sql)->fetch();
+  if($DATA !== false)
+    $okpass = ($rmt || (md5($pass) === $DATA['pass_md5']));
+  else
+  {
+    $okpass = $rmt;
+    if($okpass)
+    {
+      // create a stub user and get the id
+      $sql = "INSERT INTO user (name, role_id) VALUES (";
+      $sql .= $db->quote($user);
+      $sql .= ", (SELECT id FROM role WHERE name = 'user')";
+      $sql .= ")";
+      if($db->exec($sql) != 1) return false;
+
+      // fetch defaults
+      $sql = "SELECT u.id, u.name, admin FROM user u";
+      $sql .= " LEFT JOIN role r ON r.id = u.role_id";
+      $sql .= " WHERE u.name = " . $db->quote($user);
+      $DATA = $db->query($sql)->fetch();
+    }
+  }
+
+  return ($okpass? $DATA: false);
 }
 
 ?>

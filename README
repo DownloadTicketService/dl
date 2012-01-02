@@ -46,8 +46,9 @@ DL installation
 * Copy the ``htdocs`` directory contained in the archive to a directory of
   choice under your web server.
 
-* Configure the parameters inside ``include/config.php`` as needed. This
-  usually means changing the URL and E-Mail of the service.
+* Copy ``include/config.php.dist`` to either ``include/config.php`` or
+  ``/etc/dl.php`` and customize as needed. This usually means changing the URL
+  and E-Mail of the service.
 
 * Ensure the ``include`` and ``style/include`` directories are *not* directly
   accessible externally. Type ``http://dl.example.com/include/config.php`` and
@@ -86,7 +87,7 @@ server* (by using ``su`` or ``sudo`` if necessary)::
   chmod 660 data.sdb
 
 If you want to change the database path, or use a real database server, you
-need to properly configure the $dsn parameter in ``include/config.php``
+need to properly configure the ''$dsn'' parameter in ``include/config.php``
 according to your setup.
 
 
@@ -217,17 +218,22 @@ External authentication should be the preferred form of authentication for
 corporate use since it supports whatever authentication scheme your web server
 already supports (for example, LDAP, ActiveDirectory, etc).
 
-To enable external authentication, simply protect the file (and only the file)
-``admin.php`` using a "Basic" authentication scheme. DL will implicitly trust
-the credentials provided by the web server. All users are logged in as "normal"
-by default. The only setup required is adding the administrators with
-``useradmin.php`` without using any password.
+To enable external authentication you have to protect the two files:
 
-To make "Logout" work, you must also set the *same* authentication realm in
-both your web-server and ``include/config.php``. Logout with HTTP
-authentication is not guaranteed to work: users should simply **close their
-browser** to clear their session (closing a tab or window is not
-enough). Currently, logout works as expected on:
+* `admin.php``
+* ``rest.php``
+
+using a "Basic" authentication scheme. You should then set ''$authRealm'' to
+the same authentication realm used in your web server. The other files *must
+not* be protected.
+
+DL will implicitly trust the credentials provided by the web server. All users
+are logged in as "normal" by default. The only setup required is adding the
+administrators with ``useradmin.php`` without using any password.
+
+Logout with HTTP authentication is not guaranteed to work: users should simply
+**close their browser** to clear their session (closing a tab or window is not
+enough in many browsers). Currently, logout works as expected on:
 
 * Firefox 3.x/4.x
 * Safari 4.x
@@ -260,7 +266,7 @@ With external authentication::
   <Directory /your-installation-directory>
     AllowOverride Limit
     Options -Indexes
-    <Files admin.php>
+    <Files admin.php rest.php>
       AuthType Basic
       AuthName "Restricted Area"
       ...
@@ -273,7 +279,7 @@ With LDAP or ActiveDirectory authentication::
   <Directory /your-installation-directory>
     AllowOverride Limit
     Options -Indexes
-    <Files admin.php>
+    <Files admin.php rest.php>
       AuthType Basic
       AuthName "Restricted Area"
       AuthBasicProvider ldap
@@ -313,7 +319,7 @@ and a different setup is required, as shown::
   <Directory /your-installation-directory>
     AllowOverride Limit
     Options -Indexes
-    <Files admin.php>
+    <Files admin.php rest.php>
       RewriteEngine on
       RewriteCond %{HTTP:Authorization} ^(.*)
       RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
@@ -337,7 +343,7 @@ following configuration is required to protect the include directories::
 
 You can also enable external authentication with the following::
 
-  auth.require   += ( "/dl/admin.php" => (
+  auth.require   += ( "/dl/(?:admin|rest).php" => (
       "method"   => "basic",
       "realm"    => "Restricted Area",
       "require"  => "valid-user"
@@ -347,9 +353,36 @@ You can also enable external authentication with the following::
 Usage
 =====
 
-DL should be usable by users without any training. The interface must be
+DL should be usable by users without any training. The web interface must be
 self-explanatory. If you find the usage to be difficult or that the interface
 could be improved, **it's a bug**. Please let us know.
+
+
+Command-line client: ``dl-cli.py``
+----------------------------------
+
+A command-line client to the REST interface is included in the distribution in
+``client/dl-cli.py``. This client requires a simple text configuration file, by
+default stored in ``~/.dl.rc``, containing the following values:
+
+* url: REST URL of the service
+* user: your user name
+* pass: your password
+* verify (optional): "true" or "false": enable/disable SSL verification
+  (defaults to true)
+
+An example::
+
+  url=https://dl.example.com/rest.php
+  user=test
+  pass=test
+
+Simply run the command with no arguments to see usage information. At least
+Python 2.7 is required, with the "ConfigObj" and "PycURL" modules
+installed. Under Debian/Ubuntu systems you can install the required
+dependencies by doing the following::
+
+  sudo apt-get install python-pycurl python-configobj
 
 
 Ticket expiration

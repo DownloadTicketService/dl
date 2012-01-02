@@ -1,2 +1,3 @@
 *.mo
+/htdocs/include/config.php
 /htdocs/static/guide/*/*.html

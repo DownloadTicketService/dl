@@ -1,6 +1,6 @@
 <?php
 // download ticket system
-include("include/sess.php");
+include("include/sesslang.php");
 
 if(isset($_REQUEST["t"]))
   include("include/ticket.php");

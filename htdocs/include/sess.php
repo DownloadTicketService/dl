@@ -9,13 +9,8 @@ if($gcInternal === true
  || (mt_rand() / mt_getrandmax() < $gcProbability)))
   runGc();
 
-// start the session
+// start the session and session-global variables
 session_name($sessionName);
 session_start();
 $auth = &$_SESSION["auth"];
-
-// set session's locale
-$locale = &$_SESSION["locale"];
-$locale = detectLocale($locale);
-switchLocale($locale);
 ?>

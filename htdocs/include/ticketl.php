@@ -1,5 +1,6 @@
 <?php
 require_once("pages.php");
+require_once("ticketfuncs.php");
 require_once("style/include/style.php");
 $act = "tlist";
 $ref = "$adminPath?a=$act";
@@ -149,6 +150,21 @@ foreach($db->query($sql) as $DATA)
     echo "<tr><th>" . T_("Notify:") . " </th><td>";
     $first = true;
     foreach(getEMailAddrs($DATA['notify_email']) as $email)
+    {
+      if($first) $first = false;
+      else echo ", ";
+      echo "<a href=\"mailto:" . urlencode($email) . "\">" .
+	htmlEntUTF8($email) . "</a>";
+    }
+    echo "</td></tr>";
+  }
+
+  // sent-to
+  if($DATA["sent_email"])
+  {
+    echo "<tr><th>" . T_("Sent to:") . " </th><td>";
+    $first = true;
+    foreach(getEMailAddrs($DATA['sent_email']) as $email)
     {
       if($first) $first = false;
       else echo ", ";

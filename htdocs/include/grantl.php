@@ -110,6 +110,12 @@ foreach($db->query($sql) as $DATA)
   // parameters
   echo "<td class=\"fileinfo\" colspan=\"2\"><table>";
 
+  // owner
+  if(!$our)
+    echo "<tr><th>" . T_("User:") . " </th><td>" . htmlEntUTF8($DATA["user"]) . "</td></tr>";
+  if(isset($DATA['pass_md5']))
+    echo "<tr><th>" . T_("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
+
   // notify
   echo "<tr><th>" . T_("Notify:") . " </th><td>";
   $first = true;
@@ -121,11 +127,16 @@ foreach($db->query($sql) as $DATA)
       htmlEntUTF8($email) . "</a>";
   }
 
-  // owner
-  if(!$our)
-    echo "<tr><th>" . T_("User:") . " </th><td>" . htmlEntUTF8($DATA["user"]) . "</td></tr>";
-  if(isset($DATA['pass_md5']))
-    echo "<tr><th>" . T_("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
+  // sent-to
+  echo "<tr><th>" . T_("Sent to:") . " </th><td>";
+  $first = true;
+  foreach(getEMailAddrs($DATA['sent_email']) as $email)
+  {
+    if($first) $first = false;
+    else echo ", ";
+    echo "<a href=\"mailto:" . urlencode($email) . "\">" .
+      htmlEntUTF8($email) . "</a>";
+  }
 
   echo "</table></td></tr>";
 }
