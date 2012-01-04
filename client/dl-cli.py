@@ -35,10 +35,10 @@ def newticket(file, params):
 
     c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
     c.setopt(c.USERPWD, params['user'] + ':' + params['pass'])
-    c.setopt(c.HTTPPOST,
-             [("file", (c.FORM_FILE, file)),
-              ("auth", json.dumps({"user": params['user'], "pass": params['pass']})),
-              ("msg", json.dumps({}))])
+    c.setopt(c.HTTPPOST, [
+        ("file", (c.FORM_FILE, file)),
+        ("auth", json.dumps({"user": params['user'], "pass": params['pass']})),
+        ("msg", json.dumps({}))])
     c.setopt(c.HTTPHEADER, ['Expect:', 'User-agent: ' + DL_AGENT])
     if not params['verify']:
         c.setopt(c.SSL_VERIFYPEER, False)
@@ -50,8 +50,8 @@ def newticket(file, params):
 
     ret = None
     if s.tell():
+        s.seek(0)
         try:
-            s.seek(0)
             ret = json.load(s)
         except ValueError:
             pass
@@ -63,7 +63,7 @@ def newticket(file, params):
             error = ret['error']
         raise UploadError("Service error: " + error)
     if ret is None:
-        raise UploadError("Service error: cannot decode output JSON");
+        raise UploadError("Service error: cannot decode output JSON")
 
     c.close()
     return ret
