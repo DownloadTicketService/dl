@@ -40,7 +40,6 @@ $last = ($range[2] == $DATA["size"] - 1);
 // update the record for the next query
 $now = time();
 $sql = "UPDATE ticket SET last_stamp = $now"
-  . ", expire_last = $now + last_time"
   . " WHERE id = " . $db->quote($id);
 $db->exec($sql);
 
@@ -89,7 +88,6 @@ if($last && !connection_aborted())
     // update download count
     $now = time();
     $sql = "UPDATE ticket SET last_stamp = $now"
-      . ", expire_last = $now + last_time"
       . ", downloads = downloads + 1 WHERE id = " . $db->quote($id);
     $db->exec($sql);
   }

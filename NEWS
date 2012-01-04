@@ -6,6 +6,7 @@ dl 0.10:
   found in the include/ directory, configuration is read from "/etc/dl.php".
 * Notifications of tickets and grants now use the same locale that was used
   during the creation of the ticket/grant itself.
+* Changing "hours after last download" when editing a ticket was fixed.
 * A new REST API has been implemented, allowing external applications to use the
   service programmatically.
 * A command-line python client is now included in the distribution.

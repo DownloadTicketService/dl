@@ -138,6 +138,7 @@ if($version == "0.4"
 
   $db->exec("ALTER TABLE ticket ADD sent_email VARCHAR");
   $db->exec("ALTER TABLE ticket ADD locale VARCHAR");
+  $db->exec("ALTER TABLE ticket DROP expire_last"); # not supported by sqlite, it will leave the column
   $db->exec("ALTER TABLE grant ADD sent_email VARCHAR");
   $db->exec("ALTER TABLE grant ADD locale VARCHAR");
   $db->exec("UPDATE config SET value = '0.10' WHERE name = 'version'");
