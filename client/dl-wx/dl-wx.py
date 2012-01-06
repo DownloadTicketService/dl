@@ -91,7 +91,7 @@ class Upload(wx.Dialog):
         self.status = xrc.XRCCTRL(self.upload, 'status')
         self.action = xrc.XRCCTRL(self.upload, 'action')
         self.PostCreate(self.upload)
-        self.Bind(wx.EVT_CLOSE, self.on_close)
+        self.Bind(wx.EVT_CLOSE, self.on_cancel)
         self.request = dl.new_ticket(file, TicketParams(), async=True,
                                      complete_fn=self.completed,
                                      failed_fn=self.failed,
@@ -108,7 +108,6 @@ class Upload(wx.Dialog):
         self.request.cancel()
 
     def on_close(self, evt=None):
-        self.request.cancel()
         self.Destroy()
 
     def on_progress(self, upload_t, upload_d, upload_s):
@@ -126,6 +125,7 @@ class Upload(wx.Dialog):
         self.status.SetLabel(self.url)
         self.action.SetLabel("Copy")
         self.action.Bind(wx.EVT_BUTTON, self.on_copy)
+        self.Bind(wx.EVT_CLOSE, self.on_close)
         self.Fit()
 
     def completed(self, ret):
@@ -138,6 +138,7 @@ class Upload(wx.Dialog):
             self.status.SetLabel(str(ex))
             self.action.SetLabel("Close")
             self.action.Bind(wx.EVT_BUTTON, self.on_close)
+            self.Bind(wx.EVT_CLOSE, self.on_close)
 
     def failed(self, ex):
         wx.CallAfter(self.on_failed, ex)
