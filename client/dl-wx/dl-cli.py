@@ -40,7 +40,7 @@ def main():
     dl = DL(service)
     try:
         fun = progress if sys.stdout.isatty() else None
-        answ = dl.new_ticket(args.file, progress=fun)
+        answ = dl.new_ticket(args.file, progress_fn=fun)
         print(answ['url'])
     except DLError as e:
         die(str(e))
