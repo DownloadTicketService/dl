@@ -4,7 +4,8 @@
 function info($msg, $params = null)
 {
   global $dlVersion, $bannerUrl, $masterPath, $rPath, $iMaxSize;
-  global $defaultTotalDays, $defaultLastDl, $defaultMaxDl;
+  global $defaultTicketTotalDays, $defaultTicketLastDl, $defaultTicketMaxDl;
+  global $defaultGrantTotalDays;
 
   return array(false, array
   (
@@ -14,9 +15,10 @@ function info($msg, $params = null)
     'maxsize'    => $iMaxSize,
     'defaults'   => array
     (
-      'dn'  => $defaultTotalDays,
-      'hra' => $defaultLastDl,
-      'dln' => $defaultMaxDl,
+      'gn'  => $defaultGrantTotalDays,
+      'dn'  => $defaultTicketTotalDays,
+      'hra' => $defaultTicketLastDl,
+      'dln' => $defaultTicketMaxDl,
     ),
   ));
 }

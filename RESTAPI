@@ -83,9 +83,10 @@ the following terms:
 * maxsize (integer): maximum upload size (in bytes).
 * defaults: service defaults:
 
-  * dn (integer): maximal number of days.
-  * hra (integer): maximal number of hours after last download.
-  * dln (integer): maximal number of downloads for the ticket.
+  * gn (number): maximal number of days for grants.
+  * dn (number): maximal number of days for tickets.
+  * hra (number): maximal number of hours after last download for tickets.
+  * dln (number): maximal number of downloads for the ticket for tickets.
 
 
 newticket
@@ -98,9 +99,9 @@ The "msg" parameter can contain any of the following terms:
 
 * cmt (string): comment for the ticket.
 * pass (string): password required for the ticket.
-* dn (integer): maximal number of days.
-* hra (integer): maximal number of hours after last download.
-* dln (integer): maximal number of downloads for the ticket.
+* dn (number): maximal number of days.
+* hra (number): maximal number of hours after last download.
+* dln (number): maximal number of downloads for the ticket.
 * nt (string): notification addresses (comma-separated list of e-mails).
 * st (string): send-link-to addresses (comma-separated list of e-mails).
 * perm (boolean): mutually exclusive with hra/dn/dln, sets a permanent ticket.
