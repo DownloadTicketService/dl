@@ -128,8 +128,7 @@ class DL(object):
             complete_fn_ovr = lambda msg: ret.__setitem__('ret', msg)
             failed_fn_ovr = lambda ex: ret.__setitem__('ex', ex)
             req = Request(self, request, msg, file, complete_fn_ovr, failed_fn_ovr, progress_fn)
-            req.start()
-            req.join()
+            req.run()
             if 'ex' in ret:
                 if failed_fn is not None:
                     failed_fn(ret['ex'])
