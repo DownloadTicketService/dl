@@ -59,9 +59,9 @@ class Prefs(wx.Dialog):
 
     def on_close(self, evt):
         service = Service()
-        service.url = self.url.GetValue()
-        service.username = self.username.GetValue()
-        service.password = self.password.GetValue()
+        service.url = self.url.GetValue().encode('utf8')
+        service.username = self.username.GetValue().encode('utf8')
+        service.password = self.password.GetValue().encode('utf8')
         service.verify = self.verify.GetValue()
 
         error = None
