@@ -44,6 +44,8 @@ def main():
         fun = progress if sys.stdout.isatty() else None
         answ = dl.new_ticket(args.file, progress_fn=fun)
         print(answ['url'])
+    except KeyboardInterrupt:
+	pass
     except DLError as e:
         die(str(e))
 
