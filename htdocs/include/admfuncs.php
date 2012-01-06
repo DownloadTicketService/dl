@@ -32,7 +32,7 @@ function runGc()
   $now = time();
 
   $sql = "SELECT * FROM ticket WHERE expire < $now";
-  $sql .= " OR expire_last < $now";
+  $sql .= " OR (last_stamp + last_time) < $now";
   $sql .= " OR expire_dln <= downloads";
   if($gcLimit) $sql .= " LIMIT $gcLimit";
   foreach($db->query($sql)->fetchAll() as $DATA)
