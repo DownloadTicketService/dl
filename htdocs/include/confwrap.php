@@ -26,9 +26,10 @@ if(!isset($dsn)) $dsn = "sqlite:$spoolDir/data.sdb";
 if(!isset($gcProbability)) $gcProbability = 1.0;
 if(!isset($gcInternal)) $gcInternal = true;
 if(!isset($gcLimit)) $gcLimit = 0;
-if(!isset($defaultTotalDays)) $defaultTotalDays = 7;
-if(!isset($defaultLastDl)) $defaultLastDl = 24;
-if(!isset($defaultMaxDl)) $defaultMaxDl = 0;
+if(!isset($defaultTicketTotalDays)) $defaultTicketTotalDays = 7;
+if(!isset($defaultTicketLastDl)) $defaultTicketLastDl = 24;
+if(!isset($defaultTicketMaxDl)) $defaultTicketMaxDl = 0;
+if(!isset($defaultGrantTotalDays)) $defaultGrantTotalDays = 7;
 
 // derived data
 $useSysLog = (!empty($logFile) && strstr($logFile, "/") === FALSE);

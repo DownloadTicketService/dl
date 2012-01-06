@@ -43,6 +43,7 @@ function handleUploadFailure($file)
 function handleUpload($FILE, $params)
 {
   global $auth, $locale, $dataDir, $db;
+  global $defaultTicketTotalDays, $defaultTicketLastDl, $defaultTicketMaxDl;
 
   // generate new unique id/file name
   list($id, $tmpFile) = genTicketId($FILE["name"]);
@@ -68,6 +69,12 @@ function handleUpload($FILE, $params)
   }
   else
   {
+    if(!isset($params["hra"]) && !isset($params["dn"]) && !isset($params["dln"]))
+    {
+      $params["hra"] = $defaultTicketLastDl;
+      $params["dn"] = $defaultTicketTotalDays;
+      $params["dln"] = $defaultTicketMaxDl;
+    }
     $sql .= ", " . (empty($params["hra"])? 'NULL': $params["hra"] * 3600);
     $sql .= ", " . (empty($params["dn"])? 'NULL': time() + $params["dn"] * 3600 * 24);
     $sql .= ", " . (empty($params["dln"])? 'NULL': (int)$params["dln"]);
