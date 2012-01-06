@@ -220,7 +220,7 @@ already supports (for example, LDAP, ActiveDirectory, etc).
 
 To enable external authentication you have to protect the two files:
 
-* `admin.php``
+* ``admin.php``
 * ``rest.php``
 
 using a "Basic" authentication scheme. You should then set ''$authRealm'' to
@@ -358,8 +358,8 @@ self-explanatory. If you find the usage to be difficult or that the interface
 could be improved, **it's a bug**. Please let us know.
 
 
-Command-line client: ``dl-cli.py``
-----------------------------------
+Command-line client: ``dl-cli``
+-------------------------------
 
 A command-line client to the REST interface is included in the distribution in
 ``client/dl-cli.py``. This client requires a simple text configuration file, by
@@ -369,7 +369,7 @@ default stored in ``~/.dl.rc``, containing the following values:
 * user: your user name
 * pass: your password
 * verify (optional): "true" or "false": enable/disable SSL verification
-  (defaults to true)
+  (might be required for self-signed certificates, defaults to true)
 
 An example::
 
@@ -383,6 +383,29 @@ installed. Under Debian/Ubuntu systems you can install the required
 dependencies by doing the following::
 
   sudo apt-get install python-pycurl python-configobj
+
+
+Graphical client: ``dl-wx``
+---------------------------
+
+A graphical client is also included in the distribution, which allows to create
+tickets easily from the system's taskbar. The client can be run by executing
+``client/dl-wx/dl-wx.py``.
+
+Upon first execution the user will be prompted for basic configuration. After
+that all DL functions can be operated through the taskbar icon:
+
+* Left-clicking on the taskbar will create a new ticket using the default
+  settings.
+* Right-clicking allows to select different actions.
+
+At least Python 2.7 is required, with the "ConfigObj", "PycURL" and "wxPython"
+modules installed. Under Debian/Ubuntu systems you can install the required
+dependencies by doing the following::
+
+  sudo apt-get install python-pycurl python-configobj python-wxgtk2.8
+
+``dl-cli`` and ``dl-wx`` share the same configuration file.
 
 
 Ticket expiration

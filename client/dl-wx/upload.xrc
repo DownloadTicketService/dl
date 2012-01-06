@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<resource>
+  <object class="wxDialog" name="upload">
+    <object class="wxFlexGridSizer">
+      <object class="sizeritem">
+        <object class="wxStaticText" name="file"/>
+        <flag>wxEXPAND</flag>
+      </object>
+      <object class="sizeritem">
+        <object class="wxGauge" name="progress"/>
+        <flag>wxEXPAND</flag>
+        <minsize>300,-1</minsize>
+      </object>
+      <object class="sizeritem">
+        <object class="wxStaticText" name="status"/>
+        <flag>wxEXPAND</flag>
+      </object>
+      <object class="sizeritem">
+        <object class="wxButton" name="action">
+          <default>1</default>
+        </object>
+        <flag>wxALIGN_RIGHT</flag>
+      </object>
+      <cols>1</cols>
+      <rows>3</rows>
+      <vgap>5</vgap>
+      <hgap>5</hgap>
+      <growablecols>0</growablecols>
+    </object>
+    <title>Upload</title>
+    <style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxCLOSE_BOX</style>
+  </object>
+</resource>

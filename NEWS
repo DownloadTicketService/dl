@@ -8,7 +8,8 @@ dl 0.10:
   during the creation of the ticket/grant itself.
 * A new REST API has been implemented, allowing external applications to use the
   service programmatically.
-* A command-line python client is now included in the distribution.
+* Two python clients have been added to the distribution: a command-line python
+  client "dl-cli" and a graphical client "dl-wx".
 * Minor bug and UI fixes.
 
 
