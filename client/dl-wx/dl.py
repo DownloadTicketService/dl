@@ -39,6 +39,10 @@ class Request(Thread):
         self.progress_fn = progress_fn
         self.cancelled = False
 
+    def _progress(self, download_t, download_d, upload_t, upload_d):
+        self.progress_fn(download_t, download_d, self.speed_download,
+                         upload_t, upload_d, self.speed_upload)
+
     def run(self):
         s = StringIO.StringIO()
         c = pycurl.Curl()
@@ -58,9 +62,11 @@ class Request(Thread):
         if not self.dl.service.verify:
             c.setopt(c.SSL_VERIFYPEER, False)
 
-        if self.progress_fn:
+        if self.progress_fn is not None:
+            self.speed_download = 0
+            self.speed_upload = 0
             c.setopt(c.NOPROGRESS, False)
-            c.setopt(c.PROGRESSFUNCTION, self.progress_fn)
+            c.setopt(c.PROGRESSFUNCTION, self._progress)
 
         m = pycurl.CurlMulti()
         m.add_handle(c)
@@ -73,6 +79,9 @@ class Request(Thread):
             if num_handles == 0 or self.cancelled:
                 break
             m.select(1.0)
+            if self.progress_fn is not None:
+                self.speed_download = c.getinfo(c.SPEED_DOWNLOAD)
+                self.speed_upload = c.getinfo(c.SPEED_UPLOAD)
         m.remove_handle(c)
         code = c.getinfo(pycurl.HTTP_CODE)
         error = c.errstr()

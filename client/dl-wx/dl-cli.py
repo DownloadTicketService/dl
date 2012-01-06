@@ -15,9 +15,11 @@ def die(descr, code=1):
     exit(code)
 
 
-def progress(download_t, download_d, upload_t, upload_d):
+def progress(download_t, download_d, download_s, upload_t, upload_d, upload_s):
     if upload_d > 0:
-        print >> sys.stderr, "uploading: {:-7.3f}%\r".format(upload_d * 100 / upload_t),
+        prc = upload_d * 100 / upload_t
+        ks = upload_s / 1024
+        print >> sys.stderr, "uploading: {:-7.3f}% {:-10.3f}KiB/s\r".format(prc, ks),
 
 
 def main():
