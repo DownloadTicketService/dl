@@ -66,7 +66,7 @@ class Prefs(wx.Dialog):
 
         error = None
         if not len(service.url):
-            error = "The REST URL is mandatory)"
+            error = "The REST URL is mandatory"
         elif not len(service.username):
             error = "The username is mandatory"
         elif not len(service.password):
@@ -135,10 +135,13 @@ class Upload(wx.Dialog):
         if ex is None:
             self.on_close()
         else:
-            self.status.SetLabel(str(ex))
+            error = str(ex)
+            self.status.SetLabel(error)
             self.action.SetLabel("Close")
             self.action.Bind(wx.EVT_BUTTON, self.on_close)
             self.Bind(wx.EVT_CLOSE, self.on_close)
+            self.Fit()
+            wx.MessageBox(error, 'Upload error', wx.OK | wx.ICON_ERROR)
 
     def failed(self, ex):
         wx.CallAfter(self.on_failed, ex)
