@@ -50,6 +50,7 @@
         <border>5</border>
       </object>
     </object>
+    <title>Preferences</title>
     <style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxCLOSE_BOX</style>
   </object>
 </resource>
