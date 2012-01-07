@@ -3,9 +3,11 @@ dl 0.10:
 
 * The default configuration file has been renamed to "config.php.dist" and must
   now be manually copied/renamed to be used. If a suitable "config.php" is not
-  found in the include/ directory, configuration is read from "/etc/dl.php".
+  found in the include/ directory then configuration is read from "/etc/dl.php".
 * Notifications of tickets and grants now use the same locale that was used
   during the creation of the ticket/grant itself.
+* A new "Preferences" page has been added, allowing users to change their
+  password (only when using internal authentication).
 * Changing "hours after last download" when editing a ticket was fixed.
 * A new REST API has been implemented, allowing external applications to use the
   service programmatically.

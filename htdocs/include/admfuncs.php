@@ -141,6 +141,19 @@ function userAdm($user)
 }
 
 
+function userCheck($user, $pass)
+{
+  global $db;
+
+  $sql = "SELECT pass_md5 FROM user u"
+    . " WHERE u.name = " . $db->quote($user);
+  $DATA = $db->query($sql)->fetch();
+
+  if($DATA === false) return false;
+  return (md5($pass) === $DATA['pass_md5']);
+}
+
+
 function userLogin($user, $pass, $rmt)
 {
   global $db;
