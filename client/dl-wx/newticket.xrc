@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<resource>
+  <object class="wxDialog" name="newticket">
+    <object class="wxFlexGridSizer">
+      <object class="sizeritem">
+        <object class="wxFlexGridSizer">
+          <object class="sizeritem">
+            <object class="wxFlexGridSizer">
+              <object class="sizeritem">
+                <object class="wxStaticText">
+                  <label>File:</label>
+                </object>
+                <flag>wxALIGN_CENTRE_VERTICAL</flag>
+              </object>
+              <object class="sizeritem">
+                <object class="wxFilePickerCtrl" name="file">
+                  <wildcard>*.*</wildcard>
+                  <style>wxFLP_OPEN|wxFLP_FILE_MUST_EXIST</style>
+                </object>
+                <flag>wxEXPAND</flag>
+              </object>
+              <object class="spacer"/>
+              <object class="sizeritem">
+                <object class="wxCheckBox" name="perm">
+                  <label>Permanent ticket / upload</label>
+                </object>
+                <flag>wxEXPAND</flag>
+              </object>
+              <cols>2</cols>
+              <rows>2</rows>
+              <vgap>5</vgap>
+              <hgap>5</hgap>
+              <growablecols>1</growablecols>
+            </object>
+            <flag>wxEXPAND</flag>
+          </object>
+          <object class="sizeritem">
+            <object class="wxFlexGridSizer">
+              <object class="sizeritem">
+                <object class="wxStaticText">
+                  <label>Expire in # days</label>
+                </object>
+                <flag>wxALIGN_RIGHT|wxALIGN_CENTRE_VERTICAL</flag>
+              </object>
+              <object class="sizeritem">
+                <object class="wxSpinCtrl" name="total_days">
+                  <min>0</min>
+                  <max>365</max>
+                </object>
+                <flag>wxEXPAND</flag>
+              </object>
+              <cols>2</cols>
+              <rows>2</rows>
+              <vgap>5</vgap>
+              <hgap>5</hgap>
+              <growablecols>1</growablecols>
+              <object class="sizeritem">
+                <object class="wxStaticText">
+                  <label>Expire in # of hours after last dl</label>
+                </object>
+                <flag>wxALIGN_RIGHT|wxALIGN_CENTRE_VERTICAL</flag>
+              </object>
+              <object class="sizeritem">
+                <object class="wxSpinCtrl" name="hours_after_dl">
+                  <min>0</min>
+                  <max>288</max>
+                </object>
+                <flag>wxEXPAND</flag>
+              </object>
+              <object class="sizeritem">
+                <object class="wxStaticText">
+                  <label>Expire after # of downloads</label>
+                </object>
+                <flag>wxALIGN_RIGHT|wxALIGN_CENTRE_VERTICAL</flag>
+              </object>
+              <object class="sizeritem">
+                <object class="wxSpinCtrl" name="downloads">
+                  <min>0</min>
+                  <max>1024</max>
+                </object>
+                <flag>wxEXPAND</flag>
+              </object>
+            </object>
+            <flag>wxEXPAND</flag>
+          </object>
+          <object class="sizeritem">
+            <object class="wxFlexGridSizer">
+              <object class="sizeritem">
+                <object class="wxButton" name="set_defaults">
+                  <label>Set as defaults</label>
+                </object>
+              </object>
+              <object class="sizeritem">
+                <object class="wxButton" name="upload">
+                  <label>Upload</label>
+                  <default>1</default>
+                </object>
+              </object>
+              <cols>2</cols>
+              <rows>1</rows>
+              <vgap>5</vgap>
+              <hgap>5</hgap>
+            </object>
+            <flag>wxALIGN_RIGHT|wxALIGN_BOTTOM</flag>
+          </object>
+          <cols>1</cols>
+          <rows>3</rows>
+          <vgap>5</vgap>
+          <hgap>5</hgap>
+          <growablecols>0</growablecols>
+          <growablerows>2</growablerows>
+        </object>
+        <flag>wxALL|wxEXPAND</flag>
+        <border>5</border>
+      </object>
+      <cols>1</cols>
+      <rows>1</rows>
+      <growablecols>0</growablecols>
+      <growablerows>0</growablerows>
+    </object>
+    <title>New Ticket</title>
+    <style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxCLOSE_BOX</style>
+  </object>
+</resource>
