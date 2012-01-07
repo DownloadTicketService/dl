@@ -24,7 +24,12 @@ class DLError(Exception):
 
 
 class TicketParams:
-    pass
+    def __init__(self, perm=None, total_days=None,
+                 hours_after_dl=None, downloads=None):
+        self.perm = perm
+        self.total_days = total_days
+        self.hours_after_dl = hours_after_dl
+        self.downloads = downloads
 
 
 class Request(Thread):
@@ -139,4 +144,13 @@ class DL(object):
             return ret['ret']
 
     def new_ticket(self, file, params=TicketParams(), async=False, complete_fn=None, failed_fn=None, progress_fn=None):
-        return self.request("newticket", {}, file, async, complete_fn, failed_fn, progress_fn)
+        msg = {}
+        if params.perm is not None:
+            msg['perm'] = params.perm
+        if params.total_days is not None:
+            msg['dn'] = params.total_days
+        if params.hours_after_dl is not None:
+            msg['hra'] = params.hours_after_dl
+        if params.downloads is not None:
+            msg['dln'] = params.downloads
+        return self.request("newticket", msg, file, async, complete_fn, failed_fn, progress_fn)
