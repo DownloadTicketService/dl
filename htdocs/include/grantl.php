@@ -128,14 +128,17 @@ foreach($db->query($sql) as $DATA)
   }
 
   // sent-to
-  echo "<tr><th>" . T_("Sent to:") . " </th><td>";
-  $first = true;
-  foreach(getEMailAddrs($DATA['sent_email']) as $email)
+  if($DATA["sent_email"])
   {
-    if($first) $first = false;
-    else echo ", ";
-    echo "<a href=\"mailto:" . urlencode($email) . "\">" .
-      htmlEntUTF8($email) . "</a>";
+    echo "<tr><th>" . T_("Sent to:") . " </th><td>";
+    $first = true;
+    foreach(getEMailAddrs($DATA['sent_email']) as $email)
+    {
+      if($first) $first = false;
+      else echo ", ";
+      echo "<a href=\"mailto:" . urlencode($email) . "\">" .
+        htmlEntUTF8($email) . "</a>";
+    }
   }
 
   echo "</table></td></tr>";
