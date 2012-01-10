@@ -1,16 +1,16 @@
 <?xml version="1.0" ?>
 <resource>
   <object class="wxDialog" name="upload">
-    <object class="wxBoxSizer">
-      <orient>wxVERTICAL</orient>
+    <object class="wxFlexGridSizer">
       <object class="sizeritem">
         <object class="wxFlexGridSizer">
           <object class="sizeritem">
             <object class="wxStaticText" name="file"/>
-            <flag>wxEXPAND</flag>
           </object>
           <object class="sizeritem">
-            <object class="wxGauge" name="progress"/>
+            <object class="wxGauge" name="progress">
+              <style>wxGA_SMOOTH</style>
+            </object>
             <flag>wxEXPAND</flag>
             <minsize>350,-1</minsize>
           </object>
@@ -18,12 +18,13 @@
             <object class="wxFlexGridSizer">
               <object class="sizeritem">
                 <object class="wxStaticText" name="status"/>
-                <flag>wxEXPAND</flag>
+                <flag>wxALIGN_CENTRE_VERTICAL</flag>
               </object>
               <object class="sizeritem">
                 <object class="wxButton" name="action">
                   <default>1</default>
                 </object>
+                <flag>wxALIGN_BOTTOM</flag>
               </object>
               <cols>2</cols>
               <rows>1</rows>
@@ -38,10 +39,17 @@
           <vgap>5</vgap>
           <hgap>5</hgap>
           <growablecols>0</growablecols>
+          <growablerows/>
         </object>
         <flag>wxALL|wxEXPAND</flag>
         <border>5</border>
       </object>
+      <cols>1</cols>
+      <rows>1</rows>
+      <vgap>5</vgap>
+      <hgap>5</hgap>
+      <growablecols>0</growablecols>
+      <growablerows>0</growablerows>
     </object>
     <title>Upload</title>
     <style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxCLOSE_BOX</style>

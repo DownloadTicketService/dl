@@ -14,17 +14,17 @@
               </object>
               <object class="sizeritem">
                 <object class="wxFilePickerCtrl" name="file">
-                  <wildcard>*.*</wildcard>
-                  <style>wxFLP_OPEN|wxFLP_FILE_MUST_EXIST</style>
+                  <wildcard>*</wildcard>
+                  <style>wxFLP_DEFAULT_STYLE</style>
                 </object>
-                <flag>wxEXPAND</flag>
+                <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
               </object>
               <object class="spacer"/>
               <object class="sizeritem">
                 <object class="wxCheckBox" name="perm">
                   <label>Permanent ticket / upload</label>
                 </object>
-                <flag>wxEXPAND</flag>
+                <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
               </object>
               <cols>2</cols>
               <rows>2</rows>
@@ -47,7 +47,7 @@
                   <min>0</min>
                   <max>365</max>
                 </object>
-                <flag>wxEXPAND</flag>
+                <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
               </object>
               <cols>2</cols>
               <rows>2</rows>
@@ -65,7 +65,7 @@
                   <min>0</min>
                   <max>288</max>
                 </object>
-                <flag>wxEXPAND</flag>
+                <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
               </object>
               <object class="sizeritem">
                 <object class="wxStaticText">
@@ -78,7 +78,7 @@
                   <min>0</min>
                   <max>1024</max>
                 </object>
-                <flag>wxEXPAND</flag>
+                <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
               </object>
             </object>
             <flag>wxEXPAND</flag>

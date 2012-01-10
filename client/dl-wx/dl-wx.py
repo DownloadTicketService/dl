@@ -45,12 +45,24 @@ class Prefs(wx.Dialog):
         self.change_fn = change_fn
         self.xrc = xrc.XmlResource('preferences.xrc')
         self.PostCreate(self.xrc.LoadDialog(None, 'preferences'))
-        self.Bind(wx.EVT_CLOSE, self.on_close)
         self.url = xrc.XRCCTRL(self, 'url')
         self.username = xrc.XRCCTRL(self, 'username')
         self.password = xrc.XRCCTRL(self, 'password')
         self.verify = xrc.XRCCTRL(self, 'verify')
+        self.cancel = xrc.XRCCTRL(self, 'cancel')
+        self.cancel.Bind(wx.EVT_BUTTON, self.on_close)
+        self.save = xrc.XRCCTRL(self, 'save')
+        self.save.Bind(wx.EVT_BUTTON, self.on_save)
+        if len(service.url):
+            self.cancel.Show()
+            self.Bind(wx.EVT_CLOSE, self.on_close)
+        else:
+            self.cancel.Hide()
+            self.Bind(wx.EVT_CLOSE, self.on_save)
+
+    def Show(self):
         self.set_service()
+        super(Prefs, self).Show()
 
     def set_service(self):
         self.url.SetValue(self.service.url)
@@ -58,13 +70,18 @@ class Prefs(wx.Dialog):
         self.password.SetValue(self.service.password)
         self.verify.SetValue(self.service.verify)
 
-    def on_close(self, evt):
-        service = Service()
+    def get_service(self, service):
         service.url = self.url.GetValue().encode('utf8')
         service.username = self.username.GetValue().encode('utf8')
         service.password = self.password.GetValue().encode('utf8')
         service.verify = self.verify.GetValue()
 
+    def on_close(self, evt=None):
+        self.Hide()
+
+    def on_save(self, evt):
+        service = Service()
+        self.get_service(service)
         error = None
         if not len(service.url):
             error = "The REST URL is mandatory"
@@ -75,12 +92,9 @@ class Prefs(wx.Dialog):
         if error is not None:
             wx.MessageBox(error, 'Preferences', wx.OK | wx.ICON_ERROR)
         else:
-            self.Hide()
-            self.service.url = service.url
-            self.service.username = service.username
-            self.service.password = service.password
-            self.service.verify = service.verify
+            self.get_service(self.service)
             self.change_fn()
+            self.on_close()
 
 
 class Upload(wx.Dialog):
@@ -259,7 +273,7 @@ class DLApp(wx.App):
         self.cfg.write()
 
     def express_ticket(self, evt=None):
-        path = wx.FileSelector(flags=wx.FILE_MUST_EXIST).encode('utf8')
+        path = wx.FileSelector(flags=wx.FD_OPEN|wx.FD_FILE_MUST_EXIST).encode('utf8')
         if len(path):
             Upload(path, self.dl, self.ticket_params)
 
