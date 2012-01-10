@@ -10,20 +10,14 @@ between other services and/or native programs easily.
 Outline of the API
 ------------------
 
-Every request is gated through the "/rest" page (or "/rest.php", depending on
-the configuration), which is directly on the root of the web service. With the
-following configuration::
+Every request is gated through the "/rest.php" page (or simply "/rest",
+depending on the configuration), which is directly on the root of the web
+service, for example::
 
-  $masterPath = "https://dl.example.com";
-  $phpExt = "";
+  https://dl.example.com/rest.php
 
-the gateway is at::
-
-  $restGateway = "$masterPath/rest$phpExt";
-
-or "https://dl.example.com/rest" in human terms.
-
-Each action is directly appended to the URI space, followed by parameters (if any)::
+Each action is directly appended to the URI space, followed by parameters (if
+any)::
 
   /rest/request[/parameters]
 
@@ -42,7 +36,7 @@ Every request must be performed via ''POST'', and must include:
 
 A minimal viable request looks as follows::
 
-  POST /rest/info HTTP/1.0
+  POST /rest.php/info HTTP/1.0
   Content-Length: 262
   Host: dl.example.com
   Content-Type: multipart/form-data; boundary=---6e79d17befc2
