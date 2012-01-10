@@ -4,6 +4,7 @@ import validate
 import argparse
 import os.path
 import copy
+import time
 import wx
 import wx.xrc as xrc
 from dl import *
@@ -98,6 +99,7 @@ class Upload(wx.Dialog):
         self.action = xrc.XRCCTRL(self, 'action')
         self.action.SetLabel("Cancel")
         self.action.Bind(wx.EVT_BUTTON, self.on_cancel)
+        self.stamp = time.time()
         self.Fit()
         self.Show()
         self.request.start()
@@ -113,7 +115,10 @@ class Upload(wx.Dialog):
         prc = upload_d * 100 / upload_t
         ks = upload_s / 1024
         self.gauge.SetValue(prc)
-        self.status.SetLabel("Uploading ({:.1f}%, {:.1f}KiB/s) ...".format(prc, ks))
+        stamp = time.time()
+        if stamp - self.stamp >= 1:
+            self.stamp = stamp
+            self.status.SetLabel("Uploading ({:.1f}%, {:.1f}KiB/s) ...".format(prc, ks))
 
     def progress(self, download_t, download_d, download_s, upload_t, upload_d, upload_s):
         if upload_d > 0:
