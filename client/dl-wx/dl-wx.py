@@ -5,6 +5,7 @@ import argparse
 import os.path
 import copy
 import time
+import sys
 import wx
 import wx.xrc as xrc
 from dl import *
@@ -14,6 +15,12 @@ DL_AGENT = "dl-wx/" + DL_VERSION
 DL_DESCRIPTION = "Download Ticket Service"
 DL_ICON = "dl-icon.ico"
 DL_RC = "~/.dl.rc"
+
+# This is rather ugly for *NIX (should use pkg_resources)
+if '_MEIPASS2' in os.environ:
+    RC_PATH = os.environ['_MEIPASS2']
+else:
+    RC_PATH = os.path.dirname(sys.argv[0])
 
 
 def create_menu_item(menu, label, func, id=wx.ID_ANY):
@@ -27,7 +34,8 @@ class TaskBarIcon(wx.TaskBarIcon):
     def __init__(self, dlapp):
         super(TaskBarIcon, self).__init__()
         self.dlapp = dlapp
-        self.SetIcon(wx.IconFromBitmap(wx.Bitmap(DL_ICON)), DL_DESCRIPTION)
+        img = wx.Bitmap(os.path.join(RC_PATH, DL_ICON))
+        self.SetIcon(wx.IconFromBitmap(img), DL_DESCRIPTION)
         self.Bind(wx.EVT_TASKBAR_LEFT_UP, self.dlapp.express_ticket)
 
     def CreatePopupMenu(self):
@@ -43,7 +51,7 @@ class Prefs(wx.Dialog):
     def __init__(self, service, change_fn):
         self.service = service
         self.change_fn = change_fn
-        self.xrc = xrc.XmlResource('preferences.xrc')
+        self.xrc = xrc.XmlResource(os.path.join(RC_PATH, 'preferences.xrc'))
         self.PostCreate(self.xrc.LoadDialog(None, 'preferences'))
         self.url = xrc.XRCCTRL(self, 'url')
         self.username = xrc.XRCCTRL(self, 'username')
@@ -99,7 +107,7 @@ class Prefs(wx.Dialog):
 
 class Upload(wx.Dialog):
     def __init__(self, file, dl, params):
-        self.xrc = xrc.XmlResource('upload.xrc')
+        self.xrc = xrc.XmlResource(os.path.join(RC_PATH, 'upload.xrc'))
         self.PostCreate(self.xrc.LoadDialog(None, 'upload'))
         self.Bind(wx.EVT_CLOSE, self.on_cancel)
         self.file = xrc.XRCCTRL(self, 'file')
@@ -176,7 +184,7 @@ class NewTicket(wx.Dialog):
         self.dl = dl
         self.def_ticket_params = ticket_params
         self.change_fn = change_fn
-        self.xrc = xrc.XmlResource('newticket.xrc')
+        self.xrc = xrc.XmlResource(os.path.join(RC_PATH, 'newticket.xrc'))
         self.PostCreate(self.xrc.LoadDialog(None, 'newticket'))
         self.Bind(wx.EVT_CLOSE, self.on_close)
         self.file = xrc.XRCCTRL(self, 'file')
