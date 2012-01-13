@@ -70,6 +70,10 @@ DL installation
 
   to create correctly this directory.
 
+* Create a database (as described in `Database setup`_).
+
+* Create at least one user (as described in `Internal authentication`_).
+
 
 Database setup
 --------------
@@ -531,4 +535,4 @@ Authors and Copyright
 
 "dl" can be found at http://www.thregr.org/~wavexx/software/dl/
 "dl" is distributed under GNU GPL 2, WITHOUT ANY WARRANTY.
-Copyright(c) 2007-2010 by Yuri D'Elia <wavexx@users.sf.net>.
+Copyright(c) 2007-2012 by Yuri D'Elia <wavexx@users.sf.net>.

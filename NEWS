@@ -15,6 +15,10 @@ dl 0.10:
   client "dl-cli" and a graphical client "dl-wx".
 * Minor bug and UI fixes.
 
+Please note: DL 0.10 requires a database schema and webserver configuration
+update! Please read the database upgrade procedure in the README and the
+relevant notes about web server configuration.
+
 
 dl 0.9.1: 31/12/2011
 --------------------
