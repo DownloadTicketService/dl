@@ -4,11 +4,6 @@ TODO
 Important
 ---------
 
-* User preferences page. Required for:
-
-  - Allowing users to change their passwords (important!).
-  - Setting a default notification address.
-
 * Multiple-file support vs grant re-use (allow more than one grant, grant
   timeout).
 
@@ -25,6 +20,9 @@ Important
   problem, this should result in a single email. Tickets would need to be
   grouped in some way, probably with a new "group" table.
 
+* Server-side preferences: default notification address, default expiry
+  settings for both tickets and grants.
+
 * Move alien tickets/grants from the administrator's lists to a separated page.
   My take: definitely important, high priority.
 
@@ -39,6 +37,8 @@ Important
 * Javascript/validation of e-mail address-es.
 
 * Javascript/validation of numerical fields.
+
+* Set sidewide limits (not just defaults) for ticket/grants in config.php.
 
 
 Nice to have
@@ -58,10 +58,6 @@ Nice to have
 
 * Support e-mail tracking when using send-link-to.
   Nice to have, but not critical.
-
-* Set sidewide limits for ticket/grants in config.php.
-
-* Enforce sitewide ticket/grants limits.
 
 * Some sort of quota mechanism to avoid uncontrolled server fill-up.
 
