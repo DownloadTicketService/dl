@@ -88,7 +88,7 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
     <li>
       <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
       <div>
-	<input name="dn" value="<?php echo $defaultTicketTotalDays; ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="dn" value="<?php echo (int)($defaults['ticket']['total'] / (3600 * 24)); ?>" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -103,7 +103,7 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
     <li>
       <label class="description"><?php echo T_("Expire in # of hours after last dl"); ?></label>
       <div>
-	<input name="hra" value="<?php echo $defaultTicketLastDl; ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="hra" value="<?php echo (int)($defaults['ticket']['lastdl'] / 3600); ?>" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -118,7 +118,7 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
     <li>
       <label class="description"><?php echo T_("Expire after # of downloads"); ?></label>
       <div>
-	<input name="dln" value="<?php echo $defaultTicketMaxDl; ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="dln" value="<?php echo $defaults['ticket']['maxdl']; ?>" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php

@@ -26,10 +26,32 @@ if(!isset($dsn)) $dsn = "sqlite:$spoolDir/data.sdb";
 if(!isset($gcProbability)) $gcProbability = 1.0;
 if(!isset($gcInternal)) $gcInternal = true;
 if(!isset($gcLimit)) $gcLimit = 0;
-if(!isset($defaultTicketTotalDays)) $defaultTicketTotalDays = 7;
-if(!isset($defaultTicketLastDl)) $defaultTicketLastDl = 24;
-if(!isset($defaultTicketMaxDl)) $defaultTicketMaxDl = 0;
-if(!isset($defaultGrantTotalDays)) $defaultGrantTotalDays = 7;
+
+// ticket defaults
+if(version_compare($cfgVersion, "0.10", "<"))
+{
+  // settings prior to 0.9
+  if(isset($defaultTotalDays))
+  {
+    $defaultTicketTotalDays = $defaultTotalDays;
+    $defaultGrantTotalDays = $defaultTotalDays;
+  }
+  if(isset($defaultLastDl)) $defaultTicketLastDlDays = $defaultLastDl / 24;
+  if(isset($defaultMaxDl)) $defaultTicketMaxDl = $defaultMaxDl;
+
+  // defaults prior to 0.10
+  if(!isset($defaultTicketTotalDays)) $defaultTicketTotalDays = 7;
+  if(!isset($defaultTicketLastDlDays)) $defaultTicketLastDlDays = 1;
+  if(!isset($defaultTicketMaxDl)) $defaultTicketMaxDl = 0;
+  if(!isset($defaultGrantTotalDays)) $defaultGrantTotalDays = 7;
+}
+else
+{
+  if(!isset($defaultTicketTotalDays)) $defaultTicketTotalDays = 365;
+  if(!isset($defaultTicketLastDlDays)) $defaultTicketLastDlDays = 30;
+  if(!isset($defaultTicketMaxDl)) $defaultTicketMaxDl = 0;
+  if(!isset($defaultGrantTotalDays)) $defaultGrantTotalDays = 365;
+}
 
 // derived data
 $useSysLog = (!empty($logFile) && strstr($logFile, "/") === FALSE);
@@ -39,6 +61,20 @@ $adminPath = $masterPath . "admin$phpExt";
 $helpRoot = "static/guide";
 $dPath = $masterPath . "d$phpExt";
 $rPath = $masterPath . "rest$phpExt";
+
+$defaults = array
+(
+  'ticket' => array
+  (
+    'total' => $defaultTicketTotalDays * 3600 * 24,
+    'lastdl' => $defaultTicketLastDlDays * 3600 * 24,
+    'maxdl' => $defaultTicketMaxDl,
+  ),
+  'grant' => array
+  (
+    'total' => $defaultGrantTotalDays * 3600 * 24,
+  ),
+);
 
 // constants
 $dlVersion = "0.10";

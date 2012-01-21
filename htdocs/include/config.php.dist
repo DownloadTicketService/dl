@@ -21,12 +21,12 @@ $defLocale = "en_EN";
  */
 
 // Ticket defaults
-$defaultTicketTotalDays = 7;
-$defaultTicketLastDl = 24;
+$defaultTicketTotalDays = 365;
+$defaultTicketLastDlDays = 30;
 $defaultTicketMaxDl = 0;
 
 // Grant defaults
-$defaultGrantTotalDays = 7;
+$defaultGrantTotalDays = 365;
 
 
 /*

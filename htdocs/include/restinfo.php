@@ -3,9 +3,7 @@
 
 function info($msg, $params = null)
 {
-  global $dlVersion, $bannerUrl, $masterPath, $rPath, $iMaxSize;
-  global $defaultTicketTotalDays, $defaultTicketLastDl, $defaultTicketMaxDl;
-  global $defaultGrantTotalDays;
+  global $dlVersion, $bannerUrl, $masterPath, $rPath, $iMaxSize, $defaults;
 
   return array(false, array
   (
@@ -15,10 +13,16 @@ function info($msg, $params = null)
     'maxsize'    => $iMaxSize,
     'defaults'   => array
     (
-      'gn'  => $defaultGrantTotalDays,
-      'dn'  => $defaultTicketTotalDays,
-      'hra' => $defaultTicketLastDl,
-      'dln' => $defaultTicketMaxDl,
+      'grant'    => array
+      (
+        'total'  => $defaults['grant']['total']
+      ),
+      'ticket'   => array
+      (
+        'total'  => $defaults['ticket']['total'],
+        'lastdl' => $defaults['ticket']['lastdl'],
+        'maxdl'  => $defaults['ticket']['maxdl'],
+      ),
     ),
   ));
 }

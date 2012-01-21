@@ -3,9 +3,7 @@
 
 function handleGrant()
 {
-  global $auth, $locale, $db;
-  global $defaultTicketTotalDays, $defaultTicketLastDl, $defaultTicketMaxDl;
-  global $defaultGrantTotalDays;
+  global $auth, $locale, $db, $defaults;
 
   // generate new unique id
   list($usec, $sec) = microtime();
@@ -13,7 +11,7 @@ function handleGrant()
 
   // defaults
   if(!isset($_POST["gn"]))
-    $_POST["gn"] = $defaultGrantTotalDays;
+    $_POST["gn"] = $defaults['grant']['total'] / (3600 * 24);
 
   // prepare data
   $sql = "INSERT INTO grant (id, user_id, grant_expire, cmt, pass_md5"
@@ -34,9 +32,9 @@ function handleGrant()
   {
     if(!isset($_POST["hra"]) && !isset($_POST["dn"]) && !isset($_POST["dln"]))
     {
-      $_POST["hra"] = $defaultTicketLastDl;
-      $_POST["dn"] = $defaultTicketTotalDays;
-      $_POST["dln"] = $defaultTicketMaxDl;
+      $_POST["dn"] = $defaults['ticket']['total'] / (3600 * 24);
+      $_POST["hra"] = $defaults['ticket']['lastdl'] / 3600;
+      $_POST["dln"] = $defaults['ticket']['maxdl'];
     }
     $sql .= ", " . (empty($_POST["hra"])? 'NULL': $_POST["hra"] * 3600);
     $sql .= ", " . (empty($_POST["dn"])? 'NULL': time() + $_POST["dn"] * 3600 * 24);

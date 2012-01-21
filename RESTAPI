@@ -47,19 +47,27 @@ Available requests
 info
 ~~~~
 
-An "info" requests takes no parameters and no message data. It simply returns
-the following terms:
+An "info" request returns the service defaults and statistics.
 
-* version (string): DL version.
-* masterpath (string): root URL of the service.
-* url (string): configurable reference URL for the service.
-* maxsize (integer): maximum upload size (in bytes).
-* defaults: service defaults:
+Request method: "GET"
 
-  * gn (number): maximal number of days for grants.
-  * dn (number): maximal number of days for tickets.
-  * hra (number): maximal number of hours after last download for tickets.
-  * dln (number): maximal number of downloads for the ticket for tickets.
+Returned values:
+
+  * version (string): DL version.
+  * masterpath (string): root URL of the service.
+  * url (string): configurable reference URL for the service.
+  * maxsize (integer): maximum upload size (in bytes).
+  * defaults: service defaults:
+
+    * grant:
+    
+      * total (integer): maximal number of seconds for grants.
+
+    * ticket:
+    
+      * total (integer): maximal number of seconds for tickets.
+      * lastdl (integer): maximal number of seconds after last download for tickets.
+      * maxdl (integer): maximal number of seconds for the ticket for tickets.
 
 
 newticket
@@ -68,18 +76,20 @@ newticket
 A "newticket" request creates a new ticket. A "file" parameter containing the
 attached file *must be present* in the request.
 
-The "msg" parameter can contain any of the following terms:
+Request method: "POST"
 
-* cmt (string): comment for the ticket.
-* pass (string): password required for the ticket.
-* dn (number): maximal number of days.
-* hra (number): maximal number of hours after last download.
-* dln (number): maximal number of downloads for the ticket.
-* nt (string): notification addresses (comma-separated list of e-mails).
-* st (string): send-link-to addresses (comma-separated list of e-mails).
-* perm (boolean): mutually exclusive with hra/dn/dln, sets a permanent ticket.
+Request parameters:
 
-The result contains the following terms:
+  * cmt (string): comment for the ticket.
+  * pass (string): password required for the ticket.
+  * dn (number): maximal number of days.
+  * hra (number): maximal number of hours after last download.
+  * dln (number): maximal number of downloads for the ticket.
+  * nt (string): notification addresses (comma-separated list of e-mails).
+  * st (string): send-link-to addresses (comma-separated list of e-mails).
+  * perm (boolean): mutually exclusive with hra/dn/dln, sets a permanent ticket.
 
-* id (string): ticket ID.
-* url (string): ticket URL.
+Returned values:
+
+  * id (string): ticket ID.
+  * url (string): ticket URL.

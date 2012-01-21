@@ -20,7 +20,7 @@ if(isset($_POST['dn']))
 elseif($DATA["expire"])
   $dn = ceil(($DATA["expire"] - time()) / (3600 * 24));
 elseif($nl)
-  $dn = $defaultTicketTotalDays;
+  $dn = $defaults['ticket']['total'] / (3600 * 24);
 else
   $dn = 0;
 
@@ -29,7 +29,7 @@ if(isset($_POST['hra']))
 elseif($DATA["last_time"])
   $hra = ceil($DATA["last_time"] / 3600);
 elseif($nl)
-  $hra = $defaultTicketLastDl;
+  $hra = $defaults['ticket']['lastdl'] / 3600;
 else
   $hra = 0;
 
@@ -38,7 +38,7 @@ if(isset($_POST['dln']))
 elseif($DATA["expire_dln"])
   $dln = ($DATA["expire_dln"] - $DATA["downloads"]);
 elseif($nl)
-  $dln = $defaultTicketMaxDl;
+  $dln = $defaults['ticket']['maxdl'];
 else
   $dln = 0;
 
