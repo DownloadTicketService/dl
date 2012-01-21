@@ -60,7 +60,7 @@ function handleUpload($FILE, $params)
   $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
   $sql .= ", " . (empty($params["pass"])? 'NULL': $db->quote(md5($params["pass"])));
   $sql .= ", " . time();
-  if(!empty($params["ticket_permanent"]) || @$params["perm"])
+  if(@$params["permanent"])
   {
     $sql .= ", NULL";
     $sql .= ", NULL";
@@ -68,14 +68,14 @@ function handleUpload($FILE, $params)
   }
   else
   {
-    if(!isset($params["ticket_totaldays"]) && !isset($params["ticket_lastdldays"]) && !isset($params["ticket_maxdl"]))
+    if(!isset($params["ticket_total"]) && !isset($params["ticket_lastdl"]) && !isset($params["ticket_maxdl"]))
     {
-      $params["ticket_totaldays"] = $defaults['ticket']['total'] / (3600 * 24);
-      $params["ticket_lastdldays"] = $defaults['ticket']['lastdl'] / 3600;
+      $params["ticket_total"] = $defaults['ticket']['total'];
+      $params["ticket_lastdl"] = $defaults['ticket']['lastdl'];
       $params["ticket_maxdl"] = $defaults['ticket']['maxdl'];
     }
-    $sql .= ", " . (empty($params["ticket_totaldays"])? 'NULL': time() + $params["ticket_totaldays"] * 3600 * 24);
-    $sql .= ", " . (empty($params["ticket_lastdldays"])? 'NULL': $params["ticket_lastdldays"] * 3600 * 24);
+    $sql .= ", " . (empty($params["ticket_total"])? 'NULL': time() + $params["ticket_total"]);
+    $sql .= ", " . (empty($params["ticket_lastdl"])? 'NULL': $params["ticket_lastdl"]);
     $sql .= ", " . (empty($params["ticket_maxdl"])? 'NULL': (int)$params["ticket_maxdl"]);
   }
   $sql .= ", " . (empty($params["notify"])? 'NULL': $db->quote(fixEMailAddrs($params["notify"])));
@@ -99,6 +99,18 @@ function handleUpload($FILE, $params)
 
 
 // parameters validation
+$ticketRestParams = array
+(
+  'comment'       => 'is_string',
+  'pass'          => 'is_string',
+  'ticket_total'  => 'is_numeric_int',
+  'ticket_lastdl' => 'is_numeric_int',
+  'ticket_maxdl'  => 'is_numeric_int',
+  'notify'        => 'is_string',
+  'send_to'       => 'is_string',
+  'permanent'     => 'is_bool',
+);
+
 $ticketNewParams = array
 (
   'comment'           => 'is_string',
@@ -109,7 +121,6 @@ $ticketNewParams = array
   'ticket_permanent'  => 'is_numeric_int',
   'notify'            => 'is_string',
   'send_to'           => 'is_string',
-  'perm'              => 'is_bool',
 );
 
 $ticketEditParams = $ticketNewParams;

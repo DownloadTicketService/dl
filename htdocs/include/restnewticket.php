@@ -4,14 +4,14 @@ require_once("ticketfuncs.php");
 
 function newticket($msg, $params = null)
 {
-  global $ticketNewParams;
+  global $ticketRestParams;
 
   // handle the upload itself
   $DATA = $validated = false;
   if(isset($_FILES["file"])
   && is_uploaded_file($_FILES["file"]["tmp_name"])
   && $_FILES["file"]["error"] == UPLOAD_ERR_OK
-  && ($validated = validateParams($ticketNewParams, $msg)))
+  && ($validated = validateParams($ticketRestParams, $msg)))
     $DATA = handleUpload($_FILES["file"], $msg);
 
   if($DATA === false)
