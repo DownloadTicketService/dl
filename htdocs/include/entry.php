@@ -20,12 +20,14 @@ $rest = array
 (
   'info' => array
   (
+    'method'  => 'GET',
     'admin' => false,
     'entry' => 'include/restinfo.php',
     'func'  => 'info',
   ),
   'newticket' => array
   (
+    'method' => 'POST',
     'admin' => false,
     'entry' => 'include/restnewticket.php',
     'func'  => 'newticket'

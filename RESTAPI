@@ -1,7 +1,7 @@
 DL REST API
 ===========
 
-Since version 0.10 DL offers a ''RESTful'' HTTP API that allows inter-operation
+Since version 0.10 DL offers a "RESTful" HTTP API that allows inter-operation
 between other services and/or native programs easily.
 
 .. contents::
@@ -21,35 +21,14 @@ any)::
 
   /rest/request[/parameters]
 
-Every request must be performed via ''POST'', and must include:
+Every request must be performed via the appropriate HTTP method (either "GET"
+or "POST"), and must always include HTTP's "BASIC" authorization credentials.
 
-* Either HTTP's "BASIC" authorization credentials (required when DL is used
-  with external authentication), or
-* A JSON-encoded "auth" parameter, with the following terms:
-
-  * "user": user name accessing the service
-  * "pass": password for the service
+"POST" requests must also include:
 
 * A JSON-encoded "msg" parameter, with arguments defined by the request. This
   parameter should always be present, even when empty.
-* When needed, a "file" parameter to be attached.
-
-A minimal viable request looks as follows::
-
-  POST /rest.php/info HTTP/1.0
-  Content-Length: 262
-  Host: dl.example.com
-  Content-Type: multipart/form-data; boundary=---6e79d17befc2
-
-  ---6e79d17befc2
-  Content-Disposition: form-data; name="msg"
-
-  {}
-  ---6e79d17befc2
-  Content-Disposition: form-data; name="auth"
-
-  {"user":"test","pass":"test"}
-  ---6e79d17befc2--
+* When needed, a "file" parameter with the file to be attached.
 
 The output of every request can be:
 

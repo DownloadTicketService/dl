@@ -3,62 +3,49 @@
 include("include/sess.php");
 include("include/entry.php");
 
-// in the REST interface, everything is expected to be contained in a "msg"
-// parameter, encoded in JSON. Every request requires authentication in an
-// optional "auth" parameter (again in JSON) and everything is stateless.
-// Authentication and validation are performed here, before passing the control
-// on to the real handler. I/O in itself is freeform depending on the request.
-if(!isset($_SERVER["PATH_INFO"])
-|| !isset($_POST["msg"]))
-  httpBadRequest();
-
-// action
-$args = explode("/", $_SERVER["PATH_INFO"]);
-if($args[0] !== "" || count($args) < 2 || !isset($rest[$args[1]]))
-  httpBadRequest();
-$act = strtolower($args[1]);
-array_splice($args, 0, 2);
-
 // authentication
-if(!isset($auth) || isset($_POST["auth"]))
+if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']))
 {
-  if(isset($_POST["auth"]))
-  {
-    $rmt = false;
-    $authData = json_decode($_POST["auth"], true, 2);
-  }
-  elseif($authRealm)
-  {
-    // external authentication
-    foreach(Array('PHP_AUTH_USER', 'REMOTE_USER', 'REDIRECT_REMOTE_USER') as $key)
-    {
-      if(isset($_SERVER[$key]))
-      {
-	$rmt = true;
-	$authData = array("user" => $_SERVER[$key], "pass" => false);
-	break;
-      }
-    }
-  }
+  $authData = array
+  (
+    "user" => $_SERVER['PHP_AUTH_USER'],
+    "pass" => $_SERVER['PHP_AUTH_PW'],
+  );
 }
 if(isset($authData))
 {
+  $rmt = ($authRealm != false);
   if(empty($authData["user"]) || (!$rmt && empty($authData["pass"])))
-    httpBadRequest();
+    httpUnauthorized();
   $auth = userLogin($authData["user"], $authData["pass"], $rmt);
   unset($authData);
 }
-if(empty($auth) || ($rest[$act]['admin'] && !$auth['admin']))
-{
-  header('HTTP/1.0 401 Unauthorized');
-  if($authRealm) header('WWW-Authenticate: Basic realm="' . $authRealm . '"');
-  exit();
-}
+if(empty($auth))
+  httpUnauthorized();
+
+// action
+if(!isset($_SERVER["PATH_INFO"]))
+  httpBadRequest();
+$args = explode("/", $_SERVER["PATH_INFO"]);
+if($args[0] !== "" || count($args) < 2 || !isset($rest[$args[1]]))
+  httpNotFound();
+$act = strtolower($args[1]);
+array_splice($args, 0, 2);
+if($rest[$act]['admin'] && !$auth['admin'])
+  httpUnauthorized();
+if($rest[$act]['method'] !== $_SERVER['REQUEST_METHOD'])
+  httpBadMethod();
 
 // message
-$msg = json_decode($_POST["msg"], true);
-if(!isset($msg))
-  httpBadRequest();
+$msg = array();
+if($rest[$act]['method'] == 'POST')
+{
+  if(empty($_POST["msg"]))
+    httpBadRequest();
+  $msg = json_decode($_POST["msg"], true);
+  if(!isset($msg))
+    httpBadRequest();
+}
 
 // handling
 array_unshift($args, $msg);
