@@ -56,14 +56,14 @@
               <growablecols>1</growablecols>
               <object class="sizeritem">
                 <object class="wxStaticText">
-                  <label>Expire in # of hours after last dl</label>
+                  <label>Expire in # of days after last download</label>
                 </object>
                 <flag>wxALIGN_RIGHT|wxALIGN_CENTRE_VERTICAL</flag>
               </object>
               <object class="sizeritem">
-                <object class="wxSpinCtrl" name="hours_after_dl">
+                <object class="wxSpinCtrl" name="days_after_dl">
                   <min>0</min>
-                  <max>288</max>
+                  <max>365</max>
                 </object>
                 <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
               </object>

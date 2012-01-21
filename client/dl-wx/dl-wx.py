@@ -191,7 +191,7 @@ class NewTicket(wx.Dialog):
         self.perm = xrc.XRCCTRL(self, 'perm')
         self.perm.Bind(wx.EVT_CHECKBOX, self.on_perm)
         self.total_days = xrc.XRCCTRL(self, 'total_days')
-        self.hours_after_dl = xrc.XRCCTRL(self, 'hours_after_dl')
+        self.days_after_dl = xrc.XRCCTRL(self, 'days_after_dl')
         self.downloads = xrc.XRCCTRL(self, 'downloads')
         self.upload = xrc.XRCCTRL(self, 'upload')
         self.upload.Bind(wx.EVT_BUTTON, self.on_upload)
@@ -204,20 +204,20 @@ class NewTicket(wx.Dialog):
     def on_perm(self, evt=None):
         enable = not self.perm.GetValue()
         self.total_days.Enable(enable)
-        self.hours_after_dl.Enable(enable)
+        self.days_after_dl.Enable(enable)
         self.downloads.Enable(enable)
 
     def set_ticket_params(self, ticket_params):
-        self.perm.SetValue(ticket_params.perm)
-        self.total_days.SetValue(ticket_params.total_days)
-        self.hours_after_dl.SetValue(ticket_params.hours_after_dl)
+        self.perm.SetValue(ticket_params.permanent)
+        self.total_days.SetValue(ticket_params.total / (3600 * 24))
+        self.days_after_dl.SetValue(ticket_params.lastdl / (3600 * 24))
         self.downloads.SetValue(ticket_params.downloads)
         self.on_perm()
 
     def get_ticket_params(self, ticket_params):
-        ticket_params.perm = self.perm.GetValue()
-        ticket_params.total_days = self.total_days.GetValue()
-        ticket_params.hours_after_dl = self.hours_after_dl.GetValue()
+        ticket_params.permanent = self.perm.GetValue()
+        ticket_params.total = self.total_days.GetValue() * 3600 * 24
+        ticket_params.lastdl = self.days_after_dl.GetValue() * 3600 * 24
         ticket_params.downloads = self.downloads.GetValue()
 
     def on_set_defaults(self, evt):
@@ -264,9 +264,9 @@ class DLApp(wx.App):
         self.dl.service.agent = DL_AGENT
 
         self.ticket_params = TicketParams()
-        self.ticket_params.perm = v.check('boolean', self.cfg.get('perm', False))
-        self.ticket_params.total_days = v.check('integer', self.cfg.get('total_days', 7))
-        self.ticket_params.hours_after_dl = v.check('integer', self.cfg.get('hours_after_dl', 24))
+        self.ticket_params.permanent = v.check('boolean', self.cfg.get('perm', False))
+        self.ticket_params.total = v.check('integer', self.cfg.get('total_days', 365)) * 3600 * 24
+        self.ticket_params.lastdl = v.check('integer', self.cfg.get('days_after_dl', 30)) * 3600 * 24
         self.ticket_params.downloads = v.check('integer', self.cfg.get('downloads', 0))
 
     def save_prefs(self):
@@ -274,9 +274,9 @@ class DLApp(wx.App):
         self.cfg['user'] = self.dl.service.username
         self.cfg['pass'] = self.dl.service.password
         self.cfg['verify'] = self.dl.service.verify
-        self.cfg['perm'] = self.ticket_params.perm
-        self.cfg['total_days'] = self.ticket_params.total_days
-        self.cfg['hours_after_dl'] = self.ticket_params.hours_after_dl
+        self.cfg['perm'] = self.ticket_params.permanent
+        self.cfg['total_days'] = self.ticket_params.total / (3600 * 24)
+        self.cfg['days_after_dl'] = self.ticket_params.lastdl / (3600 * 24)
         self.cfg['downloads'] = self.ticket_params.downloads
         self.cfg.write()
 

@@ -24,11 +24,11 @@ class DLError(Exception):
 
 
 class TicketParams:
-    def __init__(self, perm=None, total_days=None,
-                 hours_after_dl=None, downloads=None):
-        self.perm = perm
-        self.total_days = total_days
-        self.hours_after_dl = hours_after_dl
+    def __init__(self, permanent=None, total=None,
+                 lastdl=None, downloads=None):
+        self.permanent = permanent
+        self.total = total
+        self.lastdl = lastdl
         self.downloads = downloads
 
 
@@ -146,12 +146,12 @@ class DL(object):
 
     def new_ticket(self, file, params=TicketParams(), async=False, complete_fn=None, failed_fn=None, progress_fn=None):
         msg = {}
-        if params.perm is not None:
-            msg['perm'] = params.perm
-        if params.total_days is not None:
-            msg['dn'] = params.total_days
-        if params.hours_after_dl is not None:
-            msg['hra'] = params.hours_after_dl
+        if params.permanent is not None:
+            msg['permanent'] = params.permanent
+        if params.total is not None:
+            msg['ticket_total'] = params.total
+        if params.lastdl is not None:
+            msg['ticket_lastdl'] = params.lastdl
         if params.downloads is not None:
-            msg['dln'] = params.downloads
+            msg['ticket_maxdl'] = params.downloads
         return self.request("newticket", msg, file, async, complete_fn, failed_fn, progress_fn)
