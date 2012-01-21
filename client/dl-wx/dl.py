@@ -53,17 +53,18 @@ class Request(Thread):
         c = pycurl.Curl()
         c.setopt(c.URL, self.dl.service.url + "/" + self.request)
         c.setopt(c.WRITEFUNCTION, s.write)
-
-        auth = {"user": self.dl.service.username, "pass": self.dl.service.password}
-        post_data = [("auth", json.dumps(auth))]
-        post_data.append(("msg", json.dumps(self.msg)))
-        if(file):
-            post_data.append(("file", (c.FORM_FILE, self.file)))
-
         c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
         c.setopt(c.USERPWD, self.dl.service.username + ':' + self.dl.service.password)
-        c.setopt(c.HTTPPOST, post_data)
         c.setopt(c.HTTPHEADER, ['Expect:', 'User-agent: ' + self.dl.service.agent])
+
+	if self.file or self.msg is not None:
+	  post_data = []
+          if self.file:
+              post_data.append(("file", (c.FORM_FILE, self.file)))
+	  if self.msg is not None:
+	      post_data.append(("msg", json.dumps(self.msg)))
+	  c.setopt(c.HTTPPOST, post_data)
+
         if not self.dl.service.verify:
             c.setopt(c.SSL_VERIFYPEER, False)
 

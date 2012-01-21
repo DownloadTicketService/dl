@@ -37,7 +37,6 @@ def newticket(file, params):
     c.setopt(c.USERPWD, params['user'] + ':' + params['pass'])
     c.setopt(c.HTTPPOST, [
         ("file", (c.FORM_FILE, file)),
-        ("auth", json.dumps({"user": params['user'], "pass": params['pass']})),
         ("msg", json.dumps({}))])
     c.setopt(c.HTTPHEADER, ['Expect:', 'User-agent: ' + DL_AGENT])
     if not params['verify']:
