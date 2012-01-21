@@ -22,7 +22,7 @@ pageHeader();
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Notification e-mail"); ?></label>
       <div>
-	<input name="nt" class="element text required" type="text" maxlength="255" value=""/>
+	<input name="notify" class="element text required" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -36,7 +36,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Comment"); ?></label>
       <div>
-	<textarea name="cmt" class="element textarea"></textarea>
+	<textarea name="comment" class="element textarea"></textarea>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -50,7 +50,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Send link to e-mail"); ?></label>
       <div>
-	<input name="st" class="element text" type="text" value=""/>
+	<input name="send_to" class="element text" type="text" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -83,7 +83,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
       <div>
-	<input name="gn" value="<?php echo (int)($defaults['grant']['total'] / (3600 * 24)); ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="grant_total" value="<?php echo (int)($defaults['grant']['total'] / (3600 * 24)); ?>" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -100,7 +100,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
       <div>
-	<input name="dn" value="<?php echo (int)($defaults['ticket']['total'] / (3600 * 24)); ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="ticket_totaldays" value="<?php echo (int)($defaults['ticket']['total'] / (3600 * 24)); ?>" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -113,13 +113,13 @@ pageHeader();
     </li>
 
     <li>
-      <label class="description"><?php echo T_("Expire in # of hours after last dl"); ?></label>
+      <label class="description"><?php echo T_("Expire in # of days after last download"); ?></label>
       <div>
-	<input name="hra" value="<?php echo (int)($defaults['ticket']['lastdl'] / 3600); ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="ticket_lastdldays" value="<?php echo (int)($defaults['ticket']['lastdl'] / (3600 * 24)); ?>" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
-            echo T_("Type the number of hours the uploaded file is allowed to be"
+            echo T_("Type the number of days the uploaded file is allowed to be"
 		. " kept on the server <strong>after being downloaded</strong>."
 		. " After this period is passed without activity, the file will"
 		. " be deleted from the server.");
@@ -130,7 +130,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Expire after # of downloads"); ?></label>
       <div>
-	<input name="dln" value="<?php echo $defaults['ticket']['maxdl']; ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="ticket_maxdl" value="<?php echo $defaults['ticket']['maxdl']; ?>" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -145,8 +145,8 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Permanent ticket / upload"); ?></label>
       <div>
-	<input name="nl" id="nl" class="element checkbox" type="checkbox" value="1"/>
-	<label for="nl" class="choice"><?php echo T_("Do not expire"); ?></label>
+	<input name="ticket_permanent" id="ticket_permanent" class="element checkbox" type="checkbox" value="1"/>
+	<label for="ticket_permanent" class="choice"><?php echo T_("Do not expire"); ?></label>
       </div>
       <p class="guidelines"><small>
 	  <?php

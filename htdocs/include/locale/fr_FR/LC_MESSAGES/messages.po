@@ -150,14 +150,14 @@ msgstr "Indiquer le nombre de jours maximal durant lesquels ce fichier pourra ê
 #: ../edittickets.php:123
 #: ../newgrants.php:116
 #: ../newtickets.php:104
-msgid "Expire in # of hours after last dl"
-msgstr "Expirera dans # heures après le dernier téléchargement"
+msgid "Expire in # of days after last download"
+msgstr "Expirera dans # jours après le dernier téléchargement"
 
 #: ../edittickets.php:129
 #: ../newgrants.php:122
 #: ../newtickets.php:110
-msgid "Type the number of hours the uploaded file is allowed to be kept on the server <strong>after being downloaded</strong>. After this period is passed without activity, the file will be deleted from the server."
-msgstr "Indiquer le nombre d'heures pendant lesquelles ce fichier restera disponible après avoir été téléchargé. Si celui-ci n'est pas téléchargé pendant le délai indiqué, il sera automatiquement supprimé."
+msgid "Type the number of days the uploaded file is allowed to be kept on the server <strong>after being downloaded</strong>. After this period is passed without activity, the file will be deleted from the server."
+msgstr "Indiquer le nombre de jours pendant lesquelles ce fichier restera disponible après avoir été téléchargé. Si celui-ci n'est pas téléchargé pendant le délai indiqué, il sera automatiquement supprimé."
 
 #: ../edittickets.php:138
 #: ../newgrants.php:131

@@ -7,22 +7,22 @@ function handleGrant()
 
   // generate new unique id
   list($usec, $sec) = microtime();
-  $id = md5(rand() . "/$usec/$sec/" . $_POST["nt"]);
+  $id = md5(rand() . "/$usec/$sec/" . $_POST["notify"]);
 
   // defaults
-  if(!isset($_POST["gn"]))
-    $_POST["gn"] = $defaults['grant']['total'] / (3600 * 24);
+  if(!isset($_POST["grant_total"]))
+    $_POST["grant_total"] = $defaults['grant']['total'] / (3600 * 24);
 
   // prepare data
   $sql = "INSERT INTO grant (id, user_id, grant_expire, cmt, pass_md5"
-    . ", time, last_time, expire, expire_dln, notify_email, sent_email, locale) VALUES (";
+    . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
-  $sql .= ", " . (($_POST["gn"] == 0)? 'NULL': time() + $_POST["gn"] * 3600 * 24);
-  $sql .= ", " . (empty($_POST["cmt"])? 'NULL': $db->quote($_POST["cmt"]));
+  $sql .= ", " . (($_POST["grant_total"] == 0)? 'NULL': time() + $_POST["grant_total"] * 3600 * 24);
+  $sql .= ", " . (empty($_POST["comment"])? 'NULL': $db->quote($_POST["comment"]));
   $sql .= ", " . (empty($_POST["pass"])? 'NULL': $db->quote(md5($_POST["pass"])));
   $sql .= ", " . time();
-  if(!empty($_POST["nl"]))
+  if(!empty($_POST["ticket_permanent"]))
   {
     $sql .= ", NULL";
     $sql .= ", NULL";
@@ -30,18 +30,18 @@ function handleGrant()
   }
   else
   {
-    if(!isset($_POST["hra"]) && !isset($_POST["dn"]) && !isset($_POST["dln"]))
+    if(!isset($_POST["ticket_totaldays"]) && !isset($_POST["ticket_lastdldays"]) && !isset($_POST["ticket_maxdl"]))
     {
-      $_POST["dn"] = $defaults['ticket']['total'] / (3600 * 24);
-      $_POST["hra"] = $defaults['ticket']['lastdl'] / 3600;
-      $_POST["dln"] = $defaults['ticket']['maxdl'];
+      $_POST["ticket_totaldays"] = $defaults['ticket']['total'] / (3600 * 24);
+      $_POST["ticket_lastdldays"] = $defaults['ticket']['lastdl'] / (3600 * 24);
+      $_POST["ticket_maxdl"] = $defaults['ticket']['maxdl'];
     }
-    $sql .= ", " . (empty($_POST["hra"])? 'NULL': $_POST["hra"] * 3600);
-    $sql .= ", " . (empty($_POST["dn"])? 'NULL': time() + $_POST["dn"] * 3600 * 24);
-    $sql .= ", " . (empty($_POST["dln"])? 'NULL': (int)$_POST["dln"]);
+    $sql .= ", " . (empty($_POST["ticket_totaldays"])? 'NULL': time() + $_POST["ticket_totaldays"] * 3600 * 24);
+    $sql .= ", " . (empty($_POST["ticket_lastdldays"])? 'NULL': $_POST["ticket_lastdldays"] * 3600 * 24);
+    $sql .= ", " . (empty($_POST["ticket_maxdl"])? 'NULL': (int)$_POST["ticket_maxdl"]);
   }
-  $sql .= ", " . (empty($_POST["nt"])? 'NULL': $db->quote(fixEMailAddrs($_POST["nt"])));
-  $sql .= ", " . (empty($_POST["st"])? 'NULL': $db->quote(fixEMailAddrs($_POST["st"])));
+  $sql .= ", " . (empty($_POST["notify"])? 'NULL': $db->quote(fixEMailAddrs($_POST["notify"])));
+  $sql .= ", " . (empty($_POST["send_to"])? 'NULL': $db->quote(fixEMailAddrs($_POST["send_to"])));
   $sql .= ", " . $db->quote($locale);
   $sql .= ")";
 
@@ -62,7 +62,7 @@ function handleGrant()
 
 // resulting page
 $DATA = false;
-if(!empty($_POST["nt"]) && isset($_POST["gn"]))
+if(!empty($_POST["notify"]) && isset($_POST["grant_total"]))
   $DATA = handleGrant();
 
 if($DATA !== false)

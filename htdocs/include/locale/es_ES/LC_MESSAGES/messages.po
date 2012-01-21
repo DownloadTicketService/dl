@@ -122,16 +122,16 @@ msgstr ""
 "eliminado del servidor."
 
 #: ../edittickets.php:117 ../newgrants.php:116 ../newtickets.php:119
-msgid "Expire in # of hours after last dl"
-msgstr "Expiración tras # horas después de la última descarga"
+msgid "Expire in # of days after last download"
+msgstr "Expiración tras # días después de la última descarga"
 
 #: ../edittickets.php:123 ../newgrants.php:122 ../newtickets.php:125
 msgid ""
-"Type the number of hours the uploaded file is allowed to be kept on the "
+"Type the number of days the uploaded file is allowed to be kept on the "
 "server <strong>after being downloaded</strong>. After this period is passed "
 "without activity, the file will be deleted from the server."
 msgstr ""
-"Introduzca el número de horas que serán pemitidas durante las que el fichero subido será mantenido en el "
+"Introduzca el número de días que serán pemitidas durante las que el fichero subido será mantenido en el "
 "servidor <strong>tras ser descargado</strong>. Pasado este período de inactividad"
 "el fichero será eliminado del servidor. "
 

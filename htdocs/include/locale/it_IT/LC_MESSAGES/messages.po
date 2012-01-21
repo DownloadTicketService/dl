@@ -145,16 +145,16 @@ msgstr ""
 "eliminato automaticamente."
 
 #: ../edittickets.php:123 ../newgrants.php:116 ../newtickets.php:104
-msgid "Expire in # of hours after last dl"
-msgstr "Scadenza in # ore dopo l'ultimo scaricamento"
+msgid "Expire in # of days after last download"
+msgstr "Scadenza in # giorni dopo l'ultimo scaricamento"
 
 #: ../edittickets.php:129 ../newgrants.php:122 ../newtickets.php:110
 msgid ""
-"Type the number of hours the uploaded file is allowed to be kept on the "
+"Type the number of days the uploaded file is allowed to be kept on the "
 "server <strong>after being downloaded</strong>. After this period is passed "
 "without activity, the file will be deleted from the server."
 msgstr ""
-"Inserire il numero ore che il file inviato verr&agrave; mantenuto nel server "
+"Inserire il numero giorni che il file inviato verr&agrave; mantenuto nel server "
 "<strong>dopo essere stato scaricato</strong>. Passato il termine, il file "
 "viene eliminato automaticamente."
 

@@ -150,16 +150,16 @@ msgstr ""
 "automatisch gel&ouml;scht."
 
 #: ../edittickets.php:123 ../newgrants.php:116 ../newtickets.php:104
-msgid "Expire in # of hours after last dl"
-msgstr "Verf&auml;llt # Stunden nach dem letzten Download"
+msgid "Expire in # of days after last download"
+msgstr "Verf&auml;llt # Tagen nach dem letzten Download"
 
 #: ../edittickets.php:129 ../newgrants.php:122 ../newtickets.php:110
 msgid ""
-"Type the number of hours the uploaded file is allowed to be kept on the "
+"Type the number of days the uploaded file is allowed to be kept on the "
 "server <strong>after being downloaded</strong>. After this period is passed "
 "without activity, the file will be deleted from the server."
 msgstr ""
-"Geben Sie die Anzahl von Stunden an, f&uuml;r die die Datei <strong>nach dem "
+"Geben Sie die Anzahl von Tagen an, f&uuml;r die die Datei <strong>nach dem "
 "letzten Download</strong> noch auf dem Server verbleibt. Nach Ablauf dieser "
 "Zeit wird die Datei automatisch gel&ouml;scht."
 

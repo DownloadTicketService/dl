@@ -1,7 +1,11 @@
 // defaults
 var cookieLifetime = 1000 * 60 * 60 * 24 * 90;
 var pwdLength = 16;
-var fields = Array('gn', 'dn', 'hra', 'dln', 'nt', 'st');
+var fields =
+[
+  'grant_total', 'ticket_totaldays', 'ticket_lastdldays',
+  'ticket_maxdl', 'ticket_permanent', 'notify', 'send_to'
+];
 
 
 // cookie helpers
@@ -47,7 +51,13 @@ function loadDefaults(set)
     var name = fields[i];
     if(!document.forms[0][name]) continue;
     var v = refreshCookie(set + '_' + name, cookieLifetime);
-    if(v !== null) document.forms[0][name].value = v;
+    if(v !== null)
+    {
+      if(document.forms[0][name].type == 'checkbox')
+	document.forms[0][name].checked = parseInt(v);
+      else
+	document.forms[0][name].value = v;
+    }
   }
 
   var v = refreshCookie(set + '_advanced', cookieLifetime);
@@ -63,7 +73,12 @@ function setDefaults(set)
   {
     var name = fields[i];
     if(!document.forms[0][name]) continue;
-    setCookie(set + '_' + name, document.forms[0][name].value, expire);
+    var value;
+    if(document.forms[0][name].type == 'checkbox')
+      value = document.forms[0][name].checked + 0;
+    else
+      value = document.forms[0][name].value;
+    setCookie(set + '_' + name, value, expire);
   }
 
   var v = $('#advanced').hasClass('active');
