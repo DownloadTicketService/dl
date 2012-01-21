@@ -12,15 +12,15 @@ function handleUpdate($id)
   if(!empty($_POST['name']))
     $values['name'] = $db->quote($_POST['name']);
 
-  if(isset($_POST['cmt']))
-    $values['cmt'] = (empty($_POST['cmt'])? 'NULL': $db->quote($_POST['cmt']));
+  if(isset($_POST['comment']))
+    $values['cmt'] = (empty($_POST['comment'])? 'NULL': $db->quote($_POST['comment']));
 
-  if(isset($_POST['clr']) && $_POST['clr'])
+  if(isset($_POST['clear']) && $_POST['clear'])
     $values['pass_md5'] = 'NULL';
   elseif(!empty($_POST['pass']))
     $values['pass_md5'] = $db->quote(md5($_POST['pass']));
 
-  if(isset($_POST['nl']) && $_POST['nl'])
+  if(isset($_POST['ticket_permanent']) && $_POST['ticket_permanent'])
   {
     $values['last_time'] = 'NULL';
     $values['expire'] = 'NULL';
@@ -28,16 +28,16 @@ function handleUpdate($id)
   }
   else
   {
-    if(isset($_POST['hra']))
-      $values['last_time'] = (empty($_POST['hra'])? 'NULL': $_POST["hra"] * 3600);
-    if(isset($_POST['dn']))
-      $values['expire'] = (empty($_POST['dn'])? 'NULL': time() + $_POST["dn"] * 3600 * 24);
-    if(isset($_POST['dln']))
-      $values['expire_dln'] = (empty($_POST['dln'])? 'NULL': (int)$_POST['dln']);
+    if(isset($_POST['ticket_totaldays']))
+      $values['expire'] = (empty($_POST['ticket_totaldays'])? 'NULL': time() + $_POST["ticket_totaldays"] * 3600 * 24);
+    if(isset($_POST['ticket_lastdldays']))
+      $values['last_time'] = (empty($_POST['ticket_lastdldays'])? 'NULL': $_POST["ticket_lastdldays"] * 3600 * 24);
+    if(isset($_POST['ticket_maxdl']))
+      $values['expire_dln'] = (empty($_POST['ticket_maxdl'])? 'NULL': (int)$_POST['ticket_maxdl']);
   }
 
-  if(isset($_POST['nt']))
-    $values['notify_email'] = (empty($_POST['nt'])? 'NULL': $db->quote(fixEMailAddrs($_POST["nt"])));
+  if(isset($_POST['notify']))
+    $values['notify_email'] = (empty($_POST['notify'])? 'NULL': $db->quote(fixEMailAddrs($_POST["notify"])));
 
   // prepare the query
   $tmp = array();

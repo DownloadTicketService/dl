@@ -9,6 +9,8 @@ dl 0.10:
 * A new "Preferences" page has been added, allowing users to change their
   password (only when using internal authentication).
 * Changing "hours after last download" when editing a ticket was fixed.
+* "hours after last download" has been changed to "days after last download".
+* Default ticket/grant expiration settings have been increased.
 * A new REST API has been implemented, allowing external applications to use the
   service programmatically.
 * Two python clients have been added to the distribution: a command-line python

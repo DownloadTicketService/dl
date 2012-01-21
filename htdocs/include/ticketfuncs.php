@@ -51,16 +51,16 @@ function handleUpload($FILE, $params)
 
   // prepare data
   $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_md5"
-    . ", time, last_time, expire, expire_dln, notify_email, sent_email, locale) VALUES (";
+    . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
   $sql .= ", " . $db->quote(basename($FILE["name"]));
   $sql .= ", " . $db->quote($tmpFile);
   $sql .= ", " . $FILE["size"];
-  $sql .= ", " . (empty($params["cmt"])? 'NULL': $db->quote($params["cmt"]));
+  $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
   $sql .= ", " . (empty($params["pass"])? 'NULL': $db->quote(md5($params["pass"])));
   $sql .= ", " . time();
-  if(!empty($params["nl"]) || @$params["perm"])
+  if(!empty($params["ticket_permanent"]) || @$params["perm"])
   {
     $sql .= ", NULL";
     $sql .= ", NULL";
@@ -68,18 +68,18 @@ function handleUpload($FILE, $params)
   }
   else
   {
-    if(!isset($params["hra"]) && !isset($params["dn"]) && !isset($params["dln"]))
+    if(!isset($params["ticket_totaldays"]) && !isset($params["ticket_lastdldays"]) && !isset($params["ticket_maxdl"]))
     {
-      $params["dn"] = $defaults['ticket']['total'] / (3600 * 24);
-      $params["hra"] = $defaults['ticket']['lastdl'] / 3600;
-      $params["dln"] = $defaults['ticket']['maxdl'];
+      $params["ticket_totaldays"] = $defaults['ticket']['total'] / (3600 * 24);
+      $params["ticket_lastdldays"] = $defaults['ticket']['lastdl'] / 3600;
+      $params["ticket_maxdl"] = $defaults['ticket']['maxdl'];
     }
-    $sql .= ", " . (empty($params["hra"])? 'NULL': $params["hra"] * 3600);
-    $sql .= ", " . (empty($params["dn"])? 'NULL': time() + $params["dn"] * 3600 * 24);
-    $sql .= ", " . (empty($params["dln"])? 'NULL': (int)$params["dln"]);
+    $sql .= ", " . (empty($params["ticket_totaldays"])? 'NULL': time() + $params["ticket_totaldays"] * 3600 * 24);
+    $sql .= ", " . (empty($params["ticket_lastdldays"])? 'NULL': $params["ticket_lastdldays"] * 3600 * 24);
+    $sql .= ", " . (empty($params["ticket_maxdl"])? 'NULL': (int)$params["ticket_maxdl"]);
   }
-  $sql .= ", " . (empty($params["nt"])? 'NULL': $db->quote(fixEMailAddrs($params["nt"])));
-  $sql .= ", " . (empty($params["st"])? 'NULL': $db->quote(fixEMailAddrs($params["st"])));
+  $sql .= ", " . (empty($params["notify"])? 'NULL': $db->quote(fixEMailAddrs($params["notify"])));
+  $sql .= ", " . (empty($params["send_to"])? 'NULL': $db->quote(fixEMailAddrs($params["send_to"])));
   $sql .= ", " . $db->quote($locale);
   $sql .= ")";
 
@@ -101,19 +101,19 @@ function handleUpload($FILE, $params)
 // parameters validation
 $ticketNewParams = array
 (
-  'cmt'  => 'is_string',
-  'pass' => 'is_string',
-  'dn'   => 'is_numeric',
-  'hra'  => 'is_numeric',
-  'dln'  => 'is_numeric_int',
-  'nl'   => 'is_numeric_int',
-  'nt'   => 'is_string',
-  'st'   => 'is_string',
-  'perm' => 'is_bool',
+  'comment'           => 'is_string',
+  'pass'              => 'is_string',
+  'ticket_totaldays'  => 'is_numeric',
+  'ticket_lastdldays' => 'is_numeric',
+  'ticket_maxdl'      => 'is_numeric_int',
+  'ticket_permanent'  => 'is_numeric_int',
+  'notify'            => 'is_string',
+  'send_to'           => 'is_string',
+  'perm'              => 'is_bool',
 );
 
 $ticketEditParams = $ticketNewParams;
-$ticketEditParams['clr'] = 'is_numeric_int';
+$ticketEditParams['clear'] = 'is_numeric_int';
 $ticketEditParams['name'] = array
 (
   'required' => true,

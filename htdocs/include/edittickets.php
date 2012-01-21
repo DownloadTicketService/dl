@@ -7,40 +7,40 @@ pageHeader(array('title' => $title));
 
 // form values
 $name = anyOf(@$_POST['name'], $DATA['name']);
-$cmt = anyOf(@$_POST['cmt'], $DATA['cmt']);
+$comment = anyOf(@$_POST['comment'], $DATA['cmt']);
 $hasPass = isset($DATA['pass_md5']);
 $pass = anyOf(@$_POST['pass'], "");
-$clr = anyOf(@$_POST['clr'], "");
-$nl = anyOf(@$_POST['nl'], !($DATA['expire'] || $DATA["last_time"] || $DATA["expire_dln"]));
-$nt = anyOf(@$_POST['nt'], join(", ", getEMailAddrs($DATA['notify_email'])));
+$clear = anyOf(@$_POST['clear'], "");
+$permanent = anyOf(@$_POST['ticket_permanent'], !($DATA['expire'] || $DATA["last_time"] || $DATA["expire_dln"]));
+$notify = anyOf(@$_POST['notify'], join(", ", getEMailAddrs($DATA['notify_email'])));
 
 // current expiration values
-if(isset($_POST['dn']))
-  $dn = $_POST['dn'];
+if(isset($_POST['ticket_totaldays']))
+  $totalDays = $_POST['ticket_totaldays'];
 elseif($DATA["expire"])
-  $dn = ceil(($DATA["expire"] - time()) / (3600 * 24));
-elseif($nl)
-  $dn = $defaults['ticket']['total'] / (3600 * 24);
+  $totalDays = ceil(($DATA["expire"] - time()) / (3600 * 24));
+elseif($permanent)
+  $totalDays = $defaults['ticket']['total'] / (3600 * 24);
 else
-  $dn = 0;
+  $totalDays = 0;
 
-if(isset($_POST['hra']))
-  $hra = $_POST['hra'];
+if(isset($_POST['ticket_lastdldays']))
+  $lastDlDays = $_POST['ticket_lastdldays'];
 elseif($DATA["last_time"])
-  $hra = ceil($DATA["last_time"] / 3600);
-elseif($nl)
-  $hra = $defaults['ticket']['lastdl'] / 3600;
+  $lastDlDays = ceil($DATA["last_time"] / (3600 * 24));
+elseif($permanent)
+  $lastDlDays = $defaults['ticket']['lastdl'] / (3600 * 24);
 else
-  $hra = 0;
+  $lastDlDays = 0;
 
-if(isset($_POST['dln']))
-  $dln = $_POST['dln'];
+if(isset($_POST['ticket_maxdl']))
+  $maxDl = $_POST['ticket_maxdl'];
 elseif($DATA["expire_dln"])
-  $dln = ($DATA["expire_dln"] - $DATA["downloads"]);
-elseif($nl)
-  $dln = $defaults['ticket']['maxdl'];
+  $maxDl = ($DATA["expire_dln"] - $DATA["downloads"]);
+elseif($permanent)
+  $maxDl = $defaults['ticket']['maxdl'];
 else
-  $dln = 0;
+  $maxDl = 0;
 
 // current expiry
 infoMessage(T_('Current expiry'), ticketExpiry($DATA));
@@ -69,7 +69,7 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
     <li>
       <label class="description"><?php echo T_("Comment"); ?></label>
       <div>
-	<textarea name="cmt" class="element textarea"><?php echo htmlEntUTF8($cmt); ?></textarea>
+	<textarea name="comment" class="element textarea"><?php echo htmlEntUTF8($comment); ?></textarea>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -89,9 +89,9 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
       </div>
       <?php if($hasPass) { ?>
       <div>
-	 <input name="clr" id="clr" class="element checkbox" type="checkbox"
-	   <?php if($clr) echo 'checked="checked"'; ?> value="1"/>
-	<label for="clr" class="choice"><?php echo T_("Clear password"); ?></label>
+	 <input name="clear" id="clear" class="element checkbox" type="checkbox"
+	   <?php if($clear) echo 'checked="checked"'; ?> value="1"/>
+	<label for="clear" class="choice"><?php echo T_("Clear password"); ?></label>
       </div>
       <?php } ?>
       <p class="guidelines"><small>
@@ -107,7 +107,7 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
     <li>
       <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
       <div>
-	<input name="dn" value="<?php echo $dn; ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="ticket_totaldays" value="<?php echo $totalDays; ?>" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -120,13 +120,13 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
     </li>
 
     <li>
-      <label class="description"><?php echo T_("Expire in # of hours after last dl"); ?></label>
+      <label class="description"><?php echo T_("Expire in # of days after last download"); ?></label>
       <div>
-	<input name="hra" value="<?php echo $hra; ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="ticket_lastdldays" value="<?php echo $lastDlDays; ?>" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
-	    echo T_("Type the number of hours the uploaded file is allowed to be"
+	    echo T_("Type the number of days the uploaded file is allowed to be"
 		. " kept on the server <strong>after being downloaded</strong>."
 		. " After this period is passed without activity, the file will"
 		. " be deleted from the server.");
@@ -137,7 +137,7 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
     <li>
       <label class="description"><?php echo T_("Expire after # of downloads"); ?></label>
       <div>
-	<input name="dln" value="<?php echo $dln; ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="ticket_maxdl" value="<?php echo $maxDl; ?>" class="element text" type="text" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -152,9 +152,9 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
     <li>
       <label class="description"><?php echo T_("Permanent ticket / upload"); ?></label>
       <div>
-	<input name="nl" id="nl" class="element checkbox" type="checkbox"
-	   <?php if($nl) echo 'checked="checked"'; ?> value="1"/>
-	<label for="nl" class="choice"><?php echo T_("Do not expire"); ?></label>
+	<input name="ticket_permanent" id="ticket_permanent" class="element checkbox" type="checkbox"
+	   <?php if($permanent) echo 'checked="checked"'; ?> value="1"/>
+	<label for="ticket_permanent" class="choice"><?php echo T_("Do not expire"); ?></label>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -166,7 +166,7 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
     <li>
       <label class="description"><?php echo T_("Get notified by e-mail"); ?></label>
       <div>
-	<input name="nt" class="element text" type="text" maxlength="255" value="<?php echo htmlEntUTF8($nt); ?>"/>
+	<input name="notify" class="element text" type="text" maxlength="255" value="<?php echo htmlEntUTF8($notify); ?>"/>
       </div>
       <p class="guidelines"><small>
 	  <?php
