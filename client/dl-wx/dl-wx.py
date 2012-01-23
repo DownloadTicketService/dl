@@ -61,7 +61,7 @@ class Prefs(wx.Dialog):
         self.cancel.Bind(wx.EVT_BUTTON, self.on_close)
         self.save = xrc.XRCCTRL(self, 'save')
         self.save.Bind(wx.EVT_BUTTON, self.on_save)
-        if len(service.url):
+        if service.url:
             self.cancel.Show()
             self.Bind(wx.EVT_CLOSE, self.on_close)
         else:
@@ -91,11 +91,11 @@ class Prefs(wx.Dialog):
         service = Service()
         self.get_service(service)
         error = None
-        if not len(service.url):
+        if not service.url:
             error = "The REST URL is mandatory"
-        elif not len(service.username):
+        elif not service.username:
             error = "The username is mandatory"
-        elif not len(service.password):
+        elif not service.password:
             error = "The password is mandatory"
         if error is not None:
             wx.MessageBox(error, 'Preferences', wx.OK | wx.ICON_ERROR)
@@ -226,7 +226,7 @@ class NewTicket(wx.Dialog):
 
     def on_upload(self, evt):
         path = self.file.GetPath().encode('utf8')
-        if not len(path):
+        if not path:
             wx.MessageBox('Please select a file!', 'New Ticket', wx.OK | wx.ICON_ERROR)
         else:
             self.get_ticket_params(self.ticket_params)
@@ -243,7 +243,7 @@ class DLApp(wx.App):
 
         self.load_prefs()
         self.prefs = Prefs(self.dl.service, self.save_prefs)
-        if not len(self.dl.service.url):
+        if not self.dl.service.url:
             wx.MessageBox('This is the first time you run ' + DL_DESCRIPTION +
                           '. You need to configure it first.',
                           'Preferences', wx.OK | wx.ICON_INFORMATION)
@@ -282,7 +282,7 @@ class DLApp(wx.App):
 
     def express_ticket(self, evt=None):
         path = wx.FileSelector(flags=wx.FD_OPEN|wx.FD_FILE_MUST_EXIST).encode('utf8')
-        if len(path):
+        if path:
             Upload(path, self.dl, self.ticket_params)
 
     def new_ticket(self, evt=None):
