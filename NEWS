@@ -3,14 +3,16 @@ dl 0.10:
 
 * The default configuration file has been renamed to "config.php.dist" and must
   now be manually copied/renamed to be used. If a suitable "config.php" is not
-  found in the include/ directory then configuration is read from "/etc/dl.php".
+  found in the include/ directory, then the configuration is read from
+  "/etc/dl.php". This will allow smoother release upgrades in the future.
 * Notifications of tickets and grants now use the same locale that was used
   during the creation of the ticket/grant itself.
 * A new "Preferences" page has been added, allowing users to change their
-  password (only when using internal authentication).
-* Changing "hours after last download" when editing a ticket was fixed.
+  password (currently supported only for internal authentication).
+* Changing "hours after last download" while editing a ticket didn't actually
+  extend the ticket lifetime. Changing the ticket lifetime now works correctly.
 * "hours after last download" has been changed to "days after last download".
-* Default ticket/grant expiration settings have been increased.
+* Default ticket/grant expiration settings have been increased significantly.
 * A new REST API has been implemented, allowing external applications to use the
   service programmatically.
 * Two python clients have been added to the distribution: a command-line python

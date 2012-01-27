@@ -13,6 +13,11 @@ Important
   - Allow uploading multiple files in both ticket and grants, or
   - Allow to upload many files in the tickets/grants form, but generate
     many tickets in the result (which is the easiest to implement right now).
+  - Simply allow grants to work like tickets:
+
+    - assign max/hours since last use/uses for each grant
+    - allow the resulting grant to expire like a ticket would
+    - user can re-use the grant without limits until it expires
 
   See [private] discussion with Mokrani for more info.
 
