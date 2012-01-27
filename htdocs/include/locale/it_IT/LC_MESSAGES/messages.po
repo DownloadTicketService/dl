@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #: ../../style/include/grantr.php:2 ../newticketr.php:4
 msgid "Upload result"
@@ -154,9 +154,9 @@ msgid ""
 "server <strong>after being downloaded</strong>. After this period is passed "
 "without activity, the file will be deleted from the server."
 msgstr ""
-"Inserire il numero giorni che il file inviato verr&agrave; mantenuto nel server "
-"<strong>dopo essere stato scaricato</strong>. Passato il termine, il file "
-"viene eliminato automaticamente."
+"Inserire il numero giorni che il file inviato verr&agrave; mantenuto nel "
+"server <strong>dopo essere stato scaricato</strong>. Passato il termine, il "
+"file viene eliminato automaticamente."
 
 #: ../edittickets.php:138 ../newgrants.php:131 ../newtickets.php:119
 msgid "Expire after # of downloads"
@@ -607,7 +607,8 @@ msgid "Password change"
 msgstr "Cambio password"
 
 #: ../prefs.php:15
-msgid "Old password dosn't match! Password unchanged."
+#, fuzzy
+msgid "Old password doesn't match! Password unchanged."
 msgstr "La password corrente non coincide! Password non cambiata!"
 
 #: ../prefs.php:19
@@ -636,7 +637,7 @@ msgstr "Inserire la nuova password."
 
 #: ../prefs.php:73
 msgid "New password (retype)"
-msgstr "Nuova password (riscrivi)" 
+msgstr "Nuova password (riscrivi)"
 
 #: ../prefs.php:79
 msgid "Please <em>retype</em> the new password again."

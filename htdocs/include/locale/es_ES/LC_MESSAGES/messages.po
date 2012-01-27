@@ -607,7 +607,8 @@ msgid "Password change"
 msgstr "Cambiar contraseña"
 
 #: ../prefs.php:15
-msgid "Old password dosn't match! Password unchanged."
+#, fuzzy
+msgid "Old password doesn't match! Password unchanged."
 msgstr "La vieja contraseña no coincide."
 
 #: ../prefs.php:19

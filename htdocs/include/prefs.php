@@ -12,7 +12,7 @@ if(!$authRealm && isset($_POST['changepw'])
   if($_POST['newpw'] !== $_POST['newpw2'])
     errorMessage(T_("Password change"), T_("New passwords don't match! Password unchanged."));
   elseif(!userCheck($auth['name'], $_POST['oldpw']))
-    errorMessage(T_("Password change"), T_("Old password dosn't match! Password unchanged."));
+    errorMessage(T_("Password change"), T_("Old password doesn't match! Password unchanged."));
   else
   {
     userUpd($auth['name'], $_POST['newpw']);

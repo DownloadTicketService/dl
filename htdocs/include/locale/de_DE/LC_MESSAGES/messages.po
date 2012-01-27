@@ -606,14 +606,17 @@ msgstr "Hilfe"
 
 #: ../prefs.php:13
 msgid "New passwords don't match! Password unchanged."
-msgstr "Passw&ouml;rter stimmen nicht &uuml;berein! Passwort&auml;nderung abgebrochen."
+msgstr ""
+"Passw&ouml;rter stimmen nicht &uuml;berein! Passwort&auml;nderung "
+"abgebrochen."
 
 #: ../prefs.php:13 ../prefs.php:15 ../prefs.php:19
 msgid "Password change"
 msgstr "Passwort &auml;ndern"
 
 #: ../prefs.php:15
-msgid "Old password dosn't match! Password unchanged."
+#, fuzzy
+msgid "Old password doesn't match! Password unchanged."
 msgstr "Altes Passwort stimmt nicht! Passwort&auml;nderung abgebrochen."
 
 #: ../prefs.php:19
