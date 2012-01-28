@@ -52,6 +52,9 @@ Nice to have
 * Keep expired ticket IDs into the DB to avoid possible reuse?
   My take: easy to implement, nice to have, but very low priority
 
+* On-line registry of downloaded files/addresses for active tickets/grants
+  (right now we only have a log file).
+
 * File picking from a directory (patch available)
 
   My take: nice to have, important for ftp/rsync upload/ticket conversion, but
