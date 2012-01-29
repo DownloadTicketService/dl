@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import pycurl
 import httplib
 import StringIO
@@ -77,8 +76,8 @@ class Request(Thread):
         m = pycurl.CurlMulti()
         m.add_handle(c)
         num_handles = 1
-        while 1:
-            while 1:
+        while True:
+            while True:
                 ret, num_handles = m.perform()
                 if ret != pycurl.E_CALL_MULTI_PERFORM:
                     break
@@ -95,7 +94,7 @@ class Request(Thread):
 
         if self.cancelled:
             return self.failed_fn(None)
-        if error != "":
+        if error:
             return self.failed_fn(DLError("DL connection error: " + error))
 
         ret = None
@@ -113,7 +112,7 @@ class Request(Thread):
         elif ret is None:
             error = "Cannot decode output JSON"
 
-        if error != "":
+        if error:
             return self.failed_fn(DLError("DL service error: " + error))
         else:
             return self.complete_fn(ret)
