@@ -63,6 +63,7 @@ class Prefs(wx.Dialog):
         self.cancel.Bind(wx.EVT_BUTTON, self.on_close)
         self.save = xrc.XRCCTRL(self, 'save')
         self.save.Bind(wx.EVT_BUTTON, self.on_save)
+        self.Bind(wx.EVT_SHOW, self.on_show)
         if service.url:
             self.cancel.Show()
             self.Bind(wx.EVT_CLOSE, self.on_close)
@@ -70,9 +71,8 @@ class Prefs(wx.Dialog):
             self.cancel.Hide()
             self.Bind(wx.EVT_CLOSE, self.on_save)
 
-    def Show(self):
+    def on_show(self, evt):
         self.set_service()
-        super(Prefs, self).Show()
 
     def set_service(self):
         self.url.SetValue(self.service.url)
