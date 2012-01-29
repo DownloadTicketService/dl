@@ -287,25 +287,18 @@ class DLApp(wx.App):
         self.cfg['downloads'] = self.ticket_params.downloads
         self.cfg.write()
 
-    def raise_app(self):
-        self.GetTopWindow().Raise()
-
     def express_ticket(self, evt=None):
-        self.raise_app()
         path = wx.FileSelector(flags=wx.FD_OPEN|wx.FD_FILE_MUST_EXIST).encode('utf8')
         if path:
             Upload(path, self.dl, self.ticket_params)
 
     def new_ticket(self, evt=None):
-        self.raise_app()
         NewTicket(self.dl, self.ticket_params, self.save_prefs)
 
     def show_prefs(self, evt=None):
-        self.raise_app()
         self.prefs.Show()
 
     def show_about(self, evt=None):
-        self.raise_app()
         wx.MessageBox(DL_DESCRIPTION + " " + DL_AGENT + "\n" + DL_URL,
                       'About', wx.OK | wx.ICON_INFORMATION)
 
