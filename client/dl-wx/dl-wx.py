@@ -13,6 +13,7 @@ from dl import *
 DL_VERSION = "0.10"
 DL_AGENT = "dl-wx/" + DL_VERSION
 DL_DESCRIPTION = "Download Ticket Service"
+DL_URL = "http://www.thregr.org/~wavexx/software/dl/"
 DL_ICON = "dl-icon.ico"
 DL_RC = "~/.dl.rc"
 
@@ -43,6 +44,7 @@ class TaskBarIcon(wx.TaskBarIcon):
         create_menu_item(menu, "New Ticket", self.dlapp.new_ticket, wx.ID_NEW)
         create_menu_item(menu, "Preferences", self.dlapp.show_prefs, wx.ID_PREFERENCES)
         menu.AppendSeparator()
+        create_menu_item(menu, "About", self.dlapp.show_about, wx.ID_ABOUT)
         create_menu_item(menu, "Quit", self.dlapp.quit, wx.ID_EXIT)
         return menu
 
@@ -250,6 +252,11 @@ class DLApp(wx.App):
             self.prefs.ShowModal()
 
         self.tbi = TaskBarIcon(self)
+        stub = wx.Frame(None)
+        menu = wx.MenuBar()
+        menu.Append(self.tbi.CreatePopupMenu(), "&File")
+        stub.SetMenuBar(menu)
+        self.SetTopWindow(stub)
         return True
 
     def load_prefs(self):
@@ -280,19 +287,36 @@ class DLApp(wx.App):
         self.cfg['downloads'] = self.ticket_params.downloads
         self.cfg.write()
 
+    def raise_app(self):
+        self.GetTopWindow().Raise()
+
     def express_ticket(self, evt=None):
+        self.raise_app()
         path = wx.FileSelector(flags=wx.FD_OPEN|wx.FD_FILE_MUST_EXIST).encode('utf8')
         if path:
             Upload(path, self.dl, self.ticket_params)
 
     def new_ticket(self, evt=None):
+        self.raise_app()
         NewTicket(self.dl, self.ticket_params, self.save_prefs)
 
     def show_prefs(self, evt=None):
+        self.raise_app()
         self.prefs.Show()
+
+    def show_about(self, evt=None):
+        self.raise_app()
+        wx.MessageBox(DL_DESCRIPTION + " " + DL_AGENT + "\n" + DL_URL,
+                      'About', wx.OK | wx.ICON_INFORMATION)
 
     def quit(self, evt=None):
         self.ExitMainLoop()
+
+    def MacOpenFile(self, path):
+        Upload(path.encode('utf8'), self.dl, self.ticket_params)
+
+    def MacReopenApp(self):
+        self.express_ticket()
 
 
 if __name__ == '__main__':
