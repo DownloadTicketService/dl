@@ -40,7 +40,9 @@
             <flag>wxALIGN_CENTRE_VERTICAL</flag>
           </object>
           <object class="sizeritem">
-            <object class="wxTextCtrl" name="password"/>
+            <object class="wxTextCtrl" name="password">
+              <style>wxTE_PASSWORD</style>
+            </object>
             <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
           </object>
           <object class="spacer"/>
