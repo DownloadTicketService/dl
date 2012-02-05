@@ -46,7 +46,7 @@ USAGE:
         var argconfig  = null;
 
         if (arg1 != null) {
-          if (!isNaN(arg1)) {
+          if (typeof(arg1) != "object") {
             argvalue = arg1;
             if (arg2 != null) {
               argconfig = arg2;
