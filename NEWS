@@ -1,4 +1,4 @@
-dl 0.10: 
+dl 0.10: 06/02/2012
 -------------------
 
 * The default configuration file has been renamed to "config.php.dist" and must

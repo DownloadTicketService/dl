@@ -396,12 +396,13 @@ A graphical client is also included in the distribution, which allows to create
 tickets easily from the system's taskbar. The client can be run by executing
 ``client/dl-wx/dl-wx.py``.
 
-Upon first execution the user will be prompted for basic configuration. After
-that all DL functions can be operated through the taskbar icon:
+Upon first execution the user will be prompted for the basic configuration.
+After that all DL functions can be operated through the taskbar icon:
 
 * Left-clicking on the taskbar will create a new ticket using the default
   settings.
 * Right-clicking allows to select different actions.
+* On OSX, you can drop files directly on the dock.
 
 At least Python 2.7 is required, with the "ConfigObj", "PycURL" and "wxPython"
 modules installed. Under Debian/Ubuntu systems you can install the required
@@ -409,7 +410,8 @@ dependencies by doing the following::
 
   sudo apt-get install python-pycurl python-configobj python-wxgtk2.8
 
-``dl-cli`` and ``dl-wx`` share the same configuration file.
+``dl-cli`` and ``dl-wx`` share the same configuration file, so both can be used
+interchangeably.
 
 
 Ticket expiration
