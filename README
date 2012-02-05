@@ -347,11 +347,13 @@ following configuration is required to protect the include directories::
 
 You can also enable external authentication with the following::
 
-  auth.require   += ( "/dl/(?:admin|rest).php" => (
-      "method"   => "basic",
-      "realm"    => "Restricted Area",
-      "require"  => "valid-user"
-  ) )
+  $HTTP["url"]    =~ "^/dl/(?:admin|rest)\.php$" {
+    auth.require  += ( "" => (
+        "method"  => "basic",
+        "realm"   => "Restricted Area",
+        "require" => "valid-user"
+    ) )
+  }
 
 
 Usage
