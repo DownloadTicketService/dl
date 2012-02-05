@@ -50,9 +50,6 @@ function genTicketId($seed)
 {
   global $dataDir, $maxUUTries;
 
-  // generate new unique id/file name
-  if(!file_exists($dataDir)) mkdir($dataDir);
-
   $tries = $maxUUTries;
   do
   {
@@ -60,7 +57,7 @@ function genTicketId($seed)
     $id = md5(rand() . "/$usec/$sec/" . $seed);
     $tmpFile = "$dataDir/$id";
   }
-  while(fopen($tmpFile, "x") === FALSE && --$tries);
+  while(@fopen($tmpFile, "x") === FALSE && --$tries);
   if(!$tries)
   {
     logEvent("cannot generate unique ticket ID");
