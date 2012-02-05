@@ -117,7 +117,7 @@ if(!$version && file_exists($tDbPath) && file_exists($uDbPath))
   $version = "0.3";
 }
 
-if(!$version || $version == "0.3")
+if(!$version || version_compare($version, "0.4", "<"))
 {
   echo "upgrading 0.3 => 0.4 ...\n";
 
@@ -127,12 +127,7 @@ if(!$version || $version == "0.3")
   $version = "0.4";
 }
 
-if($version == "0.4"
-|| $version == "0.5"
-|| $version == "0.6"
-|| $version == "0.7"
-|| $version == "0.8"
-|| $version == "0.9")
+if(version_compare($version, "0.10", "<"))
 {
   echo "upgrading 0.4 => 0.10 ...\n";
 
