@@ -270,12 +270,12 @@ With external authentication::
   <Directory /your-installation-directory>
     AllowOverride Limit
     Options -Indexes
-    <Files admin.php rest.php>
+    <FilesMatch "^(admin|rest)\.php$">
       AuthType Basic
       AuthName "Restricted Area"
       ...
       Require valid-user
-    </Files>
+    </FilesMatch>
   </Directory>
 
 With LDAP or ActiveDirectory authentication::
@@ -283,7 +283,7 @@ With LDAP or ActiveDirectory authentication::
   <Directory /your-installation-directory>
     AllowOverride Limit
     Options -Indexes
-    <Files admin.php rest.php>
+    <FilesMatch "^(admin|rest)\.php$">
       AuthType Basic
       AuthName "Restricted Area"
       AuthBasicProvider ldap
@@ -294,7 +294,7 @@ With LDAP or ActiveDirectory authentication::
       ...
       Require valid-user
       Satisfy any
-    </Files>
+    </FilesMatch>
   </Directory>
 
 
@@ -323,7 +323,7 @@ and a different setup is required, as shown::
   <Directory /your-installation-directory>
     AllowOverride Limit
     Options -Indexes
-    <Files admin.php rest.php>
+    <FilesMatch "^(admin|rest)\.php$">
       RewriteEngine on
       RewriteCond %{HTTP:Authorization} ^(.*)
       RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
@@ -331,7 +331,7 @@ and a different setup is required, as shown::
       AuthName "Restricted Area"
       ...
       Require valid-user
-    </Files>
+    </FilesMatch>
   </Directory>
 
 
