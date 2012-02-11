@@ -356,66 +356,6 @@ You can also enable external authentication with the following::
   }
 
 
-Usage
-=====
-
-DL should be usable by users without any training. The web interface must be
-self-explanatory. If you find the usage to be difficult or that the interface
-could be improved, **it's a bug**. Please let us know.
-
-
-Command-line client: ``dl-cli``
--------------------------------
-
-A command-line client to the REST interface is included in the distribution in
-``client/dl-cli.py``. This client requires a simple text configuration file, by
-default stored in ``~/.dl.rc``, containing the following values:
-
-* url: REST URL of the service
-* user: your user name
-* pass: your password
-* verify (optional): "true" or "false": enable/disable SSL verification
-  (might be required for self-signed certificates, defaults to true)
-
-An example::
-
-  url=https://dl.example.com/rest.php
-  user=test
-  pass=test
-
-Simply run the command with no arguments to see usage information. At least
-Python 2.7 is required, with the "ConfigObj" and "PycURL" modules
-installed. Under Debian/Ubuntu systems you can install the required
-dependencies by doing the following::
-
-  sudo apt-get install python-pycurl python-configobj
-
-
-Graphical client: ``dl-wx``
----------------------------
-
-A graphical client is also included in the distribution, which allows to create
-tickets easily from the system's taskbar. The client can be run by executing
-``client/dl-wx/dl-wx.py``.
-
-Upon first execution the user will be prompted for the basic configuration.
-After that all DL functions can be operated through the taskbar icon:
-
-* Left-clicking on the taskbar will create a new ticket using the default
-  settings.
-* Right-clicking allows to select different actions.
-* On OSX, you can drop files directly on the dock.
-
-At least Python 2.7 is required, with the "ConfigObj", "PycURL" and "wxPython"
-modules installed. Under Debian/Ubuntu systems you can install the required
-dependencies by doing the following::
-
-  sudo apt-get install python-pycurl python-configobj python-wxgtk2.8
-
-``dl-cli`` and ``dl-wx`` share the same configuration file, so both can be used
-interchangeably.
-
-
 Ticket expiration
 =================
 
@@ -511,6 +451,66 @@ Contributing a new translation is easy enough:
 .. _docutils: http://docutils.sourceforge.net/
 
 
+Usage
+=====
+
+DL should be usable by users without any training. The web interface must be
+self-explanatory. If you find the usage to be difficult or that the interface
+could be improved, **it's a bug**. Please let us know.
+
+
+Command-line client: ``dl-cli``
+-------------------------------
+
+A command-line client to the REST interface is included in the distribution in
+``client/dl-cli.py``. This client requires a simple text configuration file, by
+default stored in ``~/.dl.rc``, containing the following values:
+
+* url: REST URL of the service
+* user: your user name
+* pass: your password
+* verify (optional): "true" or "false": enable/disable SSL verification
+  (might be required for self-signed certificates, defaults to true)
+
+An example::
+
+  url=https://dl.example.com/rest.php
+  user=test
+  pass=test
+
+Simply run the command with no arguments to see usage information. At least
+Python 2.7 is required, with the "ConfigObj" and "PycURL" modules
+installed. Under Debian/Ubuntu systems you can install the required
+dependencies by doing the following::
+
+  sudo apt-get install python-pycurl python-configobj
+
+
+Graphical client: ``dl-wx``
+---------------------------
+
+A graphical client is also included in the distribution, which allows to create
+tickets easily from the system's taskbar. The client can be run by executing
+``client/dl-wx/dl-wx.py``.
+
+Upon first execution the user will be prompted for the basic configuration.
+After that all DL functions can be operated through the taskbar icon:
+
+* Left-clicking on the taskbar will create a new ticket using the default
+  settings.
+* Right-clicking allows to select different actions.
+* On OSX, you can drop files directly on the dock.
+
+At least Python 2.7 is required, with the "ConfigObj", "PycURL" and "wxPython"
+modules installed. Under Debian/Ubuntu systems you can install the required
+dependencies by doing the following::
+
+  sudo apt-get install python-pycurl python-configobj python-wxgtk2.8
+
+``dl-cli`` and ``dl-wx`` share the same configuration file, so both can be used
+interchangeably.
+
+
 General/support mailing list
 ============================
 
@@ -538,5 +538,6 @@ Authors and Copyright
 =====================
 
 "dl" can be found at http://www.thregr.org/~wavexx/software/dl/
+
 "dl" is distributed under GNU GPL 2, WITHOUT ANY WARRANTY.
 Copyright(c) 2007-2012 by Yuri D'Elia <wavexx@users.sf.net>.
