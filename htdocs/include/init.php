@@ -34,11 +34,12 @@ catch(PDOException $e)
 
 // check schema version
 $sql = "SELECT value FROM config WHERE name = 'version'";
-if(!($query = $db->query($sql)))
+if(!($q = $db->query($sql)))
   die("cannot initialize database");
-$version = $query->fetchColumn();
+$version = $q->fetchColumn();
 if(version_compare($version, $dlVersion, "!="))
   die("database requires schema upgrade");
+unset($q);
 
 // set the initial default locale
 $locale = $defLocale;

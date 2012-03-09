@@ -1,3 +1,10 @@
+dl 0.10.1: 09/03/2012
+---------------------
+
+* A bug was fixed in the initialization code that could cause grant uploads to
+  fail in certain configurations.
+
+
 dl 0.10: 06/02/2012
 -------------------
 
