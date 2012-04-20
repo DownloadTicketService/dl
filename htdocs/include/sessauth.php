@@ -43,6 +43,7 @@ function authenticate()
     }
 
     $user = $remoteUser;
+    $pass = false;
   }
 
   // verify if we have administration rights
