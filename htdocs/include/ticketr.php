@@ -56,6 +56,7 @@ if(!$complete)
   header("Content-Range: bytes $range[1]-$range[2]/" . $DATA["size"]);
 }
 header("Content-Length: $size");
+session_write_close();
 ob_end_flush();
 
 // contents
@@ -72,6 +73,8 @@ fclose($fd);
 
 if($last && !connection_aborted())
 {
+  session_start();
+
   ++$DATA["downloads"];
 
   // set default locale for notifications
