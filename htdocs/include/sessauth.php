@@ -1,5 +1,5 @@
 <?php
-// initialize the session and authorization
+// initialize session _and_ authorization
 require_once("sess.php");
 
 function authenticate()

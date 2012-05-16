@@ -1,5 +1,5 @@
 <?php
-// initialize the session and locale
+// initialize the session
 include("init.php");
 require_once("admfuncs.php");
 
