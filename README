@@ -20,6 +20,7 @@ Requirements
 
 * PHP 5.0 or higher.
 * PHP sqlite module (or another PDO database module).
+* PHP mbstring module.
 * Web server access for installation and setup.
 
 Optionals:
