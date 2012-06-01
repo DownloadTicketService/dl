@@ -13,7 +13,7 @@ foreach(explode(PATH_SEPARATOR, get_include_path()) as $path)
     break;
   }
 }
-if(!posix_access($cfgPath, POSIX_R_OK))
+if(!is_readable($cfgPath))
   die("cannot read configuration file");
 require_once($cfgPath);
 

@@ -5,7 +5,7 @@ require_once("confwrap.php");
 require_once("lang.php");
 
 // check data dirs
-if(!posix_access($spoolDir, POSIX_R_OK | POSIX_W_OK))
+if(!is_readable($spoolDir) || !is_writable($spoolDir))
   die("cannot access spool directory");
 if(!file_exists($dataDir))
 {
