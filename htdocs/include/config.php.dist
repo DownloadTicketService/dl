@@ -59,10 +59,6 @@ $cfgVersion = "0.10";
 // dsn: set the DSN of your database (read the installation manual)
 //$dsn = "sqlite:$spoolDir/data/data.sdb";
 
-// sessionName: PHP session name (to ensure session uniqueness)
-//		The default name is generated as:
-//$sessionName = "DL" . md5($masterPath);
-
 // gcInternal: Sets the ticket expiration method. If "true", tickets are expired
 //             automatically by DL itself, at some page request (controlled by
 //             gcProbability). If "false", ticket expiration should be performed

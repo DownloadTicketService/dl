@@ -23,7 +23,6 @@ if(!isset($cfgVersion)) $cfgVersion = "0.4";
 if(!isset($phpExt)) $phpExt = ".php";
 if(!isset($maxSize)) $maxSize = ini_get('upload_max_filesize');
 if(!isset($authRealm)) $authRealm = false;
-if(!isset($sessionName)) $sessionName = "DL" . md5($masterPath);
 if(!isset($dsn)) $dsn = "sqlite:$spoolDir/data.sdb";
 if(!isset($gcProbability)) $gcProbability = 1.0;
 if(!isset($gcInternal)) $gcInternal = true;
@@ -64,7 +63,6 @@ $adminPath = $masterPath . "admin$phpExt";
 $helpRoot = "static/guide";
 $dPath = $masterPath . "d$phpExt";
 $rPath = $masterPath . "rest$phpExt";
-$langCookie = $sessionName . "_LANG";
 
 $defaults = array
 (
