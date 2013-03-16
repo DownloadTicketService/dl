@@ -12,6 +12,7 @@ if($gcInternal === true
 // start the session and session-global variables
 ini_set('session.use_cookies', 1);
 ini_set("session.use_only_cookies", 1);
+session_set_cookie_params(0, $parsedMasterPath['path']);
 session_name($sessionName);
 session_start();
 $auth = &$_SESSION["auth"];

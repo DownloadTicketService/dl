@@ -56,6 +56,7 @@ else
 }
 
 // derived data
+$parsedMasterPath = parse_url($masterPath);
 $useSysLog = (!empty($logFile) && strstr($logFile, "/") === FALSE);
 $iMaxSize = returnBytes($maxSize);
 $dataDir = $spoolDir . "/data";

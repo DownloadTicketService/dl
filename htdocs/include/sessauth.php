@@ -56,7 +56,7 @@ function logout()
   $name = session_name();
   $params = session_get_cookie_params();
   session_destroy();
-  setcookie(session_name(), '', 1,
+  setcookie($name, '', 1,
       $params["path"], $params["domain"],
       $params["secure"], $params["httponly"]);
 }
