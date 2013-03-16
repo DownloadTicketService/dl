@@ -16,24 +16,24 @@ $langData = array
 
 function detectLocale($locale)
 {
-  global $defLocale, $langData, $cookieLifetime;
+  global $defLocale, $langData, $cookieLifetime, $langCookie;
 
   // language selection/detection
-  if(!empty($_REQUEST['lang']))
+  if(!empty($_REQUEST['lang']) || !empty($_COOKIE[$langCookie]))
   {
     if(!empty($_GET['lang']))
       $lang = $_GET['lang'];
     elseif(!empty($_POST['lang']))
       $lang = $_POST['lang'];
     else
-      $lang = $_COOKIE['lang'];
+      $lang = $_COOKIE[$langCookie];
 
     if(isset($langData[$lang]))
     {
       // abide to user preferences
       $locale = $langData[$lang];
       if(!empty($_GET['lang']) || !empty($_POST['lang']))
-	setcookie('lang', $lang, time() + $cookieLifetime);
+	setcookie($langCookie, $lang, time() + $cookieLifetime);
     }
   }
 

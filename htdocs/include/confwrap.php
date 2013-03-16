@@ -64,6 +64,7 @@ $adminPath = $masterPath . "admin$phpExt";
 $helpRoot = "static/guide";
 $dPath = $masterPath . "d$phpExt";
 $rPath = $masterPath . "rest$phpExt";
+$langCookie = $sessionName . "_LANG";
 
 $defaults = array
 (
