@@ -50,12 +50,26 @@ function authenticate()
   return userLogin($user, $pass, isset($remoteUser));
 }
 
+
+function logout()
+{
+  $name = session_name();
+  $params = session_get_cookie_params();
+  session_destroy();
+  setcookie(session_name(), '', 1,
+      $params["path"], $params["domain"],
+      $params["secure"], $params["httponly"]);
+}
+
+
 if(!isset($auth) || isset($_REQUEST['u']))
 {
   $auth = authenticate();
-  if(!isset($auth))
+  if(isset($auth))
+    session_regenerate_id();
+  elseif(session_id())
   {
-    session_destroy();
+    logout();
     exit();
   }
 }

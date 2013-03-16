@@ -10,7 +10,14 @@ if($gcInternal === true
   runGc();
 
 // start the session and session-global variables
+ini_set('session.use_cookies', 1);
+ini_set("session.use_only_cookies", 1);
 session_name($sessionName);
 session_start();
 $auth = &$_SESSION["auth"];
+if(!isset($_SESSION["started"]))
+{
+  session_regenerate_id();
+  $_SESSION["started"] = true;
+}
 ?>
