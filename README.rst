@@ -262,6 +262,7 @@ Apache/mod_php
 With internal authentication::
 
   <Directory /your-installation-directory>
+    AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
   </Directory>
@@ -269,6 +270,7 @@ With internal authentication::
 With external authentication::
 
   <Directory /your-installation-directory>
+    AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
     <FilesMatch "^(admin|rest)\.php$">
@@ -282,6 +284,7 @@ With external authentication::
 With LDAP or ActiveDirectory authentication::
 
   <Directory /your-installation-directory>
+    AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
     <FilesMatch "^(admin|rest)\.php$">
@@ -322,6 +325,7 @@ For HTTP/External authentication to work, ``mod_rewrite`` needs to be enabled,
 and a different setup is required, as shown::
 
   <Directory /your-installation-directory>
+    AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
     <FilesMatch "^(admin|rest)\.php$">
