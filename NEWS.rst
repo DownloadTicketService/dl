@@ -1,3 +1,12 @@
+dl 0.10.2: 
+---------------------
+
+* Fix CSRF vulnerability of the admin interface.
+* Mitigations against session fixation attacks.
+* Progress bar update improvements under certain PHP configurations.
+* Minor cosmetic fixes.
+
+
 dl 0.10.1: 09/03/2012
 ---------------------
 
