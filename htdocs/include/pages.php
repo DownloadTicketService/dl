@@ -12,6 +12,21 @@ $pages = array
 );
 
 
+function pageLink($page, $params = array())
+{
+  global $adminPath;
+  $params['a'] = $page;
+  return token_link($adminPath, $params);
+}
+
+
+function pageLinkAct($params = array())
+{
+  global $act;
+  return pageLink($act, $params);
+}
+
+
 function pageHeader($vars = array())
 {
   global $act, $pages;
@@ -35,8 +50,9 @@ function pageFooter($vars = array())
     if($first) $first = false;
     else echo ", ";
 
+    $title = htmlentities($title);
     if($page == $act) echo "<span>$title</span>";
-    else echo "<a href=\"$adminPath?a=$page\">$title</a>";
+    else echo "<a href=\"" . pageLink($page) . "\">$title</a>";
   }
 
   echo ", <a href=\"$adminPath?u\">" . T_("Logout") . "</a>"

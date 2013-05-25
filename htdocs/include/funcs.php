@@ -240,6 +240,31 @@ function not_empty(&$v)
 }
 
 
+function is_token($v)
+{
+  return (is_string($v) && isset($_SESSION['token']) && $v === $_SESSION['token']);
+}
+
+
+function check_token()
+{
+  return (isset($_REQUEST['token']) && is_token($_REQUEST['token']));
+}
+
+
+function token_link($url, $params = array())
+{
+  $url .= '?token=' . urlencode($_SESSION['token']);
+  foreach($params as $k => $v)
+  {
+    $url .= '&' . urlencode($k);
+    if(!is_null($v))
+      $url .= '=' . urlencode($v);
+  }
+  return htmlentities($url);
+}
+
+
 function validateParams(&$params, &$array)
 {
   // check required parameters first
@@ -276,6 +301,12 @@ function validateParams(&$params, &$array)
   }
 
   return !$error;
+}
+
+
+function randomToken()
+{
+  return md5(mt_rand(0, mt_getrandmax()));
 }
 
 ?>

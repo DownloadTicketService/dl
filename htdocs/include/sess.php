@@ -15,10 +15,9 @@ ini_set("session.use_only_cookies", 1);
 session_set_cookie_params(0, $parsedMasterPath['path']);
 session_name('sid');
 session_start();
-$auth = &$_SESSION["auth"];
-if(!isset($_SESSION["started"]))
-{
-  session_regenerate_id();
-  $_SESSION["started"] = true;
-}
+$auth = &$_SESSION['auth'];
+$token = &$_SESSION['token'];
+if(!isset($token))
+  restart_session();
+
 ?>

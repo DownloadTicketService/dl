@@ -1,7 +1,7 @@
 <?php
 require_once("pages.php");
 $act = "users";
-$ref = "$adminPath?a=$act";
+$ref = pageLinkAct();
 pageHeader();
 
 if(isset($_POST['create']) && !empty($_POST['newUser'])

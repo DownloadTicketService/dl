@@ -6,7 +6,7 @@ include("include/entry.php");
 
 $act = (empty($_REQUEST["a"])? false: $_REQUEST["a"]);
 
-if(!$auth || $act == $entryAuth)
+if(!$auth || $act == $entryAuth || !check_token())
   include($entry[$entryAuth]['entry']);
 elseif(isset($entry[$act]) && (!$entry[$act]['admin'] || $auth['admin']))
   include($entry[$act]['entry']);

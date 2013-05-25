@@ -66,7 +66,7 @@ if(!isset($auth) || isset($_REQUEST['u']))
 {
   $auth = authenticate();
   if(isset($auth))
-    session_regenerate_id();
+    restart_session();
   elseif(session_id())
   {
     logout();

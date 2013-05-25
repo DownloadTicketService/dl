@@ -2,7 +2,7 @@
 require_once("pages.php");
 require_once("style/include/style.php");
 $act = "glist";
-$ref = "$adminPath?a=$act";
+$ref = pageLinkAct();
 pageHeader();
 
 if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
@@ -73,7 +73,7 @@ foreach($db->query($sql) as $DATA)
     . '" src="style/static/upload.png"/></a></td>';
 
   // delete
-  echo "<td><a href=\"$ref&purge&sel=" . $DATA['id'] . "\">"
+  echo "<td><a href=\"" . pageLinkAct(array('purge' => null, 'sel' => $DATA['id'])) . "\">"
     . "<img title=\"" . T_("Purge")
     . "\" src=\"style/static/cross.png\"/></a></td>";
 

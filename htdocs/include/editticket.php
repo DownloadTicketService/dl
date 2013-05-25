@@ -86,7 +86,7 @@ if($DATA)
 
 // resulting page
 if($DATA === false)
-  header("Location: $adminPath?a=tlist");
+  header("Location: $adminPath?a=tlist&token=$token");
 else
   include("edittickets.php");
 ?>

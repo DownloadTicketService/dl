@@ -4,6 +4,14 @@ require_once("funcs.php");
 require_once("fatal.php");
 
 
+function restart_session()
+{
+  session_regenerate_id();
+  $_SESSION['token'] = randomToken();
+  $_REQUEST['token'] = $_SESSION['token'];
+}
+
+
 function ticketPurge($DATA, $auto = true)
 {
   global $db;

@@ -3,7 +3,7 @@ require_once("pages.php");
 require_once("ticketfuncs.php");
 require_once("style/include/style.php");
 $act = "tlist";
-$ref = "$adminPath?a=$act";
+$ref = pageLinkAct();
 pageHeader();
 
 if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
@@ -88,12 +88,12 @@ foreach($db->query($sql) as $DATA)
     . '" src="style/static/save.png"/></a></td>';
 
   // delete
-  echo "<td><a href=\"$ref&purge&sel=" . $DATA['id'] . "\">"
+  echo "<td><a href=\"" . pageLinkAct(array('purge' => null, 'sel' => $DATA['id'])) . "\">"
     . "<img title=\"" . T_("Purge")
     . "\" src=\"style/static/cross.png\"/></a></td>";
 
   // edit
-  echo "<td><a href=\"$adminPath?a=tedit&id=" . $DATA['id'] . "\">"
+  echo "<td><a href=\"" . pageLink('tedit', array('id' => $DATA['id'])) . "\">"
     . "<img title=\"" . T_("Edit")
     . "\" src=\"style/static/edit.png\"/></a></td>";
 

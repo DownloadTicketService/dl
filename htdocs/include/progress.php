@@ -5,7 +5,7 @@ $uploadProgress = ini_get('apc.rfc1867');
 
 function newUploadProgress()
 {
-  return uniqid(rand());
+  return randomToken();
 }
 
 

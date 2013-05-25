@@ -1,7 +1,7 @@
 <?php
 require_once("pages.php");
 $act = "newt";
-$ref = "$adminPath?a=$act";
+$ref = pageLinkAct();
 pageHeader();
 
 require_once("progress.php");

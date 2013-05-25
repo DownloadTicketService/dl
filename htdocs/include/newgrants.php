@@ -1,7 +1,7 @@
 <?php
 require_once("pages.php");
 $act = "newg";
-$ref = "$adminPath?a=$act";
+$ref = pageLinkAct();
 pageHeader();
 ?>
 

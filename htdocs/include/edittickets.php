@@ -1,7 +1,7 @@
 <?php
 require_once("pages.php");
 $act = "tedit";
-$ref = "$adminPath?a=$act&id=$id";
+$ref = pageLinkAct(array('id' => $id));
 $title = sprintf(T_("Editing ticket %s"), "<span class=\"ticketid\">$id</span>");
 pageHeader(array('title' => $title));
 
