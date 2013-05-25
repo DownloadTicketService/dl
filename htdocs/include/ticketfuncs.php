@@ -40,6 +40,7 @@ function handleUploadFailure($file)
   return false;
 }
 
+
 function handleUpload($FILE, $params)
 {
   global $auth, $locale, $dataDir, $db, $defaults;
