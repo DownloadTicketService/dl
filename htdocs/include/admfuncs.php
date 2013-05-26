@@ -8,7 +8,6 @@ function restart_session()
 {
   session_regenerate_id();
   $_SESSION['token'] = randomToken();
-  $_REQUEST['token'] = $_SESSION['token'];
 }
 
 

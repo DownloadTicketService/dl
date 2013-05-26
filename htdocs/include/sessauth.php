@@ -66,7 +66,10 @@ if(!isset($auth) || isset($_REQUEST['u']))
 {
   $auth = authenticate();
   if(isset($auth))
+  {
     restart_session();
+    $_REQUEST['token'] = $token;
+  }
   elseif(session_id())
   {
     logout();
