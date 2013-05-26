@@ -57,7 +57,7 @@ $cfgVersion = "0.10";
 //$authRealm = "Restricted Area";
 
 // dsn: set the DSN of your database (read the installation manual)
-//$dsn = "sqlite:$spoolDir/data/data.sdb";
+//$dsn = "sqlite:$spoolDir/data.sdb";
 
 // gcInternal: Sets the ticket expiration method. If "true", tickets are expired
 //             automatically by DL itself, at some page request (controlled by
