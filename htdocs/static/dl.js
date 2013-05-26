@@ -133,12 +133,24 @@ function selectAll(v)
 function validateForm()
 {
   var ok = true;
+  var max = $('input[name=max_file_size]').val();
 
   $('label.required').each(function()
   {
     var label = $(this);
-    var value = $('input.required', label.next()).val();
-    if(value.length)
+    var field = $('input.required', label.next())[0];
+    var state = true;
+
+    // check content
+    if(!$(field).val().length)
+      state = false;
+
+    // check also file sizes if the browser is recent enough
+    if(state && field.files && field.files[0].size > max)
+      state = false;
+
+    // set field state
+    if(state)
       label.removeClass('error');
     else
     {

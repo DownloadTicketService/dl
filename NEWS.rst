@@ -4,6 +4,7 @@ dl 0.10.2:
 * Fix CSRF vulnerability of the admin interface (discovered by Dirk Reimers).
 * Mitigations against session fixation attacks (discovered by Dirk Reimers).
 * Progress bar update improvements under certain PHP configurations.
+* Validate the upload size with JavaScript in recent browsers.
 * Minor cosmetic fixes.
 
 
