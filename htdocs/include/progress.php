@@ -1,6 +1,8 @@
 <?php
 // upload progress helpers
 $uploadProgress = ini_get('apc.rfc1867');
+$uploadPrefix = ini_get('apc.rfc1867_prefix');
+$uploadName = ini_get('apc.rfc1867_name');
 
 
 function newUploadProgress()
@@ -11,10 +13,10 @@ function newUploadProgress()
 
 function uploadProgressPc($data)
 {
-  global $uploadProgress;
+  global $uploadProgress, $uploadPrefix;
   if(!$uploadProgress) return false;
 
-  $status = apc_fetch("upload_$data");
+  $status = apc_fetch($uploadPrefix . $data);
   return (!isset($status['current'])? false:
       round($status['current'] * 100 / $status['total']));
 }
@@ -55,10 +57,10 @@ function uploadProgressHdr($data)
 
 function uploadProgressField($data)
 {
-  global $uploadProgress;
+  global $uploadProgress, $uploadName;
   if(!$uploadProgress) return;
 
-  echo '<input type="hidden" name="APC_UPLOAD_PROGRESS" value="' . $data . '" />';
+  echo '<input type="hidden" name="' . htmlentities($uploadName) . '" value="' . $data . '" />';
 }
 
 

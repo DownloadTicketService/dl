@@ -1,5 +1,6 @@
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
 
@@ -12,27 +13,24 @@
       {
 	parent.validateHook(function()
 	{
-	  setTimeout("beginUpload();", uploadProgressDelay);
+	  setTimeout("showUpload();", uploadProgressDelay);
 	});
       });
 
-
       // upload status
-      function beginUpload()
-      {
-	parent.progress.slideDown();
-	showUpload();
-      }
-
-
       function showUpload()
       {
 	$.getJSON("../index.php?s=" + parent.progressKey, function(data)
 	{
 	  var pc = parseInt(data['percent']);
-	  parent.progress.progressBar(pc);
+	  if(parent.progress)
+	  {
+	    if(parent.progress.is(':hidden'))
+	      parent.progress.slideDown();
+	    parent.progress.progressBar(pc);
+	    setTimeout("showUpload();", uploadProgressInterval);
+	  }
 	});
-	setTimeout("showUpload();", uploadProgressInterval);
       }
 
     </script>
