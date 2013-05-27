@@ -57,7 +57,7 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("File name"); ?></label>
       <div>
-	<input name="name" class="element text required" type="text" value="<?php echo htmlEntUTF8($name); ?>"/>
+	<input name="name" class="element text required" type="text" required value="<?php echo htmlEntUTF8($name); ?>"/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -166,7 +166,7 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
     <li>
       <label class="description"><?php echo T_("Get notified by e-mail"); ?></label>
       <div>
-	<input name="notify" class="element text" type="text" maxlength="255" value="<?php echo htmlEntUTF8($notify); ?>"/>
+	<input name="notify" class="element text" type="email" multiple maxlength="255" value="<?php echo htmlEntUTF8($notify); ?>"/>
       </div>
       <p class="guidelines"><small>
 	  <?php

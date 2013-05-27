@@ -30,7 +30,7 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
       <div>
 	<input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
 	<?php uploadProgressField($up); ?>
-	<input name="file" class="element file required" type="file"/>
+	<input name="file" class="element file required" type="file" required/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -56,7 +56,7 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
     <li>
       <label class="description"><?php echo T_("Send link to e-mail"); ?></label>
       <div>
-	<input name="send_to" class="element text" type="text" value=""/>
+	<input name="send_to" class="element text" type="email" multiple value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -146,7 +146,7 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
     <li>
       <label class="description"><?php echo T_("Get notified by e-mail"); ?></label>
       <div>
-	<input name="notify" class="element text" type="text" maxlength="255" value=""/>
+	<input name="notify" class="element text" type="email" multiple maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php

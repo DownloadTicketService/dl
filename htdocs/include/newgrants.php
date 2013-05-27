@@ -22,7 +22,7 @@ pageHeader();
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Notification e-mail"); ?></label>
       <div>
-	<input name="notify" class="element text required" type="text" maxlength="255" value=""/>
+	<input name="notify" class="element text required" type="email" required multiple maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -50,7 +50,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Send link to e-mail"); ?></label>
       <div>
-	<input name="send_to" class="element text" type="text" value=""/>
+	<input name="send_to" class="element text" type="email" multiple value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
