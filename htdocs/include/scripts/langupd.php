@@ -7,9 +7,9 @@ require_once("../prelude.php");
 require_once("lang.php");
 
 // cycle through configured languages and regenerate them
-foreach($langData as $lang => $dir)
+foreach($langData as $lang => $v)
 {
-  $dir = "../locale/$dir/LC_MESSAGES";
+  $dir = '../locale/' . $v['locale'] . '/LC_MESSAGES';
   if($lang == "EN" && !file_exists($dir)) continue;
 
   echo "checking locale $lang: ";
@@ -26,9 +26,9 @@ foreach($langData as $lang => $dir)
 }
 
 // cycle through available guides and regenerate them
-foreach($langData as $lang => $dir)
+foreach($langData as $lang => $v)
 {
-  $dir = "../../static/guide/$dir";
+  $dir = '../../static/guide/' . $v['locale'];
   if($lang == "EN" || !file_exists($dir)) continue;
 
   echo "checking guide $lang: ";

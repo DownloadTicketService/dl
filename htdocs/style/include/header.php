@@ -27,8 +27,12 @@
 	      else echo " | ";
 
 	      $K = strtoupper($k);
-	      if($locale == $v) echo $K;
-	      else echo "<a href=\"$ref&lang=$k\">$K</a>";
+	      $name = htmlentities($v['name']);
+
+	      if($locale == $v['locale'])
+		echo "<span title=\"$name\">$K</span>";
+	      else
+		echo "<a href=\"$ref&lang=$k\" title=\"$name\">$K</a>";
 	    }
 	    echo '</div>';
 	  }
