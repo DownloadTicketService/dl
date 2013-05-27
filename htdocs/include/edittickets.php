@@ -107,7 +107,7 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
     <li>
       <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
       <div>
-	<input name="ticket_totaldays" value="<?php echo $totalDays; ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="ticket_totaldays" value="<?php echo $totalDays; ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -122,7 +122,7 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
     <li>
       <label class="description"><?php echo T_("Expire in # of days after last download"); ?></label>
       <div>
-	<input name="ticket_lastdldays" value="<?php echo $lastDlDays; ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="ticket_lastdldays" value="<?php echo $lastDlDays; ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -137,7 +137,7 @@ infoMessage(T_('Current expiry'), ticketExpiry($DATA));
     <li>
       <label class="description"><?php echo T_("Expire after # of downloads"); ?></label>
       <div>
-	<input name="ticket_maxdl" value="<?php echo $maxDl; ?>" class="element text" type="text" maxlength="255" value=""/>
+	<input name="ticket_maxdl" value="<?php echo $maxDl; ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
