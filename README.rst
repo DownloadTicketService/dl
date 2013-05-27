@@ -354,10 +354,43 @@ You can also enable external authentication with the following::
 
   $HTTP["url"]    =~ "^/dl/(?:admin|rest)\.php$" {
     auth.require  += ( "" => (
-        "method"  => "basic",
-        "realm"   => "Restricted Area",
-        "require" => "valid-user"
+	"method"  => "basic",
+	"realm"   => "Restricted Area",
+	"require" => "valid-user"
     ) )
+  }
+
+
+Nginx/PHP-FPM
+-------------
+
+Nginx in combination with PHP-FPM works fine but needs special configuration to
+setup ``PATH_INFO`` correctly. Here is an example configuration with DL
+installed as a subdirectory in the document root::
+
+  location ^~ /dl {
+      # Set maximum upload size. Should be the same as PHP's upload_max_filesize
+      client_max_body_size 512M;
+
+      # Protect the include directories
+      location ~ ^/dl(?:/|/.*/)include {
+	  deny all;
+      }
+      try_files $uri $uri/ @dlcleanurl;
+
+      # Enable PHP
+      location ~ \.php$ {
+	  try_files $uri =404;
+	  include php_fastcgi;
+      }
+  }
+
+  # DL 'clean url'
+  location @dlcleanurl {
+      include php_fastcgi;
+      fastcgi_split_path_info       ^(.+\.php)(/.*)$;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      fastcgi_param PATH_INFO       $fastcgi_path_info;
   }
 
 
