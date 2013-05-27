@@ -1,7 +1,7 @@
 Main program
 ------------
 
-Copyright(c) 2007-2012 Yuri D'Elia <wavexx@users.sf.net>
+Copyright(c) 2007-2013 Yuri D'Elia <wavexx@users.sf.net>
 License: GNU GPL 2+ (see COPYING)
 
 Bundled code
@@ -20,9 +20,9 @@ Bundled code
   This is licensed under the CC-GNU LGPL, version 2.1 or later.
   For details, see: http://creativecommons.org/licenses/LGPL/2.1/
 
-* jQuery Progress Bar plugin:
+* progress-polyfill:
 
-  Copyright(c) 2008 Gary Teo http://t.wits.sg
+  Copyright(c) 2013 Jonathan Stipe https://github.com/jonstipe/progress-polyfill
   Dual licensed under the MIT or GPL Version 2 licenses.
   http://jquery.org/license
 

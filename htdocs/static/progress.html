@@ -28,7 +28,7 @@
 	  {
 	    if(parent.progress.is(':hidden'))
 	      parent.progress.slideDown();
-	    parent.progress.progressBar(pc);
+	    parent.progress.attr('value', pc);
 	    setTimeout("showUpload();", uploadProgressInterval);
 	  }
 	});

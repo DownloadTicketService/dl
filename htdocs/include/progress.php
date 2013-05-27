@@ -28,7 +28,8 @@ function uploadProgressHdr($data)
   if(!$uploadProgress) return;
 
 ?>
-  <script type="text/javascript" src="static/jquery.progressbar.js"></script>
+  <script type="text/javascript" src="static/progress-polyfill.js"></script>
+  <style type="text/css" src="static/progress-polyfill.css"></style>
   <iframe style="display: none;" src="static/progress.html"></iframe>
   <script type="text/javascript">
 
@@ -38,16 +39,7 @@ function uploadProgressHdr($data)
     $(document).ready(function()
     {
       progress = $("#uploadprogressbar");
-      progress.progressBar(
-      {
-	boxImage: 'static/images/progressbar.gif',
-	barImage:
-	{
-	  0: 'static/images/progressbg_red.gif',
-	  30: 'static/images/progressbg_orange.gif',
-	  70: 'static/images/progressbg_green.gif'
-	}
-      });
+      progress.attr({'min': 0, 'max': 100});
     });
 
   </script>
@@ -68,7 +60,7 @@ function uploadProgressHtml($data)
 {
   global $uploadProgress;
   if(!$uploadProgress) return;
-  echo '<div style="padding-top: 1em; display: none;" id="uploadprogressbar"></div>';
+  echo '<progress style="margin-top: 1em; display: none;" id="uploadprogressbar"></progress>';
 }
 
 ?>
