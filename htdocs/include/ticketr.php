@@ -73,8 +73,6 @@ fclose($fd);
 
 if($last && !connection_aborted())
 {
-  session_start();
-
   ++$DATA["downloads"];
 
   // set default locale for notifications
