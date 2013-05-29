@@ -39,10 +39,6 @@ Important
 
   http://thread.gmane.org/gmane.comp.web.dl-ticket-service.general/140
 
-* Javascript/validation of e-mail address-es.
-
-* Javascript/validation of numerical fields.
-
 * Set sidewide limits (not just defaults) for ticket/grants in config.php.
 
 
@@ -68,9 +64,6 @@ Nice to have
   Nice to have, but not critical.
 
 * Some sort of quota mechanism to avoid uncontrolled server fill-up.
-
-* Switch from md5 for password hashing to some salted hash (using crypt()).
-  Low priority, since passwords are actually sent in clear-text all over the place.
 
 
 Suggestions
