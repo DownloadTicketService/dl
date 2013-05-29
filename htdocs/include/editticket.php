@@ -4,7 +4,7 @@ require_once("ticketfuncs.php");
 
 function handleUpdate($id)
 {
-  global $db;
+  global $db, $passHasher;
 
   // handle parameters
   $values = array();
@@ -16,9 +16,15 @@ function handleUpdate($id)
     $values['cmt'] = (empty($_POST['comment'])? 'NULL': $db->quote($_POST['comment']));
 
   if(isset($_POST['clear']) && $_POST['clear'])
+  {
     $values['pass_md5'] = 'NULL';
+    $values['pass_ph'] = 'NULL';
+  }
   elseif(!empty($_POST['pass']))
-    $values['pass_md5'] = $db->quote(md5($_POST['pass']));
+  {
+    $values['pass_md5'] = 'NULL';
+    $values['pass_ph'] = $db->quote($passHasher->HashPassword($_POST['pass']));
+  }
 
   if(isset($_POST['ticket_permanent']) && $_POST['ticket_permanent'])
   {

@@ -1,11 +1,27 @@
-dl 0.10.2: 
+dl 0.11: 
 ---------------------
 
 * Fix CSRF vulnerability of the admin interface (discovered by Dirk Reimers).
 * Mitigations against session fixation attacks (discovered by Dirk Reimers).
-* Progress bar update improvements under certain PHP configurations.
 * Improved client-side validation of the forms (with HTML5/JS where available).
-* Minor cosmetic fixes.
+* Password hashing for the user/ticket/grant DB switched to PHPass.
+* Progress bar updating improvements.
+* Minor bug/cosmetic fixes.
+
+Please note: DL 0.11 requires a database schema update! Please read the
+database upgrade procedure in the README!
+
+Upgrading to DL 0.11 has implication for existing users. The new hashing scheme
+limits usernames to 60 characters and passwords to 72 to prevent DoS attacks.
+Users having usernames/passwords exceeding these limits won't be able to login
+after the upgrade, and can only be managed manually through the command line.
+
+The password hash of existing users is automatically rehashed using the new
+scheme upon a successful login (no password change is required).
+
+The optional password of tickets and grants is similarly affected and upgraded
+transparently upon successful usage. Tickets/grants having passwords longer
+than 72 characters though will require a manual password reset.
 
 
 dl 0.10.1: 09/03/2012

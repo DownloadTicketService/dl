@@ -17,7 +17,7 @@ echo "</p>";
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Password"); ?></label>
       <div>
-	<input name="p" class="element text required" type="password" required maxlength="255"/>
+	<input name="p" class="element text required" type="password" required maxlength="<?php echo $maxPassLen; ?>"/>
       </div>
       <p class="guidelines"><small>
 	  <?php

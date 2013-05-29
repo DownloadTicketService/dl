@@ -18,7 +18,7 @@ if($DATA === false || isTicketExpired($DATA))
   httpNotFound();
 
 // check for password
-if(isset($DATA['pass_md5']) && !isset($_SESSION['t'][$id]))
+if(hasPassHash($DATA) && !isset($_SESSION['t'][$id]))
   httpBadRequest();
 
 // open the file first

@@ -141,5 +141,17 @@ if(version_compare($version, "0.10", "<"))
   $version = "0.10";
 }
 
+if(version_compare($version, "0.11", "<"))
+{
+  echo "upgrading 0.10 => 0.11 ...\n";
+
+  $db->exec("ALTER TABLE user ADD pass_ph VARCHAR");
+  $db->exec("ALTER TABLE ticket ADD pass_ph VARCHAR");
+  $db->exec("ALTER TABLE grant ADD pass_ph VARCHAR");
+  $db->exec("UPDATE config SET value = '0.11' WHERE name = 'version'");
+
+  $version = "0.11";
+}
+
 echo "done\n";
 exit(0);

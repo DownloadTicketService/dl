@@ -134,7 +134,7 @@ foreach($db->query($sql) as $DATA)
   // owner
   if(!$our)
     echo "<tr><th>" . T_("User:") . " </th><td>" . htmlEntUTF8($DATA["user"]) . "</td></tr>";
-  if(isset($DATA['pass_md5']))
+  if(hasPassHash($DATA))
     echo "<tr><th>" . T_("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
 
   // downloads

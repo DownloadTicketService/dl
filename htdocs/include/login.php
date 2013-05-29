@@ -12,7 +12,7 @@ $class = "description required" . ($error? " error": "");
     <li>
       <label class="<?php echo $class; ?>"><?php echo T_("User"); ?></label>
       <div>
-	<input name="u" class="element text required" type="text" required maxlength="255"/>
+	<input name="u" class="element text required" type="text" required maxlength="<?php echo $maxUserLen; ?>"/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -24,7 +24,7 @@ $class = "description required" . ($error? " error": "");
     <li>
       <label class="<?php echo $class; ?>"><?php echo T_("Password"); ?></label>
       <div>
-	<input name="p" class="element text required" type="password" required maxlength="255"/>
+	<input name="p" class="element text required" type="password" required maxlength="<?php echo $maxPassLen; ?>"/>
       </div>
       <p class="guidelines"><small>
           <?php

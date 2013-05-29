@@ -43,7 +43,7 @@ function handleUploadFailure($file)
 
 function handleUpload($FILE, $params)
 {
-  global $auth, $locale, $dataDir, $db, $defaults;
+  global $auth, $locale, $dataDir, $db, $defaults, $passHasher;
 
   // generate new unique id/file name
   list($id, $tmpFile) = genTicketId($FILE["name"]);
@@ -51,7 +51,7 @@ function handleUpload($FILE, $params)
     return handleUploadFailure($tmpFile);
 
   // prepare data
-  $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_md5"
+  $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph"
     . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
@@ -59,7 +59,8 @@ function handleUpload($FILE, $params)
   $sql .= ", " . $db->quote($tmpFile);
   $sql .= ", " . $FILE["size"];
   $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
-  $sql .= ", " . (empty($params["pass"])? 'NULL': $db->quote(md5($params["pass"])));
+  $sql .= ", " . (empty($params["pass"])? 'NULL':
+      $db->quote($passHasher->HashPassword($params["pass"])));
   $sql .= ", " . time();
   if(@$params["permanent"])
   {

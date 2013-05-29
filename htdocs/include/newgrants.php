@@ -68,7 +68,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Password"); ?></label>
       <div>
-	<input name="pass" class="element text password" type="text" maxlength="255" value=""/>
+	<input name="pass" class="element text password" type="text" maxlength="<?php echo $maxPassLen; ?>" value=""/>
         <input class="element button password" type="button" value="<?php echo T_("Generate"); ?>" onclick="passGen();"/>
       </div>
       <p class="guidelines"><small>

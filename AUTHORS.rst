@@ -14,6 +14,12 @@ Bundled code
   Copyright(c) 2005 Nico Kaiser <nico@siriux.net>
   License: GNU GPL 2+ (see COPYING)
 
+* PHPass:
+
+  Written by Solar Designer <solar at openwall.com> in 2004-2006 and placed in
+  the public domain.  Revised in subsequent years, still public domain.
+  http://www.openwall.com/phpass/
+
 * iepngfix.htc:
 
   (c) 2004-2005 Angus Turnbull http://www.twinhelix.com

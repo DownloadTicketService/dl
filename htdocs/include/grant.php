@@ -21,10 +21,9 @@ if($GRANT === false || isGrantExpired($GRANT))
   exit();
 }
 
-if(isset($GRANT['pass_md5']) && !isset($_SESSION['g'][$id]))
+if(hasPassHash($GRANT) && !isset($_SESSION['g'][$id]))
 {
-  $pass = (empty($_POST["p"])? false: md5($_POST["p"]));
-  if($pass === $GRANT['pass_md5'])
+  if(!empty($_POST['p']) && checkPassHash('grant', $GRANT, $_POST['p']))
   {
     // authorize the grant for this session
     $_SESSION['g'][$id] = array('pass' => $_POST["p"]);
@@ -56,7 +55,7 @@ function handleUpload($GRANT, $FILE)
   // convert the upload to a ticket
   $db->beginTransaction();
 
-  $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_md5"
+  $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph"
     . ", time, last_time, expire, expire_dln, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $GRANT['user_id'];
@@ -64,7 +63,7 @@ function handleUpload($GRANT, $FILE)
   $sql .= ", " . $db->quote($tmpFile);
   $sql .= ", " . $FILE["size"];
   $sql .= ", " . (empty($GRANT["cmt"])? 'NULL': $db->quote($GRANT["cmt"]));
-  $sql .= ", " . (empty($GRANT["pass_md5"])? 'NULL': $db->quote($GRANT["pass_md5"]));
+  $sql .= ", " . (empty($GRANT["pass_ph"])? 'NULL': $db->quote($GRANT["pass_ph"]));
   $sql .= ", " . time();
   $sql .= ", " . (empty($GRANT["last_time"])? 'NULL': $GRANT['last_time']);
   $sql .= ", " . (empty($GRANT["expire"])? 'NULL': $GRANT['expire']);

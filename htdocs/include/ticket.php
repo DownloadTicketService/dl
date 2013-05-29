@@ -23,10 +23,9 @@ if($DATA === false || isTicketExpired($DATA))
 }
 
 // check for password
-if(isset($DATA['pass_md5']))
+if(hasPassHash($DATA) && !isset($_SESSION['t'][$id]))
 {
-  $pass = (empty($_POST["p"])? false: md5($_POST["p"]));
-  if($pass === $DATA['pass_md5'])
+  if(!empty($_POST['p']) && checkPassHash('ticket', $DATA, $_POST['p']))
   {
     // authorize the ticket for this session
     $_SESSION['t'][$id] = array('pass' => $_POST["p"]);

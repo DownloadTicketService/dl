@@ -40,7 +40,7 @@ else
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Old password"); ?></label>
       <div>
-	<input name="oldpw" class="element text required" type="password" required maxlength="255" value=""/>
+	<input name="oldpw" class="element text required" type="password" required maxlength="<?php echo $maxPassLen; ?>" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -56,7 +56,7 @@ else
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("New password"); ?></label>
       <div>
-	<input name="newpw" class="element text required" type="password" required maxlength="255" value=""/>
+	<input name="newpw" class="element text required" type="password" required maxlength="<?php echo $maxPassLen; ?>" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -72,7 +72,7 @@ else
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("New password (retype)"); ?></label>
       <div>
-	<input name="newpw2" class="element text required" type="password" required maxlength="255" value=""/>
+	<input name="newpw2" class="element text required" type="password" required maxlength="<?php echo $maxPassLen; ?>" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php

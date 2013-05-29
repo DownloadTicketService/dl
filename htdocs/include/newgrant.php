@@ -3,7 +3,7 @@
 
 function handleGrant()
 {
-  global $auth, $locale, $db, $defaults;
+  global $auth, $locale, $db, $defaults, $passHasher;
 
   // generate new unique id
   list($usec, $sec) = microtime();
@@ -14,13 +14,14 @@ function handleGrant()
     $_POST["grant_total"] = $defaults['grant']['total'] / (3600 * 24);
 
   // prepare data
-  $sql = "INSERT INTO grant (id, user_id, grant_expire, cmt, pass_md5"
+  $sql = "INSERT INTO grant (id, user_id, grant_expire, cmt, pass_ph"
     . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
   $sql .= ", " . (($_POST["grant_total"] == 0)? 'NULL': time() + $_POST["grant_total"] * 3600 * 24);
   $sql .= ", " . (empty($_POST["comment"])? 'NULL': $db->quote($_POST["comment"]));
-  $sql .= ", " . (empty($_POST["pass"])? 'NULL': $db->quote(md5($_POST["pass"])));
+  $sql .= ", " . (empty($_POST["pass"])? 'NULL':
+      $db->quote($passHasher->HashPassword($_POST["pass"])));
   $sql .= ", " . time();
   if(!empty($_POST["ticket_permanent"]))
   {
