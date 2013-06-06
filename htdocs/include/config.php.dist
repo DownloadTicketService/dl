@@ -58,6 +58,8 @@ $cfgVersion = "0.10";
 
 // dsn: set the DSN of your database (read the installation manual)
 //$dsn = "sqlite:$spoolDir/data.sdb";
+//$dbUser = "username";
+//$dbPassword = "password";
 
 // gcInternal: Sets the ticket expiration method. If "true", tickets are expired
 //             automatically by DL itself, at some page request (controlled by

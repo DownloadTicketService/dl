@@ -24,7 +24,7 @@ if(@$ret === false)
 // initialize the db
 try
 {
-  $db = new PDO($dsn);
+  $db = new PDO($dsn, $dbUser, $dbPassword);
   $db->exec('PRAGMA foreign_keys = ON');
 }
 catch(PDOException $e)

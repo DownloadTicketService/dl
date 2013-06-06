@@ -92,8 +92,21 @@ server* (by using ``su`` or ``sudo`` if necessary)::
   chmod 660 data.sdb
 
 If you want to change the database path, or use a real database server, you
-need to properly configure the ''$dsn'' parameter in ``include/config.php``
-according to your setup.
+need to properly configure the ''$dsn'' parameters in ``include/config.php``
+according to your setup. The DSN string changes according to the PDO module
+that you want to use. Please see one of:
+
+* `SQLite DSN <http://www.php.net/manual/en/ref.pdo-sqlite.connection.php>`_
+* `MySQL DSN <http://php.net/manual/en/ref.pdo-mysql.connection.php>`_
+* `PostgreSQL DSN <http://www.php.net/manual/en/ref.pdo-pgsql.connection.php>`_
+
+for the most popular configuration choices. When a username/password is
+required, using the appropriate variables ''$dbUser/$dbPassword'' is preferred
+instead of embedding the values in the DSN string.
+
+The provided SQL script ``include/scripts/sqlite.sql``, despite the name,
+currently contains ANSI SQL only and can be used on most database systems to
+initialize the required tables.
 
 
 Upgrading from DL <= 0.3
