@@ -1,8 +1,17 @@
 <?php
 // upload progress helpers
-$uploadProgress = ini_get('apc.rfc1867');
+
+// prefer APC/APCu rfc1867 when available
+$uploadProgress = (ini_get('apc.rfc1867')? 'apc': false);
 $uploadPrefix = ini_get('apc.rfc1867_prefix');
 $uploadName = ini_get('apc.rfc1867_name');
+if(!$uploadProgress)
+{
+  // fallback to upload_progress for PHP 5.4+
+  $uploadProgress = (ini_get('session.upload_progress.enabled')? 'upload_progress': false);
+  $uploadPrefix = ini_get('session.upload_progress.prefix');
+  $uploadName = ini_get('session.upload_progress.name');
+}
 
 
 function newUploadProgress()
@@ -14,9 +23,15 @@ function newUploadProgress()
 function uploadProgressPc($data)
 {
   global $uploadProgress, $uploadPrefix;
-  if(!$uploadProgress) return false;
+  $key = $uploadPrefix . $data;
 
-  $status = apc_fetch($uploadPrefix . $data);
+  if($uploadProgress == 'upload_progress')
+    $status = (isset($_SESSION[$key])? $_SESSION[$key]: false);
+  elseif($uploadProgress == 'apc')
+    $status = apc_fetch($key);
+  else
+    $status = false;
+
   return (!isset($status['current'])? false:
       round($status['current'] * 100 / $status['total']));
 }
