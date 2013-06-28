@@ -8,9 +8,7 @@ function httpBadRequest()
 
 function httpUnauthorized()
 {
-  global $authRealm;
   header('HTTP/1.0 401 Unauthorized');
-  if($authRealm) header('WWW-Authenticate: Basic realm="' . $authRealm . '"');
   exit();
 }
 
