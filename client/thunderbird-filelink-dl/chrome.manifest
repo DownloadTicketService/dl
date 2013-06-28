@@ -1,0 +1,6 @@
+content thunderbird-filelink-dl chrome/content/
+locale thunderbird-filelink-dl en-US chrome/locale/en-US/
+
+component {c0bee36d-3c0d-460b-bb9a-f0e9c873a833} components/nsDL.js
+contract @mozilla.org/mail/thunderbird-filelink-dl;1 {c0bee36d-3c0d-460b-bb9a-f0e9c873a833}
+category cloud-files DL @mozilla.org/mail/thunderbird-filelink-dl;1
