@@ -1,7 +1,8 @@
 <?php
 // download ticket system
-include("include/sess.php");
-include("include/entry.php");
+include("include/init.php");
+require_once("include/admfuncs.php");
+require_once("include/entry.php");
 
 // authentication
 if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
@@ -47,6 +48,9 @@ if($rest[$act]['method'] == 'POST')
   if(!isset($msg))
     httpBadRequest();
 }
+
+// expire tickets before serving any request
+init();
 
 // handling
 array_unshift($args, $msg);

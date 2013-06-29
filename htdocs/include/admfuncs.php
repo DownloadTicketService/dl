@@ -32,6 +32,17 @@ function grantPurge($DATA, $auto = true)
 }
 
 
+function init()
+{
+  global $gcInternal, $gcProbability;
+
+  if($gcInternal === true
+  && ($gcProbability === 1.
+   || (mt_rand() / mt_getrandmax() < $gcProbability)))
+    runGc();
+}
+
+
 function runGc()
 {
   global $db, $gcLimit;

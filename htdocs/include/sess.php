@@ -4,10 +4,7 @@ include("init.php");
 require_once("admfuncs.php");
 
 // expire tickets before serving any request
-if($gcInternal === true
-&& ($gcProbability === 1.
- || (mt_rand() / mt_getrandmax() < $gcProbability)))
-  runGc();
+init();
 
 // start the session and session-global variables
 ini_set('session.use_cookies', 1);
