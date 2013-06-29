@@ -1,6 +1,7 @@
 import pycurl
 import httplib
 import StringIO
+import base64
 import json
 from threading import Thread
 
@@ -53,8 +54,11 @@ class Request(Thread):
         c.setopt(c.URL, self.dl.service.url + "/" + self.request)
         c.setopt(c.WRITEFUNCTION, s.write)
         c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
-        c.setopt(c.USERPWD, self.dl.service.username + ':' + self.dl.service.password)
-        c.setopt(c.HTTPHEADER, ['Expect:', 'User-agent: ' + self.dl.service.agent])
+        auth = self.dl.service.username + ':' + self.dl.service.password
+        c.setopt(c.USERPWD, auth)
+        c.setopt(c.HTTPHEADER, ['Expect:',
+                                'User-agent: ' + self.dl.service.agent,
+                                'X-Authorization: Basic ' + base64.b64encode(auth)])
 
 	if self.file or self.msg is not None:
 	  post_data = []

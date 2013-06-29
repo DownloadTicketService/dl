@@ -54,13 +54,17 @@ nsDL.prototype =
   {
     let req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
     let method = (!msg && !file? "GET": "POST");
+    req.mozBackgroundRequest = true;
     req.open(method, this._restURL + "/" + request, true);
-    req.setRequestHeader("Authorization", "Basic " + btoa(this._username + ":" + this._password));
     req.setRequestHeader("User-agent", AID + "/" + VER);
+
+    let auth = "Basic " + btoa(this._username + ":" + this._password);
+    req.setRequestHeader("Authorization", auth);
+    req.setRequestHeader("X-Authorization", auth);
 
     req.onerror = function()
     {
-      failure_cb(null, null);
+      failure_cb(req, null);
     };
 
     req.onabort = function()
@@ -68,7 +72,7 @@ nsDL.prototype =
       if(abort_cb)
 	abort_cb(req);
       else
-	failure_cb(null, null);
+	failure_cb(req, null);
     };
 
     req.onload = function()
@@ -164,10 +168,11 @@ nsDL.prototype =
 
     let failure_cb = function(req, res)
     {
-      if(req && req.status == 401)
+      if(req.status == 401)
       {
 	// TODO: handle auth errors
 	aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
+	return;
       }
 
       aCallback.onStopRequest(null, this, Cr.NS_ERROR_FAILURE);

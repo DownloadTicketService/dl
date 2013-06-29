@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import configobj
+import base64
 import validate
 import pycurl
 import httplib
@@ -33,12 +34,15 @@ def newticket(file, params):
         c.setopt(c.NOPROGRESS, False)
         c.setopt(c.PROGRESSFUNCTION, progress)
 
+    auth = params['user'] + ':' + params['pass']
     c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
-    c.setopt(c.USERPWD, params['user'] + ':' + params['pass'])
+    c.setopt(c.USERPWD, auth)
+    c.setopt(c.HTTPHEADER, ['Expect:',
+                            'User-agent: ' + DL_AGENT,
+                            'X-Authorization: Basic ' + base64.b64encode(auth)])
     c.setopt(c.HTTPPOST, [
         ("file", (c.FORM_FILE, file)),
         ("msg", json.dumps({}))])
-    c.setopt(c.HTTPHEADER, ['Expect:', 'User-agent: ' + DL_AGENT])
     if not params['verify']:
         c.setopt(c.SSL_VERIFYPEER, False)
 
