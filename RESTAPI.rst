@@ -22,7 +22,10 @@ any)::
   /rest/request[/parameters]
 
 Every request must be performed via the appropriate HTTP method (either "GET"
-or "POST"), and must always include HTTP's "BASIC" authorization credentials.
+or "POST"), and must always include HTTP's "Basic" authorization credentials.
+
+The credentials must also be replicated in a second header "X-Authorization"
+(which follows the same syntax as a normal "Basic" authorization scheme).
 
 "POST" requests must also include:
 
@@ -60,11 +63,11 @@ Returned values:
   * defaults: service defaults:
 
     * grant:
-    
+
       * total (integer): maximal number of seconds for grants.
 
     * ticket:
-    
+
       * total (integer): maximal number of seconds for tickets.
       * lastdl (integer): maximal number of seconds after last download for tickets.
       * maxdl (integer): maximal number of seconds for the ticket for tickets.

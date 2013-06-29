@@ -1,8 +1,10 @@
 dl 0.11: 
 ---------------------
 
-* Fix CSRF vulnerability of the admin interface (discovered by Dirk Reimers).
+* Fixed CSRF vulnerability of the admin interface (discovered by Dirk Reimers).
 * Mitigations against session fixation attacks (discovered by Dirk Reimers).
+* Fixed CSRF vulnerability of the REST interface when used in combination with
+  HTTP/external authentication.
 * Improved client-side validation of the forms (with HTML5/JS where available).
 * Password hashing for the user/ticket/grant DB switched to PHPass.
 * Progress bar updating improvements.
@@ -22,6 +24,10 @@ scheme upon a successful login (no password change is required).
 The optional password of tickets and grants is similarly affected and upgraded
 transparently upon successful usage. Tickets/grants having passwords longer
 than 72 characters though will require a manual password reset.
+
+To fully prevent CSRF attacks on the REST interface when used in combination
+with HTTP authentication the protocol has been broken. Clients (such as the
+supplied "dl-wx") require an upgrade.
 
 
 dl 0.10.1: 09/03/2012

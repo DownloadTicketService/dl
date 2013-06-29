@@ -309,4 +309,25 @@ function randomToken()
   return md5(mt_rand(0, mt_getrandmax()));
 }
 
+
+function httpBasicDecode($hdr)
+{
+  // check minimal lenght and header
+  if(strlen($hdr) < 14 || substr($hdr, 0, 6) !== "Basic ")
+    return false;
+
+  // decode the data
+  $data = base64_decode(substr($hdr, 6));
+  if($data === false)
+    return false;
+
+  $colon = strpos($data, ':');
+  if($colon === false)
+    return false;
+
+  $user = substr($data, 0, $colon);
+  $pass = substr($data, $colon + 1);
+  return array("user" => $user, "pass" => $pass);
+}
+
 ?>

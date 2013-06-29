@@ -4,13 +4,14 @@ include("include/sess.php");
 include("include/entry.php");
 
 // authentication
-if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']))
+if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
+&& isset($_SERVER['HTTP_X_AUTHORIZATION']))
 {
-  $authData = array
-  (
-    "user" => $_SERVER['PHP_AUTH_USER'],
-    "pass" => $_SERVER['PHP_AUTH_PW'],
-  );
+  $authData = httpBasicDecode($_SERVER['HTTP_X_AUTHORIZATION']);
+  if($authData === false
+  || $authData["user"] !== $_SERVER['PHP_AUTH_USER']
+  || $authData["pass"] !== $_SERVER['PHP_AUTH_PW'])
+    unset($authData);
 }
 if(isset($authData))
 {
