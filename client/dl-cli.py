@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-import configobj
+import ConfigParser
 import base64
-import validate
 import pycurl
 import httplib
 import StringIO
@@ -12,6 +11,16 @@ import sys
 
 DL_VERSION = "0.10"
 DL_AGENT = "dl-cli/" + DL_VERSION
+
+
+class DefaultSection(object):
+    def __init__(self, path):
+        self.fp = open(path)
+        self.readline = self.head
+
+    def head(self):
+        self.readline = self.fp.readline
+        return "[DEFAULT]\n";
 
 
 class UploadError(Exception):
@@ -84,9 +93,13 @@ def main():
     args = parser.parse_args()
 
     cfgpath = os.path.expanduser(args.rc)
-    cfg = configobj.ConfigObj(cfgpath)
-    v = validate.Validator()
-    cfg['verify'] = v.check('boolean', cfg.get('verify', True))
+    cp = ConfigParser.RawConfigParser();
+    cp.readfp(DefaultSection(cfgpath))
+
+    cfg = {'url' : cp.get('DEFAULT', 'url'),
+           'user': cp.get('DEFAULT', 'user'),
+           'pass': cp.get('DEFAULT', 'pass'),
+           'verify': cp.getboolean('DEFAULT', 'verify')};
 
     try:
         answ = newticket(args.file, cfg)
