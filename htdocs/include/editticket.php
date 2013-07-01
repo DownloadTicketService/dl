@@ -68,7 +68,7 @@ function handleUpdate($id)
 // fetch the ticket id and check for permissions
 $DATA = false;
 $id = &$_REQUEST['id'];
-if(empty($id) && !isTicketId($id))
+if(empty($id) || !isTicketId($id))
   $id = false;
 else
 {

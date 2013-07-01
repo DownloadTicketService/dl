@@ -4,6 +4,9 @@ include("include/init.php");
 require_once("include/admfuncs.php");
 require_once("include/entry.php");
 
+// ContentType is always JSON
+header("Content-Type: application/json");
+
 // authentication
 if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
 && isset($_SERVER['HTTP_X_AUTHORIZATION']))
@@ -61,6 +64,6 @@ if($error !== false)
   call_user_func($error);
   $ret = array("error" => $ret);
 }
-echo json_encode($ret);
+echo ($ret === false? "{}": json_encode($ret));
 
 ?>

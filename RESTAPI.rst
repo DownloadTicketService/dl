@@ -54,6 +54,8 @@ An "info" request returns the service defaults and statistics.
 
 Request method: "GET"
 
+Request parameters: None
+
 Returned values:
 
   * version (string): DL version.
@@ -72,16 +74,55 @@ Returned values:
       * lastdl (integer): maximal number of seconds after last download for tickets.
       * maxdl (integer): maximal number of seconds for the ticket for tickets.
 
+Example request:
+
+.. code:: http
+
+  GET /rest/info HTTP/1.0
+  Host: dl.example.com
+  Authorization: Basic dGVzdDp0ZXN0
+  X-Authorization: Basic dGVzdDp0ZXN0
+
+Example answer:
+
+.. code:: http
+
+  HTTP/1.1 200 OK
+  Content-Type: application/json
+
+.. code:: json
+
+  {
+    "version": "0.11",
+    "url": "http:\/\/www.thregr.org\/~wavexx\/software\/dl\/",
+    "masterpath": "http:\/\/dl.example.com\/",
+    "maxsize": 209715200,
+    "defaults":
+    {
+      "grant":
+      {
+	"total": 31536000
+      },
+      "ticket":
+      {
+	"total": 31536000,
+	"lastdl": 2592000,
+	"maxdl": 0
+      }
+    }
+  }
+
 
 newticket
 ~~~~~~~~~
 
-A "newticket" request creates a new ticket. A "file" parameter containing the
-attached file *must be present* in the request.
+A "newticket" request creates a new ticket.
 
 Request method: "POST"
 
-Request parameters:
+Request parameters: None
+
+POST "msg" object parameters:
 
   * comment (string): comment for the ticket.
   * pass (string): password required for the ticket.
@@ -90,9 +131,52 @@ Request parameters:
   * ticket_maxdl (integer): maximal number of downloads for the ticket.
   * notify (string): notification addresses (comma-separated list of e-mails).
   * send_to (string): send-link-to addresses (comma-separated list of e-mails).
-  * permanent (boolean): mutually exclusive with hra/dn/dln, sets a permanent ticket.
+  * permanent (boolean): mutually exclusive with hra/dn/dln, sets a permanent
+    ticket.
+
+POST "file" parameter:
+
+  * File to be attached (mandatory).
 
 Returned values:
 
   * id (string): ticket ID.
   * url (string): ticket URL.
+
+
+purgeticket
+~~~~~~~~~~~
+
+A "purgeticket" request deletes a ticket ID and its associated file, notifying
+the owner (if requested).
+
+Request method: "POST"
+
+Request parameters:
+
+  * ticket-id: mandatory
+
+POST "msg" object parameters: None
+
+Returned values: None
+
+Example request:
+
+.. code:: http
+
+  POST /rest/purgeticket/c1e3c2e0b6d5d0f0ada292c081fc4c49 HTTP/1.0
+  Host: dl.example.com
+  Authorization: Basic dGVzdDp0ZXN0
+  X-Authorization: Basic dGVzdDp0ZXN0
+  Content-Type: application/x-www-form-urlencoded
+
+  msg={}
+
+Example answer:
+
+.. code:: http
+
+  HTTP/1.1 200 OK
+  Content-Type: application/json
+
+  {}
