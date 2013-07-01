@@ -52,27 +52,29 @@ info
 
 An "info" request returns the service defaults and statistics.
 
+Since: 0.10
+
 Request method: "GET"
 
 Request parameters: None
 
 Returned values:
 
-  * version (string): DL version.
-  * masterpath (string): root URL of the service.
-  * url (string): configurable reference URL for the service.
-  * maxsize (integer): maximum upload size (in bytes).
-  * defaults: service defaults:
+* version (string): DL version.
+* masterpath (string): root URL of the service.
+* url (string): configurable reference URL for the service.
+* maxsize (integer): maximum upload size (in bytes).
+* defaults: service defaults:
 
-    * grant:
+  * grant:
 
-      * total (integer): maximal number of seconds for grants.
+    * total (integer): maximal number of seconds for grants.
 
-    * ticket:
+  * ticket:
 
-      * total (integer): maximal number of seconds for tickets.
-      * lastdl (integer): maximal number of seconds after last download for tickets.
-      * maxdl (integer): maximal number of seconds for the ticket for tickets.
+    * total (integer): maximal number of seconds for tickets.
+    * lastdl (integer): maximal number of seconds after last download for tickets.
+    * maxdl (integer): maximal number of seconds for the ticket for tickets.
 
 Example request:
 
@@ -118,30 +120,32 @@ newticket
 
 A "newticket" request creates a new ticket.
 
+Since: 0.10
+
 Request method: "POST"
 
 Request parameters: None
 
 POST "msg" object parameters:
 
-  * comment (string): comment for the ticket.
-  * pass (string): password required for the ticket.
-  * ticket_total (integer): maximal number of seconds.
-  * ticket_lastdl (integer): maximal number of seconds after last download.
-  * ticket_maxdl (integer): maximal number of downloads for the ticket.
-  * notify (string): notification addresses (comma-separated list of e-mails).
-  * send_to (string): send-link-to addresses (comma-separated list of e-mails).
-  * permanent (boolean): mutually exclusive with hra/dn/dln, sets a permanent
-    ticket.
+* comment (string): comment for the ticket.
+* pass (string): password required for the ticket.
+* ticket_total (integer): maximal number of seconds.
+* ticket_lastdl (integer): maximal number of seconds after last download.
+* ticket_maxdl (integer): maximal number of downloads for the ticket.
+* notify (string): notification addresses (comma-separated list of e-mails).
+* send_to (string): send-link-to addresses (comma-separated list of e-mails).
+* permanent (boolean): mutually exclusive with hra/dn/dln, sets a permanent
+  ticket.
 
 POST "file" parameter:
 
-  * File to be attached (mandatory).
+* File to be attached (mandatory).
 
 Returned values:
 
-  * id (string): ticket ID.
-  * url (string): ticket URL.
+* id (string): ticket ID.
+* url (string): ticket URL.
 
 
 purgeticket
@@ -150,11 +154,13 @@ purgeticket
 A "purgeticket" request deletes a ticket ID and its associated file, notifying
 the owner (if requested).
 
+Since: 0.11
+
 Request method: "POST"
 
 Request parameters:
 
-  * ticket-id: mandatory
+* ticket-id: mandatory
 
 POST "msg" object parameters: None
 

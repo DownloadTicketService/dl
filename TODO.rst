@@ -41,6 +41,8 @@ Important
 
 * Set sidewide limits (not just defaults) for ticket/grants in config.php.
 
+* Some sort of quota mechanism to avoid uncontrolled server fill-up.
+
 
 Nice to have
 ------------
@@ -63,7 +65,7 @@ Nice to have
 * Support e-mail tracking when using send-link-to.
   Nice to have, but not critical.
 
-* Some sort of quota mechanism to avoid uncontrolled server fill-up.
+* Web notifications: http://notifications.spec.whatwg.org/
 
 
 Suggestions
