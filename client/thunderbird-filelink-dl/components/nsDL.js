@@ -165,8 +165,8 @@ nsDL.prototype =
   _genericFailure: function(req, res, aCallback)
   {
     // set the error text, if any
-    if(res && res.err)
-      this._lastErrorText = res.err;
+    if(res && res.error)
+      this._lastErrorText = res.error;
 
     // check for authentication failures
     if(req.status == 401)
@@ -313,7 +313,7 @@ nsDL.prototype =
     }.bind(this);
 
     let id = encodeURIComponent(this._uploads[aFile.spec].res.id);
-    let req = this._request("purgeticket/" + id, {}, success_cb, failure_cb);
+    this._request("purgeticket/" + id, {}, success_cb, failure_cb);
   },
 
 
