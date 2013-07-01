@@ -119,6 +119,66 @@ nsDL.prototype =
   },
 
 
+  _getPassword: function()
+  {
+    let logins = Services.logins.findLogins({}, this._restURL, null, this._restURL);
+    for each(let info in logins)
+    {
+      if(info.username == this._username)
+	return loginInfo.password;
+    }
+
+    // no login data, prompt for a new password
+    let serverURL = this._restURL;
+    let userPos = serverURL.indexOf("//") + 2;
+    let usernamePart = encodeURIComponent(this._username) + '@';
+    serverURL = serverURL.substr(0, userPos) + usernamePart + serverURL.substr(userPos);
+
+    let messengerBundle = Services.strings.createBundle(
+      "chrome://messenger/locale/messenger.properties");
+    let promptString = messengerBundle.formatStringFromName(
+      "passwordPrompt", [this._username, this.displayName], 2);
+
+    let win = Services.wm.getMostRecentWindow(null);
+    let prompt = Services.ww.getNewAuthPrompter(win);
+    let password = {value: null};
+    if(prompt.promptPassword(this.displayName, promptString, serverURL,
+			     prompt.SAVE_PASSWORD_PERMANENTLY, password))
+      return password.value;
+
+    return null;
+  },
+
+
+  _clearPassword: function()
+  {
+    this._password = null;
+    let logins = Services.logins.findLogins({}, this._restURL, null, this._restURL);
+    for each(let info in logins)
+    {
+      if(info.username == this._username)
+	Services.logins.removeLogin(info);
+    }
+  },
+
+
+  _genericFailure: function(req, res, aCallback)
+  {
+    // set the error text, if any
+    if(res && res.err)
+      this._lastErrorText = res.err;
+
+    // check for authentication failures
+    if(req.status == 401)
+    {
+      this._clearPassword();
+      aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
+    }
+
+    aCallback.onStopRequest(null, this, Cr.NS_ERROR_FAILURE);
+  },
+
+
   // Implementation
   init: function(aAccountKey)
   {
@@ -126,7 +186,6 @@ nsDL.prototype =
     this._prefBranch = Services.prefs.getBranch("mail.cloud_files.accounts." + aAccountKey + ".");
     this._restURL = this._prefBranch.getCharPref("restURL");
     this._username = this._prefBranch.getCharPref("username");
-    this._password = this._prefBranch.getCharPref("password");
 
     // try to fetch ticket defaults (otherwise wait for init)
     if(this._prefBranch.prefHasUserValue("defaults.downloads"))
@@ -140,7 +199,7 @@ nsDL.prototype =
 
   createExistingAccount: function(aCallback)
   {
-    this.refreshUserInfo(false, aCallback);
+    this.refreshUserInfo(true, aCallback);
   },
 
 
@@ -148,6 +207,16 @@ nsDL.prototype =
   {
     if(Services.io.offline)
       throw Ci.nsIMsgCloudFileProvider.offlineErr;
+    aCallback.onStartRequest(null, null);
+
+    // fetch a password
+    if(!this._password && aWithUI)
+      this._password = this._getPassword();
+    if(!this._password)
+    {
+      aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
+      return;
+    }
 
     let success_cb = function(req, res)
     {
@@ -168,17 +237,9 @@ nsDL.prototype =
 
     let failure_cb = function(req, res)
     {
-      if(req.status == 401)
-      {
-	// TODO: handle auth errors
-	aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
-	return;
-      }
-
-      aCallback.onStopRequest(null, this, Cr.NS_ERROR_FAILURE);
+      this._genericFailure(req, res, aCallback);
     }.bind(this);
 
-    aCallback.onStartRequest(null, null);
     this._request("info", null, success_cb, failure_cb);
   },
 
@@ -187,6 +248,12 @@ nsDL.prototype =
   {
     if(Services.io.offline)
       throw Ci.nsIMsgCloudFileProvider.offlineErr;
+    aCallback.onStartRequest(null, null);
+    if(!(this._password = this._getPassword()))
+    {
+      aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
+      return;
+    }
 
     let success_cb = function(req, res)
     {
@@ -196,10 +263,8 @@ nsDL.prototype =
 
     let failure_cb = function(req, res)
     {
-      if(res && res.err)
-	this._lastErrorText = res.err;
       delete this._uploads[aFile.spec];
-      aCallback.onStopRequest(null, this, Cr.NS_ERROR_FAILURE);
+      this._genericFailure(req, res, aCallback);
     }.bind(this);
 
     let abort_cb = function(req)
@@ -208,7 +273,6 @@ nsDL.prototype =
       aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.uploadCanceled);
     }.bind(this);
 
-    aCallback.onStartRequest(null, null);
     let req = this._request("newticket", {}, success_cb, failure_cb, abort_cb, aFile);
     this._uploads[aFile.spec] = {req: req, res: null};
   },
@@ -229,6 +293,15 @@ nsDL.prototype =
   // Stubs
   deleteFile: function(aFile, aCallback)
   {
+    if(Services.io.offline)
+      throw Ci.nsIMsgCloudFileProvider.offlineErr;
+    aCallback.onStartRequest(null, null);
+    if(!(this._password = this._getPassword()))
+    {
+      aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
+      return;
+    }
+
     return Cr.NS_ERROR_NOT_IMPLEMENTED;
   },
 
@@ -238,7 +311,7 @@ nsDL.prototype =
     return Cr.NS_ERROR_NOT_IMPLEMENTED;
   },
 
-  
+
   providerUrlForError: function(aError)
   {
     return "";
