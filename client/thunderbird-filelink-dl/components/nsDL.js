@@ -290,7 +290,6 @@ nsDL.prototype =
   },
 
 
-  // Stubs
   deleteFile: function(aFile, aCallback)
   {
     if(Services.io.offline)
@@ -302,10 +301,23 @@ nsDL.prototype =
       return;
     }
 
-    return Cr.NS_ERROR_NOT_IMPLEMENTED;
+    let success_cb = function(req, res)
+    {
+      delete this._uploads[aFile.spec];
+      aCallback.onStopRequest(null, this, Cr.NS_OK);
+    }.bind(this);
+
+    let failure_cb = function(req, res)
+    {
+      this._genericFailure(req, res, aCallback);
+    }.bind(this);
+
+    let id = encodeURIComponent(this._uploads[aFile.spec].res.id);
+    let req = this._request("purgeticket/" + id, {}, success_cb, failure_cb);
   },
 
 
+  // Stubs
   createNewAccount: function()
   {
     return Cr.NS_ERROR_NOT_IMPLEMENTED;
