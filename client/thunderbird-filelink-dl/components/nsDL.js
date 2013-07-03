@@ -119,7 +119,7 @@ nsDL.prototype =
   },
 
 
-  _getPassword: function()
+  _getPassword: function(aWithUI=true)
   {
     let logins = Services.logins.findLogins({}, this._restURL, null, this._restURL);
     for each(let info in logins)
@@ -127,6 +127,8 @@ nsDL.prototype =
       if(info.username == this._username)
 	return loginInfo.password;
     }
+    if(!aWithUI)
+      return null;
 
     // no login data, prompt for a new password
     let serverURL = this._restURL;
@@ -208,11 +210,7 @@ nsDL.prototype =
     if(Services.io.offline)
       throw Ci.nsIMsgCloudFileProvider.offlineErr;
     aCallback.onStartRequest(null, null);
-
-    // fetch a password
-    if(!this._password && aWithUI)
-      this._password = this._getPassword();
-    if(!this._password)
+    if(!(this._password = this._getPassword(aWithUI)))
     {
       aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
       return;
