@@ -265,6 +265,18 @@ function token_link($url, $params = array())
 }
 
 
+function check_referer()
+{
+  global $masterPath;
+
+  if(empty($_SERVER['HTTP_REFERER']))
+    return false;
+
+  $refPath = substr($_SERVER['HTTP_REFERER'], 0, strlen($masterPath));
+  return ($refPath == $masterPath);
+}
+
+
 function validateParams(&$params, &$array)
 {
   // check required parameters first
