@@ -12,6 +12,22 @@ function onLoadProvider(provider)
   urlElem.textContent = provider.serviceURL;
   urlElem.setAttribute("href", provider.serviceURL);
 
+  // Preferences
+  let prefBranch = Services.prefs.getBranch("mail.cloud_files.accounts."
+					    + provider.accountKey + ".");
+
+  let defTotalDays = Math.ceil(prefBranch.getIntPref("defaults.total") / (3600 * 24));
+  let defTotalElem = document.getElementById("defaults-total");
+  defTotalElem.textContent = defTotalDays;
+
+  let defLastDlDays = Math.ceil(prefBranch.getIntPref("defaults.lastdl") / (3600 * 24));
+  let defLastDlElem = document.getElementById("defaults-lastdl");
+  defLastDlElem.textContent = defLastDlDays;
+
+  let defMaxDl = prefBranch.getIntPref("defaults.maxdl");
+  let defMaxDlElem = document.getElementById("defaults-maxdl");
+  defMaxDlElem.textContent = defMaxDl;
+
   // Total/Used space chart
   let mfsElem = document.getElementById("max-file-size");
   let mfs = provider.fileUploadSizeLimit;
