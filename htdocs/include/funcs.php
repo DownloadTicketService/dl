@@ -5,7 +5,8 @@ require_once("hooks.php");
 
 function isTicketId($str)
 {
-  return (strlen($str) == 32 && preg_match("/^[a-zA-Z0-9]{32}$/", $str));
+  global $tokenLenght;
+  return (strlen($str) == $tokenLenght && preg_match("/^[a-zA-Z0-9]*$/", $str));
 }
 
 
@@ -318,7 +319,8 @@ function validateParams(&$params, &$array)
 
 function randomToken()
 {
-  return md5(mt_rand(0, mt_getrandmax()));
+  global $tokenLenght;
+  return bin2hex(openssl_random_pseudo_bytes($tokenLenght / 2));
 }
 
 

@@ -64,15 +64,14 @@ function runGc()
 }
 
 
-function genTicketId($seed)
+function genTicketId()
 {
   global $dataDir, $maxUUTries;
 
   $tries = $maxUUTries;
   do
   {
-    list($usec, $sec) = microtime();
-    $id = md5(rand() . "/$usec/$sec/" . $seed);
+    $id = randomToken();
     $tmpFile = "$dataDir/$id";
   }
   while(@fopen($tmpFile, "x") === FALSE && --$tries);
@@ -83,6 +82,29 @@ function genTicketId($seed)
   }
 
   return array($id, $tmpFile);
+}
+
+
+function genGrantId()
+{
+  global $db, $maxUUTries;
+
+  $q = $db->prepare('SELECT id FROM grant WHERE id = :id');
+  $tries = $maxUUTries;
+  do
+  {
+    $id = randomToken();
+    $q->closeCursor();
+    $q->execute(array(':id' => $id));
+  }
+  while($q->fetch() !== FALSE && --$tries);
+  if(!$tries)
+  {
+    logEvent("cannot generate unique grant ID");
+    httpInternalError();
+  }
+
+  return $id;
 }
 
 

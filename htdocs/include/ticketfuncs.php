@@ -46,7 +46,7 @@ function handleUpload($FILE, $params)
   global $auth, $locale, $dataDir, $db, $defaults, $passHasher;
 
   // generate new unique id/file name
-  list($id, $tmpFile) = genTicketId($FILE["name"]);
+  list($id, $tmpFile) = genTicketId();
   if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
     return handleUploadFailure($tmpFile);
 

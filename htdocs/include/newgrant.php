@@ -6,8 +6,7 @@ function handleGrant()
   global $auth, $locale, $db, $defaults, $passHasher;
 
   // generate new unique id
-  list($usec, $sec) = microtime();
-  $id = md5(rand() . "/$usec/$sec/" . $_POST["notify"]);
+  $id = genGrantId();
 
   // defaults
   if(!isset($_POST["grant_total"]))
