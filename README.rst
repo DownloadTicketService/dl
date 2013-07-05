@@ -592,7 +592,7 @@ Once installed, just follow the official Filelink_ usage tutorial as provided
 by Mozilla for configuration and usage.
 
 .. _Filelink: https://support.mozillamessaging.com/en-US/kb/filelink-large-attachments
-.. _extension: http://www.thregr.org/~wavexx/software/dl/filelink.html
+.. _extension: http://www.thregr.org/~wavexx/software/dl/thunderbird.html
 
 
 General/support mailing list
