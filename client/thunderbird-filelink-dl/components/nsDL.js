@@ -175,6 +175,7 @@ nsDL.prototype =
     {
       this._clearPassword();
       aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
+      return;
     }
 
     aCallback.onStopRequest(null, this, Cr.NS_ERROR_FAILURE);
