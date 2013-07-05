@@ -18,9 +18,10 @@ simplicity (though can be used in other ways).
 Requirements
 ============
 
-* PHP 5.0 or higher.
-* PHP sqlite module (or another PDO database module).
+* PHP 5.3 or higher.
+* PHP SQLite module (or another PDO database module).
 * PHP mbstring module.
+* PHP OpenSSL module.
 * Web server access for installation and setup.
 
 Optionals:
@@ -260,8 +261,8 @@ Logout with HTTP authentication is not guaranteed to work: users should simply
 **close their browser** to clear their session (closing a tab or window is not
 enough in many browsers). Currently, logout works as expected on:
 
-* Firefox 3.x/4.x
-* Safari 4.x
+* Firefox
+* Safari
 * Google Chrome/Chromium
 
 Logout does not work on:
@@ -360,8 +361,8 @@ and a different setup is required, as shown::
   </Directory>
 
 
-Lighttpd
---------
+Lighttpd/FastCGI
+----------------
 
 PHP/FastCGI works fine with Lighttpd 1.4.x without any special setup. The
 following configuration is required to protect the include directories::
@@ -381,10 +382,10 @@ You can also enable external authentication with the following::
   }
 
 
-Nginx/PHP-FPM
+Nginx/FastCGI
 -------------
 
-Nginx in combination with PHP-FPM works fine but needs special configuration to
+Nginx in combination with PHP/FastCGI works fine but needs special configuration to
 setup ``PATH_INFO`` correctly. Here is an example configuration with DL
 installed as a subdirectory in the document root::
 
@@ -528,7 +529,7 @@ default stored in ``~/.dl.rc``, containing the following values:
 * user: your user name
 * pass: your password
 * verify (optional): "true" or "false": enable/disable SSL verification
-  (might be required for self-signed certificates, defaults to true)
+  (might be required for testing, but defaults to true)
 
 An example::
 
@@ -537,11 +538,10 @@ An example::
   pass=test
 
 Simply run the command with no arguments to see usage information. At least
-Python 2.7 is required, with the "ConfigObj" and "PycURL" modules
-installed. Under Debian/Ubuntu systems you can install the required
-dependencies by doing the following::
+Python 2.7 is required, with the "PycURL" module installed. Under Debian/Ubuntu
+systems you can install the required dependencies by doing the following::
 
-  sudo apt-get install python-pycurl python-configobj
+  sudo apt-get install python-pycurl
 
 
 Graphical client: ``dl-wx``
@@ -549,7 +549,7 @@ Graphical client: ``dl-wx``
 
 A graphical client is also included in the distribution, which allows to create
 tickets easily from the system's taskbar. The client can be run by executing
-``client/dl-wx/dl-wx.py``.
+``client/dl-wx/dl-wx.py`` or by downloading an `executable client`_.
 
 Upon first execution the user will be prompted for the basic configuration.
 After that all DL functions can be operated through the taskbar icon:
@@ -567,6 +567,32 @@ dependencies by doing the following::
 
 ``dl-cli`` and ``dl-wx`` share the same configuration file, so both can be used
 interchangeably.
+
+A ``dl-wx`` pre-built binary is also available online on the dl-wx_ page, which
+includes installation instructions and a simple tutorial.
+
+.. _executable client:
+.. _dl-wx: http://www.thregr.org/~wavexx/software/dl/dl-wx.html
+
+
+Thunderbird integration
+-----------------------
+
+The bundled extension "Thunderbird-Filelink-DL" integrates with the new
+Thunderbird's Filelink_ functionality, by using the REST service provided by DL
+0.10 and onward. The extension allows to convert large attachments to links
+automatically, directly within the Composer window.
+
+To install the extension, go to Thunderbird's "Tools" .. "Addons" menu, and
+click on the "Settings" icon just next to the search bar. Select "Install
+Add-on from file..." and choose the file ``client/thunderbird-filelink-dl.xpi``
+as provided in the distribution (or directly on the extension_ web page).
+
+Once installed, just follow the official Filelink_ usage tutorial as provided
+by Mozilla for configuration and usage.
+
+.. _Filelink: https://support.mozillamessaging.com/en-US/kb/filelink-large-attachments
+.. _extension: http://www.thregr.org/~wavexx/software/dl/filelink.html
 
 
 General/support mailing list

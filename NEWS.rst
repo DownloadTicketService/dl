@@ -1,5 +1,5 @@
-dl 0.11: 
----------------------
+dl 0.11: 05/07/2013
+-------------------
 
 * Fixed CSRF vulnerability of the admin interface (discovered by Dirk Reimers).
 * Mitigations against session fixation attacks (discovered by Dirk Reimers).
@@ -8,6 +8,8 @@ dl 0.11:
 * Improved client-side validation of the forms (with HTML5/JS where available).
 * Password hashing for the user/ticket/grant DB switched to PHPass.
 * Progress bar updating improvements.
+* Thunderbird integration is now available through the new included extension
+  "Thunderbird-Filelink-DL", which converts attachments to links automatically.
 * Minor bug/cosmetic fixes.
 
 Please note: DL 0.11 requires a database schema update! Please read the
@@ -27,7 +29,8 @@ than 72 characters though will require a manual password reset.
 
 To fully prevent CSRF attacks on the REST interface when used in combination
 with HTTP authentication the protocol has been broken. Clients (such as the
-supplied "dl-wx") require an upgrade.
+supplied "dl-wx") require an upgrade, though new clients can still communicate
+to an old server.
 
 
 dl 0.10.1: 09/03/2012

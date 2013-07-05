@@ -6,7 +6,7 @@ import os.path
 import sys
 from dl import *
 
-DL_VERSION = "0.10"
+DL_VERSION = "0.11"
 DL_AGENT = "dl-cli/" + DL_VERSION
 
 
