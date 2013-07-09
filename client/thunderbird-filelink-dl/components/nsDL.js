@@ -191,7 +191,7 @@ nsDL.prototype =
     this._username = this._prefBranch.getCharPref("username");
 
     // try to fetch ticket defaults (otherwise wait for init)
-    if(this._prefBranch.prefHasUserValue("defaults.downloads"))
+    if(this._prefBranch.prefHasUserValue("defaults.total"))
     {
       this._defaults = {total: this._prefBranch.getIntPref("defaults.total"),
 			lastdl: this._prefBranch.getIntPref("defaults.lastdl"),
