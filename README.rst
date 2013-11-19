@@ -84,12 +84,16 @@ DL needs a database to store the ticket and user information. By default, DL
 will use an embedded "sqlite" database stored within the spool directory, but
 some manual setup is still required.
 
-To create the database, you need the ``sqlite`` or ``sqlite3`` command,
-and execute the provided SQL batch for sqlite *with the same user as your web
-server* (by using ``su`` or ``sudo`` if necessary)::
+To create the database, you need the ``sqlite3`` command.
+On Ubuntu/Debian, ``sqlite3`` can by installed by executing::
+
+  sudo apt-get install sqlite3
+
+You should then execute the provided SQL batch for SQLite *with the same user
+as your web server* (by using ``su`` or ``sudo`` if necessary)::
 
   cd /var/spool/dl/
-  sqlite data.sdb < /your-installation-directory/include/scripts/db/sqlite.sql
+  sqlite3 data.sdb < /your-installation-directory/include/scripts/db/sqlite.sql
   chmod 660 data.sdb
 
 If you want to change the database path, or use a real database server, you
