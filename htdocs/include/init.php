@@ -26,6 +26,7 @@ try
 {
   $db = new PDO($dsn, $dbUser, $dbPassword);
   $db->exec('PRAGMA foreign_keys = ON');
+  $db->exec('SET SQL_MODE = ANSI_QUOTES');
 }
 catch(PDOException $e)
 {
