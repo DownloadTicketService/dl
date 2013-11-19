@@ -4,6 +4,10 @@ TODO
 Important
 ---------
 
+* Option to avoid sending the password in clear-text when sending
+  notifications. Mostly useful for the REST service (should default to sending
+  the password).
+
 * Multiple-file support vs grant re-use (allow more than one grant, grant
   timeout).
 
