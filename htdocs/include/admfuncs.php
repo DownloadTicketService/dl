@@ -27,7 +27,7 @@ function grantPurge($DATA, $auto = true)
 {
   global $db;
 
-  if($db->exec("DELETE FROM grant WHERE id = ". $db->quote($DATA["id"])) == 1)
+  if($db->exec("DELETE FROM \"grant\" WHERE id = ". $db->quote($DATA["id"])) == 1)
     onGrantPurge($DATA, $auto);
 }
 
@@ -57,7 +57,7 @@ function runGc()
     ticketPurge($DATA);
 
   // expire grants
-  $sql = "SELECT * FROM grant WHERE grant_expire < $now";
+  $sql = "SELECT * FROM \"grant\" WHERE grant_expire < $now";
   if($gcLimit) $sql .= " LIMIT $gcLimit";
   foreach($db->query($sql)->fetchAll() as $DATA)
     grantPurge($DATA);
@@ -89,7 +89,7 @@ function genGrantId()
 {
   global $db, $maxUUTries;
 
-  $q = $db->prepare('SELECT id FROM grant WHERE id = :id');
+  $q = $db->prepare('SELECT id FROM "grant" WHERE id = :id');
   $tries = $maxUUTries;
   do
   {
@@ -225,7 +225,7 @@ function checkPassHash($table, $DATA, $pass)
       $id = $DATA['id'];
       $DATA['pass_md5'] = NULL;
       $DATA['pass_ph'] = $passHasher->HashPassword($pass);
-      $sql = "UPDATE " . $db->quote($table)
+      $sql = "UPDATE $table"
 	. " SET pass_ph = " . $db->quote($DATA['pass_ph'])
 	. ", pass_md5 = NULL WHERE id = " . $db->quote($id);
       $ret = ($db->exec($sql) == 1);

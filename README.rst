@@ -89,7 +89,7 @@ and execute the provided SQL batch for sqlite *with the same user as your web
 server* (by using ``su`` or ``sudo`` if necessary)::
 
   cd /var/spool/dl/
-  sqlite data.sdb < /your-installation-directory/include/scripts/sqlite.sql
+  sqlite data.sdb < /your-installation-directory/include/scripts/db/sqlite.sql
   chmod 660 data.sdb
 
 If you want to change the database path, or use a real database server, you
@@ -105,9 +105,8 @@ for the most popular configuration choices. When a username/password is
 required, using the appropriate variables ''$dbUser/$dbPassword'' is preferred
 instead of embedding the values in the DSN string.
 
-The provided SQL script ``include/scripts/sqlite.sql``, despite the name,
-currently contains ANSI SQL only and can be used on most database systems to
-initialize the required tables.
+The directory ``include/scripts/db/`` provides SQL initialization scripts for
+SQLite, MySQL and PostgreSQL.
 
 
 Upgrading from DL <= 0.3

@@ -13,7 +13,7 @@ function handleGrant()
     $_POST["grant_total"] = $defaults['grant']['total'] / (3600 * 24);
 
   // prepare data
-  $sql = "INSERT INTO grant (id, user_id, grant_expire, cmt, pass_ph"
+  $sql = "INSERT INTO \"grant\" (id, user_id, grant_expire, cmt, pass_ph"
     . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
@@ -49,7 +49,7 @@ function handleGrant()
     return false;
 
   // fetch defaults
-  $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
+  $sql = "SELECT * FROM \"grant\" WHERE id = " . $db->quote($id);
   $DATA = $db->query($sql)->fetch();
   $DATA['pass'] = (empty($_POST["pass"])? NULL: $_POST["pass"]);
 

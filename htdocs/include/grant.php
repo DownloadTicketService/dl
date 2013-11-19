@@ -10,7 +10,7 @@ if(!isGrantId($id))
 }
 else
 {
-  $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
+  $sql = "SELECT * FROM \"grant\" WHERE id = " . $db->quote($id);
   $GRANT = $db->query($sql)->fetch();
 }
 
@@ -23,7 +23,7 @@ if($GRANT === false || isGrantExpired($GRANT))
 
 if(hasPassHash($GRANT) && !isset($_SESSION['g'][$id]))
 {
-  if(!empty($_POST['p']) && checkPassHash('grant', $GRANT, $_POST['p']))
+  if(!empty($_POST['p']) && checkPassHash('"grant"', $GRANT, $_POST['p']))
   {
     // authorize the grant for this session
     $_SESSION['g'][$id] = array('pass' => $_POST["p"]);
@@ -72,7 +72,7 @@ function handleUpload($GRANT, $FILE)
   $sql .= ")";
   $db->exec($sql);
 
-  $sql = "DELETE FROM grant WHERE id = " . $db->quote($GRANT['id']);
+  $sql = "DELETE FROM \"grant\" WHERE id = " . $db->quote($GRANT['id']);
   $db->exec($sql);
 
   if(!$db->commit())

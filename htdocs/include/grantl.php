@@ -15,7 +15,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
   foreach($sel as $id)
   {
     if(!isGrantId($id)) continue;
-    $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
+    $sql = "SELECT * FROM \"grant\" WHERE id = " . $db->quote($id);
     $DATA = $db->query($sql)->fetch();
     if($DATA === false) continue;
 
@@ -33,7 +33,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 }
 
 // list active grants
-$sql = "SELECT g.*, u.name AS user FROM grant g"
+$sql = "SELECT g.*, u.name AS user FROM \"grant\" g"
   . " LEFT JOIN user u ON u.id = g.user_id";
 if(!$auth["admin"]) $sql .= " WHERE user_id = " . $auth["id"];
 $sql .= " ORDER BY (user_id <> " . $auth["id"] . "), user_id, time";

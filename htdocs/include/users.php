@@ -91,7 +91,7 @@ $sql = <<<EOF
   LEFT JOIN (
       SELECT u.id AS id, count(g.id) as count
       FROM user u
-      LEFT JOIN grant g ON g.user_id = u.id
+      LEFT JOIN "grant" g ON g.user_id = u.id
       GROUP BY u.id
     ) g ON g.id = u.id
   ORDER BY u.name
