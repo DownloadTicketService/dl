@@ -93,4 +93,3 @@ $tokenLenght = 32;
 // password hasher and complexity limits
 $maxUserLen = 60;
 $maxPassLen = 72;
-$passHasher = new PasswordHash(8, FALSE);
