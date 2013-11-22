@@ -130,12 +130,12 @@ function selectAll(v)
 }
 
 
-function validateForm()
+function validateForm(form)
 {
   var ok = true;
-  var max = $('input[name=max_file_size]').val();
+  var max = $('input[name=max_file_size]', form).val();
 
-  $('label.required').each(function()
+  $('label.required', form).each(function()
   {
     var label = $(this);
     var field = $('input.required', label.next())[0];
@@ -164,7 +164,7 @@ function validateForm()
 
 function validate(event)
 {
-  if(!validateForm())
+  if(!validateForm(event.target))
   {
     // IE crap
     if(event.preventDefault)

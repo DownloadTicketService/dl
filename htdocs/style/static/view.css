@@ -317,6 +317,7 @@ select.select[class]
 .info_message
 {
 	border:1px dotted blue;
+	margin-top:1em;
 	margin-bottom:1em;
 	padding:10px;
 	color:blue;
@@ -326,6 +327,7 @@ select.select[class]
 .error_message
 {
 	border:1px dotted red;
+	margin-top:1em;
 	margin-bottom:1em;
 	padding:10px;
 	color:red;
