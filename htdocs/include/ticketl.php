@@ -111,7 +111,7 @@ foreach($db->query($sql) as $DATA)
 
   // size/date
   echo "<td>" . humanSize($DATA["size"]) . "</td>";
-  echo "<td>" . date("d/m/Y", $DATA["time"]) . "</td>";
+  echo "<td>" . date("d/m/Y T", $DATA["time"]) . "</td>";
 
   echo "</tr>";
   echo "<tr class=\"$class comment\">";

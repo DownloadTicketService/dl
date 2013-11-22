@@ -422,7 +422,7 @@ form > table#tickets > tbody > tr > :nth-child(7)
 
 form > table#tickets > tbody > tr > :nth-child(8)
 {
-	width:7em;
+	width:9em;
 }
 
 form > table#tickets > tbody > tr.file.comment
@@ -450,7 +450,7 @@ form > table#grants > tbody > tr > :nth-child(3)
 form > table#grants > tbody > tr > :nth-child(5),
 form > table#grants > tbody > tr > :nth-child(6)
 {
-	width:7em;
+	width:9em;
 }
 
 form > table#grants > tbody > tr.file.comment

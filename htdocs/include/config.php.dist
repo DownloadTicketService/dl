@@ -15,6 +15,9 @@ $spoolDir = "/var/spool/dl/";
 // defLocale: default locale (the charset is always UTF-8)
 $defLocale = "en_EN";
 
+// defTimezone: default timezone for ticket listings (use the system's default)
+$defTimezone = ini_get('date.timezone');
+
 
 /*
  * Ticket/grant defaults

@@ -45,7 +45,8 @@ unset($q);
 // default hasher
 $passHasher = new PasswordHash(8, FALSE);
 
-// set the initial default locale
+// set the initial default locale/timezone
 $locale = $defLocale;
 switchLocale($locale);
+date_default_timezone_set($defTimezone);
 ?>

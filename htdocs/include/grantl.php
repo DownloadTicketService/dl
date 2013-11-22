@@ -94,7 +94,7 @@ foreach($db->query($sql) as $DATA)
   echo "<td>" . grantExpiry($DATA) . "</td>";
 
   // date
-  echo "<td>" . date("d/m/Y", $DATA["time"]) . "</td>";
+  echo "<td>" . date("d/m/Y T", $DATA["time"]) . "</td>";
 
   echo "</tr>";
   echo "<tr class=\"$class comment\">";

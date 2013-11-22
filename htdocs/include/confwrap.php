@@ -30,6 +30,7 @@ if(!isset($dbPassword)) $dbPassword = NULL;
 if(!isset($gcProbability)) $gcProbability = 1.0;
 if(!isset($gcInternal)) $gcInternal = true;
 if(!isset($gcLimit)) $gcLimit = 0;
+if(!isset($defTimezone)) $defTimezone = @date_default_timezone_get();
 
 // ticket defaults
 if(version_compare($cfgVersion, "0.10", "<"))
