@@ -362,7 +362,9 @@ function externalAuth()
   $pass = (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])?
       $_SERVER['PHP_AUTH_PW']: false);
 
-  return array("user" => $user, "pass" => $pass);
+  $email = (isset($_SERVER['HTTP_USER_EMAIL'])? $_SERVER['HTTP_USER_EMAIL']: false);
+
+  return array("user" => $user, "pass" => $pass, "email" => $email);
 }
 
 ?>

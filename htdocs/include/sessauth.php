@@ -18,8 +18,12 @@ function authenticate()
       return false;
     }
 
-    $user = $_REQUEST['u'];
-    $pass = $_POST['p'];
+    $authData = Array
+    (
+      "user" => $_REQUEST['u'],
+      "pass" => $_POST['p'],
+      "email" => false
+    );
   }
   else
   {
@@ -33,12 +37,17 @@ function authenticate()
       return null;
     }
 
-    $user = $extAuth["user"];
-    $pass = $extAuth["pass"];
+    $authData = $extAuth;
   }
 
   // verify if we have administration rights
-  return userLogin($user, $pass, $rmt);
+  $DATA = userLogin($authData["user"], $authData["pass"], $rmt);
+
+  // check if the external authenticator provides an email address
+  if($DATA !== false && empty($DATA["email"]))
+    $DATA['email'] = $authData["email"];
+
+  return $DATA;
 }
 
 

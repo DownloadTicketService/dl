@@ -22,7 +22,7 @@ pageHeader();
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Notification e-mail"); ?></label>
       <div>
-	<input name="notify" class="element text required" type="email" required multiple maxlength="255" value=""/>
+	<input name="notify" class="element text required" type="email" required multiple maxlength="255" value="<?php echo $auth['email']; ?>"/>
       </div>
       <p class="guidelines"><small>
 	  <?php
