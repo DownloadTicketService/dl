@@ -185,3 +185,8 @@ function validateHook(fun)
   hook.appendTo(document.body);
   hook[0].onsubmit = fun;
 }
+
+function setNt(email)
+{
+  $('#notify').val(email);
+}

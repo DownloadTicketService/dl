@@ -146,7 +146,8 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
     <li>
       <label class="description"><?php echo T_("Get notified by e-mail"); ?></label>
       <div>
-	<input name="notify" class="element text" type="email" multiple maxlength="255" value=""/>
+	<input name="notify" id="notify" class="element text" type="email" multiple maxlength="255" value=""/>
+	<input class="element button password" type="button" value="<?php echo T_("Use my e-mail"); ?>" onclick="setNt('<?php echo htmlentities($auth['email']); ?>');"/>
       </div>
       <p class="guidelines"><small>
 	  <?php

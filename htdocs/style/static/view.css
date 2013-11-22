@@ -281,7 +281,7 @@ textarea.textarea
 	resize:vertical;
 }
 
-input.element.password
+input.element.password, #notify
 {
 	width:25%;
 }
