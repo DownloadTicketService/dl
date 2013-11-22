@@ -276,6 +276,10 @@ Logout does not work on:
 Again, only the *Basic* authentication is supported, which transmits the
 password in clear-text unless you use SSL.
 
+When using external authentication, the HTTP header ``USER_EMAIL`` can
+additionally provide the user's default email address. Such header is provided
+automatically, for example, when using "LemonLDAP::NG".
+
 
 Web-server Configuration
 ========================
