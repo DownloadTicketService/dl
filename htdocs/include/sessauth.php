@@ -41,7 +41,7 @@ function authenticate()
   }
 
   // verify if we have administration rights
-  $DATA = userLogin($authData["user"], $authData["pass"], $rmt);
+  $DATA = userLogin($authData["user"], $authData["pass"], $rmt, $authData["email"]);
 
   // check if the external authenticator provides an email address
   if($DATA !== false && empty($DATA["email"]))

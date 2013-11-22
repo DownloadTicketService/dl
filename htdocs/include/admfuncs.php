@@ -108,7 +108,7 @@ function genGrantId()
 }
 
 
-function userAdd($user, $pass, $admin)
+function userAdd($user, $pass, $admin, $email = false)
 {
   global $db, $maxUserLen, $maxPassLen, $passHasher;
 
@@ -117,12 +117,13 @@ function userAdd($user, $pass, $admin)
     return false;
 
   // prepare the SQL
-  $sql = "INSERT INTO user (name, pass_ph, role_id) VALUES (";
+  $sql = "INSERT INTO user (name, pass_ph, role_id, email) VALUES (";
   $sql .= $db->quote($user);
   $sql .= ", " . (empty($pass)? 'NULL':
       $db->quote($passHasher->HashPassword($pass)));
   $sql .= ", (SELECT id FROM role WHERE name = '"
     . ($admin? 'admin': 'user') . "')";
+  $sql .= ", " . (empty($email)? 'NULL': $db->quote($email));
   $sql .= ")";
 
   $ret = ($db->exec($sql) == 1);
@@ -141,7 +142,7 @@ function userDel($user)
 }
 
 
-function userUpd($user, $pass = null, $admin = null)
+function userUpd($user, $pass = null, $admin = null, $email = null)
 {
   global $db, $maxUserLen, $maxPassLen, $passHasher;
 
@@ -161,6 +162,10 @@ function userUpd($user, $pass = null, $admin = null)
   {
     $fields[] = "role_id = (SELECT id FROM role WHERE name = '"
       . ($admin? 'admin': 'user') . "')";
+  }
+  if(!is_null($email))
+  {
+    $fields[] = "email = " . (empty($email)? 'NULL': $db->quote($email));
   }
   if(!count($fields))
     return false;
@@ -237,7 +242,7 @@ function checkPassHash($table, $DATA, $pass)
 }
 
 
-function userLogin($user, $pass, $rmt)
+function userLogin($user, $pass, $rmt, $email = false)
 {
   global $db, $maxUserLen, $maxPassLen;
 
@@ -246,7 +251,7 @@ function userLogin($user, $pass, $rmt)
     return false;
 
   // fetch the user
-  $sql = "SELECT u.id, u.name, pass_md5, pass_ph, admin FROM user u"
+  $sql = "SELECT u.id, u.name, pass_md5, pass_ph, admin, email FROM user u"
     . " LEFT JOIN role r ON r.id = u.role_id"
     . " WHERE u.name = " . $db->quote($user);
   $DATA = $db->query($sql)->fetch();
@@ -257,14 +262,15 @@ function userLogin($user, $pass, $rmt)
     if(!$DATA)
     {
       // create a stub user and get the id
-      $sql = "INSERT INTO user (name, role_id) VALUES (";
+      $sql = "INSERT INTO user (name, role_id, email) VALUES (";
       $sql .= $db->quote($user);
       $sql .= ", (SELECT id FROM role WHERE name = 'user')";
+      $sql .= ", " . (empty($email)? 'NULL': $db->quote($email));
       $sql .= ")";
       if($db->exec($sql) != 1) return false;
 
       // fetch defaults
-      $sql = "SELECT u.id, u.name, admin FROM user u";
+      $sql = "SELECT u.id, u.name, admin, email FROM user u";
       $sql .= " LEFT JOIN role r ON r.id = u.role_id";
       $sql .= " WHERE u.name = " . $db->quote($user);
       $DATA = $db->query($sql)->fetch();

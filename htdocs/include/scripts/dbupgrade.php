@@ -153,5 +153,15 @@ if(version_compare($version, "0.11", "<"))
   $version = "0.11";
 }
 
+if(version_compare($version, "0.12", "<"))
+{
+  echo "upgrading 0.11 => 0.12 ...\n";
+
+  $db->exec("ALTER TABLE user ADD email VARCHAR(255)");
+  $db->exec("UPDATE config SET value = '0.12' WHERE name = 'version'");
+
+  $version = "0.12";
+}
+
 echo "done\n";
 exit(0);
