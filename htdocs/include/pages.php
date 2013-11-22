@@ -50,7 +50,7 @@ function pageFooter($vars = array())
     if($first) $first = false;
     else echo ", ";
 
-    $title = htmlentities($title);
+    $title = htmlEntUTF8($title);
     if($page == $act) echo "<span>$title</span>";
     else echo "<a href=\"" . pageLink($page) . "\">$title</a>";
   }
