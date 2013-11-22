@@ -344,4 +344,25 @@ function httpBasicDecode($hdr)
   return array("user" => $user, "pass" => $pass);
 }
 
+
+function externalAuth()
+{
+  $user = false;
+  foreach(Array('PHP_AUTH_USER', 'REMOTE_USER', 'REDIRECT_REMOTE_USER') as $key)
+  {
+    if(isset($_SERVER[$key]))
+    {
+      $user = $_SERVER[$key];
+      break;
+    }
+  }
+  if($user === false)
+    return false;
+
+  $pass = (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])?
+      $_SERVER['PHP_AUTH_PW']: false);
+
+  return array("user" => $user, "pass" => $pass);
+}
+
 ?>

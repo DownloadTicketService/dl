@@ -6,22 +6,12 @@ function authenticate()
 {
   global $db, $authRealm;
 
-  // external authentication (built-in methods)
-  if($authRealm)
-  {
-    foreach(Array('PHP_AUTH_USER', 'REMOTE_USER', 'REDIRECT_REMOTE_USER') as $key)
-    {
-      if(isset($_SERVER[$key]))
-      {
-	$remoteUser = $_SERVER[$key];
-	break;
-      }
-    }
-  }
+  $rmt = ($authRealm != false);
+  $extAuth = externalAuth();
 
-  // authentication attempt
-  if(!isset($remoteUser))
+  if(!$rmt || $extAuth === false)
   {
+    // built-in authentication attempt
     if(empty($_REQUEST['u']) || !isset($_POST['p']))
     {
       // simple logout
@@ -33,6 +23,7 @@ function authenticate()
   }
   else
   {
+    // external authentication
     if(isset($_REQUEST['u']) && empty($_REQUEST['u']))
     {
       // remote logout
@@ -42,12 +33,12 @@ function authenticate()
       return null;
     }
 
-    $user = $remoteUser;
-    $pass = false;
+    $user = $extAuth["user"];
+    $pass = $extAuth["pass"];
   }
 
   // verify if we have administration rights
-  return userLogin($user, $pass, isset($remoteUser));
+  return userLogin($user, $pass, $rmt);
 }
 
 

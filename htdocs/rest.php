@@ -8,13 +8,13 @@ require_once("include/entry.php");
 header("Content-Type: application/json");
 
 // authentication
-if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
-&& isset($_SERVER['HTTP_X_AUTHORIZATION']))
+if(isset($_SERVER['HTTP_X_AUTHORIZATION']))
 {
+  $extAuth = externalAuth();
   $authData = httpBasicDecode($_SERVER['HTTP_X_AUTHORIZATION']);
-  if($authData === false
-  || $authData["user"] !== $_SERVER['PHP_AUTH_USER']
-  || $authData["pass"] !== $_SERVER['PHP_AUTH_PW'])
+  if($authData === false || $extAuth === false
+  || $authData["user"] !== $extAuth["user"]
+  || ($extAuth["pass"] !== false && $authData["pass"] !== $extAuth["pass"]))
     unset($authData);
 }
 if(isset($authData))
