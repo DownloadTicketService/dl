@@ -8,8 +8,9 @@ require_once("confwrap.php");
 require_once("admfuncs.php");
 
 // initialize the db connection
-$db = new PDO($dsn);
+$db = new PDO($dsn, $dbUser, $dbPassword);
 $db->exec('PRAGMA foreign_keys = ON');
+$db->exec('SET SQL_MODE = ANSI_QUOTES');
 
 // fetch current db release
 $sql = "SELECT value FROM config WHERE name = 'version'";
