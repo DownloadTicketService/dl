@@ -193,9 +193,13 @@ nsDL.prototype =
     // try to fetch ticket defaults (otherwise wait for init)
     if(this._prefBranch.prefHasUserValue("defaults.total"))
     {
+      /* TODO: for now, always fetch server defaults until values are not fully
+	       customizable, in order for the client not getting "stuck" forever.
+
       this._defaults = {total: this._prefBranch.getIntPref("defaults.total"),
 			lastdl: this._prefBranch.getIntPref("defaults.lastdl"),
 			maxdl: this._prefBranch.getIntPref("defaults.maxdl")};
+      */
     }
   },
 
