@@ -101,12 +101,12 @@ msgstr ""
 "Insérer un commentaire <em>optionnel</em> pour l'envoi de ce fichier. Celui-"
 "ci sera intégré à l'e-mail qui sera envoyé."
 
-#: ../edittickets.php:83 ../prefs.php:86
+#: ../edittickets.php:83 ../prefs.php:122
 msgid "Change password"
 msgstr "Changer le mot de passe"
 
 #: ../edittickets.php:83 ../grantp.php:18 ../login.php:25 ../newgrants.php:69
-#: ../newtickets.php:75 ../prefs.php:34 ../ticketp.php:18 ../users.php:106
+#: ../newtickets.php:75 ../prefs.php:70 ../ticketp.php:18 ../users.php:106
 msgid "Password"
 msgstr "Mot de passe"
 
@@ -153,9 +153,8 @@ msgid ""
 "without activity, the file will be deleted from the server."
 msgstr ""
 "Indiquez le nombre de jours pendant lesquelles le fichier envoyé restera "
-"disponible <strong>après avoir été téléchargé</strong>. Si celui-ci "
-"n'est pas téléchargé pendant le délai indiqué, il sera automatiquement "
-"supprimé."
+"disponible <strong>après avoir été téléchargé</strong>. Si celui-ci n'est "
+"pas téléchargé pendant le délai indiqué, il sera automatiquement supprimé."
 
 #: ../edittickets.php:138 ../newgrants.php:131 ../newtickets.php:119
 msgid "Expire after # of downloads"
@@ -167,8 +166,8 @@ msgid ""
 "downloaded in total</strong>. After this amount is reached the file will be "
 "deleted from the server."
 msgstr ""
-"Indiquez le nombre total de téléchargements autorisé pour le fichier "
-"envoyé. Au-delà de cette limite, ce fichier sera automatiquement supprimé."
+"Indiquez le nombre total de téléchargements autorisé pour le fichier envoyé. "
+"Au-delà de cette limite, ce fichier sera automatiquement supprimé."
 
 #: ../edittickets.php:153 ../newgrants.php:146 ../newtickets.php:134
 msgid "Permanent ticket / upload"
@@ -186,7 +185,7 @@ msgstr "Sélectionnez ce champs si vous ne souhaitez aucune expiration."
 msgid "Get notified by e-mail"
 msgstr "Notifier par e-mail"
 
-#: ../edittickets.php:173 ../newtickets.php:153
+#: ../edittickets.php:173 ../newtickets.php:154
 msgid ""
 "Type an <em>optional</em> e-mail address (or addresses) that should be "
 "notified when the file is downloaded from the server. You can separate "
@@ -195,73 +194,73 @@ msgstr ""
 "Vous pouvez indiquer une ou plusieurs adresses e-mail qui seront notifiées "
 "quand le fichier sera téléchargé. Séparez les adresses par une virgule."
 
-#: ../edittickets.php:182
+#: ../edittickets.php:182 ../prefs.php:42
 msgid "Update"
 msgstr "Mise à jour"
 
 #: ../edittickets.php:183 ../grantl.php:153 ../newgrants.php:163
-#: ../newtickets.php:165 ../ticketl.php:186 ../users.php:149
+#: ../newtickets.php:166 ../ticketl.php:186 ../users.php:149
 msgid "Reset"
 msgstr "Réinitialiser"
 
-#: ../funcs.php:62
+#: ../funcs.php:63
 #, php-format
 msgid "%s GiB"
 msgstr "%s Go"
 
-#: ../funcs.php:64
+#: ../funcs.php:65
 #, php-format
 msgid "%s MiB"
 msgstr "%s Mo"
 
-#: ../funcs.php:66
+#: ../funcs.php:67
 #, php-format
 msgid "%s KiB"
 msgstr "%s Ko"
 
-#: ../funcs.php:67
+#: ../funcs.php:68
 #, php-format
 msgid "%s B"
 msgstr "%s o"
 
-#: ../funcs.php:74
+#: ../funcs.php:75
 #, php-format
 msgid "%d days"
 msgstr "%d jours"
 
-#: ../funcs.php:76
+#: ../funcs.php:77
 #, php-format
 msgid "%d hours"
 msgstr "%d heures"
 
-#: ../funcs.php:78
+#: ../funcs.php:79
 #, php-format
 msgid "%d minutes"
 msgstr "%d minutes"
 
-#: ../funcs.php:79
+#: ../funcs.php:80
 #, php-format
 msgid "%d seconds"
 msgstr "%d secondes"
 
-#: ../funcs.php:112 ../ticketfuncs.php:31
+#: ../funcs.php:113 ../ticketfuncs.php:31
 #, php-format
 msgid "In %s"
 msgstr "Dans %s"
 
-#: ../funcs.php:114 ../ticketfuncs.php:33
+#: ../funcs.php:115 ../ticketfuncs.php:33
 msgid "Never"
 msgstr "Jamais"
 
-#: ../funcs.php:191
+#: ../funcs.php:192
 msgid "file too big"
 msgstr "Ce fichier dépasse la taille maximale autorisée."
 
-#: ../funcs.php:196
+#: ../funcs.php:197
 msgid "upload interrupted"
 msgstr "envoi interrompu"
 
-#: ../funcs.php:200
+#: ../funcs.php:201
 msgid "internal error"
 msgstr "erreur interne"
 
@@ -281,7 +280,7 @@ msgstr "Expire"
 msgid "Date"
 msgstr "Date"
 
-#: ../grantl.php:72 ../grants.php:37 ../newgrantr.php:41 ../newtickets.php:164
+#: ../grantl.php:72 ../grants.php:37 ../newgrantr.php:41 ../newtickets.php:165
 msgid "Upload"
 msgstr "Envoyer"
 
@@ -328,8 +327,8 @@ msgid ""
 "The grant %s is protected. Please enter the password to proceed to the "
 "upload."
 msgstr ""
-"L'invitation %s est protégée. Veuillez rentrer le mot de passe pour "
-"procéder à l'envoi."
+"L'invitation %s est protégée. Veuillez rentrer le mot de passe pour procéder "
+"à l'envoi."
 
 #: ../grantp.php:24
 msgid "Type the password required for the upload."
@@ -442,8 +441,8 @@ msgid ""
 "downloaded at:\n"
 "\n"
 msgstr ""
-"Votre invitation %s  a été utilisée par %s. Le fichier envoyé est "
-"maintenant disponible pour être téléchargé à l'adresse:\n"
+"Votre invitation %s  a été utilisée par %s. Le fichier envoyé est maintenant "
+"disponible pour être téléchargé à l'adresse:\n"
 "\n"
 
 #: ../newgrantr.php:4
@@ -514,8 +513,8 @@ msgstr "Paramètres avancés"
 msgid ""
 "Type an <em>optional</em> password that will be required to both upload and "
 "download the file, as an additional security measure."
-msgstr "Vous pouvez protéger cette demande avec un mot de passe. <em>optionnel"
-"</em>"
+msgstr ""
+"Vous pouvez protéger cette demande avec un mot de passe. <em>optionnel</em>"
 
 #: ../newgrants.php:90
 msgid ""
@@ -535,7 +534,7 @@ msgstr "Paramètres du ticket"
 msgid "Create"
 msgstr "Créer"
 
-#: ../newgrants.php:164 ../newtickets.php:166
+#: ../newgrants.php:164 ../newtickets.php:167
 msgid "Set as defaults"
 msgstr "Enregistrer ces paramètres"
 
@@ -558,8 +557,12 @@ msgid ""
 "immediately receive the link to the ticket. You can separate multiple "
 "addresses with commas."
 msgstr ""
-"Indiquez la ou les adresses e-mail des destinataires de "
-"ce fichier <em>optionnel</em>. Séparez les adresses par une virgule."
+"Indiquez la ou les adresses e-mail des destinataires de ce fichier "
+"<em>optionnel</em>. Séparez les adresses par une virgule."
+
+#: ../newtickets.php:150
+msgid "Use my e-mail"
+msgstr "Mon adresse"
 
 #: ../pages.php:6
 msgid "New ticket"
@@ -585,57 +588,75 @@ msgstr "Préférences"
 msgid "Manage users"
 msgstr "Gestion des utilisateurs"
 
-#: ../pages.php:42
+#: ../pages.php:58
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: ../pages.php:43
+#: ../pages.php:59
 msgid "Help"
 msgstr "Aide"
 
-#: ../prefs.php:13
+#: ../prefs.php:14
+msgid "Settings successfully updated."
+msgstr "Les paramètres ont été mis à jour avec succès"
+
+#: ../prefs.php:14
+msgid "Settings update"
+msgstr "Mise à jour des paramètres"
+
+#: ../prefs.php:21
+msgid "Defaults"
+msgstr "Valeurs par défaut"
+
+#: ../prefs.php:28
+msgid "E-Mail"
+msgstr "E-mail"
+
+#: ../prefs.php:34
+msgid ""
+"Type a <b>mandatory</b> e-mail address that will be used as a default for "
+"notifications."
+msgstr "Entrez une adresse e-mail qui sera utilisée par défaut pour les "
+"notifications"
+
+#: ../prefs.php:58
 msgid "New passwords don't match! Password unchanged."
 msgstr "Votre mot de passe n'a pas été changé."
 
-#: ../prefs.php:13 ../prefs.php:15 ../prefs.php:19
+#: ../prefs.php:58 ../prefs.php:60 ../prefs.php:64
 msgid "Password change"
 msgstr "Modifier votre mot de passe"
 
-#: ../prefs.php:15
-#, fuzzy
+#: ../prefs.php:60
 msgid "Old password doesn't match! Password unchanged."
-msgstr "L'ancien mot de passe est invalide! Votre mot de passe n'a pas "
-"été modifié."
+msgstr ""
+"L'ancien mot de passe est invalide! Votre mot de passe n'a pas été modifié."
 
-#: ../prefs.php:19
+#: ../prefs.php:64
 msgid "Password successfully changed."
 msgstr "Votre mot de passe a été modifié."
 
-#: ../prefs.php:30
-msgid "No configurable preferences"
-msgstr "Aucune préférences"
-
-#: ../prefs.php:41
+#: ../prefs.php:77
 msgid "Old password"
 msgstr "Ancien mot de passe"
 
-#: ../prefs.php:47
+#: ../prefs.php:83
 msgid "Please type your current password."
 msgstr "Veuillez saisir votre mot de passe"
 
-#: ../prefs.php:57
+#: ../prefs.php:93
 msgid "New password"
 msgstr "Nouveau mot de passe"
 
-#: ../prefs.php:63
+#: ../prefs.php:99
 msgid "Please type the new password."
 msgstr "Veuillez saisir votre nouveau mot de passe"
 
-#: ../prefs.php:73
+#: ../prefs.php:109
 msgid "New password (retype)"
 msgstr "Confirmez votre nouveau mot de passe"
 
-#: ../prefs.php:79
+#: ../prefs.php:115
 msgid "Please <em>retype</em> the new password again."
 msgstr "Veuillez <em>resaisir</em> votre nouveau mot de passe."
 
@@ -752,3 +773,6 @@ msgstr "Supprimer la sélection"
 #: ../users.php:151
 msgid "Apply changes"
 msgstr "Appliquer les changements"
+
+#~ msgid "No configurable preferences"
+#~ msgstr "Aucune préférences"
