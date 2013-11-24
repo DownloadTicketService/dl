@@ -513,6 +513,34 @@ Contributing a new translation is easy enough:
   translate ``index.txt``. ``index.html`` is regenerated automatically with
   docutils_ by running ``langupd.php`` as before.
 
+Updating an existing translation
+--------------------------------
+
+Updating an existing translation is very similar to contributing a new
+translation. Again, we can make use of the `gettext` tools to refresh the
+existing files:
+
+* Execute::
+
+    cd include/scripts/
+    ./langgen.php > ../locale/lang/LC_MESSAGES/messages.po.ref
+
+  to generate the full list of strings to be translated.
+
+* Merge the existing translations, by executing::
+
+    cd ../locale/lang/LC_MESSAGES/
+    msgmerge -U messages.po messages.po.ref
+
+* Examine the updated ``messages.po`` file using any "PO" editing tool or text
+  editing, looking for new strings to be translated, strings which have been
+  removed, and fuzzy matches which might require tweaks in the translation.
+
+* To test/update the translations run ``langupd.php``::
+
+    cd include/scripts/
+    ./langupd.php
+
 .. _PoEdit: http://poedit.sourceforge.net/
 .. _docutils: http://docutils.sourceforge.net/
 
