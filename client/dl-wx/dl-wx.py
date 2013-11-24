@@ -10,7 +10,7 @@ import wx
 import wx.xrc as xrc
 from dl import *
 
-DL_VERSION = "0.11"
+DL_VERSION = "0.12"
 DL_AGENT = "dl-wx/" + DL_VERSION
 DL_DESCRIPTION = "Download Ticket Service"
 DL_URL = "http://www.thregr.org/~wavexx/software/dl/"

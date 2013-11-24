@@ -7,7 +7,7 @@ Cu.import("resource:///modules/cloudFileAccounts.js");
 
 const AID = "thunderbird-filelink-dl@thregr.org";
 const CID = "{c0bee36d-3c0d-460b-bb9a-f0e9c873a833}";
-const VER = "0.11";
+const VER = "0.12";
 
 function nsDL()
 {

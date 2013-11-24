@@ -9,7 +9,7 @@ import argparse
 import os.path
 import sys
 
-DL_VERSION = "0.11"
+DL_VERSION = "0.12"
 DL_AGENT = "dl-cli/" + DL_VERSION
 
 

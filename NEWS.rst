@@ -1,7 +1,18 @@
-dl 0.12: 
+dl 0.12: ??/11/2013
 -------------------
 
+* Add a new configurable "e-mail" address in the preferences, which is used as
+  a default when creating grants and receiving notifications.
+* Support for MySQL and PostgreSQL.
+* Support for provided e-mail address with external authentication using
+  ``USER_EMAIL`` header (useful for LemonLDAP::NG/webSSO).
+* Fix REST interface when used in combination with LemonLDAP::NG/webSSO.
+* Improved French localization.
+* The timezone of the web interface is now customizable.
 * Minor bug/cosmetic fixes.
+
+Please note: DL 0.12 requires a database schema update! Please read the
+database upgrade procedure in the README!
 
 
 dl 0.11: 05/07/2013
