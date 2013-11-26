@@ -33,8 +33,8 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 }
 
 // list active grants
-$sql = "SELECT g.*, u.name AS user FROM \"grant\" g"
-  . " LEFT JOIN user u ON u.id = g.user_id";
+$sql = 'SELECT g.*, u.name AS "user" FROM "grant" g'
+  . ' LEFT JOIN "user" u ON u.id = g.user_id';
 if(!$auth["admin"]) $sql .= " WHERE user_id = " . $auth["id"];
 $sql .= " ORDER BY (user_id <> " . $auth["id"] . "), user_id, time";
 

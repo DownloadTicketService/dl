@@ -117,7 +117,7 @@ function userAdd($user, $pass, $admin, $email = false)
     return false;
 
   // prepare the SQL
-  $sql = "INSERT INTO user (name, pass_ph, role_id, email) VALUES (";
+  $sql = 'INSERT INTO "user" (name, pass_ph, role_id, email) VALUES (';
   $sql .= $db->quote($user);
   $sql .= ", " . (empty($pass)? 'NULL':
       $db->quote($passHasher->HashPassword($pass)));
@@ -135,7 +135,7 @@ function userAdd($user, $pass, $admin, $email = false)
 function userDel($user)
 {
   global $db;
-  $sql = "DELETE FROM user WHERE name = " . $db->quote($user);
+  $sql = 'DELETE FROM "user" WHERE name = ' . $db->quote($user);
   $ret = ($db->exec($sql) == 1);
   logEvent("deleting user $user: " . ($ret? "success": "fail"));
   return $ret;
@@ -170,7 +170,7 @@ function userUpd($user, $pass = null, $admin = null, $email = null)
   if(!count($fields))
     return false;
 
-  $sql = "UPDATE user SET " . implode(", ", $fields)
+  $sql = 'UPDATE "user" SET ' . implode(", ", $fields)
     . " WHERE name = " . $db->quote($user);
   $ret = ($db->exec($sql) == 1);
 
@@ -187,7 +187,7 @@ function userAdm($user)
 {
   global $db;
 
-  $sql = "SELECT u.name, admin FROM user u"
+  $sql = 'SELECT u.name, admin FROM "user" u'
     . " LEFT JOIN role r ON r.id = u.role_id"
     . " WHERE u.name = " . $db->quote($user);
   $DATA = $db->query($sql)->fetch();
@@ -251,7 +251,7 @@ function userLogin($user, $pass, $rmt, $email = false)
     return false;
 
   // fetch the user
-  $sql = "SELECT u.id, u.name, pass_md5, pass_ph, admin, email FROM user u"
+  $sql = 'SELECT u.id, u.name, pass_md5, pass_ph, admin, email FROM "user" u'
     . " LEFT JOIN role r ON r.id = u.role_id"
     . " WHERE u.name = " . $db->quote($user);
   $DATA = $db->query($sql)->fetch();
@@ -262,7 +262,7 @@ function userLogin($user, $pass, $rmt, $email = false)
     if(!$DATA)
     {
       // create a stub user and get the id
-      $sql = "INSERT INTO user (name, role_id, email) VALUES (";
+      $sql = 'INSERT INTO "user" (name, role_id, email) VALUES (';
       $sql .= $db->quote($user);
       $sql .= ", (SELECT id FROM role WHERE name = 'user')";
       $sql .= ", " . (empty($email)? 'NULL': $db->quote($email));
@@ -270,7 +270,7 @@ function userLogin($user, $pass, $rmt, $email = false)
       if($db->exec($sql) != 1) return false;
 
       // fetch defaults
-      $sql = "SELECT u.id, u.name, admin, email FROM user u";
+      $sql = 'SELECT u.id, u.name, admin, email FROM "user" u';
       $sql .= " LEFT JOIN role r ON r.id = u.role_id";
       $sql .= " WHERE u.name = " . $db->quote($user);
       $DATA = $db->query($sql)->fetch();

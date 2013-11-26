@@ -2,14 +2,9 @@
 <?php
 if(!isset($argc)) die("not running from the command line\n");
 
-// data
-require_once("../prelude.php");
-require_once("confwrap.php");
+// initialize
+require_once("../init.php");
 require_once("admfuncs.php");
-
-// initialize the db
-$db = new PDO($dsn);
-$db->exec('PRAGMA foreign_keys = ON');
 
 // parse the command line
 if($argc < 2 || $argv[1] == 'help')
@@ -35,7 +30,7 @@ if($argv[1] == 'list')
 {
   echo "#user\tadm\n";
 
-  $sql = "SELECT u.name, admin FROM user u LEFT JOIN role r ON r.id = u.role_id";
+  $sql = 'SELECT u.name, admin FROM "user" u LEFT JOIN role r ON r.id = u.role_id';
   foreach($db->query($sql) as $DATA)
     echo $DATA["name"] . "\t" . ($DATA["admin"]? "true": "false") . "\n";
 

@@ -36,8 +36,8 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 // list active tickets
 $totalSize = 0;
 
-$sql = "SELECT t.*, u.name AS user FROM ticket t"
-  . " LEFT JOIN user u ON u.id = t.user_id";
+$sql = 'SELECT t.*, u.name AS "user" FROM ticket t'
+  . ' LEFT JOIN "user" u ON u.id = t.user_id';
 if(!$auth["admin"]) $sql .= " WHERE user_id = " . $auth["id"];
 $sql .= " ORDER BY (user_id <> " . $auth["id"] . "), user_id, time";
 
