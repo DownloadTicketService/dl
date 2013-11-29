@@ -1,7 +1,6 @@
 <?php
 // version-indepenent configuration variables
 require_once("basefuncs.php");
-require_once("PasswordHash.php");
 
 // read the configuration values from a nearby location
 $cfgPath = "/etc/dl.php";
