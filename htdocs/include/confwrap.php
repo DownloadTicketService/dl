@@ -2,17 +2,13 @@
 // version-indepenent configuration variables
 require_once("basefuncs.php");
 
-// read the configuration values from a nearby location
+// base directories
+$incPath = dirname(__FILE__);
 $cfgPath = "/etc/dl.php";
-foreach(explode(PATH_SEPARATOR, get_include_path()) as $path)
-{
-  $tmp = "$path/config.php";
-  if(is_file($tmp))
-  {
-    $cfgPath = $tmp;
-    break;
-  }
-}
+
+// read the configuration values from a nearby location
+if(is_file("$incPath/config.php"))
+  $cfgPath = "$incPath/config.php";
 if(!is_readable($cfgPath))
   die("cannot read configuration file");
 require_once($cfgPath);

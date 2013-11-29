@@ -63,10 +63,10 @@ function detectLocale($locale)
 
 function switchLocale($locale)
 {
-  global $helpPath, $helpRoot, $masterPath, $defLocale;
+  global $helpPath, $helpRoot, $masterPath, $defLocale, $incPath;
 
   T_setlocale(LC_ALL, $locale . ".utf8");
-  T_bindtextdomain('messages', 'include/locale');
+  T_bindtextdomain('messages', "$incPath/locale");
   T_textdomain('messages');
 
   if(file_exists("$helpRoot/$locale"))
