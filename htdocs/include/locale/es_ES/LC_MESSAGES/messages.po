@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2012-01-18 15:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -99,12 +100,12 @@ msgstr ""
 "Introduzca un comentario <em>opcional</em> para el fichero a subir. El "
 "comentario será mostrado junto al nombre de fichero."
 
-#: ../edittickets.php:83 ../prefs.php:86
+#: ../edittickets.php:83 ../prefs.php:122
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
 #: ../edittickets.php:83 ../grantp.php:18 ../login.php:25 ../newgrants.php:69
-#: ../newtickets.php:75 ../prefs.php:34 ../ticketp.php:18 ../users.php:106
+#: ../newtickets.php:75 ../prefs.php:70 ../ticketp.php:18 ../users.php:106
 msgid "Password"
 msgstr "Contraseña"
 
@@ -187,7 +188,7 @@ msgstr "Seleccione esta opción si quiere que no expire el fichero subido."
 msgid "Get notified by e-mail"
 msgstr "Notificar vía e-mail"
 
-#: ../edittickets.php:173 ../newtickets.php:153
+#: ../edittickets.php:173 ../newtickets.php:154
 msgid ""
 "Type an <em>optional</em> e-mail address (or addresses) that should be "
 "notified when the file is downloaded from the server. You can separate "
@@ -197,73 +198,73 @@ msgstr ""
 "deberían ser notificadas cuando el fichero sea descargado del servidor. "
 "Puede separar múltiples direcciones usando comas."
 
-#: ../edittickets.php:182
+#: ../edittickets.php:182 ../prefs.php:42
 msgid "Update"
 msgstr "Actualizar"
 
 #: ../edittickets.php:183 ../grantl.php:153 ../newgrants.php:163
-#: ../newtickets.php:165 ../ticketl.php:186 ../users.php:149
+#: ../newtickets.php:166 ../ticketl.php:186 ../users.php:149
 msgid "Reset"
 msgstr "Cancelar"
 
-#: ../funcs.php:62
+#: ../funcs.php:63
 #, php-format
 msgid "%s GiB"
 msgstr "%s GiB"
 
-#: ../funcs.php:64
+#: ../funcs.php:65
 #, php-format
 msgid "%s MiB"
 msgstr "%s MiB"
 
-#: ../funcs.php:66
+#: ../funcs.php:67
 #, php-format
 msgid "%s KiB"
 msgstr "%s KiB"
 
-#: ../funcs.php:67
+#: ../funcs.php:68
 #, php-format
 msgid "%s B"
 msgstr "%s B"
 
-#: ../funcs.php:74
+#: ../funcs.php:75
 #, php-format
 msgid "%d days"
 msgstr "%d días"
 
-#: ../funcs.php:76
+#: ../funcs.php:77
 #, php-format
 msgid "%d hours"
 msgstr "%d horas"
 
-#: ../funcs.php:78
+#: ../funcs.php:79
 #, php-format
 msgid "%d minutes"
 msgstr "%d minutos"
 
-#: ../funcs.php:79
+#: ../funcs.php:80
 #, php-format
 msgid "%d seconds"
 msgstr "%d segundos"
 
-#: ../funcs.php:112 ../ticketfuncs.php:31
+#: ../funcs.php:113 ../ticketfuncs.php:31
 #, php-format
 msgid "In %s"
 msgstr "En %s"
 
-#: ../funcs.php:114 ../ticketfuncs.php:33
+#: ../funcs.php:115 ../ticketfuncs.php:33
 msgid "Never"
 msgstr "Nunca"
 
-#: ../funcs.php:191
+#: ../funcs.php:192
 msgid "file too big"
 msgstr "fichero demasiado grande"
 
-#: ../funcs.php:196
+#: ../funcs.php:197
 msgid "upload interrupted"
 msgstr "subida interrumpida"
 
-#: ../funcs.php:200
+#: ../funcs.php:201
 msgid "internal error"
 msgstr "error interno"
 
@@ -283,7 +284,7 @@ msgstr "Caducidad"
 msgid "Date"
 msgstr "Fecha"
 
-#: ../grantl.php:72 ../grants.php:37 ../newgrantr.php:41 ../newtickets.php:164
+#: ../grantl.php:72 ../grants.php:37 ../newgrantr.php:41 ../newtickets.php:165
 msgid "Upload"
 msgstr "Subir"
 
@@ -539,7 +540,7 @@ msgstr "Parámetros del ticket"
 msgid "Create"
 msgstr "Crear"
 
-#: ../newgrants.php:164 ../newtickets.php:166
+#: ../newgrants.php:164 ../newtickets.php:167
 msgid "Set as defaults"
 msgstr "Establecer como predeterminado"
 
@@ -566,6 +567,10 @@ msgstr ""
 "deberán recibir inmediatamente un enlac al ticket. Puede serpara múltiples "
 "direcciones con comas."
 
+#: ../newtickets.php:150
+msgid "Use my e-mail"
+msgstr ""
+
 #: ../pages.php:6
 msgid "New ticket"
 msgstr "Nuevo ticket"
@@ -590,56 +595,73 @@ msgstr "Preferencias"
 msgid "Manage users"
 msgstr "Gestionar usuarios"
 
-#: ../pages.php:42
+#: ../pages.php:58
 msgid "Logout"
 msgstr "Cerrar"
 
-#: ../pages.php:43
+#: ../pages.php:59
 msgid "Help"
 msgstr "Ayuda"
 
-#: ../prefs.php:13
+#: ../prefs.php:14
+msgid "Settings successfully updated."
+msgstr ""
+
+#: ../prefs.php:14
+msgid "Settings update"
+msgstr ""
+
+#: ../prefs.php:21
+msgid "Defaults"
+msgstr ""
+
+#: ../prefs.php:28
+msgid "E-Mail"
+msgstr ""
+
+#: ../prefs.php:34
+msgid ""
+"Type a <b>mandatory</b> e-mail address that will be used as a default for "
+"notifications."
+msgstr ""
+
+#: ../prefs.php:58
 msgid "New passwords don't match! Password unchanged."
 msgstr "Las nuevas contraseñas no conciden. Contraseñas no cambiadas."
 
-#: ../prefs.php:13 ../prefs.php:15 ../prefs.php:19
+#: ../prefs.php:58 ../prefs.php:60 ../prefs.php:64
 msgid "Password change"
 msgstr "Cambiar contraseña"
 
-#: ../prefs.php:15
-#, fuzzy
+#: ../prefs.php:60
 msgid "Old password doesn't match! Password unchanged."
 msgstr "La vieja contraseña no coincide."
 
-#: ../prefs.php:19
+#: ../prefs.php:64
 msgid "Password successfully changed."
 msgstr "Contraseña cambiada con éxito."
 
-#: ../prefs.php:30
-msgid "No configurable preferences"
-msgstr "Ninguna preferencia configurable"
-
-#: ../prefs.php:41
+#: ../prefs.php:77
 msgid "Old password"
 msgstr "Vieja contraseña"
 
-#: ../prefs.php:47
+#: ../prefs.php:83
 msgid "Please type your current password."
 msgstr "Por favor escribe actual contraseña"
 
-#: ../prefs.php:57
+#: ../prefs.php:93
 msgid "New password"
 msgstr "Nueva contraseña"
 
-#: ../prefs.php:63
+#: ../prefs.php:99
 msgid "Please type the new password."
 msgstr "Por favor escribe nueva contraseña"
 
-#: ../prefs.php:73
+#: ../prefs.php:109
 msgid "New password (retype)"
 msgstr "Nueva contraseña (rescribir)"
 
-#: ../prefs.php:79
+#: ../prefs.php:115
 msgid "Please <em>retype</em> the new password again."
 msgstr "Por favor <em>escribir otra vez</em> nueva contraseña"
 
@@ -756,3 +778,6 @@ msgstr "Eliminar seleccionados"
 #: ../users.php:151
 msgid "Apply changes"
 msgstr "Aplicar cambios"
+
+#~ msgid "No configurable preferences"
+#~ msgstr "Ninguna preferencia configurable"

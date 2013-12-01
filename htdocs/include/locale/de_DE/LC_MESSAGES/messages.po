@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the dl package.
 # Clemens Egger <clemens.egger@eurac.edu>, 2010, 2011.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -12,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2010-01-25 15:52:28+0100\n"
 "Last-Translator: CE <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -103,12 +103,12 @@ msgstr ""
 "Schreiben Sie eine <em>optionale</em> Bemerkung zur Ihrer Datei. Diese wird "
 "neben dem Dateinamen angezeigt werden."
 
-#: ../edittickets.php:83 ../prefs.php:86
+#: ../edittickets.php:83 ../prefs.php:122
 msgid "Change password"
 msgstr "Passwort &auml;ndern"
 
 #: ../edittickets.php:83 ../grantp.php:18 ../login.php:25 ../newgrants.php:69
-#: ../newtickets.php:75 ../prefs.php:34 ../ticketp.php:18 ../users.php:106
+#: ../newtickets.php:75 ../prefs.php:70 ../ticketp.php:18 ../users.php:106
 msgid "Password"
 msgstr "Passwort"
 
@@ -193,7 +193,7 @@ msgstr "Aktivieren Sie diese Option, falls das Ticket nicht verfallen soll."
 msgid "Get notified by e-mail"
 msgstr "Bei Download folgende E-Mailadresse benachrichtigen"
 
-#: ../edittickets.php:173 ../newtickets.php:153
+#: ../edittickets.php:173 ../newtickets.php:154
 msgid ""
 "Type an <em>optional</em> e-mail address (or addresses) that should be "
 "notified when the file is downloaded from the server. You can separate "
@@ -203,73 +203,73 @@ msgstr ""
 "benachrichtigt werden sollen, wenn die Datei heruntergeladen wird. Mehrere "
 "Adressen m&uuml;ssen durch Beistriche getrennt werden."
 
-#: ../edittickets.php:182
+#: ../edittickets.php:182 ../prefs.php:42
 msgid "Update"
 msgstr "Speichern"
 
 #: ../edittickets.php:183 ../grantl.php:153 ../newgrants.php:163
-#: ../newtickets.php:165 ../ticketl.php:186 ../users.php:149
+#: ../newtickets.php:166 ../ticketl.php:186 ../users.php:149
 msgid "Reset"
 msgstr "Abbrechen"
 
-#: ../funcs.php:62
+#: ../funcs.php:63
 #, php-format
 msgid "%s GiB"
 msgstr "%s GiB"
 
-#: ../funcs.php:64
+#: ../funcs.php:65
 #, php-format
 msgid "%s MiB"
 msgstr "%s MiB"
 
-#: ../funcs.php:66
+#: ../funcs.php:67
 #, php-format
 msgid "%s KiB"
 msgstr "%s KiB"
 
-#: ../funcs.php:67
+#: ../funcs.php:68
 #, php-format
 msgid "%s B"
 msgstr "%s B"
 
-#: ../funcs.php:74
+#: ../funcs.php:75
 #, php-format
 msgid "%d days"
 msgstr "%d Tagen"
 
-#: ../funcs.php:76
+#: ../funcs.php:77
 #, php-format
 msgid "%d hours"
 msgstr "%d Stunden"
 
-#: ../funcs.php:78
+#: ../funcs.php:79
 #, php-format
 msgid "%d minutes"
 msgstr "%d Minuten"
 
-#: ../funcs.php:79
+#: ../funcs.php:80
 #, php-format
 msgid "%d seconds"
 msgstr "%d Sekunden"
 
-#: ../funcs.php:112 ../ticketfuncs.php:31
+#: ../funcs.php:113 ../ticketfuncs.php:31
 #, php-format
 msgid "In %s"
 msgstr "In %s"
 
-#: ../funcs.php:114 ../ticketfuncs.php:33
+#: ../funcs.php:115 ../ticketfuncs.php:33
 msgid "Never"
 msgstr "Nie"
 
-#: ../funcs.php:191
+#: ../funcs.php:192
 msgid "file too big"
 msgstr "Datei ist zu gro&szlig;"
 
-#: ../funcs.php:196
+#: ../funcs.php:197
 msgid "upload interrupted"
 msgstr "Upload abgebrochen"
 
-#: ../funcs.php:200
+#: ../funcs.php:201
 msgid "internal error"
 msgstr "Interner Fehler"
 
@@ -289,7 +289,7 @@ msgstr "Verfallsfrist"
 msgid "Date"
 msgstr "Datum"
 
-#: ../grantl.php:72 ../grants.php:37 ../newgrantr.php:41 ../newtickets.php:164
+#: ../grantl.php:72 ../grants.php:37 ../newgrantr.php:41 ../newtickets.php:165
 msgid "Upload"
 msgstr "Upload"
 
@@ -545,7 +545,7 @@ msgstr "Ticket-Einstellungen (Download)"
 msgid "Create"
 msgstr "Erstellen"
 
-#: ../newgrants.php:164 ../newtickets.php:166
+#: ../newgrants.php:164 ../newtickets.php:167
 msgid "Set as defaults"
 msgstr "Als Standard definieren"
 
@@ -572,6 +572,10 @@ msgstr ""
 "sofort den Download-Link zu diesem Tickert erhalten sollen. Mehrere Adressen "
 "m&uuml;ssen durch Beistriche getrennt werden."
 
+#: ../newtickets.php:150
+msgid "Use my e-mail"
+msgstr ""
+
 #: ../pages.php:6
 msgid "New ticket"
 msgstr "Neues Ticket"
@@ -596,58 +600,75 @@ msgstr "Einstellungen"
 msgid "Manage users"
 msgstr "Benutzer verwalten"
 
-#: ../pages.php:42
+#: ../pages.php:58
 msgid "Logout"
 msgstr "Abmelden"
 
-#: ../pages.php:43
+#: ../pages.php:59
 msgid "Help"
 msgstr "Hilfe"
 
-#: ../prefs.php:13
+#: ../prefs.php:14
+msgid "Settings successfully updated."
+msgstr ""
+
+#: ../prefs.php:14
+msgid "Settings update"
+msgstr ""
+
+#: ../prefs.php:21
+msgid "Defaults"
+msgstr ""
+
+#: ../prefs.php:28
+msgid "E-Mail"
+msgstr ""
+
+#: ../prefs.php:34
+msgid ""
+"Type a <b>mandatory</b> e-mail address that will be used as a default for "
+"notifications."
+msgstr ""
+
+#: ../prefs.php:58
 msgid "New passwords don't match! Password unchanged."
 msgstr ""
 "Passw&ouml;rter stimmen nicht &uuml;berein! Passwort&auml;nderung "
 "abgebrochen."
 
-#: ../prefs.php:13 ../prefs.php:15 ../prefs.php:19
+#: ../prefs.php:58 ../prefs.php:60 ../prefs.php:64
 msgid "Password change"
 msgstr "Passwort &auml;ndern"
 
-#: ../prefs.php:15
-#, fuzzy
+#: ../prefs.php:60
 msgid "Old password doesn't match! Password unchanged."
 msgstr "Altes Passwort stimmt nicht! Passwort&auml;nderung abgebrochen."
 
-#: ../prefs.php:19
+#: ../prefs.php:64
 msgid "Password successfully changed."
 msgstr "Passwort erfolgreich ge&auml;ndert."
 
-#: ../prefs.php:30
-msgid "No configurable preferences"
-msgstr "Keine konfigurierbaren Einstellungen vorhanden"
-
-#: ../prefs.php:41
+#: ../prefs.php:77
 msgid "Old password"
 msgstr "Altes Passwort"
 
-#: ../prefs.php:47
+#: ../prefs.php:83
 msgid "Please type your current password."
 msgstr "Bitte geben Sie Ihr aktuelles Passwort ein."
 
-#: ../prefs.php:57
+#: ../prefs.php:93
 msgid "New password"
 msgstr "Neues Passwort"
 
-#: ../prefs.php:63
+#: ../prefs.php:99
 msgid "Please type the new password."
 msgstr "Bitte geben Sie Ihr neues Passwort ein."
 
-#: ../prefs.php:73
+#: ../prefs.php:109
 msgid "New password (retype)"
 msgstr "Neues Passwort wiederholen"
 
-#: ../prefs.php:79
+#: ../prefs.php:115
 msgid "Please <em>retype</em> the new password again."
 msgstr "Bitte geben Sie Ihr neues Passwort <em>erneut</em> ein."
 
@@ -764,3 +785,6 @@ msgstr "Markierte l&ouml;schen"
 #: ../users.php:151
 msgid "Apply changes"
 msgstr "&Auml;nderungen &uuml;bernehmen"
+
+#~ msgid "No configurable preferences"
+#~ msgstr "Keine konfigurierbaren Einstellungen vorhanden"
