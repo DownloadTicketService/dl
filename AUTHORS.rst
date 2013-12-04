@@ -4,6 +4,15 @@ Main program
 Copyright(c) 2007-2013 Yuri D'Elia <wavexx@users.sf.net>
 License: GNU GPL 2+ (see COPYING)
 
+Localization
+------------
+
+:French:	Daniel Berteaud <daniel@firewall-services.com>
+:German:	Clemens Egger <clemens.egger@eurac.edu>
+:Italian:	Yuri D'Elia <wavexx@users.sf.net>
+:Spanish:	Roberto Salgado <drober@gmail.com>
+
+
 Bundled code
 ------------
 

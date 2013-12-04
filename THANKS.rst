@@ -3,6 +3,11 @@ Clemens Egger <clemens.egger@eurac.edu>:
 * Suggestions and testing.
 * German UI/Guide translation.
 
+Daniel Berteaud <daniel@firewall-services.com>:
+
+* French localization.
+* Suggestions/improvements/patches.
+
 Daniele Di Domizio <daniele.didomizio@eurac.edu>:
 
 * Additional testing.
@@ -33,7 +38,7 @@ Mokrani Rachid <rachid.mokrani@ifpenergiesnouvelles.fr>:
 * Suggestions and testing.
 * French UI/Guide translation.
 
-Roberto Salgado <roberto.salgado@aitire.es>:
+Roberto Salgado <drober@gmail.com>:
 
 * Spanish UI/Guide translation.
 
