@@ -1,7 +1,7 @@
 Main program
 ------------
 
-Copyright(c) 2007-2013 Yuri D'Elia <wavexx@users.sf.net>
+Copyright(c) 2007-2013 Yuri D'Elia <wavexx@thregr.org>
 License: GNU GPL 2+ (see COPYING)
 
 Localization
@@ -9,7 +9,7 @@ Localization
 
 :French:	Daniel Berteaud <daniel@firewall-services.com>
 :German:	Clemens Egger <clemens.egger@eurac.edu>
-:Italian:	Yuri D'Elia <wavexx@users.sf.net>
+:Italian:	Yuri D'Elia <wavexx@thregr.org>
 :Spanish:	Roberto Salgado <drober@gmail.com>
 
 

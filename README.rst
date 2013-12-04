@@ -637,7 +637,7 @@ If you feel to discuss improvements, customizations and suggestions, you can
 subscribe to `dl-ticket-service` by either sending an empty email to
 <dl-ticket-service+subscribe@thregr.org>, using GMane_ (group
 "gmane.comp.web.dl-ticket-service.general") or by contacting the author at
-<wavexx@users.sf.net>. The archives are accessible via web through
+<wavexx@thregr.org>. The archives are accessible via web through
 http://news.gmane.org/gmane.comp.web.dl-ticket-service.general or via news
 directly.
 
@@ -659,4 +659,4 @@ Authors and Copyright
 "dl" can be found at http://www.thregr.org/~wavexx/software/dl/
 
 "dl" is distributed under GNU GPL 2, WITHOUT ANY WARRANTY.
-Copyright(c) 2007-2012 by Yuri D'Elia <wavexx@users.sf.net>.
+Copyright(c) 2007-2012 by Yuri D'Elia <wavexx@thregr.org>.
