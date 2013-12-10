@@ -1,7 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 200
+# German translation for DL: download ticket service
+# Copyright (C) 2013
 # This file is distributed under the same license as the dl package.
-# Clemens Egger <clemens.egger@eurac.edu>, 2010, 2011.
+# Clemens Egger <clemens.egger@eurac.edu>, 2010, 2011, 2013.
 #
 msgid ""
 msgstr ""
@@ -574,7 +574,7 @@ msgstr ""
 
 #: ../newtickets.php:150
 msgid "Use my e-mail"
-msgstr ""
+msgstr "Voreinstellung"
 
 #: ../pages.php:6
 msgid "New ticket"
@@ -610,25 +610,27 @@ msgstr "Hilfe"
 
 #: ../prefs.php:14
 msgid "Settings successfully updated."
-msgstr ""
+msgstr "Einstellungen wurden erfolgreich gespeichert."
 
 #: ../prefs.php:14
 msgid "Settings update"
-msgstr ""
+msgstr "Aktualisierung der Einstellungen"
 
 #: ../prefs.php:21
 msgid "Defaults"
-msgstr ""
+msgstr "Voreinstellungen"
 
 #: ../prefs.php:28
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #: ../prefs.php:34
 msgid ""
 "Type a <b>mandatory</b> e-mail address that will be used as a default for "
 "notifications."
 msgstr ""
+"<b>Pflichtfeld:</b> Geben Sie eine E-Mail-Adresse an, die als Voreinstellung "
+"f&uuml;r Benachrichtigungen verwendet werden soll."
 
 #: ../prefs.php:58
 msgid "New passwords don't match! Password unchanged."
