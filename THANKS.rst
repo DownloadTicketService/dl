@@ -5,8 +5,9 @@ Clemens Egger <clemens.egger@eurac.edu>:
 
 Daniel Berteaud <daniel@firewall-services.com>:
 
-* French localization.
-* Suggestions/improvements/patches.
+* French translation.
+* Several patches, webSSO support.
+* Additional testing.
 
 Daniele Di Domizio <daniele.didomizio@eurac.edu>:
 
@@ -45,9 +46,3 @@ Roberto Salgado <drober@gmail.com>:
 Tim Booth <tbooth@ceh.ac.uk>:
 
 * Suggestions and fixes.
-
-Daniel Berteaud <daniel@firewall-services.com>:
-
-* French translation.
-* Several patches, webSSO support.
-* Additional testing.
