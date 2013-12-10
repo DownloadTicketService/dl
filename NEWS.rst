@@ -1,4 +1,4 @@
-dl 0.12: ??/11/2013
+dl 0.12: 10/12/2013
 -------------------
 
 * Add a new configurable "e-mail" address in the preferences, which is used as
