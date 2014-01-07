@@ -349,8 +349,25 @@ Apache's ``mod_fcgi``) and ``mod_fastcgi``.
 
 .. _bug: http://sourceforge.net/mailarchive/forum.php?thread_name=48485BDC.1020204@oxeva.fr&forum_name=mod-fcgid-users
 
-For HTTP/External authentication to work, ``mod_rewrite`` needs to be enabled,
-and a different setup is required, as shown::
+For the REST service to work, independently of the authentication method,
+``mod_rewrite`` needs to be enabled and configured as follows::
+
+  <Directory /your-installation-directory>
+    AcceptPathInfo On
+    AllowOverride Limit
+    Options -Indexes
+    <FilesMatch "^(admin|rest)\.php$">
+      RewriteEngine on
+      RewriteCond %{HTTP:Authorization} ^(.*)
+      RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+    </FilesMatch>
+  </Directory>
+
+This is required to correctly pass the ``Authorization`` header to the PHP
+process.
+
+If you want to enable HTTP/External authentication, just add the usual
+authorization configuration as well::
 
   <Directory /your-installation-directory>
     AcceptPathInfo On
