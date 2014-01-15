@@ -281,6 +281,41 @@ additionally provide the user's default email address. Such header is provided
 automatically, for example, when using "LemonLDAP::NG".
 
 
+Large file support
+------------------
+
+Large file support (for uploads larger than 2GB) requires a combination of PHP
+version, web server and browser support.
+
+Due to a parsing bug in PHP <= 5.5.8 (https://bugs.php.net/bug.php?id=44522
+affecting *all backends*), if you want to be able to upload files larger than
+2GB you need to set both ``upload_max_filesize`` and ``post_max_size`` to 0 (no
+limit), and manually configure ``$maxSize`` in the DL configuration file.
+
+Apache 2.2 and above support large request bodies but needs to be built for
+64bit (see ``LimitRequestBody``). Same for Lighttpd 1.4 (>2gb but only for
+64bit builds, see ``server.max-request-size``).
+
+Finally, not all browsers support large file uploads:
+
+============= ============
+Browser       Upload limit
+============= ============
+IE <= 8       2gb
+IE >= 9       no limit
+Firefox <= 16 2gb
+Firefox >= 17 no limit
+Chrome        no limit
+Opera >= 10   no limit
+============= ============
+
+Sources:
+
+* http://www.motobit.com/help/scptutl/pa98.htm
+* https://bugzilla.mozilla.org/show_bug.cgi?id=215450
+* http://blogs.msdn.com/b/ieinternals/archive/2011/03/10/wininet-internet-explorer-file-download-and-upload-maximum-size-limits.aspx
+
+
 Web-server Configuration
 ========================
 
