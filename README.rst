@@ -287,10 +287,7 @@ Large file support
 Large file support (for uploads larger than 2GB) requires a combination of PHP
 version, web server and browser support.
 
-Due to a parsing bug in PHP <= 5.5.8 (https://bugs.php.net/bug.php?id=44522
-affecting *all backends*), if you want to be able to upload files larger than
-2GB you need to set both ``upload_max_filesize`` and ``post_max_size`` to 0 (no
-limit), and manually configure ``$maxSize`` in the DL configuration file.
+Uploads of files larger than 2GB is only supported with PHP 5.6 and beyond.
 
 Apache 2.2 and above support large request bodies but needs to be built for
 64bit (see ``LimitRequestBody``). Same for Lighttpd 1.4 (>2gb but only for
