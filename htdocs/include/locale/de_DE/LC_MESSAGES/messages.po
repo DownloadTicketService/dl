@@ -151,7 +151,7 @@ msgstr ""
 
 #: ../edittickets.php:123 ../newgrants.php:116 ../newtickets.php:104
 msgid "Expire in # of days after last download"
-msgstr "Verf&auml;llt # Tagen nach dem letzten Download"
+msgstr "Verf&auml;llt # Tage nach dem letzten Download"
 
 #: ../edittickets.php:129 ../newgrants.php:122 ../newtickets.php:110
 msgid ""
