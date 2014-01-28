@@ -325,6 +325,7 @@ With internal authentication::
     AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
+    DirectoryIndex index.php index.html
   </Directory>
 
 With external authentication::
@@ -333,6 +334,7 @@ With external authentication::
     AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
+    DirectoryIndex index.php index.html
     <FilesMatch "^(admin|rest)\.php$">
       AuthType Basic
       AuthName "Restricted Area"
@@ -347,6 +349,7 @@ With LDAP or ActiveDirectory authentication::
     AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
+    DirectoryIndex index.php index.html
     <FilesMatch "^(admin|rest)\.php$">
       AuthType Basic
       AuthName "Restricted Area"
@@ -388,6 +391,7 @@ For the REST service to work, independently of the authentication method,
     AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
+    DirectoryIndex index.php index.html
     <FilesMatch "^(admin|rest)\.php$">
       RewriteEngine on
       RewriteCond %{HTTP:Authorization} ^(.*)
@@ -405,6 +409,7 @@ authorization configuration as well::
     AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
+    DirectoryIndex index.php index.html
     <FilesMatch "^(admin|rest)\.php$">
       RewriteEngine on
       RewriteCond %{HTTP:Authorization} ^(.*)
