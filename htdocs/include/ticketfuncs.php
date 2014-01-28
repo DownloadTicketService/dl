@@ -12,7 +12,7 @@ function isTicketExpired($DATA, $now = NULL)
 }
 
 
-function ticketExpiry($DATA)
+function ticketExpiration($DATA)
 {
   if($DATA["expire_dln"] || $DATA["last_time"])
   {

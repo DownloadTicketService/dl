@@ -107,7 +107,7 @@ function grantUrl($DATA)
 }
 
 
-function grantExpiry($DATA)
+function grantExpiration($DATA)
 {
   if($DATA["grant_expire"])
     return sprintf(T_("In %s"), humanTime($DATA["grant_expire"] - time()));

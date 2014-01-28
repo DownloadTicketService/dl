@@ -50,7 +50,7 @@ $sql .= " ORDER BY (user_id <> " . $auth["id"] . "), user_id, time";
       <th></th>
       <th></th>
       <th><?php echo T_("Grant"); ?></th>
-      <th><?php echo T_("Expiry"); ?></th>
+      <th><?php echo T_("Expiration"); ?></th>
       <th><?php echo T_("Date"); ?> <img src="style/static/down.png"/></th>
     </tr>
 <?php
@@ -91,7 +91,7 @@ foreach($db->query($sql) as $DATA)
   echo "</td>";
 
   // expire
-  echo "<td>" . grantExpiry($DATA) . "</td>";
+  echo "<td>" . grantExpiration($DATA) . "</td>";
 
   // date
   echo "<td>" . date("d/m/Y T", $DATA["time"]) . "</td>";

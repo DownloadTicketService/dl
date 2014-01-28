@@ -42,8 +42,8 @@ elseif($permanent)
 else
   $maxDl = 0;
 
-// current expiry
-infoMessage(T_('Current expiry'), ticketExpiry($DATA));
+// current expiration
+infoMessage(T_('Current expiration'), ticketExpiration($DATA));
 
 ?>
 

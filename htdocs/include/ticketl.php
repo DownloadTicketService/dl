@@ -128,8 +128,8 @@ foreach($db->query($sql) as $DATA)
   echo "<td class=\"fileinfo\" colspan=\"2\"><table>";
 
   // expire
-  echo "<tr><th>" . T_("Expiry:") . " </th><td>"
-    . ticketExpiry($DATA) . "</td></tr>";
+  echo "<tr><th>" . T_("Expiration:") . " </th><td>"
+    . ticketExpiration($DATA) . "</td></tr>";
 
   // owner
   if(!$our)

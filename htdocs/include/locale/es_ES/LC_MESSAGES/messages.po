@@ -78,7 +78,8 @@ msgid "Editing ticket %s"
 msgstr "Editando ticket %s"
 
 #: ../edittickets.php:46
-msgid "Current expiry"
+#, fuzzy
+msgid "Current expiration"
 msgstr "Caducidad actual"
 
 #: ../edittickets.php:58
@@ -278,7 +279,8 @@ msgid "Grant"
 msgstr "Concesión"
 
 #: ../grantl.php:53
-msgid "Expiry"
+#, fuzzy
+msgid "Expiration"
 msgstr "Caducidad"
 
 #: ../grantl.php:54 ../ticketl.php:59
@@ -705,7 +707,8 @@ msgid "Edit"
 msgstr "Editar"
 
 #: ../ticketl.php:131
-msgid "Expiry:"
+#, fuzzy
+msgid "Expiration:"
 msgstr "Caducidad:"
 
 #: ../ticketl.php:143
