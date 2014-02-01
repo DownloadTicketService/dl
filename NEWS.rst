@@ -1,3 +1,11 @@
+dl 0.13: ??/??/2014
+-------------------
+
+* Administrators now have the new "All tickets/grants" pages. The "Active
+  tickets/grants" page shows only their own tickets, like for normal users.
+* Minor bug/cosmetic fixes.
+
+
 dl 0.12: 10/12/2013
 -------------------
 

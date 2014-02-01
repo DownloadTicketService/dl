@@ -3,12 +3,14 @@
 
 $pages = array
 (
-  'newt'  => T_("New ticket"),
-  'tlist' => T_("Active tickets"),
-  'newg'  => T_("New grant"),
-  'glist' => T_("Active grants"),
-  'prefs' => T_("Preferences"),
-  'users' => T_("Manage users"),
+  'newt'   => T_("New ticket"),
+  'tlist'  => T_("Active tickets"),
+  'newg'   => T_("New grant"),
+  'glist'  => T_("Active grants"),
+  'prefs'  => T_("Preferences"),
+  'users'  => T_("Manage users"),
+  'tlista' => T_("All tickets"),
+  'glista' => T_("All grants"),
 );
 
 

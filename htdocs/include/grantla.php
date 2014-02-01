@@ -1,7 +1,7 @@
 <?php
 require_once("pages.php");
 require_once("style/include/style.php");
-$act = "glist";
+$act = "glista";
 $ref = pageLinkAct();
 pageHeader();
 
@@ -19,10 +19,6 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
     $DATA = $db->query($sql)->fetch();
     if($DATA === false) continue;
 
-    // check for permissions
-    if($DATA["user_id"] != $auth["id"])
-      continue;
-
     // actually purge the grant
     $list[] = htmlEntUTF8(grantStr($DATA));
     grantPurge($DATA, false);
@@ -33,9 +29,9 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 }
 
 // list active grants
-$sql = 'SELECT * FROM "grant" g'
-    . ' WHERE user_id = ' . $auth["id"]
-    . ' ORDER BY time';
+$sql = 'SELECT g.*, u.name AS "user" FROM "grant" g'
+    . ' LEFT JOIN "user" u ON u.id = g.user_id'
+    . ' ORDER BY user_id, time';
 
 ?>
 <script type="text/javascript">
@@ -60,6 +56,7 @@ foreach($db->query($sql) as $DATA)
 
   $our = ($DATA["user_id"] == $auth["id"]);
   $class = "file expanded " . $DATA['id'];
+  if(!$our) $class .= " alien";
   echo "<tr class=\"$class\">";
 
   // selection
@@ -109,6 +106,7 @@ foreach($db->query($sql) as $DATA)
   echo "<td class=\"fileinfo\" colspan=\"2\"><table>";
 
   // owner
+  echo "<tr><th>" . T_("User:") . " </th><td>" . htmlEntUTF8($DATA["user"]) . "</td></tr>";
   if(hasPassHash($DATA))
     echo "<tr><th>" . T_("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
 

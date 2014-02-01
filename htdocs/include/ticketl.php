@@ -21,7 +21,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
     if($DATA === false) continue;
 
     // check for permissions
-    if(!$auth["admin"] && $DATA["user_id"] != $auth["id"])
+    if($DATA["user_id"] != $auth["id"])
       continue;
 
     // actually purge the ticket
@@ -36,10 +36,9 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 // list active tickets
 $totalSize = 0;
 
-$sql = 'SELECT t.*, u.name AS "user" FROM ticket t'
-  . ' LEFT JOIN "user" u ON u.id = t.user_id';
-if(!$auth["admin"]) $sql .= " WHERE user_id = " . $auth["id"];
-$sql .= " ORDER BY (user_id <> " . $auth["id"] . "), user_id, time";
+$sql = 'SELECT * FROM ticket t'
+    . ' WHERE user_id = ' . $auth["id"]
+    . ' ORDER BY time';
 
 ?>
 <script type="text/javascript">
@@ -67,7 +66,6 @@ foreach($db->query($sql) as $DATA)
   $totalSize += $DATA["size"];
   $our = ($DATA["user_id"] == $auth["id"]);
   $class = "file expanded " . $DATA['id'];
-  if(!$our) $class .= " alien";
   echo "<tr class=\"$class\">";
 
   // selection
@@ -132,8 +130,6 @@ foreach($db->query($sql) as $DATA)
     . ticketExpiration($DATA) . "</td></tr>";
 
   // owner
-  if(!$our)
-    echo "<tr><th>" . T_("User:") . " </th><td>" . htmlEntUTF8($DATA["user"]) . "</td></tr>";
   if(hasPassHash($DATA))
     echo "<tr><th>" . T_("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
 

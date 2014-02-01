@@ -32,9 +32,6 @@ Important
 * Server-side preferences: default notification address, default expiry
   settings for both tickets and grants.
 
-* Move alien tickets/grants from the administrator's lists to a separated page.
-  My take: definitely important, high priority.
-
 * Use file templates instead of hard-coded messages to compose the e-mails.
   See a lot of good suggestions sent by Morkani.
 
