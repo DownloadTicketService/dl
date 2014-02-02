@@ -62,7 +62,7 @@ pageHeader();
     </li>
 
   </ul>
-  <a id="toggler" class="active" href="#" onclick="toggleAdvanced();"><?php echo T_('Advanced'); ?></a>
+  <a id="toggler" class="active" href="#"><?php echo T_('Advanced'); ?></a>
   <ul id="advanced" class="active">
 
     <li>

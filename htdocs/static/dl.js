@@ -190,3 +190,13 @@ function setNt(email)
 {
   $('#notify').val(email);
 }
+
+
+// Initialization
+function init()
+{
+  // togglers
+  $('#toggler').click(toggleAdvanced);
+}
+
+$(document).ready(init);
