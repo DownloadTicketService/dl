@@ -517,6 +517,19 @@ form > table#grants > tbody > tr.file.alien
 	background:#fafafa;
 }
 
+form > table#allgrants > tbody > tr > :nth-child(1),
+form > table#allgrants > tbody > tr > :nth-child(2),
+form > table#allgrants > tbody > tr > :nth-child(3)
+{
+	width:16px;
+}
+
+form > table#allgrants > tbody > tr > :nth-child(5),
+form > table#allgrants > tbody > tr > :nth-child(6)
+{
+	width:9em;
+}
+
 form > table#allgrants > tbody > tr.file.our
 {
 	background:#eaeafa;
