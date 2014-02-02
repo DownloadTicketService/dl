@@ -484,6 +484,11 @@ form > table#alltickets tr > :nth-child(7)
 	text-align:right;
 }
 
+form > table#alltickets > tbody > tr.file.our
+{
+	background:#eaeafa;
+}
+
 form > table#grants > tbody > tr > :nth-child(1),
 form > table#grants > tbody > tr > :nth-child(2),
 form > table#grants > tbody > tr > :nth-child(3)
@@ -510,6 +515,11 @@ form > table#grants > tbody > tr.file.comment > td
 form > table#grants > tbody > tr.file.alien
 {
 	background:#fafafa;
+}
+
+form > table#allgrants > tbody > tr.file.our
+{
+	background:#eaeafa;
 }
 
 form > table#users tr > :nth-child(1)

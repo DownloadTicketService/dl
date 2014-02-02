@@ -34,10 +34,6 @@ $sql = 'SELECT g.*, u.name AS "user" FROM "grant" g'
     . ' ORDER BY user_id, time';
 
 ?>
-<script type="text/javascript">
-  $(document).ready(function() { hideComments(); });
-</script>
-
 <form action="<?php echo $ref; ?>" method="post">
   <table id="grants">
     <tr>
@@ -56,7 +52,7 @@ foreach($db->query($sql) as $DATA)
 
   $our = ($DATA["user_id"] == $auth["id"]);
   $class = "file expanded " . $DATA['id'];
-  if(!$our) $class .= " alien";
+  if($our) $class .= " our";
   echo "<tr class=\"$class\">";
 
   // selection

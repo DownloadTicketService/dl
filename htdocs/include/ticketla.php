@@ -37,10 +37,6 @@ $sql = 'SELECT t.*, u.name AS "user" FROM ticket t'
     . ' ORDER BY time DESC';
 
 ?>
-<script type="text/javascript">
-  $(document).ready(function() { hideComments(); });
-</script>
-
 <form action="<?php echo $ref; ?>" method="post">
   <table class="sortable" id="alltickets">
     <thead>
@@ -66,7 +62,7 @@ foreach($db->query($sql) as $DATA)
   $totalSize += $DATA["size"];
   $our = ($DATA["user_id"] == $auth["id"]);
   $class = "file expanded " . $DATA['id'];
-  if(!$our) $class .= " alien";
+  if($our) $class .= " our";
   echo "<tr class=\"$class\">";
 
   // selection
