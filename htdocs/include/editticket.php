@@ -1,6 +1,7 @@
 <?php
 // process a ticket update
 require_once("ticketfuncs.php");
+require_once("pages.php");
 
 function handleUpdate($id)
 {
@@ -91,8 +92,9 @@ if($DATA)
 }
 
 // resulting page
+$src = (array_key_exists(@$_REQUEST['src'], $pages)? $_REQUEST['src']: 'tlist');
 if($DATA === false)
-  header("Location: $adminPath?a=tlist&token=$token");
+  header("Location: $adminPath?a=$src&token=$token");
 else
   include("edittickets.php");
 ?>

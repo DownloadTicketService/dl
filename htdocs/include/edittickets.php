@@ -1,7 +1,6 @@
 <?php
-require_once("pages.php");
 $act = "tedit";
-$ref = pageLinkAct(array('id' => $id));
+$ref = pageLinkAct(array('id' => $id, 'src' => $src));
 $title = sprintf(T_("Editing ticket %s"), "<span class=\"ticketid\">$id</span>");
 pageHeader(array('title' => $title));
 
@@ -209,6 +208,7 @@ infoTable($details);
     </li>
 
     <li class="buttons">
+      <input type="hidden" name="src" value="<?php echo $src; ?>"/>
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
       <input id="submit" type="submit" value="<?php echo T_("Update"); ?>"/>
       <input type="reset" value="<?php echo T_("Reset"); ?>"/>
