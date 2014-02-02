@@ -42,9 +42,40 @@ elseif($permanent)
 else
   $maxDl = 0;
 
-// current expiration
-infoMessage(T_('Current expiration'), ticketExpiration($DATA));
+// current ticket details
+$ticketUrl = ticketUrl($DATA);
+$details = array();
+$details[T_('Created')] = date("d/m/Y H:m:s T", $DATA["time"]);
+$details[T_('Current expiration')] = ticketExpiration($DATA);
+$details[T_('Download link')] = "<a class=\"ticketid\" href=\"$ticketUrl\">" . htmlEntUTF8($ticketUrl) . "</a>";
+$details[T_('Size')] = humanSize($DATA["size"]);
 
+// owner
+if($DATA["user_id"] != $auth["id"])
+{
+  $sql = 'SELECT name FROM "user"'
+    . " WHERE id = " . $db->quote($DATA["user_id"]);
+  $user = $db->query($sql)->fetch();
+  $details[T_('Owner')] = htmlEntUTF8($user["name"]);
+}
+
+// downloads
+if($DATA["downloads"])
+{
+  $details[T_("Download count")] = $DATA["downloads"];
+  $details[T_("Last download")] = date("d/m/Y", $DATA["last_stamp"]);
+}
+
+// sent-to
+if($DATA["sent_email"])
+{
+  $addrs = array();
+  foreach(getEMailAddrs($DATA['sent_email']) as $email)
+    $addrs[] = '<a href="mailto:' . urlencode($email) . '">' . htmlEntUTF8($email) . '</a>';
+  $details[T_("Initially sent to")] = implode(", ", $addrs);
+}
+
+infoTable($details);
 ?>
 
 <form enctype="multipart/form-data" method="post"

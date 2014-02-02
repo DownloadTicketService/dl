@@ -324,6 +324,17 @@ select.select[class]
 	font-weight:bold;
 }
 
+.info_message > table td:nth-child(1)
+{
+	text-align:right;
+	white-space:nowrap;
+}
+
+.info_message > table td
+{
+	vertical-align:top;
+}
+
 .error_message
 {
 	border:1px dotted red;

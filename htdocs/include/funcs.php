@@ -183,6 +183,15 @@ function infoMessage($hdr, $lines)
 }
 
 
+function infoTable($lines)
+{
+  echo "<div class=\"info_message\"><table>";
+  foreach($lines as $hdr => $line)
+    echo "<tr><td class=\"label\">$hdr:</td><td>$line</td></tr>";
+  echo "</table></div>";
+}
+
+
 function uploadErrorStr($FILE)
 {
   switch($FILE["error"])
