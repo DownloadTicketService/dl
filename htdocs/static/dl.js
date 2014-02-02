@@ -204,7 +204,12 @@ function init()
   {
     $.getScript('static/stupidtable.js', function()
     {
-      tables.stupidtable();
+      tables.each(function(i, t)
+      {
+	t = $(t);
+	t.stupidtable();
+	t.find('th.sorting-asc').click();
+      });
     });
   }
 }

@@ -34,7 +34,7 @@ $totalSize = 0;
 
 $sql = 'SELECT t.*, u.name AS "user" FROM ticket t'
     . ' LEFT JOIN "user" u ON u.id = t.user_id'
-    . ' ORDER BY user_id, time';
+    . ' ORDER BY time DESC';
 
 ?>
 <script type="text/javascript">

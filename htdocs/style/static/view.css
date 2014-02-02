@@ -471,10 +471,10 @@ form > table#tickets > tbody > tr.file.alien
 	background:#fafafa;
 }
 
-form > table#alltickets > tbody > tr > :nth-child(1),
-form > table#alltickets > tbody > tr > :nth-child(2),
-form > table#alltickets > tbody > tr > :nth-child(3),
-form > table#alltickets > tbody > tr > :nth-child(4)
+form > table#alltickets tr > :nth-child(1),
+form > table#alltickets tr > :nth-child(2),
+form > table#alltickets tr > :nth-child(3),
+form > table#alltickets tr > :nth-child(4)
 {
 	width:16px;
 }
