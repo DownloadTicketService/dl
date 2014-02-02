@@ -99,16 +99,19 @@ EOF;
 
 ?>
 <form action="<?php echo $ref; ?>" method="post">
-  <table id="users">
-    <tr>
-      <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
-      <th><?php echo T_("User"); ?></th>
-      <th><?php echo T_("Password"); ?></th>
-      <th><?php echo T_("Role"); ?></th>
-      <th><?php echo T_("Tickets"); ?></th>
-      <th><?php echo T_("Grants"); ?></th>
-      <th><?php echo T_("Total size"); ?></th>
-    </tr>
+  <table class="sortable" id="users">
+    <thead>
+     <tr>
+       <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
+       <th data-sort="string" class="sorting-asc"><?php echo T_("User"); ?></th>
+       <th><?php echo T_("Password"); ?></th>
+       <th data-sort="int"><?php echo T_("Role"); ?></th>
+       <th data-sort="int"><?php echo T_("Tickets"); ?></th>
+       <th data-sort="int"><?php echo T_("Grants"); ?></th>
+       <th data-sort="int"><?php echo T_("Total size"); ?></th>
+     </tr>
+    </thead>
+    <tbody>
 <?php
 
 foreach($db->query($sql) as $DATA)
@@ -118,29 +121,38 @@ foreach($db->query($sql) as $DATA)
     . htmlEntUTF8($DATA['name']) . "\"/></td>";
 
   // name/password
-  echo "<td><label>" . htmlEntUTF8($DATA['name']) . "</label></td>";
+  echo "<td>" . htmlEntUTF8($DATA['name']) . "</td>";
   echo "<td><input type=\"hidden\" name=\"user[]\" value=\""
     . htmlEntUTF8($DATA['name']) . "\"/><input class=\"element text\""
     . " type=\"text\" name=\"pass[]\"></td>";
 
   // role
-  echo "<td>" . htmlRole("role[]", $DATA['admin']) . "</td>";
+  echo '<td data-sort-value="' . $DATA['admin'] . '">'
+      . htmlRole("role[]", $DATA['admin']) . '</td>';
 
-  // sizes
-  echo "<td>$DATA[tickets]</td><td>$DATA[grants]</td><td>"
-    . humanSize($DATA['size']) . "</td></tr>";
+  // tickets/grants
+  echo "<td>$DATA[tickets]</td><td>$DATA[grants]</td>";
+
+  // total size
+  echo '<td data-sort-value="' . (int)$DATA['size'] . '">'
+      . humanSize($DATA['size']) . '</td>';
+
+  echo '</tr>';
 }
 
 ?>
-    <tr>
-      <td></td>
-      <td><input class="element text" type="text" name="newUser"></td>
-      <td><input class="element text" type="text" name="newPass"></td>
-      <td><?php echo htmlRole("newRole", 0); ?></td>
-      <td colspan="3">
-	<input class="element button" type="submit" name="create" value="<?php echo T_("Create"); ?>"/>
-      </td>
-    </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td><input class="element text" type="text" name="newUser"></td>
+        <td><input class="element text" type="text" name="newPass"></td>
+        <td><?php echo htmlRole("newRole", 0); ?></td>
+        <td colspan="3">
+          <input class="element button" type="submit" name="create" value="<?php echo T_("Create"); ?>"/>
+        </td>
+      </tr>
+    </tfoot>
   </table>
 
   <ul>

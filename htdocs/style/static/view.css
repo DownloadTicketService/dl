@@ -512,26 +512,31 @@ form > table#grants > tbody > tr.file.alien
 	background:#fafafa;
 }
 
-form > table#users > tbody > tr > :nth-child(3)
+form > table#users tr > :nth-child(1)
+{
+	width:16px;
+}
+
+form > table#users tr > :nth-child(3)
 {
 	width:15%;
 }
 
-form > table#users > tbody > tr > :nth-child(4)
+form > table#users tr > :nth-child(4)
 {
 	width:1%;
 }
 
-form > table#users > tbody > tr > :nth-child(5),
-form > table#users > tbody > tr > :nth-child(6),
-form > table#users > tbody > tr > :nth-child(7)
+form > table#users tr > :nth-child(5),
+form > table#users tr > :nth-child(6),
+form > table#users tr > :nth-child(7)
 {
 	text-align:right;
 }
 
-form > table#users > tbody > tr:last-child > td
+form > table#users > tfoot > tr > td
 {
-	text-align:left;
+	text-align:left !important;
 }
 
 /*** File info ***/
