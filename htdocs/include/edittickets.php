@@ -44,10 +44,8 @@ else
 // current ticket details
 $ticketUrl = ticketUrl($DATA);
 $details = array();
-$details[T_('Created')] = date("d/m/Y H:m:s T", $DATA["time"]);
 $details[T_('Current expiration')] = ticketExpiration($DATA);
-$details[T_('Download link')] = "<a class=\"ticketid\" href=\"$ticketUrl\">" . htmlEntUTF8($ticketUrl) . "</a>";
-$details[T_('Size')] = humanSize($DATA["size"]);
+$details[T_('Created on')] = date("d/m/Y H:m:s T", $DATA["time"]);
 
 // owner
 if($DATA["user_id"] != $auth["id"])
@@ -55,8 +53,11 @@ if($DATA["user_id"] != $auth["id"])
   $sql = 'SELECT name FROM "user"'
     . " WHERE id = " . $db->quote($DATA["user_id"]);
   $user = $db->query($sql)->fetch();
-  $details[T_('Owner')] = htmlEntUTF8($user["name"]);
+  $details[T_('Created by')] = htmlEntUTF8($user["name"]);
 }
+
+$details[T_('File size')] = humanSize($DATA["size"]);
+$details[T_('Download link')] = "<a class=\"ticketid\" href=\"$ticketUrl\">" . htmlEntUTF8($ticketUrl) . "</a>";
 
 // downloads
 if($DATA["downloads"])
