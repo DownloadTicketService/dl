@@ -12,24 +12,43 @@ function isTicketExpired($DATA, $now = NULL)
 }
 
 
-function ticketExpiration($DATA)
+function ticketExpiration($DATA, &$expVal = NULL)
 {
   if($DATA["expire_dln"] || $DATA["last_time"])
   {
     if($DATA["last_stamp"] && $DATA["last_time"])
-      return sprintf(T_("About %s"), humanTime($DATA["last_stamp"] + $DATA["last_time"] - time()));
+    {
+      $expVal = $DATA["last_stamp"] + $DATA["last_time"] - time();
+      return sprintf(T_("About %s"), humanTime($expVal));
+    }
     elseif($DATA["expire_dln"] && $DATA["downloads"])
-      return sprintf(T_("About %d downloads"), ($DATA["expire_dln"] - $DATA["downloads"]));
+    {
+      $expVal = ($DATA["expire_dln"] - $DATA["downloads"]);
+      return sprintf(T_("About %d downloads"), $expVal);
+    }
     elseif($DATA["expire"])
-      return sprintf(T_("About %s"), humanTime($DATA["expire"] - time()));
+    {
+      $expVal = $DATA["expire"] - time();
+      return sprintf(T_("About %s"), humanTime($expVal));
+    }
     elseif($DATA["expire_dln"])
-      return sprintf(T_("After %d downloads"), $DATA["expire_dln"]);
+    {
+      $expVal = $DATA["expire_dln"];
+      return sprintf(T_("After %d downloads"), $expVal);
+    }
     else
-      return sprintf(T_("%s after next download"), humanTime($DATA["last_time"]));
+    {
+      $expVal = $DATA["last_time"];
+      return sprintf(T_("%s after next download"), humanTime($expVal));
+    }
   }
   elseif($DATA["expire"])
-    return sprintf(T_("In %s"), humanTime($DATA["expire"] - time()));
+  {
+    $expVal = $DATA["expire"] - time();
+    return sprintf(T_("In %s"), humanTime($expVal));
+  }
 
+  $expVal = 4294967295;
   return ("<strong>" . T_("Never") . "</strong>");
 }
 

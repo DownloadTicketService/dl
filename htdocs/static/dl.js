@@ -197,6 +197,16 @@ function init()
 {
   // togglers
   $('#toggler').click(toggleAdvanced);
+
+  // sortable tables
+  var tables = $('table.sortable');
+  if(tables.length)
+  {
+    $.getScript('static/stupidtable.js', function()
+    {
+      tables.stupidtable();
+    });
+  }
 }
 
 $(document).ready(init);

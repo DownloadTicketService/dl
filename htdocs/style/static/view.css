@@ -418,6 +418,24 @@ form > table input.button
 	width:auto !important;
 }
 
+form > table.sortable th[data-sort]:hover
+{
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+form > table.sortable th.sorting-asc:after
+{
+	margin-left:4px;
+	content:url(toggle-up.gif);
+}
+
+form > table.sortable th.sorting-desc:after
+{
+	margin-left:4px;
+	content:url(toggle-down.gif);
+}
+
 form > table#tickets > tbody > tr > :nth-child(1),
 form > table#tickets > tbody > tr > :nth-child(2),
 form > table#tickets > tbody > tr > :nth-child(3),
@@ -451,6 +469,19 @@ form > table#tickets > tbody > tr.file.comment > td
 form > table#tickets > tbody > tr.file.alien
 {
 	background:#fafafa;
+}
+
+form > table#alltickets > tbody > tr > :nth-child(1),
+form > table#alltickets > tbody > tr > :nth-child(2),
+form > table#alltickets > tbody > tr > :nth-child(3),
+form > table#alltickets > tbody > tr > :nth-child(4)
+{
+	width:16px;
+}
+
+form > table#alltickets tr > :nth-child(7)
+{
+	text-align:right;
 }
 
 form > table#grants > tbody > tr > :nth-child(1),

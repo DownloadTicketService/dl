@@ -43,9 +43,16 @@ Bundled code
 
 * jQuery:
 
-  Copyright 2011, John Resig
-  Dual licensed under the MIT or GPL Version 2 licenses.
-  http://jquery.org/license
+  | Copyright(c) 2005, 2014 jQuery Foundation, Inc.
+  | Dual licensed under the MIT or GPL Version 2 licenses.
+  | http://jquery.org/license
+
+* stupidtable:
+
+  | Copyright(c) 2012 Joseph McCullough
+  | Licensed under the MIT licenses.
+  | https://github.com/joequery/Stupid-Table-Plugin
+
 
 Bundled media
 -------------
