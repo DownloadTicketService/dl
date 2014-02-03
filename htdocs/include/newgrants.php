@@ -5,12 +5,9 @@ $ref = pageLinkAct();
 pageHeader();
 ?>
 
-<script type="text/javascript">
-  $(document).ready(function() { loadDefaults('newgrant'); });
-</script>
-
 <form enctype="multipart/form-data" method="post"
-      onsubmit="validate(event);" action="<?php echo $ref; ?>" >
+      action="<?php echo $ref; ?>"
+      defaults="newgrant" class="validate">
   <ul>
 
     <h3><?php echo T_("Grant parameters"); ?></h3>

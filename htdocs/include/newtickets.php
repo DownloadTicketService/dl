@@ -7,19 +7,15 @@ pageHeader();
 require_once("progress.php");
 $up = newUploadProgress();
 uploadProgressHdr($up);
-?>
 
-<script type="text/javascript">
-  $(document).ready(function() { loadDefaults('newticket'); });
-</script>
-
-<?php
 if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
   errorMessage(T_("Upload failed"), uploadErrorStr($_FILES["file"]));
 ?>
 
 <form enctype="multipart/form-data" method="post"
-      onsubmit="validate(event);" action="<?php echo $ref; ?>" >
+      action="<?php echo $ref; ?>"
+      defaults="newticket"
+      class="validate">
   <ul>
     <li>
       <?php
@@ -164,7 +160,7 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
       <input id="submit" type="submit" value="<?php echo T_("Upload"); ?>"/>
       <input type="reset" value="<?php echo T_("Reset"); ?>"/>
-      <input type="button" value="<?php echo T_("Set as defaults"); ?>" onclick="setDefaults('newticket');"/>
+      <input type="button" id="setDefaults" value="<?php echo T_("Set as defaults"); ?>"/>
       <?php uploadProgressHtml($up); ?>
     </li>
   </ul>

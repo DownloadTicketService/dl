@@ -44,19 +44,21 @@ function refreshCookie(name, lifetime)
 
 
 // defaults
-function loadDefaults(set)
+function loadDefaults(set, form)
 {
+  if(!form) form = document.forms[0];
+
   for(var i = 0; i != fields.length; ++i)
   {
     var name = fields[i];
-    if(!document.forms[0][name]) continue;
+    if(!form[name]) continue;
     var v = refreshCookie(set + '_' + name, cookieLifetime);
     if(v !== null)
     {
-      if(document.forms[0][name].type == 'checkbox')
-	document.forms[0][name].checked = parseInt(v);
+      if(form[name].type == 'checkbox')
+	form[name].checked = parseInt(v);
       else
-	document.forms[0][name].value = v;
+	form[name].value = v;
     }
   }
 
@@ -64,20 +66,21 @@ function loadDefaults(set)
   if(v === null || parseInt(v)) toggleAdvanced(true);
 }
 
-function setDefaults(set)
+function setDefaults(set, form)
 {
   var expire = new Date();
   expire.setTime(expire.getTime() + cookieLifetime);
+  if(!form) form = document.forms[0];
 
   for(var i = 0; i != fields.length; ++i)
   {
     var name = fields[i];
-    if(!document.forms[0][name]) continue;
+    if(!form[name]) continue;
     var value;
-    if(document.forms[0][name].type == 'checkbox')
-      value = document.forms[0][name].checked + 0;
+    if(form[name].type == 'checkbox')
+      value = form[name].checked + 0;
     else
-      value = document.forms[0][name].value;
+      value = form[name].value;
     setCookie(set + '_' + name, value, expire);
   }
 
@@ -197,6 +200,18 @@ function init()
 {
   // togglers
   $('#toggler').click(toggleAdvanced);
+
+  // form defaults
+  $('form[defaults]').each(function(i, t)
+  {
+    var form = $(t);
+    var set = form.attr('defaults');
+    loadDefaults(set, t);
+    form.find('#setDefaults').click(function(el) { setDefaults(set, t); });
+  });
+
+  // js validation
+  $('form.validate').submit(validate);
 
   // sortable tables
   var tables = $('table.sortable');
