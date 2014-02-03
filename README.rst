@@ -109,51 +109,6 @@ The directory ``include/scripts/db/`` provides SQL initialization scripts for
 SQLite, MySQL and PostgreSQL.
 
 
-Upgrading from DL <= 0.3
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-Upgrading from DL 0.3 or earlier is possible without loosing any data by using
-the bundled ``include/scripts/dbupgrade.php`` script. Proceed as follows:
-
-* Backup your current ``config.php`` file and spool directory.
-
-* Overwrite the DL installation directory with the new copy.
-
-* Customize the new ``config.php`` file.
-
-* Create a new database as described above in `Database setup`_.
-
-* If you had to change the ''$dbHandler'' parameter in DL 0.3,
-  copy the same setting into the new configuration file.
-
-* Run ``dbupgrade.php`` as your web server user::
-
-    cd /your-installation-directory/include/scripts
-    php dbupgrade.php
-
-* Test your new setup.
-
-* You must now remove ''$dbHandler'' from the new configuration file and
-  ``data.db``, ``user.db`` from the spool directory.
-
-
-Upgrading from DL 0.3 and any later version
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* Backup your current ``config.php`` file and spool directory.
-
-* Overwrite the DL installation directory with the new copy.
-
-* Either copy over the old ``config.php`` file or customize the new version.
-
-* Run ``dbupgrade.php`` as your web server user::
-
-    cd /your-installation-directory/include/scripts
-    php dbupgrade.php
-
-* Test your new setup.
-
-
 PHP setup
 ---------
 
@@ -496,6 +451,23 @@ executed with *the same user as the web server*. Executing the script once a
 day is sufficient for low traffic websites, but can be executed as often as
 needed. ''$gcLimit'' still controls how many tickets are expired for each run
 to limit the execution time.
+
+
+Upgrading from an earlier version
+=================================
+
+* Backup your current ``config.php`` file and spool directory.
+
+* Overwrite the DL installation directory with the new copy.
+
+* Either copy over the old ``config.php`` file or customize the new version.
+
+* Run ``dbupgrade.php`` as your web server user::
+
+    cd /your-installation-directory/include/scripts
+    php dbupgrade.php
+
+* Test your new setup.
 
 
 Known limitations/Browser support

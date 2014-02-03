@@ -3,8 +3,13 @@ dl 0.13: ??/??/2014
 
 * Administrators now have the new "All tickets/grants" pages. The "Active
   tickets/grants" page shows only their own tickets, like for normal users.
-* Upload progress information is now implement client-side using HTML5/JS.
+* Upload progress information is now implement client-side using HTML5/JS,
+  which waives the PHP configuration/version restrictions.
 * Minor bug/cosmetic fixes.
+
+DL 0.12 is the last release offering an upgrade path from DL 0.3. Version 0.13
+can only upgrade from 0.4 and above. If you have an old installation, you'll
+need to perform a two step upgrade using an earlier release.
 
 
 dl 0.12: 10/12/2013
