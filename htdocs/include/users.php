@@ -101,15 +101,15 @@ EOF;
 <form action="<?php echo $ref; ?>" method="post">
   <table class="sortable" id="users">
     <thead>
-     <tr>
-       <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
-       <th data-sort="string" class="sorting-asc"><?php echo T_("User"); ?></th>
-       <th><?php echo T_("Password"); ?></th>
-       <th data-sort="int"><?php echo T_("Role"); ?></th>
-       <th data-sort="int"><?php echo T_("Tickets"); ?></th>
-       <th data-sort="int"><?php echo T_("Grants"); ?></th>
-       <th data-sort="int"><?php echo T_("Total size"); ?></th>
-     </tr>
+      <tr>
+        <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
+        <th data-sort="string" class="sorting-asc"><?php echo T_("User"); ?></th>
+        <th><?php echo T_("Password"); ?></th>
+        <th data-sort="int"><?php echo T_("Role"); ?></th>
+        <th data-sort="int"><?php echo T_("Tickets"); ?></th>
+        <th data-sort="int"><?php echo T_("Grants"); ?></th>
+        <th data-sort="int"><?php echo T_("Total size"); ?></th>
+      </tr>
     </thead>
     <tbody>
 <?php
@@ -135,9 +135,7 @@ foreach($db->query($sql) as $DATA)
 
   // total size
   echo '<td data-sort-value="' . (int)$DATA['size'] . '">'
-      . humanSize($DATA['size']) . '</td>';
-
-  echo '</tr>';
+      . humanSize($DATA['size']) . '</td></tr>';
 }
 
 ?>
