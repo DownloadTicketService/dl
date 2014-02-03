@@ -24,10 +24,6 @@ Requirements
 * PHP OpenSSL module.
 * Web server access for installation and setup.
 
-Optionals:
-
-* PHP 5.4+ or PHP APC/APCu module, for the upload progress-bar.
-
 
 Installation
 ============
@@ -176,8 +172,6 @@ parameters. Check your ``php.ini`` for:
 * ``upload_max_filesize``: change as needed.
 * ``post_max_size``: must be at least 1M larger than upload_max_filesize.
 * ``session.gc_maxlifetime``: must be long enough to allow large uploads to finish.
-* ``session.upload_progress.enabled`` (for PHP 5.4+) or ``apc.rfc1867`` (with
-  PHP APC): at least one must be "On" for the upload progress-bar to work.
 
 The upload limit as shown in the submission form is determined automatically
 from the ``upload_max_filesize`` parameter.
@@ -194,16 +188,6 @@ If you are allowed to do so, you can also set these parameters with "ini_set()"
 directly inside ``include/config.php`` (so that it only affects dl). If PHP was
 built as an Apache module you can also set them through ``.htaccess`` (see
 http://www.php.net/manual/en/configuration.changes.php).
-
-The upload progress-bar is only available in the following configurations:
-
-* PHP >= 5.4 with ``mod_php`` (no extra modules/configuration needed).
-* PHP >= 5.5 with either ``mod_php`` or ``php_fpm`` and the PHP APCu module.
-* PHP <= 5.4 with either ``mod_php`` or ``php_fpm`` and the PHP APC module.
-
-Unfortunately, PHP's ``session.upload_progress``, while encouraging, still
-doesn't work when used via FastCGI.  In this case, PHP APC or APCu is required
-and ``apc.rfc1867`` needs to be explicitly set to "On".
 
 
 User setup

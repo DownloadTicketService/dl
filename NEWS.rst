@@ -3,6 +3,7 @@ dl 0.13: ??/??/2014
 
 * Administrators now have the new "All tickets/grants" pages. The "Active
   tickets/grants" page shows only their own tickets, like for normal users.
+* Upload progress information is now implement client-side using HTML5/JS.
 * Minor bug/cosmetic fixes.
 
 

@@ -168,25 +168,7 @@ function validateForm(form)
 function validate(event)
 {
   if(!validateForm(event.target))
-  {
-    // IE crap
-    if(event.preventDefault)
-      event.preventDefault();
-    else
-      event.returnValue = false;
-  }
-  else
-  {
-    $('#submit').attr('disabled', true);
-    $('.onsubmit').submit();
-  }
-}
-
-function validateHook(fun)
-{
-  var hook = $('<div class="onsubmit" style="display: none;">');
-  hook.appendTo(document.body);
-  hook[0].onsubmit = fun;
+    event.stopImmediatePropagation();
 }
 
 function setNt(email)
@@ -195,7 +177,51 @@ function setNt(email)
 }
 
 
+// automatic upload progress
+function autoProgress(event)
+{
+  // disable submit
+  form = event.target;
+  $('#submit', form).attr('disabled', true);
+
+  var xhr = new XMLHttpRequest();
+  if(!('FormData' in window) || !xhr.upload) return;
+  event.preventDefault();
+
+  // show progress bar
+  progress = $('#uploadprogressbar', form);
+  progress.attr({'min': 0, 'max': 100});
+  progress.fadeIn();
+
+  // event handlers
+  xhr.upload.onprogress = function(ev)
+  {
+    progress.attr('value',  (ev.loaded / ev.total) * 100);
+  };
+
+  xhr.onreadystatechange = function(ev)
+  {
+    if(this.readyState != 4) return;
+
+    // replace current document with response
+    document.open();
+    document.write(this.response);
+    document.close();
+    $.cache = {};
+  };
+
+  // post
+  xhr.open("POST", form.action);
+  xhr.send(new FormData(form));
+}
+
+
 // Initialization
+$.getCss = function(url)
+{
+  $('head').append('<link rel="stylesheet" type="text/css" href="' + encodeURI(url) + '"/>');
+}
+
 function init()
 {
   // togglers
@@ -227,6 +253,16 @@ function init()
       });
     });
   }
+
+  // progress polyfill
+  if($('progress').length)
+  {
+    $.getScript('static/progress-polyfill.js');
+    $.getCss('static/progress-polyfill.css');
+  }
+
+  // automatic upload progress
+  $('form.autoprogress').submit(autoProgress);
 }
 
 $(document).ready(init);

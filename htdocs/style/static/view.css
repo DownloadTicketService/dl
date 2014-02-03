@@ -229,6 +229,12 @@ form ul li.first
 	padding-top:0 !important;
 }
 
+form.autoprogress #uploadprogressbar
+{
+	margin-left:1em;
+	display:none;
+}
+
 /**** Inputs and Labels ****/
 label.description
 {
