@@ -18,7 +18,7 @@ function pageLink($page, $params = array())
 {
   global $adminPath;
   $params['a'] = $page;
-  return token_link($adminPath, $params);
+  return htmlentities(tokenUrl($adminPath, $params));
 }
 
 

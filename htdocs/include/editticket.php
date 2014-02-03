@@ -94,7 +94,7 @@ if($DATA)
 // resulting page
 $src = (array_key_exists(@$_REQUEST['src'], $pages)? $_REQUEST['src']: 'tlist');
 if($DATA === false)
-  header("Location: $adminPath?a=$src&token=$token");
+  header("Location: " . tokenUrl($adminPath, array('a' => $src)));
 else
   include("edittickets.php");
 ?>

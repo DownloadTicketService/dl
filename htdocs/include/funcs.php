@@ -266,7 +266,7 @@ function check_token()
 }
 
 
-function token_link($url, $params = array())
+function tokenUrl($url, $params = array())
 {
   $url .= '?token=' . urlencode($_SESSION['token']);
   foreach($params as $k => $v)
@@ -275,7 +275,7 @@ function token_link($url, $params = array())
     if(!is_null($v))
       $url .= '=' . urlencode($v);
   }
-  return htmlentities($url);
+  return $url;
 }
 
 
