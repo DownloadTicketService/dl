@@ -88,7 +88,7 @@ infoTable($details);
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("File name"); ?></label>
       <div>
-	<input name="name" class="element text required" type="text" required value="<?php echo htmlEntUTF8($name); ?>"/>
+	<input name="name" class="element text" type="text" required value="<?php echo htmlEntUTF8($name); ?>"/>
       </div>
       <p class="guidelines"><small>
 	  <?php

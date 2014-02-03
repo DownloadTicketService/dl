@@ -138,7 +138,7 @@ function validateForm(form)
   $('label.required', form).each(function()
   {
     var label = $(this);
-    var field = $('input.required', label.next())[0];
+    var field = $('input[required]', label.next())[0];
     var state = true;
 
     // check content

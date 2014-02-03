@@ -30,7 +30,7 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
       <div>
 	<input type="hidden" name="max_file_size" value="<?php echo $iMaxSize; ?>"/>
 	<?php uploadProgressField($up); ?>
-	<input name="file" class="element file required" type="file" required/>
+	<input name="file" class="element file" type="file" required/>
       </div>
       <p class="guidelines"><small>
 	  <?php

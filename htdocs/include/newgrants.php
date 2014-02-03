@@ -22,7 +22,7 @@ pageHeader();
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Notification e-mail"); ?></label>
       <div>
-	<input name="notify" class="element text required" type="email" required multiple maxlength="255" value="<?php echo $auth['email']; ?>"/>
+	<input name="notify" class="element text" type="email" required multiple maxlength="255" value="<?php echo $auth['email']; ?>"/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -161,7 +161,7 @@ pageHeader();
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
       <input id="submit" type="submit" value="<?php echo T_("Create"); ?>"/>
       <input type="reset" value="<?php echo T_("Reset"); ?>"/>
-      <input type="button" value="<?php echo T_("Set as defaults"); ?>" onclick="setDefaults('newgrant');"/>
+      <input type="button" id="setDefaults" value="<?php echo T_("Set as defaults"); ?>"/>
     </li>
   </ul>
 </form>
