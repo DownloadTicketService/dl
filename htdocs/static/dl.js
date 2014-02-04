@@ -168,7 +168,10 @@ function validateForm(form)
 function validate(event)
 {
   if(!validateForm(event.target))
+  {
     event.stopImmediatePropagation();
+    event.preventDefault();
+  }
 }
 
 function setNt(email)
