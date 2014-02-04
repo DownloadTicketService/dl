@@ -54,6 +54,18 @@ $cfgVersion = "0.12";
 //          note that changing maxSize does *not* enforce upload_max_filesize
 //$maxSize = ini_get('upload_max_filesize');
 
+// dateFmtShort: Date format as used in the listings.
+//               See http://it2.php.net/manual/en/function.date.php for the
+//               format specification. Useful choices are:
+//               - "d/m/Y": day/month/year
+//               - "d/m/Y T": day/month/year timezone
+//$dateFmtShort = "Y-m-d";
+
+// dateFmtFull: Full date/time format as used in ticket/grant details.
+//               See http://it2.php.net/manual/en/function.date.php for the
+//               format specification.
+//$dateFmtFull = "Y-m-d H:m:s T";
+
 // authRealm: Enables HTTP authentication
 //            When using HTTP authentication, you should set authRealm to the
 //            realm name as used on your web server.

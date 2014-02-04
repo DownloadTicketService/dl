@@ -1,10 +1,13 @@
 dl 0.13: ??/??/2014
 -------------------
 
-* Administrators now have the new "All tickets/grants" pages. The "Active
-  tickets/grants" page shows only their own tickets, like for normal users.
+* The "Active tickets/grants" pages for administrators now show only their own
+  tickets, like for normal users. Other tickets are visible in the new "All
+  tickets/grants" pages.
 * Upload progress information is now implement client-side using HTML5/JS,
   which waives the PHP configuration/version restrictions.
+* Ticket/grant/user listings can now be sorted by clicking on the table header.
+* The date/time format can now be customized.
 * Minor bug/cosmetic fixes.
 
 DL 0.12 is the last release offering an upgrade path from DL 0.3. Version 0.13

@@ -100,7 +100,7 @@ foreach($db->query($sql) as $DATA)
   echo '<td data-sort-value="' . $DATA["size"] . '">'
       . humanSize($DATA["size"]) . '</td>';
   echo '<td data-sort-value="' . $DATA["time"] . '">'
-      . date("d/m/Y T", $DATA["time"]) . "</td>";
+      . date($dateFmtShort, $DATA["time"]) . "</td>";
 
   // expiration
   $expStr = ticketExpiration($DATA, $expVal);

@@ -45,7 +45,7 @@ else
 $ticketUrl = ticketUrl($DATA);
 $details = array();
 $details[T_('Current expiration')] = ticketExpiration($DATA);
-$details[T_('Created on')] = date("d/m/Y H:m:s T", $DATA["time"]);
+$details[T_('Created on')] = date($dateFmtFull, $DATA["time"]);
 
 // owner
 if($DATA["user_id"] != $auth["id"])

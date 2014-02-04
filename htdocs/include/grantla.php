@@ -80,7 +80,7 @@ foreach($db->query($sql) as $DATA)
 
   // date
   echo '<td data-sort-value="' . $DATA["time"]
-      . '">' . date("d/m/Y T", $DATA["time"]) . '</td>';
+      . '">' . date($dateFmtShort, $DATA["time"]) . '</td>';
 
   // expire
   $expStr = grantExpiration($DATA, $expVal);
