@@ -136,7 +136,7 @@ function selectAll(v)
 function validateForm(form)
 {
   var ok = true;
-  var max = $('input[name=max_file_size]', form).val();
+  var max = $('input[name=MAX_FILE_SIZE]', form).val();
 
   $('label.required', form).each(function()
   {
