@@ -156,7 +156,7 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
       <input id="submit" type="submit" value="<?php echo T_("Upload"); ?>"/>
       <input type="reset" value="<?php echo T_("Reset"); ?>"/>
       <input type="button" id="setDefaults" value="<?php echo T_("Set as defaults"); ?>"/>
-      <progress id="uploadprogressbar"></progress>
+      <div id="uploadprogress"></div>
     </li>
   </ul>
 </form>

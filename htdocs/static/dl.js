@@ -1,4 +1,7 @@
 // defaults
+var initialDelay = 3000;
+var speedWindow = 1000;
+var etaWindow = 5000;
 var cookieLifetime = 1000 * 60 * 60 * 24 * 90;
 var pwdLength = 16;
 var fields =
@@ -103,6 +106,13 @@ function passGen()
 }
 
 
+// localization stub
+function T_(text)
+{
+  return text;
+}
+
+
 // UI/form
 function toggleAdvanced(set)
 {
@@ -111,13 +121,11 @@ function toggleAdvanced(set)
   if(!set) t.slideToggle("fast"); else t.toggle();
 }
 
-
 function hideComments()
 {
   $('tr.file.expanded').removeClass('expanded');
   $('tr.file.comment').hide();
 }
-
 
 function toggleComment(id)
 {
@@ -125,13 +133,11 @@ function toggleComment(id)
   $('tr.file.comment.' + id).toggle();
 }
 
-
 function selectAll(v)
 {
   if(v === undefined) v = true;
   $('input:checkbox', document.forms[0]).attr('checked', v);
 }
-
 
 function validateForm(form)
 {
@@ -181,41 +187,163 @@ function setNt(email)
 
 
 // automatic upload progress
+function time()
+{
+  return (new Date).getTime();
+}
+
+function noProgress(event)
+{
+  // disable the form buttons
+  $('.buttons input', event.target).attr('disabled', true);
+}
+
+function setupAutoProgress(el)
+{
+  el = $(el);
+
+  // upgrade only tuned forms
+  var div = el.find('#uploadprogress');
+  if(!div.length || !('FormData' in window))
+  {
+    el.submit(noProgress);
+    return;
+  }
+
+  // create support elements
+  progress = $('<progress id="progress" min="0" max="1"></progress>');
+  text = $('<span id="text"></span>');
+  cancelBtn = $('<input id="cancel" type="button">');
+  cancelBtn.val(T_("Cancel"));
+
+  div.append(cancelBtn);
+  div.append(progress);
+  div.append(text);
+
+  el.data('autoprogress',
+  {
+    'div': div,
+    'submit': el.find('#submit'),
+    'cancelBtn': cancelBtn,
+    'progress': progress,
+    'text': text
+  });
+
+  el.submit(autoProgress);
+}
+
+function autoProgressState(ev, data)
+{
+  if(data.cancelled || ev.target.readyState != 4) return;
+
+  // replace current document with response
+  document.documentElement.innerHTML = ev.target.response;
+  $.cache = {};
+}
+
+function autoProgressAborted(ev, data)
+{
+  data.submit.attr('disabled', false);
+  data.div.hide();
+}
+
+function autoProgressCancel(ev, data)
+{
+  $(ev.target).attr('disabled', true);
+  data.cancelled = true;
+  data.xhr.abort();
+}
+
+function autoProgressCompleted(data)
+{
+  data.cancelBtn.attr('disabled', true);
+  data.text.text(T_("Completed, waiting..."));
+}
+
+function autoProgressCb(ev, data)
+{
+  data.progress.val(ev.loaded / ev.total);
+  if(ev.loaded == ev.total)
+    return autoProgressCompleted(data);
+
+  var now = time();
+  var elapsed = now - data.start;
+  if(elapsed < initialDelay) return;
+
+  var lastSpeedText = data.speed[1];
+  var speedText = lastSpeedText;
+  if((now - data.speed[0]) > speedWindow)
+  {
+    var unit;
+    var speed = ev.loaded / (elapsed / 1000) / 1024;
+
+    if(speed < 1024)
+      unit = T_('KiB/s');
+    else
+    {
+      speed /= 1024;
+      unit = T_('MiB/s');
+    }
+
+    speedText = speed.toFixed(3) + ' ' + unit;
+    data.speed[0] = now;
+  }
+
+  var lastEtaText = data.eta[1];
+  var etaText = lastEtaText;
+  if((now - data.eta[0]) > etaWindow)
+  {
+    var speed = ev.loaded / (elapsed / 1000);
+    var eta = (ev.total - ev.loaded) / speed;
+
+    var hours = Math.floor(eta / 3600);
+    var minutes = Math.floor((eta - hours * 3600) / 60);
+    var seconds = Math.floor(eta - hours * 3600 - minutes * 60);
+
+    minutes = ('0' + minutes).slice(-2);
+    seconds = ('0' + seconds).slice(-2);
+
+    etaText = T_('ETA') + ' ' + hours + ':' + minutes + ':' + seconds;
+    data.eta[0] = now;
+  }
+
+  if(speedText != lastSpeedText || etaText != lastEtaText)
+  {
+    data.speed[1] = speedText;
+    data.eta[1] = etaText;
+    data.text.text(speedText + ' ' + etaText);
+  }
+}
+
 function autoProgress(event)
 {
   // disable submit
-  form = event.target;
-  $('#submit', form).attr('disabled', true);
-
-  var xhr = new XMLHttpRequest();
-  if(!('FormData' in window) || !xhr.upload) return;
-  event.preventDefault();
-
-  // show progress bar
-  progress = $('#uploadprogressbar', form);
-  progress.attr({'min': 0, 'max': 100});
-  progress.fadeIn();
+  var form = $(event.target);
+  var data = form.data('autoprogress');
+  data.submit.attr('disabled', true);
 
   // event handlers
-  xhr.upload.onprogress = function(ev)
-  {
-    progress.attr('value',  (ev.loaded / ev.total) * 100);
-  };
+  var xhr = new XMLHttpRequest();
+  data.cancelBtn.click(function(ev) { autoProgressCancel(ev, data); });
+  xhr.onreadystatechange = function(ev) { autoProgressState(ev, data); };
+  xhr.onabort = function(ev) { autoProgressAborted(ev, data); };
+  xhr.upload.onprogress = function(ev) { autoProgressCb(ev, data); };
 
-  xhr.onreadystatechange = function(ev)
-  {
-    if(this.readyState != 4) return;
+  // reset
+  data.cancelBtn.attr('disabled', false);
+  data.cancelled = false;
+  data.progress.val(-1);
+  data.text.text('');
+  data.xhr = xhr;
+  data.start = time();
+  data.speed = [data.start, ''];
+  data.eta = [data.start, ''];
 
-    // replace current document with response
-    document.open();
-    document.write(this.response);
-    document.close();
-    $.cache = {};
-  };
-
-  // post
-  xhr.open("POST", form.action);
-  xhr.send(new FormData(form));
+  // start
+  event.preventDefault();
+  xhr.open("POST", form[0].action);
+  xhr.send(new FormData(form[0]));
+  data.div.slideDown();
 }
 
 
@@ -258,14 +386,14 @@ function init()
   }
 
   // progress polyfill
-  if($('progress').length)
+  if($('progress, form.autoprogress').length)
   {
     $.getScript('static/progress-polyfill.js');
     $.getCss('static/progress-polyfill.css');
   }
 
   // automatic upload progress
-  $('form.autoprogress').submit(autoProgress);
+  $('form.autoprogress').each(function(i, t) { setupAutoProgress(t); });
 }
 
 $(document).ready(init);

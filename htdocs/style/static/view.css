@@ -229,10 +229,20 @@ form ul li.first
 	padding-top:0 !important;
 }
 
-form.autoprogress #uploadprogressbar
+form.autoprogress #uploadprogress
 {
-	margin-left:1em;
 	display:none;
+	margin-top:0.4em;
+}
+
+form.autoprogress #uploadprogress * + *
+{
+	margin-left:0.4em;
+}
+
+form.autoprogress #uploadprogress #text
+{
+	font-family:monospace;
 }
 
 /**** Inputs and Labels ****/

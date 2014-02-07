@@ -31,7 +31,7 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
     <li class="buttons">
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
       <input id="submit" type="submit" value="<?php echo T_("Upload"); ?>"/>
-      <progress id="uploadprogressbar"></progress>
+      <div id="uploadprogress"></div>
     </li>
   </ul>
 </form>
