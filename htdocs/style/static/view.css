@@ -73,6 +73,12 @@ body
 	font-stretch:condensed;
 }
 
+table th, table td
+{
+	vertical-align:top;
+}
+
+
 /**** Logo Section  *****/
 h1
 {
@@ -346,11 +352,6 @@ select.select[class]
 	white-space:nowrap;
 }
 
-.info_message > table td
-{
-	vertical-align:top;
-}
-
 .error_message
 {
 	border:1px dotted red;
@@ -472,11 +473,6 @@ form > table#tickets > tbody > tr > :nth-child(8)
 	width:9em;
 }
 
-form > table#tickets > tbody > tr.file.comment
-{
-	vertical-align:top;
-}
-
 form > table#tickets > tbody > tr.file.comment > td
 {
 	border-bottom:1px dotted #ccc;
@@ -487,6 +483,12 @@ form > table#tickets > tbody > tr.file.alien
 	background:#fafafa;
 }
 
+form > table#alltickets tr > td
+{
+	width:0;
+	white-space:nowrap;
+}
+
 form > table#alltickets tr > :nth-child(1),
 form > table#alltickets tr > :nth-child(2),
 form > table#alltickets tr > :nth-child(3),
@@ -495,12 +497,19 @@ form > table#alltickets tr > :nth-child(4)
 	width:16px;
 }
 
+form > table#alltickets tr > :nth-child(5)
+{
+	width:auto;
+	white-space:normal;
+}
+
 form > table#alltickets tr > :nth-child(7)
 {
 	text-align:right;
 }
 
-form > table#alltickets > tbody > tr.file.our
+form > table#alltickets > tbody > tr.file.our,
+form > table#allgrants > tbody > tr.file.our
 {
 	background:#eaeafa;
 }
@@ -518,11 +527,6 @@ form > table#grants > tbody > tr > :nth-child(6)
 	width:9em;
 }
 
-form > table#grants > tbody > tr.file.comment
-{
-	vertical-align:top;
-}
-
 form > table#grants > tbody > tr.file.comment > td
 {
 	border-bottom:1px dotted #ccc;
@@ -533,6 +537,12 @@ form > table#grants > tbody > tr.file.alien
 	background:#fafafa;
 }
 
+form > table#allgrants tr > td
+{
+	width:0;
+	white-space:nowrap;
+}
+
 form > table#allgrants > tbody > tr > :nth-child(1),
 form > table#allgrants > tbody > tr > :nth-child(2),
 form > table#allgrants > tbody > tr > :nth-child(3)
@@ -540,15 +550,16 @@ form > table#allgrants > tbody > tr > :nth-child(3)
 	width:16px;
 }
 
-form > table#allgrants > tbody > tr > :nth-child(5),
-form > table#allgrants > tbody > tr > :nth-child(6)
+form > table#allgrants > tbody > tr > :nth-child(4)
 {
-	width:9em;
+	width:auto;
+	white-space:normal;
 }
 
-form > table#allgrants > tbody > tr.file.our
+form > table#users tr > td
 {
-	background:#eaeafa;
+	width:0;
+	white-space:nowrap;
 }
 
 form > table#users tr > :nth-child(1)
@@ -556,14 +567,15 @@ form > table#users tr > :nth-child(1)
 	width:16px;
 }
 
-form > table#users tr > :nth-child(3)
+form > table#users tr > :nth-child(2)
 {
-	width:15%;
+	width:auto;
+	white-space:normal;
 }
 
-form > table#users tr > :nth-child(4)
+form > table#users tr > :nth-child(3)
 {
-	width:1%;
+	width:9em;
 }
 
 form > table#users tr > :nth-child(5),
@@ -587,7 +599,6 @@ form > table#users > tfoot > tr > td
 
 .fileinfo th
 {
-	vertical-align:top;
 	text-align:right;
 	border:none;
 	width:45%;
