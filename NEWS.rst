@@ -8,6 +8,7 @@ dl 0.13: ??/??/2014
   which waives the PHP configuration/version restrictions.
 * Ticket/grant/user listings can now be sorted by clicking on the table header.
 * The date/time format can now be customized.
+* Spaces in file names are now correctly preserved.
 * Minor bug/cosmetic fixes.
 
 DL 0.12 is the last release offering an upgrade path from DL 0.3. Version 0.13
