@@ -651,7 +651,7 @@ subscribe to `dl-ticket-service` by either sending an empty email to
 http://news.gmane.org/gmane.comp.web.dl-ticket-service.general or via news
 directly.
 
-.. _GMane: http://www.gname.org/
+.. _GMane: http://www.gmane.org/
 
 
 Customisation and development
