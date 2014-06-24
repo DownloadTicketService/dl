@@ -8,18 +8,22 @@ require_once("include/entry.php");
 header("Content-Type: application/json");
 
 // authentication
+$rmt = ($authRealm != false);
 if(isset($_SERVER['HTTP_X_AUTHORIZATION']))
 {
   $extAuth = externalAuth();
   $authData = httpBasicDecode($_SERVER['HTTP_X_AUTHORIZATION']);
-  if($authData === false || $extAuth === false
-  || $authData["user"] !== $extAuth["user"]
-  || ($extAuth["pass"] !== false && $authData["pass"] !== $extAuth["pass"]))
-    unset($authData);
+  if($rmt || $extAuth !== false)
+  {
+	 // enforce double auth/consistency when using remote authentication
+    if($authData === false || $extAuth === false
+    || $authData["user"] !== $extAuth["user"]
+    || ($extAuth["pass"] !== false && $authData["pass"] !== $extAuth["pass"]))
+      unset($authData);
+  }
 }
 if(isset($authData))
 {
-  $rmt = ($authRealm != false);
   if(empty($authData["user"]) || (!$rmt && empty($authData["pass"])))
     httpUnauthorized();
   $auth = userLogin($authData["user"], $authData["pass"], $rmt);

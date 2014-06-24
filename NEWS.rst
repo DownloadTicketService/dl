@@ -5,10 +5,13 @@ dl 0.13: ??/??/2014
   tickets, like for normal users. Other tickets are visible in the new "All
   tickets/grants" pages.
 * Upload progress information is now implement client-side using HTML5/JS,
-  which waives the PHP configuration/version restrictions.
+  which is both more responsive and waives any PHP configuration/version
+  restrictions.
 * Ticket/grant/user listings can now be sorted by clicking on the table header.
 * The date/time format can now be customized.
-* Spaces in file names are now correctly preserved.
+* Spaces in uploaded file names are now correctly preserved.
+* The REST interface can now be used with the built-in authentication method
+  without additional configuration *also* when using apache/fcgi.
 * Minor bug/cosmetic fixes.
 
 DL 0.12 is the last release offering an upgrade path from DL 0.3. Version 0.13
