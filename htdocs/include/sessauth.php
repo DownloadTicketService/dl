@@ -15,7 +15,7 @@ function authenticate()
     if(empty($_REQUEST['u']) || !isset($_POST['p']))
     {
       // simple logout
-      return null;
+      return false;
     }
 
     $authData = Array
