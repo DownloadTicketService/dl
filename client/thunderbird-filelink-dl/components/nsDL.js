@@ -2,26 +2,23 @@ const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
 
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
-Cu.import("resource:///modules/gloda/log4moz.js");
 Cu.import("resource:///modules/cloudFileAccounts.js");
 
+const TYP = "DL";
 const AID = "thunderbird-filelink-dl@thregr.org";
 const CID = "{c0bee36d-3c0d-460b-bb9a-f0e9c873a833}";
 const VER = "0.13";
 
-function nsDL()
-{
-  this._log = Log4Moz.getConfiguredLogger(this.type);
-}
+function nsDL() {}
 
 nsDL.prototype =
 {
   // Required interface
-  QueryInterface: XPCOMUtils.generateQI([Ci.nsIMsgCloudFileProvider]),
+  QueryInterface: XPCOMUtils.generateQI([Ci.nsIDL, Ci.nsIMsgCloudFileProvider]),
   classID: Components.ID(CID),
 
-  get type() "DL",
-  get displayName() "DL",
+  get type() TYP,
+  get displayName() TYP,
   get version() VER,
   get iconClass() "chrome://thunderbird-filelink-dl/skin/dl-icon.png",
   get settingsURL() "chrome://thunderbird-filelink-dl/content/settings.xhtml",
@@ -46,7 +43,9 @@ nsDL.prototype =
   _maxSize: null,
 
   _lastErrorText: null,
-  _uploads: {},
+  _tickets: {},
+  _grants: {},
+  _grantCount: 0,
 
 
   // Support functions
@@ -214,7 +213,7 @@ nsDL.prototype =
   {
     if(Services.io.offline)
       throw Ci.nsIMsgCloudFileProvider.offlineErr;
-    aCallback.onStartRequest(null, null);
+    aCallback.onStartRequest(null, this);
     if(!(this._password = this._getPassword(aWithUI)))
     {
       aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
@@ -251,7 +250,7 @@ nsDL.prototype =
   {
     if(Services.io.offline)
       throw Ci.nsIMsgCloudFileProvider.offlineErr;
-    aCallback.onStartRequest(null, null);
+    aCallback.onStartRequest(null, this);
     if(!(this._password = this._getPassword()))
     {
       aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
@@ -260,36 +259,36 @@ nsDL.prototype =
 
     let success_cb = function(req, res)
     {
-      this._uploads[aFile.spec].res = res;
+      this._tickets[aFile.spec].res = res;
       aCallback.onStopRequest(null, this, Cr.NS_OK);
     }.bind(this);
 
     let failure_cb = function(req, res)
     {
-      delete this._uploads[aFile.spec];
+      delete this._tickets[aFile.spec];
       this._genericFailure(req, res, aCallback);
     }.bind(this);
 
     let abort_cb = function(req)
     {
-      delete this._uploads[aFile.spec];
+      delete this._tickets[aFile.spec];
       aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.uploadCanceled);
     }.bind(this);
 
     let req = this._request("newticket", {}, success_cb, failure_cb, abort_cb, aFile);
-    this._uploads[aFile.spec] = {req: req, res: null};
+    this._tickets[aFile.spec] = {req: req, res: null};
   },
 
 
   urlForFile: function(aFile)
   {
-    return this._uploads[aFile.spec].res.url;
+    return this._tickets[aFile.spec].res.url;
   },
 
 
   cancelFileUpload: function(aFile)
   {
-    this._uploads[aFile.spec].req.abort();
+    this._tickets[aFile.spec].req.abort();
   },
 
 
@@ -297,7 +296,7 @@ nsDL.prototype =
   {
     if(Services.io.offline)
       throw Ci.nsIMsgCloudFileProvider.offlineErr;
-    aCallback.onStartRequest(null, null);
+    aCallback.onStartRequest(null, this);
     if(!(this._password = this._getPassword()))
     {
       aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
@@ -306,7 +305,7 @@ nsDL.prototype =
 
     let success_cb = function(req, res)
     {
-      delete this._uploads[aFile.spec];
+      delete this._tickets[aFile.spec];
       aCallback.onStopRequest(null, this, Cr.NS_OK);
     }.bind(this);
 
@@ -315,8 +314,51 @@ nsDL.prototype =
       this._genericFailure(req, res, aCallback);
     }.bind(this);
 
-    let id = encodeURIComponent(this._uploads[aFile.spec].res.id);
+    let id = encodeURIComponent(this._tickets[aFile.spec].res.id);
     this._request("purgeticket/" + id, {}, success_cb, failure_cb);
+  },
+
+
+  newGrant: function(aCallback)
+  {
+    if(Services.io.offline)
+      throw Ci.nsIMsgCloudFileProvider.offlineErr;
+    aCallback.onStartRequest(null, this);
+    if(!(this._password = this._getPassword()))
+    {
+      aCallback.onStopRequest(null, this, Ci.nsIMsgCloudFileProvider.authErr);
+      return;
+    }
+
+    let id = this._grantCount++;
+
+    let success_cb = function(req, res)
+    {
+      this._grants[id].res = res;
+      aCallback.onStopRequest(null, this, Cr.NS_OK);
+    }.bind(this);
+
+    let failure_cb = function(req, res)
+    {
+      delete this._grants[id];
+      this._genericFailure(req, res, aCallback);
+    }.bind(this);
+
+    let req = this._request("newgrant", {}, success_cb, failure_cb);
+    this._grants[id] = {req: req, res: null};
+    return id;
+  },
+
+
+  urlForGrant: function(id)
+  {
+    return this._grants[id].res.url;
+  },
+
+
+  deleteGrant: function(id, aCallback)
+  {
+    throw Cr.NS_ERROR_NOT_IMPLEMENTED;
   },
 
 

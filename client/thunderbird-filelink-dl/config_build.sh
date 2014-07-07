@@ -7,6 +7,5 @@ CHROME_PROVIDERS="chrome"
 CLEAN_UP=1
 ROOT_FILES=
 ROOT_DIRS="components"
-BEFORE_BUILD=
-BEFORE_PACK=
+BEFORE_BUILD="/usr/lib/icedove-devel/sdk/bin/typelib.py -I /usr/share/idl/icedove components/nsDL.idl -o components/nsDL.xpt"
 AFTER_BUILD=
