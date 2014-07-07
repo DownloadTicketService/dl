@@ -11,6 +11,7 @@ Localization
 :German:	Clemens Egger <clemens.egger@eurac.edu>
 :Italian:	Yuri D'Elia <wavexx@thregr.org>
 :Spanish:	Roberto Salgado <drober@gmail.com>
+:Czech:		Jan Štětina <zaantar at gmail dot com>
 
 
 Bundled code
