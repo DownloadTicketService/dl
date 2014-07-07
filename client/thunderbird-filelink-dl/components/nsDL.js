@@ -7,7 +7,7 @@ Cu.import("resource:///modules/cloudFileAccounts.js");
 
 const AID = "thunderbird-filelink-dl@thregr.org";
 const CID = "{c0bee36d-3c0d-460b-bb9a-f0e9c873a833}";
-const VER = "0.12";
+const VER = "0.13";
 
 function nsDL()
 {
@@ -23,7 +23,7 @@ nsDL.prototype =
   get type() "DL",
   get displayName() "DL",
   get version() VER,
-  get iconClass() "chrome://thunderbird-filelink-dl/content/dl-icon.png",
+  get iconClass() "chrome://thunderbird-filelink-dl/skin/dl-icon.png",
   get settingsURL() "chrome://thunderbird-filelink-dl/content/settings.xhtml",
   get managementURL() "chrome://thunderbird-filelink-dl/content/management.xhtml",
   get accountKey() this._accountKey,
