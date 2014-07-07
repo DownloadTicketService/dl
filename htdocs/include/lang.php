@@ -11,6 +11,7 @@ $langData = array
   'ES' => array('locale' => 'es_ES', 'name' => 'Español'),
   'FR' => array('locale' => 'fr_FR', 'name' => 'Français'),
   'IT' => array('locale' => 'it_IT', 'name' => 'Italiano'),
+  'CZ' => array('locale' => 'cs_CZ', 'name' => 'Čeština'),
 );
 
 

@@ -1,0 +1,773 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Zaantar <zaantar@zaantar.eu>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: ../../style/include/grantr.php:2
+#: ../newticketr.php:4
+msgid "Upload result"
+msgstr "Výsledek nahrávání"
+
+#: ../../style/include/grantr.php:5
+msgid "Your file has been uploaded successfully."
+msgstr "Váš soubor byl úspěšně nahrán."
+
+#: ../../style/include/grantr.php:7
+msgid "A notification link has been sent to the grant owner. Thanks."
+msgstr "Oznámení s odkazem bylo odesláno majiteli grantu. Děkujeme."
+
+#: ../../style/include/nogrant.php:3
+msgid "Invalid grant"
+msgstr "Neplatný grant"
+
+#: ../../style/include/nogrant.php:3
+msgid "Unknown grant"
+msgstr "Neznámý grant"
+
+#: ../../style/include/nogrant.php:9
+msgid "Sorry, the grant is invalid."
+msgstr "Je nám líto, ale tento grant není platný."
+
+#: ../../style/include/nogrant.php:11
+#, php-format
+msgid "Sorry, the grant %s does not exist or is expired."
+msgstr "Je nám líto, ale grant %s neexistuje nebo již vypršel."
+
+#: ../../style/include/noticket.php:3
+msgid "Invalid ticket"
+msgstr "Neplatný lístek"
+
+#: ../../style/include/noticket.php:3
+msgid "Unknown ticket"
+msgstr "Neznámý lístek"
+
+#: ../../style/include/noticket.php:9
+msgid "Sorry, the ticket is invalid."
+msgstr "Tento lístek je bohužel neplatný."
+
+#: ../../style/include/noticket.php:11
+#, php-format
+msgid "Sorry, the ticket %s does not exist or is expired."
+msgstr "Je nám líto, ale  lístek %s neexistuje nebo vypršel."
+
+#: ../../style/include/rmtlogout.php:2
+msgid "Logged-out"
+msgstr "Odhlášeno"
+
+#: ../../style/include/rmtlogout.php:6
+msgid "<em>Close the browser</em> to complete the logout."
+msgstr "<em>Zavřete okno prohlížeče</em> pro dokončení odhlášení."
+
+#: ../edittickets.php:5
+#, php-format
+msgid "Editing ticket %s"
+msgstr "Úprava ticketu %s"
+
+#: ../edittickets.php:46
+msgid "Current expiry"
+msgstr "Vyprší za"
+
+#: ../edittickets.php:58
+msgid "File name"
+msgstr "Název souboru"
+
+#: ../edittickets.php:64
+msgid "Type the file name of the ticket (<em>including the extension</em>)."
+msgstr "Zadejte název souboru z ticketu (<em>včetně přípony</em>)."
+
+#: ../edittickets.php:70
+#: ../newgrants.php:37
+#: ../newtickets.php:44
+msgid "Comment"
+msgstr "Komentář"
+
+#: ../edittickets.php:76
+#: ../newtickets.php:50
+msgid "Type an <em>optional</em> comment for your uploaded file. The comment will be shown along with the file name."
+msgstr "Zadejte <em>nepovinný</em> komentář pro nahrávaný soubor. Tento komentář bude zobrazen spolu s názvem souboru."
+
+#: ../edittickets.php:83
+#: ../prefs.php:122
+msgid "Change password"
+msgstr "Změnit heslo"
+
+#: ../edittickets.php:83
+#: ../grantp.php:18
+#: ../login.php:25
+#: ../newgrants.php:69
+#: ../newtickets.php:75
+#: ../prefs.php:70
+#: ../ticketp.php:18
+#: ../users.php:106
+msgid "Password"
+msgstr "Heslo"
+
+#: ../edittickets.php:88
+#: ../newgrants.php:72
+#: ../newtickets.php:78
+msgid "Generate"
+msgstr "Generovat"
+
+#: ../edittickets.php:94
+msgid "Clear password"
+msgstr "Zrušit heslo"
+
+#: ../edittickets.php:99
+#: ../newtickets.php:82
+msgid "Type an <em>optional</em> password that will be required to download the file, as an additional security measure."
+msgstr "Zadejte <em>nepovinné</em> heslo, které bude vyžadováno pro stažení souboru, jako dodatečné bezpečnostní opatření."
+
+#: ../edittickets.php:102
+msgid "Checking \"Clear password\" will remove the password."
+msgstr "Zaškrtnutí možnosti  \"Zrušit heslo\"  zruší heslo."
+
+#: ../edittickets.php:108
+#: ../newgrants.php:84
+#: ../newgrants.php:101
+#: ../newtickets.php:89
+msgid "Expire in total # of days"
+msgstr "Vypršení za # dní"
+
+#: ../edittickets.php:114
+#: ../newgrants.php:107
+#: ../newtickets.php:95
+msgid "Type the <strong>maximal number of days</strong> the uploaded file is allowed to be kept on the server. After this period is passed the file will be deleted from the server."
+msgstr "Zadejte <strong>maximální počet dnů</strong>, po který bude nahraný soubor uchováván na serveru. Po uplynutí této doby bude odstraněn."
+
+#: ../edittickets.php:123
+#: ../newgrants.php:116
+#: ../newtickets.php:104
+msgid "Expire in # of days after last download"
+msgstr "Vypršení za # dní od posledního stažení"
+
+#: ../edittickets.php:129
+#: ../newgrants.php:122
+#: ../newtickets.php:110
+msgid "Type the number of days the uploaded file is allowed to be kept on the server <strong>after being downloaded</strong>. After this period is passed without activity, the file will be deleted from the server."
+msgstr "Zadejte počet dnů, po který bude nahraný soubor uchováván na serveru <strong>od posledního stažení</strong>. Po uplynutí této doby bez aktivity bude odstraněn ze serveru."
+
+#: ../edittickets.php:138
+#: ../newgrants.php:131
+#: ../newtickets.php:119
+msgid "Expire after # of downloads"
+msgstr "Vypršení po # staženích"
+
+#: ../edittickets.php:144
+#: ../newgrants.php:137
+#: ../newtickets.php:125
+msgid "Type the number of times the uploaded file is <strong>allowed to be downloaded in total</strong>. After this amount is reached the file will be deleted from the server."
+msgstr "Zadejte <strong>maximální celkový počet stažení</strong> souboru. Po dosažení tohoto počtu bude odstraněn ze serveru."
+
+#: ../edittickets.php:153
+#: ../newgrants.php:146
+#: ../newtickets.php:134
+msgid "Permanent ticket / upload"
+msgstr "Trvalé nahrání souboru"
+
+#: ../edittickets.php:157
+#: ../newgrants.php:149
+#: ../newtickets.php:137
+msgid "Do not expire"
+msgstr "Nepovolit vypršení"
+
+#: ../edittickets.php:161
+#: ../newgrants.php:153
+#: ../newtickets.php:141
+msgid "Set this checkmark if you do not want the uploaded file to expire."
+msgstr "Zaškrtněte toto políčko, pokud chcete, aby nahraný soubor nikdy nevypršel."
+
+#: ../edittickets.php:167
+#: ../newtickets.php:147
+msgid "Get notified by e-mail"
+msgstr "Upozornění e-mailem"
+
+#: ../edittickets.php:173
+#: ../newtickets.php:154
+msgid "Type an <em>optional</em> e-mail address (or addresses) that should be notified when the file is downloaded from the server. You can separate multiple addresses with commas."
+msgstr "Zadejte <em>nepovinnou</em> e-mailovou adresu (nebo adresy), na kterou bude zasláno upozornění při stažení souboru ze serveru. Více adres můžete oddělit čárkami."
+
+#: ../edittickets.php:182
+#: ../prefs.php:42
+msgid "Update"
+msgstr "Aktualizovat"
+
+#: ../edittickets.php:183
+#: ../grantl.php:153
+#: ../newgrants.php:163
+#: ../newtickets.php:166
+#: ../ticketl.php:186
+#: ../users.php:149
+msgid "Reset"
+msgstr "Reset"
+
+#: ../funcs.php:63
+#, php-format
+msgid "%s GiB"
+msgstr "%s GiB"
+
+#: ../funcs.php:65
+#, php-format
+msgid "%s MiB"
+msgstr "%s MiB"
+
+#: ../funcs.php:67
+#, php-format
+msgid "%s KiB"
+msgstr "%s KiB"
+
+#: ../funcs.php:68
+#, php-format
+msgid "%s B"
+msgstr "%s B"
+
+#: ../funcs.php:75
+#, php-format
+msgid "%d days"
+msgstr "%d dní"
+
+#: ../funcs.php:77
+#, php-format
+msgid "%d hours"
+msgstr "%d hodin"
+
+#: ../funcs.php:79
+#, php-format
+msgid "%d minutes"
+msgstr "%d minut"
+
+#: ../funcs.php:80
+#, php-format
+msgid "%d seconds"
+msgstr "%d sekund"
+
+#: ../funcs.php:113
+#: ../ticketfuncs.php:31
+#, php-format
+msgid "In %s"
+msgstr "Za %s"
+
+#: ../funcs.php:115
+#: ../ticketfuncs.php:33
+msgid "Never"
+msgstr "Nikdy"
+
+#: ../funcs.php:192
+msgid "file too big"
+msgstr "soubor je příliš veliký"
+
+#: ../funcs.php:197
+msgid "upload interrupted"
+msgstr "nahrávání bylo přerušeno"
+
+#: ../funcs.php:201
+msgid "internal error"
+msgstr "interní chyba"
+
+#: ../grantl.php:32
+#: ../ticketl.php:33
+msgid "Purged"
+msgstr "Smazáno"
+
+#: ../grantl.php:52
+msgid "Grant"
+msgstr "Grant"
+
+#: ../grantl.php:53
+msgid "Expiry"
+msgstr "Vypršení"
+
+#: ../grantl.php:54
+#: ../ticketl.php:59
+msgid "Date"
+msgstr "Datum"
+
+#: ../grantl.php:72
+#: ../grants.php:37
+#: ../newgrantr.php:41
+#: ../newtickets.php:165
+msgid "Upload"
+msgstr "Nahrát"
+
+#: ../grantl.php:77
+#: ../ticketl.php:92
+msgid "Purge"
+msgstr "Smazat"
+
+#: ../grantl.php:115
+#: ../ticketl.php:136
+msgid "User:"
+msgstr "Uživatel:"
+
+#: ../grantl.php:117
+#: ../msg.php:13
+#: ../msg.php:54
+#: ../msg.php:86
+#: ../ticketl.php:138
+msgid "Password:"
+msgstr "Heslo:"
+
+#: ../grantl.php:120
+#: ../ticketl.php:150
+msgid "Notify:"
+msgstr "Oznámení:"
+
+#: ../grantl.php:133
+#: ../ticketl.php:165
+msgid "Sent to:"
+msgstr "Zasláno na:"
+
+#: ../grantl.php:152
+#: ../ticketl.php:185
+#: ../users.php:148
+msgid "Reload"
+msgstr "Načíst znovu"
+
+#: ../grantl.php:154
+#: ../ticketl.php:187
+msgid "Select all"
+msgstr "Vybrat vše"
+
+#: ../grantl.php:155
+#: ../ticketl.php:188
+msgid "Purge selected"
+msgstr "Smazat vybrané"
+
+#: ../grantp.php:3
+#: ../ticketp.php:3
+msgid "Password required"
+msgstr "Je vyžadováno heslo"
+
+#: ../grantp.php:6
+#, php-format
+msgid "The grant %s is protected. Please enter the password to proceed to the upload."
+msgstr "Grant %s je chráněný. Prosím zadejte heslo pro pokračování."
+
+#: ../grantp.php:24
+msgid "Type the password required for the upload."
+msgstr "Pro nahrání je vyžadováno heslo."
+
+#: ../grantp.php:31
+msgid "Submit"
+msgstr "Odeslat"
+
+#: ../grants.php:3
+msgid "Upload grant"
+msgstr "Nahrát soubor"
+
+#: ../grants.php:10
+#: ../newtickets.php:18
+msgid "Upload failed"
+msgstr "Nahrávání selhalo"
+
+#: ../grants.php:21
+#: ../newtickets.php:29
+msgid "Upload a file"
+msgstr "Nahrát soubor"
+
+#: ../grants.php:29
+#: ../newtickets.php:37
+#, php-format
+msgid "Choose which file to upload. You can upload up to %s."
+msgstr "Vyberte soubor k nahrání. Můžete nahrát až %s."
+
+#: ../login.php:4
+#: ../login.php:38
+msgid "Login"
+msgstr "Přihlášení"
+
+#: ../login.php:13
+#: ../users.php:70
+#: ../users.php:105
+msgid "User"
+msgstr "Uživatel"
+
+#: ../login.php:19
+msgid "Type the user name to access the filesharing service."
+msgstr "Zadejte uživatelské jméno pro přístup ke službě sdílení souborů."
+
+#: ../login.php:31
+msgid "Type the password to access the filesharing service."
+msgstr "Zadejte heslo pro přístup ke službě sdílení souborů."
+
+#: ../msg.php:6
+#, php-format
+msgid "[dl] download link to %s"
+msgstr "[dl] Odkaz na stažení %s"
+
+#: ../msg.php:12
+#: ../msg.php:53
+#: ../msg.php:85
+msgid "URL:"
+msgstr "URL:"
+
+#: ../msg.php:21
+#, php-format
+msgid "[dl] ticket %s download notification"
+msgstr "[dl] Upozornění na stažení ticketu %s"
+
+#: ../msg.php:22
+#, php-format
+msgid "The ticket %s was downloaded by %s from %s"
+msgstr "Ticket %s byl stažen IP %s ze %s."
+
+#: ../msg.php:30
+#: ../msg.php:39
+#, php-format
+msgid "[dl] ticket %s purge notification"
+msgstr "[dl] Upozornění na smazání ticketu %s"
+
+#: ../msg.php:31
+#, php-format
+msgid "The ticket %s was purged manually after %d downloads from %s"
+msgstr "Ticket %s byl ručně smazán po %d staženích z %s"
+
+#: ../msg.php:40
+#, php-format
+msgid "The ticket %s expired automatically after %d downloads from %s"
+msgstr "Ticket %s vypršel po %d staženích ze %s"
+
+#: ../msg.php:47
+msgid "[dl] upload grant link"
+msgstr "[dl] Grant na nahrání souboru"
+
+#: ../msg.php:62
+#: ../msg.php:70
+#, php-format
+msgid "[dl] grant %s purge notification"
+msgstr "[dl] Oznámení o smazání grantu %s"
+
+#: ../msg.php:63
+#, php-format
+msgid "The grant %s was purged manually from %s"
+msgstr "Grant %s byl ručně smazán uživatelem %s."
+
+#: ../msg.php:71
+#, php-format
+msgid "The grant %s expired automatically from %s"
+msgstr "Grant %s automaticky vypršel %s."
+
+#: ../msg.php:77
+#, php-format
+msgid "[dl] download link for grant %s"
+msgstr "[dl] Odkaz na stažení souboru pro grant %s."
+
+#: ../msg.php:78
+#, php-format
+msgid ""
+"Your grant %s has been used by %s. The uploaded file is now available to be downloaded at:\n"
+"\n"
+msgstr ""
+"Váš grant %s byl použit uživatelem %s. Nahraný soubor je nyní k dispozici pro nahrání na:\n"
+"\n"
+
+#: ../newgrantr.php:4
+msgid "Grant result"
+msgstr "Výsledek grantu"
+
+#: ../newgrantr.php:14
+#, php-format
+msgid "Your grant %s"
+msgstr "Váš grant %s"
+
+#: ../newgrantr.php:20
+#: ../newticketr.php:20
+msgid "The required password is:"
+msgstr "Vyžadované heslo je:"
+
+#: ../newgrantr.php:26
+msgid "A grant link has been sent to:"
+msgstr "Odkaz grantu byl odeslán na:"
+
+#: ../newgrantr.php:40
+#: ../newticketr.php:40
+msgid "Send via e-mail"
+msgstr "Odeslat e-mailem"
+
+#: ../newgrants.php:16
+msgid "Grant parameters"
+msgstr "Parametry grantu"
+
+#: ../newgrants.php:23
+msgid "Notification e-mail"
+msgstr "Oznámení na e-mail"
+
+#: ../newgrants.php:29
+msgid "Type a <b>mandatory</b> e-mail address (or addresses) that should be notified when the file is uploaded to the server. You can separate multiple addresses with commas."
+msgstr "Zadejte <b>povinnou</b> e-mailovou adresu (nebo adresy), na kterou bude odesláno oznámení při nahrání souboru na server. Více adres můžete oddělit čárkami."
+
+#: ../newgrants.php:43
+msgid "Type an <em>optional</em> comment for your upload grant and resulting ticket. The comment will be shown along with the grant and ticket information."
+msgstr "Zadejte <em>nepovinný</em> komentář pro grant k nahrání a výsledný ticket. Komentář bude zobrazen spolu s informacemi o grantu a o ticketu."
+
+#: ../newgrants.php:51
+#: ../newtickets.php:57
+msgid "Send link to e-mail"
+msgstr "Zaslat odkaz na e-mail"
+
+#: ../newgrants.php:57
+msgid "Type an <em>optional</em> e-mail address (or addresses) that should immediately receive the link to the upload grant. You can separate multiple addresses with commas."
+msgstr "Zadejte <em>nepovinnou</em> e-mailovou adresu (nebo adresy), na kterou bude okamžitě odeslán odkaz na grant k nahrání souboru. Více adres můžete oddělit čárkami."
+
+#: ../newgrants.php:65
+#: ../newtickets.php:71
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: ../newgrants.php:76
+msgid "Type an <em>optional</em> password that will be required to both upload and download the file, as an additional security measure."
+msgstr "Zadejte <em>nepovinné</em> heslo, které bude vyžadováno pro nahrání i pro stažení souboru jako dodatečné bezpečnostní opatření."
+
+#: ../newgrants.php:90
+msgid "Type the <strong>maximal number of days</strong> the server should wait for the upload grant to be used.  After this period is passed without activity, the grant is removed the server."
+msgstr "Zadejte <strong>maximální počet dnů</strong>, po které server bude čekat na použití grantu. Po uplynutí této doby bez aktivity bude grant ze serveru odstraněn."
+
+#: ../newgrants.php:98
+msgid "Ticket parameters"
+msgstr "Parametry ticketu"
+
+#: ../newgrants.php:162
+#: ../users.php:141
+msgid "Create"
+msgstr "Vytvořit"
+
+#: ../newgrants.php:164
+#: ../newtickets.php:167
+msgid "Set as defaults"
+msgstr "Nastavit jako výchozí"
+
+#: ../newticketr.php:14
+#, php-format
+msgid "Your ticket %s"
+msgstr "Váš ticket %s"
+
+#: ../newticketr.php:26
+msgid "A download link has been sent to:"
+msgstr "Odkaz ke stažení byl zaslán na:"
+
+#: ../newticketr.php:41
+#: ../ticketl.php:87
+#: ../ticketp.php:31
+msgid "Download"
+msgstr "Stažení"
+
+#: ../newtickets.php:63
+msgid "Type an <em>optional</em> e-mail address (or addresses) that should immediately receive the link to the ticket. You can separate multiple addresses with commas."
+msgstr "Zadejte <em>nepovinnou</em> e-mailovou adresu (nebo adresy), na kterou bude okamžitě zaslán odkaz na ticket. Více adres můžete oddělit čárkami."
+
+#: ../newtickets.php:150
+msgid "Use my e-mail"
+msgstr "Použít můj e-mail"
+
+#: ../pages.php:6
+msgid "New ticket"
+msgstr "Nový ticket"
+
+#: ../pages.php:7
+msgid "Active tickets"
+msgstr "Aktivní tickety"
+
+#: ../pages.php:8
+msgid "New grant"
+msgstr "Nový grant"
+
+#: ../pages.php:9
+msgid "Active grants"
+msgstr "Aktivní granty"
+
+#: ../pages.php:10
+msgid "Preferences"
+msgstr "Nastavení"
+
+#: ../pages.php:11
+msgid "Manage users"
+msgstr "Spravovat uživatele"
+
+#: ../pages.php:58
+msgid "Logout"
+msgstr "Odhlášení"
+
+#: ../pages.php:59
+msgid "Help"
+msgstr "Nápověda"
+
+#: ../prefs.php:14
+msgid "Settings successfully updated."
+msgstr "Nastavení byla úspěšně uložena."
+
+#: ../prefs.php:14
+msgid "Settings update"
+msgstr "Změna nastavení"
+
+#: ../prefs.php:21
+msgid "Defaults"
+msgstr "Výchozí hodnoty"
+
+#: ../prefs.php:28
+msgid "E-Mail"
+msgstr "E-mail"
+
+#: ../prefs.php:34
+msgid "Type a <b>mandatory</b> e-mail address that will be used as a default for notifications."
+msgstr "Zadejte <b>povinnou</b> e-mailovou adresu, která bude použita jako výchozí pro oznámení."
+
+#: ../prefs.php:58
+msgid "New passwords don't match! Password unchanged."
+msgstr "Nová hesla nesouhlasí! Změna neproběhla."
+
+#: ../prefs.php:58
+#: ../prefs.php:60
+#: ../prefs.php:64
+msgid "Password change"
+msgstr "Změna hesla"
+
+#: ../prefs.php:60
+msgid "Old password doesn't match! Password unchanged."
+msgstr "Staré heslo nesouhlasí! Změna neproběhla."
+
+#: ../prefs.php:64
+msgid "Password successfully changed."
+msgstr "Heslo bylo úspěšně změněno."
+
+#: ../prefs.php:77
+msgid "Old password"
+msgstr "Staré heslo"
+
+#: ../prefs.php:83
+msgid "Please type your current password."
+msgstr "Prosím zadejte své současné heslo."
+
+#: ../prefs.php:93
+msgid "New password"
+msgstr "Nové heslo."
+
+#: ../prefs.php:99
+msgid "Please type the new password."
+msgstr "Prozím zadejte nové heslo."
+
+#: ../prefs.php:109
+msgid "New password (retype)"
+msgstr "Nové heslo (znovu)"
+
+#: ../prefs.php:115
+msgid "Please <em>retype</em> the new password again."
+msgstr "Prosím <em>znovu</em> zadejte nové heslo."
+
+#: ../ticketfuncs.php:20
+#: ../ticketfuncs.php:24
+#, php-format
+msgid "About %s"
+msgstr "Za %s"
+
+#: ../ticketfuncs.php:22
+#, php-format
+msgid "About %d downloads"
+msgstr "Za %d stažení"
+
+#: ../ticketfuncs.php:26
+#, php-format
+msgid "After %d downloads"
+msgstr "Po %d staženích"
+
+#: ../ticketfuncs.php:28
+#, php-format
+msgid "%s after next download"
+msgstr "%s po dalším stažení"
+
+#: ../ticketl.php:57
+msgid "Ticket"
+msgstr "Ticket"
+
+#: ../ticketl.php:58
+msgid "Size"
+msgstr "Velikost"
+
+#: ../ticketl.php:80
+msgid "Successfully downloaded"
+msgstr "Úspěšně staženo"
+
+#: ../ticketl.php:97
+msgid "Edit"
+msgstr "Upravit"
+
+#: ../ticketl.php:131
+msgid "Expiry:"
+msgstr "Vypršení:"
+
+#: ../ticketl.php:143
+msgid "Downloads:"
+msgstr "Stažení:"
+
+#: ../ticketl.php:144
+msgid "Downloaded:"
+msgstr "Staženo:"
+
+#: ../ticketl.php:193
+#, php-format
+msgid "Total archive size: %s"
+msgstr "Celková velikost archivu: %s"
+
+#: ../ticketp.php:6
+#, php-format
+msgid "The ticket %s is protected. Please enter the password to unlock the content."
+msgstr "Ticket %s je chráněný. Prosím zadejte heslo pro odemčení obsahu."
+
+#: ../ticketp.php:24
+msgid "Type the password required to unlock this ticket."
+msgstr "Zadejte heslo vyžadované pro odemčení ticketu."
+
+#: ../users.php:15
+msgid "Created"
+msgstr "Vytvořeno"
+
+#: ../users.php:17
+msgid "Creation failed"
+msgstr "Vytvoření selhalo"
+
+#: ../users.php:18
+#, php-format
+msgid "user \"%s\" already exists"
+msgstr "uživatel \"%s\" již existuje"
+
+#: ../users.php:31
+msgid "Deleted"
+msgstr "Odstraněno"
+
+#: ../users.php:63
+msgid "Updated"
+msgstr "Uloženo"
+
+#: ../users.php:70
+msgid "Administrator"
+msgstr "Administrátor"
+
+#: ../users.php:107
+msgid "Role"
+msgstr "Role"
+
+#: ../users.php:108
+msgid "Tickets"
+msgstr "Tickety"
+
+#: ../users.php:109
+msgid "Grants"
+msgstr "Granty"
+
+#: ../users.php:110
+msgid "Total size"
+msgstr "Celková velikost"
+
+#: ../users.php:150
+msgid "Delete selected"
+msgstr "Odstranit vybrané"
+
+#: ../users.php:151
+msgid "Apply changes"
+msgstr "Uložit změny"
+
