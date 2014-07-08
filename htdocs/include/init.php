@@ -39,7 +39,7 @@ $sql = "SELECT value FROM config WHERE name = 'version'";
 if(!($q = $db->query($sql)))
   die("cannot initialize database");
 $version = $q->fetchColumn();
-if(version_compare($version, $dlVersion, "!="))
+if(version_compare($version, $schemaVersion, "!="))
   die("database requires schema upgrade");
 unset($q);
 
