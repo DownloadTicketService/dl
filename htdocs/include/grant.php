@@ -1,5 +1,6 @@
 <?php
 // process a grant
+require_once("grantfuncs.php");
 
 // try to fetch the grant
 $id = $_REQUEST["g"];

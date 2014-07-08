@@ -176,7 +176,7 @@ class DL(object):
         if params.total is not None:
             msg['grant_total'] = params.total
         if params.ticket_params.permanent is not None:
-            msg['permanent'] = params.ticket_params.permanent
+            msg['ticket_permanent'] = params.ticket_params.permanent
         if params.ticket_params.total is not None:
             msg['ticket_total'] = params.ticket_params.total
         if params.ticket_params.lastdl is not None:

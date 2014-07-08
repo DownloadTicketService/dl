@@ -16,13 +16,6 @@ function isGrantId($str)
 }
 
 
-function isGrantExpired($DATA, $now = NULL)
-{
-  if(!isset($now)) $now = time();
-  return ($DATA["grant_expire"] && $DATA["grant_expire"] < $now);
-}
-
-
 function logEvent($logLine)
 {
   global $logFile, $useSysLog, $logFd, $auth;
@@ -104,19 +97,6 @@ function grantUrl($DATA)
 {
   global $masterPath;
   return $masterPath . "?g=" . $DATA['id'];
-}
-
-
-function grantExpiration($DATA, &$expVal = NULL)
-{
-  if($DATA["grant_expire"])
-  {
-    $expVal = $DATA["grant_expire"] - time();
-    return sprintf(T_("In %s"), humanTime($expVal));
-  }
-
-  $expVal = 4294967295;
-  return ("<strong>" . T_("Never") . "</strong>");
 }
 
 

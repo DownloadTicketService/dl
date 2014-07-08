@@ -12,6 +12,10 @@ dl 0.13: ??/??/2014
 * Spaces in uploaded file names are now correctly preserved.
 * The REST interface can now be used with the built-in authentication method
   without additional configuration *also* when using apache/fcgi.
+* The REST interface now supports a method to generate grants.
+* The Thunderbird add-on now includes a new menu command (under "Tools") and a
+  new toolbar icon in the composer window to generate and insert grants in the
+  current message.
 * Added Brazilian Portuguese and Czech localications (thanks to Guilherme
   Benkenstein and Jan Štětina).
 * Minor bug/cosmetic fixes.

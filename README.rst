@@ -629,13 +629,17 @@ Thunderbird's Filelink_ functionality, by using the REST service provided by DL
 0.10 and onward. The extension allows to convert large attachments to links
 automatically, directly within the Composer window.
 
+The extension also allows the user to generate/insert a new upload grant in the
+current message from the composer window. Both a menu command (under "Tools" ..
+"Insert upload grant") and a toolbar item (that you manually need to drag in
+the composer toolbar) are provided.
+
 To install the extension, go to Thunderbird's "Tools" .. "Addons" menu, and
 click on the "Settings" icon just next to the search bar. Select "Install
 Add-on from file..." and choose the file ``client/thunderbird-filelink-dl.xpi``
-as provided in the distribution (or directly on the extension_ web page).
+as provided in the distribution.
 
-Once installed, just follow the official Filelink_ usage tutorial as provided
-by Mozilla for configuration and usage.
+See full installation and usage instructions on the extension_ web page.
 
 .. _Filelink: https://support.mozillamessaging.com/en-US/kb/filelink-large-attachments
 .. _extension: http://www.thregr.org/~wavexx/software/dl/thunderbird.html

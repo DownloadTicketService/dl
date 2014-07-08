@@ -1,5 +1,6 @@
 <?php
 require_once("pages.php");
+require_once("grantfuncs.php");
 require_once("style/include/style.php");
 $act = "glist";
 $ref = pageLinkAct();

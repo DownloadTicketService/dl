@@ -41,6 +41,13 @@ $rest = array
     'entry'  => 'include/restpurgeticket.php',
     'func'   => 'purgeticket'
   ),
+  'newgrant' => array
+  (
+    'method' => 'POST',
+    'admin'  => false,
+    'entry'  => 'include/restnewgrant.php',
+    'func'   => 'newgrant'
+  ),
 );
 
 ?>

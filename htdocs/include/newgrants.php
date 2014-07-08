@@ -80,7 +80,7 @@ pageHeader();
     <li>
       <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
       <div>
-	<input name="grant_total" value="<?php echo (int)($defaults['grant']['total'] / (3600 * 24)); ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
+	<input name="grant_totaldays" value="<?php echo (int)($defaults['grant']['total'] / (3600 * 24)); ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
       </div>
       <p class="guidelines"><small>
 	  <?php

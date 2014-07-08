@@ -135,8 +135,8 @@ POST "msg" object parameters:
 * ticket_maxdl (integer): maximal number of downloads for the ticket.
 * notify (string): notification addresses (comma-separated list of e-mails).
 * send_to (string): send-link-to addresses (comma-separated list of e-mails).
-* permanent (boolean): mutually exclusive with hra/dn/dln, sets a permanent
-  ticket.
+* permanent (boolean): mutually exclusive with
+  ticket_total/ticket_lastdl/ticket_maxdl, sets the ticket to be permanent.
 
 POST "file" parameter:
 
@@ -146,6 +146,36 @@ Returned values:
 
 * id (string): ticket ID.
 * url (string): ticket URL.
+
+
+newgrant
+~~~~~~~~
+
+A "newgrant" request creates a new grant.
+
+Since: 0.13
+
+Request method: "POST"
+
+Request parameters: None
+
+POST "msg" object parameters:
+
+* notify (string): notification address (mandatory).
+* comment (string): comment for the grant/ticket.
+* pass (string): password required for the grant/ticket.
+* grant_total (integer): maximal number of seconds.
+* ticket_total (integer): maximal number of seconds.
+* ticket_lastdl (integer): maximal number of seconds after last download.
+* ticket_maxdl (integer): maximal number of downloads for the ticket.
+* send_to (string): send-link-to addresses (comma-separated list of e-mails).
+* ticket_permanent (boolean): mutually exclusive with
+  ticket_total/ticket_lastdl/ticket_maxdl, sets the ticket to be permanent.
+
+Returned values:
+
+* id (string): grant ID.
+* url (string): grant URL.
 
 
 purgeticket
@@ -186,3 +216,17 @@ Example answer:
   Content-Type: application/json
 
   {}
+
+
+Programming APIs
+----------------
+
+Python
+~~~~~~
+
+A Python API, supporting both asynchronous/synchronous operations and progress
+support can be found in the ``client/dl-wx/dl.py`` file. The API is used both
+by ``dl-wx.py`` and ``dl-cli.py`` in the same directory.
+
+A simpler stand-alone implementation which can be helpful for testing can be
+found at ``client/dl-cli.py``.
