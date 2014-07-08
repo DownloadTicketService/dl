@@ -453,10 +453,19 @@ form > table.sortable th.sorting-desc:after
 	content:url(toggle-down.gif);
 }
 
-form > table#tickets > tbody > tr > :nth-child(1),
-form > table#tickets > tbody > tr > :nth-child(2),
-form > table#tickets > tbody > tr > :nth-child(3),
-form > table#tickets > tbody > tr > :nth-child(4)
+form > table#tickets tr > td,
+form > table#grants tr > td,
+form > table#alltickets tr > td,
+form > table#allgrants tr > td
+{
+	width:0;
+	white-space:nowrap;
+}
+
+form > table#tickets tr > :nth-child(1),
+form > table#tickets tr > :nth-child(2),
+form > table#tickets tr > :nth-child(3),
+form > table#tickets tr > :nth-child(4)
 {
 	width:16px;
 }
@@ -467,16 +476,9 @@ form > table#tickets tr > :nth-child(5)
 	white-space:normal;
 }
 
-form > table#tickets > tbody > tr > :nth-child(7)
+form > table#tickets tr > :nth-child(6)
 {
 	text-align:right;
-}
-
-form > table#tickets tr > td,
-form > table#alltickets tr > td
-{
-	width:0;
-	white-space:nowrap;
 }
 
 form > table#alltickets tr > :nth-child(1),
@@ -498,49 +500,33 @@ form > table#alltickets tr > :nth-child(7)
 	text-align:right;
 }
 
-form > table#alltickets > tbody > tr.file.our,
-form > table#allgrants > tbody > tr.file.our
+form > table#alltickets tr.file.our,
+form > table#allgrants tr.file.our
 {
 	background:#eaeafa;
 }
 
-form > table#grants > tbody > tr > :nth-child(1),
-form > table#grants > tbody > tr > :nth-child(2),
-form > table#grants > tbody > tr > :nth-child(3)
+form > table#grants tr > :nth-child(1),
+form > table#grants tr > :nth-child(2),
+form > table#grants tr > :nth-child(3)
 {
 	width:16px;
 }
 
-form > table#grants > tbody > tr > :nth-child(5),
-form > table#grants > tbody > tr > :nth-child(6)
+form > table#grants tr > :nth-child(4)
 {
-	width:9em;
+	width:auto;
+	white-space:normal;
 }
 
-form > table#grants > tbody > tr.file.comment > td
-{
-	border-bottom:1px dotted #ccc;
-}
-
-form > table#grants > tbody > tr.file.alien
-{
-	background:#fafafa;
-}
-
-form > table#allgrants tr > td
-{
-	width:0;
-	white-space:nowrap;
-}
-
-form > table#allgrants > tbody > tr > :nth-child(1),
-form > table#allgrants > tbody > tr > :nth-child(2),
-form > table#allgrants > tbody > tr > :nth-child(3)
+form > table#allgrants tr > :nth-child(1),
+form > table#allgrants tr > :nth-child(2),
+form > table#allgrants tr > :nth-child(3)
 {
 	width:16px;
 }
 
-form > table#allgrants > tbody > tr > :nth-child(4)
+form > table#allgrants tr > :nth-child(4)
 {
 	width:auto;
 	white-space:normal;

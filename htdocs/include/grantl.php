@@ -36,23 +36,22 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 // list active grants
 $sql = 'SELECT * FROM "grant" g'
     . ' WHERE user_id = ' . $auth["id"]
-    . ' ORDER BY time';
+    . ' ORDER BY time DESC';
 
 ?>
-<script type="text/javascript">
-  $(document).ready(function() { hideComments(); });
-</script>
-
 <form action="<?php echo $ref; ?>" method="post">
-  <table id="grants">
-    <tr>
-      <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
-      <th></th>
-      <th></th>
-      <th><?php echo T_("Grant"); ?></th>
-      <th><?php echo T_("Expiration"); ?></th>
-      <th><?php echo T_("Date"); ?> <img src="style/static/down.png"/></th>
-    </tr>
+  <table class="sortable" id="grants">
+    <thead>
+      <tr>
+        <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
+        <th></th>
+        <th></th>
+        <th data-sort="string"><?php echo T_("Grant"); ?></th>
+        <th data-sort="int" class="sorting-desc"><?php echo T_("Date"); ?></th>
+        <th data-sort="int"><?php echo T_("Expiration"); ?></th>
+      </tr>
+    </thead>
+    <tbody>
 <?php
 
 foreach($db->query($sql) as $DATA)
@@ -77,71 +76,21 @@ foreach($db->query($sql) as $DATA)
     . "\" src=\"style/static/cross.png\"/></a></td>";
 
   // name
-  echo "<td onclick=\"toggleComment('" . $DATA['id'] . "');\" "
-    . "class=\"filename\"><span class=\"ticketid\">"
-    . htmlEntUTF8($DATA['id']) . "</span>";
-  $maxLen = ($styleGrantMaxLen - strlen($DATA['id']) - 3);
-  if($DATA["cmt"] && $maxLen > 0)
-  {
-    echo ": <span class=\"comment\">";
-    echo htmlEntUTF8(truncAtWord($DATA["cmt"], $maxLen));
-    echo "</span>";
-  }
-  echo "</td>";
-
-  // expire
-  echo "<td>" . grantExpiration($DATA) . "</td>";
+  echo '<td class="ticketid">' . htmlEntUTF8($DATA['id']) . '</td>';
 
   // date
-  echo "<td>" . date("d/m/Y T", $DATA["time"]) . "</td>";
+  echo '<td data-sort-value="' . $DATA["time"]
+      . '">' . date($dateFmtShort, $DATA["time"]) . '</td>';
+
+  // expire
+  $expStr = grantExpiration($DATA, $expVal);
+  echo "<td data-sort-value=\"$expVal\">$expStr</td>";
 
   echo "</tr>";
-  echo "<tr class=\"$class comment\">";
-  // note: css madness
-  for($i = 0; $i != 3; ++$i) echo "<td></td>";
-
-  // comment
-  echo "<td class=\"comment\">";
-  if($DATA["cmt"])
-    echo htmlEntUTF8(sliceWords($DATA["cmt"], $styleGrantLineLen));
-  echo "</td>";
-
-  // parameters
-  echo "<td class=\"fileinfo\" colspan=\"2\"><table>";
-
-  // owner
-  if(hasPassHash($DATA))
-    echo "<tr><th>" . T_("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
-
-  // notify
-  echo "<tr><th>" . T_("Notify:") . " </th><td>";
-  $first = true;
-  foreach(getEMailAddrs($DATA['notify_email']) as $email)
-  {
-    if($first) $first = false;
-    else echo ", ";
-    echo "<a href=\"mailto:" . urlencode($email) . "\">" .
-      htmlEntUTF8($email) . "</a>";
-  }
-
-  // sent-to
-  if($DATA["sent_email"])
-  {
-    echo "<tr><th>" . T_("Sent to:") . " </th><td>";
-    $first = true;
-    foreach(getEMailAddrs($DATA['sent_email']) as $email)
-    {
-      if($first) $first = false;
-      else echo ", ";
-      echo "<a href=\"mailto:" . urlencode($email) . "\">" .
-        htmlEntUTF8($email) . "</a>";
-    }
-  }
-
-  echo "</table></td></tr>";
 }
 
 ?>
+    </tbody>
   </table>
 
   <ul>

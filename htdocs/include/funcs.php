@@ -208,12 +208,6 @@ function truncAtWord($str, $len, $thr = 5, $ell = "\xE2\x80\xA6")
 }
 
 
-function sliceWords($str, $len)
-{
-  return preg_replace('/(\S{' . $len . '})/u', "$1\xE2\x80\x8B", $str);
-}
-
-
 function is_numeric_int($str)
 {
   return (is_int($str) || (int)$str == $str);
