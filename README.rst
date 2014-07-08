@@ -667,6 +667,28 @@ You are encouraged to change DL as you see fit under the terms of the GNU GPL
 
   git://src.thregr.org/dl
 
+Development releases
+--------------------
+
+Development releases directly downloaded from git do not include pre-processed
+files. To build the localization data `gettext` and `docutils` need to be
+installed. You'll then need to execute::
+
+    cd include/scripts/
+    ./langupd.php
+
+To build the Thunderbird add-on, the Thunderbird SDK needs to be installed as
+well. You might need to change the paths inside
+``client/thunderbird-filelink-dl/config_build.sh`` (which is tuned for Debian's
+``icedove-dev`` package) and execute::
+
+    cd client/thunderbird-filelink-dl/
+    ./build.sh
+
+Database schema changes are *not* gracefully handled while following a
+development release. Do not run development releases on a production
+environment.
+
 
 Authors and Copyright
 =====================
