@@ -9,7 +9,7 @@ import argparse
 import os.path
 import sys
 
-DL_VERSION = "0.12"
+DL_VERSION = "0.13"
 DL_AGENT = "dl-cli/" + DL_VERSION
 
 
@@ -20,7 +20,7 @@ class DefaultSection(object):
 
     def head(self):
         self.readline = self.fp.readline
-        return "[DEFAULT]\n";
+        return "[DEFAULT]\n"
 
 
 class UploadError(Exception):
@@ -81,6 +81,50 @@ def newticket(file, params):
     return ret
 
 
+def newgrant(email, params):
+    s = StringIO.StringIO()
+    c = pycurl.Curl()
+    c.setopt(c.URL, params['url'] + "/newgrant")
+    c.setopt(c.WRITEFUNCTION, s.write)
+
+    auth = params['user'] + ':' + params['pass']
+    c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
+    c.setopt(c.USERPWD, auth)
+    c.setopt(c.HTTPHEADER, ['Expect:',
+                            'User-agent: ' + DL_AGENT,
+                            'X-Authorization: Basic ' + base64.b64encode(auth)])
+
+    msg = {'notify': email}
+    c.setopt(c.HTTPPOST, [("msg", json.dumps(msg))])
+    if not params['verify']:
+        c.setopt(c.SSL_VERIFYPEER, False)
+
+    try:
+        c.perform()
+    except pycurl.error as e:
+        raise UploadError("Cannot contact DL service: " + e[1])
+
+    ret = None
+    if s.tell():
+        s.seek(0)
+        try:
+            ret = json.load(s)
+        except ValueError:
+            pass
+
+    code = c.getinfo(pycurl.HTTP_CODE)
+    if code != httplib.OK:
+        error = httplib.responses[code]
+        if ret is not None and 'error' in ret:
+            error = ret['error']
+        raise UploadError("Service error: " + error)
+    if ret is None:
+        raise UploadError("Service error: cannot decode output JSON")
+
+    c.close()
+    return ret
+
+
 def die(descr, code=1):
     print >> sys.stderr, sys.argv[0] + ": " + descr
     exit(code)
@@ -88,21 +132,28 @@ def die(descr, code=1):
 
 def main():
     parser = argparse.ArgumentParser(description="Upload a file to DL", epilog=DL_AGENT)
-    parser.add_argument('-r', metavar="file", dest="rc", default="~/.dl.rc", help="Use alternate RC file")
-    parser.add_argument('file', help="File to upload")
+    parser.add_argument('-r', metavar="file", dest="rc",
+                        default="~/.dl.rc", help="Use alternate RC file")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('-g', metavar="email", dest="grant",
+                       help="Generate a grant with notification sent to 'email'")
+    group.add_argument('file', nargs='?', help="File to upload")
     args = parser.parse_args()
 
     cfgpath = os.path.expanduser(args.rc)
-    cp = ConfigParser.RawConfigParser();
+    cp = ConfigParser.RawConfigParser()
     cp.readfp(DefaultSection(cfgpath))
 
     cfg = {'url' : cp.get('DEFAULT', 'url'),
            'user': cp.get('DEFAULT', 'user'),
            'pass': cp.get('DEFAULT', 'pass'),
-           'verify': cp.getboolean('DEFAULT', 'verify')};
+           'verify': cp.getboolean('DEFAULT', 'verify')}
 
     try:
-        answ = newticket(args.file, cfg)
+        if args.file:
+            answ = newticket(args.file, cfg)
+        else:
+            answ = newgrant(args.grant, cfg)
         print(answ['url'])
     except UploadError as e:
         die(str(e))
