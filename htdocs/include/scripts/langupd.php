@@ -29,7 +29,7 @@ foreach($langData as $lang => $v)
 foreach($langData as $lang => $v)
 {
   $dir = '../../static/guide/' . $v['locale'];
-  if($lang == "EN" || !file_exists($dir)) continue;
+  if(!file_exists($dir)) continue;
 
   echo "checking guide $lang: ";
   $txt = "$dir/index.txt";
