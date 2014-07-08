@@ -6,7 +6,7 @@ import os.path
 import sys
 from dl import *
 
-DL_VERSION = "0.12"
+DL_VERSION = "0.13"
 DL_AGENT = "dl-cli/" + DL_VERSION
 
 
@@ -24,8 +24,12 @@ def progress(download_t, download_d, download_s, upload_t, upload_d, upload_s):
 
 def main():
     parser = argparse.ArgumentParser(description="Upload a file to DL", epilog=DL_AGENT)
-    parser.add_argument('-r', metavar="file", dest="rc", default="~/.dl.rc", help="Use alternate RC file")
-    parser.add_argument('file', help="File to upload")
+    parser.add_argument('-r', metavar="file", dest="rc",
+                        default="~/.dl.rc", help="Use alternate RC file")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('-g', metavar="email", dest="grant",
+                       help="Generate a grant with notification sent to 'email'")
+    group.add_argument('file', nargs='?', help="File to upload")
     args = parser.parse_args()
 
     cfgpath = os.path.expanduser(args.rc)
@@ -41,8 +45,11 @@ def main():
                       cfg['verify'], DL_AGENT)
     dl = DL(service)
     try:
-        fun = progress if sys.stdout.isatty() else None
-        answ = dl.new_ticket(args.file, progress_fn=fun)
+        if args.file:
+            fun = progress if sys.stdout.isatty() else None
+            answ = dl.new_ticket(args.file, progress_fn=fun)
+        else:
+            answ = dl.new_grant(args.grant)
         print(answ['url'])
     except KeyboardInterrupt:
 	pass

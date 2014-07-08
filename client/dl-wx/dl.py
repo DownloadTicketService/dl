@@ -32,6 +32,14 @@ class TicketParams:
         self.downloads = downloads
 
 
+class GrantParams:
+    def __init__(self, total=None, ticket_params=None):
+        self.total = total
+        if ticket_params is None:
+            ticket_params = TicketParams()
+        self.ticket_params = ticket_params
+
+
 class Request(Thread):
     def __init__(self, dl, request, msg, file, complete_fn, failed_fn, progress_fn=None):
         super(Request, self).__init__()
@@ -147,8 +155,10 @@ class DL(object):
                 complete_fn(ret['ret'])
             return ret['ret']
 
-    def new_ticket(self, file, params=TicketParams(), async=False, complete_fn=None, failed_fn=None, progress_fn=None):
+    def new_ticket(self, file, params=None, async=False, complete_fn=None, failed_fn=None, progress_fn=None):
         msg = {}
+        if params is None:
+            params = TicketParams()
         if params.permanent is not None:
             msg['permanent'] = params.permanent
         if params.total is not None:
@@ -158,3 +168,19 @@ class DL(object):
         if params.downloads is not None:
             msg['ticket_maxdl'] = params.downloads
         return self.request("newticket", msg, file, async, complete_fn, failed_fn, progress_fn)
+
+    def new_grant(self, email, params=None, async=False, complete_fn=None, failed_fn=None, progress_fn=None):
+        msg = {'notify': email}
+        if params is None:
+            params = GrantParams()
+        if params.total is not None:
+            msg['grant_total'] = params.total
+        if params.ticket_params.permanent is not None:
+            msg['permanent'] = params.ticket_params.permanent
+        if params.ticket_params.total is not None:
+            msg['ticket_total'] = params.ticket_params.total
+        if params.ticket_params.lastdl is not None:
+            msg['ticket_lastdl'] = params.ticket_params.lastdl
+        if params.ticket_params.downloads is not None:
+            msg['ticket_maxdl'] = params.ticket_params.downloads
+        return self.request("newgrant", msg, None, async, complete_fn, failed_fn, progress_fn)
