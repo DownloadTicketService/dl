@@ -38,25 +38,24 @@ $totalSize = 0;
 
 $sql = 'SELECT * FROM ticket t'
     . ' WHERE user_id = ' . $auth["id"]
-    . ' ORDER BY time';
+    . ' ORDER BY time DESC';
 
 ?>
-<script type="text/javascript">
-  $(document).ready(function() { hideComments(); });
-</script>
-
 <form action="<?php echo $ref; ?>" method="post">
-  <table id="tickets">
-    <tr>
-      <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th><?php echo T_("Ticket"); ?></th>
-      <th><?php echo T_("Size"); ?></th>
-      <th><?php echo T_("Date"); ?> <img src="style/static/down.png"/></th>
-    </tr>
+  <table class="sortable" id="tickets">
+    <thead>
+      <tr>
+        <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
+        <th data-sort="int"></th>
+        <th></th>
+        <th></th>
+        <th data-sort="string"><?php echo T_("Ticket"); ?></th>
+        <th data-sort="int"><?php echo T_("Size"); ?></th>
+        <th data-sort="int" class="sorting-desc"><?php echo T_("Date"); ?></th>
+        <th data-sort="int"><?php echo T_("Expiration"); ?></th>
+      </tr>
+    </thead>
+    <tbody>
 <?php
 
 foreach($db->query($sql) as $DATA)
@@ -72,7 +71,7 @@ foreach($db->query($sql) as $DATA)
   echo "<td><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/></td>";
 
   // tick
-  echo "<td>";
+  echo '<td data-sort-value="' . ($DATA["downloads"]? 1: 0) . '">';
   if($DATA["downloads"])
   {
     echo '<img title="' . T_("Successfully downloaded")
@@ -90,90 +89,27 @@ foreach($db->query($sql) as $DATA)
     . "<img title=\"" . T_("Purge")
     . "\" src=\"style/static/cross.png\"/></a></td>";
 
-  // edit
-  echo "<td><a href=\"" . pageLink('tedit', array('id' => $DATA['id'])) . "\">"
-    . "<img title=\"" . T_("Edit")
-    . "\" src=\"style/static/edit.png\"/></a></td>";
-
   // name
-  echo "<td onclick=\"toggleComment('" . $DATA['id'] . "');\" "
-    . "class=\"filename\">" . htmlEntUTF8($DATA["name"]);
-  $maxLen = ($styleTicketMaxLen - strlen($DATA['name']) - 3);
-  if($DATA["cmt"] && $maxLen > 0)
-  {
-    echo ": <span class=\"comment\">";
-    echo htmlEntUTF8(truncAtWord($DATA["cmt"], $maxLen));
-    echo "</span>";
-  }
-  echo "</td>";
+  echo '<td><a title="' . $DATA['id'] . '" href="'
+    . pageLink('tedit', array('id' => $DATA['id'], 'src' => $act))
+    . '" class="filename">' . htmlEntUTF8($DATA["name"])
+    . '</a></td>';
 
   // size/date
-  echo "<td>" . humanSize($DATA["size"]) . "</td>";
-  echo "<td>" . date("d/m/Y T", $DATA["time"]) . "</td>";
+  echo '<td data-sort-value="' . $DATA["size"] . '">'
+      . humanSize($DATA["size"]) . '</td>';
+  echo '<td data-sort-value="' . $DATA["time"] . '">'
+      . date($dateFmtShort, $DATA["time"]) . "</td>";
+
+  // expiration
+  $expStr = ticketExpiration($DATA, $expVal);
+  echo "<td data-sort-value=\"$expVal\">$expStr</td>";
 
   echo "</tr>";
-  echo "<tr class=\"$class comment\">";
-  // note: css madness
-  for($i = 0; $i != 5; ++$i) echo "<td></td>";
-
-  // comment
-  echo "<td class=\"comment\">";
-  if($DATA["cmt"])
-    echo htmlEntUTF8(sliceWords($DATA["cmt"], $styleTicketLineLen));
-  echo "</td>";
-
-  // parameters */
-  echo "<td class=\"fileinfo\" colspan=\"2\"><table>";
-
-  // expire
-  echo "<tr><th>" . T_("Expiration:") . " </th><td>"
-    . ticketExpiration($DATA) . "</td></tr>";
-
-  // owner
-  if(hasPassHash($DATA))
-    echo "<tr><th>" . T_("Password:") . " </th><td>" . str_repeat("&bull;", 5) . "</td>";
-
-  // downloads
-  if($DATA["downloads"])
-  {
-    echo "<tr><th>" . T_("Downloads:") . " </th><td>" . $DATA["downloads"] . "</td></tr>"
-      . "<tr><th>" . T_("Downloaded:") . " </th><td>" . date("d/m/Y", $DATA["last_stamp"]) . "</td</tr>";
-  }
-
-  // notify
-  if($DATA["notify_email"])
-  {
-    echo "<tr><th>" . T_("Notify:") . " </th><td>";
-    $first = true;
-    foreach(getEMailAddrs($DATA['notify_email']) as $email)
-    {
-      if($first) $first = false;
-      else echo ", ";
-      echo "<a href=\"mailto:" . urlencode($email) . "\">" .
-	htmlEntUTF8($email) . "</a>";
-    }
-    echo "</td></tr>";
-  }
-
-  // sent-to
-  if($DATA["sent_email"])
-  {
-    echo "<tr><th>" . T_("Sent to:") . " </th><td>";
-    $first = true;
-    foreach(getEMailAddrs($DATA['sent_email']) as $email)
-    {
-      if($first) $first = false;
-      else echo ", ";
-      echo "<a href=\"mailto:" . urlencode($email) . "\">" .
-	htmlEntUTF8($email) . "</a>";
-    }
-    echo "</td></tr>";
-  }
-
-  echo "</table></td></tr>";
 }
 
 ?>
+    </tbody>
   </table>
 
   <ul>

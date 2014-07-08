@@ -456,33 +456,23 @@ form > table.sortable th.sorting-desc:after
 form > table#tickets > tbody > tr > :nth-child(1),
 form > table#tickets > tbody > tr > :nth-child(2),
 form > table#tickets > tbody > tr > :nth-child(3),
-form > table#tickets > tbody > tr > :nth-child(4),
-form > table#tickets > tbody > tr > :nth-child(5)
+form > table#tickets > tbody > tr > :nth-child(4)
 {
 	width:16px;
 }
 
+form > table#tickets tr > :nth-child(5)
+{
+	width:auto;
+	white-space:normal;
+}
+
 form > table#tickets > tbody > tr > :nth-child(7)
 {
-	width:7em;
 	text-align:right;
 }
 
-form > table#tickets > tbody > tr > :nth-child(8)
-{
-	width:9em;
-}
-
-form > table#tickets > tbody > tr.file.comment > td
-{
-	border-bottom:1px dotted #ccc;
-}
-
-form > table#tickets > tbody > tr.file.alien
-{
-	background:#fafafa;
-}
-
+form > table#tickets tr > td,
 form > table#alltickets tr > td
 {
 	width:0;
