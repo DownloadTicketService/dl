@@ -4,7 +4,7 @@ dl 0.13: ??/??/2014
 * The "Active tickets/grants" pages for administrators now show only their own
   tickets, like for normal users. Other tickets are visible in the new "All
   tickets/grants" pages.
-* Upload progress information is now implement client-side using HTML5/JS,
+* Upload progress information is now implemented client-side using HTML5/JS,
   which is both more responsive and waives any PHP configuration/version
   restrictions.
 * Ticket/grant/user listings can now be sorted by clicking on the table header.
