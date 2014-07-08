@@ -648,13 +648,23 @@ See full installation and usage instructions on the extension_ web page.
 General/support mailing list
 ============================
 
-If you feel to discuss improvements, customizations and suggestions, you can
-subscribe to `dl-ticket-service` by either sending an empty email to
-<dl-ticket-service+subscribe@thregr.org>, using GMane_ (group
-"gmane.comp.web.dl-ticket-service.general") or by contacting the author at
-<wavexx@thregr.org>. The archives are accessible via web through
-http://news.gmane.org/gmane.comp.web.dl-ticket-service.general or via news
-directly.
+<dl-ticket-service@thregr.org>:
+  Go-to list for general discussions, troubleshooting and suggestions. You can
+  subscribe to `dl-ticket-service` by either sending an empty email to
+  <dl-ticket-service+subscribe@thregr.org> or by using GMane_ (group
+  "gmane.comp.web.dl-ticket-service.general"). The archives are accessible via
+  web through http://news.gmane.org/gmane.comp.web.dl-ticket-service.general or
+  via news directly.
+
+<dl-announces@thregr.org>:
+  DL release (and release candidate) announcements (*read-only* list). Very low
+  traffic. To subscribe, send an email to <dl-announces+subscribe@thregr.org>.
+  
+<dl-translators@thregr.org>:
+  Mailing list reserved for translators coordination.
+  
+You can contact the main author directly at <wavexx@thregr.org>, though using
+the general list is encouraged.
 
 .. _GMane: http://www.gmane.org/
 
