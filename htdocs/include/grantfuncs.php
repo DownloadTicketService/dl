@@ -30,12 +30,16 @@ function handleGrant($params)
   // generate new unique id
   $id = genGrantId();
 
+  // defaults
+  if(!isset($params["grant_total"]))
+    $params["grant_total"] = $defaults['grant']['total'];
+
   // prepare data
   $sql = "INSERT INTO \"grant\" (id, user_id, grant_expire, cmt, pass_ph"
     . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
-  $sql .= ", " . (empty($params["grant_total"])? 'NULL': time() + $params["grant_total"]);
+  $sql .= ", " . (($params["grant_total"] == 0)? 'NULL': time() + $params["grant_total"]);
   $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
   $sql .= ", " . (empty($params["pass"])? 'NULL':
       $db->quote($passHasher->HashPassword($params["pass"])));
