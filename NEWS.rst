@@ -12,6 +12,8 @@ dl 0.13: ??/??/2014
 * Spaces in uploaded file names are now correctly preserved.
 * The REST interface can now be used with the built-in authentication method
   without additional configuration *also* when using apache/fcgi.
+* Added Brazilian Portuguese and Czech localications (thanks to Guilherme
+  Benkenstein and Jan Štětina).
 * Minor bug/cosmetic fixes.
 
 DL 0.12 is the last release offering an upgrade path from DL 0.3. Version 0.13

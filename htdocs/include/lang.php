@@ -6,12 +6,13 @@ require_once("gettext/gettext.inc");
 // list of available and supported translations
 $langData = array
 (
+  'BR' => array('locale' => 'pt_BR', 'name' => 'Português do Brasil'),
+  'CZ' => array('locale' => 'cs_CZ', 'name' => 'Čeština'),
   'DE' => array('locale' => 'de_DE', 'name' => 'Deutsch'),
   'EN' => array('locale' => 'en_EN', 'name' => 'English'),
   'ES' => array('locale' => 'es_ES', 'name' => 'Español'),
   'FR' => array('locale' => 'fr_FR', 'name' => 'Français'),
   'IT' => array('locale' => 'it_IT', 'name' => 'Italiano'),
-  'CZ' => array('locale' => 'cs_CZ', 'name' => 'Čeština'),
 );
 
 

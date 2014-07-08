@@ -1,17 +1,18 @@
 Main program
 ------------
 
-Copyright(c) 2007-2013 Yuri D'Elia <wavexx@thregr.org>
+Copyright(c) 2007-2014 Yuri D'Elia <wavexx@thregr.org>
 License: GNU GPL 2+ (see COPYING)
 
 Localization
 ------------
 
-:French:	Daniel Berteaud <daniel@firewall-services.com>
-:German:	Clemens Egger <clemens.egger@eurac.edu>
-:Italian:	Yuri D'Elia <wavexx@thregr.org>
-:Spanish:	Roberto Salgado <drober@gmail.com>
-:Czech:		Jan Štětina <zaantar at gmail dot com>
+:Brazilian Portuguese:	Guilherme Benkenstein <gb@gbti.com.br>
+:Czech:			Jan Štětina <zaantar@gmail dot com>
+:French:		Daniel Berteaud <daniel@firewall-services.com>
+:German:		Clemens Egger <clemens.egger@eurac.edu>
+:Italian:		Yuri D'Elia <wavexx@thregr.org>
+:Spanish:		Roberto Salgado <drober@gmail.com>
 
 
 Bundled code
