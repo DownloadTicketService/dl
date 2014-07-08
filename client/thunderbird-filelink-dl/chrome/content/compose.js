@@ -46,7 +46,7 @@ insertUploadGrantListener.prototype =
       let url = this.provider.urlForGrant(this.id);
       let editor = GetCurrentEditor();
       editor.beginTransaction();
-      editor.insertHTML("<a href=\"" + encodeURI(url) + "\">" + encodeURI(url) + "</a>");
+      editor.insertHTML("<a href=\"" + encodeURI(url) + "\">" + encodeURI(url) + "</a>\n");
       editor.endTransaction();
       document.getElementById('statusText').setAttribute('label', '');
     }
@@ -81,5 +81,5 @@ function insertUploadGrant()
 
   // request a new grant URL
   let listener = new insertUploadGrantListener(provider);
-  listener.id = provider.newGrant(listener);
+  listener.id = provider.newGrant(listener, gCurrentIdentity.email);
 }

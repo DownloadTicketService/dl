@@ -319,7 +319,7 @@ nsDL.prototype =
   },
 
 
-  newGrant: function(aCallback)
+  newGrant: function(aCallback, aEmail)
   {
     if(Services.io.offline)
       throw Ci.nsIMsgCloudFileProvider.offlineErr;
@@ -344,7 +344,7 @@ nsDL.prototype =
       this._genericFailure(req, res, aCallback);
     }.bind(this);
 
-    let req = this._request("newgrant", {}, success_cb, failure_cb);
+    let req = this._request("newgrant", {'notify': aEmail}, success_cb, failure_cb);
     this._grants[id] = {req: req, res: null};
     return id;
   },
