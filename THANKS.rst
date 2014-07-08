@@ -21,9 +21,17 @@ Fabiola Del Greco <fabiola.delgreco@eurac.edu>:
 
 * Spanish UI translation.
 
+Guilherme Benkenstein <gb@gbti.com.br>:
+
+* Brazilian Portuguese translation.
+
 Hervé Commowick <hcommowick@exosec.fr>:
 
 * Progress bar patch.
+
+Jan Štětina <zaantar@gmail.com>:
+
+* Czech translation.
 
 Kim Thostrup <kim@thostrup.dk>:
 

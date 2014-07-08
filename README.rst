@@ -481,15 +481,16 @@ Known limitations/Browser support
 Internationalization support
 ============================
 
-DL is fully translated in English, German, French, Spanish and Italian. DL will
-attempt to detect the correct locale of the browser and use it if available,
-otherwise switch to the customizable default. The user can however switch the
+DL has been translated in several languages and will attempt to detect the
+correct locale of the browser and use it automatically when available. If no
+matching translation can be found, a default will be used, which is configured
+to be English in the main distribution. The user can however switch the
 language anytime.
 
 Adding a new translation is easy for anyone familiar with the `gettext` tools:
 you don't need programming knowledge. If you want to contribute a new language,
-we recommend to subscribe to the mailing list and ask for guidance. We really
-appreciate your help.
+or suggest a better translation, we recommend to subscribe to the mailing list
+and ask for guidance. We really appreciate your help.
 
 
 Contributing a new translation
