@@ -26,24 +26,24 @@ msgstr "Um aviso foi enviado para quem liberou o acesso. Obrigado."
 
 #: ../../style/include/nogrant.php:3
 msgid "Invalid grant"
-msgstr "Permiss„o inv·lida"
+msgstr "Permiss√£o inv√°lida"
 
 #: ../../style/include/nogrant.php:3
 msgid "Unknown grant"
-msgstr "Permiss„o desconhecida"
+msgstr "Permiss√£o desconhecida"
 
 #: ../../style/include/nogrant.php:9
 msgid "Sorry, the grant is invalid."
-msgstr "Desculpe, a permiss„o È inv·lida"
+msgstr "Desculpe, a permiss√£o √© inv√°lida"
 
 #: ../../style/include/nogrant.php:11
 #, php-format
 msgid "Sorry, the grant %s does not exist or is expired."
-msgstr "Desculpe, a permiss„o %s n„o existe ou foi expirada."
+msgstr "Desculpe, a permiss√£o %s n√£o existe ou foi expirada."
 
 #: ../../style/include/noticket.php:3
 msgid "Invalid ticket"
-msgstr "Ticket inv·lido"
+msgstr "Ticket inv√°lido"
 
 #: ../../style/include/noticket.php:3
 msgid "Unknown ticket"
@@ -51,12 +51,12 @@ msgstr "Ticket Desconhecido"
 
 #: ../../style/include/noticket.php:9
 msgid "Sorry, the ticket is invalid."
-msgstr "Desculpe, o ticket È inv·lido."
+msgstr "Desculpe, o ticket √© inv√°lido."
 
 #: ../../style/include/noticket.php:11
 #, php-format
 msgid "Sorry, the ticket %s does not exist or is expired."
-msgstr "Desculpe, o ticket %s n„o existe ou foi expirado."
+msgstr "Desculpe, o ticket %s n√£o existe ou foi expirado."
 
 #: ../../style/include/rmtlogout.php:2
 msgid "Logged-out"
@@ -81,19 +81,19 @@ msgstr "Nome do Arquivo"
 
 #: ../edittickets.php:64
 msgid "Type the file name of the ticket (<em>including the extension</em>)."
-msgstr "Digite o nome do arquivo do ticket (<em>incluindo a extens„o</em>)."
+msgstr "Digite o nome do arquivo do ticket (<em>incluindo a extens√£o</em>)."
 
 #: ../edittickets.php:70 ../newgrants.php:37 ../newtickets.php:44
 msgid "Comment"
-msgstr "Coment·rio"
+msgstr "Coment√°rio"
 
 #: ../edittickets.php:76 ../newtickets.php:50
 msgid ""
 "Type an <em>optional</em> comment for your uploaded file. The comment will "
 "be shown along with the file name."
 msgstr ""
-"Digite um coment·rio <em>opcional</em> para o seu arquivo enviado. O "
-"coment·rio vai ser mostrado junto com o nome do arquivo."
+"Digite um coment√°rio <em>opcional</em> para o seu arquivo enviado. O "
+"coment√°rio vai ser mostrado junto com o nome do arquivo."
 
 #: ../edittickets.php:83 ../prefs.php:122
 msgid "Change password"
@@ -117,12 +117,12 @@ msgid ""
 "Type an <em>optional</em> password that will be required to download the "
 "file, as an additional security measure."
 msgstr ""
-"Digite uma senha <em>opcional</em> que ser· necess·ria para fazer o "
-"download, como uma medida adional de seguranÁa."
+"Digite uma senha <em>opcional</em> que ser√° necess√°ria para fazer o "
+"download, como uma medida adional de seguran√ßa."
 
 #: ../edittickets.php:102
 msgid "Checking \"Clear password\" will remove the password."
-msgstr "Conferindo \"Clear passord\" ir· remover a senha."
+msgstr "Conferindo \"Clear passord\" ir√° remover a senha."
 
 #: ../edittickets.php:108 ../newgrants.php:84 ../newgrants.php:101
 #: ../newtickets.php:89
@@ -135,13 +135,13 @@ msgid ""
 "allowed to be kept on the server. After this period is passed the file will "
 "be deleted from the server."
 msgstr ""
-"Digite o <strong>m·ximo n˙mero de dias</strong> que o arquivo enviado ser· "
-"permitido a ficar no servidor. Depois deste perÌodo acabar o arquivo ser· "
-"excluÌdo do servidor."
+"Digite o <strong>m√°ximo n√∫mero de dias</strong> que o arquivo enviado ser√° "
+"permitido a ficar no servidor. Depois deste per√≠odo acabar o arquivo ser√° "
+"exclu√≠do do servidor."
 
 #: ../edittickets.php:123 ../newgrants.php:116 ../newtickets.php:104
 msgid "Expire in # of days after last download"
-msgstr "Expira em # dias apÛs o ˙ltimo download"
+msgstr "Expira em # dias ap√≥s o √∫ltimo download"
 
 #: ../edittickets.php:129 ../newgrants.php:122 ../newtickets.php:110
 msgid ""
@@ -149,9 +149,9 @@ msgid ""
 "server <strong>after being downloaded</strong>. After this period is passed "
 "without activity, the file will be deleted from the server."
 msgstr ""
-"Digite o n˙mero de dias que o arquivo enviado poder· ficar no servidor "
-"<strong>depois de ser baixado</strong>. ApÛs este perÌodo passar, se n„o "
-"houver nenhuma atividade, o arquivo ser· excluido do servidor."
+"Digite o n√∫mero de dias que o arquivo enviado poder√° ficar no servidor "
+"<strong>depois de ser baixado</strong>. Ap√≥s este per√≠odo passar, se n√£o "
+"houver nenhuma atividade, o arquivo ser√° excluido do servidor."
 
 #: ../edittickets.php:138 ../newgrants.php:131 ../newtickets.php:119
 msgid "Expire after # of downloads"
@@ -163,8 +163,8 @@ msgid ""
 "downloaded in total</strong>. After this amount is reached the file will be "
 "deleted from the server."
 msgstr ""
-"Digite o n˙mero de vezes que o arquivo enviado È <strong>permitido para ser "
-"baixado</strong>. Depois deste limite ser atingido, o arquivo ser· excluÌdo "
+"Digite o n√∫mero de vezes que o arquivo enviado √© <strong>permitido para ser "
+"baixado</strong>. Depois deste limite ser atingido, o arquivo ser√° exclu√≠do "
 "servidor."
 
 #: ../edittickets.php:153 ../newgrants.php:146 ../newtickets.php:134
@@ -173,13 +173,13 @@ msgstr "Ticket permanente / upload"
 
 #: ../edittickets.php:157 ../newgrants.php:149 ../newtickets.php:137
 msgid "Do not expire"
-msgstr "N„o expira"
+msgstr "N√£o expira"
 
 #: ../edittickets.php:161 ../newgrants.php:153 ../newtickets.php:141
 msgid "Set this checkmark if you do not want the uploaded file to expire."
 msgstr ""
-"Marque esta opÁ„o caso n„o queria que o arquivo enviado expire. Para que "
-"fique eternamente disponÌvel no servidor."
+"Marque esta op√ß√£o caso n√£o queria que o arquivo enviado expire. Para que "
+"fique eternamente dispon√≠vel no servidor."
 
 #: ../edittickets.php:167 ../newtickets.php:147
 msgid "Get notified by e-mail"
@@ -192,8 +192,8 @@ msgid ""
 "multiple addresses with commas."
 msgstr ""
 "Digite um ou mais e-mails <em>opcionais</em> que devem ser notificados "
-"quando o arquivo foi baixado do servidor. VocÍ pode separar endereÁos de e-"
-"mail com vÌrgulas."
+"quando o arquivo foi baixado do servidor. Voc√™ pode separar endere√ßos de e-"
+"mail com v√≠rgulas."
 
 #: ../edittickets.php:182 ../prefs.php:42
 msgid "Update"
@@ -275,7 +275,7 @@ msgstr "Permitir"
 
 #: ../grantl.php:53
 msgid "Expiry"
-msgstr "ExpiraÁ„o"
+msgstr "Expira√ß√£o"
 
 #: ../grantl.php:54 ../ticketl.php:59
 msgid "Date"
@@ -291,7 +291,7 @@ msgstr "Remover"
 
 #: ../grantl.php:115 ../ticketl.php:136
 msgid "User:"
-msgstr "Usu·rio:"
+msgstr "Usu√°rio:"
 
 #: ../grantl.php:117 ../msg.php:13 ../msg.php:54 ../msg.php:86
 #: ../ticketl.php:138
@@ -328,12 +328,12 @@ msgid ""
 "The grant %s is protected. Please enter the password to proceed to the "
 "upload."
 msgstr ""
-"A permiss„o %s È protegida. Por favor entre a senha para proceder com o "
+"A permiss√£o %s √© protegida. Por favor entre a senha para proceder com o "
 "envio."
 
 #: ../grantp.php:24
 msgid "Type the password required for the upload."
-msgstr "Digite a senha necess·ria para o envio."
+msgstr "Digite a senha necess√°ria para o envio."
 
 #: ../grantp.php:31
 msgid "Submit"
@@ -354,7 +354,7 @@ msgstr "Envie um arquivo"
 #: ../grants.php:29 ../newtickets.php:37
 #, php-format
 msgid "Choose which file to upload. You can upload up to %s."
-msgstr "Escolha qual arquivo deseja enviar. VocÍ pode enviar atÈ %s."
+msgstr "Escolha qual arquivo deseja enviar. Voc√™ pode enviar at√© %s."
 
 #: ../login.php:4 ../login.php:38
 msgid "Login"
@@ -362,16 +362,16 @@ msgstr "Login"
 
 #: ../login.php:13 ../users.php:70 ../users.php:105
 msgid "User"
-msgstr "Usu·rio"
+msgstr "Usu√°rio"
 
 #: ../login.php:19
 msgid "Type the user name to access the filesharing service."
 msgstr ""
-"Digite o usu·rio para acessar o serviÁo de compartilhamento de arquivos."
+"Digite o usu√°rio para acessar o servi√ßo de compartilhamento de arquivos."
 
 #: ../login.php:31
 msgid "Type the password to access the filesharing service."
-msgstr "Digite a senha para acessar o serviÁo de compartilhamento de arquivos."
+msgstr "Digite a senha para acessar o servi√ßo de compartilhamento de arquivos."
 
 #: ../msg.php:6
 #, php-format
@@ -385,7 +385,7 @@ msgstr "URL:"
 #: ../msg.php:21
 #, php-format
 msgid "[dl] ticket %s download notification"
-msgstr "[dl] ticket %s download notificaÁ„o"
+msgstr "[dl] ticket %s download notifica√ß√£o"
 
 #: ../msg.php:22
 #, php-format
@@ -395,7 +395,7 @@ msgstr "O ticket %s foi baixado por %s de %s"
 #: ../msg.php:30 ../msg.php:39
 #, php-format
 msgid "[dl] ticket %s purge notification"
-msgstr "[dl] ticket %s notificaÁ„o de remoÁ„o"
+msgstr "[dl] ticket %s notifica√ß√£o de remo√ß√£o"
 
 #: ../msg.php:31
 #, php-format
@@ -405,7 +405,7 @@ msgstr "O ticket %s foi manualmente removido depois de %d downloads de %s"
 #: ../msg.php:40
 #, php-format
 msgid "The ticket %s expired automatically after %d downloads from %s"
-msgstr "O ticket %s expirou autom·ticamente depois de %d downloads de %s"
+msgstr "O ticket %s expirou autom√°ticamente depois de %d downloads de %s"
 
 #: ../msg.php:47
 msgid "[dl] upload grant link"
@@ -414,22 +414,22 @@ msgstr "[dl] link permitido para envio"
 #: ../msg.php:62 ../msg.php:70
 #, php-format
 msgid "[dl] grant %s purge notification"
-msgstr "[dl] permitido %s notificaÁ„o de remoÁ„o"
+msgstr "[dl] permitido %s notifica√ß√£o de remo√ß√£o"
 
 #: ../msg.php:63
 #, php-format
 msgid "The grant %s was purged manually from %s"
-msgstr "A permiss„o %s foi removida manualmente de %s"
+msgstr "A permiss√£o %s foi removida manualmente de %s"
 
 #: ../msg.php:71
 #, php-format
 msgid "The grant %s expired automatically from %s"
-msgstr "A permiss„o %s expirou autom·ticamente de %s"
+msgstr "A permiss√£o %s expirou autom√°ticamente de %s"
 
 #: ../msg.php:77
 #, php-format
 msgid "[dl] download link for grant %s"
-msgstr "[dl] link para permiss„o de envio de arquivos %s"
+msgstr "[dl] link para permiss√£o de envio de arquivos %s"
 
 #: ../msg.php:78
 #, php-format
@@ -438,7 +438,7 @@ msgid ""
 "downloaded at:\n"
 "\n"
 msgstr ""
-"Sua permiss„o %s j· fora usada por %s. O arquivo enviado est· disponÌvel "
+"Sua permiss√£o %s j√° fora usada por %s. O arquivo enviado est√° dispon√≠vel "
 "para download em:\n"
 "\n"
 
@@ -449,15 +449,15 @@ msgstr "Permitir resultado"
 #: ../newgrantr.php:14
 #, php-format
 msgid "Your grant %s"
-msgstr "Sua permiss„o È %s"
+msgstr "Sua permiss√£o √© %s"
 
 #: ../newgrantr.php:20 ../newticketr.php:20
 msgid "The required password is:"
-msgstr "A senha requirida È:"
+msgstr "A senha requirida √©:"
 
 #: ../newgrantr.php:26
 msgid "A grant link has been sent to:"
-msgstr "O Link de permiss„o de envio foi enviado para:"
+msgstr "O Link de permiss√£o de envio foi enviado para:"
 
 #: ../newgrantr.php:40 ../newticketr.php:40
 msgid "Send via e-mail"
@@ -465,11 +465,11 @@ msgstr "Enviado via e-mail"
 
 #: ../newgrants.php:16
 msgid "Grant parameters"
-msgstr "Par‚metros de permissıes"
+msgstr "Par√¢metros de permiss√µes"
 
 #: ../newgrants.php:23
 msgid "Notification e-mail"
-msgstr "NotificaÁ„o por e-mail"
+msgstr "Notifica√ß√£o por e-mail"
 
 #: ../newgrants.php:29
 msgid ""
@@ -477,9 +477,9 @@ msgid ""
 "notified when the file is uploaded to the server. You can separate multiple "
 "addresses with commas."
 msgstr ""
-"Digite um ou mais endereÁos <b>obrigatÛrios</b> de e-mail que devem ser "
-"notificados quando o arquivo for enviado para o servidor. VocÍ pode separar "
-"m˙tiplos endereÁos de e-mail usando vÌrgulas."
+"Digite um ou mais endere√ßos <b>obrigat√≥rios</b> de e-mail que devem ser "
+"notificados quando o arquivo for enviado para o servidor. Voc√™ pode separar "
+"m√∫tiplos endere√ßos de e-mail usando v√≠rgulas."
 
 #: ../newgrants.php:43
 msgid ""
@@ -487,8 +487,8 @@ msgid ""
 "ticket. The comment will be shown along with the grant and ticket "
 "information."
 msgstr ""
-"Digite um coment·rio <em>opcional</em> para sua permiss„o de envio. O "
-"coment·rio ser· mostrado junto com a permiss„o de envio e a informaÁ„o do "
+"Digite um coment√°rio <em>opcional</em> para sua permiss√£o de envio. O "
+"coment√°rio ser√° mostrado junto com a permiss√£o de envio e a informa√ß√£o do "
 "ticket."
 
 #: ../newgrants.php:51 ../newtickets.php:57
@@ -501,21 +501,21 @@ msgid ""
 "immediately receive the link to the upload grant. You can separate multiple "
 "addresses with commas."
 msgstr ""
-"Digite um ou mais endereÁos de e-mail <em>opcionais</em> que devem receber "
-"imediatamente o link para a permiss„o de envio. VocÍ pode separar m˙ltiplos "
-"endereÁos com vÌrgulas."
+"Digite um ou mais endere√ßos de e-mail <em>opcionais</em> que devem receber "
+"imediatamente o link para a permiss√£o de envio. Voc√™ pode separar m√∫ltiplos "
+"endere√ßos com v√≠rgulas."
 
 #: ../newgrants.php:65 ../newtickets.php:71
 msgid "Advanced"
-msgstr "AvanÁado"
+msgstr "Avan√ßado"
 
 #: ../newgrants.php:76
 msgid ""
 "Type an <em>optional</em> password that will be required to both upload and "
 "download the file, as an additional security measure."
 msgstr ""
-"Digite uma senha <em>opcional</em> que ser· pedida para envio ou "
-"recebimento  do arquivo, como uma medida adicional de seguranÁa."
+"Digite uma senha <em>opcional</em> que ser√° pedida para envio ou "
+"recebimento  do arquivo, como uma medida adicional de seguran√ßa."
 
 #: ../newgrants.php:90
 msgid ""
@@ -523,13 +523,13 @@ msgid ""
 "the upload grant to be used.  After this period is passed without activity, "
 "the grant is removed the server."
 msgstr ""
-"Digite o <strong>n˙mero m·ximo de dias</strong> que o servidor deve aguadar "
-"atÈ que o arquivo enviado seja usado. ApÛs este perÌodo passar sem nenhuma "
-"atividade a permiss„o ser· removida do servidor."
+"Digite o <strong>n√∫mero m√°ximo de dias</strong> que o servidor deve aguadar "
+"at√© que o arquivo enviado seja usado. Ap√≥s este per√≠odo passar sem nenhuma "
+"atividade a permiss√£o ser√° removida do servidor."
 
 #: ../newgrants.php:98
 msgid "Ticket parameters"
-msgstr "Par‚metros do Ticket"
+msgstr "Par√¢metros do Ticket"
 
 #: ../newgrants.php:162 ../users.php:141
 msgid "Create"
@@ -537,7 +537,7 @@ msgstr "Criar"
 
 #: ../newgrants.php:164 ../newtickets.php:167
 msgid "Set as defaults"
-msgstr "Voltar ao padr„o"
+msgstr "Voltar ao padr√£o"
 
 #: ../newticketr.php:14
 #, php-format
@@ -558,9 +558,9 @@ msgid ""
 "immediately receive the link to the ticket. You can separate multiple "
 "addresses with commas."
 msgstr ""
-"Digite um ou mais endereÁos de e-mail <em>opcionais</em> que devem receber "
-"imediatamente o link para o ticket. VocÍ pode enviar para v·rios endereÁos "
-"separando-os com vÌrgulas."
+"Digite um ou mais endere√ßos de e-mail <em>opcionais</em> que devem receber "
+"imediatamente o link para o ticket. Voc√™ pode enviar para v√°rios endere√ßos "
+"separando-os com v√≠rgulas."
 
 #: ../newtickets.php:150
 msgid "Use my e-mail"
@@ -576,19 +576,19 @@ msgstr "Tickets ativos"
 
 #: ../pages.php:8
 msgid "New grant"
-msgstr "Nova permiss„o de envio"
+msgstr "Nova permiss√£o de envio"
 
 #: ../pages.php:9
 msgid "Active grants"
-msgstr "Permissıes ativas"
+msgstr "Permiss√µes ativas"
 
 #: ../pages.php:10
 msgid "Preferences"
-msgstr "PreferÍncias"
+msgstr "Prefer√™ncias"
 
 #: ../pages.php:11
 msgid "Manage users"
-msgstr "Gerenciar usu·rios"
+msgstr "Gerenciar usu√°rios"
 
 #: ../pages.php:58
 msgid "Logout"
@@ -600,15 +600,15 @@ msgstr "Ajuda"
 
 #: ../prefs.php:14
 msgid "Settings successfully updated."
-msgstr "ConfiguraÁıes atualizadas com sucesso."
+msgstr "Configura√ß√µes atualizadas com sucesso."
 
 #: ../prefs.php:14
 msgid "Settings update"
-msgstr "ConfiguraÁıes atualizadas"
+msgstr "Configura√ß√µes atualizadas"
 
 #: ../prefs.php:21
 msgid "Defaults"
-msgstr "Padrıes"
+msgstr "Padr√µes"
 
 #: ../prefs.php:28
 msgid "E-Mail"
@@ -619,12 +619,12 @@ msgid ""
 "Type a <b>mandatory</b> e-mail address that will be used as a default for "
 "notifications."
 msgstr ""
-"Digite um endereÁo de e-mail <b>obrigatÛrio</b> que ser· usado como padr„o "
-"para notificaÁıes."
+"Digite um endere√ßo de e-mail <b>obrigat√≥rio</b> que ser√° usado como padr√£o "
+"para notifica√ß√µes."
 
 #: ../prefs.php:58
 msgid "New passwords don't match! Password unchanged."
-msgstr "Nova senha n„o conferem! A senha n„o foi alterada."
+msgstr "Nova senha n√£o conferem! A senha n√£o foi alterada."
 
 #: ../prefs.php:58 ../prefs.php:60 ../prefs.php:64
 msgid "Password change"
@@ -632,7 +632,7 @@ msgstr "Senha alterada"
 
 #: ../prefs.php:60
 msgid "Old password doesn't match! Password unchanged."
-msgstr "Antiga senha n„o confere! A senha n„o foi alterada."
+msgstr "Antiga senha n√£o confere! A senha n√£o foi alterada."
 
 #: ../prefs.php:64
 msgid "Password successfully changed."
@@ -675,12 +675,12 @@ msgstr "Sobre %d downloads"
 #: ../ticketfuncs.php:26
 #, php-format
 msgid "After %d downloads"
-msgstr "ApÛs %d downloads"
+msgstr "Ap√≥s %d downloads"
 
 #: ../ticketfuncs.php:28
 #, php-format
 msgid "%s after next download"
-msgstr "%s apÛs prÛximo download"
+msgstr "%s ap√≥s pr√≥ximo download"
 
 #: ../ticketl.php:57
 msgid "Ticket"
@@ -720,11 +720,11 @@ msgstr "Tamanho total: %s"
 msgid ""
 "The ticket %s is protected. Please enter the password to unlock the content."
 msgstr ""
-"O ticket %s È protegido. Por favor entre com a senha para liberar o conte˙do."
+"O ticket %s √© protegido. Por favor entre com a senha para liberar o conte√∫do."
 
 #: ../ticketp.php:24
 msgid "Type the password required to unlock this ticket."
-msgstr "Digite a senha necess·ria para liberar este ticket."
+msgstr "Digite a senha necess√°ria para liberar este ticket."
 
 #: ../users.php:15
 msgid "Created"
@@ -732,16 +732,16 @@ msgstr "Criado"
 
 #: ../users.php:17
 msgid "Creation failed"
-msgstr "CriaÁ„o falhou"
+msgstr "Cria√ß√£o falhou"
 
 #: ../users.php:18
 #, php-format
 msgid "user \"%s\" already exists"
-msgstr "usu·rio \"%s\" j· existe"
+msgstr "usu√°rio \"%s\" j√° existe"
 
 #: ../users.php:31
 msgid "Deleted"
-msgstr "ExcluÌdo"
+msgstr "Exclu√≠do"
 
 #: ../users.php:63
 msgid "Updated"
@@ -761,7 +761,7 @@ msgstr "Tickets"
 
 #: ../users.php:109
 msgid "Grants"
-msgstr "Permissıes"
+msgstr "Permiss√µes"
 
 #: ../users.php:110
 msgid "Total size"
@@ -769,8 +769,8 @@ msgstr "Tamanho total"
 
 #: ../users.php:150
 msgid "Delete selected"
-msgstr "Exclus„o selecionada"
+msgstr "Exclus√£o selecionada"
 
 #: ../users.php:151
 msgid "Apply changes"
-msgstr "Aplicar alteraÁıes"
+msgstr "Aplicar altera√ß√µes"
