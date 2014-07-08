@@ -16,7 +16,7 @@ dl 0.13: ??/??/2014
 * The Thunderbird add-on now includes a new menu command (under "Tools") and a
   new toolbar icon in the composer window to generate and insert grants in the
   current message.
-* Added Brazilian Portuguese and Czech localications (thanks to Guilherme
+* Added Brazilian Portuguese and Czech localizations (thanks to Guilherme
   Benkenstein and Jan Štětina).
 * Minor bug/cosmetic fixes.
 
