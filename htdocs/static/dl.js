@@ -123,8 +123,10 @@ function toggleAdvanced(set)
 
 function selectAll(v)
 {
-  if(v === undefined) v = true;
-  $('input:checkbox', document.forms[0]).attr('checked', v);
+  $('input:checkbox', document.forms[0]).each(function()
+  {
+    this.checked = v;
+  });
 }
 
 function validateForm(form)
