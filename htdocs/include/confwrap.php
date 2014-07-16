@@ -10,7 +10,7 @@ $cfgPath = "/etc/dl.php";
 if(is_file("$incPath/config.php"))
   $cfgPath = "$incPath/config.php";
 if(!is_readable($cfgPath))
-  die("cannot read configuration file");
+  die("cannot read configuration file\n");
 require_once($cfgPath);
 
 // variables

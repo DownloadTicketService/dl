@@ -7,11 +7,11 @@ require_once("lang.php");
 
 // check data dirs
 if(!is_readable($spoolDir) || !is_writable($spoolDir))
-  die("cannot access spool directory");
+  die("cannot access spool directory\n");
 if(!file_exists($dataDir))
 {
   if(!mkdir($dataDir))
-    die("cannot initialize data directory");
+    die("cannot initialize data directory\n");
 }
 
 // initialize logging
@@ -20,7 +20,7 @@ if($useSysLog)
 elseif(!empty($logFile))
   $ret = $logFd = fopen($logFile, "at");
 if(@$ret === false)
-  die("cannot initialize logging");
+  die("cannot initialize logging\n");
 
 // initialize the db
 try
@@ -31,16 +31,16 @@ try
 }
 catch(PDOException $e)
 {
-  die("cannot initialize database");
+  die("cannot initialize database\n");
 }
 
 // check schema version
 $sql = "SELECT value FROM config WHERE name = 'version'";
 if(!($q = $db->query($sql)))
-  die("cannot initialize database");
+  die("cannot initialize database\n");
 $version = $q->fetchColumn();
 if(version_compare($version, $schemaVersion, "!="))
-  die("database requires schema upgrade");
+  die("database requires schema upgrade\n");
 unset($q);
 
 // default hasher
