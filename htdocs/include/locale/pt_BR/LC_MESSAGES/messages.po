@@ -801,30 +801,3 @@ msgstr "Exclusão selecionada"
 #: ../users.php:161
 msgid "Apply changes"
 msgstr "Aplicar alterações"
-
-#~ msgid "Current expiry"
-#~ msgstr "Atualmente expirado"
-
-#~ msgid "Expiry"
-#~ msgstr "Expiração"
-
-#~ msgid "User:"
-#~ msgstr "Usuário:"
-
-#~ msgid "Notify:"
-#~ msgstr "Notificar:"
-
-#~ msgid "Sent to:"
-#~ msgstr "Enviado para:"
-
-#~ msgid "Edit"
-#~ msgstr "Editar"
-
-#~ msgid "Expiry:"
-#~ msgstr "Expira:"
-
-#~ msgid "Downloads:"
-#~ msgstr "Downloads:"
-
-#~ msgid "Downloaded:"
-#~ msgstr "Baixados"
