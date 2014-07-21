@@ -1,4 +1,5 @@
 *.mo
+*~
 *.pyc
 .*.swp
 /htdocs/include/config.php
