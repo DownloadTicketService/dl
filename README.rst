@@ -493,8 +493,8 @@ or suggest a better translation, we recommend to subscribe to the mailing list
 and ask for guidance. We really appreciate your help.
 
 
-Contributing a new translation
-------------------------------
+Contributing/updating a translation
+-----------------------------------
 
 Contributing a new translation is easy enough:
 
@@ -503,57 +503,25 @@ Contributing a new translation is easy enough:
 
 * Execute::
 
-    mkdir -p include/locale/lang/LC_MESSAGES/
     cd include/scripts/
-    ./langgen.php > ../locale/lang/LC_MESSAGES/messages.po
+    ./langgen.php
 
-  where *lang* is the full locale name you just added.
+  to freshen the strings to be translated.
 
-* Translate the freshly generated ``messages.po`` using a text editor, or
-  by using PoEdit_, or any other "po" editing tool.
-
-* To test/update the translations run ``langupd.php``::
-
-    cd include/scripts/
-    ./langupd.php
+* Translate the generated ``messages.po`` in the directory
+  ``include/locale/<locale_NAME>/LC_MESSAGES/`` using a text editor, or by
+  using PoEdit_, or any other "po" editing tool.
 
 * Optionally translate the user guide, which is located in
   ``include/static/guide/``.
 
   Copy the english directory tree into a new tree with the new locale name and
-  translate ``index.txt``. ``index.html`` is regenerated automatically with
-  docutils_ by running ``langupd.php`` as before.
-
-Updating an existing translation
---------------------------------
-
-Updating an existing translation is very similar to contributing a new
-translation. Again, we can make use of the `gettext` tools to refresh the
-existing files:
-
-* Execute::
-
-    cd include/scripts/
-    ./langgen.php > ../locale/lang/LC_MESSAGES/messages.po.ref
-
-  to generate the full list of strings to be translated.
-
-* Merge the existing translations, by executing::
-
-    cd ../locale/lang/LC_MESSAGES/
-    msgmerge -U messages.po messages.po.ref
-
-* Examine the updated ``messages.po`` file using any "PO" editing tool or text
-  editing, looking for new strings to be translated, strings which have been
-  removed, and fuzzy matches which might require tweaks in the translation.
+  translate ``index.txt``. ``index.html`` is regenerated automatically.
 
 * To test/update the translations run ``langupd.php``::
 
     cd include/scripts/
     ./langupd.php
-
-.. _PoEdit: http://poedit.sourceforge.net/
-.. _docutils: http://docutils.sourceforge.net/
 
 
 Usage
@@ -684,7 +652,7 @@ Development releases
 --------------------
 
 Development releases directly downloaded from git do not include pre-processed
-files. To build the localization data `gettext` and `docutils` need to be
+files. To build the localization data `gettext` and docutils_ need to be
 installed. You'll then need to execute::
 
     cd include/scripts/
@@ -710,3 +678,7 @@ Authors and Copyright
 
 | "dl" is distributed under GNU GPL 2, WITHOUT ANY WARRANTY.
 | Copyright(c) 2007-2012 by Yuri D'Elia <wavexx@thregr.org>.
+
+
+.. _PoEdit: http://poedit.sourceforge.net/
+.. _docutils: http://docutils.sourceforge.net/
