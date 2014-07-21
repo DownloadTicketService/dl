@@ -32,15 +32,15 @@ foreach($langData as $lang => $v)
   if(!file_exists($dir)) continue;
 
   echo "checking guide $lang: ";
-  $txt = "$dir/index.txt";
+  $rst = "$dir/index.rst";
   $html = "$dir/index.html";
-  $txtSt = stat($txt);
+  $rstSt = stat($rst);
   $htmlSt = @stat($html);
-  if(!$htmlSt || $htmlSt['mtime'] < $txtSt['mtime'])
+  if(!$htmlSt || $htmlSt['mtime'] < $rstSt['mtime'])
   {
     echo "regenerating... ";
     $lang = strtolower($lang);
-    system("cd " . escapeshellarg($dir) . " && rst2html -l '$lang' index.txt > index.html");
+    system("cd " . escapeshellarg($dir) . " && rst2html -l '$lang' index.rst > index.html");
   }
   echo "ok\n";
 }

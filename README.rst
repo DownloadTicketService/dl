@@ -516,7 +516,7 @@ Contributing a new translation is easy enough:
   ``include/static/guide/``.
 
   Copy the english directory tree into a new tree with the new locale name and
-  translate ``index.txt``. ``index.html`` is regenerated automatically.
+  translate ``index.rst``. ``index.html`` is regenerated automatically.
 
 * To test/update the translations run ``langupd.php``::
 
