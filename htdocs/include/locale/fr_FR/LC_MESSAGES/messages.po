@@ -640,12 +640,12 @@ msgstr "Gestion des utilisateurs"
 #: ../pages.php:12
 #, fuzzy
 msgid "All tickets"
-msgstr "Tickets actifs"
+msgstr "Tous les tickets"
 
 #: ../pages.php:13
 #, fuzzy
 msgid "All grants"
-msgstr "Invitations actives"
+msgstr "Toutes les invitations"
 
 #: ../pages.php:60
 msgid "Logout"
