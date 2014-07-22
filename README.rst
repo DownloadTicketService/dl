@@ -139,10 +139,10 @@ You should also check ``session.gc_maxlifetime`` (in seconds) to be long enough
 for your users to complete a large upload. Uploading 500MB on a slow ADSL
 connection can take as much as 12 hours, so set it to *at least* 43200.
 
-If you are allowed to do so, you can also set these parameters with "ini_set()"
-directly inside ``include/config.php`` (so that it only affects dl). If PHP was
-built as an Apache module you can also set them through ``.htaccess`` (see
-http://www.php.net/manual/en/configuration.changes.php).
+If PHP was built as an Apache module you can also set them through
+``.htaccess`` (see http://www.php.net/manual/en/configuration.changes.php) or
+directly inside your Apache's configuration (see `Apache/mod_php`_ for an
+example).
 
 
 User setup
@@ -226,11 +226,15 @@ Large file support
 Large file support (for uploads larger than 2GB) requires a combination of PHP
 version, web server and browser support.
 
-Uploads of files larger than 2GB is only supported with PHP 5.6 and beyond.
-
 Apache 2.2 and above support large request bodies but needs to be built for
 64bit (see ``LimitRequestBody``). Same for Lighttpd 1.4 (>2gb but only for
 64bit builds, see ``server.max-request-size``).
+
+Due to a bug in PHP < 5.6, ``upload_max_filesize`` and ``post_max_size`` are
+limited to a 31bit integer, which limits the number and uploads to 2GB even on
+64bit systems. You can still allow large file uploads by setting both to "0"
+(meanining unlimited), and enforce the upload limit through the web server
+instead. See below for an example.
 
 Finally, not all browsers support large file uploads:
 
@@ -302,6 +306,27 @@ With LDAP or ActiveDirectory authentication::
       Satisfy any
     </FilesMatch>
   </Directory>
+
+PHP < 5.6 large file work-around::
+
+  <Directory /your-installation-directory>
+    # Normal DL configuration
+    AcceptPathInfo On
+    AllowOverride Limit
+    Options -Indexes
+    DirectoryIndex index.php index.html
+
+    # Remove PHP upload restrictions
+    php_flag post_max_size 0
+    php_flag upload_max_filesize 0
+
+    # Enforce body limit on the web server instead
+    LimitRequestBody 4939212390
+  </Directory>
+
+Note: when using the example configuration above, be sure to set ``$maxSize``
+in the DL configuration file in order to show an appropriate upload limit to
+your users!
 
 
 Apache/FastCGI
