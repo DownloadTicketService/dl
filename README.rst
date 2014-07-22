@@ -274,40 +274,54 @@ With internal authentication::
 With external authentication::
 
   <Directory /your-installation-directory>
+    # Normal DL configuration
     AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
     DirectoryIndex index.php index.html
+
+    # Require a Basic authentication scheme for admin/rest.php
     <FilesMatch "^(admin|rest)\.php$">
+      # The scheme must be Basic
       AuthType Basic
       AuthName "Restricted Area"
-      ...
       Require valid-user
+      Satisfy any
+
+      # You'll need to provide a valid source for passwords using either the
+      # following or some other authentication source (such as LDAP)
+      AuthBasicProvider file
+      AuthUserFile /path/to/passwd/file
     </FilesMatch>
   </Directory>
 
 With LDAP or ActiveDirectory authentication::
 
   <Directory /your-installation-directory>
+    # Normal DL configuration
     AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
     DirectoryIndex index.php index.html
+
+    # Require a Basic authentication scheme for admin/rest.php
     <FilesMatch "^(admin|rest)\.php$">
+      # The scheme must be Basic
       AuthType Basic
       AuthName "Restricted Area"
+      Require valid-user
+      Satisfy any
+
+      # Use the LDAP provider (just an example query)
       AuthBasicProvider ldap
       AuthzLDAPAuthoritative off
       AuthLDAPURL ldap://XXXXXX:XXXX/ou=XXXX,dc=XXXX,dc=XXX?sAMAccountName?sub?(objectClass=*)
       AuthLDAPBindDN "cn=XXXX,ou=XXXXX,dc=XXX,dc=XXX"
       AuthLDAPBindPassword "XXXXX"
-      ...
-      Require valid-user
-      Satisfy any
     </FilesMatch>
   </Directory>
 
-PHP < 5.6 large file work-around::
+Example configuration for PHP < 5.6 large file work-around::
 
   <Directory /your-installation-directory>
     # Normal DL configuration
@@ -352,11 +366,14 @@ For the REST service to work, independently of the authentication method,
 ``mod_rewrite`` needs to be enabled and configured as follows::
 
   <Directory /your-installation-directory>
+    # Normal DL configuration
     AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
     DirectoryIndex index.php index.html
+
     <FilesMatch "^(admin|rest)\.php$">
+      # Forward the credentials for the PHP process
       RewriteEngine on
       RewriteCond %{HTTP:Authorization} ^(.*)
       RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
@@ -370,14 +387,18 @@ If you want to enable HTTP/External authentication, just add the usual
 authorization configuration as well::
 
   <Directory /your-installation-directory>
+    # Normal DL configuration
     AcceptPathInfo On
     AllowOverride Limit
     Options -Indexes
     DirectoryIndex index.php index.html
     <FilesMatch "^(admin|rest)\.php$">
+      # Forward the credentials for the PHP process
       RewriteEngine on
       RewriteCond %{HTTP:Authorization} ^(.*)
       RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+
+      # Require a Basic authentication scheme for admin/rest.php
       AuthType Basic
       AuthName "Restricted Area"
       ...
