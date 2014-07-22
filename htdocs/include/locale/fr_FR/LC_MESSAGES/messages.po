@@ -78,37 +78,30 @@ msgid "Editing ticket %s"
 msgstr "Édition du ticket %s"
 
 #: ../edittickets.php:47
-#, fuzzy
 msgid "Current expiration"
 msgstr "Expiration actuelle"
 
 #: ../edittickets.php:48
-#, fuzzy
 msgid "Created on"
 msgstr "Créée le"
 
 #: ../edittickets.php:56
-#, fuzzy
 msgid "Created by"
 msgstr "Créée par"
 
 #: ../edittickets.php:59
-#, fuzzy
 msgid "File size"
 msgstr "Taille du fichier"
 
 #: ../edittickets.php:60
-#, fuzzy
 msgid "Download link"
 msgstr "Lien de téléchargement"
 
 #: ../edittickets.php:65
-#, fuzzy
 msgid "Download count"
 msgstr "Nombre de Téléchargements"
 
 #: ../edittickets.php:66
-#, fuzzy
 msgid "Last download"
 msgstr "Dernier téléchargement"
 
@@ -337,7 +330,6 @@ msgstr "Date"
 #: ../grantla.php:48
 #: ../ticketl.php:55
 #: ../ticketla.php:52
-#, fuzzy
 msgid "Expiration"
 msgstr "Expiration"
 
@@ -638,14 +630,12 @@ msgid "Manage users"
 msgstr "Gestion des utilisateurs"
 
 #: ../pages.php:12
-#, fuzzy
 msgid "All tickets"
-msgstr "Tickets actifs"
+msgstr "Tous les tickets"
 
 #: ../pages.php:13
-#, fuzzy
 msgid "All grants"
-msgstr "Invitations actives"
+msgstr "Toutes les invitations"
 
 #: ../pages.php:60
 msgid "Logout"
