@@ -686,8 +686,9 @@ the general list is encouraged.
 Customisation and development
 =============================
 
-You are encouraged to change DL as you see fit under the terms of the GNU GPL
-2 license. DL's GIT repository is publicly accessible at::
+You are encouraged to change DL as you see fit under the terms of the GNU GPL 2
+license, or (at your option) any later version. DL's GIT repository is publicly
+accessible at::
 
   git://src.thregr.org/dl
 
