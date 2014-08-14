@@ -58,6 +58,7 @@ if(!$complete)
 header("Content-Length: $size");
 session_write_close();
 ob_end_flush();
+apache_setenv('no-gzip', '1');
 
 // contents
 $left = $size;
