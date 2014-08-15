@@ -43,6 +43,10 @@ $sql = "UPDATE ticket SET last_stamp = $now"
   . " WHERE id = " . $db->quote($id);
 $db->exec($sql);
 
+// disable mod_deflate
+if(function_exists('apache_setenv'))
+  apache_setenv('no-gzip', '1');
+
 // send the file
 header("ETag: $id");
 header("Pragma: private");
@@ -58,7 +62,6 @@ if(!$complete)
 header("Content-Length: $size");
 session_write_close();
 ob_end_flush();
-apache_setenv('no-gzip', '1');
 
 // contents
 $left = $size;
