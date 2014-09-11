@@ -9,12 +9,16 @@
       <script type="text/javascript" src="style/static/view.js"></script>
     </head>
     <body>
-      <img id="top" src="style/static/top.png" alt=""/>
-      <div id="form_container">
-	<h1><a>
-	  <img src="style/static/dl.png" alt=""/>
-	  Ticket Service
-	</a></h1>
+		<div id="navbar-inner">
+			<div id="container">
+				<h1>
+					<img src="style/static/dl.png" alt=""/>
+					<a>Ticket Service</a>
+				</h1>
+			</div>
+		</div>
+	<br>
+    <div id="form_container">
 	<?php
           if(!empty($ref))
 	  {

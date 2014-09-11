@@ -1,32 +1,42 @@
 /*** General ***/
+* {		
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 body
 {
-	background:#CDDCEC;
-	font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
-	margin:8px 0 16px;
-	text-align:center;
+	background:#F2F3F4;
+	color: #333333;
+	font-family: 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, Arial, Verdana, sans-serif;
+	height: 100%;
+	margin:10px 0 16px;
+	text-align: center;
+	word-spacing: -1px;
 }
 
-#form_container
-{
-	background:#fff;
-	margin:0 auto;
+#form_container{
 	text-align:left;
-	width:800px;
-}
-
-#top
-{
-	display:block;
-	height:10px;
-	margin:10px auto 0;
-	width:810px;
+	background: #FFFFFF;
+	border: 1px solid #D5D5D6;
+	border-top-color: #E0E1E2;
+	border-bottom-color: #C0C1C2;
+	margin: 0px auto 0px auto;
+	padding: 20px 26px 19px 26px;
+	width: 800px;
+	-webkit-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
 }
 
 #langmap
 {
 	float:right;
-	font-size:90%;
+	font-size: 12px;
 	margin:2px 2px 1em 2px;
 }
 
@@ -36,7 +46,7 @@ body
 	margin:1em 0 0;
 	clear:both;
 	text-align:center;
-	font-size:90%;
+	font-size: 12.5px;
 	color:#555;
 }
 
@@ -80,36 +90,36 @@ table th, table td
 
 
 /**** Logo Section  *****/
+#navbar-inner {
+	background-color: #4B75B3;
+	background-repeat: repeat-x;
+	width: 800px;
+	margin: 0px auto 0px auto;
+	padding: 0px 25px 5px 0px;
+	-webkit-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	overflow:hidden;
+}
+
 h1
 {
-	background-color:#4B75B3;
-	margin:0;
-	min-height:0;
-	padding:0;
-	text-decoration:none;
+	margin: 0;
 }
 
 h1 img
 {
-	float:left;
-	padding-right:0.5em;
+	float:left;	
 }
 
 h1 a
 {
-	display:block;
-	height:100%;
-	min-height:35px;
-	overflow:hidden;
 	color:#182539;
 }
 
-
-img
-{
-	behavior:url(iepngfix.htc);
-	border:none;
-}
 
 
 /**** Form Section ****/
