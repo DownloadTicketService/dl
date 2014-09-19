@@ -726,6 +726,12 @@ Authors and Copyright
 | "dl" is distributed under GNU GPL 2, WITHOUT ANY WARRANTY.
 | Copyright(c) 2007-2012 by Yuri D'Elia <wavexx@thregr.org>.
 
+dl's GIT repository is publicly accessible at::
+
+  git://src.thregr.org/dl
+
+or at https://github.com/wavexx/dl
+
 
 .. _PoEdit: http://poedit.sourceforge.net/
 .. _docutils: http://docutils.sourceforge.net/
