@@ -1,5 +1,6 @@
 /*** General ***/
-* {		
+* 
+{		
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -16,7 +17,8 @@ body
 	word-spacing: -1px;
 }
 
-#form_container{
+#form_container
+{
 	text-align:left;
 	background: #FFFFFF;
 	border: 1px solid #D5D5D6;

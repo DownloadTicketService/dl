@@ -9,15 +9,15 @@
       <script type="text/javascript" src="style/static/view.js"></script>
     </head>
     <body>
-		<div id="navbar-inner">
-			<div id="container">
-				<h1>
-					<img src="style/static/dl.png" alt=""/>
-					<a>Ticket Service</a>
-				</h1>
-			</div>
-		</div>
-	<br>
+	  <div id="navbar-inner">
+	    <div id="container">
+	      <h1>
+	      <img src="style/static/dl.png" alt=""/>
+	      <a>Ticket Service</a>
+	      </h1>
+	    </div>
+	  </div>
+    <br>
     <div id="form_container">
 	<?php
           if(!empty($ref))
