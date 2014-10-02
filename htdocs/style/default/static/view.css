@@ -24,12 +24,12 @@ body
 	border: 1px solid #D5D5D6;
 	border-top-color: #E0E1E2;
 	border-bottom-color: #C0C1C2;
-	margin: 0px auto 0px auto;
+	margin: 0 auto 0 auto;
 	padding: 20px 26px 19px 26px;
 	width: 800px;
-	-webkit-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
-	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+	box-shadow: 0 5px 10px rgba(0,0,0,0.5);
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
@@ -97,11 +97,11 @@ table th, table td
 	background-color: #4B75B3;
 	background-repeat: repeat-x;
 	width: 800px;
-	margin: 0px auto 0px auto;
-	padding: 0px 25px 5px 0px;
-	-webkit-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
-	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	margin: 0 auto 0 auto;
+	padding: 0 25px 5px 0;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+	box-shadow: 0 5px 10px rgba(0,0,0,0.5);
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
@@ -278,16 +278,19 @@ label.description
 
 input.text
 {
-	background:#fff url(shadow.gif) repeat-x top;
-	border-bottom:1px solid #ddd;
-	border-left:1px solid #c3c3c3;
-	border-right:1px solid #c3c3c3;
-	border-top:1px solid #7c7c7c;
-	color:#333;
-	font-size:100%;
-	margin:0;
-	padding:2px 0;
-	width:42%;
+	background: #fff;
+	-webkit-box-shadow: inset 0 1px 2px -1px rgba(0,0,0,0.5);
+	-moz-box-shadow: inset 0 1px 2px -1px rgba(0,0,0,0.5);
+	box-shadow: inset 0 1px 2px -1px rgba(0,0,0,0.5);
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #c3c3c3;
+	border-right: 1px solid #c3c3c3;
+	border-top: 1px solid #7c7c7c;
+	color: #333;
+	font-size: 100%;
+	margin: 0;
+	padding: 2px 0;
+	width: 42%;
 }
 
 input.file, input.button
@@ -301,18 +304,21 @@ input.file, input.button
 
 textarea.textarea
 {
-	background:#fff url(shadow.gif) repeat-x top;
-	border-bottom:1px solid #ddd;
-	border-left:1px solid #c3c3c3;
-	border-right:1px solid #c3c3c3;
-	border-top:1px solid #7c7c7c;
-	color:#333;
-	font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
-	font-size:100%;
-	margin:0;
-	padding:2px 0;
-	width:42%;
-	resize:vertical;
+	background: #fff;
+	-webkit-box-shadow: inset 0 1px 2px -1px rgba(0,0,0,0.5);
+	-moz-box-shadow: inset 0 1px 2px -1px rgba(0,0,0,0.5);
+	box-shadow: inset 0 1px 2px -1px rgba(0,0,0,0.5);
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #c3c3c3;
+	border-right: 1px solid #c3c3c3;
+	border-top: 1px solid #7c7c7c;
+	color: #333;
+	font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+	font-size: 100%;
+	margin: 0;
+	padding: 2px 0;
+	width: 42%;
+	resize: vertical;
 }
 
 input.element.password, #notify
