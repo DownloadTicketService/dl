@@ -7,14 +7,18 @@
       <script type="text/javascript" src="static/dl.js"></script>
       <link rel="stylesheet" type="text/css" href="<?php echo "$style/static/view.css"; ?>"/>
       <script type="text/javascript" src="<?php echo "$style/static/view.js"; ?>"></script>
-    </head>
-    <body>
-      <img id="top" src="<?php echo "$style/static/top.png"; ?>" alt=""/>
-      <div id="form_container">
-	<h1><a>
+  </head>
+  <body>
+    <div id="navbar-inner">
+      <div id="container">
+        <h1>
 	  <img src="<?php echo "$style/static/dl.png"; ?>" alt=""/>
-	  Ticket Service
-	</a></h1>
+          <a>Download Ticket Service</a>
+        </h1>
+      </div>
+    </div>
+    <br>
+    <div id="form_container">
 	<?php
           if(!empty($ref))
 	  {

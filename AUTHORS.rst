@@ -60,8 +60,14 @@ Bundled code
 Bundled media
 -------------
 
-* tick.png, edit.png, save.png, upload.png:
+* ``cross.png``, ``edit.png``, ``tick.png``:
 
-  | Copyright(c) 2011 Yusuke Kamiyamane.
+  | Copyright(c) 2014 Joseph North
+  | Licensed under a Creative Commons BY-SA 3.0 license.
+  | http://sublink.ca/icons/sweetieplus/
+
+* ``save.png``, ``upload.png``:
+
+  | Copyright(c) 2011 Yusuke Kamiyamane
   | Licensed under a Creative Commons Attribution 3.0 license.
   | http://creativecommons.org/licenses/by/3.0/
