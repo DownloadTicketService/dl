@@ -33,7 +33,7 @@ function authenticate()
       // remote logout
       header('HTTP/1.0 401 Unauthorized');
       header('WWW-Authenticate: Basic realm="' . $authRealm . '"');
-      includeTemplate('style/include/rmtlogout.php');
+      includeTemplate("$style/include/rmtlogout.php");
       return null;
     }
 

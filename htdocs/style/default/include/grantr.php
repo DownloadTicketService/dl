@@ -1,5 +1,5 @@
 <?php
-includeTemplate('style/include/header.php', array('title' => T_("Upload result")));
+includeTemplate("$style/include/header.php", array('title' => T_("Upload result")));
 ?>
 
 <label><?php echo T_("Your file has been uploaded successfully."); ?></label>
@@ -8,5 +8,5 @@ includeTemplate('style/include/header.php', array('title' => T_("Upload result")
 </p>
 
 <?php
-includeTemplate('style/include/footer.php');
+includeTemplate("$style/include/footer.php");
 ?>

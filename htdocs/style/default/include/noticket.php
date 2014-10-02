@@ -1,5 +1,5 @@
 <?php
-includeTemplate('style/include/header.php', array('title' =>
+includeTemplate("$style/include/header.php", array('title' =>
       ($id === false? T_("Invalid ticket"): T_("Unknown ticket"))));
 ?>
 
@@ -14,5 +14,5 @@ includeTemplate('style/include/header.php', array('title' =>
 </label>
 
 <?php
-includeTemplate('style/include/footer.php');
+includeTemplate("$style/include/footer.php");
 ?>

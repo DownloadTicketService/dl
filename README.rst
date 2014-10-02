@@ -48,7 +48,7 @@ DL installation
   ``/etc/dl.php`` and customize as needed. This usually means changing the URL
   and E-Mail of the service.
 
-* Ensure the ``include`` and ``style/include`` directories are *not* directly
+* Ensure the ``include`` and ``style/*/include`` directories are *not* directly
   accessible externally. Type ``http://dl.example.com/include/config.php`` and
   verify that you *correctly* get an "Access Denied" error.
 

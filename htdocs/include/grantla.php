@@ -1,7 +1,7 @@
 <?php
 require_once("pages.php");
 require_once("grantfuncs.php");
-require_once("style/include/style.php");
+require_once("$style/include/style.php");
 $act = "glista";
 $ref = pageLinkAct();
 pageHeader();
@@ -66,12 +66,12 @@ foreach($db->query($sql) as $DATA)
   // upload
   echo '<td><a href="' . grantUrl($DATA) . '">'
     . '<img title="' . T_("Upload")
-    . '" src="style/static/upload.png"/></a></td>';
+    . "\" src=\"$style/static/upload.png\"/></a></td>";
 
   // delete
   echo "<td><a href=\"" . pageLinkAct(array('purge' => null, 'sel' => $DATA['id'])) . "\">"
     . "<img title=\"" . T_("Purge")
-    . "\" src=\"style/static/cross.png\"/></a></td>";
+    . "\" src=\"$style/static/cross.png\"/></a></td>";
 
   // name
   echo '<td class="ticketid">' . htmlEntUTF8($DATA['id']) . '</td>';

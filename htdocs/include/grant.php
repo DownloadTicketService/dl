@@ -18,7 +18,7 @@ else
 $ref = "$masterPath?g=$id";
 if($GRANT === false || isGrantExpired($GRANT))
 {
-  includeTemplate("style/include/nogrant.php", array('id' => $id));
+  includeTemplate("$style/include/nogrant.php", array('id' => $id));
   exit();
 }
 
@@ -125,7 +125,7 @@ if($DATA === false)
 else
 {
   unset($ref);
-  includeTemplate("style/include/grantr.php");
+  includeTemplate("$style/include/grantr.php");
 
   // kill the session ASAP
   if($auth === false)

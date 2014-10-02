@@ -1,7 +1,7 @@
 <?php
 $act = 'login';
 $ref = "$masterPath?";
-includeTemplate('style/include/header.php', array('title' => T_("Login")));
+includeTemplate("$style/include/header.php", array('title' => T_("Login")));
 
 $error = ((@$_POST["submit"] === $act) && $auth === false);
 $class = "description required" . ($error? " error": "");
@@ -45,5 +45,5 @@ $class = "description required" . ($error? " error": "");
 </div>
 
 <?php
-includeTemplate('style/include/footer.php');
+includeTemplate("$style/include/footer.php");
 ?>

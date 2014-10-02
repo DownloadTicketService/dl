@@ -45,6 +45,9 @@ $cfgVersion = "0.13";
 //$logFile = "/var/log/dl/ticket.log"; // log to file
 //$logFile = "dl_ticket"; // log via syslog
 
+// style: default skin style
+//$style = "default";
+
 // phpExt: external PHP extension
 //         you can use "" to hide PHP exposure if you enable apache's
 //         MultiViews option or use an URL rewriting mechanism

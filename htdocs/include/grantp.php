@@ -1,6 +1,6 @@
 <?php
 $act = 'grantp';
-includeTemplate('style/include/header.php', array('title' => T_("Password required")));
+includeTemplate("$style/include/header.php", array('title' => T_("Password required")));
 
 echo "<p>";
 printf(T_("The grant %s is protected. Please enter the password to"
@@ -38,5 +38,5 @@ echo "</p>";
 </div>
 
 <?php
-includeTemplate('style/include/footer.php');
+includeTemplate("$style/include/footer.php");
 ?>

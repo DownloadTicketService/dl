@@ -10,7 +10,7 @@ require_once("lang.php");
 $file = tempnam(sys_get_temp_dir(), 'dl');
 system("xgettext -L php -F --keyword=T_:1"
     . " --from-code UTF-8 --omit-header -w 1 --no-wrap -F"
-    . " ../*.php ../../style/include/*"
+    . " ../*.php ../../style/*/include/*"
     . " -o " . escapeshellarg($file), $ret);
 if($ret)
 {

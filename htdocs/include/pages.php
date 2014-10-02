@@ -31,15 +31,15 @@ function pageLinkAct($params = array())
 
 function pageHeader($vars = array())
 {
-  global $act, $pages;
+  global $act, $pages, $style;
   if(empty($vars['title'])) $vars['title'] = $pages[$act];
-  includeTemplate('style/include/header.php', $vars);
+  includeTemplate("$style/include/header.php", $vars);
 }
 
 
 function pageFooter($vars = array())
 {
-  global $act, $pages, $entry, $auth, $adminPath, $helpPath;
+  global $act, $pages, $style, $entry, $auth, $adminPath, $helpPath;
 
   echo '<div id="footer">';
 
@@ -59,7 +59,7 @@ function pageFooter($vars = array())
 
   echo ", <a href=\"$adminPath?u\">" . T_("Logout") . "</a>"
     . ", <a href=\"$helpPath\" target=\"_blank\">" . T_("Help") . "</a></div>";
-  includeTemplate('style/include/footer.php', $vars);
+  includeTemplate("$style/include/footer.php", $vars);
 }
 
 ?>

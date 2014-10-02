@@ -1,7 +1,7 @@
 <?php
 require_once("pages.php");
 require_once("ticketfuncs.php");
-require_once("style/include/style.php");
+require_once("$style/include/style.php");
 $act = "tlist";
 $ref = pageLinkAct();
 pageHeader();
@@ -75,19 +75,19 @@ foreach($db->query($sql) as $DATA)
   if($DATA["downloads"])
   {
     echo '<img title="' . T_("Successfully downloaded")
-      . '" src="style/static/tick.png"/>';
+      . "\" src=\"$style/static/tick.png\"/>";
   }
   echo "</td>";
 
   // download
   echo '<td><a href="' . ticketUrl($DATA) . '">'
     . '<img title="' . T_("Download")
-    . '" src="style/static/save.png"/></a></td>';
+    . "\" src=\"$style/static/save.png\"/></a></td>";
 
   // delete
   echo "<td><a href=\"" . pageLinkAct(array('purge' => null, 'sel' => $DATA['id'])) . "\">"
     . "<img title=\"" . T_("Purge")
-    . "\" src=\"style/static/cross.png\"/></a></td>";
+    . "\" src=\"$style/static/cross.png\"/></a></td>";
 
   // name
   echo '<td><a title="' . $DATA['id'] . '" href="'

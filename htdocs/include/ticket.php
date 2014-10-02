@@ -18,7 +18,7 @@ else
 $ref = "$masterPath?t=$id";
 if($DATA === false || isTicketExpired($DATA))
 {
-  includeTemplate("style/include/noticket.php", array('id' => $id));
+  includeTemplate("$style/include/noticket.php", array('id' => $id));
   exit();
 }
 

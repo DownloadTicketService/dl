@@ -1,6 +1,6 @@
 <?php
 $act = 'grants';
-includeTemplate('style/include/header.php', array('title' => T_("Upload grant")));
+includeTemplate("$style/include/header.php", array('title' => T_("Upload grant")));
 
 if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
   errorMessage(T_("Upload failed"), uploadErrorStr($_FILES["file"]));
@@ -41,5 +41,5 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
 </div>
 
 <?php
-includeTemplate('style/include/footer.php');
+includeTemplate("$style/include/footer.php");
 ?>

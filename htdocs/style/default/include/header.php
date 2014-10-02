@@ -3,16 +3,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <title><?php echo strip_tags($title); ?></title>
-      <link rel="stylesheet" type="text/css" href="style/static/view.css" media="all"/>
       <script type="text/javascript" src="static/jquery.js"></script>
       <script type="text/javascript" src="static/dl.js"></script>
-      <script type="text/javascript" src="style/static/view.js"></script>
+      <link rel="stylesheet" type="text/css" href="<?php echo "$style/static/view.css"; ?>"/>
+      <script type="text/javascript" src="<?php echo "$style/static/view.js"; ?>"></script>
     </head>
     <body>
-      <img id="top" src="style/static/top.png" alt=""/>
+      <img id="top" src="<?php echo "$style/static/top.png"; ?>" alt=""/>
       <div id="form_container">
 	<h1><a>
-	  <img src="style/static/dl.png" alt=""/>
+	  <img src="<?php echo "$style/static/dl.png"; ?>" alt=""/>
 	  Ticket Service
 	</a></h1>
 	<?php

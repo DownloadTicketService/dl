@@ -29,6 +29,12 @@ if(!isset($defTimezone)) $defTimezone = @date_default_timezone_get();
 if(!isset($dateFmtShort)) $dateFmtShort = "Y-m-d";
 if(!isset($dateFmtFull)) $dateFmtFull = "Y-m-d H:m:s T";
 
+// default style
+if(!isset($style))
+  $style = "style/default";
+else
+  $style = "style/$style";
+
 // ticket defaults
 if(version_compare($cfgVersion, "0.10", "<"))
 {
