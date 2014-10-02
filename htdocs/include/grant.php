@@ -48,10 +48,24 @@ function handleUpload($GRANT, $FILE)
 {
   global $dataDir, $db;
 
+  // fix file size overflow (when possible) in php 5.4-5.5
+  if($FILE['size'] < 0)
+  {
+    $FILE['size'] = filesize($FILE["tmp_name"]);
+    if($FILE['size'] < 0)
+    {
+      logError($FILE["tmp_name"] . ": uncorrectable PHP file size overflow");
+      return false;
+    }
+  }
+
   // generate new unique id/file name
   list($id, $tmpFile) = genTicketId($FILE["name"]);
   if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
+  {
+    logError("cannot move file " . $FILE["tmp_name"] . " into $tmpFile");
     return failUpload($tmpFile);
+  }
 
   // convert the upload to a ticket
   $db->beginTransaction();
@@ -77,7 +91,10 @@ function handleUpload($GRANT, $FILE)
   $db->exec($sql);
 
   if(!$db->commit())
+  {
+    logDBError($db, "cannot commit new ticket to database");
     return failUpload($tmpFile);
+  }
 
   // fetch defaults
   $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);

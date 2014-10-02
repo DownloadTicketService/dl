@@ -64,10 +64,24 @@ function handleUpload($FILE, $params)
 {
   global $auth, $locale, $dataDir, $db, $defaults, $passHasher;
 
+  // fix file size overflow (when possible) in php 5.4-5.5
+  if($FILE['size'] < 0)
+  {
+    $FILE['size'] = filesize($FILE["tmp_name"]);
+    if($FILE['size'] < 0)
+    {
+      logError($FILE["tmp_name"] . ": uncorrectable PHP file size overflow");
+      return false;
+    }
+  }
+
   // generate new unique id/file name
   list($id, $tmpFile) = genTicketId();
   if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
+  {
+    logError("cannot move file " . $FILE["tmp_name"] . " into $tmpFile");
     return handleUploadFailure($tmpFile);
+  }
 
   // prepare data
   $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph"
@@ -105,7 +119,10 @@ function handleUpload($FILE, $params)
   $sql .= ")";
 
   if($db->exec($sql) != 1)
+  {
+    logDBError($db, "cannot commit new ticket to database");
     return handleUploadFailure($tmpFile);
+  }
 
   // fetch defaults
   $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);

@@ -38,6 +38,19 @@ function logEvent($logLine)
 }
 
 
+function logError($logLine)
+{
+  logEvent('error: ' . $logLine);
+}
+
+
+function logDBError($obj, $logLine)
+{
+  $err = $obj->errorInfo();
+  logEvent('error: ' . $logLine . ': ' . $err[2]);
+}
+
+
 function logTicketEvent($DATA, $logLine)
 {
   logEvent('t/' . ticketStr($DATA) . ": $logLine");
