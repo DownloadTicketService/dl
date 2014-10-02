@@ -5,7 +5,7 @@ dl 0.14:
   combination, allowing downloads to be correctly resumed.
 * The built-in skin can now be changed in the configuration file.
 * A word-around has been found to allow PHP 5.4-5.5 to upload files up to 4GB
-  (starting with PHP 5.6 there is no upload size limitation).
+  (note that starting with PHP 5.6 there is no upload size limitation).
 
 
 dl 0.13: 31/07/2014
