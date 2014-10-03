@@ -13,7 +13,7 @@ $id = false;
 if(preg_match("/^\/([^\/]+)/", $_SERVER["PATH_INFO"], $tmp)) $id = $tmp[1];
 if($id === false || !isTicketId($id))
 {
-  logError("invalid ticket id/request");
+  logReq("invalid ticket id/request", LOG_ERR);
   httpNotFound();
 }
 
@@ -21,17 +21,26 @@ if($id === false || !isTicketId($id))
 $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
 $DATA = $db->query($sql)->fetch();
 if($DATA === false || isTicketExpired($DATA))
+{
+  if($DATA === false)
+    logReq("unknown ticket requested");
+  else
+    logTicketEvent($DATA, "expired ticket requested");
   httpNotFound();
+}
 
 // check for password
 if(hasPassHash($DATA) && !isset($_SESSION['t'][$id]))
+{
+  logTicketEvent($DATA, "missing credentials", LOG_ERR);
   httpBadRequest();
+}
 
 // open the file first
 $fd = fopen($DATA["path"], "r");
 if($fd === false)
 {
-  logTicketError($DATA, "data file " . $DATA["path"] . " is missing!");
+  logTicketEvent($DATA, "data file " . $DATA["path"] . " is missing!", LOG_ERR);
   httpInternalError();
 }
 
