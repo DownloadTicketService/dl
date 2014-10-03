@@ -177,6 +177,7 @@ function userUpd($user, $pass = null, $admin = null, $email = null)
   $msg = array();
   if(!is_null($pass)) $msg[] = "password";
   if(!is_null($admin)) $msg[] = "role";
+  if(!is_null($email)) $msg[] = "email";
   logEvent("updating user $user (" . join(", ", $msg)
     . "): " . ($ret? "success": "fail"));
   return $ret;
