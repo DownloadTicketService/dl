@@ -57,9 +57,21 @@ function logTicketEvent($DATA, $logLine)
 }
 
 
+function logTicketError($DATA, $logLine)
+{
+  logError('t/' . ticketStr($DATA) . ": $logLine");
+}
+
+
 function logGrantEvent($DATA, $logLine)
 {
   logEvent('g/' . grantStr($DATA) . ": $logLine");
+}
+
+
+function logGrantError($DATA, $logLine)
+{
+  logError('g/' . grantStr($DATA) . ": $logLine");
 }
 
 

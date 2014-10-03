@@ -4,6 +4,13 @@ include("include/init.php");
 require_once("include/admfuncs.php");
 require_once("include/entry.php");
 
+// server checks
+if(!isset($_SERVER["PATH_INFO"]))
+{
+  logError("missing PATH_INFO, cannot continue");
+  httpBadRequest();
+}
+
 // ContentType is always JSON
 header("Content-Type: application/json");
 
@@ -15,7 +22,7 @@ if(isset($_SERVER['HTTP_X_AUTHORIZATION']))
   $authData = httpBasicDecode($_SERVER['HTTP_X_AUTHORIZATION']);
   if($rmt || $extAuth !== false)
   {
-	 // enforce double auth/consistency when using remote authentication
+    // enforce double auth/consistency when using remote authentication
     if($authData === false || $extAuth === false
     || $authData["user"] !== $extAuth["user"]
     || ($extAuth["pass"] !== false && $authData["pass"] !== $extAuth["pass"]))
@@ -33,8 +40,6 @@ if(empty($auth))
   httpUnauthorized();
 
 // action
-if(!isset($_SERVER["PATH_INFO"]))
-  httpBadRequest();
 $args = explode("/", $_SERVER["PATH_INFO"]);
 if($args[0] !== "" || count($args) < 2 || !isset($rest[$args[1]]))
   httpNotFound();

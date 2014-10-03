@@ -2,10 +2,11 @@ dl 0.14:
 -------------------
 
 * Fixed broken ``Content-Length`` header with the Apache/mod_php/mod_deflate
-  combination, allowing downloads to be correctly resumed.
+  combination, which would prevent downloads to be resumed.
 * The built-in skin can now be changed in the configuration file.
 * A word-around has been found to allow PHP 5.4-5.5 to upload files up to 4GB
   (note that starting with PHP 5.6 there is no upload size limitation).
+* Logging of server-side errors has been improved.
 
 
 dl 0.13: 31/07/2014

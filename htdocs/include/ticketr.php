@@ -4,12 +4,18 @@ require_once("ticketfuncs.php");
 
 // fetch the ticket id
 if(!isset($_SERVER["PATH_INFO"]))
+{
+  logError("missing PATH_INFO, cannot continue");
   httpBadRequest();
+}
 
 $id = false;
 if(preg_match("/^\/([^\/]+)/", $_SERVER["PATH_INFO"], $tmp)) $id = $tmp[1];
 if($id === false || !isTicketId($id))
+{
+  logError("invalid ticket id/request");
   httpNotFound();
+}
 
 // try to fetch the id
 $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
@@ -24,7 +30,10 @@ if(hasPassHash($DATA) && !isset($_SESSION['t'][$id]))
 // open the file first
 $fd = fopen($DATA["path"], "r");
 if($fd === false)
+{
+  logTicketError($DATA, "data file " . $DATA["path"] . " is missing!");
   httpInternalError();
+}
 
 // update range parameters
 if(!empty($_SERVER["HTTP_RANGE"]))
