@@ -16,17 +16,23 @@ function isGrantId($str)
 }
 
 
-function logEvent($logLine)
+function logEvent($logLine, $logType = LOG_INFO)
 {
   global $logFile, $useSysLog, $logFd, $auth;
-  if(empty($logFile)) return;
 
+  if($logType & LOG_ERR)
+    $logLine = 'error: ' . $logLine;
   if(isset($auth['name']))
     $logLine = $auth['name'] . ': ' . $logLine;
 
   if($useSysLog)
-    syslog(LOG_INFO, $logLine);
-  elseif(isset($logFd))
+    syslog($logType, $logLine);
+  elseif(!isset($logFd))
+  {
+    if($logType & LOG_ERR)
+      error_log('DL: ' . $logLine);
+  }
+  else
   {
     $logLine = "[" . date(DATE_RSS) . "] $logLine\n";
     flock($logFd, LOCK_EX);
@@ -40,14 +46,14 @@ function logEvent($logLine)
 
 function logError($logLine)
 {
-  logEvent('error: ' . $logLine);
+  logEvent($logLine, LOG_ERR);
 }
 
 
 function logDBError($obj, $logLine)
 {
   $err = $obj->errorInfo();
-  logEvent('error: ' . $logLine . ': ' . $err[2]);
+  logError($logLine . ': ' . $err[2]);
 }
 
 
