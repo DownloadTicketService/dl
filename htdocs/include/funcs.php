@@ -20,7 +20,7 @@ function logEvent($logLine, $logType = LOG_INFO)
 {
   global $logFile, $useSysLog, $logFd, $auth;
 
-  if($logType & LOG_ERR)
+  if($logType == LOG_ERR)
     $logLine = 'error: ' . $logLine;
   if(isset($auth['name']))
     $logLine = $auth['name'] . ': ' . $logLine;
@@ -29,7 +29,7 @@ function logEvent($logLine, $logType = LOG_INFO)
     syslog($logType, $logLine);
   elseif(!isset($logFd))
   {
-    if($logType & LOG_ERR)
+    if($logType == LOG_ERR)
       error_log('DL: ' . $logLine);
   }
   else
@@ -50,6 +50,12 @@ function logError($logLine)
 }
 
 
+function logReq($logLine, $logType = LOG_INFO)
+{
+  logEvent('[' . $_SERVER['REMOTE_ADDR'] . '] ' . $logLine, $logType);
+}
+
+
 function logDBError($obj, $logLine)
 {
   $err = $obj->errorInfo();
@@ -57,27 +63,15 @@ function logDBError($obj, $logLine)
 }
 
 
-function logTicketEvent($DATA, $logLine)
+function logTicketEvent($DATA, $logLine, $logType = LOG_INFO)
 {
-  logEvent('t/' . ticketStr($DATA) . ": $logLine");
+  logEvent('t/' . ticketStr($DATA) . ": $logLine", $logType);
 }
 
 
-function logTicketError($DATA, $logLine)
+function logGrantEvent($DATA, $logLine, $logType = LOG_INFO)
 {
-  logError('t/' . ticketStr($DATA) . ": $logLine");
-}
-
-
-function logGrantEvent($DATA, $logLine)
-{
-  logEvent('g/' . grantStr($DATA) . ": $logLine");
-}
-
-
-function logGrantError($DATA, $logLine)
-{
-  logError('g/' . grantStr($DATA) . ": $logLine");
+  logEvent('g/' . grantStr($DATA) . ": $logLine", $logType);
 }
 
 

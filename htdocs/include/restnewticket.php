@@ -18,9 +18,21 @@ function newticket($msg, $params = null)
   {
     // ticket creation unsucessfull
     if($validated && !empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
-      return array('httpInternalError', uploadErrorStr($_FILES["file"]));
+    {
+      $err = uploadErrorStr($_FILES["file"]);
+      logReq("ticket upload failure: $err", LOG_ERR);
+      return array('httpInternalError', $err);
+    }
+    elseif(!$validated)
+    {
+      logReq('invalid ticket parameters', LOG_ERR);
+      return array('httpBadRequest', 'bad parameters');
+    }
     else
-      return array('httpBadRequest', "bad parameters");
+    {
+      // errors already generated in handleUpload
+      return array('httpInternalError', 'internal error');
+    }
   }
 
   // return ticket instance
