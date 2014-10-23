@@ -422,28 +422,31 @@ setup ``PATH_INFO`` correctly. Here is an example configuration with DL
 installed as a subdirectory in the document root::
 
   location ^~ /dl {
-      # Set maximum upload size. Should be the same as PHP's upload_max_filesize
-      client_max_body_size 512M;
-
       # Protect the include directories
       location ~ ^/dl(?:/|/.*/)include {
 	  deny all;
       }
-      try_files $uri $uri/ @dlcleanurl;
+
+      index index.php index.html;
+      try_files $uri $uri/ =404;
 
       # Enable PHP
-      location ~ \.php$ {
-	  try_files $uri =404;
-	  include php_fastcgi;
-      }
-  }
+      location ~ \.php(?:$|/) {
+	  include fastcgi_params;
 
-  # DL 'clean url'
-  location @dlcleanurl {
-      include php_fastcgi;
-      fastcgi_split_path_info       ^(.+\.php)(/.*)$;
-      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-      fastcgi_param PATH_INFO       $fastcgi_path_info;
+	  # Set maximum body size (should be the same as PHP's post_max_size)
+	  client_max_body_size 512M;
+
+	  # Setup PATH_INFO
+	  fastcgi_split_path_info ^(.+\.php)(/.+)$;
+          try_files $fastcgi_script_name =404;
+
+          fastcgi_param PATH_INFO	$fastcgi_path_info;
+	  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+	  fastcgi_index index.php;
+	  fastcgi_pass unix:/var/run/php5-fpm.sock;
+      }
   }
 
 

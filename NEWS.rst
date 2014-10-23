@@ -5,7 +5,7 @@ dl 0.14: 16/10/2014
   combination, which would prevent downloads to be resumed.
 * The built-in skin has been updated.
 * The skin can now be customized and set in the configuration file.
-* A word-around has been found to allow PHP 5.4-5.5 to upload files up to 4GB
+* A work-around has been found to allow PHP 5.4-5.5 to upload files up to 4GB
   (note that starting with PHP 5.6 there is no upload size limitation).
 * Logging of server-side errors has been improved.
 
