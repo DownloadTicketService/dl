@@ -9,6 +9,7 @@ Localization
 
 :Brazilian Portuguese:	Guilherme Benkenstein <gb@gbti.com.br>
 :Czech:			Jan Štětina <zaantar@gmail.com>
+:Dutch:			Maarten Schoonman <m.s.schoonman@home.nl>
 :French:		Daniel Berteaud <daniel@firewall-services.com>
 :German:		Clemens Egger <clemens.egger@eurac.edu>
 :Italian:		Yuri D'Elia <wavexx@thregr.org>
