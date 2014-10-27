@@ -35,12 +35,16 @@ Jan Štětina <zaantar@gmail.com>:
 
 Kim Thostrup <kim@thostrup.dk>:
 
-* Skin.
+* DL 0.3 Skin.
 * Suggestions and testing.
 
 Larissa de Clauser <larissa.declauser@eurac.edu>:
 
 * German Guide translation.
+
+Maarten Schoonman <m.s.schoonman@home.nl>:
+
+* Dutch translation.
 
 Mokrani Rachid <rachid.mokrani@ifpenergiesnouvelles.fr>:
 
@@ -50,6 +54,10 @@ Mokrani Rachid <rachid.mokrani@ifpenergiesnouvelles.fr>:
 Roberto Salgado <drober@gmail.com>:
 
 * Spanish UI/Guide translation.
+
+RustyPixel [https://github.com/RustyPixel]:
+
+* DL 0.14 Skin.
 
 Tim Booth <tbooth@ceh.ac.uk>:
 
