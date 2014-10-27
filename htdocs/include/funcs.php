@@ -223,16 +223,6 @@ function uploadErrorStr($FILE)
 }
 
 
-function truncAtWord($str, $len, $thr = 5, $ell = "\xE2\x80\xA6")
-{
-  $min = max(0, $len - $thr);
-  $max = $len - 1;
-  $re = '/^(.{' . "$min,$max" . '}\S\b|.{' . $len . '}).*/u';
-  $rp = '$1' . $ell;
-  return preg_replace($re, $rp, str_replace("\n", "", $str));
-}
-
-
 function is_numeric_int($str)
 {
   return (is_int($str) || (int)$str == $str);
