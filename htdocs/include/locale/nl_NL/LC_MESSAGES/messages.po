@@ -1,0 +1,792 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Download Ticket Service\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-01-14 20:01+0100\n"
+"PO-Revision-Date: 2014-10-23 15:07+0100\n"
+"Last-Translator: CE <EMAIL@ADDRESS>\n"
+"Language-Team: Nederlands\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: ../../style/include/grantr.php:2 ../newticketr.php:4
+msgid "Upload result"
+msgstr "Resultaat van het versturen van het bestand"
+
+#: ../../style/include/grantr.php:5
+msgid "Your file has been uploaded successfully."
+msgstr "Uw bestand is succesvol verstuurd!"
+
+#: ../../style/include/grantr.php:7
+msgid "A notification link has been sent to the grant owner. Thanks."
+msgstr ""
+"Ter info: Een notificatie link is gestuurd naar de eigenaar van de upload "
+"toekenning. Bedankt voor uw bestand!"
+
+#: ../../style/include/nogrant.php:3
+msgid "Invalid grant"
+msgstr "Ongeldige toekenning"
+
+#: ../../style/include/nogrant.php:3
+msgid "Unknown grant"
+msgstr "Onbekende toekenning"
+
+#: ../../style/include/nogrant.php:9
+msgid "Sorry, the grant is invalid."
+msgstr "Sorry, de toekenning is ongeldig."
+
+#: ../../style/include/nogrant.php:11
+#, php-format
+msgid "Sorry, the grant %s does not exist or is expired."
+msgstr "Sorry, de toekenning %s bestaat niet of is vervallen."
+
+#: ../../style/include/noticket.php:3
+msgid "Invalid ticket"
+msgstr "Ongeldige ticket"
+
+#: ../../style/include/noticket.php:3
+msgid "Unknown ticket"
+msgstr "Onbekende ticket"
+
+#: ../../style/include/noticket.php:9
+msgid "Sorry, the ticket is invalid."
+msgstr "Sorry, deze ticket is ongeldig."
+
+#: ../../style/include/noticket.php:11
+#, php-format
+msgid "Sorry, the ticket %s does not exist or is expired."
+msgstr "Ticket %s bestaat niet of is vervallen."
+
+#: ../../style/include/rmtlogout.php:2
+msgid "Logged-out"
+msgstr "Uitgelogd"
+
+#: ../../style/include/rmtlogout.php:6
+msgid "<em>Close the browser</em> to complete the logout."
+msgstr "<em>Sluit het browservenster</em>, om volledig uit te loggen."
+
+#: ../edittickets.php:4
+#, php-format
+msgid "Editing ticket %s"
+msgstr "Wijzigen van ticket %s"
+
+#: ../edittickets.php:47
+msgid "Current expiration"
+msgstr "Huidige vervalperiode"
+
+#: ../edittickets.php:48
+msgid "Created on"
+msgstr "Gemaakt op"
+
+#: ../edittickets.php:56
+msgid "Created by"
+msgstr "Gemaakt door"
+
+#: ../edittickets.php:59
+msgid "File size"
+msgstr "Bestandsgrootte"
+
+#: ../edittickets.php:60
+msgid "Download link"
+msgstr "Download link"
+
+#: ../edittickets.php:65
+msgid "Download count"
+msgstr "Aantal downloads"
+
+#: ../edittickets.php:66
+msgid "Last download"
+msgstr "Laatste download"
+
+#: ../edittickets.php:75
+msgid "Initially sent to"
+msgstr "In eerste instantie gezonden naar"
+
+#: ../edittickets.php:89
+msgid "File name"
+msgstr "Bestandsnaam"
+
+#: ../edittickets.php:95
+msgid "Type the file name of the ticket (<em>including the extension</em>)."
+msgstr "Geef de naam van de ticket op (<em>inclusief de extensie</em>)."
+
+#: ../edittickets.php:101 ../newgrants.php:34 ../newtickets.php:35
+msgid "Comment"
+msgstr "Opmerking"
+
+#: ../edittickets.php:107 ../newtickets.php:41
+msgid ""
+"Type an <em>optional</em> comment for your uploaded file. The comment will "
+"be shown along with the file name."
+msgstr ""
+"Geef <em>optionele</em> opmerkingen bij uw bestand. Deze opmerkingen worden "
+"samen met de bestandsnaam getoond."
+
+#: ../edittickets.php:114 ../prefs.php:122
+msgid "Change password"
+msgstr "Wachtwoord wijzigen"
+
+#: ../edittickets.php:114 ../grantp.php:18 ../login.php:25 ../newgrants.php:66
+#: ../newtickets.php:66 ../prefs.php:70 ../ticketp.php:18 ../users.php:107
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: ../edittickets.php:119 ../newgrants.php:69 ../newtickets.php:69
+msgid "Generate"
+msgstr "Genereer"
+
+#: ../edittickets.php:125
+msgid "Clear password"
+msgstr "Wachtwoord verwijderen"
+
+#: ../edittickets.php:130 ../newtickets.php:73
+msgid ""
+"Type an <em>optional</em> password that will be required to download the "
+"file, as an additional security measure."
+msgstr ""
+"<em>Optionele beveiligingsmaatregel:</em> Hier kunt u een wachtwoord opgeven "
+"dat nodig is om het bestand te kunnen downloaden."
+
+#: ../edittickets.php:133
+msgid "Checking \"Clear password\" will remove the password."
+msgstr ""
+"Wanneer u op \"Wachtwoord verwijderen\" klikt zal het wachtwoord worden "
+"verwijderd."
+
+#: ../edittickets.php:139 ../newgrants.php:81 ../newgrants.php:98
+#: ../newtickets.php:80
+msgid "Expire in total # of days"
+msgstr "Vervalt na # dagen"
+
+#: ../edittickets.php:145 ../newgrants.php:104 ../newtickets.php:86
+msgid ""
+"Type the <strong>maximal number of days</strong> the uploaded file is "
+"allowed to be kept on the server. After this period is passed the file will "
+"be deleted from the server."
+msgstr ""
+"Geef het maximum aantal dagen op dat het bestand op de server bewaard wordt. "
+"Na afloop van dit aantal dagen zal het bestand automatisch van de server "
+"verwijderd worden."
+
+#: ../edittickets.php:154 ../newgrants.php:113 ../newtickets.php:95
+msgid "Expire in # of days after last download"
+msgstr "Vervalt na # dagen na de laatste download"
+
+#: ../edittickets.php:160 ../newgrants.php:119 ../newtickets.php:101
+msgid ""
+"Type the number of days the uploaded file is allowed to be kept on the "
+"server <strong>after being downloaded</strong>. After this period is passed "
+"without activity, the file will be deleted from the server."
+msgstr ""
+"Geef het maximum aantal dagen op dat het bestand op de server bewaard moet "
+"blijven nadat het is gedownload. Na afloop van dit aantal dagen zal het "
+"bestand automatisch van de server verwijderd worden."
+
+#: ../edittickets.php:169 ../newgrants.php:128 ../newtickets.php:110
+msgid "Expire after # of downloads"
+msgstr "Vervalt na # downloads"
+
+#: ../edittickets.php:175 ../newgrants.php:134 ../newtickets.php:116
+msgid ""
+"Type the number of times the uploaded file is <strong>allowed to be "
+"downloaded in total</strong>. After this amount is reached the file will be "
+"deleted from the server."
+msgstr ""
+"Geef aan hoe vaak dit bestand maximaal gedownload kan worden. Bij het "
+"bereiken van het aantal downloads zal het bestand automatisch van de server "
+"verwijderd worden."
+
+#: ../edittickets.php:184 ../newgrants.php:143 ../newtickets.php:125
+msgid "Permanent ticket / upload"
+msgstr "Ticket permanent maken"
+
+#: ../edittickets.php:188 ../newgrants.php:146 ../newtickets.php:128
+msgid "Do not expire"
+msgstr "Ticket vervalt niet"
+
+#: ../edittickets.php:192 ../newgrants.php:150 ../newtickets.php:132
+msgid "Set this checkmark if you do not want the uploaded file to expire."
+msgstr "Zet hier een vinkje als het bestand niet mag vervallen."
+
+#: ../edittickets.php:198 ../newtickets.php:138
+msgid "Get notified by e-mail"
+msgstr "Ontvang een e-mail notificatie nadat het bestand is gedownload"
+
+#: ../edittickets.php:204 ../newtickets.php:145
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should be "
+"notified when the file is downloaded from the server. You can separate "
+"multiple addresses with commas."
+msgstr ""
+"<em>Optioneel:</em> Geef 1 of meerdere e-mail adressen op die een bericht "
+"ontvangen wanneer het bestand van de server is gedownload. Meerdere e-mail "
+"adressen moeten door komma's worden gescheiden."
+
+#: ../edittickets.php:214 ../prefs.php:42
+msgid "Update"
+msgstr "Bijwerken"
+
+#: ../edittickets.php:215 ../grantl.php:99 ../grantla.php:100
+#: ../newgrants.php:160 ../newtickets.php:157 ../ticketl.php:118
+#: ../ticketla.php:119 ../users.php:159
+msgid "Reset"
+msgstr "Herstellen"
+
+#: ../funcs.php:56
+#, php-format
+msgid "%s GiB"
+msgstr "%s GB"
+
+#: ../funcs.php:58
+#, php-format
+msgid "%s MiB"
+msgstr "%s MB"
+
+#: ../funcs.php:60
+#, php-format
+msgid "%s KiB"
+msgstr "%s kB"
+
+#: ../funcs.php:61
+#, php-format
+msgid "%s B"
+msgstr "%s b"
+
+#: ../funcs.php:68
+#, php-format
+msgid "%d days"
+msgstr "%d dagen"
+
+#: ../funcs.php:70
+#, php-format
+msgid "%d hours"
+msgstr "%d uren"
+
+#: ../funcs.php:72
+#, php-format
+msgid "%d minutes"
+msgstr "%d minuten"
+
+#: ../funcs.php:73
+#, php-format
+msgid "%d seconds"
+msgstr "%d seconden"
+
+#: ../funcs.php:185
+msgid "file too big"
+msgstr "Bestand is te groot"
+
+#: ../funcs.php:190
+msgid "upload interrupted"
+msgstr "Upload afgebroken"
+
+#: ../funcs.php:194
+msgid "internal error"
+msgstr "Interne fout"
+
+#: ../grantfuncs.php:18 ../ticketfuncs.php:48
+#, php-format
+msgid "In %s"
+msgstr "In %s"
+
+#: ../grantfuncs.php:22 ../ticketfuncs.php:52
+msgid "Never"
+msgstr "Nooit"
+
+#: ../grantl.php:33 ../grantla.php:29 ../ticketl.php:33 ../ticketla.php:29
+msgid "Purged"
+msgstr "Verwijderd"
+
+#: ../grantl.php:49 ../grantla.php:45
+msgid "Grant"
+msgstr "Toekenning"
+
+#: ../grantl.php:50 ../grantla.php:47 ../ticketl.php:54 ../ticketla.php:51
+msgid "Date"
+msgstr "Datum"
+
+#: ../grantl.php:51 ../grantla.php:48 ../ticketl.php:55 ../ticketla.php:52
+msgid "Expiration"
+msgstr "Loopt af"
+
+#: ../grantl.php:70 ../grantla.php:68 ../grants.php:33 ../newgrantr.php:41
+#: ../newtickets.php:156
+msgid "Upload"
+msgstr "Bestand uploaden"
+
+#: ../grantl.php:75 ../grantla.php:73 ../ticketl.php:89 ../ticketla.php:87
+msgid "Purge"
+msgstr "Verwijderen"
+
+#: ../grantl.php:98 ../grantla.php:99 ../ticketl.php:117 ../ticketla.php:118
+#: ../users.php:158
+msgid "Reload"
+msgstr "Actualiseren"
+
+#: ../grantl.php:100 ../grantla.php:101 ../ticketl.php:119 ../ticketla.php:120
+msgid "Select all"
+msgstr "Selecteer alle"
+
+#: ../grantl.php:101 ../grantla.php:102 ../ticketl.php:120 ../ticketla.php:121
+msgid "Purge selected"
+msgstr "Selectie verwijderen"
+
+#: ../grantla.php:46 ../login.php:13 ../ticketla.php:49 ../users.php:70
+#: ../users.php:106
+msgid "User"
+msgstr "Gebruiker"
+
+#: ../grantp.php:3 ../ticketp.php:3
+msgid "Password required"
+msgstr "Wachtwoord verplicht"
+
+#: ../grantp.php:6
+#, php-format
+msgid ""
+"The grant %s is protected. Please enter the password to proceed to the "
+"upload."
+msgstr ""
+"De upload %s is met een wachtwoord beveiligd. Geef a.u.b. het wachtwoord op "
+"om het bestand te kunnen downloaden."
+
+#: ../grantp.php:24
+msgid "Type the password required for the upload."
+msgstr "Geef het wachtwoord op dat nodig is voor de upload."
+
+#: ../grantp.php:31
+msgid "Submit"
+msgstr "Indienen"
+
+#: ../grants.php:3
+msgid "Upload grant"
+msgstr "Upload toekenning"
+
+#: ../grants.php:6 ../newtickets.php:8
+msgid "Upload failed"
+msgstr "Upload niet gelukt"
+
+#: ../grants.php:18 ../newtickets.php:21
+msgid "Upload a file"
+msgstr "Een bestand uploaden"
+
+#: ../grants.php:25 ../newtickets.php:28
+#, php-format
+msgid "Choose which file to upload. You can upload up to %s."
+msgstr ""
+"Kies het bestand dat u wilt uploaden. Het bestand kan maximaal %s groot zijn."
+
+#: ../login.php:4 ../login.php:38
+msgid "Login"
+msgstr "Inloggen"
+
+#: ../login.php:19
+msgid "Type the user name to access the filesharing service."
+msgstr "Geef uw gebruikersnaam."
+
+#: ../login.php:31
+msgid "Type the password to access the filesharing service."
+msgstr "Geef uw wachtwoord."
+
+#: ../msg.php:6
+#, php-format
+msgid "[dl] download link to %s"
+msgstr "[dl] Download link naar %s"
+
+#: ../msg.php:12 ../msg.php:53 ../msg.php:85
+msgid "URL:"
+msgstr "URL:"
+
+#: ../msg.php:13 ../msg.php:54 ../msg.php:86
+msgid "Password:"
+msgstr "Wachtwoord:"
+
+#: ../msg.php:21
+#, php-format
+msgid "[dl] ticket %s download notification"
+msgstr "[dl] Download notificatie voor ticket %s"
+
+#: ../msg.php:22
+#, php-format
+msgid "The ticket %s was downloaded by %s from %s"
+msgstr "Het ticket %s is gedownload door %s van %s."
+
+#: ../msg.php:30 ../msg.php:39
+#, php-format
+msgid "[dl] ticket %s purge notification"
+msgstr "[dl] Verwijderingsbericht voor ticket %s"
+
+#: ../msg.php:31
+#, php-format
+msgid "The ticket %s was purged manually after %d downloads from %s"
+msgstr "Het ticket %s is handmatig verwijderd na %d downloads van %s"
+
+#: ../msg.php:40
+#, php-format
+msgid "The ticket %s expired automatically after %d downloads from %s"
+msgstr "Het ticket %s is automatisch vevallen na %d downloads von %s"
+
+#: ../msg.php:47
+msgid "[dl] upload grant link"
+msgstr "[dl] link voor upload toekenning"
+
+#: ../msg.php:62 ../msg.php:70
+#, php-format
+msgid "[dl] grant %s purge notification"
+msgstr "[dl] Verwijderingsbericht voor upload toekenning %s"
+
+#: ../msg.php:63
+#, php-format
+msgid "The grant %s was purged manually from %s"
+msgstr "De upload toekenning %s is handmatig verwijderd van %s"
+
+#: ../msg.php:71
+#, php-format
+msgid "The grant %s expired automatically from %s"
+msgstr "De upload toekenning %s is automatisch verwijderd van %s"
+
+#: ../msg.php:77
+#, php-format
+msgid "[dl] download link for grant %s"
+msgstr "[dl] download link voor upload toekenning %s"
+
+#: ../msg.php:78
+#, php-format
+msgid ""
+"Your grant %s has been used by %s. The uploaded file is now available to be "
+"downloaded at:\n"
+"\n"
+msgstr ""
+"Uw upload toekenning %s is gebruikt door %s. Het bestand dat de gebruik "
+"heeft gestuurd kan hier gedownload worden:\n"
+"\n"
+
+#: ../newgrantr.php:4
+msgid "Grant result"
+msgstr "Resultaat upload toekenning"
+
+#: ../newgrantr.php:14
+#, php-format
+msgid "Your grant %s"
+msgstr "Uw upload toekenning %s"
+
+#: ../newgrantr.php:20 ../newticketr.php:20
+msgid "The required password is:"
+msgstr "Het vereiste wachtwoord is:"
+
+#: ../newgrantr.php:26
+msgid "A grant link has been sent to:"
+msgstr "Een upload toekenning is verstuurd naar:"
+
+#: ../newgrantr.php:40 ../newticketr.php:40
+msgid "Send via e-mail"
+msgstr "Verstuurd per e-mail"
+
+#: ../newgrants.php:13
+msgid "Grant parameters"
+msgstr "Instellingen voor upload toekenning"
+
+#: ../newgrants.php:20
+msgid "Notification e-mail"
+msgstr "e-mail adres voor notificatie"
+
+#: ../newgrants.php:26
+msgid ""
+"Type a <b>mandatory</b> e-mail address (or addresses) that should be "
+"notified when the file is uploaded to the server. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"<b>Verplicht invoerveld: </b>Geef een of meerdere e-mail adressen op die een "
+"bericht ontvangen wanneer het bestand succesvol is verstuurd naar de server. "
+"Meedere adressen moeten van elkaar gescheiden worden door komma's."
+
+#: ../newgrants.php:40
+msgid ""
+"Type an <em>optional</em> comment for your upload grant and resulting "
+"ticket. The comment will be shown along with the grant and ticket "
+"information."
+msgstr ""
+"Vul hier een <em>optionele </em> opmerking in voor de upload toekenning en "
+"het resulterende ticket. De opmerking wordt bij de upload toekenning en "
+"ticket getoond."
+
+#: ../newgrants.php:48 ../newtickets.php:48
+msgid "Send link to e-mail"
+msgstr "Verzend een link naar het (de) volgende e-mail adres(sen)"
+
+#: ../newgrants.php:54
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should "
+"immediately receive the link to the upload grant. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"<em>Optioneel:</em> Geef 1 of meerdere e-mail adressen op die per direct de "
+"link naar de upload toekenning zullen ontvangen. Meedere adressen moeten van "
+"elkaar gescheiden worden door komma's."
+
+#: ../newgrants.php:62 ../newtickets.php:62
+msgid "Advanced"
+msgstr "Geavanceerd"
+
+#: ../newgrants.php:73
+msgid ""
+"Type an <em>optional</em> password that will be required to both upload and "
+"download the file, as an additional security measure."
+msgstr ""
+"<em>Optionele beveiligingsmaatregel:</em> Geef een wachtwoord op dat nodig "
+"is om een bestand te kunnen uploaden of downloaden."
+
+#: ../newgrants.php:87
+msgid ""
+"Type the <strong>maximal number of days</strong> the server should wait for "
+"the upload grant to be used.  After this period is passed without activity, "
+"the grant is removed the server."
+msgstr ""
+"Geef het maximum aantal dagen op, waarbinnen een upload toekenning kan "
+"worden gebruikt. Na het verlopen van dit aantal dagen kan de upload "
+"toekenning niet meer gebruikt worden."
+
+#: ../newgrants.php:95
+msgid "Ticket parameters"
+msgstr "Ticket instellingen (download)"
+
+#: ../newgrants.php:159 ../users.php:150
+msgid "Create"
+msgstr "Maak"
+
+#: ../newgrants.php:161 ../newtickets.php:158
+msgid "Set as defaults"
+msgstr "Opslaan als standaard"
+
+#: ../newticketr.php:14
+#, php-format
+msgid "Your ticket %s"
+msgstr "Uw ticket %s"
+
+#: ../newticketr.php:26
+msgid "A download link has been sent to:"
+msgstr "Een download link is verstuurd naar:"
+
+#: ../newticketr.php:41 ../ticketl.php:84 ../ticketla.php:82 ../ticketp.php:31
+msgid "Download"
+msgstr "Download"
+
+#: ../newtickets.php:54
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should "
+"immediately receive the link to the ticket. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"<em>Optioneel:</em> Geef 1 of meerdere e-mail adressen op die per direct de "
+"link naar het ticket zullen ontvangen. Meedere adressen moeten van elkaar "
+"gescheiden worden door komma's."
+
+#: ../newtickets.php:141
+msgid "Use my e-mail"
+msgstr "Vul mijn e-mail adres in"
+
+#: ../pages.php:6
+msgid "New ticket"
+msgstr "Nieuw Ticket"
+
+#: ../pages.php:7
+msgid "Active tickets"
+msgstr "Actieve Tickets"
+
+#: ../pages.php:8
+msgid "New grant"
+msgstr "Nieuwe toekenning"
+
+#: ../pages.php:9
+msgid "Active grants"
+msgstr "Actieve toekenningen"
+
+#: ../pages.php:10
+msgid "Preferences"
+msgstr "Instellingen"
+
+#: ../pages.php:11
+msgid "Manage users"
+msgstr "Gebruikers wijzigen"
+
+#: ../pages.php:12
+msgid "All tickets"
+msgstr "Alle Tickets"
+
+#: ../pages.php:13
+msgid "All grants"
+msgstr "Alle toekenningen"
+
+#: ../pages.php:60
+msgid "Logout"
+msgstr "Uitloggen"
+
+#: ../pages.php:61
+msgid "Help"
+msgstr "Help"
+
+#: ../prefs.php:14
+msgid "Settings successfully updated."
+msgstr "Instellingen succesvol bijgewerkt"
+
+#: ../prefs.php:14
+msgid "Settings update"
+msgstr "Instellingen bijwerken"
+
+#: ../prefs.php:21
+msgid "Defaults"
+msgstr "Standaard instellingen"
+
+#: ../prefs.php:28
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: ../prefs.php:34
+msgid ""
+"Type a <b>mandatory</b> e-mail address that will be used as a default for "
+"notifications."
+msgstr ""
+"<b>Verplicht veld! </b>Geef hier een e-mail adres op dat standaard gebruikt "
+"wordt voor notificaties."
+
+#: ../prefs.php:58
+msgid "New passwords don't match! Password unchanged."
+msgstr "De nieuwe wachtwoorden zijn niet identiek! Wachtwoord niet gewijzigd."
+
+#: ../prefs.php:58 ../prefs.php:60 ../prefs.php:64
+msgid "Password change"
+msgstr "Wachtwoord veranderen"
+
+#: ../prefs.php:60
+msgid "Old password doesn't match! Password unchanged."
+msgstr "Oud wachtwoord klopt niet. Wachtwoord ongewijzigd."
+
+#: ../prefs.php:64
+msgid "Password successfully changed."
+msgstr "Wachtwoord succesvol gewijzigd."
+
+#: ../prefs.php:77
+msgid "Old password"
+msgstr "Oude wachtwoord"
+
+#: ../prefs.php:83
+msgid "Please type your current password."
+msgstr "Vul a.u.b. uw huidige wachtwoord in."
+
+#: ../prefs.php:93
+msgid "New password"
+msgstr "Nieuwe wachtwoord"
+
+#: ../prefs.php:99
+msgid "Please type the new password."
+msgstr "Vul a.u.b. uw nieuwe wachtwoord in."
+
+#: ../prefs.php:109
+msgid "New password (retype)"
+msgstr "Nieuwe wachtwoord (herhaling)"
+
+#: ../prefs.php:115
+msgid "Please <em>retype</em> the new password again."
+msgstr "Vul a.u.b. het nieuwe wachtwoord opnieuw in."
+
+#: ../ticketfuncs.php:22 ../ticketfuncs.php:32
+#, php-format
+msgid "About %s"
+msgstr "Over %s"
+
+#: ../ticketfuncs.php:27
+#, php-format
+msgid "About %d downloads"
+msgstr "Over %d Downloads"
+
+#: ../ticketfuncs.php:37
+#, php-format
+msgid "After %d downloads"
+msgstr "Na %d Downloads"
+
+#: ../ticketfuncs.php:42
+#, php-format
+msgid "%s after next download"
+msgstr "%s na de volgende download."
+
+#: ../ticketl.php:52 ../ticketla.php:48
+msgid "Ticket"
+msgstr "Ticket"
+
+#: ../ticketl.php:53 ../ticketla.php:50
+msgid "Size"
+msgstr "Grootte"
+
+#: ../ticketl.php:77 ../ticketla.php:75
+msgid "Successfully downloaded"
+msgstr "Succesvol gedwonload"
+
+#: ../ticketl.php:125 ../ticketla.php:126
+#, php-format
+msgid "Total archive size: %s"
+msgstr "Totale bestandsgrootte: %s"
+
+#: ../ticketp.php:6
+#, php-format
+msgid ""
+"The ticket %s is protected. Please enter the password to unlock the content."
+msgstr ""
+"Het ticket %s is beveiligd. Geef het wachtwoord om de data te kunnen "
+"downloaden."
+
+#: ../ticketp.php:24
+msgid "Type the password required to unlock this ticket."
+msgstr ""
+"Geef het wachtwoord op om de beveiliging van het ticket te verwijderen."
+
+#: ../users.php:15
+msgid "Created"
+msgstr "Aangemaakt"
+
+#: ../users.php:17
+msgid "Creation failed"
+msgstr "Gebruiker niet aangemaakt."
+
+#: ../users.php:18
+#, php-format
+msgid "user \"%s\" already exists"
+msgstr "Gebruiker \"%s\" bestaat al."
+
+#: ../users.php:31
+msgid "Deleted"
+msgstr "Verwijderd"
+
+#: ../users.php:63
+msgid "Updated"
+msgstr "Opgeslagen"
+
+#: ../users.php:70
+msgid "Administrator"
+msgstr "Administrator"
+
+#: ../users.php:108
+msgid "Role"
+msgstr "Groep"
+
+#: ../users.php:109
+msgid "Tickets"
+msgstr "Tickets"
+
+#: ../users.php:110
+msgid "Grants"
+msgstr "Uploads"
+
+#: ../users.php:111
+msgid "Total size"
+msgstr "Totale grootte"
+
+#: ../users.php:160
+msgid "Delete selected"
+msgstr "Selectie verwijderen"
+
+#: ../users.php:161
+msgid "Apply changes"
+msgstr "Wijzigingen toepassen"
