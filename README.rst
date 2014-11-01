@@ -2,6 +2,8 @@
 dl: download ticket service
 ===========================
 
+.. contents::
+
 dl is a file exchange service that allows you to upload any file to a web
 server and generate a unique ticket for others to download. The ticket is
 automatically expired according to the specified rules, so that you don't need
@@ -11,8 +13,6 @@ account management.
 
 dl is usually installed as a "email attachments replacement" due to its
 simplicity (though can be used in other ways).
-
-.. contents::
 
 
 Requirements
@@ -93,7 +93,7 @@ as your web server* (by using ``su`` or ``sudo`` if necessary)::
   chmod 660 data.sdb
 
 If you want to change the database path, or use a real database server, you
-need to properly configure the ''$dsn'' parameters in ``include/config.php``
+need to properly configure the ``$dsn`` parameters in ``include/config.php``
 according to your setup. The DSN string changes according to the PDO module
 that you want to use. Please see one of:
 
@@ -102,8 +102,8 @@ that you want to use. Please see one of:
 * `PostgreSQL DSN <http://www.php.net/manual/en/ref.pdo-pgsql.connection.php>`_
 
 for the most popular configuration choices. When a username/password is
-required, using the appropriate variables ''$dbUser/$dbPassword'' is preferred
-instead of embedding the values in the DSN string.
+required, using the appropriate variables ``$dbUser``/``$dbPassword`` is
+preferred instead of embedding the values in the DSN string.
 
 The directory ``include/scripts/db/`` provides SQL initialization scripts for
 SQLite, MySQL and PostgreSQL.
@@ -191,7 +191,7 @@ To enable external authentication you have to protect the two files:
 * ``admin.php``
 * ``rest.php``
 
-using a "Basic" authentication scheme. You should then set ''$authRealm'' to
+using a "Basic" authentication scheme. You should then set ``$authRealm`` to
 the same authentication realm used in your web server. The other files *must
 not* be protected.
 
@@ -455,7 +455,7 @@ Ticket expiration
 
 Ticket expiration can be either performed internally to DL (the default), or by
 using the external ``include/scripts/expire.php`` utility with a cron job. This
-preference can be set by controlling the ''$gcInternal'' parameter.
+preference can be set by controlling the ``$gcInternal`` parameter.
 
 The internal method requires no setup, but the external method has the added
 advantage of not interrupting the web interface during the expiration process,
@@ -467,15 +467,15 @@ Internal method
 
 Expiration is usually performed aggressively at every page request. You can
 control this behavior (thus reducing the DB pressure) by tuning the
-''$gcProbability'' and ''$gcLimit'' parameters.
+``$gcProbability`` and ``$gcLimit`` parameters.
 
-If you notice too much load on your DB, start by lowering ''$gcProbability'' to
-0.5 and set ''$gcLimit'' to roughly the number of active tickets currently
+If you notice too much load on your DB, start by lowering ``$gcProbability`` to
+0.5 and set ``$gcLimit`` to roughly the number of active tickets currently
 present in your DB.
 
-Continue to lower ''$gcProbability'' even further until the load becomes
+Continue to lower ``$gcProbability`` even further until the load becomes
 acceptable. When the load is acceptable, but queries take too long, reduce
-''$gcLimit''.
+``$gcLimit``.
 
 
 External method
@@ -484,7 +484,7 @@ External method
 Simply call ``include/scripts/expire.php`` within a cron job, which should be
 executed with *the same user as the web server*. Executing the script once a
 day is sufficient for low traffic websites, but can be executed as often as
-needed. ''$gcLimit'' still controls how many tickets are expired for each run
+needed. ``$gcLimit`` still controls how many tickets are expired for each run
 to limit the execution time.
 
 
@@ -681,7 +681,7 @@ accessible at::
 
   git://src.thregr.org/dl
 
-or through `GitHub <https://github.com/wavexx/dl>`_.
+or at https://github.com/wavexx/dl
 
 
 Development releases
