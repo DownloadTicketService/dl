@@ -40,10 +40,6 @@ $class = "description required" . ($error? " error": "");
   </ul>
 </form>
 
-<div id="footer">
-  <?php echo $banner; ?>
-</div>
-
 <?php
 includeTemplate("$style/include/footer.php");
 ?>

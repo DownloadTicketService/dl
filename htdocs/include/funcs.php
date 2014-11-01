@@ -140,7 +140,7 @@ function getEMailAddrs($str)
 
 function includeTemplate($file, $vars = array())
 {
-  global $ref, $langData, $locale, $style;
+  global $ref, $langData, $locale, $style, $banner;
   extract($vars);
   include($file);
 }

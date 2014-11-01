@@ -58,11 +58,19 @@ body
 	font-weight:bold;
 }
 
-#footer a
+#footer a, #banner a
 {
 	color:#555;
 	text-decoration:none;
 	border-bottom:1px dotted #555;
+}
+
+#banner
+{
+	clear:both;
+	text-align:right;
+	font-size: 12.5px;
+	color:#555;
 }
 
 #bottom
