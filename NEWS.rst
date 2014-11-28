@@ -1,3 +1,11 @@
+dl 0.15: 28/11/2014
+-------------------
+
+* File names with special and/or UTF-8 characters are now correctly preserved
+  on all browsers.
+* Added Dutch translation by Maarten Schoonman.
+
+
 dl 0.14: 16/10/2014
 -------------------
 
