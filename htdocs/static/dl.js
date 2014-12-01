@@ -1,3 +1,5 @@
+"use strict";
+
 // defaults
 var initialDelay = 3000;
 var speedWindow = 1000;
@@ -201,9 +203,9 @@ function setupAutoProgress(el)
   }
 
   // create support elements
-  progress = $('<progress id="progress" min="0" max="1"></progress>');
-  text = $('<span id="text"></span>');
-  cancelBtn = $('<input id="cancel" type="button">');
+  var progress = $('<progress id="progress" min="0" max="1"></progress>');
+  var text = $('<span id="text"></span>');
+  var cancelBtn = $('<input id="cancel" type="button">');
   cancelBtn.val(T_("Cancel"));
 
   div.append(cancelBtn);
@@ -258,7 +260,7 @@ function autoProgressCb(ev, data)
 
   var now = time();
   var elapsed = now - data.start;
-  if(elapsed < initialDelay) return;
+  if(elapsed < initialDelay) return null;
 
   var lastSpeedText = data.speed[1];
   var speedText = lastSpeedText;
