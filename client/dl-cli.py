@@ -8,9 +8,11 @@ import json
 import argparse
 import os.path
 import sys
+import getpass
 
 DL_VERSION = "0.13"
 DL_AGENT = "dl-cli/" + DL_VERSION
+CFG_SECTION = 'DEFAULT'
 
 
 class DefaultSection(object):
@@ -129,7 +131,6 @@ def die(descr, code=1):
     print >> sys.stderr, sys.argv[0] + ": " + descr
     exit(code)
 
-
 def main():
     parser = argparse.ArgumentParser(description="Upload a file to DL", epilog=DL_AGENT)
     parser.add_argument('-r', metavar="file", dest="rc",
@@ -143,12 +144,16 @@ def main():
     cfgpath = os.path.expanduser(args.rc)
     cp = ConfigParser.RawConfigParser()
     cp.readfp(DefaultSection(cfgpath))
-
-    cfg = {'url' : cp.get('DEFAULT', 'url'),
-           'user': cp.get('DEFAULT', 'user'),
-           'pass': cp.get('DEFAULT', 'pass'),
-           'verify': cp.getboolean('DEFAULT', 'verify')}
-
+    
+    cfg = {'url' : cp.get(CFG_SECTION, 'url'),
+           'user': cp.get(CFG_SECTION, 'user'),
+           'pass': cp.get(CFG_SECTION, 'pass'),
+           'verify': cp.getboolean(CFG_SECTION, 'verify')}
+          
+    # Prompt for password if not in config file
+    if not cfg['pass']:
+        cfg['pass'] = getpass.getpass('Password for ' + cfg['user'] + ':')
+        
     try:
         if args.file:
             answ = newticket(args.file, cfg)
