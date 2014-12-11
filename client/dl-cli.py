@@ -131,6 +131,7 @@ def die(descr, code=1):
     print >> sys.stderr, sys.argv[0] + ": " + descr
     exit(code)
 
+
 def main():
     parser = argparse.ArgumentParser(description="Upload a file to DL", epilog=DL_AGENT)
     parser.add_argument('-r', metavar="file", dest="rc",
