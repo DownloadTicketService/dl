@@ -576,7 +576,7 @@ default stored in ``~/.dl.rc``, containing the following values:
 
 * url: REST URL of the service
 * user: your user name
-* pass: your password
+* pass (optional): your password (if not specified, you will be prompted for it by the client)
 * verify (optional): "true" or "false": enable/disable SSL verification
   (might be required for testing, but defaults to true)
 
