@@ -24,10 +24,10 @@ U ziet nu onderstaande pagina:
 .. image:: t-step-2.png
 
 3) Klik "Verstuurd per e-mail" om de e-mail naar de gewenste persoon te
-   versturen. Deze mail bevat de link naar het bestand da u zojuist heeft
+   versturen. Deze mail bevat de link naar het bestand dat u zojuist heeft
    geüpload.
 
-Standaard heeft de ontcvanger één week de tijd om het bestand te downloaden
+Standaard heeft de ontvanger één week de tijd om het bestand te downloaden
 voordat dit bestand automatisch verwijderd wordt. U kunt dit gedrag wijzigen
 door een aantal parameters in te stellen voordat u het bestand upload.
 
@@ -45,7 +45,7 @@ U ziet nu onderstaande pagina:
 
 .. image:: g-step-1.png
 
-1) Klik op de "Nieuwe toekenning" link onder aan de pagina om een nieuwe
+1) Klik op de "Nieuwe toekenning" link onderaan de pagina om een nieuwe
    toekenning te maken.
 
 .. image:: g-step-2.png
@@ -60,10 +60,10 @@ U ziet nu onderstaande pagina:
    e-mail bevat een link die het de ontvanger mogelijk maakt om u een groot
    bestand terug te sturen.
 
-Uw ontvanger hoeft alleen maar de instructies te volgen in de mail en na het
-klikken op de link. Als de ontvanger van de link zijn bestand heeft geüpload
-naar de server ontvangt u een notificatie e-mail met daarin een link naar het
-geüploade bestand.
+Uw ontvanger hoeft alleen maar de instructies te volgen zoals aangegeven in de
+mail. Als de ontvanger van de link zijn bestand heeft geüpload naar de server
+ontvangt u een notificatie e-mail met daarin een link naar het geüploade
+bestand.
 
 
 Geavanceerde upload parameters
@@ -80,8 +80,8 @@ wordt verwijderd.
   blijven totdat u het bestand zelf handmatig verwijderd.
 * *Als u iedere keer als iemand uw bestand download een melding wilt ontvangen*
   vul dan uw e-mail adres in bij "Ontvang een e-mail notificatie nadat het
-  bestand is gedownload". U ontvangt nu iedere keer een een melding als uw
-  bestand succesvol is gedownload of wanneer het automatisch van de server is
+  bestand is gedownload". U ontvangt nu iedere keer een melding als uw bestand
+  succesvol is gedownload of wanneer het automatisch van de server is
   verwijderd. Deze functie is erg handig als u er zeker van wilt zijn dat men
   gereageerd heeft op de door u verstuurde e-mail.
 
@@ -90,7 +90,7 @@ Vervalt na # dagen:
   Vul hier het maximaal aantal dagen in dat een geüpload bestand op de server
   blijft staan. Na deze periode wordt het bestand automatisch van de server
   verwijderd. Het maakt hierbij niet uit of het bestand wel of niet
-  gedownload was in het ingestelde tijdsinterval.
+  gedownload was tijdens het ingestelde tijdsinterval.
 
 Vervalt na # dagen na de laatste download:
 
@@ -101,7 +101,7 @@ Vervalt na # dagen na de laatste download:
   zal het bestand automatisch van de server verwijderd worden.
 
   Deze functie zorgt ervoor dat populaire bestanden bewaard blijven maar
-  nadat hun populariteit is gezakt automatisch verwijderd worden. Het is aan
+  nadat deze is gezakt automatisch verwijderd worden. Het is aan
   te raden om het tijdsinterval in te stellen op meerdere dagen of weken.
 
   Zorg er altijd voor dat u het tijdsinterval zodanig instelt dat een
