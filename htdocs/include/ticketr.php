@@ -96,6 +96,7 @@ fclose($fd);
 if($last && !connection_aborted())
 {
   ++$DATA["downloads"];
+  reconnectDB();
 
   // set default locale for notifications
   switchLocale($defLocale);

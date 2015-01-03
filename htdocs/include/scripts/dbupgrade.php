@@ -6,11 +6,10 @@ if(!isset($argc)) die("not running from the command line\n");
 require_once("../prelude.php");
 require_once("confwrap.php");
 require_once("admfuncs.php");
+require_once("dbfuncs.php");
 
 // initialize the db connection
-$db = new PDO($dsn, $dbUser, $dbPassword);
-$db->exec('PRAGMA foreign_keys = ON');
-$db->exec('SET SQL_MODE = ANSI_QUOTES');
+connectDB(false);
 
 // fetch current db release
 $sql = "SELECT value FROM config WHERE name = 'version'";
