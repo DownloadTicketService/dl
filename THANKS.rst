@@ -59,6 +59,10 @@ RustyPixel [https://github.com/RustyPixel]:
 
 * DL 0.14 Skin.
 
+Teruo IWAI <oteru@nak.ics.keio.ac.jp>:
+
+* Japanese localization.
+
 Tim Booth <tbooth@ceh.ac.uk>:
 
 * Suggestions and fixes.

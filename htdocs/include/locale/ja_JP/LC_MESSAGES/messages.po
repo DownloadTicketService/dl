@@ -1,0 +1,792 @@
+# DL Japanese Translation.
+# Copyright (C) 2014-2015
+# This file is distributed under the same license as the DL package.
+# Teruo IWAI <teruo.iwai@gmail.com>, 2014-2015
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.12\n"
+"Report-Msgid-Bugs-To: teruo.iwai@gmail.com\n"
+"POT-Creation-Date: 2010-01-14 20:01+0100\n"
+"PO-Revision-Date: 2015-01-20 17:51+0900\n"
+"Last-Translator: Teruo IWAI <teruo.iwai@gmail.com>\n"
+"Language-Team: Teruo IWAI <teruo.iwai@gmail.com>\n"
+"Language: ja_JP\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: T_(\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: ../../style/include/grantr.php:2 ../newticketr.php:4
+msgid "Upload result"
+msgstr "アップロード結果"
+
+#: ../../style/include/grantr.php:5
+msgid "Your file has been uploaded successfully."
+msgstr "アップロードが終了しました"
+
+#: ../../style/include/grantr.php:7
+msgid "A notification link has been sent to the grant owner. Thanks."
+msgstr "リンクの通知は許可されたオーナーに送りました。"
+
+#: ../../style/include/nogrant.php:3
+msgid "Invalid grant"
+msgstr "グラントが間違っています。"
+
+#: ../../style/include/nogrant.php:3
+msgid "Unknown grant"
+msgstr "不明なグラントです"
+
+#: ../../style/include/nogrant.php:9
+msgid "Sorry, the grant is invalid."
+msgstr "そのグラントは有効ではありません。"
+
+#: ../../style/include/nogrant.php:11
+#, php-format
+msgid "Sorry, the grant %s does not exist or is expired."
+msgstr "そのグラント %s は存在しないか、公開終了となっています。"
+
+#: ../../style/include/noticket.php:3
+msgid "Invalid ticket"
+msgstr "無効なチケットです"
+
+#: ../../style/include/noticket.php:3
+msgid "Unknown ticket"
+msgstr "不明なチケットです。"
+
+#: ../../style/include/noticket.php:9
+msgid "Sorry, the ticket is invalid."
+msgstr "そのチケットは無効です。"
+
+#: ../../style/include/noticket.php:11
+#, php-format
+msgid "Sorry, the ticket %s does not exist or is expired."
+msgstr "そのチケット %s は存在しないか、または有効期限がきれています。"
+
+#: ../../style/include/rmtlogout.php:2
+msgid "Logged-out"
+msgstr "ログアウト"
+
+#: ../../style/include/rmtlogout.php:6
+msgid "<em>Close the browser</em> to complete the logout."
+msgstr "ログアウトするには、<em>ブラウザを閉じてください</em>"
+
+#: ../edittickets.php:4
+#, php-format
+msgid "Editing ticket %s"
+msgstr "チケット %s　を編集する"
+
+#: ../edittickets.php:47
+msgid "Current expiration"
+msgstr "現在公開終了です。"
+
+#: ../edittickets.php:48
+msgid "Created on"
+msgstr "作成日"
+
+#: ../edittickets.php:56
+msgid "Created by"
+msgstr "作成者"
+
+#: ../edittickets.php:59
+msgid "File size"
+msgstr "ファイルサイズ"
+
+#: ../edittickets.php:60
+msgid "Download link"
+msgstr "ダウンロードリンク"
+
+#: ../edittickets.php:65
+msgid "Download count"
+msgstr "ダウンロード数"
+
+#: ../edittickets.php:66
+msgid "Last download"
+msgstr "直近ダウンロード"
+
+#: ../edittickets.php:75
+msgid "Initially sent to"
+msgstr "最初の送信"
+
+#: ../edittickets.php:89
+msgid "File name"
+msgstr "ファイル名"
+
+#: ../edittickets.php:95
+msgid "Type the file name of the ticket (<em>including the extension</em>)."
+msgstr "チケットのファイル名 (<em>拡張子付で</em>)を入力してください。"
+
+#: ../edittickets.php:101 ../newgrants.php:34 ../newtickets.php:35
+msgid "Comment"
+msgstr "コメント"
+
+#: ../edittickets.php:107 ../newtickets.php:41
+msgid ""
+"Type an <em>optional</em> comment for your uploaded file. The comment will "
+"be shown along with the file name."
+msgstr ""
+"アップロードのファイルに<em>オプションの</em> コメントを入力してください。そ"
+"のコメントはファイル名と一緒に表示されます。"
+
+#: ../edittickets.php:114 ../prefs.php:122
+msgid "Change password"
+msgstr "パスワードを変更してください。"
+
+#: ../edittickets.php:114 ../grantp.php:18 ../login.php:25 ../newgrants.php:66
+#: ../newtickets.php:66 ../prefs.php:70 ../ticketp.php:18 ../users.php:107
+msgid "Password"
+msgstr "パスワード"
+
+#: ../edittickets.php:119 ../newgrants.php:69 ../newtickets.php:69
+msgid "Generate"
+msgstr "生成"
+
+#: ../edittickets.php:125
+msgid "Clear password"
+msgstr "パスワードを消す"
+
+#: ../edittickets.php:130 ../newtickets.php:73
+msgid ""
+"Type an <em>optional</em> password that will be required to download the "
+"file, as an additional security measure."
+msgstr ""
+"ファイルをダウンロードするときに追加のセキュリティとして入力要求する<em>オプ"
+"ション</em> パスワードを入力してください。"
+
+#: ../edittickets.php:133
+msgid "Checking \"Clear password\" will remove the password."
+msgstr "「パスワードを消す」のチェックはパスワードを削除します。"
+
+#: ../edittickets.php:139 ../newgrants.php:81 ../newgrants.php:98
+#: ../newtickets.php:80
+msgid "Expire in total # of days"
+msgstr "全体で以下の日で公開満了します。"
+
+#: ../edittickets.php:145 ../newgrants.php:104 ../newtickets.php:86
+msgid ""
+"Type the <strong>maximal number of days</strong> the uploaded file is "
+"allowed to be kept on the server. After this period is passed the file will "
+"be deleted from the server."
+msgstr ""
+"アップロードしたファイルをサーバ上に保持を許可する<strong>最大日数</strong>を"
+"入力してください。この期間を過ぎると、ファイルはサーバから削除されます。"
+
+#: ../edittickets.php:154 ../newgrants.php:113 ../newtickets.php:95
+msgid "Expire in # of days after last download"
+msgstr "最終ダウンロードから以下の日で公開満了となります。"
+
+#: ../edittickets.php:160 ../newgrants.php:119 ../newtickets.php:101
+msgid ""
+"Type the number of days the uploaded file is allowed to be kept on the "
+"server <strong>after being downloaded</strong>. After this period is passed "
+"without activity, the file will be deleted from the server."
+msgstr ""
+"アップロードされたファイルが<strong>ダウンロードされた後</strong>サーバに保持"
+"する期間を入力してください。他になにもなくこの期間を過ぎますとファイルはサー"
+"バから削除されます。"
+
+#: ../edittickets.php:169 ../newgrants.php:128 ../newtickets.php:110
+msgid "Expire after # of downloads"
+msgstr "以下の回数のダウンロードで公開終了となります。"
+
+#: ../edittickets.php:175 ../newgrants.php:134 ../newtickets.php:116
+msgid ""
+"Type the number of times the uploaded file is <strong>allowed to be "
+"downloaded in total</strong>. After this amount is reached the file will be "
+"deleted from the server."
+msgstr ""
+"アップロードされたファイルの<strong>ダウンロードを許可する全体の回数</strong>"
+"を入力してください。この回数になると、ファイルはサーバから削除されます。"
+
+#: ../edittickets.php:184 ../newgrants.php:143 ../newtickets.php:125
+msgid "Permanent ticket / upload"
+msgstr "永続のチケット / アップロード"
+
+#: ../edittickets.php:188 ../newgrants.php:146 ../newtickets.php:128
+msgid "Do not expire"
+msgstr "公開終了しない"
+
+#: ../edittickets.php:192 ../newgrants.php:150 ../newtickets.php:132
+msgid "Set this checkmark if you do not want the uploaded file to expire."
+msgstr ""
+"アップロードしたファイルを公開終了させない場合はこのチェックをセットしてくだ"
+"さい。"
+
+#: ../edittickets.php:198 ../newtickets.php:138
+msgid "Get notified by e-mail"
+msgstr "Eメールで通知されます。"
+
+#: ../edittickets.php:204 ../newtickets.php:145
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should be "
+"notified when the file is downloaded from the server. You can separate "
+"multiple addresses with commas."
+msgstr ""
+"サーバからダウンロードされたときに通知される<em>オプションの</em>Eメールアド"
+"レス（複数可能）を入力してください。複数の場合はカンマでアドレスを分けていれ"
+"ることができます。"
+
+#: ../edittickets.php:214 ../prefs.php:42
+msgid "Update"
+msgstr "更新"
+
+#: ../edittickets.php:215 ../grantl.php:99 ../grantla.php:100
+#: ../newgrants.php:160 ../newtickets.php:157 ../ticketl.php:118
+#: ../ticketla.php:119 ../users.php:159
+msgid "Reset"
+msgstr "リセット"
+
+#: ../funcs.php:56
+#, php-format
+msgid "%s GiB"
+msgstr "%s GiB"
+
+#: ../funcs.php:58
+#, php-format
+msgid "%s MiB"
+msgstr "%s MiB"
+
+#: ../funcs.php:60
+#, php-format
+msgid "%s KiB"
+msgstr "%s KiB"
+
+#: ../funcs.php:61
+#, php-format
+msgid "%s B"
+msgstr "%s B"
+
+#: ../funcs.php:68
+#, php-format
+msgid "%d days"
+msgstr "%d 日間"
+
+#: ../funcs.php:70
+#, php-format
+msgid "%d hours"
+msgstr "%d 時間"
+
+#: ../funcs.php:72
+#, php-format
+msgid "%d minutes"
+msgstr "%d 分"
+
+#: ../funcs.php:73
+#, php-format
+msgid "%d seconds"
+msgstr "%d 秒"
+
+#: ../funcs.php:185
+msgid "file too big"
+msgstr "ファイルサイズが大きすぎます"
+
+#: ../funcs.php:190
+msgid "upload interrupted"
+msgstr "アップロードが中断されました"
+
+#: ../funcs.php:194
+msgid "internal error"
+msgstr "内部エラーです"
+
+#: ../grantfuncs.php:18 ../ticketfuncs.php:48
+#, php-format
+msgid "In %s"
+msgstr "%s の中に"
+
+#: ../grantfuncs.php:22 ../ticketfuncs.php:52
+msgid "Never"
+msgstr "消去しない"
+
+#: ../grantl.php:33 ../grantla.php:29 ../ticketl.php:33 ../ticketla.php:29
+msgid "Purged"
+msgstr "消去"
+
+#: ../grantl.php:49 ../grantla.php:45
+msgid "Grant"
+msgstr "グラント"
+
+#: ../grantl.php:50 ../grantla.php:47 ../ticketl.php:54 ../ticketla.php:51
+msgid "Date"
+msgstr "日時"
+
+#: ../grantl.php:51 ../grantla.php:48 ../ticketl.php:55 ../ticketla.php:52
+msgid "Expiration"
+msgstr "公開満了日時"
+
+#: ../grantl.php:70 ../grantla.php:68 ../grants.php:33 ../newgrantr.php:41
+#: ../newtickets.php:156
+msgid "Upload"
+msgstr "アップロード"
+
+#: ../grantl.php:75 ../grantla.php:73 ../ticketl.php:89 ../ticketla.php:87
+msgid "Purge"
+msgstr "消去"
+
+#: ../grantl.php:98 ../grantla.php:99 ../ticketl.php:117 ../ticketla.php:118
+#: ../users.php:158
+msgid "Reload"
+msgstr "再読み込み"
+
+#: ../grantl.php:100 ../grantla.php:101 ../ticketl.php:119 ../ticketla.php:120
+msgid "Select all"
+msgstr "全部を選択"
+
+#: ../grantl.php:101 ../grantla.php:102 ../ticketl.php:120 ../ticketla.php:121
+msgid "Purge selected"
+msgstr "選択したファイルを消去"
+
+#: ../grantla.php:46 ../login.php:13 ../ticketla.php:49 ../users.php:70
+#: ../users.php:106
+msgid "User"
+msgstr "ユーザ"
+
+#: ../grantp.php:3 ../ticketp.php:3
+msgid "Password required"
+msgstr "パスワードを入力してください。"
+
+#: ../grantp.php:6
+#, php-format
+msgid ""
+"The grant %s is protected. Please enter the password to proceed to the "
+"upload."
+msgstr ""
+"グラント %s は、保護されています。アップロードをするには、パスワードを入力し"
+"てください。"
+
+#: ../grantp.php:24
+msgid "Type the password required for the upload."
+msgstr "アップロードのためのパスワードを入力してください。"
+
+#: ../grantp.php:31
+msgid "Submit"
+msgstr "送信"
+
+#: ../grants.php:3
+msgid "Upload grant"
+msgstr "グラントをアップロード"
+
+#: ../grants.php:6 ../newtickets.php:8
+msgid "Upload failed"
+msgstr "アップロードに失敗しました。"
+
+#: ../grants.php:18 ../newtickets.php:21
+msgid "Upload a file"
+msgstr "ファイルのアップロード"
+
+#: ../grants.php:25 ../newtickets.php:28
+#, php-format
+msgid "Choose which file to upload. You can upload up to %s."
+msgstr ""
+"アップロードするファイルを選択してください。サイズ %s までのファイルをアップ"
+"ロードすることができます。"
+
+#: ../login.php:4 ../login.php:38
+msgid "Login"
+msgstr "ログイン"
+
+#: ../login.php:19
+msgid "Type the user name to access the filesharing service."
+msgstr "ファイル共有サービスを利用するにはユーザ名を入力してください。"
+
+#: ../login.php:31
+msgid "Type the password to access the filesharing service."
+msgstr "ファイル共有サービスを利用するにはパスワードを入力してください。"
+
+#: ../msg.php:6
+#, php-format
+msgid "[dl] download link to %s"
+msgstr "[dl]  %s　をダウンロードするためのリンクです。"
+
+#: ../msg.php:12 ../msg.php:53 ../msg.php:85
+msgid "URL:"
+msgstr "URL:"
+
+#: ../msg.php:13 ../msg.php:54 ../msg.php:86
+msgid "Password:"
+msgstr "パスワード:"
+
+#: ../msg.php:21
+#, php-format
+msgid "[dl] ticket %s download notification"
+msgstr "[dl] チケット %s のダウンロード通知です。"
+
+#: ../msg.php:22
+#, php-format
+msgid "The ticket %s was downloaded by %s from %s"
+msgstr "チケット %s は %s によって %s からダウンロードされました。"
+
+#: ../msg.php:30 ../msg.php:39
+#, php-format
+msgid "[dl] ticket %s purge notification"
+msgstr "[dl] チケット %s　の削除通知です。"
+
+#: ../msg.php:31
+#, php-format
+msgid "The ticket %s was purged manually after %d downloads from %s"
+msgstr ""
+"チケット %s は %d 回のダウンロード( %s からの) によって削除されました。"
+
+#: ../msg.php:40
+#, php-format
+msgid "The ticket %s expired automatically after %d downloads from %s"
+msgstr ""
+"チケット %s は %d 回のダウンロード( %s からの) によって公開満了となりました。"
+
+#: ../msg.php:47
+msgid "[dl] upload grant link"
+msgstr "[dl] アップロードのグラントのリンク"
+
+#: ../msg.php:62 ../msg.php:70
+#, php-format
+msgid "[dl] grant %s purge notification"
+msgstr "[dl] グラント %s　の削除通知"
+
+#: ../msg.php:63
+#, php-format
+msgid "The grant %s was purged manually from %s"
+msgstr "グラント %s は、%s により手動で削除されました。"
+
+#: ../msg.php:71
+#, php-format
+msgid "The grant %s expired automatically from %s"
+msgstr "グラント %s は、%s により手動で公開満了にされました。"
+
+#: ../msg.php:77
+#, php-format
+msgid "[dl] download link for grant %s"
+msgstr "[dl] グラント %s のダウンロードリンク"
+
+#: ../msg.php:78
+#, php-format
+msgid ""
+"Your grant %s has been used by %s. The uploaded file is now available to be "
+"downloaded at:\n"
+"\n"
+msgstr ""
+"グラント %s は %s によって使われました。アップロードされたファイルはダウン"
+"ロードが今可能となりました:\n"
+"\n"
+
+#: ../newgrantr.php:4
+msgid "Grant result"
+msgstr "グラントの結果"
+
+#: ../newgrantr.php:14
+#, php-format
+msgid "Your grant %s"
+msgstr "グラント %s"
+
+#: ../newgrantr.php:20 ../newticketr.php:20
+msgid "The required password is:"
+msgstr "入力の必要なパスワードは :"
+
+#: ../newgrantr.php:26
+msgid "A grant link has been sent to:"
+msgstr "グラントのリンクを送りました:"
+
+#: ../newgrantr.php:40 ../newticketr.php:40
+msgid "Send via e-mail"
+msgstr "電子メールで送る"
+
+#: ../newgrants.php:13
+msgid "Grant parameters"
+msgstr "グラントのパラメータ"
+
+#: ../newgrants.php:20
+msgid "Notification e-mail"
+msgstr "電子メール通知"
+
+#: ../newgrants.php:26
+msgid ""
+"Type a <b>mandatory</b> e-mail address (or addresses) that should be "
+"notified when the file is uploaded to the server. You can separate multiple "
+"addresses with commas."
+msgstr ""
+" サーバーにファイルがアップロードされたときに通知される<b>必須</b> Eメールア"
+"ドレス(複数) を入力してください。 不複数のアドレスはカンマ区切りで入れること"
+"ができます。"
+
+#: ../newgrants.php:40
+msgid ""
+"Type an <em>optional</em> comment for your upload grant and resulting "
+"ticket. The comment will be shown along with the grant and ticket "
+"information."
+msgstr ""
+"グラントやチケットの結果の<em>オプション</em>コメントを入力してください。コメ"
+"ントはグラントとチケット情報と一緒に見ることができます。"
+
+#: ../newgrants.php:48 ../newtickets.php:48
+msgid "Send link to e-mail"
+msgstr "電子メールでリンクを送ります。"
+
+#: ../newgrants.php:54
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should "
+"immediately receive the link to the upload grant. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"アップロードグラントのリンクをすぐに受け取る<em>オプション</em>Eメールアドレ"
+"ス（複数）を入力してください。不複数のアドレスはカンマ区切りで入れることがで"
+"きます。"
+
+#: ../newgrants.php:62 ../newtickets.php:62
+msgid "Advanced"
+msgstr "詳細"
+
+#: ../newgrants.php:73
+msgid ""
+"Type an <em>optional</em> password that will be required to both upload and "
+"download the file, as an additional security measure."
+msgstr ""
+"追加のセキュリティとしてファイルのアップロード、ダウンロード両方に必要な<em>"
+"オプション</em>パスワードを入力してください。"
+
+#: ../newgrants.php:87
+msgid ""
+"Type the <strong>maximal number of days</strong> the server should wait for "
+"the upload grant to be used.  After this period is passed without activity, "
+"the grant is removed the server."
+msgstr ""
+"サーバがグラントを待つ最大日数を入力してください。アクセスなくこの期間を過ぎ"
+"るとグラントはサーバから削除されます。"
+
+#: ../newgrants.php:95
+msgid "Ticket parameters"
+msgstr "チケットパラメータ"
+
+#: ../newgrants.php:159 ../users.php:150
+msgid "Create"
+msgstr "作成"
+
+#: ../newgrants.php:161 ../newtickets.php:158
+msgid "Set as defaults"
+msgstr "標準設定にする"
+
+#: ../newticketr.php:14
+#, php-format
+msgid "Your ticket %s"
+msgstr "チケット %s"
+
+#: ../newticketr.php:26
+msgid "A download link has been sent to:"
+msgstr "ダウンロードリンクを送りました:"
+
+#: ../newticketr.php:41 ../ticketl.php:84 ../ticketla.php:82 ../ticketp.php:31
+msgid "Download"
+msgstr "ダウンロード"
+
+#: ../newtickets.php:54
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should "
+"immediately receive the link to the ticket. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"チケットへのリンクを即時に受け取る<em>オプション</em>電子メールアドレス(複数"
+"可能)を入力してください。複数のアドレスはカンマ区切りで入れることができます。"
+
+#: ../newtickets.php:141
+msgid "Use my e-mail"
+msgstr "電子メールを使う"
+
+#: ../pages.php:6
+msgid "New ticket"
+msgstr "新規のチケット"
+
+#: ../pages.php:7
+msgid "Active tickets"
+msgstr "有効なチケット"
+
+#: ../pages.php:8
+msgid "New grant"
+msgstr "新規のグラント"
+
+#: ../pages.php:9
+msgid "Active grants"
+msgstr "有効なグラント"
+
+#: ../pages.php:10
+msgid "Preferences"
+msgstr "プリファレンス"
+
+#: ../pages.php:11
+msgid "Manage users"
+msgstr "ユーザ管理"
+
+#: ../pages.php:12
+msgid "All tickets"
+msgstr "全てのチケット"
+
+#: ../pages.php:13
+msgid "All grants"
+msgstr "全てのグラント"
+
+#: ../pages.php:60
+msgid "Logout"
+msgstr "ログアウト"
+
+#: ../pages.php:61
+msgid "Help"
+msgstr "ヘルプ"
+
+#: ../prefs.php:14
+msgid "Settings successfully updated."
+msgstr "設定を更新しました。"
+
+#: ../prefs.php:14
+msgid "Settings update"
+msgstr "設定の更新"
+
+#: ../prefs.php:21
+msgid "Defaults"
+msgstr "標準設定"
+
+#: ../prefs.php:28
+msgid "E-Mail"
+msgstr "電子メール"
+
+#: ../prefs.php:34
+msgid ""
+"Type a <b>mandatory</b> e-mail address that will be used as a default for "
+"notifications."
+msgstr "通知の標準設定として使う<b>必須</b>Eメールアドレスを入力してください。"
+
+#: ../prefs.php:58
+msgid "New passwords don't match! Password unchanged."
+msgstr ""
+"新しいパスワードは一致しませんでした。パスワードの変更はしませんでした。"
+
+#: ../prefs.php:58 ../prefs.php:60 ../prefs.php:64
+msgid "Password change"
+msgstr "パスワードの変更"
+
+#: ../prefs.php:60
+msgid "Old password doesn't match! Password unchanged."
+msgstr "古いパスワードが一致しません。パスワードの変更はしませんでした。"
+
+#: ../prefs.php:64
+msgid "Password successfully changed."
+msgstr "パスワードは変更できました。"
+
+#: ../prefs.php:77
+msgid "Old password"
+msgstr "古いパスワード"
+
+#: ../prefs.php:83
+msgid "Please type your current password."
+msgstr "現在のパスワードを入力してください。"
+
+#: ../prefs.php:93
+msgid "New password"
+msgstr "新しいパスワード"
+
+#: ../prefs.php:99
+msgid "Please type the new password."
+msgstr "新しいパスワードを入力してください。"
+
+#: ../prefs.php:109
+msgid "New password (retype)"
+msgstr "新しいパスワード(再度入力)"
+
+#: ../prefs.php:115
+msgid "Please <em>retype</em> the new password again."
+msgstr "もう一度、新しいパスワードを再度入力してください。"
+
+#: ../ticketfuncs.php:22 ../ticketfuncs.php:32
+#, php-format
+msgid "About %s"
+msgstr "約 %s "
+
+#: ../ticketfuncs.php:27
+#, php-format
+msgid "About %d downloads"
+msgstr "%d 回のダウンロードについて"
+
+#: ../ticketfuncs.php:37
+#, php-format
+msgid "After %d downloads"
+msgstr "%d 回のダウンロードの後"
+
+#: ../ticketfuncs.php:42
+#, php-format
+msgid "%s after next download"
+msgstr "%s 次のダウンロードの後、"
+
+#: ../ticketl.php:52 ../ticketla.php:48
+msgid "Ticket"
+msgstr "チケット"
+
+#: ../ticketl.php:53 ../ticketla.php:50
+msgid "Size"
+msgstr "サイズ"
+
+#: ../ticketl.php:77 ../ticketla.php:75
+msgid "Successfully downloaded"
+msgstr "ダウンロードできました。"
+
+#: ../ticketl.php:125 ../ticketla.php:126
+#, php-format
+msgid "Total archive size: %s"
+msgstr "全体のアーカイブ容量: %s"
+
+#: ../ticketp.php:6
+#, php-format
+msgid ""
+"The ticket %s is protected. Please enter the password to unlock the content."
+msgstr ""
+"チケット %s は保護されています。ロックを外すためのパスワードを入力してくださ"
+"い。"
+
+#: ../ticketp.php:24
+msgid "Type the password required to unlock this ticket."
+msgstr "このチケットのロックを外すためのパスワードを入力してください。"
+
+#: ../users.php:15
+msgid "Created"
+msgstr "生成しました"
+
+#: ../users.php:17
+msgid "Creation failed"
+msgstr "生成に失敗しました"
+
+#: ../users.php:18
+#, php-format
+msgid "user \"%s\" already exists"
+msgstr "ユーザ \"%s\" は既に存在しています"
+
+#: ../users.php:31
+msgid "Deleted"
+msgstr "削除"
+
+#: ../users.php:63
+msgid "Updated"
+msgstr "更新"
+
+#: ../users.php:70
+msgid "Administrator"
+msgstr "管理者"
+
+#: ../users.php:108
+msgid "Role"
+msgstr "権限"
+
+#: ../users.php:109
+msgid "Tickets"
+msgstr "チケット"
+
+#: ../users.php:110
+msgid "Grants"
+msgstr "グラント"
+
+#: ../users.php:111
+msgid "Total size"
+msgstr "全体の容量"
+
+#: ../users.php:160
+msgid "Delete selected"
+msgstr "削除が選択されました"
+
+#: ../users.php:161
+msgid "Apply changes"
+msgstr "変更処理しました"

@@ -13,6 +13,7 @@ $langData = array
   'ES' => array('locale' => 'es_ES', 'name' => 'Español'),
   'FR' => array('locale' => 'fr_FR', 'name' => 'Français'),
   'IT' => array('locale' => 'it_IT', 'name' => 'Italiano'),
+  'JP' => array('locale' => 'ja_JP', 'name' => '日本語'),
   'NL' => array('locale' => 'nl_NL', 'name' => 'Nederlands'),
 );
 

@@ -13,6 +13,7 @@ Localization
 :French:		Daniel Berteaud <daniel@firewall-services.com>
 :German:		Clemens Egger <clemens.egger@eurac.edu>
 :Italian:		Yuri D'Elia <wavexx@thregr.org>
+:Japanese:		Teruo IWAI <teruo.iwai@gmail.com>
 :Spanish:		Roberto Salgado <drober@gmail.com>
 
 
