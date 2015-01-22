@@ -86,7 +86,7 @@ $defaults = array
 );
 
 // constants
-$dlVersion = "0.15";
+$dlVersion = "0.16";
 $schemaVersion = "0.12";
 $bannerUrl = 'http://www.thregr.org/~wavexx/software/dl/';
 $banner = '<a href="' . htmlentities($bannerUrl) . '">dl ticket service</a>'

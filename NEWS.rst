@@ -1,3 +1,14 @@
+dl 0.16: 22/01/2015
+-------------------
+
+* The database connection is automatically re-established when timed out after
+  slow uploads/downloads (affects systems not using sqlite).
+* dl-cli can now prompt for a password when left unspecified in the
+  ``~/.dl.rc`` configuration file.
+* Added Japanese translation by Teruo IWAI.
+* Dutch user-guide translation by Maarten Schoonman.
+
+
 dl 0.15: 28/11/2014
 -------------------
 

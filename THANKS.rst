@@ -1,3 +1,7 @@
+Arthur Fabre [https://github.com/arthurfabre]:
+
+* ``dl-cli`` improvements.
+
 Clemens Egger <clemens.egger@eurac.edu>:
 
 * Suggestions and testing.
