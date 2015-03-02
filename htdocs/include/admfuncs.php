@@ -281,7 +281,9 @@ function userLogin($user, $pass, $rmt, $email = false)
   }
 
   // validate the user
-  return (checkPassHash('user', $DATA, $pass)? $DATA: false);
+  $ret = checkPassHash('user', $DATA, $pass);
+  logEvent("login attempt for user $user: " . ($ret? "success": "fail"));
+  return ($ret? $DATA: false);
 }
 
 ?>
