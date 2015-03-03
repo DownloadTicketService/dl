@@ -77,7 +77,7 @@ function genTicketId()
   while(@fopen($tmpFile, "x") === FALSE && --$tries);
   if(!$tries)
   {
-    logEvent("cannot generate unique ticket ID");
+    logError("cannot generate unique ticket ID");
     httpInternalError();
   }
 
@@ -100,7 +100,7 @@ function genGrantId()
   while($q->fetch() !== FALSE && --$tries);
   if(!$tries)
   {
-    logEvent("cannot generate unique grant ID");
+    logError("cannot generate unique grant ID");
     httpInternalError();
   }
 
@@ -127,7 +127,8 @@ function userAdd($user, $pass, $admin, $email = false)
   $sql .= ")";
 
   $ret = ($db->exec($sql) == 1);
-  logEvent("adding user $user: " . ($ret? "success": "fail"));
+  logEvent("adding user $user: " . ($ret? "success": "fail"),
+      ($ret? LOG_INFO: LOG_ERR));
   return $ret;
 }
 
@@ -137,7 +138,8 @@ function userDel($user)
   global $db;
   $sql = 'DELETE FROM "user" WHERE name = ' . $db->quote($user);
   $ret = ($db->exec($sql) == 1);
-  logEvent("deleting user $user: " . ($ret? "success": "fail"));
+  logEvent("deleting user $user: " . ($ret? "success": "fail"),
+      ($ret? LOG_INFO: LOG_ERR));
   return $ret;
 }
 
@@ -179,7 +181,7 @@ function userUpd($user, $pass = null, $admin = null, $email = null)
   if(!is_null($admin)) $msg[] = "role";
   if(!is_null($email)) $msg[] = "email";
   logEvent("updating user $user (" . join(", ", $msg)
-    . "): " . ($ret? "success": "fail"));
+      . "): " . ($ret? "success": "fail"), ($ret? LOG_INFO: LOG_ERR));
   return $ret;
 }
 
@@ -235,7 +237,8 @@ function checkPassHash($table, $DATA, $pass)
 	. " SET pass_ph = " . $db->quote($DATA['pass_ph'])
 	. ", pass_md5 = NULL WHERE id = " . $db->quote($id);
       $ret = ($db->exec($sql) == 1);
-      logEvent("upgrading password hash of $table/$id: " . ($ret? "success": "fail"));
+      logEvent("upgrading password hash of $table/$id: "
+	  . ($ret? "success": "fail"), ($ret? LOG_INFO: LOG_ERR));
     }
   }
 
@@ -282,7 +285,8 @@ function userLogin($user, $pass, $rmt, $email = false)
 
   // validate the user
   $ret = checkPassHash('user', $DATA, $pass);
-  logReq("login attempt for user $user: " . ($ret? "success": "fail"));
+  logEvent("login attempt for user $user: " . ($ret? "success": "fail"),
+      ($ret? LOG_INFO: LOG_ERR));
   return ($ret? $DATA: false);
 }
 

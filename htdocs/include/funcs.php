@@ -20,10 +20,15 @@ function logEvent($logLine, $logType = LOG_INFO)
 {
   global $logFile, $useSysLog, $logFd, $auth;
 
+  $attr = array();
+  if(isset($auth['name']))
+    $attr[] = $auth['name'];
+  if(isset($_SERVER['REMOTE_ADDR']))
+    $attr[] = $_SERVER['REMOTE_ADDR'];
+  if(count($attr))
+    $logLine = '[' . implode(", ", $attr) . '] ' . $logLine;
   if($logType == LOG_ERR)
     $logLine = 'error: ' . $logLine;
-  if(isset($auth['name']))
-    $logLine = $auth['name'] . ': ' . $logLine;
 
   if($useSysLog)
     syslog($logType, $logLine);
@@ -47,12 +52,6 @@ function logEvent($logLine, $logType = LOG_INFO)
 function logError($logLine)
 {
   logEvent($logLine, LOG_ERR);
-}
-
-
-function logReq($logLine, $logType = LOG_INFO)
-{
-  logEvent('[' . $_SERVER['REMOTE_ADDR'] . '] ' . $logLine, $logType);
 }
 
 

@@ -20,12 +20,12 @@ function newticket($msg, $params = null)
     if($validated && !empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
     {
       $err = uploadErrorStr($_FILES["file"]);
-      logReq("ticket upload failure: $err", LOG_ERR);
+      logError("ticket upload failure: $err");
       return array('httpInternalError', $err);
     }
     elseif(!$validated)
     {
-      logReq('invalid ticket parameters', LOG_ERR);
+      logError('invalid ticket parameters');
       return array('httpBadRequest', 'bad parameters');
     }
     else

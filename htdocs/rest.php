@@ -27,7 +27,7 @@ if(isset($_SERVER['HTTP_X_AUTHORIZATION']))
     || $authData["user"] !== $extAuth["user"]
     || ($extAuth["pass"] !== false && $authData["pass"] !== $extAuth["pass"]))
     {
-      logReq('inconsistent double authorization token', LOG_ERR);
+      logError('inconsistent double authorization token');
       unset($authData);
     }
   }
@@ -36,7 +36,7 @@ if(isset($authData))
 {
   if(empty($authData["user"]) || (!$rmt && empty($authData["pass"])))
   {
-    logReq('missing credentials', LOG_ERR);
+    logError('missing credentials');
     httpUnauthorized();
   }
   $auth = userLogin($authData["user"], $authData["pass"], $rmt);
@@ -44,7 +44,7 @@ if(isset($authData))
 }
 if(empty($auth))
 {
-  logReq('invalid credentials', LOG_ERR);
+  logError('invalid credentials');
   httpUnauthorized();
 }
 
@@ -52,19 +52,19 @@ if(empty($auth))
 $args = explode("/", $_SERVER["PATH_INFO"]);
 if($args[0] !== "" || count($args) < 2 || !isset($rest[$args[1]]))
 {
-  logReq('unknown request action or arguments', LOG_ERR);
+  logError('unknown request action or arguments');
   httpNotFound();
 }
 $act = strtolower($args[1]);
 array_splice($args, 0, 2);
 if($rest[$act]['admin'] && !$auth['admin'])
 {
-  logReq('unauthorized request', LOG_ERR);
+  logError('unauthorized request');
   httpUnauthorized();
 }
 if($rest[$act]['method'] !== $_SERVER['REQUEST_METHOD'])
 {
-  logReq('bad request method', LOG_ERR);
+  logError('bad request method');
   httpBadMethod();
 }
 
@@ -74,13 +74,13 @@ if($rest[$act]['method'] == 'POST')
 {
   if(empty($_POST["msg"]))
   {
-    logReq('missing "msg" in POST request', LOG_ERR);
+    logError('missing "msg" in POST request');
     httpBadRequest();
   }
   $msg = json_decode($_POST["msg"], true);
   if(!isset($msg))
   {
-    logReq('invalid JSON in request', LOG_ERR);
+    logError('invalid JSON in request');
     httpBadRequest();
   }
 }

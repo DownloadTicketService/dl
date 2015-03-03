@@ -13,7 +13,7 @@ $id = false;
 if(preg_match("/^\/([^\/]+)/", $_SERVER["PATH_INFO"], $tmp)) $id = $tmp[1];
 if($id === false || !isTicketId($id))
 {
-  logReq("invalid ticket id/request", LOG_ERR);
+  logError("invalid ticket id/request");
   httpNotFound();
 }
 
@@ -23,7 +23,7 @@ $DATA = $db->query($sql)->fetch();
 if($DATA === false || isTicketExpired($DATA))
 {
   if($DATA === false)
-    logReq("unknown ticket requested");
+    logEvent("unknown ticket requested");
   else
     logTicketEvent($DATA, "expired ticket requested");
   httpNotFound();

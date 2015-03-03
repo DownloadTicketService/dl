@@ -16,7 +16,7 @@ function newgrant($msg, $params = null)
     // grant creation unsucessfull
     if($validated)
     {
-      logReq('invalid grant parameters', LOG_ERR);
+      logError('invalid grant parameters');
       return array('httpInternalError', 'internal error');
     }
     else
