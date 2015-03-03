@@ -34,7 +34,7 @@ function logEvent($logLine, $logType = LOG_INFO)
   }
   else
   {
-    $logLine = "[" . date(DATE_RSS) . "] $logLine\n";
+    $logLine = "[" . date(DATE_W3C) . "] $logLine\n";
     flock($logFd, LOCK_EX);
     fseek($logFd, 0, SEEK_END);
     fwrite($logFd, $logLine);
