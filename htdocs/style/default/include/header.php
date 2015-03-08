@@ -7,6 +7,7 @@
       <script type="text/javascript" src="static/dl.js"></script>
       <link rel="stylesheet" type="text/css" href="<?php echo "$style/static/view.css"; ?>"/>
       <script type="text/javascript" src="<?php echo "$style/static/view.js"; ?>"></script>
+      <link rel="shortcut icon" href="<?php echo "$style/static/favicon.ico"; ?>"/>
   </head>
   <body>
     <div id="navbar-inner">
