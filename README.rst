@@ -118,6 +118,7 @@ values are defaults since PHP 5.0, but they might be different in your setup):
 * ``magic_quotes_gpc``: must be "Off".
 * ``magic_quotes_runtime``: must be "Off".
 * ``date.timezone``: must be set to your system preference.
+* ``session.autostart``: must be "Off".
 
 The maximal upload limit is determined by several PHP configuration
 parameters. Check your ``php.ini`` for:
