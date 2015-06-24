@@ -10,7 +10,7 @@ import os.path
 import sys
 import getpass
 
-DL_VERSION = "0.13"
+DL_VERSION = "0.16"
 DL_AGENT = "dl-cli/" + DL_VERSION
 CFG_SECTION = 'DEFAULT'
 
