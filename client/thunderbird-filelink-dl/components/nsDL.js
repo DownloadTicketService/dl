@@ -3,11 +3,12 @@ const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource:///modules/cloudFileAccounts.js");
+Cu.importGlobalProperties(['File']);
 
 const TYP = "DL";
 const AID = "thunderbird-filelink-dl@thregr.org";
 const CID = "{c0bee36d-3c0d-460b-bb9a-f0e9c873a833}";
-const VER = "0.13";
+const VER = "0.17";
 
 function nsDL() {}
 
