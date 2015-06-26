@@ -1,3 +1,12 @@
+dl 0.17: 26/06/2015
+-------------------
+
+* Login attempts are now logged.
+* Log messages are now more uniform, always including the remote address and
+  username (when available).
+* The Thunderbird add-on has been updated to support Thunderbird 38.
+
+
 dl 0.16: 22/01/2015
 -------------------
 
