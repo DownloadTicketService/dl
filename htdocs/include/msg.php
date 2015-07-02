@@ -76,8 +76,8 @@ function msgGrantUse($GRANT, $DATA, &$subject, &$body)
 {
   $subject = sprintf(T_("[dl] download link for grant %s"), grantStr($GRANT));
   $body = sprintf(T_("Your grant %s has been used by %s."
-	  . " The uploaded file is now available to be downloaded at:\n\n"),
-      grantStr($GRANT), $_SERVER["REMOTE_ADDR"]);
+	  . " The uploaded file (%s) is now available to be downloaded at:\n\n"),
+      grantStr($GRANT), $_SERVER["REMOTE_ADDR"], $DATA['name']);
   if(!isset($DATA['pass']))
     $body .= ticketUrl($DATA);
   else
