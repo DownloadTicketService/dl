@@ -438,13 +438,14 @@ installed as a subdirectory in the document root::
 	  # Set maximum body size (should be the same as PHP's post_max_size)
 	  client_max_body_size 512M;
 
-	  # Setup PATH_INFO
+	  # Setup PATH_INFO (http://trac.nginx.org/nginx/ticket/321)
 	  fastcgi_split_path_info ^(.+\.php)(/.+)$;
+	  set $path_info          $fastcgi_path_info;
+	  fastcgi_param PATH_INFO $path_info;
+
           try_files $fastcgi_script_name =404;
 
-          fastcgi_param PATH_INFO	$fastcgi_path_info;
 	  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-
 	  fastcgi_index index.php;
 	  fastcgi_pass unix:/var/run/php5-fpm.sock;
       }
