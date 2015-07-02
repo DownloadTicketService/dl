@@ -371,18 +371,19 @@ function externalAuth()
 
 function mb_basename($path)
 {
-  return preg_replace('/.*\\([^\\/:]*\\)\$/u', '\\1', $path);
+  $path = preg_replace('/[\/\\\:]+$/u', '', $path);
+  return preg_replace('/.*[\/\\\:]/u', '', $path);
 }
 
 function mb_sanitize($path)
 {
-  return preg_replace('/([\\/?%*|"<>]|[^[:print:]])+/u', '_', $path);
+  return preg_replace('/([\/\\\:?%*|"<>]|[^[:print:]])+/u', '_', $path);
 }
 
 function mb_sane_base($path)
 {
-  return mb_sanitize(mb_basename($path));
+  $base = mb_basename($path);
+  return mb_sanitize(mb_strlen($base)? $base: $path);
 }
-
 
 ?>
