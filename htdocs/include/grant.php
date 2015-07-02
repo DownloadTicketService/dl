@@ -74,7 +74,7 @@ function handleUpload($GRANT, $FILE)
     . ", time, last_time, expire, expire_dln, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $GRANT['user_id'];
-  $sql .= ", " . $db->quote(basename($FILE["name"]));
+  $sql .= ", " . $db->quote(mb_sane_base($FILE["name"]));
   $sql .= ", " . $db->quote($tmpFile);
   $sql .= ", " . $FILE["size"];
   $sql .= ", " . (empty($GRANT["cmt"])? 'NULL': $db->quote($GRANT["cmt"]));

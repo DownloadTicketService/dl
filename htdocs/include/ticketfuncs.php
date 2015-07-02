@@ -91,7 +91,7 @@ function handleUpload($FILE, $params)
     . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
-  $sql .= ", " . $db->quote(basename($FILE["name"]));
+  $sql .= ", " . $db->quote(mb_sane_base($FILE["name"]));
   $sql .= ", " . $db->quote($tmpFile);
   $sql .= ", " . $FILE["size"];
   $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));

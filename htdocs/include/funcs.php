@@ -368,4 +368,21 @@ function externalAuth()
   return array("user" => $user, "pass" => $pass, "email" => $email);
 }
 
+
+function mb_basename($path)
+{
+  return preg_replace('/.*\\([^\\/:]*\\)\$/u', '\\1', $path);
+}
+
+function mb_sanitize($path)
+{
+  return preg_replace('/([\\/?%*|"<>]|[^[:print:]])+/u', '_', $path);
+}
+
+function mb_sane_base($path)
+{
+  return mb_sanitize(mb_basename($path));
+}
+
+
 ?>
