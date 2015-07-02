@@ -377,7 +377,7 @@ function mb_basename($path)
 
 function mb_sanitize($path)
 {
-  return preg_replace('/([\/\\\:?%*|"<>]|[^[:print:]])+/u', '_', $path);
+  return preg_replace('/([\/\\\:?%*|"<>[:cntrl:]])+/u', '_', $path);
 }
 
 function mb_sane_base($path)
