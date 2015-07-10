@@ -27,7 +27,6 @@
                 <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
               </object>
               <cols>2</cols>
-              <rows>2</rows>
               <vgap>5</vgap>
               <hgap>5</hgap>
               <growablecols>1</growablecols>
@@ -49,11 +48,6 @@
                 </object>
                 <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
               </object>
-              <cols>2</cols>
-              <rows>2</rows>
-              <vgap>5</vgap>
-              <hgap>5</hgap>
-              <growablecols>1</growablecols>
               <object class="sizeritem">
                 <object class="wxStaticText">
                   <label>Expire in # of days after last download</label>
@@ -80,6 +74,10 @@
                 </object>
                 <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
               </object>
+              <cols>2</cols>
+              <vgap>5</vgap>
+              <hgap>5</hgap>
+              <growablecols>1</growablecols>
             </object>
             <flag>wxEXPAND</flag>
           </object>
@@ -96,7 +94,6 @@
                   <default>1</default>
                 </object>
               </object>
-              <cols>2</cols>
               <rows>1</rows>
               <vgap>5</vgap>
               <hgap>5</hgap>
@@ -104,7 +101,6 @@
             <flag>wxALIGN_RIGHT|wxALIGN_BOTTOM</flag>
           </object>
           <cols>1</cols>
-          <rows>3</rows>
           <vgap>5</vgap>
           <hgap>5</hgap>
           <growablecols>0</growablecols>
