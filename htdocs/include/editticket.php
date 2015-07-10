@@ -11,7 +11,7 @@ function handleUpdate($id)
   $values = array();
 
   if(!empty($_POST['name']))
-    $values['name'] = $db->quote($_POST['name']);
+    $values['name'] = $db->quote(mb_sanitize($_POST['name']));
 
   if(isset($_POST['comment']))
     $values['cmt'] = (empty($_POST['comment'])? 'NULL': $db->quote($_POST['comment']));
