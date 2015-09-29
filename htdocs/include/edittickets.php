@@ -63,7 +63,7 @@ $details[T_('Download link')] = "<a class=\"ticketid\" href=\"$ticketUrl\">" . h
 if($DATA["downloads"])
 {
   $details[T_("Download count")] = $DATA["downloads"];
-  $details[T_("Last download")] = date("d/m/Y", $DATA["last_stamp"]);
+  $details[T_("Last download")] = date($dateFmtFull, $DATA["last_stamp"]);
 }
 
 // sent-to
