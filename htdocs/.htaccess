@@ -1,0 +1,9 @@
+<IfModule mod_fastcgi.c>
+    # Forward the credentials for the PHP process when using php-fpm and
+    # mod_fastcgi (can be removed in other configurations)
+    <FilesMatch "^(admin|rest)\.php$">
+	RewriteEngine on
+	RewriteCond %{HTTP:Authorization} ^(.*)
+	RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+    </FilesMatch>
+</IfModule>
