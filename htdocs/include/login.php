@@ -12,7 +12,7 @@ $class = "description required" . ($error? " error": "");
     <li>
       <label class="<?php echo $class; ?>"><?php echo T_("User"); ?></label>
       <div>
-	<input name="u" class="element text" type="text" required maxlength="<?php echo $maxUserLen; ?>"/>
+        <input tabindex="1" autofocus="autofocus" name="u" class="element text" type="text" required maxlength="<?php echo $maxUserLen; ?>"/>
       </div>
       <p class="guidelines"><small>
 	  <?php
@@ -24,7 +24,7 @@ $class = "description required" . ($error? " error": "");
     <li>
       <label class="<?php echo $class; ?>"><?php echo T_("Password"); ?></label>
       <div>
-	<input name="p" class="element text" type="password" required maxlength="<?php echo $maxPassLen; ?>"/>
+        <input tabindex="2" name="p" class="element text" type="password" required maxlength="<?php echo $maxPassLen; ?>"/>
       </div>
       <p class="guidelines"><small>
           <?php
@@ -35,7 +35,7 @@ $class = "description required" . ($error? " error": "");
 
     <li class="buttons">
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
-      <input id="submit" type="submit" value="<?php echo T_("Login"); ?>"/>
+      <input tabindex="3" id="submit" type="submit" value="<?php echo T_("Login"); ?>"/>
     </li>
   </ul>
 </form>
