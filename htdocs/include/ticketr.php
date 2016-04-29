@@ -79,7 +79,8 @@ if(!$complete)
 }
 header("Content-Length: $size");
 session_write_close();
-ob_end_flush();
+// disable output buffering if it was enabled
+if(ob_get_level()) ob_end_flush();
 
 // contents
 $left = $size;
