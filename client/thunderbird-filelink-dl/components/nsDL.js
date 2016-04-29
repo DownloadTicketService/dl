@@ -105,7 +105,7 @@ nsDL.prototype =
     {
       let data = Cc["@mozilla.org/files/formdata;1"].createInstance(Ci.nsIDOMFormData);
       if(msg) data.append("msg", JSON.stringify(msg));
-      if(file) data.append("file", File(file));
+      if(file) data.append("file", new File(file));
       req.send(data);
     }
 
