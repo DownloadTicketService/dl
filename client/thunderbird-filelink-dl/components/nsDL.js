@@ -1,7 +1,7 @@
 const TYP = "DL";
 const AID = "thunderbird-filelink-dl@thregr.org";
 const CID = "{c0bee36d-3c0d-460b-bb9a-f0e9c873a833}";
-const VER = "0.17";
+const VER = "0.17.1";
 
 const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
 
