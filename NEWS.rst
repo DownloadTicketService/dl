@@ -1,3 +1,14 @@
+dl 0.17.1: 29/04/2016
+---------------------
+
+* Filenames are now sanitized more aggressively when received. This avoids
+  browser/client failures when receiving files containing illegal characters
+  for the current platform (which might be legal in another).
+* Filenames containing multibyte characters could previously result in
+  unexpected truncation; they're now handled correctly.
+* The Thunderbird add-on has been updated to support Thunderbird 45.
+
+
 dl 0.17: 26/06/2015
 -------------------
 

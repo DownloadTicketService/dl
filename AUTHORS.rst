@@ -1,7 +1,7 @@
 Main program
 ------------
 
-| Copyright(c) 2007-2014 Yuri D'Elia <wavexx@thregr.org>
+| Copyright(c) 2007-2016 Yuri D'Elia <wavexx@thregr.org>
 | License: GNU GPL 2+ (see COPYING)
 
 Localization

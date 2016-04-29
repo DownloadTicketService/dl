@@ -716,7 +716,7 @@ Authors and Copyright
 "dl" can be found at http://www.thregr.org/~wavexx/software/dl/
 
 | "dl" is distributed under GNU GPL 2, WITHOUT ANY WARRANTY.
-| Copyright(c) 2007-2012 by Yuri D'Elia <wavexx@thregr.org>.
+| Copyright(c) 2007-2016 by Yuri D'Elia <wavexx@thregr.org>.
 
 dl's GIT repository is publicly accessible at::
 
