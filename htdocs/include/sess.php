@@ -1,5 +1,6 @@
 <?php
 // initialize the session
+if(!ob_get_level()) ob_start();
 include("init.php");
 require_once("admfuncs.php");
 
