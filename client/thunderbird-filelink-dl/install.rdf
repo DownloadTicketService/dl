@@ -6,7 +6,7 @@
     <em:id>thunderbird-filelink-dl@thregr.org</em:id>
     <em:name>DL for Thunderbird</em:name>
     <em:description>DL support for Thunderbird's Filelink</em:description>
-    <em:homepageURL>http://www.thregr.org/~wavexx/software/dl/</em:homepageURL>
+    <em:homepageURL>https://www.thregr.org/~wavexx/software/dl/</em:homepageURL>
     <em:creator>Yuri D'Elia</em:creator>
     <em:version>0.17.1</em:version>
     <em:type>2</em:type>

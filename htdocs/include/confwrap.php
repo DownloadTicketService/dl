@@ -88,7 +88,7 @@ $defaults = array
 // constants
 $dlVersion = "0.17.1";
 $schemaVersion = "0.12";
-$bannerUrl = 'http://www.thregr.org/~wavexx/software/dl/';
+$bannerUrl = 'https://www.thregr.org/~wavexx/software/dl/';
 $banner = '<a href="' . htmlentities($bannerUrl) . '">dl ticket service</a>'
   . ' ' . htmlentities($dlVersion);
 $cookieLifetime = 1000 * 60 * 60 * 24 * 90;

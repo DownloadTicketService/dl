@@ -13,7 +13,7 @@ from dl import *
 DL_VERSION = "0.13"
 DL_AGENT = "dl-wx/" + DL_VERSION
 DL_DESCRIPTION = "Download Ticket Service"
-DL_URL = "http://www.thregr.org/~wavexx/software/dl/"
+DL_URL = "https://www.thregr.org/~wavexx/software/dl/"
 DL_ICON = "dl-icon.ico"
 DL_RC = "~/.dl.rc"
 

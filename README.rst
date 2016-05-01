@@ -624,7 +624,7 @@ A ``dl-wx`` pre-built binary is also available online on the dl-wx_ page, which
 includes installation instructions and a simple tutorial.
 
 .. _executable client:
-.. _dl-wx: http://www.thregr.org/~wavexx/software/dl/dl-wx.html
+.. _dl-wx: https://www.thregr.org/~wavexx/software/dl/dl-wx.html
 
 
 Thunderbird integration
@@ -648,7 +648,7 @@ as provided in the distribution.
 See full installation and usage instructions on the extension_ web page.
 
 .. _Filelink: https://support.mozillamessaging.com/en-US/kb/filelink-large-attachments
-.. _extension: http://www.thregr.org/~wavexx/software/dl/thunderbird.html
+.. _extension: https://www.thregr.org/~wavexx/software/dl/thunderbird.html
 
 
 General/support mailing list
@@ -713,7 +713,7 @@ environment.
 Authors and Copyright
 =====================
 
-"dl" can be found at http://www.thregr.org/~wavexx/software/dl/
+"dl" can be found at https://www.thregr.org/~wavexx/software/dl/
 
 | "dl" is distributed under GNU GPL 2, WITHOUT ANY WARRANTY.
 | Copyright(c) 2007-2016 by Yuri D'Elia <wavexx@thregr.org>.
