@@ -63,6 +63,10 @@ RustyPixel [https://github.com/RustyPixel]:
 
 * DL 0.14 Skin.
 
+Sébastien Le Ray <sebastien-github@orniz.org>:
+
+* Thunderdbird and DL code fixes.
+
 Teruo IWAI <oteru@nak.ics.keio.ac.jp>:
 
 * Japanese localization.

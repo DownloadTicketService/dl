@@ -1,12 +1,15 @@
-dl 0.17.1: 29/04/2016
+dl 0.17.1: 01/05/2016
 ---------------------
 
 * Filenames are now sanitized more aggressively when received. This avoids
-  browser/client failures when receiving files containing illegal characters
+  browser/client failures when receiving files that contain illegal characters
   for the current platform (which might be legal in another).
 * Filenames containing multibyte characters could previously result in
   unexpected truncation; they're now handled correctly.
+* The uploaded filename is included in grant notifications.
 * The Thunderbird add-on has been updated to support Thunderbird 45.
+* In the ticket details, the full timestamp of the download is now shown.
+* Minor code and documentation fixes.
 
 
 dl 0.17: 26/06/2015
