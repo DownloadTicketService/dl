@@ -144,7 +144,8 @@ def main():
     args = parser.parse_args()
 
     cfgpath = os.path.expanduser(args.rc)
-    cp = ConfigParser.RawConfigParser({'passcmd': None})
+    cp = ConfigParser.RawConfigParser({'passcmd': None,
+                                       'verify': 'True'})
     cp.readfp(DefaultSection(cfgpath))
 
     cfg = {'url' : cp.get(CFG_SECTION, 'url'),
