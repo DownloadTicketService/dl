@@ -9,6 +9,7 @@ import argparse
 import os.path
 import sys
 import getpass
+import subprocess
 
 DL_VERSION = "0.16"
 DL_AGENT = "dl-cli/" + DL_VERSION
@@ -143,18 +144,20 @@ def main():
     args = parser.parse_args()
 
     cfgpath = os.path.expanduser(args.rc)
-    cp = ConfigParser.RawConfigParser()
+    cp = ConfigParser.RawConfigParser({'passcmd': None})
     cp.readfp(DefaultSection(cfgpath))
-    
+
     cfg = {'url' : cp.get(CFG_SECTION, 'url'),
            'user': cp.get(CFG_SECTION, 'user'),
            'pass': cp.get(CFG_SECTION, 'pass'),
-           'verify': cp.getboolean(CFG_SECTION, 'verify')}
-          
-    # Prompt for password if not in config file
-    if not cfg['pass']:
+           'passcmd': cp.get(CFG_SECTION, 'passcmd')}
+
+    # Obtain a password
+    if cfg['passcmd']:
+        cfg['pass'] = subprocess.check_output(cfg['passcmd'])
+    elif not cfg['pass']:
         cfg['pass'] = getpass.getpass('Password for ' + cfg['user'] + ':')
-        
+
     try:
         if args.file:
             answ = newticket(args.file, cfg)
