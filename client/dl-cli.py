@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import ConfigParser
-import base64
+import binascii
 import pycurl
 import httplib
 import StringIO
@@ -11,7 +11,7 @@ import sys
 import getpass
 import subprocess
 
-DL_VERSION = "0.16"
+DL_VERSION = "0.18"
 DL_AGENT = "dl-cli/" + DL_VERSION
 CFG_SECTION = 'DEFAULT'
 
@@ -51,12 +51,17 @@ def newticket(file, params):
     c.setopt(c.USERPWD, auth)
     c.setopt(c.HTTPHEADER, ['Expect:',
                             'User-agent: ' + DL_AGENT,
-                            'X-Authorization: Basic ' + base64.b64encode(auth)])
+                            'X-Authorization: Basic ' + binascii.b2a_base64(auth)[:-1]])
+
+    if not params['verify']:
+        c.setopt(c.SSL_VERIFYPEER, False)
+    elif params['fingerprint']:
+        c.setopt(c.SSL_VERIFYPEER, False)
+        c.setopt(c.PINNEDPUBLICKEY, params['fingerprint'])
+
     c.setopt(c.HTTPPOST, [
         ("file", (c.FORM_FILE, file)),
         ("msg", json.dumps({}))])
-    if not params['verify']:
-        c.setopt(c.SSL_VERIFYPEER, False)
 
     try:
         c.perform()
@@ -95,12 +100,16 @@ def newgrant(email, params):
     c.setopt(c.USERPWD, auth)
     c.setopt(c.HTTPHEADER, ['Expect:',
                             'User-agent: ' + DL_AGENT,
-                            'X-Authorization: Basic ' + base64.b64encode(auth)])
+                            'X-Authorization: Basic ' + binascii.b2a_base64(auth)[:-1]])
+
+    if not params['verify']:
+        c.setopt(c.SSL_VERIFYPEER, False)
+    elif params['fingerprint']:
+        c.setopt(c.SSL_VERIFYPEER, False)
+        c.setopt(c.PINNEDPUBLICKEY, params['fingerprint'])
 
     msg = {'notify': email}
     c.setopt(c.HTTPPOST, [("msg", json.dumps(msg))])
-    if not params['verify']:
-        c.setopt(c.SSL_VERIFYPEER, False)
 
     try:
         c.perform()
@@ -145,19 +154,32 @@ def main():
 
     cfgpath = os.path.expanduser(args.rc)
     cp = ConfigParser.RawConfigParser({'passcmd': None,
+                                       'fingerprint': None,
                                        'verify': 'True'})
     cp.readfp(DefaultSection(cfgpath))
 
     cfg = {'url' : cp.get(CFG_SECTION, 'url'),
            'user': cp.get(CFG_SECTION, 'user'),
            'pass': cp.get(CFG_SECTION, 'pass'),
-           'passcmd': cp.get(CFG_SECTION, 'passcmd')}
+           'passcmd': cp.get(CFG_SECTION, 'passcmd'),
+           'fingerprint': cp.get(CFG_SECTION, 'fingerprint'),
+           'verify': cp.getboolean(CFG_SECTION, 'verify')}
 
     # Obtain a password
     if cfg['passcmd']:
         cfg['pass'] = subprocess.check_output(cfg['passcmd'])
     elif not cfg['pass']:
         cfg['pass'] = getpass.getpass('Password for ' + cfg['user'] + ':')
+    if not cfg['verify']:
+        print("WARNING: SSL validation is disabled (use fingerprint for self-signed certs instead!)")
+
+    # Pre-process the fingerprint
+    if cfg['fingerprint'] and cfg['fingerprint'][0] not in '~./' \
+       and len(cfg['fingerprint']) in [64, 95]:
+        fp = cfg['fingerprint'].replace(':', '')
+        if len(fp) != 64:
+            die("fingerprint doesn't look like a valid hex-encoded SHA256 hash")
+        cfg['fingerprint'] = 'sha256//' + binascii.b2a_base64(binascii.a2b_hex(fp))[:-1]
 
     try:
         if args.file:

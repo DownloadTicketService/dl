@@ -580,8 +580,11 @@ default stored in ``~/.dl.rc``, containing the following values:
 * user: your user name
 * pass (optional): your password (if not specified, you will be prompted for it
   by the client)
+* passcmd (optional): invoke the supplied command to obtain the password
 * verify (optional): "true" or "false": enable/disable SSL verification
   (might be required for testing, but defaults to true)
+* fingerprint: Validate the server against the specified certificate or
+  fingerprint (See `Public key pinning`_).
 
 An example::
 
@@ -625,6 +628,26 @@ includes installation instructions and a simple tutorial.
 
 .. _executable client:
 .. _dl-wx: https://www.thregr.org/~wavexx/software/dl/dl-wx.html
+
+
+Public key pinning
+------------------
+
+The `fingerprint` option in the ``~/.dl.rc`` configuration file implements
+public key pinning, and supports any value directly accepted by cURL_.
+
+If can be a path to a DER/PEM certificate file, or SHA256 hash of the public
+key of the host. The hash can be either a hex-encoded string (with optional
+colon separators), or a string starting with ``sha256//`` and followed by a
+base64-encoded value of the hash.
+
+The quickest way to obtain the fingerprint is to use curl directly::
+
+  curl -vkI --pinnedpubkey 'sha256//' https://example.com/
+
+Look for the "public key hash" in the generated output.
+
+.. _cURL: https://curl.haxx.se/libcurl/c/CURLOPT_PINNEDPUBLICKEY.html
 
 
 Thunderbird integration
