@@ -636,7 +636,7 @@ Public key pinning
 The `fingerprint` option in the ``~/.dl.rc`` configuration file implements
 public key pinning, and supports any value directly accepted by cURL_.
 
-If can be a path to a DER/PEM certificate file, or SHA256 hash of the public
+It can be a path to a DER/PEM certificate file, or a SHA256 hash of the public
 key of the host. The hash can be either a hex-encoded string (with optional
 colon separators), or a string starting with ``sha256//`` and followed by a
 base64-encoded value of the hash.
