@@ -1,3 +1,10 @@
+dl 0.17.2: ??/10/2016
+---------------------
+
+* Simplified Chinese translation by Guangyu Dong.
+* Russian translation by Олейник О.В.
+
+
 dl 0.17.1: 01/05/2016
 ---------------------
 
