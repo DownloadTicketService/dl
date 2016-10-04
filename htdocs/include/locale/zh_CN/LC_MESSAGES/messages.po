@@ -1,0 +1,767 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-01-14 20:01+0100\n"
+"PO-Revision-Date: 2016-05-10 17:20+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../../style/include/grantr.php:2 ../newticketr.php:4
+msgid "Upload result"
+msgstr "上传结果"
+
+#: ../../style/include/grantr.php:5
+msgid "Your file has been uploaded successfully."
+msgstr "文件上传成功。"
+
+#: ../../style/include/grantr.php:7
+msgid "A notification link has been sent to the grant owner. Thanks."
+msgstr "通知邮件已经发送给授权用户，谢谢。"
+
+#: ../../style/include/nogrant.php:3
+msgid "Invalid grant"
+msgstr "授权不合法"
+
+#: ../../style/include/nogrant.php:3
+msgid "Unknown grant"
+msgstr "未知授权"
+
+#: ../../style/include/nogrant.php:9
+msgid "Sorry, the grant is invalid."
+msgstr "对不起，授权不合法"
+
+#: ../../style/include/nogrant.php:11
+#, php-format
+msgid "Sorry, the grant %s does not exist or is expired."
+msgstr "对不起，授权码 %s 不存在或已经过期。"
+
+#: ../../style/include/noticket.php:3
+msgid "Invalid ticket"
+msgstr "提取码不对"
+
+#: ../../style/include/noticket.php:3
+msgid "Unknown ticket"
+msgstr "提取码不存在"
+
+#: ../../style/include/noticket.php:9
+msgid "Sorry, the ticket is invalid."
+msgstr "抱歉，提取码不合法。"
+
+#: ../../style/include/noticket.php:11
+#, php-format
+msgid "Sorry, the ticket %s does not exist or is expired."
+msgstr "抱歉，提取码 %s 不存在或已经过期。"
+
+#: ../../style/include/rmtlogout.php:2
+msgid "Logged-out"
+msgstr "注销"
+
+#: ../../style/include/rmtlogout.php:6
+msgid "<em>Close the browser</em> to complete the logout."
+msgstr "请<em>关闭浏览器</em>以完成注销过程。"
+
+#: ../edittickets.php:4
+#, php-format
+msgid "Editing ticket %s"
+msgstr "正在编辑提取码 %s "
+
+#: ../edittickets.php:47
+msgid "Current expiration"
+msgstr "当前有效状态"
+
+#: ../edittickets.php:48
+msgid "Created on"
+msgstr "创建于"
+
+#: ../edittickets.php:56
+msgid "Created by"
+msgstr "创建人"
+
+#: ../edittickets.php:59
+msgid "File size"
+msgstr "文件大小"
+
+#: ../edittickets.php:60
+msgid "Download link"
+msgstr "下载链接"
+
+#: ../edittickets.php:65
+msgid "Download count"
+msgstr "下载次数统计"
+
+#: ../edittickets.php:66
+msgid "Last download"
+msgstr "最后下载"
+
+#: ../edittickets.php:75
+msgid "Initially sent to"
+msgstr "最初发送给"
+
+#: ../edittickets.php:89
+msgid "File name"
+msgstr "文件名"
+
+#: ../edittickets.php:95
+#, fuzzy
+msgid "Type the file name of the ticket (<em>including the extension</em>)."
+msgstr "输入提取码的文件名(<em>包括扩展名</em>)。"
+
+#: ../edittickets.php:101 ../newgrants.php:34 ../newtickets.php:35
+msgid "Comment"
+msgstr "备注"
+
+#: ../edittickets.php:107 ../newtickets.php:41
+msgid ""
+"Type an <em>optional</em> comment for your uploaded file. The comment will "
+"be shown along with the file name."
+msgstr "<em>（可选）</em>可为上传文件进行备注。备注会与文件名一同显示。"
+
+#: ../edittickets.php:114 ../prefs.php:122
+msgid "Change password"
+msgstr "更改密码"
+
+#: ../edittickets.php:114 ../grantp.php:18 ../login.php:25 ../newgrants.php:66
+#: ../newtickets.php:66 ../prefs.php:70 ../ticketp.php:18 ../users.php:107
+msgid "Password"
+msgstr "密码"
+
+#: ../edittickets.php:119 ../newgrants.php:69 ../newtickets.php:69
+msgid "Generate"
+msgstr "随机生成"
+
+#: ../edittickets.php:125
+msgid "Clear password"
+msgstr "清除密码"
+
+#: ../edittickets.php:130 ../newtickets.php:73
+msgid ""
+"Type an <em>optional</em> password that will be required to download the "
+"file, as an additional security measure."
+msgstr "<em>（可选）</em>输入下载文件需要的密码，以作为额外的安全措施。"
+
+#: ../edittickets.php:133
+msgid "Checking \"Clear password\" will remove the password."
+msgstr "勾选“清除密码”将清除已输入的密码。"
+
+#: ../edittickets.php:139 ../newgrants.php:81 ../newgrants.php:98
+#: ../newtickets.php:80
+msgid "Expire in total # of days"
+msgstr "在多少天内过期？"
+
+#: ../edittickets.php:145 ../newgrants.php:104 ../newtickets.php:86
+msgid ""
+"Type the <strong>maximal number of days</strong> the uploaded file is "
+"allowed to be kept on the server. After this period is passed the file will "
+"be deleted from the server."
+msgstr ""
+"请输入您希望该文件在服务器上保存的<strong>最长天数</strong>。过期后，服务器"
+"上的文件将被自动清除。"
+
+#: ../edittickets.php:154 ../newgrants.php:113 ../newtickets.php:95
+msgid "Expire in # of days after last download"
+msgstr "从最后一次下载算起，几天后过期？"
+
+#: ../edittickets.php:160 ../newgrants.php:119 ../newtickets.php:101
+msgid ""
+"Type the number of days the uploaded file is allowed to be kept on the "
+"server <strong>after being downloaded</strong>. After this period is passed "
+"without activity, the file will be deleted from the server."
+msgstr ""
+"请输入您希望该文件在服务器上保存的<strong>最长天数</strong>。从最后一次下载"
+"算起，在指定天数内，如果该文件未被再次下载激活，服务器上的文件将被自动清除。"
+
+#: ../edittickets.php:169 ../newgrants.php:128 ../newtickets.php:110
+msgid "Expire after # of downloads"
+msgstr "下载几次后过期？"
+
+#: ../edittickets.php:175 ../newgrants.php:134 ../newtickets.php:116
+msgid ""
+"Type the number of times the uploaded file is <strong>allowed to be "
+"downloaded in total</strong>. After this amount is reached the file will be "
+"deleted from the server."
+msgstr ""
+"请指定<strong>该文件最多可被下载多少次</strong>。当下载次数达到这个数字后，"
+"服务器上的文件将被自动清除。"
+
+#: ../edittickets.php:184 ../newgrants.php:143 ../newtickets.php:125
+msgid "Permanent ticket / upload"
+msgstr "永久提取码 / 上传"
+
+#: ../edittickets.php:188 ../newgrants.php:146 ../newtickets.php:128
+msgid "Do not expire"
+msgstr "本文件不过期"
+
+#: ../edittickets.php:192 ../newgrants.php:150 ../newtickets.php:132
+msgid "Set this checkmark if you do not want the uploaded file to expire."
+msgstr "如果你不希望本文件过期，请勾选此选项。"
+
+#: ../edittickets.php:198 ../newtickets.php:138
+msgid "Get notified by e-mail"
+msgstr "通过电子邮件接收通知"
+
+#: ../edittickets.php:204 ../newtickets.php:145
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should be "
+"notified when the file is downloaded from the server. You can separate "
+"multiple addresses with commas."
+msgstr ""
+"<em>（可选）</em>输入您希望接收通知的电子邮件地址。当文件被他人下载时，您将"
+"自动收到通知。如果要输入多个电子邮件，请使用逗号分隔。"
+
+#: ../edittickets.php:214 ../prefs.php:42
+msgid "Update"
+msgstr "更新"
+
+#: ../edittickets.php:215 ../grantl.php:99 ../grantla.php:100
+#: ../newgrants.php:160 ../newtickets.php:157 ../ticketl.php:118
+#: ../ticketla.php:119 ../users.php:159
+msgid "Reset"
+msgstr "重置"
+
+#: ../funcs.php:56
+#, php-format
+msgid "%s GiB"
+msgstr "%s GiB"
+
+#: ../funcs.php:58
+#, php-format
+msgid "%s MiB"
+msgstr "%s MiB"
+
+#: ../funcs.php:60
+#, php-format
+msgid "%s KiB"
+msgstr "%s KiB"
+
+#: ../funcs.php:61
+#, php-format
+msgid "%s B"
+msgstr "%s B"
+
+#: ../funcs.php:68
+#, php-format
+msgid "%d days"
+msgstr "%d 天"
+
+#: ../funcs.php:70
+#, php-format
+msgid "%d hours"
+msgstr "%d 小时"
+
+#: ../funcs.php:72
+#, php-format
+msgid "%d minutes"
+msgstr "%d 分钟"
+
+#: ../funcs.php:73
+#, php-format
+msgid "%d seconds"
+msgstr "%d 秒"
+
+#: ../funcs.php:185
+msgid "file too big"
+msgstr "文件尺寸过大"
+
+#: ../funcs.php:190
+msgid "upload interrupted"
+msgstr "上传过程已经中断"
+
+#: ../funcs.php:194
+msgid "internal error"
+msgstr "内部错误"
+
+#: ../grantfuncs.php:18 ../ticketfuncs.php:48
+#, fuzzy, php-format
+msgid "In %s"
+msgstr "%s 内"
+
+#: ../grantfuncs.php:22 ../ticketfuncs.php:52
+msgid "Never"
+msgstr "从未"
+
+#: ../grantl.php:33 ../grantla.php:29 ../ticketl.php:33 ../ticketla.php:29
+msgid "Purged"
+msgstr "已经清除"
+
+#: ../grantl.php:49 ../grantla.php:45
+msgid "Grant"
+msgstr "授权"
+
+#: ../grantl.php:50 ../grantla.php:47 ../ticketl.php:54 ../ticketla.php:51
+msgid "Date"
+msgstr "日期"
+
+#: ../grantl.php:51 ../grantla.php:48 ../ticketl.php:55 ../ticketla.php:52
+msgid "Expiration"
+msgstr "有效状态"
+
+#: ../grantl.php:70 ../grantla.php:68 ../grants.php:33 ../newgrantr.php:41
+#: ../newtickets.php:156
+msgid "Upload"
+msgstr "上传"
+
+#: ../grantl.php:75 ../grantla.php:73 ../ticketl.php:89 ../ticketla.php:87
+msgid "Purge"
+msgstr "清除"
+
+#: ../grantl.php:98 ../grantla.php:99 ../ticketl.php:117 ../ticketla.php:118
+#: ../users.php:158
+msgid "Reload"
+msgstr "刷新"
+
+#: ../grantl.php:100 ../grantla.php:101 ../ticketl.php:119 ../ticketla.php:120
+msgid "Select all"
+msgstr "全选"
+
+#: ../grantl.php:101 ../grantla.php:102 ../ticketl.php:120 ../ticketla.php:121
+msgid "Purge selected"
+msgstr "清除选中"
+
+#: ../grantla.php:46 ../login.php:13 ../ticketla.php:49 ../users.php:70
+#: ../users.php:106
+msgid "User"
+msgstr "用户"
+
+#: ../grantp.php:3 ../ticketp.php:3
+msgid "Password required"
+msgstr "需要密码"
+
+#: ../grantp.php:6
+#, php-format
+msgid ""
+"The grant %s is protected. Please enter the password to proceed to the "
+"upload."
+msgstr "授权码 %s 有密码保护。请输入密码来进行上传。"
+
+#: ../grantp.php:24
+msgid "Type the password required for the upload."
+msgstr "请输入上传所必须的密码。"
+
+#: ../grantp.php:31
+msgid "Submit"
+msgstr "提交"
+
+#: ../grants.php:3
+msgid "Upload grant"
+msgstr "上传行为被接受"
+
+#: ../grants.php:6 ../newtickets.php:8
+msgid "Upload failed"
+msgstr "上传失败"
+
+#: ../grants.php:18 ../newtickets.php:21
+msgid "Upload a file"
+msgstr "上传文件"
+
+#: ../grants.php:25 ../newtickets.php:28
+#, php-format
+msgid "Choose which file to upload. You can upload up to %s."
+msgstr "请选择要上传的文件。最多可上传 %s 个文件。"
+
+#: ../login.php:4 ../login.php:38
+msgid "Login"
+msgstr "登陆"
+
+#: ../login.php:19
+msgid "Type the user name to access the filesharing service."
+msgstr "要进入文件共享服务系统，请输入用户名"
+
+#: ../login.php:31
+msgid "Type the password to access the filesharing service."
+msgstr "要进入文件共享服务系统，请输入密码"
+
+#: ../msg.php:6
+#, php-format
+msgid "[dl] download link to %s"
+msgstr "[dl] %s 的下载链接"
+
+#: ../msg.php:12 ../msg.php:53 ../msg.php:85
+msgid "URL:"
+msgstr "URL:"
+
+#: ../msg.php:13 ../msg.php:54 ../msg.php:86
+msgid "Password:"
+msgstr "密码："
+
+#: ../msg.php:21
+#, php-format
+msgid "[dl] ticket %s download notification"
+msgstr "[dl]提取码 %s 下载提醒"
+
+#: ../msg.php:22
+#, php-format
+msgid "The ticket %s was downloaded by %s from %s"
+msgstr "提取码 %s 已被用户 %s 下载， 他/她来自 %s"
+
+#: ../msg.php:30 ../msg.php:39
+#, php-format
+msgid "[dl] ticket %s purge notification"
+msgstr "[dl]提取码 %s 失效（清除）通知"
+
+#: ../msg.php:31
+#, fuzzy, php-format
+msgid "The ticket %s was purged manually after %d downloads from %s"
+msgstr "提取码 %s 已在使用 %d 次后被手动清除。下载地址来自 %s"
+
+#: ../msg.php:40
+#, php-format
+msgid "The ticket %s expired automatically after %d downloads from %s"
+msgstr "提取码 %s 已在使用 %d 次后被自动清除。下载地址来自 %s"
+
+#: ../msg.php:47
+msgid "[dl] upload grant link"
+msgstr "[dl] 上传文件授权链接"
+
+#: ../msg.php:62 ../msg.php:70
+#, php-format
+msgid "[dl] grant %s purge notification"
+msgstr "[dl] 授权码 %s 清除通知"
+
+#: ../msg.php:63
+#, php-format
+msgid "The grant %s was purged manually from %s"
+msgstr "授权码 %s 已从 %s 上被人工删除"
+
+#: ../msg.php:71
+#, php-format
+msgid "The grant %s expired automatically from %s"
+msgstr "授权码 %s 在 %s 上已经自动过期"
+
+#: ../msg.php:77
+#, php-format
+msgid "[dl] download link for grant %s"
+msgstr "[dl] 授权码 %s 下载链接"
+
+#: ../msg.php:78
+#, php-format
+msgid ""
+"Your grant %s has been used by %s. The uploaded file is now available to be "
+"downloaded at:\n"
+"\n"
+msgstr ""
+"您的授权码 %s 已经被用户 %s 使用。上传的文件现在可以在以下地址下载：\n"
+"\n"
+
+#: ../newgrantr.php:4
+msgid "Grant result"
+msgstr "授权结果"
+
+#: ../newgrantr.php:14
+#, php-format
+msgid "Your grant %s"
+msgstr "您的授权 %s"
+
+#: ../newgrantr.php:20 ../newticketr.php:20
+msgid "The required password is:"
+msgstr "对应密码是："
+
+#: ../newgrantr.php:26
+msgid "A grant link has been sent to:"
+msgstr "授权链接已经发送至："
+
+#: ../newgrantr.php:40 ../newticketr.php:40
+msgid "Send via e-mail"
+msgstr "使用电子邮件发送"
+
+#: ../newgrants.php:13
+msgid "Grant parameters"
+msgstr "授权参数"
+
+#: ../newgrants.php:20
+msgid "Notification e-mail"
+msgstr "提醒用的电子邮件"
+
+#: ../newgrants.php:26
+msgid ""
+"Type a <b>mandatory</b> e-mail address (or addresses) that should be "
+"notified when the file is uploaded to the server. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"请输入 <b>文件托管人</b>的电子邮件，以便他/她能够在有文件上传时接到通知。多"
+"个电子邮件使用逗号分隔。"
+
+#: ../newgrants.php:40
+msgid ""
+"Type an <em>optional</em> comment for your upload grant and resulting "
+"ticket. The comment will be shown along with the grant and ticket "
+"information."
+msgstr ""
+"<em>可选</em>用于上传授权、文件提取码的备注。改备注将与授权码、提取码一同显"
+"示。"
+
+#: ../newgrants.php:48 ../newtickets.php:48
+msgid "Send link to e-mail"
+msgstr "将下载链接发送至电子邮件"
+
+#: ../newgrants.php:54
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should "
+"immediately receive the link to the upload grant. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"<em>（可选）</em>输入的电子邮件会在文件上传成功后直接收到下载地址。多个电子"
+"邮件地址请使用逗号分隔。"
+
+#: ../newgrants.php:62 ../newtickets.php:62
+msgid "Advanced"
+msgstr "高级设置"
+
+#: ../newgrants.php:73
+msgid ""
+"Type an <em>optional</em> password that will be required to both upload and "
+"download the file, as an additional security measure."
+msgstr "<em>可选</em>密码将会作为额外的安全措施，同时用于上传、下载中。"
+
+#: ../newgrants.php:87
+#, fuzzy
+msgid ""
+"Type the <strong>maximal number of days</strong> the server should wait for "
+"the upload grant to be used.  After this period is passed without activity, "
+"the grant is removed the server."
+msgstr ""
+"您希望服务器<strong>最多</strong>容忍授权码保持多少天的未使用状态？超过这一"
+"数字后，授权码将被清除。"
+
+#: ../newgrants.php:95
+msgid "Ticket parameters"
+msgstr "提取码参数"
+
+#: ../newgrants.php:159 ../users.php:150
+msgid "Create"
+msgstr "创建"
+
+#: ../newgrants.php:161 ../newtickets.php:158
+msgid "Set as defaults"
+msgstr "设为默认"
+
+#: ../newticketr.php:14
+#, php-format
+msgid "Your ticket %s"
+msgstr "你的提取码 %s"
+
+#: ../newticketr.php:26
+msgid "A download link has been sent to:"
+msgstr "下载链接已发送至："
+
+#: ../newticketr.php:41 ../ticketl.php:84 ../ticketla.php:82 ../ticketp.php:31
+msgid "Download"
+msgstr "下载"
+
+#: ../newtickets.php:54
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should "
+"immediately receive the link to the ticket. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"<em>可选</em> 输入的邮件地址将马上收到提取码。多个邮件地址请使用逗号分隔。"
+
+#: ../newtickets.php:141
+msgid "Use my e-mail"
+msgstr "使用我的电子邮件"
+
+#: ../pages.php:6
+msgid "New ticket"
+msgstr "新建提取码"
+
+#: ../pages.php:7
+msgid "Active tickets"
+msgstr "激活提取码"
+
+#: ../pages.php:8
+msgid "New grant"
+msgstr "新建授权"
+
+#: ../pages.php:9
+msgid "Active grants"
+msgstr "激活授权"
+
+#: ../pages.php:10
+msgid "Preferences"
+msgstr "偏好设置"
+
+#: ../pages.php:11
+msgid "Manage users"
+msgstr "管理用户"
+
+#: ../pages.php:12
+msgid "All tickets"
+msgstr "所有提取码"
+
+#: ../pages.php:13
+msgid "All grants"
+msgstr "所有授权码"
+
+#: ../pages.php:60
+msgid "Logout"
+msgstr "注销"
+
+#: ../pages.php:61
+msgid "Help"
+msgstr "帮助"
+
+#: ../prefs.php:14
+msgid "Settings successfully updated."
+msgstr "设置更新成功"
+
+#: ../prefs.php:14
+msgid "Settings update"
+msgstr "更新设置"
+
+#: ../prefs.php:21
+msgid "Defaults"
+msgstr "默认"
+
+#: ../prefs.php:28
+msgid "E-Mail"
+msgstr "电子邮件"
+
+#: ../prefs.php:34
+msgid ""
+"Type a <b>mandatory</b> e-mail address that will be used as a default for "
+"notifications."
+msgstr ""
+"输入<b>文件托管人</b>的电子邮件地址，这个地址将被当作默认通知邮件地址。"
+
+#: ../prefs.php:58
+msgid "New passwords don't match! Password unchanged."
+msgstr "新密码输入不一致！密码未改变。"
+
+#: ../prefs.php:58 ../prefs.php:60 ../prefs.php:64
+msgid "Password change"
+msgstr "变更密码"
+
+#: ../prefs.php:60
+msgid "Old password doesn't match! Password unchanged."
+msgstr "旧密码不对！密码未改变。"
+
+#: ../prefs.php:64
+msgid "Password successfully changed."
+msgstr "密码更改成功"
+
+#: ../prefs.php:77
+msgid "Old password"
+msgstr "旧密码"
+
+#: ../prefs.php:83
+msgid "Please type your current password."
+msgstr "请输入您现在使用的密码"
+
+#: ../prefs.php:93
+msgid "New password"
+msgstr "新密码"
+
+#: ../prefs.php:99
+msgid "Please type the new password."
+msgstr "请输入新密码。"
+
+#: ../prefs.php:109
+msgid "New password (retype)"
+msgstr "再次输入"
+
+#: ../prefs.php:115
+msgid "Please <em>retype</em> the new password again."
+msgstr "请<em>再次</em>输入新的密码。"
+
+#: ../ticketfuncs.php:22 ../ticketfuncs.php:32
+#, php-format
+msgid "About %s"
+msgstr "约 %s"
+
+#: ../ticketfuncs.php:27
+#, php-format
+msgid "About %d downloads"
+msgstr "大概 %d 次下载"
+
+#: ../ticketfuncs.php:37
+#, php-format
+msgid "After %d downloads"
+msgstr "%d 次下载后"
+
+#: ../ticketfuncs.php:42
+#, php-format
+msgid "%s after next download"
+msgstr "下次下载后再 %s 次"
+
+#: ../ticketl.php:52 ../ticketla.php:48
+msgid "Ticket"
+msgstr "提取码/文件"
+
+#: ../ticketl.php:53 ../ticketla.php:50
+msgid "Size"
+msgstr "大小"
+
+#: ../ticketl.php:77 ../ticketla.php:75
+msgid "Successfully downloaded"
+msgstr "已经成功下载过"
+
+#: ../ticketl.php:125 ../ticketla.php:126
+#, php-format
+msgid "Total archive size: %s"
+msgstr "存档总大小：%s"
+
+#: ../ticketp.php:6
+#, php-format
+msgid ""
+"The ticket %s is protected. Please enter the password to unlock the content."
+msgstr "提取码  %s 受密码保护。请输入密码以解锁内容。"
+
+#: ../ticketp.php:24
+msgid "Type the password required to unlock this ticket."
+msgstr "请输入解锁提取码需要的密码。"
+
+#: ../users.php:15
+msgid "Created"
+msgstr "创建成功"
+
+#: ../users.php:17
+msgid "Creation failed"
+msgstr "创建失败"
+
+#: ../users.php:18
+#, php-format
+msgid "user \"%s\" already exists"
+msgstr "用户  “%s” 已经存在"
+
+#: ../users.php:31
+msgid "Deleted"
+msgstr "已经删除"
+
+#: ../users.php:63
+msgid "Updated"
+msgstr "已经更新"
+
+#: ../users.php:70
+msgid "Administrator"
+msgstr "管理员"
+
+#: ../users.php:108
+msgid "Role"
+msgstr "角色"
+
+#: ../users.php:109
+msgid "Tickets"
+msgstr "提取码"
+
+#: ../users.php:110
+msgid "Grants"
+msgstr "授权"
+
+#: ../users.php:111
+msgid "Total size"
+msgstr "总大小"
+
+#: ../users.php:160
+msgid "Delete selected"
+msgstr "删除选中"
+
+#: ../users.php:161
+msgid "Apply changes"
+msgstr "应用更改"
