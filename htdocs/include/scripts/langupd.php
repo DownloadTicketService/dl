@@ -39,8 +39,8 @@ foreach($langData as $lang => $v)
   if(!$htmlSt || $htmlSt['mtime'] < $rstSt['mtime'])
   {
     echo "regenerating... ";
-    $lang = strtolower($lang);
-    system("cd " . escapeshellarg($dir) . " && rst2html -l '$lang' index.rst > index.html");
+    $locale = $v['locale'];
+    system("cd " . escapeshellarg($dir) . " && rst2html -l '$locale' index.rst > index.html");
   }
   echo "ok\n";
 }
