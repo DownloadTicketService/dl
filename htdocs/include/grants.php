@@ -30,8 +30,9 @@ if($UPLOAD_ERRNO !== UPLOAD_ERR_OK)
       </div>
       <p class="guidelines"><small>
 	<?php
-	  printf(T_("Choose which file/s to upload. You can upload for a total of %s."),
-		 humanSize($iMaxSize));
+	  printf(T_("Choose which file/s to upload. You can upload up to %d files"
+		  . " for a total of %s."),
+		 $maxFiles, humanSize($iMaxSize));
 	?>
       </small></p>
     </li>

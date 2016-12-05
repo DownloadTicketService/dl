@@ -65,6 +65,7 @@ else
 $parsedMasterPath = parse_url($masterPath);
 $useSysLog = (!empty($logFile) && strstr($logFile, "/") === FALSE);
 $iMaxSize = returnBytes($maxSize);
+$maxFiles = ini_get('max_file_uploads');
 $dataDir = $spoolDir . "/data";
 $adminPath = $masterPath . "admin$phpExt";
 $helpRoot = "static/guide";
