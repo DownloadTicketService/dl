@@ -359,6 +359,22 @@ function init()
     form.find('#setDefaults').click(function(el) { setDefaults(set, t); });
   });
 
+  // file controls
+  var ffirst = $('form div.file').first();
+  var ftempl = ffirst.clone();
+  var rmbtn = $('<input type="button" class="addrm" value="-"/>');
+  rmbtn.click(function(el) { $(this).parent().remove(); });
+  $('input', ftempl).removeAttr('required');
+  ftempl.append(rmbtn);
+  var addbtn = $('<input type="button" class="addrm" value="+"/>');
+  addbtn.click(function() { ffirst.parent().append(ftempl.clone(true)); });
+  ffirst.append(addbtn);
+
+  $('form div.file + div.file').each(function(i, t)
+  {
+    $(t).append(rmbtn.clone(true));
+  });
+
   // js validation
   $('form.validate').submit(validate);
 

@@ -310,6 +310,12 @@ input.file, input.button
 	width:42%;
 }
 
+input.addrm
+{
+        padding:0;
+        width:2em;
+}
+
 textarea.textarea
 {
 	background: #fff;
@@ -429,7 +435,7 @@ form .guidelines
 	border:1px solid #e6e6e6;
 	color:#444;
 	font-size:80%;
-	left:43%;
+	left:48%;
 	line-height:130%;
 	margin:2em 0 0 8px;
 	padding:8px 10px 9px;
