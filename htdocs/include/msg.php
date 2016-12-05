@@ -74,10 +74,14 @@ function msgGrantExpire($DATA, &$subject, &$body)
 
 function msgGrantUse($GRANT, $DATA, &$subject, &$body)
 {
+  global $dateFmtShort;
   $subject = sprintf(T_("[dl] download link for grant %s"), grantStr($GRANT));
-  $body = sprintf(T_("Your grant %s has been used by %s."
-	  . " The uploaded file (%s) is now available to be downloaded at:\n\n"),
-      grantStr($GRANT), $_SERVER["REMOTE_ADDR"], $DATA['name']);
+  $body = sprintf(T_("Your grant %s has been used on %s by %s"),
+		  grantStr($GRANT), date($dateFmtShort, $GRANT["time"]),
+		  $_SERVER["REMOTE_ADDR"]);
+  $body .= (!empty($DATA['cmt'])? ":\n\n$DATA[cmt]\n\n": ".\n");
+  $body .= sprintf(T_("The uploaded file (%s) is now available to be downloaded at:\n\n"),
+		   $DATA['name']);
   if(!isset($DATA['pass']))
     $body .= ticketUrl($DATA);
   else
