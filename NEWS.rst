@@ -1,6 +1,12 @@
-dl 0.17.2: ??/10/2016
----------------------
+dl 0.18: ??/12/2016
+-------------------
 
+* Support for multiple file uploads in both tickets and grants. When multiple
+  files are attached, a Zip archive is automatically created with the contents.
+  The PHP "Zip" extension is now required.
+* When using a grant, the user can now attach a comment alongside the file/s.
+* dl-cli now supports public-key pinning.
+* dl-cli can now read the password from an external command.
 * Simplified Chinese translation by Guangyu Dong.
 * Russian translation by Олейник О.В.
 

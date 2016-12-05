@@ -22,6 +22,7 @@ Requirements
 * PHP SQLite module (or another PDO database module).
 * PHP mbstring module.
 * PHP OpenSSL module.
+* PHP Zip module.
 * Web server access for installation and setup.
 
 
@@ -126,6 +127,7 @@ parameters. Check your ``php.ini`` for:
 * ``file_uploads``: must be "On".
 * ``upload_tmp_dir``: ensure enough space is available.
 * ``upload_max_filesize``: change as needed.
+* ``max_file_uploads``: change as needed.
 * ``post_max_size``: must be at least 1M larger than upload_max_filesize.
 * ``session.gc_maxlifetime``: must be long enough to allow large uploads to finish.
 
