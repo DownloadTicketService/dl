@@ -14,7 +14,7 @@ if(validateParams($grantNewParams, $_POST))
   if(isset($_POST['ticket_lastdldays']))
     $_POST['ticket_lastdl'] = (int)($_POST['ticket_lastdldays'] * 3600 * 24);
 
-  $DATA = handleGrant($_POST);
+  $DATA = genGrant($_POST);
 }
 
 // resulting page

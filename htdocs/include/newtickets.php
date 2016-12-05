@@ -4,8 +4,8 @@ $act = "newt";
 $ref = pageLinkAct();
 pageHeader();
 
-if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
-  errorMessage(T_("Upload failed"), uploadErrorStr($_FILES["file"]));
+if($UPLOAD_ERRNO !== UPLOAD_ERR_OK)
+  errorMessage(T_("Upload failed"), uploadErrorStr());
 ?>
 
 <form enctype="multipart/form-data" method="post"
@@ -18,16 +18,24 @@ if(!empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
 	$error = ((@$_POST["submit"] === $act) && empty($_FILES["file"]["name"]));
 	$class = "description required" . ($error? " error": "");
       ?>
-      <label class="<?php echo $class; ?>"><?php echo T_("Upload a file"); ?></label>
-      <div>
+      <label class="<?php echo $class; ?>"><?php echo T_("Upload file/s"); ?></label>
+      <div class="file">
 	<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $iMaxSize; ?>"/>
-	<input name="file" class="element file" type="file" required/>
+	<input name="file[]" class="element file" type="file" multiple required/>
+      </div>
+      <div class="file">
+	<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $iMaxSize; ?>"/>
+	<input name="file[]" class="element file" type="file" multiple/>
+      </div>
+      <div class="file">
+	<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $iMaxSize; ?>"/>
+	<input name="file[]" class="element file" type="file" multiple/>
       </div>
       <p class="guidelines"><small>
-	  <?php
-	    printf(T_("Choose which file to upload. You can upload up to %s."),
-		humanSize($iMaxSize));
-	  ?>
+	<?php
+	  printf(T_("Choose which file/s to upload. You can upload for a total of %s."),
+	      humanSize($iMaxSize));
+	?>
       </small></p>
     </li>
 

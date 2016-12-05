@@ -200,9 +200,10 @@ function infoTable($lines)
 }
 
 
-function uploadErrorStr($FILE)
+function uploadErrorStr()
 {
-  switch($FILE["error"])
+  global $UPLOAD_ERRNO;
+  switch($UPLOAD_ERRNO)
   {
   case UPLOAD_ERR_INI_SIZE:
   case UPLOAD_ERR_FORM_SIZE:
@@ -384,6 +385,148 @@ function mb_sane_base($path)
 {
   $base = mb_basename($path);
   return mb_sanitize(mb_strlen($base)? $base: $path);
+}
+
+
+function uniqueFileName($name, &$usedNames)
+{
+  if(!isset($usedNames[$name]))
+  {
+    $usedNames[$name] = true;
+    return $name;
+  }
+
+  for($i = 2;; ++$i)
+  {
+    $ext = pathinfo($name, PATHINFO_EXTENSION);
+    if(!strlen($ext))
+      $tmp = sprintf("%s_%d", $name, $i);
+    else
+    {
+      $base = substr($name, 0, -strlen($ext) - 1);
+      $tmp = sprintf("%s_%d.%s", $base, $i, $ext);
+    }
+    if(!isset($usedNames[$tmp]))
+    {
+      $usedNames[$tmp] = true;
+      return $tmp;
+    }
+  }
+}
+
+
+function uploadedFiles(&$FILES)
+{
+  global $UPLOAD_ERRNO;
+  if(empty($FILES))
+    return false;
+
+  // uniform single files to array
+  if(!is_array($FILES["tmp_name"]))
+  {
+    foreach(array_keys($FILES) as $k)
+      $FILES[$k] = array($FILES[$k]);
+  }
+
+  // check individual files
+  $ret = array();
+  for($i = 0; $i != count($FILES["tmp_name"]); ++$i)
+  {
+    if(is_uploaded_file($FILES["tmp_name"][$i]) && $FILES["error"][$i] == UPLOAD_ERR_OK)
+    {
+      $file = array();
+      foreach(array_keys($FILES) as $k)
+	$file[$k] = $FILES[$k][$i];
+      $ret[] = $file;
+    }
+    elseif($FILES["error"][$i] != UPLOAD_ERR_NO_FILE)
+    {
+      $UPLOAD_ERRNO = $FILES["error"][$i];
+      return false;
+    }
+  }
+  if(!count($ret))
+  {
+    $UPLOAD_ERRNO = UPLOAD_ERR_NO_FILE;
+    return false;
+  }
+
+  // fix file size overflow (when possible) in php 5.4-5.5
+  foreach($ret as &$FILE)
+  {
+    if($FILES['size'] < 0)
+    {
+      $FILE['size'] = filesize($FILE["tmp_name"]);
+      if($FILE['size'] < 0)
+      {
+	logError($FILE["tmp_name"] . ": uncorrectable PHP file size overflow");
+	$UPLOAD_ERRNO = UPLOAD_ERR_EXTENSION;
+	return false;
+      }
+    }
+  }
+
+  return $ret;
+}
+
+
+function handleUpload($FILES)
+{
+  global $UPLOAD_ERRNO;
+
+  // generate new unique id/file name
+  list($id, $tmpFile) = genTicketId();
+  $files = array();
+  if(count($FILES) == 1)
+  {
+    if(!move_uploaded_file($FILES[0]["tmp_name"], $tmpFile))
+    {
+      logError("cannot move file " . $FILES[0]["tmp_name"] . " into $tmpFile");
+      goto error;
+    }
+    $name = mb_sane_base($FILES[0]["name"]);
+    $files[$name] = true;
+    $size = $FILES[0]["size"];
+  }
+  else
+  {
+    $zip = new ZipArchive();
+    if($zip->open($tmpFile, ZipArchive::CREATE) !== true)
+      goto error;
+    foreach($FILES as $FILE)
+    {
+      $name = uniqueFileName(mb_sane_base($FILE["name"]), $files);
+      if(!$zip->addFile($FILE["tmp_name"], $name))
+	goto error;
+    }
+    if(!$zip->close())
+      goto error;
+    $name = "Archive-" . date("Y-m-d") . ".zip";
+    $size = filesize($tmpFile);
+  }
+
+  return array('id'=>$id, 'path'=>$tmpFile, 'files'=>array_keys($files),
+	       'name'=>$name, 'size'=>$size);
+
+ error:
+  $UPLOAD_ERRNO = UPLOAD_ERR_EXTENSION;
+  unlink($tmpFile);
+  return false;
+}
+
+
+function withUpload($FILES, $func, $params)
+{
+  $ret = false;
+  $upload = handleUpload($FILES);
+  reconnectDB();
+  if($upload !== false)
+  {
+    $ret = call_user_func($func, $upload, $params);
+    if($ret === false)
+      unlink($upload['path']);
+  }
+  return $ret;
 }
 
 ?>

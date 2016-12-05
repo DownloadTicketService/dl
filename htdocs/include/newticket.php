@@ -4,10 +4,8 @@ require_once("ticketfuncs.php");
 
 // handle the request
 $DATA = false;
-if(isset($_FILES["file"])
-&& is_uploaded_file($_FILES["file"]["tmp_name"])
-&& $_FILES["file"]["error"] == UPLOAD_ERR_OK
-&& validateParams($ticketNewParams, $_POST))
+$FILES = uploadedFiles($_FILES["file"]);
+if($FILES !== false && validateParams($ticketNewParams, $_POST))
 {
   // uniform the request parameters to the REST api
   if(isset($_POST['ticket_totaldays']))
@@ -17,7 +15,7 @@ if(isset($_FILES["file"])
   if(isset($_POST['ticket_permanent']))
     $_POST['permanent'] = !empty($_POST['ticket_permanent']);
 
-  $DATA = handleUpload($_FILES["file"], $_POST);
+  $DATA = withUpload($FILES, 'genTicket', $_POST);
 }
 
 // resulting page

@@ -53,48 +53,24 @@ function ticketExpiration($DATA, &$expVal = NULL)
 }
 
 
-function handleUploadFailure($file)
+function genTicket($upload, $params)
 {
-  unlink($file);
-  return false;
-}
+  global $auth, $locale, $db, $defaults, $passHasher;
 
-
-function handleUpload($FILE, $params)
-{
-  global $auth, $locale, $dataDir, $db, $defaults, $passHasher;
-
-  // fix file size overflow (when possible) in php 5.4-5.5
-  if($FILE['size'] < 0)
-  {
-    $FILE['size'] = filesize($FILE["tmp_name"]);
-    if($FILE['size'] < 0)
-    {
-      logError($FILE["tmp_name"] . ": uncorrectable PHP file size overflow");
-      return false;
-    }
-  }
-
-  // generate new unique id/file name
-  list($id, $tmpFile) = genTicketId();
-  if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
-  {
-    logError("cannot move file " . $FILE["tmp_name"] . " into $tmpFile");
-    return handleUploadFailure($tmpFile);
-  }
-
-  // check DB connection after upload
-  reconnectDB();
+  // populate comment with file list when empty
+  $cmt = $params["comment"];
+  if(empty($cmt) && count($upload['files']) > 1)
+    $cmt = T_("Archive contents:") . "\n  " . implode("\n  ", $upload['files']);
 
   // prepare data
   $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph"
     . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
-  $sql .= $db->quote($id);
+  $sql .= $db->quote($upload['id']);
   $sql .= ", " . $auth['id'];
-  $sql .= ", " . $db->quote(mb_sane_base($FILE["name"]));
-  $sql .= ", " . $db->quote($tmpFile);
-  $sql .= ", " . $FILE["size"];
-  $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
+  $sql .= ", " . $db->quote($upload['name']);
+  $sql .= ", " . $db->quote($upload['path']);
+  $sql .= ", " . $upload['size'];
+  $sql .= ", " . (empty($cmt)? 'NULL': $db->quote($cmt));
   $sql .= ", " . (empty($params["pass"])? 'NULL':
       $db->quote($passHasher->HashPassword($params["pass"])));
   $sql .= ", " . time();
@@ -124,11 +100,11 @@ function handleUpload($FILE, $params)
   if($db->exec($sql) != 1)
   {
     logDBError($db, "cannot commit new ticket to database");
-    return handleUploadFailure($tmpFile);
+    return false;
   }
 
   // fetch defaults
-  $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
+  $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($upload['id']);
   $DATA = $db->query($sql)->fetch();
   $DATA['pass'] = (empty($params["pass"])? NULL: $params["pass"]);
 

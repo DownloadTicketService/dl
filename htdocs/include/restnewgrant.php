@@ -9,7 +9,7 @@ function newgrant($msg, $params = null)
   // handle the request
   $DATA = false;
   if($validated = validateParams($grantRestParams, $msg))
-    $DATA = handleGrant($msg);
+    $DATA = genGrant($msg);
 
   if($DATA === false)
   {

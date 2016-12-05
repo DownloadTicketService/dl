@@ -38,46 +38,26 @@ if(hasPassHash($GRANT) && !isset($_SESSION['g'][$id]))
 
 
 // upload handler
-function failUpload($file)
+function useGrant($upload, $GRANT)
 {
-  unlink($file);
-  return false;
-}
+  global $db;
 
-function handleUpload($GRANT, $FILE)
-{
-  global $dataDir, $db;
-
-  // fix file size overflow (when possible) in php 5.4-5.5
-  if($FILE['size'] < 0)
-  {
-    $FILE['size'] = filesize($FILE["tmp_name"]);
-    if($FILE['size'] < 0)
-    {
-      logError($FILE["tmp_name"] . ": uncorrectable PHP file size overflow");
-      return false;
-    }
-  }
-
-  // generate new unique id/file name
-  list($id, $tmpFile) = genTicketId($FILE["name"]);
-  if(!move_uploaded_file($FILE["tmp_name"], $tmpFile))
-  {
-    logError("cannot move file " . $FILE["tmp_name"] . " into $tmpFile");
-    return failUpload($tmpFile);
-  }
+  // populate comment with file list when empty
+  $cmt = $GRANT["cmt"];
+  if(empty($cmt) && count($upload['files']) > 1)
+    $cmt = T_("Archive contents:") . "\n  " . implode("\n  ", $upload['files']);
 
   // convert the upload to a ticket
   $db->beginTransaction();
 
   $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph"
     . ", time, last_time, expire, expire_dln, locale) VALUES (";
-  $sql .= $db->quote($id);
+  $sql .= $db->quote($upload['id']);
   $sql .= ", " . $GRANT['user_id'];
-  $sql .= ", " . $db->quote(mb_sane_base($FILE["name"]));
-  $sql .= ", " . $db->quote($tmpFile);
-  $sql .= ", " . $FILE["size"];
-  $sql .= ", " . (empty($GRANT["cmt"])? 'NULL': $db->quote($GRANT["cmt"]));
+  $sql .= ", " . $db->quote($upload["name"]);
+  $sql .= ", " . $db->quote($upload["path"]);
+  $sql .= ", " . $upload["size"];
+  $sql .= ", " . (empty($cmt)? 'NULL': $db->quote($cmt));
   $sql .= ", " . (empty($GRANT["pass_ph"])? 'NULL': $db->quote($GRANT["pass_ph"]));
   $sql .= ", " . time();
   $sql .= ", " . (empty($GRANT["last_time"])? 'NULL': $GRANT['last_time']);
@@ -93,11 +73,11 @@ function handleUpload($GRANT, $FILE)
   if(!$db->commit())
   {
     logDBError($db, "cannot commit new ticket to database");
-    return failUpload($tmpFile);
+    return false;
   }
 
   // fetch defaults
-  $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
+  $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($upload['id']);
   $DATA = $db->query($sql)->fetch();
   if(!empty($GRANT['pass'])) $DATA['pass'] = $GRANT['pass'];
 
@@ -110,13 +90,12 @@ function handleUpload($GRANT, $FILE)
 
 // handle the request
 $DATA = false;
-if(isset($_FILES["file"])
-&& is_uploaded_file($_FILES["file"]["tmp_name"])
-&& $_FILES["file"]["error"] == UPLOAD_ERR_OK)
+$FILES = uploadedFiles($_FILES["file"]);
+if($FILES !== false)
 {
   if(!empty($_SESSION['g'][$id]['pass']))
     $GRANT['pass'] = $_SESSION['g'][$id]['pass'];
-  $DATA = handleUpload($GRANT, $_FILES["file"]);
+  $DATA = withUpload($FILES, 'useGrant', $GRANT);
 }
 
 // resulting page

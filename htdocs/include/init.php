@@ -26,8 +26,9 @@ if(@$ret === false)
 // initialize the db
 connectDB();
 
-// default hasher
+// initial state
 $passHasher = new PasswordHash(8, false);
+$UPLOAD_ERRNO = UPLOAD_ERR_OK;
 
 // set the initial default locale/timezone
 $locale = $defLocale;

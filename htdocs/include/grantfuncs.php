@@ -23,7 +23,7 @@ function grantExpiration($DATA, &$expVal = NULL)
 }
 
 
-function handleGrant($params)
+function genGrant($params)
 {
   global $auth, $locale, $db, $defaults, $passHasher;
 

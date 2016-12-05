@@ -8,18 +8,16 @@ function newticket($msg, $params = null)
 
   // handle the upload itself
   $DATA = $validated = false;
-  if(isset($_FILES["file"])
-  && is_uploaded_file($_FILES["file"]["tmp_name"])
-  && $_FILES["file"]["error"] == UPLOAD_ERR_OK
-  && ($validated = validateParams($ticketRestParams, $msg)))
-    $DATA = handleUpload($_FILES["file"], $msg);
+  $FILES = uploadedFiles($_FILES["file"]);
+  if($FILES !== false && ($validated = validateParams($ticketRestParams, $msg)))
+    $DATA = withUpload($FILES, 'genTicket', $msg);
 
   if($DATA === false)
   {
     // ticket creation unsucessfull
-    if($validated && !empty($_FILES["file"]) && !empty($_FILES["file"]["name"]))
+    if($UPLOAD_ERRNO != UPLOAD_ERR_OK)
     {
-      $err = uploadErrorStr($_FILES["file"]);
+      $err = uploadErrorStr();
       logError("ticket upload failure: $err");
       return array('httpInternalError', $err);
     }
@@ -30,7 +28,7 @@ function newticket($msg, $params = null)
     }
     else
     {
-      // errors already generated in handleUpload
+      // errors already generated in newTicket
       return array('httpInternalError', 'internal error');
     }
   }
