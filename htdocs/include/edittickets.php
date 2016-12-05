@@ -6,7 +6,7 @@ pageHeader(array('title' => $title));
 
 // form values
 $name = anyOf(@$_POST['name'], $DATA['name']);
-$comment = anyOf(@$_POST['comment'], $DATA['cmt']);
+$comment = trim(anyOf(@$_POST['comment'], $DATA['cmt']), "");
 $hasPass = hasPassHash($DATA);
 $pass = anyOf(@$_POST['pass'], "");
 $clear = anyOf(@$_POST['clear'], "");

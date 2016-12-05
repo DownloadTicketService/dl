@@ -30,7 +30,9 @@ function genGrant($params)
   // generate new unique id
   $id = genGrantId();
 
-  // defaults
+  // parameters
+  if(!empty($params["comment"]))
+    $params["comment"] = trim($params["comment"]);
   if(!isset($params["grant_total"]))
     $params["grant_total"] = $defaults['grant']['total'];
 

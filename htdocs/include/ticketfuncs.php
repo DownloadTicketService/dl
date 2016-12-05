@@ -58,9 +58,10 @@ function genTicket($upload, $params)
   global $auth, $locale, $db, $defaults, $passHasher;
 
   // populate comment with file list when empty
-  $cmt = $params["comment"];
-  if(empty($cmt) && count($upload['files']) > 1)
-    $cmt = T_("Archive contents:") . "\n  " . implode("\n  ", $upload['files']);
+  if(!empty($params["comment"]))
+    $params["comment"] = trim($params["comment"]);
+  if(empty($params["comment"]) && count($upload['files']) > 1)
+    $params["comment"] = T_("Archive contents:") . "\n  " . implode("\n  ", $upload['files']);
 
   // prepare data
   $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph"
@@ -70,7 +71,7 @@ function genTicket($upload, $params)
   $sql .= ", " . $db->quote($upload['name']);
   $sql .= ", " . $db->quote($upload['path']);
   $sql .= ", " . $upload['size'];
-  $sql .= ", " . (empty($cmt)? 'NULL': $db->quote($cmt));
+  $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
   $sql .= ", " . (empty($params["pass"])? 'NULL':
       $db->quote($passHasher->HashPassword($params["pass"])));
   $sql .= ", " . time();

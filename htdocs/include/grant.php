@@ -43,9 +43,10 @@ function useGrant($upload, $GRANT)
   global $db;
 
   // populate comment with file list when empty
-  $cmt = $GRANT["cmt"];
-  if(empty($cmt) && count($upload['files']) > 1)
-    $cmt = T_("Archive contents:") . "\n  " . implode("\n  ", $upload['files']);
+  if(!empty($GRANT["cmt"]))
+    $GRANT["cmt"] = trim($GRANT["cmt"]);
+  if(empty($GRANT["cmt"]) && count($upload['files']) > 1)
+    $GRANT["cmt"] = T_("Archive contents:") . "\n  " . implode("\n  ", $upload['files']);
 
   // convert the upload to a ticket
   $db->beginTransaction();
@@ -57,7 +58,7 @@ function useGrant($upload, $GRANT)
   $sql .= ", " . $db->quote($upload["name"]);
   $sql .= ", " . $db->quote($upload["path"]);
   $sql .= ", " . $upload["size"];
-  $sql .= ", " . (empty($cmt)? 'NULL': $db->quote($cmt));
+  $sql .= ", " . (empty($GRANT["cmt"])? 'NULL': $db->quote($GRANT["cmt"]));
   $sql .= ", " . (empty($GRANT["pass_ph"])? 'NULL': $db->quote($GRANT["pass_ph"]));
   $sql .= ", " . time();
   $sql .= ", " . (empty($GRANT["last_time"])? 'NULL': $GRANT['last_time']);
