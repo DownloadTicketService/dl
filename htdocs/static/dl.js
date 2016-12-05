@@ -135,6 +135,7 @@ function validateForm(form)
 {
   var ok = true;
   var max = $('input[name=MAX_FILE_SIZE]', form).val();
+  var size = 0;
 
   $('label.required', form).each(function()
   {
@@ -147,8 +148,13 @@ function validateForm(form)
       state = false;
 
     // check also file sizes if the browser is recent enough
-    if(state && field.files && field.files[0].size > max)
-      state = false;
+    if(state && field.files)
+    {
+      for(var i = 0; i != field.files.length; ++i)
+	size += field.files[i].size;
+      if(size > max)
+	state = false;
+    }
 
     // set field state
     if(state)
