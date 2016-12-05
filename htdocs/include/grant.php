@@ -91,10 +91,13 @@ function useGrant($upload, $GRANT)
 // handle the request
 $DATA = false;
 $FILES = uploadedFiles($_FILES["file"]);
-if($FILES !== false)
+if($FILES !== false && validateParams($grantUseParams, $_POST))
 {
   if(!empty($_SESSION['g'][$id]['pass']))
     $GRANT['pass'] = $_SESSION['g'][$id]['pass'];
+  if(!empty($_POST['comment']))
+    $GRANT['cmt'] = $_POST['comment'];
+
   $DATA = withUpload($FILES, 'useGrant', $GRANT);
 }
 

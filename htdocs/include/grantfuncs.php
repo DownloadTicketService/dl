@@ -117,4 +117,9 @@ $grantNewParams = array
   'send_to'           => 'is_string',
 );
 
+$grantUseParams = array
+(
+  'comment'           => 'is_string',
+);
+
 ?>

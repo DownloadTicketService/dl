@@ -37,6 +37,19 @@ if($UPLOAD_ERRNO !== UPLOAD_ERR_OK)
       </small></p>
     </li>
 
+    <li>
+      <label class="description"><?php echo T_("Comment"); ?></label>
+      <div>
+	<textarea name="comment" class="element textarea"></textarea>
+      </div>
+      <p class="guidelines"><small>
+	  <?php
+	    echo T_("Type an <em>optional</em> comment for your uploaded file."
+		. " The comment will be shown along with the file name.");
+	  ?>
+      </small></p>
+    </li>
+
     <li class="buttons">
       <input type="hidden" name="submit" value="<?php echo $act; ?>"/>
       <input id="submit" type="submit" value="<?php echo T_("Upload"); ?>"/>
