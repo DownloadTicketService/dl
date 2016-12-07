@@ -40,7 +40,7 @@ foreach($langData as $lang => $v)
   {
     echo "regenerating... ";
     $locale = $v['locale'];
-    system("cd " . escapeshellarg($dir) . " && rst2html -l '$locale' index.rst > index.html");
+    system("cd " . escapeshellarg($dir) . " && rst2html -l '$locale' index.rst index.html");
   }
   echo "ok\n";
 }
