@@ -113,39 +113,44 @@ SQLite, MySQL and PostgreSQL.
 PHP setup
 ---------
 
-The following parameters are required to be set in your ``php.ini`` (these
+The following parameters are *required* to be set in your ``php.ini`` (these
 values are defaults since PHP 5.0, but they might be different in your setup):
 
 * ``magic_quotes_gpc``: must be "Off".
 * ``magic_quotes_runtime``: must be "Off".
 * ``date.timezone``: must be set to your system preference.
-* ``session.autostart``: must be "Off".
+* ``session.auto_start``: must be "Off".
 
-The maximal upload limit is determined by several PHP configuration
-parameters. Check your ``php.ini`` for:
+The maximal upload limit is determined by several PHP configuration parameters.
+Check your ``php.ini`` for:
 
-* ``file_uploads``: must be "On".
-* ``upload_tmp_dir``: ensure enough space is available.
 * ``upload_max_filesize``: change as needed.
-* ``max_file_uploads``: change as needed.
 * ``post_max_size``: must be at least 1M larger than upload_max_filesize.
 * ``session.gc_maxlifetime``: must be long enough to allow large uploads to finish.
+
+All the above settings can be configured per-directory and affect only DL. In
+addition, the following parameters need to be set for the entire PHP server:
+
+* ``file_uploads``: must be "On".
+* ``upload_tmp_dir``: ensure enough space is available for temporary files.
+* ``max_file_uploads``: change as needed.
 
 The upload limit as shown in the submission form is determined automatically
 from the ``upload_max_filesize`` parameter.
 
 Any upload beyond ``post_max_size`` will be completely ignored: users will get
 a blank page instead of an error message. You should raise ``post_max_size``
-above ``upload_max_filesize`` to get an acceptable "error window".
+above ``upload_max_filesize`` to get an acceptable "error window" in old
+browsers or browsers with JavaScript disabled.
 
-You should also check ``session.gc_maxlifetime`` (in seconds) to be long enough
-for your users to complete a large upload. Uploading 500MB on a slow ADSL
+``session.gc_maxlifetime`` (which is in seconds) needs to be long enough for
+your users to complete a large upload. Uploading 500MB on a slow ADSL
 connection can take as much as 12 hours, so set it to *at least* 43200.
 
-If PHP was built as an Apache module you can also set them through
-``.htaccess`` (see http://www.php.net/manual/en/configuration.changes.php) or
-directly inside your Apache's configuration (see `Apache/mod_php`_ for an
-example).
+If PHP was built as an Apache module you can set per-directory parameters
+through ``.htaccess`` (see http://www.php.net/manual/en/configuration.changes.php)
+or directly inside your Apache's configuration (see `Apache/mod_php`_ for an
+example). The provided ``htdocs/.htaccess`` contains a reasonable pre-set.
 
 
 User setup

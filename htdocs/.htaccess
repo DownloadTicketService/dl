@@ -7,3 +7,19 @@
 	RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
     </FilesMatch>
 </IfModule>
+<IfModule mod_php5.c>
+  Define PHP 5
+</IfModule>
+<IfModule mod_php7.c>
+  Define PHP 7
+</IfModule>
+<IfDefine PHP>
+  # Required minimal configuration for DL
+  php_value magic_quotes_gpc 0
+  php_value magic_quotes_runtime 0
+  php_value session.auto_start 0
+  # Upload size limits
+  php_value session.gc_maxlifetime 43200
+  php_value upload_max_filesize 1016M
+  php_value post_max_size 1024M
+</IfDefine>

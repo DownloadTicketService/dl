@@ -5,6 +5,8 @@ dl 0.18: ??/12/2016
   files are attached, a Zip archive is automatically created with the contents.
   The PHP "Zip" extension is now required.
 * When using a grant, the user can now attach a comment alongside the file/s.
+* Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
+  file for Apache/mod_php.
 * dl-cli now supports public-key pinning.
 * dl-cli can now read the password from an external command.
 * Simplified Chinese translation by Guangyu Dong.
