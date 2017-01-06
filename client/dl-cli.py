@@ -2,10 +2,14 @@
 from __future__ import unicode_literals, print_function, generators
 
 import argparse
-import os.path
 import io, sys
-from io import BytesIO
 import itertools
+from datetime import datetime
+
+import os.path
+from io import BytesIO
+import tempfile
+from zipfile import ZipFile
 
 import binascii
 import pycurl
@@ -34,7 +38,7 @@ class UploadError(Exception):
         return self.value
 
 
-def newticket(file, params):
+def newticket(path, params, filename=None):
     s = BytesIO()
     c = pycurl.Curl()
     c.setopt(c.URL, params['url'] + "/newticket")
@@ -63,8 +67,10 @@ def newticket(file, params):
         c.setopt(c.SSL_VERIFYPEER, False)
         c.setopt(c.PINNEDPUBLICKEY, params['fingerprint'])
 
+    if not filename:
+        filename = os.path.basename(path)
     c.setopt(c.HTTPPOST, [
-        ("file", (c.FORM_FILE, file)),
+        ("file", (c.FORM_FILE, path, c.FORM_FILENAME, filename)),
         ("msg", json.dumps({}))])
 
     try:
@@ -91,6 +97,15 @@ def newticket(file, params):
 
     c.close()
     return ret
+
+
+def newticket_multiple(paths, cfg):
+    fd = tempfile.NamedTemporaryFile()
+    with ZipFile(fd, "w") as zf:
+        for path in paths:
+            zf.write(path)
+    filename = 'Archive-{}.zip'.format(datetime.now().strftime('%Y-%m-%d'))
+    return newticket(fd.name, cfg, filename)
 
 
 def newgrant(email, params):
@@ -155,7 +170,7 @@ def main():
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-g', metavar="email", dest="grant",
                        help="Generate a grant with notification sent to 'email'")
-    group.add_argument('file', nargs='?', help="File to upload")
+    group.add_argument('file', nargs='*', default=[], help="File/s to upload")
     args = parser.parse_args()
 
     cfgpath = os.path.expanduser(args.rc)
@@ -190,7 +205,10 @@ def main():
 
     try:
         if args.file:
-            answ = newticket(args.file, cfg)
+            if len(args.file) == 1:
+                answ = newticket(args.file[0], cfg)
+            else:
+                answ = newticket_multiple(args.file, cfg)
         else:
             answ = newgrant(args.grant, cfg)
         print(answ['url'])

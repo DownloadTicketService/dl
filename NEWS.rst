@@ -7,13 +7,16 @@ dl 0.18: ??/12/2016
 * When using a grant, the user can now attach a comment alongside the file/s.
 * Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
   file for Apache/mod_php.
-* Several dl-cli improvements:
-  - Can run under both python 2.7 and python 3+
-  - The password can be read from an external command
-  - Public-key pinning though the ``fingerprint`` option
-  - ConfigObj module is now required
 * Simplified Chinese translation by Guangyu Dong.
 * Russian translation by Олейник О.В.
+* General dl-cli overhaul:
+
+  - dl-cli now runs under both python 2.7 and python 3+
+  - The password can be read from an external command using ``passcmd``
+  - Public-key pinning through the ``fingerprint`` option
+  - Multiple files can now be uploaded in a single ticket (but for efficiency,
+    a compressed archive is generated locally)
+  - ConfigObj module is now required
 
 
 dl 0.17.1: 01/05/2016
