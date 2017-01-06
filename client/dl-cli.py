@@ -163,7 +163,7 @@ def main():
     if cfg['passcmd']:
         cfg['pass'] = subprocess.check_output(cfg['passcmd'], universal_newlines=True, shell=True).rstrip('\n')
     elif not cfg['pass']:
-        cfg['pass'] = getpass.getpass('Password for ' + cfg['user'] + ':')
+        cfg['pass'] = getpass.getpass('Password for {}@{}: '.format(cfg['user'], cfg['url']))
     if not cfg['verify']:
         print("WARNING: SSL validation is disabled (use fingerprint for self-signed certs instead!)")
 
