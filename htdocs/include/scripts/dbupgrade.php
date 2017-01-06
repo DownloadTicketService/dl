@@ -29,11 +29,11 @@ if(version_compare($version, "0.10", "<"))
 {
   echo "upgrading 0.4 => 0.10 ...\n";
 
-  $db->exec("ALTER TABLE ticket ADD sent_email VARCHAR");
-  $db->exec("ALTER TABLE ticket ADD locale VARCHAR");
+  $db->exec("ALTER TABLE ticket ADD sent_email VARCHAR(1023)");
+  $db->exec("ALTER TABLE ticket ADD locale VARCHAR(255)");
   $db->exec("ALTER TABLE ticket DROP expire_last"); # not supported by sqlite, it will leave the column
-  $db->exec("ALTER TABLE grant ADD sent_email VARCHAR");
-  $db->exec("ALTER TABLE grant ADD locale VARCHAR");
+  $db->exec("ALTER TABLE grant ADD sent_email VARCHAR(1023)");
+  $db->exec("ALTER TABLE grant ADD locale VARCHAR(255)");
   $db->exec("UPDATE config SET value = '0.10' WHERE name = 'version'");
 
   $version = "0.10";
@@ -43,9 +43,9 @@ if(version_compare($version, "0.11", "<"))
 {
   echo "upgrading 0.10 => 0.11 ...\n";
 
-  $db->exec("ALTER TABLE user ADD pass_ph VARCHAR");
-  $db->exec("ALTER TABLE ticket ADD pass_ph VARCHAR");
-  $db->exec("ALTER TABLE grant ADD pass_ph VARCHAR");
+  $db->exec("ALTER TABLE user ADD pass_ph VARCHAR(60)");
+  $db->exec("ALTER TABLE ticket ADD pass_ph VARCHAR(60)");
+  $db->exec("ALTER TABLE grant ADD pass_ph VARCHAR(60)");
   $db->exec("UPDATE config SET value = '0.11' WHERE name = 'version'");
 
   $version = "0.11";
