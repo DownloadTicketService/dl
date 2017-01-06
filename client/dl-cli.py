@@ -1,19 +1,27 @@
 #!/usr/bin/env python
-import ConfigParser
-import binascii
-import pycurl
-import httplib
-import StringIO
-import json
+from __future__ import unicode_literals, print_function, generators
+
 import argparse
 import os.path
-import sys
+import io, sys
+from io import BytesIO
+import itertools
+
+import binascii
+import pycurl
+import json
 
 import configobj
 import validate
 
 import getpass
 import subprocess
+
+try:
+    from http import client as httplib
+except ImportError:
+    import httplib
+
 
 DL_VERSION = "0.18"
 DL_AGENT = "dl-cli/" + DL_VERSION
@@ -27,7 +35,7 @@ class UploadError(Exception):
 
 
 def newticket(file, params):
-    s = StringIO.StringIO()
+    s = BytesIO()
     c = pycurl.Curl()
     c.setopt(c.URL, params['url'] + "/newticket")
     c.setopt(c.WRITEFUNCTION, s.write)
@@ -35,16 +43,19 @@ def newticket(file, params):
     if sys.stdout.isatty():
         def progress(download_t, download_d, upload_t, upload_d):
             if upload_d > 0:
-                print >> sys.stderr, "uploading: {:-7.3f}%\r".format(upload_d * 100 / upload_t),
+                print("uploading: {:-7.3f}%".format(upload_d * 100 / upload_t),
+                      file=sys.stderr, end='\r')
         c.setopt(c.NOPROGRESS, False)
         c.setopt(c.PROGRESSFUNCTION, progress)
 
     auth = params['user'] + ':' + params['pass']
+    xauth = binascii.b2a_base64(auth.encode('utf8')).decode('ascii')[:-1]
+
     c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
     c.setopt(c.USERPWD, auth)
     c.setopt(c.HTTPHEADER, ['Expect:',
                             'User-agent: ' + DL_AGENT,
-                            'X-Authorization: Basic ' + binascii.b2a_base64(auth)[:-1]])
+                            'X-Authorization: Basic ' + xauth])
 
     if not params['verify']:
         c.setopt(c.SSL_VERIFYPEER, False)
@@ -65,7 +76,7 @@ def newticket(file, params):
     if s.tell():
         s.seek(0)
         try:
-            ret = json.load(s)
+            ret = json.load(io.TextIOWrapper(s, 'utf8'))
         except ValueError:
             pass
 
@@ -83,17 +94,19 @@ def newticket(file, params):
 
 
 def newgrant(email, params):
-    s = StringIO.StringIO()
+    s = BytesIO()
     c = pycurl.Curl()
     c.setopt(c.URL, params['url'] + "/newgrant")
     c.setopt(c.WRITEFUNCTION, s.write)
 
     auth = params['user'] + ':' + params['pass']
+    xauth = binascii.b2a_base64(auth.encode('utf8')).decode('ascii')[:-1]
+
     c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
     c.setopt(c.USERPWD, auth)
     c.setopt(c.HTTPHEADER, ['Expect:',
                             'User-agent: ' + DL_AGENT,
-                            'X-Authorization: Basic ' + binascii.b2a_base64(auth)[:-1]])
+                            'X-Authorization: Basic ' + xauth])
 
     if not params['verify']:
         c.setopt(c.SSL_VERIFYPEER, False)
@@ -113,7 +126,7 @@ def newgrant(email, params):
     if s.tell():
         s.seek(0)
         try:
-            ret = json.load(s)
+            ret = json.load(io.TextIOWrapper(s, 'utf8'))
         except ValueError:
             pass
 
@@ -131,7 +144,7 @@ def newgrant(email, params):
 
 
 def die(descr, code=1):
-    print >> sys.stderr, sys.argv[0] + ": " + descr
+    print(sys.argv[0] + ": " + descr, file=sys.stderr)
     exit(code)
 
 

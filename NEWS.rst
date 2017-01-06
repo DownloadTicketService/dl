@@ -7,8 +7,11 @@ dl 0.18: ??/12/2016
 * When using a grant, the user can now attach a comment alongside the file/s.
 * Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
   file for Apache/mod_php.
-* dl-cli now supports public-key pinning.
-* dl-cli can now read the password from an external command.
+* Several dl-cli improvements:
+  - Can run under both python 2.7 and python 3+
+  - The password can be read from an external command
+  - Public-key pinning though the ``fingerprint`` option
+  - ConfigObj module is now required
 * Simplified Chinese translation by Guangyu Dong.
 * Russian translation by Олейник О.В.
 

@@ -600,10 +600,11 @@ An example::
   pass=test
 
 Simply run the command with no arguments to see usage information. At least
-Python 2.7 is required, with the "PycURL" module installed. Under Debian/Ubuntu
-systems you can install the required dependencies by doing the following::
+Python 2.7 is required (with Python 3+ being fully supported), with the
+"PycURL" and "ConfigObj" modules installed. Under Debian/Ubuntu systems you can
+install the required dependencies by doing the following::
 
-  sudo apt-get install python-pycurl
+  sudo apt-get install python-pycurl python-configobj
 
 
 Graphical client: ``dl-wx``
