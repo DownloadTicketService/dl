@@ -92,64 +92,73 @@ pageHeader();
       </small></p>
     </li>
 
-    <h3><?php echo T_("Ticket parameters"); ?></h3>
-
     <li>
-      <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
+      <label class="description"><?php echo T_("Ticket expiry"); ?></label>
       <div>
-	<input name="ticket_totaldays" value="<?php echo (int)($defaults['ticket']['total'] / (3600 * 24)); ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
+	<select id="tex" name="ticket_expiry" class="element">
+	  <option value="auto"><?php echo T_("Automatic"); ?></option>
+	  <option value="once"><?php echo T_("Single use"); ?></option>
+	  <option value="never"><?php echo T_("No expiration"); ?></option>
+	  <option value="custom"><?php echo T_("Custom"); ?></option>
+	</select>
       </div>
       <p class="guidelines"><small>
-	  <?php
-            echo  T_("Type the <strong>maximal number of days</strong> the"
-		. " uploaded file is allowed to be kept on the server. After"
-		. " this period is passed the file will be deleted from the"
-		. " server.");
-          ?>
+	<?php
+	echo T_("Select the expiration logic of the ticket. <strong>Automatic</strong>"
+	      . " will keep the ticket as long as it's being actively downloaded/used."
+	      . " <strong>Single use</strong> allows <em>only one download</em> to be"
+	      . " performed. <strong>No expiration</strong> will never remove the"
+	      . " ticket automatically.");
+	?>
       </small></p>
-    </li>
 
-    <li>
-      <label class="description"><?php echo T_("Expire in # of days after last download"); ?></label>
-      <div>
-	<input name="ticket_lastdldays" value="<?php echo (int)($defaults['ticket']['lastdl'] / (3600 * 24)); ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
-      </div>
-      <p class="guidelines"><small>
-	  <?php
-            echo T_("Type the number of days the uploaded file is allowed to be"
-		. " kept on the server <strong>after being downloaded</strong>."
-		. " After this period is passed without activity, the file will"
-		. " be deleted from the server.");
-          ?>
-      </small></p>
-    </li>
+      <ul id="tex_data">
+	<li>
+	  <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
+	  <div>
+	    <input name="ticket_totaldays" value="<?php echo (int)($defaults['ticket']['total'] / (3600 * 24)); ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
+	  </div>
+	  <p class="guidelines"><small>
+	    <?php
+	    echo T_("Type the <strong>maximal number of days</strong> the"
+		  . " uploaded file is allowed to be kept on the server. After"
+		  . " this period is passed the file will be deleted from the"
+		  . " server.");
+	    ?>
+	  </small></p>
+	</li>
 
-    <li>
-      <label class="description"><?php echo T_("Expire after # of downloads"); ?></label>
-      <div>
-	<input name="ticket_maxdl" value="<?php echo $defaults['ticket']['maxdl']; ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
-      </div>
-      <p class="guidelines"><small>
-	  <?php
+	<li>
+	  <label class="description"><?php echo T_("Expire in # of days after last download"); ?></label>
+	  <div>
+	    <input name="ticket_lastdldays" value="<?php echo (int)($defaults['ticket']['lastdl'] / (3600 * 24)); ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
+	  </div>
+	  <p class="guidelines"><small>
+	    <?php
+	    echo T_("Type the number of days the uploaded file is allowed to be"
+		  . " kept on the server <strong>after being downloaded</strong>."
+		  . " After this period is passed without activity, the file will"
+		  . " be deleted from the server.");
+	    ?>
+	  </small></p>
+	</li>
+
+	<li>
+	  <label class="description"><?php echo T_("Expire after # of downloads"); ?></label>
+	  <div>
+	    <input name="ticket_maxdl" value="<?php echo $defaults['ticket']['maxdl']; ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
+	  </div>
+	  <p class="guidelines"><small>
+	    <?php
 	    echo T_("Type the number of times the uploaded file is"
-		. " <strong>allowed to be downloaded in total</strong>. After"
-		. " this amount is reached the file will be deleted from the"
-		. " server.");
-          ?>
-      </small></p>
-    </li>
+		  . " <strong>allowed to be downloaded in total</strong>. After"
+		  . " this amount is reached the file will be deleted from the"
+		  . " server.");
+	    ?>
+	  </small></p>
+	</li>
 
-    <li>
-      <label class="description"><?php echo T_("Permanent ticket / upload"); ?></label>
-      <div>
-	<input name="ticket_permanent" id="ticket_permanent" class="element checkbox" type="checkbox" value="1"/>
-	<label for="ticket_permanent" class="choice"><?php echo T_("Do not expire"); ?></label>
-      </div>
-      <p class="guidelines"><small>
-	  <?php
-            echo T_("Set this checkmark if you do not want the uploaded file to expire.");
-          ?>
-      </small></p>
+      </ul>
     </li>
 
   </ul>

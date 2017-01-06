@@ -53,15 +53,60 @@ function ticketExpiration($DATA, &$expVal = NULL)
 }
 
 
+function ticketExpirationParams($params)
+{
+  global $defaults;
+
+  if(!isset($params["ticket_expiry"]))
+  {
+    if(@$params["ticket_permanent"] == true || @$params["permanent"] === true)
+      $params["ticket_expiry"] = "never"; // dl < 0.18
+    elseif(!isset($params["ticket_total"]) && !isset($params["ticket_lastdl"]) && !isset($params["ticket_maxdl"]))
+      $params["ticket_expiry"] = "auto";
+    else
+      $params["ticket_expiry"] = "custom";
+  }
+  if($params["ticket_expiry"] === "never")
+  {
+    $total = "NULL";
+    $lastdl = "NULL";
+    $maxdl = "NULL";
+  }
+  elseif($params["ticket_expiry"] === "once")
+  {
+    $total = "NULL";
+    $lastdl = "NULL";
+    $maxdl = 1;
+  }
+  elseif($params["ticket_expiry"] === "auto")
+  {
+    $total = ($defaults['ticket']['total'] == 0)? "NULL": time() + $defaults['ticket']['total'];
+    $lastdl = ($defaults['ticket']['lastdl'] == 0)? "NULL": $defaults['ticket']['lastdl'];
+    $maxdl = ($defaults['ticket']['maxdl'] == 0)? "NULL": $defaults['ticket']['lastdl'];
+  }
+  else
+  {
+    $total = (empty($params["ticket_total"])? 'NULL': time() + $params["ticket_total"]);
+    $lastdl = (empty($params["ticket_lastdl"])? 'NULL': (int)$params["ticket_lastdl"]);
+    $maxdl = (empty($params["ticket_maxdl"])? 'NULL': (int)$params["ticket_maxdl"]);
+  }
+
+  return array($total, $lastdl, $maxdl);
+}
+
+
 function genTicket($upload, $params)
 {
-  global $auth, $locale, $db, $defaults, $passHasher;
+  global $auth, $locale, $db, $passHasher;
 
   // populate comment with file list when empty
   if(!empty($params["comment"]))
     $params["comment"] = trim($params["comment"]);
   if(empty($params["comment"]) && count($upload['files']) > 1)
     $params["comment"] = T_("Archive contents:") . "\n  " . implode("\n  ", $upload['files']);
+
+  // expiration values
+  list($total, $lastdl, $maxdl) = ticketExpirationParams($params);
 
   // prepare data
   $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph"
@@ -75,24 +120,9 @@ function genTicket($upload, $params)
   $sql .= ", " . (empty($params["pass"])? 'NULL':
       $db->quote($passHasher->HashPassword($params["pass"])));
   $sql .= ", " . time();
-  if(@$params["permanent"])
-  {
-    $sql .= ", NULL";
-    $sql .= ", NULL";
-    $sql .= ", NULL";
-  }
-  else
-  {
-    if(!isset($params["ticket_total"]) && !isset($params["ticket_lastdl"]) && !isset($params["ticket_maxdl"]))
-    {
-      $params["ticket_total"] = $defaults['ticket']['total'];
-      $params["ticket_lastdl"] = $defaults['ticket']['lastdl'];
-      $params["ticket_maxdl"] = $defaults['ticket']['maxdl'];
-    }
-    $sql .= ", " . (empty($params["ticket_total"])? 'NULL': time() + $params["ticket_total"]);
-    $sql .= ", " . (empty($params["ticket_lastdl"])? 'NULL': $params["ticket_lastdl"]);
-    $sql .= ", " . (empty($params["ticket_maxdl"])? 'NULL': (int)$params["ticket_maxdl"]);
-  }
+  $sql .= ", " . $total;
+  $sql .= ", " . $lastdl;
+  $sql .= ", " . $maxdl;
   $sql .= ", " . (empty($params["notify"])? 'NULL': $db->quote(fixEMailAddrs($params["notify"])));
   $sql .= ", " . (empty($params["send_to"])? 'NULL': $db->quote(fixEMailAddrs($params["send_to"])));
   $sql .= ", " . $db->quote($locale);
@@ -124,6 +154,7 @@ $ticketRestParams = array
   'ticket_total'  => 'is_numeric_int',
   'ticket_lastdl' => 'is_numeric_int',
   'ticket_maxdl'  => 'is_numeric_int',
+  'ticket_expiry' => 'is_expiry_choice',
   'notify'        => 'is_string',
   'send_to'       => 'is_string',
   'permanent'     => 'is_bool',
@@ -136,7 +167,7 @@ $ticketNewParams = array
   'ticket_totaldays'  => 'is_numeric',
   'ticket_lastdldays' => 'is_numeric',
   'ticket_maxdl'      => 'is_numeric_int',
-  'ticket_permanent'  => 'is_numeric_int',
+  'ticket_expiry'     => 'is_expiry_choice',
   'notify'            => 'is_string',
   'send_to'           => 'is_string',
 );

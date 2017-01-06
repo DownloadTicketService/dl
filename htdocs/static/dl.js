@@ -9,7 +9,7 @@ var pwdLength = 16;
 var fields =
 [
   'grant_total', 'ticket_totaldays', 'ticket_lastdldays',
-  'ticket_maxdl', 'ticket_permanent', 'notify', 'send_to'
+  'ticket_maxdl', 'ticket_expiry', 'notify', 'send_to'
 ];
 
 
@@ -59,12 +59,7 @@ function loadDefaults(set, form)
     if(!form[name]) continue;
     var v = refreshCookie(set + '_' + name, cookieLifetime);
     if(v !== null)
-    {
-      if(form[name].type == 'checkbox')
-	form[name].checked = parseInt(v);
-      else
-	form[name].value = v;
-    }
+      $(form[name]).val(v);
   }
 
   var v = refreshCookie(set + '_advanced', cookieLifetime);
@@ -81,12 +76,7 @@ function setDefaults(set, form)
   {
     var name = fields[i];
     if(!form[name]) continue;
-    var value;
-    if(form[name].type == 'checkbox')
-      value = form[name].checked + 0;
-    else
-      value = form[name].value;
-    setCookie(set + '_' + name, value, expire);
+    setCookie(set + '_' + name, $(form[name]).val(), expire);
   }
 
   var v = $('#advanced').hasClass('active');
@@ -353,9 +343,6 @@ $.getCss = function(url)
 
 function init()
 {
-  // togglers
-  $('#toggler').click(toggleAdvanced);
-
   // form defaults
   $('form[defaults]').each(function(i, t)
   {
@@ -364,6 +351,10 @@ function init()
     loadDefaults(set, t);
     form.find('#setDefaults').click(function(el) { setDefaults(set, t); });
   });
+
+  // togglers
+  $('#toggler').click(toggleAdvanced);
+  $('#tex').change(function(el) { $('#tex_data').toggle(this.value == 'custom'); }).change();
 
   // file controls
   var ffirst = $('form div.file').first();

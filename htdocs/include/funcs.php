@@ -229,6 +229,12 @@ function is_numeric_int($str)
 }
 
 
+function is_expiry_choice($v)
+{
+  return is_string($v) && in_array($v, array("auto", "once", "never", "custom"));
+}
+
+
 function anyOf()
 {
   foreach(func_get_args() as $arg)

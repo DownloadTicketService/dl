@@ -135,8 +135,13 @@ POST "msg" object parameters:
 * ticket_maxdl (integer): maximal number of downloads for the ticket.
 * notify (string): notification addresses (comma-separated list of e-mails).
 * send_to (string): send-link-to addresses (comma-separated list of e-mails).
-* permanent (boolean): mutually exclusive with
-  ticket_total/ticket_lastdl/ticket_maxdl, sets the ticket to be permanent.
+* permanent (boolean): Same as ticket_expiry=never.
+* ticket_expiry (choice: auto/once/never/custom, since: 0.18):
+
+  :auto: use server's defaults for ticket expiration
+  :once: same as ticket_maxdl=1
+  :never: same as ticket_total/ticket_lastdl/ticket_maxdl=0
+  :custom: requires explicit ticket_total/ticket_lastdl/ticket_maxdl
 
 POST "file" parameter:
 

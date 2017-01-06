@@ -1,6 +1,7 @@
 <?php
 // new grant shared functions
 require_once("funcs.php");
+require_once("ticketfuncs.php");
 
 
 function isGrantExpired($DATA, $now = NULL)
@@ -23,9 +24,22 @@ function grantExpiration($DATA, &$expVal = NULL)
 }
 
 
+function grantExpirationParams($params)
+{
+  global $defaults;
+
+  // TODO: mostly a stub until grants work as tickets
+  if(!isset($params["grant_total"]))
+    $params["grant_total"] = $defaults['grant']['total'];
+  $total = ($params["grant_total"] == 0)? 'NULL': time() + $params["grant_total"];
+
+  return array($total, false, false);
+}
+
+
 function genGrant($params)
 {
-  global $auth, $locale, $db, $defaults, $passHasher;
+  global $auth, $locale, $db, $passHasher;
 
   // generate new unique id
   $id = genGrantId();
@@ -33,37 +47,24 @@ function genGrant($params)
   // parameters
   if(!empty($params["comment"]))
     $params["comment"] = trim($params["comment"]);
-  if(!isset($params["grant_total"]))
-    $params["grant_total"] = $defaults['grant']['total'];
+
+  // expiration values
+  list($grant_total, $grant_lastdl, $grant_maxdl) = grantExpirationParams($params);
+  list($ticket_total, $ticket_lastdl, $ticket_maxdl) = ticketExpirationParams($params);
 
   // prepare data
   $sql = "INSERT INTO \"grant\" (id, user_id, grant_expire, cmt, pass_ph"
     . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
-  $sql .= ", " . (($params["grant_total"] == 0)? 'NULL': time() + $params["grant_total"]);
+  $sql .= ", " . $grant_total;
   $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
   $sql .= ", " . (empty($params["pass"])? 'NULL':
       $db->quote($passHasher->HashPassword($params["pass"])));
   $sql .= ", " . time();
-  if(!empty($params["ticket_permanent"]))
-  {
-    $sql .= ", NULL";
-    $sql .= ", NULL";
-    $sql .= ", NULL";
-  }
-  else
-  {
-    if(!isset($params["ticket_total"]) && !isset($params["ticket_lastdl"]) && !isset($params["ticket_maxdl"]))
-    {
-      $params["ticket_total"] = $defaults['ticket']['total'];
-      $params["ticket_lastdl"] = $defaults['ticket']['lastdl'];
-      $params["ticket_maxdl"] = $defaults['ticket']['maxdl'];
-    }
-    $sql .= ", " . (empty($params["ticket_total"])? 'NULL': time() + $params["ticket_total"]);
-    $sql .= ", " . (empty($params["ticket_lastdl"])? 'NULL': $params["ticket_lastdl"]);
-    $sql .= ", " . (empty($params["ticket_maxdl"])? 'NULL': (int)$params["ticket_maxdl"]);
-  }
+  $sql .= ", " . $ticket_total;
+  $sql .= ", " . $ticket_lastdl;
+  $sql .= ", " . $ticket_maxdl;
   $sql .= ", " . (empty($params["notify"])? 'NULL': $db->quote(fixEMailAddrs($params["notify"])));
   $sql .= ", " . (empty($params["send_to"])? 'NULL': $db->quote(fixEMailAddrs($params["send_to"])));
   $sql .= ", " . $db->quote($locale);
@@ -89,7 +90,7 @@ $grantRestParams = array
 (
   'notify'           => array
   (
-    'required' 	     => true,
+    'required'	     => true,
     'funcs'          => array('is_string', 'not_empty'),
   ),
   'comment'          => 'is_string',
@@ -98,6 +99,7 @@ $grantRestParams = array
   'ticket_total'     => 'is_numeric_int',
   'ticket_lastdl'    => 'is_numeric_int',
   'ticket_maxdl'     => 'is_numeric_int',
+  'ticket_expiry'    => 'is_expiry_choice',
   'ticket_permanent' => 'is_bool',
   'send_to'          => 'is_string',
 );
@@ -106,7 +108,7 @@ $grantNewParams = array
 (
   'notify'            => array
   (
-    'required' 	      => true,
+    'required'	      => true,
     'funcs'           => array('is_string', 'not_empty'),
   ),
   'comment'           => 'is_string',
@@ -115,7 +117,7 @@ $grantNewParams = array
   'ticket_totaldays'  => 'is_numeric',
   'ticket_lastdldays' => 'is_numeric',
   'ticket_maxdl'      => 'is_numeric_int',
-  'ticket_permanent'  => 'is_numeric_int',
+  'ticket_expiry'     => 'is_expiry_choice',
   'send_to'           => 'is_string',
 );
 
