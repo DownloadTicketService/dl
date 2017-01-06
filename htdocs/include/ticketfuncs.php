@@ -74,7 +74,7 @@ function ticketExpirationParams($params)
   }
   elseif($params["ticket_expiry"] === "once")
   {
-    $total = "NULL";
+    $total = ($defaults['ticket']['total'] == 0)? "NULL": $defaults['ticket']['total'];
     $lastdl = "NULL";
     $maxdl = 1;
   }

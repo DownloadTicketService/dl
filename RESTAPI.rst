@@ -139,7 +139,7 @@ POST "msg" object parameters:
 * ticket_expiry (choice: auto/once/never/custom, since: 0.18):
 
   :auto: use server's defaults for ticket expiration
-  :once: same as ticket_maxdl=1
+  :once: same as ticket_maxdl=1 with server's default ticket_total
   :never: same as ticket_total/ticket_lastdl/ticket_maxdl=0
   :custom: requires explicit ticket_total/ticket_lastdl/ticket_maxdl
 
