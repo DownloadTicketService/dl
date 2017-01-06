@@ -52,7 +52,7 @@ function useGrant($upload, $GRANT)
   $db->beginTransaction();
 
   $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph"
-    . ", time, last_time, expire, expire_dln, locale) VALUES (";
+    . ", time, last_time, expire, expire_dln, locale, from_grant) VALUES (";
   $sql .= $db->quote($upload['id']);
   $sql .= ", " . $GRANT['user_id'];
   $sql .= ", " . $db->quote($upload["name"]);
@@ -65,6 +65,7 @@ function useGrant($upload, $GRANT)
   $sql .= ", " . (empty($GRANT["expire"])? 'NULL': $GRANT['expire']);
   $sql .= ", " . (empty($GRANT["expire_dln"])? 'NULL': $GRANT['expire_dln']);
   $sql .= ", " . (empty($GRANT["locale"])? 'NULL': $db->quote($GRANT['locale']));
+  $sql .= ", " . $db->quote($GRANT['id']);
   $sql .= ")";
   $db->exec($sql);
 

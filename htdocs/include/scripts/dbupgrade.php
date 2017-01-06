@@ -68,6 +68,7 @@ if(version_compare($version, "0.18", "<"))
   $db->exec("UPDATE ticket SET expire = expire - time");
   $db->exec("UPDATE grant SET expire = expire - time");
   $db->exec("UPDATE grant SET grant_expire = grant_expire - time");
+  $db->exec("ALTER TABLE ticket ADD from_grant CHAR(32)");
   $db->exec("UPDATE config SET value = '0.18' WHERE name = 'version'");
 
   $version = "0.18";
