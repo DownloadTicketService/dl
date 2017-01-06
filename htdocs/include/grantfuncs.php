@@ -7,7 +7,7 @@ require_once("ticketfuncs.php");
 function isGrantExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
-  return ($DATA["grant_expire"] && $DATA["grant_expire"] < $now);
+  return ($DATA["grant_expire"] && ($DATA["grant_expire"] + $DATA["time"]) < $now);
 }
 
 
@@ -15,7 +15,7 @@ function grantExpiration($DATA, &$expVal = NULL)
 {
   if($DATA["grant_expire"])
   {
-    $expVal = $DATA["grant_expire"] - time();
+    $expVal = $DATA["grant_expire"] + $DATA["time"] - time();
     return sprintf(T_("In %s"), humanTime($expVal));
   }
 
@@ -31,7 +31,7 @@ function grantExpirationParams($params)
   // TODO: mostly a stub until grants work as tickets
   if(!isset($params["grant_total"]))
     $params["grant_total"] = $defaults['grant']['total'];
-  $total = ($params["grant_total"] == 0)? 'NULL': time() + $params["grant_total"];
+  $total = ($params["grant_total"] == 0)? 'NULL': $params["grant_total"];
 
   return array($total, false, false);
 }

@@ -5,6 +5,9 @@ dl 0.18: ??/12/2016
   files are attached, a Zip archive is automatically created with the contents.
   The PHP "Zip" extension is now required.
 * When using a grant, the user can now attach a comment alongside the file/s.
+* The tickets generated while using a grant were incorrectly calculating the
+  expiry from the grant *generation* time instead of actual usage, resulting in
+  premature expiration.
 * Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
   file for Apache/mod_php.
 * Simplified Chinese translation by Guangyu Dong.

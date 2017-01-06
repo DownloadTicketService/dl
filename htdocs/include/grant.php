@@ -62,8 +62,6 @@ function useGrant($upload, $GRANT)
   $sql .= ", " . (empty($GRANT["pass_ph"])? 'NULL': $db->quote($GRANT["pass_ph"]));
   $sql .= ", " . time();
   $sql .= ", " . (empty($GRANT["last_time"])? 'NULL': $GRANT['last_time']);
-  // TODO: expire was calculated at the time of the grant creation,
-  //       but should be relative to grant usage time instead!
   $sql .= ", " . (empty($GRANT["expire"])? 'NULL': $GRANT['expire']);
   $sql .= ", " . (empty($GRANT["expire_dln"])? 'NULL': $GRANT['expire_dln']);
   $sql .= ", " . (empty($GRANT["locale"])? 'NULL': $db->quote($GRANT['locale']));

@@ -61,5 +61,17 @@ if(version_compare($version, "0.12", "<"))
   $version = "0.12";
 }
 
+if(version_compare($version, "0.18", "<"))
+{
+  echo "upgrading 0.12 => 0.18 ...\n";
+
+  $db->exec("UPDATE ticket SET expire = expire - time");
+  $db->exec("UPDATE grant SET expire = expire - time");
+  $db->exec("UPDATE grant SET grant_expire = grant_expire - time");
+  $db->exec("UPDATE config SET value = '0.18' WHERE name = 'version'");
+
+  $version = "0.18";
+}
+
 echo "done\n";
 exit(0);

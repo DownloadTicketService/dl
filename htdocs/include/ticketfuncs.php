@@ -6,7 +6,7 @@ require_once("funcs.php");
 function isTicketExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
-  return (($DATA["expire"] && $DATA["expire"] < $now)
+  return (($DATA["expire"] && ($DATA["expire"] + $DATA["time"]) < $now)
        || ($DATA["last_stamp"] && $DATA["last_time"] && ($DATA["last_stamp"] + $DATA["last_time"]) < $now)
        || ($DATA["expire_dln"] && $DATA["expire_dln"] <= $DATA["downloads"]));
 }
@@ -28,7 +28,7 @@ function ticketExpiration($DATA, &$expVal = NULL)
     }
     elseif($DATA["expire"])
     {
-      $expVal = $DATA["expire"] - time();
+      $expVal = $DATA["expire"] + $DATA["time"] - time();
       return sprintf(T_("About %s"), humanTime($expVal));
     }
     elseif($DATA["expire_dln"])
@@ -44,7 +44,7 @@ function ticketExpiration($DATA, &$expVal = NULL)
   }
   elseif($DATA["expire"])
   {
-    $expVal = $DATA["expire"] - time();
+    $expVal = $DATA["expire"] + $DATA["time"] - time();
     return sprintf(T_("In %s"), humanTime($expVal));
   }
 
@@ -80,13 +80,13 @@ function ticketExpirationParams($params)
   }
   elseif($params["ticket_expiry"] === "auto")
   {
-    $total = ($defaults['ticket']['total'] == 0)? "NULL": time() + $defaults['ticket']['total'];
+    $total = ($defaults['ticket']['total'] == 0)? "NULL": $defaults['ticket']['total'];
     $lastdl = ($defaults['ticket']['lastdl'] == 0)? "NULL": $defaults['ticket']['lastdl'];
     $maxdl = ($defaults['ticket']['maxdl'] == 0)? "NULL": $defaults['ticket']['lastdl'];
   }
   else
   {
-    $total = (empty($params["ticket_total"])? 'NULL': time() + $params["ticket_total"]);
+    $total = (empty($params["ticket_total"])? 'NULL': $params["ticket_total"]);
     $lastdl = (empty($params["ticket_lastdl"])? 'NULL': (int)$params["ticket_lastdl"]);
     $maxdl = (empty($params["ticket_maxdl"])? 'NULL': (int)$params["ticket_maxdl"]);
   }

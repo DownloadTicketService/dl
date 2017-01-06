@@ -17,7 +17,7 @@ $notify = anyOf(@$_POST['notify'], join(", ", getEMailAddrs($DATA['notify_email'
 if(isset($_POST['ticket_totaldays']))
   $totalDays = $_POST['ticket_totaldays'];
 elseif($DATA["expire"])
-  $totalDays = ceil(($DATA["expire"] - time()) / (3600 * 24));
+  $totalDays = ceil(($DATA["expire"] + $DATA["time"] - time()) / (3600 * 24));
 elseif($permanent)
   $totalDays = $defaults['ticket']['total'] / (3600 * 24);
 else
