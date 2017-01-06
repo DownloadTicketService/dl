@@ -8,22 +8,15 @@ import json
 import argparse
 import os.path
 import sys
+
+import configobj
+import validate
+
 import getpass
 import subprocess
 
 DL_VERSION = "0.18"
 DL_AGENT = "dl-cli/" + DL_VERSION
-CFG_SECTION = 'DEFAULT'
-
-
-class DefaultSection(object):
-    def __init__(self, path):
-        self.fp = open(path)
-        self.readline = self.head
-
-    def head(self):
-        self.readline = self.fp.readline
-        return "[DEFAULT]\n"
 
 
 class UploadError(Exception):
@@ -153,17 +146,18 @@ def main():
     args = parser.parse_args()
 
     cfgpath = os.path.expanduser(args.rc)
-    cp = ConfigParser.RawConfigParser({'passcmd': None,
-                                       'fingerprint': None,
-                                       'verify': 'True'})
-    cp.readfp(DefaultSection(cfgpath))
-
-    cfg = {'url' : cp.get(CFG_SECTION, 'url'),
-           'user': cp.get(CFG_SECTION, 'user'),
-           'pass': cp.get(CFG_SECTION, 'pass'),
-           'passcmd': cp.get(CFG_SECTION, 'passcmd'),
-           'fingerprint': cp.get(CFG_SECTION, 'fingerprint'),
-           'verify': cp.getboolean(CFG_SECTION, 'verify')}
+    cfg = configobj.ConfigObj(cfgpath)
+    v = validate.Validator()
+    for param in ['user', 'url']:
+        if param not in cfg:
+            die("missing \"{0}\" in configuration file".format(param))
+        cfg[param] = v.check('string', cfg[param])
+    cfg['verify'] = v.check('boolean', cfg.get('verify', True))
+    for param in ['pass', 'passcmd', 'fingerprint']:
+        if param not in cfg:
+            cfg[param] = None
+        else:
+            cfg[param] = v.check('string', cfg[param])
 
     # Obtain a password
     if cfg['passcmd']:
