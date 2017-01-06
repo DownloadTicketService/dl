@@ -161,7 +161,7 @@ def main():
 
     # Obtain a password
     if cfg['passcmd']:
-        cfg['pass'] = subprocess.check_output(cfg['passcmd'])
+        cfg['pass'] = subprocess.check_output(cfg['passcmd'], universal_newlines=True, shell=True).rstrip('\n')
     elif not cfg['pass']:
         cfg['pass'] = getpass.getpass('Password for ' + cfg['user'] + ':')
     if not cfg['verify']:
