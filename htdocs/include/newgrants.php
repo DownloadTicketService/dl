@@ -93,7 +93,7 @@ pageHeader();
     </li>
 
     <li>
-      <label class="description"><?php echo T_("Ticket expiry"); ?></label>
+      <label class="description"><?php echo T_("Upload expiry"); ?></label>
       <div>
 	<select id="tex" name="ticket_expiry" class="element">
 	  <option value="auto"><?php echo T_("Automatic"); ?></option>
@@ -104,11 +104,11 @@ pageHeader();
       </div>
       <p class="guidelines"><small>
 	<?php
-	echo T_("Select the expiration logic of the ticket. <strong>Automatic</strong>"
-	      . " will keep the ticket as long as it's being actively downloaded/used."
+	echo T_("Select the expiration logic of the upload. <strong>Automatic</strong>"
+	      . " will keep the upload as long as it's being actively downloaded/used."
 	      . " <strong>Single use</strong> allows <em>only one download</em> to be"
 	      . " performed. <strong>No expiration</strong> will never remove the"
-	      . " ticket automatically.");
+	      . " upload automatically.");
 	?>
       </small></p>
 
