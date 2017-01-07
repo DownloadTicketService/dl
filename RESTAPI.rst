@@ -69,12 +69,14 @@ Returned values:
   * grant:
 
     * total (integer): maximal number of seconds for grants.
+    * lastul (integer, since 0.18): maximal number of seconds after last upload for grants.
+    * maxul (integer, since 0.18): maximal number of uploads for grants.
 
   * ticket:
 
     * total (integer): maximal number of seconds for tickets.
     * lastdl (integer): maximal number of seconds after last download for tickets.
-    * maxdl (integer): maximal number of seconds for the ticket for tickets.
+    * maxdl (integer): maximal number of downloads for tickets.
 
 Example request:
 

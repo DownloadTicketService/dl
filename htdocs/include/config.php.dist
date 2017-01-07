@@ -30,6 +30,8 @@ $defaultTicketMaxDl = 0;
 
 // Grant defaults
 $defaultGrantTotalDays = 365;
+$defaultGrantLastUlDays = 30;
+$defaultGrantMaxUl = 0;
 
 
 /*
@@ -37,7 +39,7 @@ $defaultGrantTotalDays = 365;
  */
 
 // cfgVersion: configuration file version
-$cfgVersion = "0.15";
+$cfgVersion = "0.18";
 
 // logFile: set this if you want new tickets, downloads and purges logged to a
 //          file. If the setting contains no slashes, it will be used as a tag

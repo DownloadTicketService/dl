@@ -35,7 +35,7 @@ if(!isset($style))
 else
   $style = "style/$style";
 
-// ticket defaults
+// ticket/grant defaults
 if(version_compare($cfgVersion, "0.10", "<"))
 {
   // settings prior to 0.9
@@ -52,6 +52,17 @@ if(version_compare($cfgVersion, "0.10", "<"))
   if(!isset($defaultTicketLastDlDays)) $defaultTicketLastDlDays = 1;
   if(!isset($defaultTicketMaxDl)) $defaultTicketMaxDl = 0;
   if(!isset($defaultGrantTotalDays)) $defaultGrantTotalDays = 7;
+  if(!isset($defaultGrantLastUlDays)) $defaultGrantLastUlDays = 0;
+  if(!isset($defaultGrantMaxUl)) $defaultGrantMaxUl = 1;
+}
+elseif(version_compare($cfgVersion, "0.18", "<"))
+{
+  if(!isset($defaultTicketTotalDays)) $defaultTicketTotalDays = 365;
+  if(!isset($defaultTicketLastDlDays)) $defaultTicketLastDlDays = 30;
+  if(!isset($defaultTicketMaxDl)) $defaultTicketMaxDl = 0;
+  if(!isset($defaultGrantTotalDays)) $defaultGrantTotalDays = 365;
+  if(!isset($defaultGrantLastUlDays)) $defaultGrantLastUlDays = 0;
+  if(!isset($defaultGrantMaxUl)) $defaultGrantMaxUl = 1;
 }
 else
 {
@@ -59,6 +70,8 @@ else
   if(!isset($defaultTicketLastDlDays)) $defaultTicketLastDlDays = 30;
   if(!isset($defaultTicketMaxDl)) $defaultTicketMaxDl = 0;
   if(!isset($defaultGrantTotalDays)) $defaultGrantTotalDays = 365;
+  if(!isset($defaultGrantLastUlDays)) $defaultGrantLastUlDays = 30;
+  if(!isset($defaultGrantMaxUl)) $defaultGrantMaxUl = 0;
 }
 
 // derived data
@@ -83,6 +96,8 @@ $defaults = array
   'grant' => array
   (
     'total' => $defaultGrantTotalDays * 3600 * 24,
+    'lastul' => $defaultGrantLastUlDays * 3600 * 24,
+    'maxul' => $defaultGrantMaxUl,
   ),
 );
 
