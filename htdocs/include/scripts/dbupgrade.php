@@ -65,12 +65,27 @@ if(version_compare($version, "0.18", "<"))
 {
   echo "upgrading 0.12 => 0.18 ...\n";
 
+  // unused columns
+  $db->exec("ALTER TABLE grant DROP downloads"); # not supported by sqlite, it will leave the column
+
+  // shift expire times to be relative
   $db->exec("UPDATE ticket SET expire = expire - time");
   $db->exec("UPDATE grant SET expire = expire - time");
   $db->exec("UPDATE grant SET grant_expire = grant_expire - time");
-  $db->exec("ALTER TABLE ticket ADD from_grant CHAR(32)");
-  $db->exec("UPDATE config SET value = '0.18' WHERE name = 'version'");
 
+  // track grant usage
+  $db->exec("ALTER TABLE ticket ADD from_grant CHAR(32)");
+
+  // multiple grant re-use
+  $db->exec("ALTER TABLE grant ADD grant_last_time INTEGER");
+  $db->exec("ALTER TABLE grant ADD grant_expire_uln INTEGER");
+  $db->exec("ALTER TABLE grant ADD uploads INTEGER NOT NULL DEFAULT 0");
+  $db->exec("ALTER TABLE grant ADD last_stamp INTEGER");
+  $db->exec("DROP INDEX i_grant");
+  $db->exec('CREATE INDEX i_grant on "grant" ( grant_expire, grant_expire_uln, uploads )');
+  $db->exec("UPDATE grant SET grant_expire_uln = 1"); // match previous defaults
+
+  $db->exec("UPDATE config SET value = '0.18' WHERE name = 'version'");
   $version = "0.18";
 }
 
