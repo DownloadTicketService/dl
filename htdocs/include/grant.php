@@ -69,8 +69,20 @@ function useGrant($upload, $GRANT)
   $sql .= ")";
   $db->exec($sql);
 
-  $sql = "DELETE FROM \"grant\" WHERE id = " . $db->quote($GRANT['id']);
-  $db->exec($sql);
+  // check for validity after upload
+  ++$GRANT["uploads"];
+  if(isGrantExpired($GRANT))
+  {
+    $sql = "DELETE FROM \"grant\" WHERE id = " . $db->quote($GRANT['id']);
+    $db->exec($sql);
+  }
+  else
+  {
+    $now = time();
+    $sql = "UPDATE \"grant\" SET last_stamp = $now"
+	 . ", uploads = uploads + 1 WHERE id = " . $db->quote($GRANT['id']);
+    $db->exec($sql);
+  }
 
   if(!$db->commit())
   {

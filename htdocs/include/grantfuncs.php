@@ -7,13 +7,43 @@ require_once("ticketfuncs.php");
 function isGrantExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
-  return ($DATA["grant_expire"] && ($DATA["grant_expire"] + $DATA["time"]) < $now);
+  return (($DATA["grant_expire"] && ($DATA["grant_expire"] + $DATA["time"]) < $now)
+       || ($DATA["last_stamp"] && $DATA["grant_last_time"] && ($DATA["last_stamp"] + $DATA["grant_last_time"]) < $now)
+       || ($DATA["grant_expire_uln"] && $DATA["grant_expire_uln"] <= $DATA["uploads"]));
 }
 
 
 function grantExpiration($DATA, &$expVal = NULL)
 {
-  if($DATA["grant_expire"])
+  if($DATA["grant_expire_uln"] || $DATA["grant_last_time"])
+  {
+    if($DATA["last_stamp"] && $DATA["grant_last_time"])
+    {
+      $expVal = $DATA["last_stamp"] + $DATA["grant_last_time"] - time();
+      return sprintf(T_("About %s"), humanTime($expVal));
+    }
+    elseif($DATA["grant_expire_uln"] && $DATA["uploads"])
+    {
+      $expVal = ($DATA["grant_expire_uln"] - $DATA["uploads"]);
+      return sprintf(T_("About %d uploads"), $expVal);
+    }
+    elseif($DATA["grant_expire"])
+    {
+      $expVal = $DATA["grant_expire"] + $DATA["time"] - time();
+      return sprintf(T_("About %s"), humanTime($expVal));
+    }
+    elseif($DATA["grant_expire_uln"])
+    {
+      $expVal = $DATA["grant_expire_uln"];
+      return sprintf(T_("After %d uploads"), $expVal);
+    }
+    else
+    {
+      $expVal = $DATA["grant_last_time"];
+      return sprintf(T_("%s after next upload"), humanTime($expVal));
+    }
+  }
+  elseif($DATA["grant_expire"])
   {
     $expVal = $DATA["grant_expire"] + $DATA["time"] - time();
     return sprintf(T_("In %s"), humanTime($expVal));

@@ -57,7 +57,9 @@ function runGc()
     ticketPurge($DATA);
 
   // expire grants
-  $sql = "SELECT * FROM \"grant\" WHERE (grant_expire + time) < $now";
+  $sql = "SELECT * FROM grant WHERE (grant_expire + time) < $now";
+  $sql .= " OR (last_stamp + grant_last_time) < $now";
+  $sql .= " OR grant_expire_uln <= uploads";
   if($gcLimit) $sql .= " LIMIT $gcLimit";
   foreach($db->query($sql)->fetchAll() as $DATA)
     grantPurge($DATA);
