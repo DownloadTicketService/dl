@@ -9,6 +9,8 @@ if(validateParams($grantNewParams, $_POST))
   // uniform the request parameters to the REST api
   if(isset($_POST['grant_totaldays']))
     $_POST['grant_total'] = (int)($_POST['grant_totaldays'] * 3600 * 24);
+  if(isset($_POST['grant_lastuldays']))
+    $_POST['grant_lastul'] = (int)($_POST['grant_lastuldays'] * 3600 * 24);
   if(isset($_POST['ticket_totaldays']))
     $_POST['ticket_total'] = (int)($_POST['ticket_totaldays'] * 3600 * 24);
   if(isset($_POST['ticket_lastdldays']))

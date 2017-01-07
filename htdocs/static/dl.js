@@ -8,8 +8,9 @@ var cookieLifetime = 1000 * 60 * 60 * 24 * 90;
 var pwdLength = 16;
 var fields =
 [
-  'grant_total', 'ticket_totaldays', 'ticket_lastdldays',
-  'ticket_maxdl', 'ticket_expiry', 'notify', 'send_to'
+  'grant_totaldays', 'grant_lastuldays', 'grant_maxul', 'grant_expiry',
+  'ticket_totaldays', 'ticket_lastdldays', 'ticket_maxdl', 'ticket_expiry',
+  'notify', 'send_to'
 ];
 
 
@@ -355,6 +356,7 @@ function init()
   // togglers
   $('#toggler').click(toggleAdvanced);
   $('#tex').change(function(el) { $('#tex_data').toggle(this.value == 'custom'); }).change();
+  $('#gex').change(function(el) { $('#gex_data').toggle(this.value == 'custom'); }).change();
 
   // file controls
   var ffirst = $('form div.file').first();

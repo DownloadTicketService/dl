@@ -78,18 +78,69 @@ pageHeader();
     </li>
 
     <li>
-      <label class="description"><?php echo T_("Expire grant in total # of days"); ?></label>
+      <label class="description"><?php echo T_("Grant expiry"); ?></label>
       <div>
-	<input name="grant_totaldays" value="<?php echo (int)($defaults['grant']['total'] / (3600 * 24)); ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
+	<select id="gex" name="grant_expiry" class="element">
+	  <option value="auto"><?php echo T_("Automatic"); ?></option>
+	  <option value="once"><?php echo T_("Single use"); ?></option>
+	  <option value="never"><?php echo T_("No expiration"); ?></option>
+	  <option value="custom"><?php echo T_("Custom"); ?></option>
+	</select>
       </div>
       <p class="guidelines"><small>
-	  <?php
-            echo T_("Type the <strong>maximal number of days</strong> the server"
-		. " should wait for the upload grant to be used.  After this"
-		. " period is passed without activity, the grant is removed the"
-		. " server.");
-          ?>
+	<?php
+	echo T_("Select the expiration logic of the grant. <strong>Automatic</strong>"
+	      . " will keep the grant as long as it's being actively used."
+	      . " <strong>Single use</strong> allows <em>only one upload</em> to be"
+	      . " performed. <strong>No expiration</strong> will never remove the"
+	      . " grant automatically.");
+	?>
       </small></p>
+
+      <ul id="gex_data">
+	<li>
+	  <label class="description"><?php echo T_("Expire in total # of days"); ?></label>
+	  <div>
+	    <input name="grant_totaldays" value="<?php echo (int)($defaults['grant']['total'] / (3600 * 24)); ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
+	  </div>
+	  <p class="guidelines"><small>
+	    <?php
+	    echo T_("Type the <strong>maximal number of days</strong> the grant is"
+		  . " allowed to be used. After this period is passed the grant will"
+		  . " be deleted from the server.");
+	    ?>
+	  </small></p>
+	</li>
+
+	<li>
+	  <label class="description"><?php echo T_("Expire in # of days after last upload"); ?></label>
+	  <div>
+	    <input name="grant_lastuldays" value="<?php echo (int)($defaults['grant']['lastul'] / (3600 * 24)); ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
+	  </div>
+	  <p class="guidelines"><small>
+	    <?php
+	    echo T_("Type the number of days the grant is allowed to be used"
+		  . " <strong>after any upload</strong>. After this period is passed"
+		  . " without activity, the grant will be deleted from the server.");
+	    ?>
+	  </small></p>
+	</li>
+
+	<li>
+	  <label class="description"><?php echo T_("Expire after # of uploads"); ?></label>
+	  <div>
+	    <input name="grant_maxul" value="<?php echo $defaults['grant']['maxul']; ?>" class="element text" type="number" min="0" maxlength="255" value=""/>
+	  </div>
+	  <p class="guidelines"><small>
+	    <?php
+	    echo T_("Type the number of times the grant file is <strong>allowed to"
+		  . " be used in total</strong>. After this amount is reached the"
+		  . " grant will be deleted from the server.");
+	    ?>
+	  </small></p>
+	</li>
+
+      </ul>
     </li>
 
     <li>
