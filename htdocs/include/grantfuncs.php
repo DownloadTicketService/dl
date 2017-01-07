@@ -28,12 +28,39 @@ function grantExpirationParams($params)
 {
   global $defaults;
 
-  // TODO: mostly a stub until grants work as tickets
-  if(!isset($params["grant_total"]))
-    $params["grant_total"] = $defaults['grant']['total'];
-  $total = ($params["grant_total"] == 0)? 'NULL': $params["grant_total"];
+  if(!isset($params["grant_expiry"]))
+  {
+    if(!isset($params["grant_total"]) && !isset($params["grant_lastul"]) && !isset($params["grant_maxul"]))
+      $params["grant_expiry"] = "auto";
+    else
+      $params["grant_expiry"] = "custom";
+  }
+  if($params["grant_expiry"] === "never")
+  {
+    $total = "NULL";
+    $lastul = "NULL";
+    $maxul = "NULL";
+  }
+  elseif($params["grant_expiry"] === "once")
+  {
+    $total = ($defaults['grant']['total'] == 0)? "NULL": $defaults['grant']['total'];
+    $lastul = "NULL";
+    $maxul = 1;
+  }
+  elseif($params["grant_expiry"] === "auto")
+  {
+    $total = ($defaults['grant']['total'] == 0)? "NULL": $defaults['grant']['total'];
+    $lastul = ($defaults['grant']['lastul'] == 0)? "NULL": $defaults['grant']['lastul'];
+    $maxul = ($defaults['grant']['maxul'] == 0)? "NULL": $defaults['grant']['lastul'];
+  }
+  else
+  {
+    $total = (empty($params["grant_total"])? 'NULL': $params["grant_total"]);
+    $lastul = (empty($params["grant_lastul"])? 'NULL': (int)$params["grant_lastul"]);
+    $maxul = (empty($params["grant_maxul"])? 'NULL': (int)$params["grant_maxul"]);
+  }
 
-  return array($total, false, false);
+  return array($total, $lastul, $maxul);
 }
 
 
@@ -49,15 +76,18 @@ function genGrant($params)
     $params["comment"] = trim($params["comment"]);
 
   // expiration values
-  list($grant_total, $grant_lastdl, $grant_maxdl) = grantExpirationParams($params);
+  list($grant_total, $grant_lastul, $grant_maxul) = grantExpirationParams($params);
   list($ticket_total, $ticket_lastdl, $ticket_maxdl) = ticketExpirationParams($params);
 
   // prepare data
-  $sql = "INSERT INTO \"grant\" (id, user_id, grant_expire, cmt, pass_ph"
-    . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
+  $sql = "INSERT INTO \"grant\" (id, user_id, grant_expire, grant_last_time"
+       . ", grant_expire_uln, cmt, pass_ph, time, expire, last_time, expire_dln"
+       . ", notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
   $sql .= ", " . $grant_total;
+  $sql .= ", " . $grant_lastul;
+  $sql .= ", " . $grant_maxul;
   $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
   $sql .= ", " . (empty($params["pass"])? 'NULL':
       $db->quote($passHasher->HashPassword($params["pass"])));
@@ -96,6 +126,9 @@ $grantRestParams = array
   'comment'          => 'is_string',
   'pass'             => 'is_string',
   'grant_total'      => 'is_numeric_int',
+  'grant_lastul'     => 'is_numeric_int',
+  'grant_maxul'      => 'is_numeric_int',
+  'grant_expiry'     => 'is_expiry_choice',
   'ticket_total'     => 'is_numeric_int',
   'ticket_lastdl'    => 'is_numeric_int',
   'ticket_maxdl'     => 'is_numeric_int',
@@ -114,6 +147,9 @@ $grantNewParams = array
   'comment'           => 'is_string',
   'pass'              => 'is_string',
   'grant_totaldays'   => 'is_numeric',
+  'grant_lastuldays'  => 'is_numeric',
+  'grant_maxul'       => 'is_numeric_int',
+  'grant_expiry'      => 'is_expiry_choice',
   'ticket_totaldays'  => 'is_numeric',
   'ticket_lastdldays' => 'is_numeric',
   'ticket_maxdl'      => 'is_numeric_int',

@@ -172,12 +172,27 @@ POST "msg" object parameters:
 * comment (string): comment for the grant/ticket.
 * pass (string): password required for the grant/ticket.
 * grant_total (integer): maximal number of seconds.
+* grant_lastul (integer, since: 0.18): maximal number of seconds after the last
+  upload has been triggered.
+* grant_maxul (integer, since: 0.18): maximal number of uploads for the grant.
+* grant_expiry (choice: auto/once/never/custom, since: 0.18):
+
+  :auto: use server's defaults for grant expiration
+  :once: same as grant_maxul=1 with server's default grant_total
+  :never: same as grant_total/grant_lastul/grant_maxul=0
+  :custom: requires explicit grant_total/grant_lastul/grant_maxul
+
 * ticket_total (integer): maximal number of seconds.
 * ticket_lastdl (integer): maximal number of seconds after last download.
 * ticket_maxdl (integer): maximal number of downloads for the ticket.
 * send_to (string): send-link-to addresses (comma-separated list of e-mails).
-* ticket_permanent (boolean): mutually exclusive with
-  ticket_total/ticket_lastdl/ticket_maxdl, sets the ticket to be permanent.
+* ticket_permanent (boolean): Same as ticket_expiry=never.
+* ticket_expiry (choice: auto/once/never/custom, since: 0.18):
+
+  :auto: use server's defaults for ticket expiration
+  :once: same as ticket_maxdl=1 with server's default ticket_total
+  :never: same as ticket_total/ticket_lastdl/ticket_maxdl=0
+  :custom: requires explicit ticket_total/ticket_lastdl/ticket_maxdl
 
 Returned values:
 
