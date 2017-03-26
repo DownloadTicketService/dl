@@ -61,11 +61,11 @@ msgstr "Dieses Ticket ist ungültig."
 #: ../../style/include/noticket.php:11
 #, php-format
 msgid "Sorry, the ticket %s does not exist or is expired."
-msgstr "Das Ticket %s existiert nicht, oder ist verfallen."
+msgstr "Das Ticket %s existiert nicht oder ist verfallen."
 
 #: ../../style/include/rmtlogout.php:2
 msgid "Logged-out"
-msgstr "Abmelden..."
+msgstr "Abgemeldet"
 
 #: ../../style/include/rmtlogout.php:6
 msgid "<em>Close the browser</em> to complete the logout."
@@ -94,7 +94,7 @@ msgstr "Gr&ouml;&szlig;e"
 
 #: ../edittickets.php:60
 msgid "Download link"
-msgstr "Download link"
+msgstr "Download-Link"
 
 #: ../edittickets.php:65
 msgid "Download count"
@@ -147,7 +147,7 @@ msgstr "Passwort"
 #: ../newgrants.php:69
 #: ../newtickets.php:69
 msgid "Generate"
-msgstr "generieren"
+msgstr "Erstellen"
 
 #: ../edittickets.php:125
 msgid "Clear password"
@@ -173,7 +173,7 @@ msgstr "Verf&auml;llt nach # Tagen"
 #: ../newgrants.php:104
 #: ../newtickets.php:86
 msgid "Type the <strong>maximal number of days</strong> the uploaded file is allowed to be kept on the server. After this period is passed the file will be deleted from the server."
-msgstr "Geben Sie die <strong>maximale Anzahl der Tage</strong> an, f&uuml;r die dieses Ticket am Server bleiben soll. Nach Ablauf wird die Datei dann automatisch gel&ouml;scht."
+msgstr "Geben Sie die <strong>maximale Anzahl der Tage</strong> an, f&uuml;r die dieses Ticket auf dem Server bleiben soll. Nach Ablauf wird die Datei dann automatisch gel&ouml;scht."
 
 #: ../edittickets.php:154
 #: ../newgrants.php:113
@@ -197,7 +197,7 @@ msgstr "Verf&auml;llt nach # Downloads"
 #: ../newgrants.php:134
 #: ../newtickets.php:116
 msgid "Type the number of times the uploaded file is <strong>allowed to be downloaded in total</strong>. After this amount is reached the file will be deleted from the server."
-msgstr "Geben Sie an, <strong>wie oft</strong> diese Datei vom Server heruntergeladen werden kann. Bei erreichen dieser Anzahl wird die Datei automatisch gel&ouml;scht."
+msgstr "Geben Sie an, <strong>wie oft</strong> diese Datei vom Server heruntergeladen werden kann. Bei Erreichen dieser Anzahl wird die Datei automatisch gel&ouml;scht."
 
 #: ../edittickets.php:184
 #: ../newgrants.php:143
@@ -225,12 +225,12 @@ msgstr "Bei Download folgende E-Mailadresse benachrichtigen"
 #: ../edittickets.php:204
 #: ../newtickets.php:145
 msgid "Type an <em>optional</em> e-mail address (or addresses) that should be notified when the file is downloaded from the server. You can separate multiple addresses with commas."
-msgstr "<em>Optional:</em> Geben Sie eine oder mehrere E-Mailadressen an, welche benachrichtigt werden sollen, wenn die Datei heruntergeladen wird. Mehrere Adressen m&uuml;ssen durch Beistriche getrennt werden."
+msgstr "<em>Optional:</em> Geben Sie eine oder mehrere E-Mailadressen an, welche benachrichtigt werden sollen, wenn die Datei heruntergeladen wird. Mehrere Adressen m&uuml;ssen durch Kommata getrennt werden."
 
 #: ../edittickets.php:214
 #: ../prefs.php:42
 msgid "Update"
-msgstr "Speichern"
+msgstr "Aktualisieren"
 
 #: ../edittickets.php:215
 #: ../grantl.php:99
@@ -385,7 +385,7 @@ msgstr "Passwort erforderlich"
 #: ../grantp.php:6
 #, php-format
 msgid "The grant %s is protected. Please enter the password to proceed to the upload."
-msgstr "Der Upload %s ist durch ein Passwort gesch&uuml;tzt. Bitte geben Sie das Kennwort ein, um mit dem Upload fortzufahren."
+msgstr "Der Upload %s ist durch ein Passwort gesch&uuml;tzt. Bitte geben Sie das Passwort ein um mit dem Upload fortzufahren."
 
 #: ../grantp.php:24
 msgid "Type the password required for the upload."
@@ -453,7 +453,7 @@ msgstr "[dl] Downloadbenachrichtigung für Ticket %s"
 #: ../msg.php:22
 #, php-format
 msgid "The ticket %s was downloaded by %s from %s"
-msgstr "Das Ticket %s wurde von %s von %s heruntergeladen."
+msgstr "Das Ticket %s wurde durch %s von %s heruntergeladen."
 
 #: ../msg.php:30
 #: ../msg.php:39
@@ -473,7 +473,7 @@ msgstr "Das Ticket %s ist automatisch nach %d Downloads von %s verfallen"
 
 #: ../msg.php:47
 msgid "[dl] upload grant link"
-msgstr "[dl] Upload-Erlaubnis"
+msgstr "[dl] Upload-Link"
 
 #: ../msg.php:62
 #: ../msg.php:70
@@ -538,11 +538,11 @@ msgstr "Bei Upload folgende E-Mailadresse benachrichtigen"
 
 #: ../newgrants.php:26
 msgid "Type a <b>mandatory</b> e-mail address (or addresses) that should be notified when the file is uploaded to the server. You can separate multiple addresses with commas."
-msgstr "<b>Pflichtfeld: </b>Geben Sie eine oder mehrere E-Mailadressen an, welche benachrichtigt werden sollen sobald ein Datei-Upload erfolgt. Mehrere Adressen m&uuml;ssen durch Beistriche getrennt werden."
+msgstr "<b>Pflichtfeld: </b>Geben Sie eine oder mehrere E-Mailadressen an, welche benachrichtigt werden sollen sobald ein Datei-Upload erfolgt. Mehrere Adressen m&uuml;ssen durch Kommata getrennt werden."
 
 #: ../newgrants.php:40
 msgid "Type an <em>optional</em> comment for your upload grant and resulting ticket. The comment will be shown along with the grant and ticket information."
-msgstr "Geben Sie eine <em>optionale</em> Bemerkung f&uuml;r die Upload-Erlaubnis an. Die Anmerkung wird neben der Upload-Erlaubnis und dem Ticket selbst angezeigt werden."
+msgstr "Geben Sie eine <em>optionale</em> Anmerkung f&uuml;r die Upload-Erlaubnis an. Die Anmerkung wird neben der Upload-Erlaubnis und dem Ticket selbst angezeigt werden."
 
 #: ../newgrants.php:48
 #: ../newtickets.php:48
@@ -551,7 +551,7 @@ msgstr "Link an folgende E-Mailadresse verschicken"
 
 #: ../newgrants.php:54
 msgid "Type an <em>optional</em> e-mail address (or addresses) that should immediately receive the link to the upload grant. You can separate multiple addresses with commas."
-msgstr "<em>Optional:</em> Geben Sie eine oder mehrere E-Mailadressen an, die sofort den Link zum Upload erhalten sollen. Mehrere Adressen m&uuml;ssen durch Beistriche getrennt werden."
+msgstr "<em>Optional:</em> Geben Sie eine oder mehrere E-Mailadressen an, die sofort den Link zum Upload erhalten sollen. Mehrere Adressen m&uuml;ssen durch Kommata getrennt werden."
 
 #: ../newgrants.php:62
 #: ../newtickets.php:62
@@ -598,7 +598,7 @@ msgstr "Download"
 
 #: ../newtickets.php:54
 msgid "Type an <em>optional</em> e-mail address (or addresses) that should immediately receive the link to the ticket. You can separate multiple addresses with commas."
-msgstr "<em>Optional:</em> Geben Sie eine oder mehrere E-Mailadressen an, welche sofort den Download-Link zu diesem Tickert erhalten sollen. Mehrere Adressen m&uuml;ssen durch Beistriche getrennt werden."
+msgstr "<em>Optional:</em> Geben Sie eine oder mehrere E-Mailadressen an, welche sofort den Download-Link zu diesem Ticket erhalten sollen. Mehrere Adressen m&uuml;ssen durch Kommata getrennt werden."
 
 #: ../newtickets.php:141
 msgid "Use my e-mail"
@@ -654,7 +654,7 @@ msgstr "Aktualisierung der Einstellungen"
 
 #: ../prefs.php:21
 msgid "Defaults"
-msgstr "Voreinstellungen"
+msgstr "Standardwerte"
 
 #: ../prefs.php:28
 msgid "E-Mail"
