@@ -4,19 +4,20 @@
  */
 
 // masterPath: externally visible URL
-$masterPath = "http://" + $_SERVER['HTTP_HOST'] + "/";
+$masterPath = "http://localhost/";
 
 // fromAddr: "From:" address for outgoing e-mails
-$fromAddr = $_ENV['FROM_ADDR'] ? $_ENV['FROM_ADDR'] : "ticket service Dockerised <nobody@example.com>";
+$fromAddr = "ticket service Dockerised <nobody@example.com>";
 
 // spoolDir: spool directory for uploaded files, ticket and user databases
-$spoolDir = $_ENV['SPOOL_DIR'] ? $_ENV['SPOOL_DIR'] : "/var/spool/dl";
+$spoolDir = "/var/spool/dl";
 
 // defLocale: default locale (the charset is always UTF-8)
-$defLocale = $_ENV['LANG'] ? $_ENV['LANG'] : "en_EN";
+$defLocale = "es_ES";
 
 // defTimezone: default timezone for ticket listings (use the system's default)
-$defTimezone = ini_get('date.timezone');
+// To avoid PHP warnings about using system default
+$defTimezone = "Europe/Madrid";
 
 
 /*
@@ -73,10 +74,10 @@ $dateFmtFull = "Y-m-d H:m:s T";
 // authRealm: Enables HTTP authentication
 //            When using HTTP authentication, you should set authRealm to the
 //            realm name as used on your web server.
-$authRealm = "Restricted Area";
+//$authRealm = "Restricted Area";
 
 // dsn: set the DSN of your database (read the installation manual)
-$dsn = $_ENV['DNS'] ? $_ENV['DSN'] : "sqlite:$spoolDir/data.sdb";
+$dsn = $_ENV['DSN'] ? $_ENV['DSN'] : "sqlite:$spoolDir/data.sdb";
 $dbUser = $_ENV['DATABASE_USERNAME'] ? $_ENV['DATABASE_USERNAME'] : "username";
 $dbPassword = $_ENV['DATABASE_PASSWORD'] ? $_ENV['DATABASE_PASSWORD'] : "password";
 
@@ -96,6 +97,4 @@ $dbPassword = $_ENV['DATABASE_PASSWORD'] ? $_ENV['DATABASE_PASSWORD'] : "passwor
 // gcLimit: Maximum number of tickets to remove at every expiration.
 //          If 0 is used, all expired tickets are removed at once.
 //$gcLimit = 0;
-
-phpinfo();
 ?>
