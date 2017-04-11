@@ -731,7 +731,7 @@ installed. You'll then need to execute::
 To build the Thunderbird add-on, the Thunderbird SDK needs to be installed as
 well. You might need to change the paths inside
 ``client/thunderbird-filelink-dl/config_build.sh`` (which is tuned for Debian's
-``icedove-dev`` package) and execute::
+``thunderbird-dev`` package) and execute::
 
     cd client/thunderbird-filelink-dl/
     ./build.sh
