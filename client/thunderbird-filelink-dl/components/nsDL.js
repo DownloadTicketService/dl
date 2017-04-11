@@ -1,7 +1,7 @@
 const TYP = "DL";
 const AID = "thunderbird-filelink-dl@thregr.org";
 const CID = "{c0bee36d-3c0d-460b-bb9a-f0e9c873a833}";
-const VER = "0.17.1";
+const VER = "0.17.2";
 
 const { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
 
@@ -12,6 +12,16 @@ Cu.import("resource:///modules/cloudFileAccounts.js");
 // 'File' property not available in in TB<38
 try { Cu.importGlobalProperties(['File']); }
 catch(e) {}
+
+if(!("createFromNsIFile" in File))
+{
+  // 'createFromNsIFile' was introduced in TB 52 while breaking the old File
+  // constructor at the same time. Nice. Wire a stub for old versions of TB.
+  File.createFromNsIFile = function(file)
+  {
+    return new File(file);
+  };
+}
 
 function nsDL() {}
 
@@ -105,7 +115,7 @@ nsDL.prototype =
     {
       let data = Cc["@mozilla.org/files/formdata;1"].createInstance(Ci.nsIDOMFormData);
       if(msg) data.append("msg", JSON.stringify(msg));
-      if(file) data.append("file", new File(file));
+      if(file) data.append("file", File.createFromNsIFile(file));
       req.send(data);
     }
 
