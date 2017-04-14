@@ -15,9 +15,9 @@ function info($msg, $params = null)
     (
       'grant'    => array
       (
-        'total'  => $defaults['grant']['total']
-        'lastul'  => $defaults['grant']['lastul']
-        'maxul'  => $defaults['grant']['maxul']
+        'total'  => $defaults['grant']['total'],
+        'lastul'  => $defaults['grant']['lastul'],
+        'maxul'  => $defaults['grant']['maxul'],
       ),
       'ticket'   => array
       (
