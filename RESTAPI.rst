@@ -240,6 +240,33 @@ Example answer:
   {}
 
 
+cURL examples
+-------------
+
+cURL_ can be used to easily fiddle with the REST API.
+
+A minimal request to create a new ticket can be performed with the following
+command::
+
+  curl https://dl.example.com/rest.php/newticket \
+    -F file=@filename -F msg={} \
+    -H 'Authorization: Basic dGVzdDp0ZXN0' \
+    -H 'X-Authorization: Basic dGVzdDp0ZXN0'
+
+``@filename`` is a special cURL syntax that specifies the path to the
+filename to be posted. The basic authorization data is provided manually, as
+it needs to be replicated in the non-standard header "X-Authorization" anyway
+(this is used as a secondary token to prevent CSRF). You can construct the
+authorization hash on the command-line as well with the following::
+
+  echo -n 'user:password' | base64
+
+Please keep in mind command-line arguments are usually visible to other users
+running on the same system, potentially exposing your password.
+
+.. _cURL: https://curl.haxx.se/
+
+
 Programming APIs
 ----------------
 
