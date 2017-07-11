@@ -14,7 +14,7 @@ RUN mkdir /app ; mkdir /app/config
 ADD docker/templates /app/templates
 
 # Copy scripts folder
-ADD docker/scripts /app/scripts
+ADD docker/scripts/ /app/scripts/
 
 # Include a DL Config inside "include" folder to load config from "/app/config" so we can use a volume for it
 COPY docker/replacements/config.inc.php /var/www/html/include/config.php
@@ -47,10 +47,11 @@ ENV POST_MAX_SIZE 20M
 # Default PHP memory limit
 ENV MEMORY_LIMIT 25M
 
-
+ENV PATH="/app/scripts:${PATH}"
 # Copying DL public content into apache's exposed folder
 ADD htdocs/ /var/www/html/
 # ADD https://www.thregr.org/~wavexx/software/dl/releases/dl-0.17.1.zip /var/www/html/
 
+ADD docker/run.sh /app/
 # Use run script as container's CMD
 CMD /app/run.sh

@@ -27,8 +27,11 @@ chmod o= /var/spool/dl
 if [ ! -f "/var/spool/dl/data.sdb" ];
 then
 	echo "Database not found, copying a basic one"
-	cp /app/data.sdb /var/spool/dl/
+	cp /app/templates/data.sdb /var/spool/dl/
 	chown www-data:nogroup /var/spool/dl/data.sdb
+	cd include/scripts/
+	php dbupgrade.php
+	cd -
 	add_admin_user.sh
 	echo "
  ___ _   _ _____ ___  
