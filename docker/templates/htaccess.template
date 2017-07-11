@@ -1,0 +1,13 @@
+<IfModule mod_fastcgi.c>
+    # Forward the credentials for the PHP process when using php-fpm and
+    # mod_fastcgi (can be removed in other configurations)
+    <FilesMatch "^(admin|rest)\.php$">
+        RewriteEngine on
+        RewriteCond %{HTTP:Authorization} ^(.*)
+        RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+    </FilesMatch>
+</IfModule>
+
+php_value upload_max_filesize ${UPLOAD_MAX_FILESIZE}
+php_value post_max_size ${POST_MAX_SIZE}
+php_value memory_limit ${MEMORY_LIMIT}
