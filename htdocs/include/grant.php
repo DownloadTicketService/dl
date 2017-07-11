@@ -98,7 +98,7 @@ function useGrant($upload, $GRANT)
   // trigger use hooks
   onGrantUse($GRANT, $DATA);
 
-  return $DATA;
+  return array($GRANT, $DATA);
 }
 
 
@@ -112,7 +112,7 @@ if($FILES !== false && validateParams($grantUseParams, $_POST))
   if(!empty($_POST['comment']))
     $GRANT['cmt'] = $_POST['comment'];
 
-  $DATA = withUpload($FILES, 'useGrant', $GRANT);
+  list($GRANT, $DATA) = withUpload($FILES, 'useGrant', $GRANT);
 }
 
 // resulting page
@@ -120,7 +120,8 @@ if($DATA === false)
   include("grants.php");
 else
 {
-  unset($ref);
+  if(isGrantExpired($GRANT))
+    unset($ref);
   includeTemplate("$style/include/grantr.php");
 
   // kill the session ASAP
