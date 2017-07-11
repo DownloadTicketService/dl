@@ -81,7 +81,7 @@ function grantExpirationParams($params)
   {
     $total = ($defaults['grant']['total'] == 0)? "NULL": $defaults['grant']['total'];
     $lastul = ($defaults['grant']['lastul'] == 0)? "NULL": $defaults['grant']['lastul'];
-    $maxul = ($defaults['grant']['maxul'] == 0)? "NULL": $defaults['grant']['lastul'];
+    $maxul = ($defaults['grant']['maxul'] == 0)? "NULL": $defaults['grant']['maxul'];
   }
   else
   {

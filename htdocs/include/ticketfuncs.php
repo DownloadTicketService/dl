@@ -82,7 +82,7 @@ function ticketExpirationParams($params)
   {
     $total = ($defaults['ticket']['total'] == 0)? "NULL": $defaults['ticket']['total'];
     $lastdl = ($defaults['ticket']['lastdl'] == 0)? "NULL": $defaults['ticket']['lastdl'];
-    $maxdl = ($defaults['ticket']['maxdl'] == 0)? "NULL": $defaults['ticket']['lastdl'];
+    $maxdl = ($defaults['ticket']['maxdl'] == 0)? "NULL": $defaults['ticket']['maxdl'];
   }
   else
   {
