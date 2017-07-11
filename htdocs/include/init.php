@@ -34,4 +34,3 @@ $UPLOAD_ERRNO = UPLOAD_ERR_OK;
 $locale = $defLocale;
 switchLocale($locale);
 date_default_timezone_set($defTimezone);
-?>

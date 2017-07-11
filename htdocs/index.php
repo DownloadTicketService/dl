@@ -8,4 +8,3 @@ elseif(isset($_REQUEST["g"]))
   include("include/grant.php");
 else
   header("Location: $adminPath");
-?>

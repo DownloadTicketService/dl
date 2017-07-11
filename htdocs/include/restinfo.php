@@ -28,5 +28,3 @@ function info($msg, $params = null)
     ),
   ));
 }
-
-?>

@@ -43,4 +43,3 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
 
 <?php
 pageFooter();
-?>

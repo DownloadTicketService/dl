@@ -127,5 +127,3 @@ else
   if($auth === false)
     session_destroy();
 }
-
-?>

@@ -42,4 +42,3 @@ $class = "description required" . ($error? " error": "");
 
 <?php
 includeTemplate("$style/include/footer.php");
-?>

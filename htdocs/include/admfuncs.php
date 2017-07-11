@@ -291,5 +291,3 @@ function userLogin($user, $pass, $rmt, $email = false)
       ($ret? LOG_INFO: LOG_ERR));
   return ($ret? $DATA: false);
 }
-
-?>

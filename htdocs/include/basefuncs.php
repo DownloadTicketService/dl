@@ -13,5 +13,3 @@ function returnBytes($val)
   }
   return $val;
 }
-
-?>

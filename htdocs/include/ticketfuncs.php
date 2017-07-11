@@ -179,5 +179,3 @@ $ticketEditParams['name'] = array
   'required' => true,
   'funcs'    => array('is_string', 'not_empty'),
 );
-
-?>

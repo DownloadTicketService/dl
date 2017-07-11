@@ -183,4 +183,3 @@ if($UPLOAD_ERRNO !== UPLOAD_ERR_OK)
 
 <?php
 pageFooter();
-?>

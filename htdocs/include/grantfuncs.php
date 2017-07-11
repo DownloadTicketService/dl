@@ -191,5 +191,3 @@ $grantUseParams = array
 (
   'comment'           => 'is_string',
 );
-
-?>

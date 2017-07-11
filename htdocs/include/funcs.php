@@ -534,5 +534,3 @@ function withUpload($FILES, $func, $params)
   }
   return $ret;
 }
-
-?>

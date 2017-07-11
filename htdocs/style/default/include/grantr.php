@@ -9,4 +9,3 @@ includeTemplate("$style/include/header.php", array('title' => T_("Upload result"
 
 <?php
 includeTemplate("$style/include/footer.php");
-?>

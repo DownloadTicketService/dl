@@ -15,4 +15,3 @@ includeTemplate("$style/include/header.php", array('title' =>
 
 <?php
 includeTemplate("$style/include/footer.php");
-?>

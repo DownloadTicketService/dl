@@ -220,4 +220,3 @@ infoTable($details);
 
 <?php
 pageFooter();
-?>

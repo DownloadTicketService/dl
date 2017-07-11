@@ -24,5 +24,3 @@ function purgeticket($msg, $id = null)
   ticketPurge($DATA, false);
   return array(false, false);
 }
-
-?>

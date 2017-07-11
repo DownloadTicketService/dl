@@ -76,4 +76,3 @@ if(!isset($auth) || isset($_REQUEST['u']))
     exit();
   }
 }
-?>

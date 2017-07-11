@@ -106,4 +106,3 @@ foreach($db->query($sql) as $DATA)
 
 <?php
 pageFooter();
-?>

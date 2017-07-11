@@ -64,4 +64,3 @@ if($UPLOAD_ERRNO !== UPLOAD_ERR_OK)
 
 <?php
 includeTemplate("$style/include/footer.php");
-?>

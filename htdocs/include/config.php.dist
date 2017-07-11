@@ -98,4 +98,3 @@ $cfgVersion = "0.18";
 // gcLimit: Maximum number of tickets to remove at every expiration.
 //          If 0 is used, all expired tickets are removed at once.
 //$gcLimit = 0;
-?>

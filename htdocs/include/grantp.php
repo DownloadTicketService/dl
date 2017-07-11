@@ -39,4 +39,3 @@ echo "</p>";
 
 <?php
 includeTemplate("$style/include/footer.php");
-?>

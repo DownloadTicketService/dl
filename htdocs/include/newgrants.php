@@ -225,4 +225,3 @@ pageHeader();
 
 <?php
 pageFooter();
-?>

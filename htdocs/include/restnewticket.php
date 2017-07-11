@@ -40,5 +40,3 @@ function newticket($msg, $params = null)
     "url" => ticketUrl($DATA),
   ));
 }
-
-?>

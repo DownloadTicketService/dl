@@ -71,5 +71,3 @@ function reconnectDB()
   if(!$db->ping())
     connectDB(false);
 }
-
-?>

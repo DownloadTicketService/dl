@@ -24,4 +24,3 @@ if($DATA !== false)
   include("newgrantr.php");
 else
   include("newgrants.php");
-?>

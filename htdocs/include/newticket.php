@@ -21,4 +21,3 @@ if($DATA !== false)
   include("newticketr.php");
 else
   include("newtickets.php");
-?>

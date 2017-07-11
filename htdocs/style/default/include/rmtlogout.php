@@ -8,4 +8,3 @@ includeTemplate("$style/include/header.php", array('title' => T_("Logged-out")))
 
 <?php
 includeTemplate("$style/include/footer.php");
-?>

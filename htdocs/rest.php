@@ -98,5 +98,3 @@ if($error !== false)
   $ret = array("error" => $ret);
 }
 echo ($ret === false? "{}": json_encode($ret));
-
-?>

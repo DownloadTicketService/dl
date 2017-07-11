@@ -49,5 +49,3 @@ $rest = array
     'func'   => 'newgrant'
   ),
 );
-
-?>

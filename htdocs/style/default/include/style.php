@@ -4,4 +4,3 @@
  */
 
 // No settings to be configured
-?>

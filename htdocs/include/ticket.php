@@ -41,4 +41,3 @@ if(hasPassHash($DATA) && !isset($_SESSION['t'][$id]))
 // name in the URL (this could be improved for browsers known to work by
 // starting to send the file immediately)
 header("Location: $dPath/$id/" . rawurlencode($DATA["name"]));
-?>

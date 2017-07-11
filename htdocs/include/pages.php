@@ -61,5 +61,3 @@ function pageFooter($vars = array())
     . ", <a href=\"$helpPath\" target=\"_blank\">" . T_("Help") . "</a></div>";
   includeTemplate("$style/include/footer.php", $vars);
 }
-
-?>

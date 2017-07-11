@@ -125,5 +125,3 @@ function onGrantUse($GRANT, $DATA)
     mailUTF8($GRANT["notify_email"], $subject, $body, "From: $fromAddr");
   }
 }
-
-?>

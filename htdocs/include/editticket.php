@@ -102,4 +102,3 @@ if($DATA === false)
   header("Location: " . tokenUrl($adminPath, array('a' => $src)));
 else
   include("edittickets.php");
-?>

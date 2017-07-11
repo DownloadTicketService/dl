@@ -120,5 +120,3 @@ if($last && !connection_aborted())
   if($auth === false)
     session_destroy();
 }
-
-?>

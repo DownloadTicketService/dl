@@ -17,5 +17,3 @@ $auth = &$_SESSION['auth'];
 $token = &$_SESSION['token'];
 if(!isset($token))
   restart_session();
-
-?>
