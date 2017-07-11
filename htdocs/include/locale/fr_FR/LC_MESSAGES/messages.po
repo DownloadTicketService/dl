@@ -308,17 +308,17 @@ msgstr "Dans %s"
 #: ../grantfuncs.php:28
 #, php-format
 msgid "About %d uploads"
-msgstr ""
+msgstr "Dans %d envoi(s)"
 
 #: ../grantfuncs.php:38
 #, php-format
 msgid "After %d uploads"
-msgstr ""
+msgstr "Après %d envoi(s)"
 
 #: ../grantfuncs.php:43
 #, php-format
 msgid "%s after next upload"
-msgstr ""
+msgstr "%s après le prochain envoi"
 
 #: ../grantfuncs.php:49
 #: ../ticketfuncs.php:48
@@ -432,13 +432,13 @@ msgstr "Échec de l'envoi"
 #: ../grants.php:18
 #: ../newtickets.php:21
 msgid "Upload file/s"
-msgstr ""
+msgstr "Envoyer un ou plusieurs fichiers"
 
 #: ../grants.php:33
 #: ../newtickets.php:36
 #, php-format
 msgid "Choose which file/s to upload. You can upload up to %d files for a total of %s."
-msgstr ""
+msgstr "Sélectionnez le ou les fichier à envoyer. Vous pouvez envoyer jusqu'à %d fichiers pour un total de %s."
 
 #: ../login.php:4
 #: ../login.php:38
@@ -524,7 +524,7 @@ msgstr "[dl] lien pour le téléchargement de l'invitation %s"
 #: ../msg.php:79
 #, php-format
 msgid "Your grant %s has been used on %s by %s"
-msgstr ""
+msgstr "Votre invitation %s a été utilisée depuis %s par %s"
 
 #: ../msg.php:83
 #, php-format
@@ -532,6 +532,8 @@ msgid ""
 "The uploaded file (%s) is now available to be downloaded at:\n"
 "\n"
 msgstr ""
+"Le fichier envoyé (%s) est désormais disponible au téléchargement à l'adresse :\n"
+"\n"
 
 #: ../newgrantr.php:4
 msgid "Grant result"
@@ -592,63 +594,63 @@ msgstr "Vous pouvez protéger cette demande avec un mot de passe <em>optionnel</
 
 #: ../newgrants.php:81
 msgid "Grant expiry"
-msgstr ""
+msgstr "Expiration de l'invitation"
 
 #: ../newgrants.php:84
 #: ../newgrants.php:150
 #: ../newtickets.php:92
 msgid "Automatic"
-msgstr ""
+msgstr "Automatique"
 
 #: ../newgrants.php:85
 #: ../newgrants.php:151
 #: ../newtickets.php:93
 msgid "Single use"
-msgstr ""
+msgstr "Usage unique"
 
 #: ../newgrants.php:86
 #: ../newgrants.php:152
 #: ../newtickets.php:94
 msgid "No expiration"
-msgstr ""
+msgstr "Aucune"
 
 #: ../newgrants.php:87
 #: ../newgrants.php:153
 #: ../newtickets.php:95
 msgid "Custom"
-msgstr ""
+msgstr "Personnalisée"
 
 #: ../newgrants.php:92
 msgid "Select the expiration logic of the grant. <strong>Automatic</strong> will keep the grant as long as it's being actively used. <strong>Single use</strong> allows <em>only one upload</em> to be performed. <strong>No expiration</strong> will never remove the grant automatically."
-msgstr ""
+msgstr "Sélectionnez la logique d'expiration de l'invitation. <strong>Automatique</strong> la conserve tant qu'elle est utilisées, <strong>usage unique</strong> ne permet <em>qu'un seul envoi</em>, <strong>aucune</strong> empêche sa suppression automatique."
 
 #: ../newgrants.php:108
 msgid "Type the <strong>maximal number of days</strong> the grant is allowed to be used. After this period is passed the grant will be deleted from the server."
-msgstr ""
+msgstr "Indiquez le <strong>nombre maximum de jours</strong> durant lequel l'invitation peut être utilisée. À l'expiration de ce délai, elle sera supprimée du serveur."
 
 #: ../newgrants.php:116
 msgid "Expire in # of days after last upload"
-msgstr ""
+msgstr "Expire # jour(s) après le dernier envoi"
 
 #: ../newgrants.php:122
 msgid "Type the number of days the grant is allowed to be used <strong>after any upload</strong>. After this period is passed without activity, the grant will be deleted from the server."
-msgstr ""
+msgstr "Indiquez le nombre de jours durant lequel l'inviataiont peut être utilisée <strong>après tout envoi</strong>. Une fois ce délai expiré sans activité, elle sera supprimée du serveur."
 
 #: ../newgrants.php:130
 msgid "Expire after # of uploads"
-msgstr ""
+msgstr "Expire après # envoi(s)"
 
 #: ../newgrants.php:136
 msgid "Type the number of times the grant file is <strong>allowed to be used in total</strong>. After this amount is reached the grant will be deleted from the server."
-msgstr ""
+msgstr "Indiquez combien de fois cette invitation <strong>peut être utilisée en tout</strong>. Une fois ce nombre atteint, elle sera supprimée du serveur."
 
 #: ../newgrants.php:147
 msgid "Upload expiry"
-msgstr ""
+msgstr "Expiration du fichier envoyé"
 
 #: ../newgrants.php:158
 msgid "Select the expiration logic of the upload. <strong>Automatic</strong> will keep the upload as long as it's being actively downloaded/used. <strong>Single use</strong> allows <em>only one download</em> to be performed. <strong>No expiration</strong> will never remove the upload automatically."
-msgstr ""
+msgstr "Sélectionnez la logique d'expiration du fichier envoyé par cette invitation. <strong>Automatique</strong> conservera le fichier tant qu'il est utilisé, <strong>usage unique</strong> ne permet <em>qu'un seul téléchargement</em>, <strong>aucune</strong> empêche la suppression automatique du fichier envoyé."
 
 #: ../newgrants.php:219
 #: ../users.php:150
@@ -682,11 +684,11 @@ msgstr "Indiquez la ou les adresses e-mail des destinataires de ce fichier <em>o
 
 #: ../newtickets.php:89
 msgid "Ticket expiry"
-msgstr ""
+msgstr "Expiration du ticket"
 
 #: ../newtickets.php:100
 msgid "Select the expiration logic of the ticket. <strong>Automatic</strong> will keep the ticket as long as it's being actively downloaded/used. <strong>Single use</strong> allows <em>only one download</em> to be performed. <strong>No expiration</strong> will never remove the ticket automatically."
-msgstr ""
+msgstr "Sélectionnez la logique d'expiration du ticket. <strong>Automatique</strong> le conservera tant qu'il est utilisé, <strong>usage unique</strong> ne permet <em>qu'un seul téléchargement</em>, <strong>aucune</strong> empêche la suppression automatique du ticket."
 
 #: ../newtickets.php:161
 msgid "Use my e-mail"
