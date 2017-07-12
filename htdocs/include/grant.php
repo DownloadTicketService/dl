@@ -38,15 +38,15 @@ if(hasPassHash($GRANT) && !isset($_SESSION['g'][$id]))
 
 
 // upload handler
-function useGrant($upload, $GRANT)
+function useGrant($upload, $GRANT, $DATA)
 {
   global $db;
 
   // populate comment with file list when empty
-  if(!empty($GRANT["cmt"]))
-    $GRANT["cmt"] = trim($GRANT["cmt"]);
-  if(empty($GRANT["cmt"]) && count($upload['files']) > 1)
-    $GRANT["cmt"] = T_("Archive contents:") . "\n  " . implode("\n  ", $upload['files']);
+  if(!empty($DATA["cmt"]))
+    $DATA["cmt"] = trim($DATA["cmt"]);
+  if(empty($DATA["cmt"]) && count($upload['files']) > 1)
+    $DATA["cmt"] = T_("Archive contents:") . "\n  " . implode("\n  ", $upload['files']);
 
   // convert the upload to a ticket
   $db->beginTransaction();
@@ -58,7 +58,7 @@ function useGrant($upload, $GRANT)
   $sql .= ", " . $db->quote($upload["name"]);
   $sql .= ", " . $db->quote($upload["path"]);
   $sql .= ", " . $upload["size"];
-  $sql .= ", " . (empty($GRANT["cmt"])? 'NULL': $db->quote($GRANT["cmt"]));
+  $sql .= ", " . (empty($DATA["cmt"])? 'NULL': $db->quote($DATA["cmt"]));
   $sql .= ", " . (empty($GRANT["pass_ph"])? 'NULL': $db->quote($GRANT["pass_ph"]));
   $sql .= ", " . time();
   $sql .= ", " . (empty($GRANT["last_time"])? 'NULL': $GRANT['last_time']);
@@ -92,33 +92,35 @@ function useGrant($upload, $GRANT)
 
   // fetch defaults
   $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($upload['id']);
-  $DATA = $db->query($sql)->fetch();
-  if(!empty($GRANT['pass'])) $DATA['pass'] = $GRANT['pass'];
+  $TICKET = $db->query($sql)->fetch();
+  if(!empty($GRANT['pass'])) $TICKET['pass'] = $GRANT['pass'];
 
   // trigger use hooks
-  onGrantUse($GRANT, $DATA);
+  onGrantUse($GRANT, $TICKET);
 
-  return array($GRANT, $DATA);
+  return array($GRANT, $TICKET);
 }
 
 
 // handle the request
-$DATA = false;
+$TICKET = false;
 $FILES = uploadedFiles($_FILES["file"]);
 if($FILES !== false && validateParams($grantUseParams, $_POST))
 {
   if(!empty($_SESSION['g'][$id]['pass']))
     $GRANT['pass'] = $_SESSION['g'][$id]['pass'];
-  if(!empty($_POST['comment']))
-    $GRANT['cmt'] = $_POST['comment'];
 
-  $ret = withUpload($FILES, 'useGrant', $GRANT);
+  $DATA = array();
+  if(!empty($_POST['comment']))
+    $DATA['cmt'] = $_POST['comment'];
+
+  $ret = withUpload($FILES, 'useGrant', array($GRANT, $DATA));
   if($ret !== false)
-    list($GRANT, $DATA) = $ret;
+    list($GRANT, $TICKET) = $ret;
 }
 
 // resulting page
-if($DATA === false)
+if($TICKET === false)
   include("grants.php");
 else
 {

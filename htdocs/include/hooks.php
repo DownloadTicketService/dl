@@ -109,19 +109,19 @@ function onGrantPurge($DATA, $auto)
 }
 
 
-function onGrantUse($GRANT, $DATA)
+function onGrantUse($GRANT, $TICKET)
 {
   global $fromAddr;
 
   // log
-  logGrantEvent($GRANT, "genenerated ticket " . $DATA['id']
+  logGrantEvent($GRANT, "genenerated ticket " . $TICKET['id']
       . " by " . $_SERVER["REMOTE_ADDR"]);
 
   // notify
   if(!empty($GRANT['notify_email']))
   {
     logGrantEvent($GRANT, "sending link to " . $GRANT["notify_email"]);
-    withLocale($GRANT['locale'], 'msgGrantUse', array($GRANT, $DATA, &$subject, &$body));
+    withLocale($GRANT['locale'], 'msgGrantUse', array($GRANT, $TICKET, &$subject, &$body));
     mailUTF8($GRANT["notify_email"], $subject, $body, "From: $fromAddr");
   }
 }

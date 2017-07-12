@@ -10,7 +10,7 @@ function newticket($msg, $params = null)
   $DATA = $validated = false;
   $FILES = uploadedFiles($_FILES["file"]);
   if($FILES !== false && ($validated = validateParams($ticketRestParams, $msg)))
-    $DATA = withUpload($FILES, 'genTicket', $msg);
+    $DATA = withUpload($FILES, 'genTicket', array($msg));
 
   if($DATA === false)
   {

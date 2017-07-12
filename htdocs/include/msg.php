@@ -4,14 +4,11 @@
 function msgTicketCreate($DATA, &$subject, &$body)
 {
   $subject = sprintf(T_("[dl] download link to %s"), $DATA['name']);
-  $body = (!empty($DATA['cmt'])? $DATA['cmt'] . "\n\n": "");
-  if(!isset($DATA['pass']))
-    $body .= ticketUrl($DATA);
-  else
-  {
-    $body .= T_("URL:") . " " . ticketUrl($DATA) . "\n"
-      . T_("Password:") . " " . $DATA['pass'] . "\n";
-  }
+  if(!empty($DATA['cmt']))
+    $body .= T_("Ticket comment:") . " " . $DATA['cmt'] . ".\n\n";
+  $body .= T_("URL:") . " " . ticketUrl($DATA) . "\n";
+  if(!empty($DATA['pass']))
+    $body .= T_("Password:") . " " . $DATA['pass'] . "\n";
 }
 
 
@@ -45,14 +42,11 @@ function msgTicketExpire($DATA, &$subject, &$body)
 function msgGrantCreate($DATA, &$subject, &$body)
 {
   $subject = T_("[dl] upload grant link");
-  $body = (!empty($DATA['cmt'])? $DATA['cmt'] . "\n\n": "");
-  if(!isset($DATA['pass']))
-    $body .= grantUrl($DATA);
-  else
-  {
-    $body .= T_("URL:") . " " . grantUrl($DATA) . "\n"
-      . T_("Password:") . " " . $DATA['pass'] . "\n";
-  }
+  if(!empty($DATA['cmt']))
+    $body .= T_("Grant comment:") . " " . $DATA['cmt'] . ".\n\n";
+  $body .= T_("URL:") . " " . grantUrl($DATA) . "\n";
+  if(!empty($DATA['pass']))
+    $body .= T_("Password:") . " " . $DATA['pass'] . "\n";
 }
 
 
@@ -72,21 +66,21 @@ function msgGrantExpire($DATA, &$subject, &$body)
 }
 
 
-function msgGrantUse($GRANT, $DATA, &$subject, &$body)
+function msgGrantUse($GRANT, $TICKET, &$subject, &$body)
 {
   global $dateFmtShort;
   $subject = sprintf(T_("[dl] download link for grant %s"), grantStr($GRANT));
-  $body = sprintf(T_("Your grant %s has been used on %s by %s"),
+  $body = sprintf(T_("Your grant %s has been used on %s by %s."),
 		  grantStr($GRANT), date($dateFmtShort, $GRANT["time"]),
-		  $_SERVER["REMOTE_ADDR"]);
-  $body .= (!empty($DATA['cmt'])? ":\n\n$DATA[cmt]\n\n": ".\n");
-  $body .= sprintf(T_("The uploaded file (%s) is now available to be downloaded at:\n\n"),
-		   $DATA['name']);
-  if(!isset($DATA['pass']))
-    $body .= ticketUrl($DATA);
-  else
-  {
-    $body .= T_("URL:") . " " . ticketUrl($DATA) . "\n"
-      . T_("Password:") . " " . $DATA['pass'] . "\n";
-  }
+		  $_SERVER["REMOTE_ADDR"]) . "\n";
+  if(!empty($GRANT['cmt']))
+    $body .= T_("Grant comment:") . " " . $GRANT['cmt'] . ".\n\n";
+
+  $body .= sprintf(T_("The uploaded file (%s) is now available to be downloaded at:\n"),
+		   $TICKET['name']);
+  $body .= T_("URL:") . " " . ticketUrl($TICKET) . "\n";
+  if(!empty($TICKET['pass']))
+    $body .= T_("Password:") . " " . $TICKET['pass'] . "\n";
+  if(!empty($TICKET['cmt']))
+    $body .= T_("Upload comment:") . " " . $TICKET['cmt'] . ".\n";
 }

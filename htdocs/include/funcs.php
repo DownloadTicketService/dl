@@ -528,7 +528,7 @@ function withUpload($FILES, $func, $params)
   reconnectDB();
   if($upload !== false)
   {
-    $ret = call_user_func($func, $upload, $params);
+    $ret = call_user_func_array($func, array_merge(array($upload), $params));
     if($ret === false)
       unlink($upload['path']);
   }
