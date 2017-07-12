@@ -22,7 +22,7 @@ dl 0.18: ??/12/2016
   - ConfigObj module is now required
 
 
-dl 0.17.1: 01/05/2016
+dl 0.17.1: 2016-05-01
 ---------------------
 
 * Filenames are now sanitized more aggressively when received. This avoids
@@ -36,7 +36,7 @@ dl 0.17.1: 01/05/2016
 * Minor code and documentation fixes.
 
 
-dl 0.17: 26/06/2015
+dl 0.17: 2015-06-26
 -------------------
 
 * Login attempts are now logged.
@@ -45,7 +45,7 @@ dl 0.17: 26/06/2015
 * The Thunderbird add-on has been updated to support Thunderbird 38.
 
 
-dl 0.16: 22/01/2015
+dl 0.16: 2015-01-22
 -------------------
 
 * The database connection is automatically re-established when timed out after
@@ -56,7 +56,7 @@ dl 0.16: 22/01/2015
 * Dutch user-guide translation by Maarten Schoonman.
 
 
-dl 0.15: 28/11/2014
+dl 0.15: 2014-11-28
 -------------------
 
 * File names with special and/or UTF-8 characters are now correctly preserved
@@ -64,7 +64,7 @@ dl 0.15: 28/11/2014
 * Added Dutch translation by Maarten Schoonman.
 
 
-dl 0.14: 16/10/2014
+dl 0.14: 2014-10-16
 -------------------
 
 * Fixed broken ``Content-Length`` header with the Apache/mod_php/mod_deflate
@@ -76,7 +76,7 @@ dl 0.14: 16/10/2014
 * Logging of server-side errors has been improved.
 
 
-dl 0.13: 31/07/2014
+dl 0.13: 2014-07-31
 -------------------
 
 * The "Active tickets/grants" pages for administrators now show only their own
@@ -103,7 +103,7 @@ can only upgrade from 0.4 and above. If you have an old installation, you'll
 need to perform a two step upgrade using an earlier release.
 
 
-dl 0.12: 10/12/2013
+dl 0.12: 2013-12-10
 -------------------
 
 * Add a new configurable "e-mail" address in the preferences, which is used as
@@ -120,7 +120,7 @@ Please note: DL 0.12 requires a database schema update! Please read the
 database upgrade procedure in the README!
 
 
-dl 0.11: 05/07/2013
+dl 0.11: 2013-07-05
 -------------------
 
 * Fixed CSRF vulnerability of the admin interface (discovered by Dirk Reimers).
@@ -155,14 +155,14 @@ supplied "dl-wx") require an upgrade, though new clients can still communicate
 to an old server.
 
 
-dl 0.10.1: 09/03/2012
+dl 0.10.1: 2012-03-09
 ---------------------
 
 * A bug was fixed in the initialization code that could cause grant uploads to
   fail in certain configurations.
 
 
-dl 0.10: 06/02/2012
+dl 0.10: 2012-02-06
 -------------------
 
 * The default configuration file has been renamed to "config.php.dist" and must
@@ -188,7 +188,7 @@ update! Please read the database upgrade procedure in the README and the
 relevant notes about web server configuration.
 
 
-dl 0.9.1: 31/12/2011
+dl 0.9.1: 2011-12-31
 --------------------
 
 * Fixed a grave security issue: unauthorized parties can perform login as any
@@ -196,7 +196,7 @@ dl 0.9.1: 31/12/2011
   an authorization header. DL versions down to 0.3 are affected.
 
 
-dl 0.9: 06/04/2011
+dl 0.9: 2011-04-06
 ------------------
 
 * The settings of tickets and grants are now stored independently.
@@ -214,7 +214,7 @@ dl 0.9: 06/04/2011
 * Minor bug and UI fixes.
 
 
-dl 0.8: 10/07/2010
+dl 0.8: 2010-07-10
 ------------------
 
 * Update PHP-Gettext to 1.1.10 (fixing several PHP Notices).
@@ -228,13 +228,13 @@ dl 0.8: 10/07/2010
 * The user-guide is now included in the admin interface.
 
 
-dl 0.7: 10/03/2010
+dl 0.7: 2010-03-10
 ------------------
 
 * Fix XSS vulnerability for unknown ticket IDs (discovered by Sven Eric Neuz)
 
 
-dl 0.6: 03/03/2010
+dl 0.6: 2010-03-03
 ------------------
 
 * Remember the selected language with a cookie.
@@ -244,7 +244,7 @@ dl 0.6: 03/03/2010
 * PHP 5.3 warning fixes.
 
 
-dl 0.5: 09/02/2010
+dl 0.5: 2010-02-09
 ------------------
 
 * Fix upload progress-bar on Chrome and Safari.
@@ -254,7 +254,7 @@ dl 0.5: 09/02/2010
 * License changed to GNU GPL 2.
 
 
-dl 0.4: 24/11/2009
+dl 0.4: 2009-11-24
 ------------------
 
 * Ticket activity can be logged to syslog or a file.
@@ -270,7 +270,7 @@ dl 0.4: 24/11/2009
 * Required fields are highlighted when missing.
 
 
-dl 0.3: 02/09/2009
+dl 0.3: 2009-09-02
 ------------------
 
 * CSS-ification, with new skin from Kim Thostrup <kim@thostrup.dk>.
@@ -279,7 +279,7 @@ dl 0.3: 02/09/2009
 * License changed to LGPL 3
 
 
-dl 0.2: 10/10/2007
+dl 0.2: 2007-10-10
 ------------------
 
 * Renamed "aux.php" to "funcs.php" to avoid "reserved file name" errors
@@ -291,7 +291,7 @@ dl 0.2: 10/10/2007
 * Byte-ranges support.
 
 
-dl 0.1: 15/06/2007
+dl 0.1: 2007-06-15
 ------------------
 
 * First release.
