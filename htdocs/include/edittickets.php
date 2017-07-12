@@ -46,6 +46,8 @@ $ticketUrl = ticketUrl($DATA);
 $details = array();
 $details[T_('Current expiration')] = ticketExpiration($DATA);
 $details[T_('Created on')] = date($dateFmtFull, $DATA["time"]);
+if(!empty($DATA['from_grant']))
+  $details[T_('From grant')] = "<span class=\"ticketid\">$DATA[from_grant]</span>";
 
 // owner
 if($DATA["user_id"] != $auth["id"])
