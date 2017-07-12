@@ -163,7 +163,7 @@ $grantRestParams = array
   'ticket_lastdl'    => 'is_numeric_int',
   'ticket_maxdl'     => 'is_numeric_int',
   'ticket_expiry'    => 'is_expiry_choice',
-  'ticket_permanent' => 'is_bool',
+  'ticket_permanent' => 'is_boolean',
   'send_to'          => 'is_string',
 );
 

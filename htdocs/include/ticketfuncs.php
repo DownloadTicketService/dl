@@ -59,7 +59,8 @@ function ticketExpirationParams($params)
 
   if(!isset($params["ticket_expiry"]))
   {
-    if(@$params["ticket_permanent"] == true || @$params["permanent"] === true)
+    if(to_boolean(@$params["ticket_permanent"]) === true
+    || to_boolean(@$params["permanent"]) === true)
       $params["ticket_expiry"] = "never"; // dl < 0.18
     elseif(!isset($params["ticket_total"]) && !isset($params["ticket_lastdl"]) && !isset($params["ticket_maxdl"]))
       $params["ticket_expiry"] = "auto";
@@ -157,7 +158,7 @@ $ticketRestParams = array
   'ticket_expiry' => 'is_expiry_choice',
   'notify'        => 'is_string',
   'send_to'       => 'is_string',
-  'permanent'     => 'is_bool',
+  'permanent'     => 'is_boolean',
 );
 
 $ticketNewParams = array

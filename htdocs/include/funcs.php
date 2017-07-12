@@ -229,6 +229,21 @@ function is_numeric_int($str)
 }
 
 
+function to_boolean($v)
+{
+  if(is_bool($v)) return $v;
+  elseif($v === 1 || $v === "1" || $v === "true") return true;
+  elseif($v === 0 || $v === "0" || $v === "false") return false;
+  return null;
+}
+
+
+function is_boolean($str)
+{
+  return !is_null(to_boolean($str));
+}
+
+
 function is_expiry_choice($v)
 {
   return is_string($v) && in_array($v, array("auto", "once", "never", "custom"));
