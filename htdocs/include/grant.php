@@ -112,7 +112,9 @@ if($FILES !== false && validateParams($grantUseParams, $_POST))
   if(!empty($_POST['comment']))
     $GRANT['cmt'] = $_POST['comment'];
 
-  list($GRANT, $DATA) = withUpload($FILES, 'useGrant', $GRANT);
+  $ret = withUpload($FILES, 'useGrant', $GRANT);
+  if($ret !== false)
+    list($GRANT, $DATA) = $ret;
 }
 
 // resulting page
