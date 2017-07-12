@@ -89,7 +89,7 @@ foreach($db->query($sql) as $DATA)
     . "<img title=\"" . T_("Purge")
     . "\" src=\"$style/static/cross.png\"/></a></td>";
 
-  // name
+  // name+id
   echo '<td><a title="' . $DATA['id'] . '" href="'
     . pageLink('tedit', array('id' => $DATA['id'], 'src' => $act))
     . '" class="filename">' . htmlEntUTF8($DATA["name"])
