@@ -150,15 +150,16 @@ function genTicket($upload, $params)
 // parameters validation
 $ticketRestParams = array
 (
-  'comment'       => 'is_string',
-  'pass'          => 'is_string',
-  'ticket_total'  => 'is_numeric_int',
-  'ticket_lastdl' => 'is_numeric_int',
-  'ticket_maxdl'  => 'is_numeric_int',
-  'ticket_expiry' => 'is_expiry_choice',
-  'notify'        => 'is_string',
-  'send_to'       => 'is_string',
-  'permanent'     => 'is_boolean',
+  'comment'          => 'is_string',
+  'pass'             => 'is_string',
+  'ticket_total'     => 'is_numeric_int',
+  'ticket_lastdl'    => 'is_numeric_int',
+  'ticket_maxdl'     => 'is_numeric_int',
+  'ticket_expiry'    => 'is_expiry_choice',
+  'ticket_permanent' => 'is_boolean',
+  'notify'           => 'is_string',
+  'send_to'          => 'is_string',
+  'permanent'        => 'is_boolean',
 );
 
 $ticketNewParams = array
@@ -169,12 +170,15 @@ $ticketNewParams = array
   'ticket_lastdldays' => 'is_numeric',
   'ticket_maxdl'      => 'is_numeric_int',
   'ticket_expiry'     => 'is_expiry_choice',
+  'ticket_permanent'  => false,
   'notify'            => 'is_string',
   'send_to'           => 'is_string',
+  'permanent'         => false,
 );
 
 $ticketEditParams = $ticketNewParams;
 $ticketEditParams['clear'] = 'is_numeric_int';
+$ticketEditParams['ticket_permanent'] = 'is_boolean';
 $ticketEditParams['name'] = array
 (
   'required' => true,

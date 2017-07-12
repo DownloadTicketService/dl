@@ -165,6 +165,7 @@ $grantRestParams = array
   'ticket_expiry'    => 'is_expiry_choice',
   'ticket_permanent' => 'is_boolean',
   'send_to'          => 'is_string',
+  'permanent'        => false,
 );
 
 $grantNewParams = array
@@ -184,7 +185,9 @@ $grantNewParams = array
   'ticket_lastdldays' => 'is_numeric',
   'ticket_maxdl'      => 'is_numeric_int',
   'ticket_expiry'     => 'is_expiry_choice',
+  'ticket_permanent'  => false,
   'send_to'           => 'is_string',
+  'permanent'         => false,
 );
 
 $grantUseParams = array

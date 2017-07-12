@@ -321,6 +321,9 @@ function validateParams(&$params, &$array)
     $p = &$array[$k];
     if(isset($p))
     {
+      if($v === false)
+	unset($array[$k]);
+
       if(!is_array($v))
 	$v = array('funcs' => array($v));
 
