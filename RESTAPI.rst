@@ -132,6 +132,8 @@ POST "msg" object parameters:
 
 * comment (string): comment for the ticket.
 * pass (string): password required for the ticket.
+* pass_send (boolean, since: 0.18): send password in email notifications
+  (defaults to true when unset)
 * ticket_total (integer): maximal number of seconds.
 * ticket_lastdl (integer): maximal number of seconds after last download.
 * ticket_maxdl (integer): maximal number of downloads for the ticket.
@@ -171,6 +173,8 @@ POST "msg" object parameters:
 * notify (string): notification address (mandatory).
 * comment (string): comment for the grant/ticket.
 * pass (string): password required for the grant/ticket.
+* pass_send (boolean, since: 0.18): send password in email notifications
+  (defaults to true when unset)
 * grant_total (integer): maximal number of seconds.
 * grant_lastul (integer, since: 0.18): maximal number of seconds after the last
   upload has been triggered.

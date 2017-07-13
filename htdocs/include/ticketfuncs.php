@@ -110,7 +110,7 @@ function genTicket($upload, $params)
   list($total, $lastdl, $maxdl) = ticketExpirationParams($params);
 
   // prepare data
-  $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph"
+  $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph, pass_send"
     . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($upload['id']);
   $sql .= ", " . $auth['id'];
@@ -120,6 +120,7 @@ function genTicket($upload, $params)
   $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
   $sql .= ", " . (empty($params["pass"])? 'NULL':
       $db->quote($passHasher->HashPassword($params["pass"])));
+  $sql .= ", " . (!isset($params["pass_send"])? '1': (int)to_boolean($params["pass_send"]));
   $sql .= ", " . time();
   $sql .= ", " . $total;
   $sql .= ", " . $lastdl;
@@ -152,6 +153,7 @@ $ticketRestParams = array
 (
   'comment'          => 'is_string',
   'pass'             => 'is_string',
+  'pass_send'        => 'is_boolean',
   'ticket_total'     => 'is_numeric_int',
   'ticket_lastdl'    => 'is_numeric_int',
   'ticket_maxdl'     => 'is_numeric_int',
@@ -166,6 +168,7 @@ $ticketNewParams = array
 (
   'comment'           => 'is_string',
   'pass'              => 'is_string',
+  'pass_send'         => 'is_boolean',
   'ticket_totaldays'  => 'is_numeric',
   'ticket_lastdldays' => 'is_numeric',
   'ticket_maxdl'      => 'is_numeric_int',

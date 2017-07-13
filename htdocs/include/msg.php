@@ -7,7 +7,7 @@ function msgTicketCreate($DATA, &$subject, &$body)
   if(!empty($DATA['cmt']))
     $body .= T_("Ticket comment:") . " " . $DATA['cmt'] . ".\n\n";
   $body .= T_("URL:") . " " . ticketUrl($DATA) . "\n";
-  if(!empty($DATA['pass']))
+  if($DATA['pass_send'] && !empty($DATA['pass']))
     $body .= T_("Password:") . " " . $DATA['pass'] . "\n";
 }
 
@@ -45,7 +45,7 @@ function msgGrantCreate($DATA, &$subject, &$body)
   if(!empty($DATA['cmt']))
     $body .= T_("Grant comment:") . " " . $DATA['cmt'] . ".\n\n";
   $body .= T_("URL:") . " " . grantUrl($DATA) . "\n";
-  if(!empty($DATA['pass']))
+  if($DATA['pass_send'] && !empty($DATA['pass']))
     $body .= T_("Password:") . " " . $DATA['pass'] . "\n";
 }
 
@@ -79,7 +79,7 @@ function msgGrantUse($GRANT, $TICKET, &$subject, &$body)
   $body .= sprintf(T_("The uploaded file (%s) is now available to be downloaded at:\n"),
 		   $TICKET['name']);
   $body .= T_("URL:") . " " . ticketUrl($TICKET) . "\n";
-  if(!empty($TICKET['pass']))
+  if($DATA['pass_send'] && !empty($TICKET['pass']))
     $body .= T_("Password:") . " " . $TICKET['pass'] . "\n";
   if(!empty($TICKET['cmt']))
     $body .= T_("Upload comment:") . " " . $TICKET['cmt'] . ".\n";

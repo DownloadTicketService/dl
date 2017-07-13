@@ -111,8 +111,8 @@ function genGrant($params)
 
   // prepare data
   $sql = "INSERT INTO \"grant\" (id, user_id, grant_expire, grant_last_time"
-       . ", grant_expire_uln, cmt, pass_ph, time, expire, last_time, expire_dln"
-       . ", notify_email, sent_email, locale) VALUES (";
+       . ", grant_expire_uln, cmt, pass_ph, pass_send, time, expire, last_time"
+       . ", expire_dln, notify_email, sent_email, locale) VALUES (";
   $sql .= $db->quote($id);
   $sql .= ", " . $auth['id'];
   $sql .= ", " . $grant_total;
@@ -121,6 +121,7 @@ function genGrant($params)
   $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
   $sql .= ", " . (empty($params["pass"])? 'NULL':
       $db->quote($passHasher->HashPassword($params["pass"])));
+  $sql .= ", " . (!isset($params["pass_send"])? '1': (int)to_boolean($params["pass_send"]));
   $sql .= ", " . time();
   $sql .= ", " . $ticket_total;
   $sql .= ", " . $ticket_lastdl;
@@ -155,6 +156,7 @@ $grantRestParams = array
   ),
   'comment'          => 'is_string',
   'pass'             => 'is_string',
+  'pass_send'        => 'is_boolean',
   'grant_total'      => 'is_numeric_int',
   'grant_lastul'     => 'is_numeric_int',
   'grant_maxul'      => 'is_numeric_int',
@@ -177,6 +179,7 @@ $grantNewParams = array
   ),
   'comment'           => 'is_string',
   'pass'              => 'is_string',
+  'pass_send'         => 'is_boolean',
   'grant_totaldays'   => 'is_numeric',
   'grant_lastuldays'  => 'is_numeric',
   'grant_maxul'       => 'is_numeric_int',
