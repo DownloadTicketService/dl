@@ -79,7 +79,7 @@ function msgGrantUse($GRANT, $TICKET, &$subject, &$body)
   $body .= sprintf(T_("The uploaded file (%s) is now available to be downloaded at:\n"),
 		   $TICKET['name']);
   $body .= T_("URL:") . " " . ticketUrl($TICKET) . "\n";
-  if($DATA['pass_send'] && !empty($TICKET['pass']))
+  if($TICKET['pass_send'] && !empty($TICKET['pass']))
     $body .= T_("Password:") . " " . $TICKET['pass'] . "\n";
   if(!empty($TICKET['cmt']))
     $body .= T_("Upload comment:") . " " . $TICKET['cmt'] . ".\n";
