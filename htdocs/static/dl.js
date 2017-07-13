@@ -10,7 +10,7 @@ var fields =
 [
   'grant_totaldays', 'grant_lastuldays', 'grant_maxul', 'grant_expiry',
   'ticket_totaldays', 'ticket_lastdldays', 'ticket_maxdl', 'ticket_expiry',
-  'notify', 'send_to'
+  'notify', 'pass_send', 'send_to'
 ];
 
 
@@ -60,7 +60,13 @@ function loadDefaults(set, form)
     if(!form[name]) continue;
     var v = refreshCookie(set + '_' + name, cookieLifetime);
     if(v !== null)
-      $(form[name]).val(v);
+    {
+      var el = $(form[name]);
+      if(el.attr('type') == 'checkbox')
+	el.prop('checked', parseInt(v));
+      else
+	el.val(v);
+    }
   }
 
   var v = refreshCookie(set + '_advanced', cookieLifetime);
@@ -77,7 +83,9 @@ function setDefaults(set, form)
   {
     var name = fields[i];
     if(!form[name]) continue;
-    setCookie(set + '_' + name, $(form[name]).val(), expire);
+    var el = $(form[name]);
+    var val = (el.attr('type') == 'checkbox'? +el.prop('checked'): el.val());
+    setCookie(set + '_' + name, val, expire);
   }
 
   var v = $('#advanced').hasClass('active');
@@ -94,6 +102,9 @@ function passGen()
   for(var i = 0; i != pwdLength; ++i)
     passwd += chrs.charAt(Math.floor(Math.random() * chrs.length));
   document.forms[0].pass.value = passwd;
+
+  // assume generated passwords are ephemeral
+  $('#pass_send').prop('checked', true);
 
   return true;
 }

@@ -67,6 +67,8 @@ pageHeader();
       <div>
 	<input name="pass" class="element text password" type="text" maxlength="<?php echo $maxPassLen; ?>" value=""/>
         <input class="element button password" type="button" value="<?php echo T_("Generate"); ?>" onclick="passGen();"/>
+	<br/><input id="pass_send" name="pass_send" class="element checkbox" type="checkbox" value="1"/>
+        <label for="pass_send"><?php echo T_("Send <i>in clear</i> with notifications"); ?></label>
       </div>
       <p class="guidelines"><small>
 	  <?php

@@ -12,6 +12,8 @@ if($FILES !== false && validateParams($ticketNewParams, $_POST))
     $_POST['ticket_total'] = (int)($_POST['ticket_totaldays'] * 3600 * 24);
   if(isset($_POST['ticket_lastdldays']))
     $_POST['ticket_lastdl'] = (int)($_POST['ticket_lastdldays'] * 3600 * 24);
+  if(!isset($_POST['pass_send']))
+    $_POST['pass_send'] = false;
 
   $DATA = withUpload($FILES, 'genTicket', array($_POST));
 }
