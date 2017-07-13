@@ -51,7 +51,7 @@ function useGrant($upload, $GRANT, $DATA)
   // convert the upload to a ticket
   $db->beginTransaction();
 
-  $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph"
+  $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph, pass_send"
     . ", time, last_time, expire, expire_dln, locale, from_grant) VALUES (";
   $sql .= $db->quote($upload['id']);
   $sql .= ", " . $GRANT['user_id'];
@@ -60,6 +60,7 @@ function useGrant($upload, $GRANT, $DATA)
   $sql .= ", " . $upload["size"];
   $sql .= ", " . (empty($DATA["cmt"])? 'NULL': $db->quote($DATA["cmt"]));
   $sql .= ", " . (empty($GRANT["pass_ph"])? 'NULL': $db->quote($GRANT["pass_ph"]));
+  $sql .= ", " . (int)$GRANT["pass_send"];
   $sql .= ", " . time();
   $sql .= ", " . (empty($GRANT["last_time"])? 'NULL': $GRANT['last_time']);
   $sql .= ", " . (empty($GRANT["expire"])? 'NULL': $GRANT['expire']);
