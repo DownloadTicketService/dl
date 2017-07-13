@@ -11,6 +11,7 @@ dl 0.18: 2017-07-
 * Tickets generated while using a grant were incorrectly calculating the expiry
   from the grant *creation* time, resulting in premature expiration. Ticket
   expiry is now calculated starting at actual *upload* time.
+* Tickets now show the generating grant ID in the edit/detailed view.
 * The ticket and grant expiration parameters have been streamlined for common
   usage patterns, becoming mostly self-explanatory.
 * Ticket/grant passwords where previously included in email notifications.
