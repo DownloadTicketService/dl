@@ -76,6 +76,12 @@ if(version_compare($version, "0.18", "<"))
   // track grant usage
   $db->exec("ALTER TABLE ticket ADD from_grant CHAR(32)");
 
+  // password policy
+  $db->exec("ALTER TABLE ticket ADD pass_send BOOLEAN NOT NULL DEFAULT 0");
+  $db->exec("ALTER TABLE grant ADD pass_send BOOLEAN NOT NULL DEFAULT 0");
+  $db->exec("UPDATE ticket SET pass_send = 1");
+  $db->exec("UPDATE grant SET pass_send = 1");
+
   // multiple grant re-use
   $db->exec("ALTER TABLE grant ADD grant_last_time INTEGER");
   $db->exec("ALTER TABLE grant ADD grant_expire_uln INTEGER");
