@@ -1,25 +1,37 @@
-dl 0.18: ??/12/2016
+dl 0.18: 2017-07-
 -------------------
 
 * Support for multiple file uploads in both tickets and grants. When multiple
   files are attached, a Zip archive is automatically created with the contents.
   The PHP "Zip" extension is now required.
-* When using a grant, the user can now attach a comment alongside the file/s.
-* The tickets generated while using a grant were incorrectly calculating the
-  expiry from the grant *generation* time instead of actual usage, resulting in
-  premature expiration.
+* The grant comment assigned during creation is now shown in both the tooltip
+  of the grant list and in email notifications involving grant usage.
+* When using a grant, the user can now attach a comment alongside the uploaded
+  file/s. The comment is sent back to the grant owner in the notification.
+* Tickets generated while using a grant were incorrectly calculating the expiry
+  from the grant *creation* time, resulting in premature expiration. Ticket
+  expiry is now calculated starting at actual *upload* time.
+* The ticket and grant expiration parameters have been streamlined for common
+  usage patterns, becoming mostly self-explanatory.
+* Ticket/grant passwords where previously included in email notifications.
+  The password sending policy can now be controlled at ticket creation time,
+  and defaults to sending the password only when automatically generated.
 * Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
-  file for Apache/mod_php.
+  file for the Apache/mod_php combination.
 * Simplified Chinese translation by Guangyu Dong.
 * Russian translation by Олейник О.В.
-* General dl-cli overhaul:
+* The Thunderbird add-on has been updated to support Thunderbird 52.
+* General ``dl-cli`` overhaul:
 
-  - dl-cli now runs under both python 2.7 and python 3+
+  - dl-cli now runs under both python 3 and python 2.7, preferring python 3
   - The password can be read from an external command using ``passcmd``
-  - Public-key pinning through the ``fingerprint`` option
-  - Multiple files can now be uploaded in a single ticket (but for efficiency,
-    a compressed archive is generated locally)
-  - ConfigObj module is now required
+  - Public-key pinning is now supported through the ``fingerprint`` option
+  - Multiple files can now be uploaded in a single ticket (for efficiency,
+    dl-cli generates a Zip archive locally before uploading)
+  - The ConfigObj module is now required
+
+Please note: DL 0.18 requires a database schema update! Please read the
+database upgrade procedure in the README!
 
 
 dl 0.17.1: 2016-05-01
