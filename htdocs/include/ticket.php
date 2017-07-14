@@ -25,7 +25,14 @@ if($DATA === false || isTicketExpired($DATA))
 // check for password
 if(hasPassHash($DATA) && !isset($_SESSION['t'][$id]))
 {
-  if(!empty($_POST['p']) && checkPassHash('ticket', $DATA, $_POST['p']))
+  $ret = false;
+  if(!empty($_POST['p']))
+  {
+    $ret = checkPassHash('ticket', $DATA, $_POST['p']);
+    logTicketEvent($DATA, "password attempt: " . ($ret? "success": "fail"),
+		   ($ret? LOG_INFO: LOG_ERR));
+  }
+  if($ret)
   {
     // authorize the ticket for this session
     $_SESSION['t'][$id] = array('pass' => $_POST["p"]);

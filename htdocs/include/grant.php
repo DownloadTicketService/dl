@@ -24,7 +24,14 @@ if($GRANT === false || isGrantExpired($GRANT))
 
 if(hasPassHash($GRANT) && !isset($_SESSION['g'][$id]))
 {
-  if(!empty($_POST['p']) && checkPassHash('"grant"', $GRANT, $_POST['p']))
+  $ret = false;
+  if(!empty($_POST['p']))
+  {
+    $ret = checkPassHash('"grant"', $GRANT, $_POST['p']);
+    logGrantEvent($GRANT, "password attempt: " . ($ret? "success": "fail"),
+		  ($ret? LOG_INFO: LOG_ERR));
+  }
+  if($ret)
   {
     // authorize the grant for this session
     $_SESSION['g'][$id] = array('pass' => $_POST["p"]);
