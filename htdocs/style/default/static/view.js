@@ -19,4 +19,8 @@ $(document).ready(function()
   });
 
   $("tr.file.comment").click(function() { $(this).toggleClass("expanded"); } );
+
+  // force the focus event to trigger if an input is already focused
+  if(document.activeElement)
+    $(document.activeElement).trigger('focus');
 });
