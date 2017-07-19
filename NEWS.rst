@@ -14,9 +14,10 @@ dl 0.18: 2017-07-
 * Tickets now show the generating grant ID in the edit/detailed view.
 * The ticket and grant expiration parameters have been streamlined for common
   usage patterns, becoming mostly self-explanatory.
-* Ticket/grant passwords where previously included in email notifications.
-  The password sending policy can now be controlled at ticket creation time,
+* Ticket/grant passwords were previously always included in notifications. The
+  password sending policy can now be controlled at ticket/grant creation time,
   and defaults to sending the password only when automatically generated.
+* Ticket and grant password attempts are now logged.
 * Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
   file for the Apache/mod_php combination.
 * Simplified Chinese translation by Guangyu Dong.
