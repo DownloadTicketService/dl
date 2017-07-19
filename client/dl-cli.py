@@ -76,7 +76,8 @@ def newticket(path, params, filename=None):
     try:
         c.perform()
     except pycurl.error as e:
-        raise UploadError("Cannot contact DL service: " + e[1])
+        msg = e.args[1] if isinstance(e.args, tuple) else str(e)
+        raise UploadError("Cannot contact DL service: " + msg)
 
     ret = None
     if s.tell():
@@ -135,7 +136,8 @@ def newgrant(email, params):
     try:
         c.perform()
     except pycurl.error as e:
-        raise UploadError("Cannot contact DL service: " + e[1])
+        msg = e.args[1] if isinstance(e.args, tuple) else str(e)
+        raise UploadError("Cannot contact DL service: " + msg)
 
     ret = None
     if s.tell():
