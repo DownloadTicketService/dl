@@ -58,9 +58,5 @@ if($UPLOAD_ERRNO !== UPLOAD_ERR_OK)
   </ul>
 </form>
 
-<div id="footer">
-  <?php echo $banner; ?>
-</div>
-
 <?php
 includeTemplate("$style/include/footer.php");
