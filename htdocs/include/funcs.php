@@ -88,7 +88,11 @@ function humanSize($size)
 
 function humanTime($seconds)
 {
-  if($seconds > 86400)
+  if($seconds > 31536000)
+    return sprintf(T_("%d years"), intval($seconds / 31536000));
+  else if($seconds > 2592000)
+    return sprintf(T_("%d months"), intval($seconds / 2592000));
+  else if($seconds > 86400)
     return sprintf(T_("%d days"), intval($seconds / 86400));
   else if($seconds > 3600)
     return sprintf(T_("%d hours"), intval($seconds / 3600));
