@@ -506,6 +506,7 @@ form > table#tickets tr > :nth-child(5)
 {
 	width:auto;
 	white-space:normal;
+	word-break:break-all;
 }
 
 form > table#tickets tr > :nth-child(6)
@@ -525,6 +526,7 @@ form > table#alltickets tr > :nth-child(5)
 {
 	width:auto;
 	white-space:normal;
+	word-break:break-all;
 }
 
 form > table#alltickets tr > :nth-child(7)
