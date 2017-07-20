@@ -31,7 +31,7 @@ if(version_compare($version, "0.10", "<"))
 
   $db->exec("ALTER TABLE ticket ADD sent_email VARCHAR(1023)");
   $db->exec("ALTER TABLE ticket ADD locale VARCHAR(255)");
-  $db->exec("ALTER TABLE ticket DROP expire_last"); # not supported by sqlite, it will leave the column
+  $db->exec("ALTER TABLE ticket DROP expire_last"); // not supported by sqlite, it will leave the column
   $db->exec("ALTER TABLE grant ADD sent_email VARCHAR(1023)");
   $db->exec("ALTER TABLE grant ADD locale VARCHAR(255)");
   $db->exec("UPDATE config SET value = '0.10' WHERE name = 'version'");
@@ -66,7 +66,7 @@ if(version_compare($version, "0.18", "<"))
   echo "upgrading 0.12 => 0.18 ...\n";
 
   // unused columns
-  $db->exec("ALTER TABLE grant DROP downloads"); # not supported by sqlite, it will leave the column
+  $db->exec("ALTER TABLE grant DROP downloads"); // not supported by sqlite, it will leave the column
 
   // shift expire times to be relative
   $db->exec("UPDATE ticket SET expire = expire - time");
