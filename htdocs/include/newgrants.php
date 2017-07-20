@@ -91,11 +91,12 @@ pageHeader();
       </div>
       <p class="guidelines"><small>
 	<?php
-	echo T_("Select the expiration logic of the grant. <strong>Automatic</strong>"
-	      . " will keep the grant as long as it's being actively used."
-	      . " <strong>Single use</strong> allows <em>only one upload</em> to be"
-	      . " performed. <strong>No expiration</strong> will never remove the"
-	      . " grant automatically.");
+	$maxGrantExpiry = humanTime($defaults['grant']['total']);
+	echo sprintf(T_("Select the expiration logic of the grant. <strong>Automatic</strong>"
+		      . " will keep the grant as long as it's being actively used for up to %s."
+		      . " <strong>Single use</strong> allows <em>only one upload</em> to be"
+		      . " performed. <strong>No expiration</strong> will never remove the"
+		      . " grant automatically."), $maxGrantExpiry);
 	?>
       </small></p>
 
@@ -157,11 +158,12 @@ pageHeader();
       </div>
       <p class="guidelines"><small>
 	<?php
-	echo T_("Select the expiration logic of the upload. <strong>Automatic</strong>"
-	      . " will keep the upload as long as it's being actively downloaded/used."
-	      . " <strong>Single use</strong> allows <em>only one download</em> to be"
-	      . " performed. <strong>No expiration</strong> will never remove the"
-	      . " upload automatically.");
+	$maxUploadExpiry = humanTime($defaults['ticket']['total']);
+	echo sprintf(T_("Select the expiration logic of the upload. <strong>Automatic</strong>"
+		      . " will keep the upload as long as it's being actively downloaded/used"
+		      . " for up to %s. <strong>Single use</strong> allows <em>only one"
+		      . " download</em> to be performed. <strong>No expiration</strong> will"
+		      . " never remove the upload automatically."), $maxUploadExpiry);
 	?>
       </small></p>
 

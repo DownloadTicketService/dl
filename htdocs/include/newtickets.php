@@ -99,11 +99,12 @@ if($UPLOAD_ERRNO !== UPLOAD_ERR_OK)
       </div>
       <p class="guidelines"><small>
 	<?php
-	echo T_("Select the expiration logic of the ticket. <strong>Automatic</strong>"
-	      . " will keep the ticket as long as it's being actively downloaded/used."
-	      . " <strong>Single use</strong> allows <em>only one download</em> to be"
-	      . " performed. <strong>No expiration</strong> will never remove the"
-	      . " ticket automatically.");
+	$maxTicketExpiry = humanTime($defaults['ticket']['total']);
+	echo sprintf(T_("Select the expiration logic of the ticket. <strong>Automatic</strong>"
+		      . " will keep the ticket as long as it's being actively downloaded/used"
+		      . " for up to %s. <strong>Single use</strong> allows <em>only one"
+		      . " download</em> to be performed. <strong>No expiration</strong> will"
+		      . " never remove the ticket automatically."), $maxTicketExpiry);
 	?>
       </small></p>
 
