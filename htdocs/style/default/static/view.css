@@ -487,6 +487,7 @@ form > table.sortable th.sorting-desc:after
 
 form > table#tickets tr > td,
 form > table#grants tr > td,
+form > table#recvtickets tr > td,
 form > table#alltickets tr > td,
 form > table#allgrants tr > td
 {
@@ -530,6 +531,34 @@ form > table#alltickets tr > :nth-child(5)
 }
 
 form > table#alltickets tr > :nth-child(7)
+{
+	text-align:right;
+}
+
+form > table#recvtickets tr > :nth-child(1),
+form > table#recvtickets tr > :nth-child(2),
+form > table#recvtickets tr > :nth-child(3),
+form > table#recvtickets tr > :nth-child(4)
+{
+	width:16px;
+}
+
+form > table#recvtickets tr > :nth-child(5)
+{
+	width:7rem;
+	display:block;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+form > table#recvtickets tr > :nth-child(6)
+{
+	width:auto;
+	white-space:normal;
+	word-break:break-all;
+}
+
+form > table#recvtickets tr > :nth-child(7)
 {
 	text-align:right;
 }

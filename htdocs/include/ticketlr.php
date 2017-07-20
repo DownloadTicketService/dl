@@ -2,7 +2,7 @@
 require_once("pages.php");
 require_once("ticketfuncs.php");
 require_once("$style/include/style.php");
-$act = "tlist";
+$act = "trecv";
 $ref = pageLinkAct();
 pageHeader();
 
@@ -38,18 +38,19 @@ $totalSize = 0;
 
 $sql = 'SELECT * FROM ticket t'
     . ' WHERE user_id = ' . $auth["id"]
-    . ' AND from_grant IS NULL'
+    . ' AND from_grant IS NOT NULL'
     . ' ORDER BY time DESC';
 
 ?>
 <form action="<?php echo $ref; ?>" method="post">
-  <table class="sortable" id="tickets">
+  <table class="sortable" id="recvtickets">
     <thead>
       <tr>
         <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
         <th data-sort="int"></th>
         <th></th>
         <th></th>
+        <th data-sort="string"><?php echo T_("From grant"); ?></th>
         <th data-sort="string"><?php echo T_("Ticket"); ?></th>
         <th data-sort="int"><?php echo T_("Size"); ?></th>
         <th data-sort="int" class="sorting-desc"><?php echo T_("Date"); ?></th>
@@ -90,6 +91,13 @@ foreach($db->query($sql) as $DATA)
     . "<img title=\"" . T_("Purge")
     . "\" src=\"$style/static/cross.png\"/></a></td>";
 
+  // from grant
+  $title = $DATA['id'];
+  if(!empty($DATA["cmt"]))
+    $title .= ": " . $DATA['cmt'];
+  echo '<td title="' . htmlEntUTF8($title) . '" class="ticketid">'
+    . htmlEntUTF8($DATA['id']) . '</td>';
+
   // name+id
   echo '<td><a title="' . $DATA['id'] . '" href="'
     . pageLink('tedit', array('id' => $DATA['id'], 'src' => $act))
@@ -123,7 +131,7 @@ foreach($db->query($sql) as $DATA)
   </ul>
 </form>
 
-<p><?php printf(T_("Total ticket size: %s"), humanSize($totalSize)); ?></p>
+<p><?php printf(T_("Total received size: %s"), humanSize($totalSize)); ?></p>
 
 <?php
 pageFooter();

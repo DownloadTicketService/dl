@@ -12,6 +12,7 @@ $entry = array
   'tedit'  => array('admin' => false, 'entry' => 'include/editticket.php'),
   'newg'   => array('admin' => false, 'entry' => 'include/newgrant.php'),
   'glist'  => array('admin' => false, 'entry' => 'include/grantl.php'),
+  'trecv'  => array('admin' => false, 'entry' => 'include/ticketlr.php'),
   'prefs'  => array('admin' => false, 'entry' => 'include/prefs.php'),
   'users'  => array('admin' => true,  'entry' => 'include/users.php'),
   'tlista' => array('admin' => true,  'entry' => 'include/ticketla.php'),

@@ -7,6 +7,7 @@ $pages = array
   'tlist'  => T_("Active tickets"),
   'newg'   => T_("New grant"),
   'glist'  => T_("Active grants"),
+  'trecv'  => T_("Received files"),
   'prefs'  => T_("Preferences"),
   'users'  => T_("Manage users"),
   'tlista' => T_("All tickets"),

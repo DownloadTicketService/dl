@@ -12,6 +12,9 @@ dl 0.18: 2017-07-
   from the grant *creation* time, resulting in premature expiration. Ticket
   expiry is now calculated starting at actual *upload* time.
 * Tickets now show the generating grant ID in the edit/detailed view.
+* Tickets generated while using a grant are now split into a separated
+  "Received files" page. The "All tickets" page reserved to administrators
+  still shows all tickets combined.
 * The ticket and grant expiration parameters have been streamlined for common
   usage patterns, becoming mostly self-explanatory.
 * Ticket/grant passwords were previously always included in notifications. The
