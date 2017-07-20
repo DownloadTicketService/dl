@@ -40,6 +40,7 @@ $sql = 'SELECT g.*, u.name AS "user" FROM "grant" g'
     <thead>
       <tr>
         <th><input class="element checkbox" type="checkbox" onclick="selectAll(this.checked);"/></th>
+        <th data-sort="int"></th>
         <th></th>
         <th></th>
         <th data-sort="string"><?php echo T_("Grant"); ?></th>
@@ -62,6 +63,15 @@ foreach($db->query($sql) as $DATA)
 
   // selection
   echo "<td><input class=\"element checkbox\" type=\"checkbox\" name=\"sel[]\" value=\"" . $DATA['id'] . "\"/></td>";
+
+  // tick
+  echo '<td data-sort-value="' . ($DATA["uploads"]? 1: 0) . '">';
+  if($DATA["uploads"])
+  {
+    echo '<img title="' . T_("Successfully uploaded")
+      . "\" src=\"$style/static/tick.png\"/>";
+  }
+  echo "</td>";
 
   // upload
   echo '<td><a href="' . grantUrl($DATA) . '">'

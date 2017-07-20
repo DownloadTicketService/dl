@@ -591,12 +591,13 @@ form > table.key
 
 form > table#grants tr > :nth-child(1),
 form > table#grants tr > :nth-child(2),
-form > table#grants tr > :nth-child(3)
+form > table#grants tr > :nth-child(3),
+form > table#grants tr > :nth-child(4)
 {
 	width:16px;
 }
 
-form > table#grants tr > :nth-child(4)
+form > table#grants tr > :nth-child(5)
 {
 	width:auto;
 	white-space:normal;
@@ -604,12 +605,13 @@ form > table#grants tr > :nth-child(4)
 
 form > table#allgrants tr > :nth-child(1),
 form > table#allgrants tr > :nth-child(2),
-form > table#allgrants tr > :nth-child(3)
+form > table#allgrants tr > :nth-child(3),
+form > table#allgrants tr > :nth-child(4)
 {
 	width:16px;
 }
 
-form > table#allgrants tr > :nth-child(4)
+form > table#allgrants tr > :nth-child(5)
 {
 	width:auto;
 	white-space:normal;
