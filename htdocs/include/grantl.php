@@ -59,7 +59,7 @@ foreach($db->query($sql) as $DATA)
   if(isGrantExpired($DATA)) continue;
 
   $our = ($DATA["user_id"] == $auth["id"]);
-  $class = "file expanded " . $DATA['id'];
+  $class = "file " . $DATA['id'];
   echo "<tr class=\"$class\">";
 
   // selection

@@ -633,11 +633,6 @@ tr.file span.comment
 	color:#555;
 }
 
-tr.file.expanded span.comment
-{
-	display:none;
-}
-
 tr.file.comment td.comment
 {
 	white-space:pre-line;
