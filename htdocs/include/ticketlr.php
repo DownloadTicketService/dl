@@ -36,10 +36,11 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 // list active tickets
 $totalSize = 0;
 
-$sql = 'SELECT * FROM ticket t'
-    . ' WHERE user_id = ' . $auth["id"]
-    . ' AND from_grant IS NOT NULL'
-    . ' ORDER BY time DESC';
+$sql = 'SELECT t.*, g.cmt AS grant_cmt FROM ticket t'
+     . ' LEFT JOIN grant g ON g.id = t.from_grant'
+     . ' WHERE t.user_id = ' . $auth["id"]
+     . ' AND t.from_grant IS NOT NULL'
+     . ' ORDER BY t.time DESC';
 
 ?>
 <form action="<?php echo $ref; ?>" method="post">
@@ -92,14 +93,17 @@ foreach($db->query($sql) as $DATA)
     . "\" src=\"$style/static/cross.png\"/></a></td>";
 
   // from grant
+  $title = $DATA['from_grant'];
+  if(!empty($DATA["grant_cmt"]))
+    $title .= ": " . $DATA['grant_cmt'];
+  echo '<td title="' . htmlEntUTF8($title) . '" class="ticketid">'
+    . htmlEntUTF8($DATA['from_grant']) . '</td>';
+
+  // name+id+cmt
   $title = $DATA['id'];
   if(!empty($DATA["cmt"]))
     $title .= ": " . $DATA['cmt'];
-  echo '<td title="' . htmlEntUTF8($title) . '" class="ticketid">'
-    . htmlEntUTF8($DATA['id']) . '</td>';
-
-  // name+id
-  echo '<td><a title="' . $DATA['id'] . '" href="'
+  echo '<td><a title="' . htmlEntUTF8($title) . '" href="'
     . pageLink('tedit', array('id' => $DATA['id'], 'src' => $act))
     . '" class="filename">' . htmlEntUTF8($DATA["name"])
     . '</a></td>';

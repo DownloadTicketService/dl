@@ -85,7 +85,7 @@ foreach($db->query($sql) as $DATA)
     . "<img title=\"" . T_("Purge")
     . "\" src=\"$style/static/cross.png\"/></a></td>";
 
-  // id+comment
+  // id+cmt
   echo '<td title="' . htmlEntUTF8($DATA["cmt"])
      . '" class="ticketid">' . htmlEntUTF8($DATA['id']) . '</td>';
 

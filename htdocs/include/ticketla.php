@@ -88,8 +88,11 @@ foreach($db->query($sql) as $DATA)
     . "<img title=\"" . T_("Purge")
     . "\" src=\"$style/static/cross.png\"/></a></td>";
 
-  // name
-  echo '<td><a title="' . $DATA['id'] . '" href="'
+  // name+id+cmt
+  $title = $DATA['id'];
+  if(!empty($DATA["cmt"]))
+    $title .= ": " . $DATA['cmt'];
+  echo '<td><a title="' . htmlEntUTF8($title) . '" href="'
     . pageLink('tedit', array('id' => $DATA['id'], 'src' => $act))
     . '" class="filename">' . htmlEntUTF8($DATA["name"])
     . '</a></td>';
