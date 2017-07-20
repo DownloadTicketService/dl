@@ -32,7 +32,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 // list active tickets
 $totalSize = 0;
 
-$sql = 'SELECT t.*, u.name AS "user" FROM ticket t'
+$sql = 'SELECT t.*, u.name AS "user", t.from_grant FROM ticket t'
     . ' LEFT JOIN "user" u ON u.id = t.user_id'
     . ' ORDER BY time DESC';
 
@@ -61,8 +61,9 @@ foreach($db->query($sql) as $DATA)
 
   $totalSize += $DATA["size"];
   $our = ($DATA["user_id"] == $auth["id"]);
-  $class = "file expanded " . $DATA['id'];
+  $class = "file " . $DATA['id'];
   if($our) $class .= " our";
+  if($DATA["from_grant"]) $class .= " received";
   echo "<tr class=\"$class\">";
 
   // selection
@@ -111,6 +112,13 @@ foreach($db->query($sql) as $DATA)
 
 ?>
     </tbody>
+  </table>
+
+  <table class="key">
+  <tr class="file"><td><?php echo T_("Regular ticket"); ?></td></tr>
+  <tr class="file our"><td><?php echo T_("Regular ticket (yours)"); ?></td></tr>
+  <tr class="file received"><td><?php echo T_("Received ticket"); ?></td></tr>
+  <tr class="file our received"><td><?php echo T_("Received ticket (yours)"); ?></td></tr>
   </table>
 
   <ul>

@@ -94,6 +94,11 @@ foreach($db->query($sql) as $DATA)
     </tbody>
   </table>
 
+  <table class="key">
+  <tr class="file"><td><?php echo T_("Regular grant"); ?></td></tr>
+  <tr class="file our"><td><?php echo T_("Your grant"); ?></td></tr>
+  </table>
+
   <ul>
     <li class="buttons">
       <input type="button" value="<?php echo T_("Reload"); ?>" onclick="document.location.reload();"/>

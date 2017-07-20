@@ -532,10 +532,30 @@ form > table#alltickets tr > :nth-child(7)
 	text-align:right;
 }
 
-form > table#alltickets tr.file.our,
-form > table#allgrants tr.file.our
+form > table tr.file.our
 {
 	background:#eaeafa;
+}
+
+form > table tr.file.received
+{
+	background:#efefef;
+}
+
+form > table tr.file.received.our
+{
+	background:#faeafa;
+}
+
+form > table.key
+{
+	padding:0;
+	border:1px dotted #ccc;
+	width:auto;
+	margin-bottom:-8em;
+	text-align:right;
+	float:right;
+	font-size:50%;
 }
 
 form > table#grants tr > :nth-child(1),
