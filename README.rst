@@ -148,9 +148,11 @@ your users to complete a large upload. Uploading 500MB on a slow ADSL
 connection can take as much as 12 hours, so set it to *at least* 43200.
 
 If PHP was built as an Apache module you can set per-directory parameters
-through ``.htaccess`` (see http://www.php.net/manual/en/configuration.changes.php)
-or directly inside your Apache's configuration (see `Apache/mod_php`_ for an
-example). The provided ``htdocs/.htaccess`` contains a reasonable pre-set.
+through ``.htaccess`` (see
+http://www.php.net/manual/en/configuration.changes.php) or directly inside your
+Apache's configuration (see `Apache/mod_php`_ for an example). The provided
+``htdocs/.htaccess`` contains a reasonable pre-set, but requires
+``AllowOverride All`` to be set for the directory in your main configuration.
 
 
 User setup
@@ -514,14 +516,6 @@ Upgrading from an earlier version
 * Test your new setup.
 
 
-Known limitations/Browser support
-=================================
-
-* Tested with Safari 3.x/4.x, Firefox 3.x/4.x, Explorer 7/8,
-  Google Chrome/Chromium.
-* Tested with PHP 5.x.
-
-
 Internationalization support
 ============================
 
@@ -600,11 +594,11 @@ An example::
   pass=test
 
 Simply run the command with no arguments to see usage information. At least
-Python 2.7 is required (with Python 3+ being fully supported), with the
-"PycURL" and "ConfigObj" modules installed. Under Debian/Ubuntu systems you can
-install the required dependencies by doing the following::
+Python 2.7 is required (with Python 3+ being recommended), with the "PycURL"
+and "ConfigObj" modules installed. Under Debian/Ubuntu systems you can install
+the required dependencies by doing the following::
 
-  sudo apt-get install python-pycurl python-configobj
+  sudo apt-get install python3-pycurl python3-configobj
 
 
 Graphical client: ``dl-wx``
