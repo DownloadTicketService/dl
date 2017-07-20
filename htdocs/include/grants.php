@@ -44,8 +44,8 @@ if($UPLOAD_ERRNO !== UPLOAD_ERR_OK)
       </div>
       <p class="guidelines"><small>
 	  <?php
-	    echo T_("Type an <em>optional</em> comment for your uploaded file."
-		. " The comment will be shown along with the file name.");
+	  echo T_("Type an <em>optional</em> comment for your uploaded file/s."
+		. " The comment will be sent back to the grant owner.");
 	  ?>
       </small></p>
     </li>
