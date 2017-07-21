@@ -536,29 +536,29 @@ Contributing/updating a translation
 
 Contributing a new translation is easy enough:
 
-* Edit ``include/lang.php`` and add your new language name and alias to
+* Edit ``htdocs/include/lang.php`` and add your new language name and alias to
   ``$langData``, as done for the other languages.
 
 * Execute::
 
-    cd include/scripts/
+    cd htdocs/include/scripts/
     ./langgen.php
 
   to freshen the strings to be translated.
 
 * Translate the generated ``messages.po`` in the directory
-  ``include/locale/<locale_NAME>/LC_MESSAGES/`` using a text editor, or by
-  using PoEdit_, or any other "po" editing tool.
+  ``htdocs/include/locale/<locale_NAME>/LC_MESSAGES/`` using a text editor, or
+  by using PoEdit_, or any other "po" editing tool.
 
 * Optionally translate the user guide, which is located in
-  ``include/static/guide/``.
+  ``htdocs/include/static/guide/``.
 
   Copy the english directory tree into a new tree with the new locale name and
   translate ``index.rst``. ``index.html`` is regenerated automatically.
 
 * To test/update the translations run ``langupd.php``::
 
-    cd include/scripts/
+    cd htdocs/include/scripts/
     ./langupd.php
 
 
@@ -719,7 +719,7 @@ Development releases directly downloaded from git do not include pre-processed
 files. To build the localization data `gettext` and docutils_ need to be
 installed. You'll then need to execute::
 
-    cd include/scripts/
+    cd htdocs/include/scripts/
     ./langupd.php
 
 To build the Thunderbird add-on, the Thunderbird SDK needs to be installed as
