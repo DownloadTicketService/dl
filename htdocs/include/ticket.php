@@ -18,6 +18,8 @@ else
 $ref = "$masterPath?t=$id";
 if($DATA === false || isTicketExpired($DATA))
 {
+  $category = ($id === false? 'invalid': ($DATA === false? 'unknown': 'expired'));
+  logError("$category ticket requested");
   includeTemplate("$style/include/noticket.php", array('id' => $id));
   exit();
 }

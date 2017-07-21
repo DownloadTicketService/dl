@@ -18,6 +18,8 @@ else
 $ref = "$masterPath?g=$id";
 if($GRANT === false || isGrantExpired($GRANT))
 {
+  $category = ($id === false? 'invalid': ($GRANT === false? 'unknown': 'expired'));
+  logError("$category grant requested");
   includeTemplate("$style/include/nogrant.php", array('id' => $id));
   exit();
 }
