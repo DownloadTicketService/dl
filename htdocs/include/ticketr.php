@@ -13,7 +13,7 @@ $id = false;
 if(preg_match("/^\/([^\/]+)/", $_SERVER["PATH_INFO"], $tmp)) $id = $tmp[1];
 if($id === false || !isTicketId($id))
 {
-  logError("invalid ticket id/request");
+  logError("invalid ticket requested");
   httpNotFound();
 }
 
@@ -22,10 +22,8 @@ $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($id);
 $DATA = $db->query($sql)->fetch();
 if($DATA === false || isTicketExpired($DATA))
 {
-  if($DATA === false)
-    logEvent("unknown ticket requested");
-  else
-    logTicketEvent($DATA, "expired ticket requested");
+  $category = ($DATA === false? 'unknown': 'expired');
+  logError("$category ticket requested");
   httpNotFound();
 }
 
