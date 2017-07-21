@@ -4,6 +4,10 @@ dl 0.18: 2017-07-
 * Support for multiple file uploads in both tickets and grants. When multiple
   files are attached, a Zip archive is automatically created with the contents.
   The PHP "Zip" extension is now required.
+* Grants are now reusable. With the new defaults, senders are no longer
+  restricted to a single use/file per grant, but can keep reusing the same link
+  as needed. The grant, just like a ticket, is then automatically expired when
+  left unused for a certain amount of time.
 * The grant comment assigned during creation is now shown in both the tooltip
   of the grant list and in email notifications involving grant usage.
 * When using a grant, the user can now attach a comment alongside the uploaded
@@ -14,13 +18,13 @@ dl 0.18: 2017-07-
 * Tickets now show the generating grant ID in the edit/detailed view.
 * Tickets generated while using a grant are now split into a separated
   "Received files" page. The "All tickets" page reserved to administrators
-  still shows all tickets combined.
+  still shows all tickets combined and color-coded.
 * The ticket and grant expiration parameters have been streamlined for common
   usage patterns, becoming mostly self-explanatory.
 * Ticket/grant passwords were previously always included in notifications. The
-  password sending policy can now be controlled at ticket/grant creation time,
-  and defaults to sending the password only when automatically generated.
-* Ticket and grant password attempts are now logged.
+  password sending policy can now be controlled at creation time, and defaults
+  to sending the password only when automatically generated.
+* Ticket and grant invalid access or invalid password attempts are now logged.
 * Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
   file for the Apache/mod_php combination.
 * Simplified Chinese translation by Guangyu Dong.
