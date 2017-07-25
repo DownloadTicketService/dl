@@ -707,9 +707,9 @@ You are encouraged to change DL as you see fit under the terms of the GNU GPL 2
 license, or (at your option) any later version. DL's GIT repository is publicly
 accessible at::
 
-  git://src.thregr.org/dl
+  https://github.com/DownloadTicketService/dl
 
-or at https://github.com/wavexx/dl
+or at git://src.thregr.org/dl
 
 
 Development releases
@@ -745,9 +745,9 @@ Authors and Copyright
 
 dl's GIT repository is publicly accessible at::
 
-  git://src.thregr.org/dl
+  https://github.com/DownloadTicketService/dl
 
-or at https://github.com/wavexx/dl
+or at ``git://src.thregr.org/dl``
 
 
 .. _PoEdit: http://poedit.sourceforge.net/
