@@ -91,6 +91,9 @@ if(version_compare($version, "0.18", "<"))
   $db->exec('CREATE INDEX i_grant on "grant" ( grant_expire, grant_expire_uln, uploads )');
   $db->exec("UPDATE grant SET grant_expire_uln = 1"); // match previous defaults
 
+  // Allow size > 2GB
+  $db->exec("ALTER TABLE ticket MODIFY size BIGINT NOT NULL");
+
   $db->exec("UPDATE config SET value = '0.18' WHERE name = 'version'");
   $version = "0.18";
 }
