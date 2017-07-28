@@ -87,8 +87,6 @@ if(version_compare($version, "0.18", "<"))
   // password policy
   $db->exec("ALTER TABLE ticket ADD pass_send BOOLEAN NOT NULL DEFAULT 0");
   $db->exec("ALTER TABLE grant ADD pass_send BOOLEAN NOT NULL DEFAULT 0");
-  $db->exec("UPDATE ticket SET pass_send = 1");
-  $db->exec("UPDATE grant SET pass_send = 1");
 
   // multiple grant re-use
   $db->exec("ALTER TABLE grant ADD grant_last_time INTEGER");
@@ -97,10 +95,23 @@ if(version_compare($version, "0.18", "<"))
   $db->exec("ALTER TABLE grant ADD last_stamp INTEGER");
   $db->exec("DROP INDEX i_grant");
   $db->exec('CREATE INDEX i_grant on "grant" ( grant_expire, grant_expire_uln, uploads )');
-  $db->exec("UPDATE grant SET grant_expire_uln = 1"); // match previous defaults
 
-  // Allow size > 2GB
-  $db->exec("ALTER TABLE ticket MODIFY size BIGINT NOT NULL");
+  // match previous defaults
+  $db->exec("UPDATE ticket SET pass_send = 1");
+  $db->exec("UPDATE grant SET pass_send = 1");
+  $db->exec("UPDATE grant SET grant_expire_uln = 1");
+
+  // Allow size >2GB
+  switch($driver)
+  {
+  case "mysql":
+    $db->exec("ALTER TABLE ticket MODIFY size BIGINT NOT NULL");
+    break;
+
+  case "pgsql":
+    $db->exec("ALTER TABLE ticket ALTER COLUMN size TYPE BIGINT");
+    break;
+  }
 
   $db->exec("UPDATE config SET value = '0.18' WHERE name = 'version'");
   $version = "0.18";

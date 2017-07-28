@@ -25,6 +25,8 @@ dl 0.18: 2017-07-
   password sending policy can now be controlled at creation time, and defaults
   to sending the password only when automatically generated.
 * Ticket and grant invalid access or invalid password attempts are now logged.
+* Download of files larger than 2GB would previously fail when using DL with
+  MySQL or Postgres. Fix by Daniel Berteaud.
 * Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
   file for the Apache/mod_php combination.
 * Simplified Chinese translation by Guangyu Dong.
