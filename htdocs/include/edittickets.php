@@ -62,11 +62,9 @@ $details[T_('File size')] = humanSize($DATA["size"]);
 $details[T_('Download link')] = "<a class=\"ticketid\" href=\"$ticketUrl\">" . htmlEntUTF8($ticketUrl) . "</a>";
 
 // downloads
+$details[T_("Download count")] = $DATA["downloads"];
 if($DATA["downloads"])
-{
-  $details[T_("Download count")] = $DATA["downloads"];
   $details[T_("Last download")] = date($dateFmtFull, $DATA["last_stamp"]);
-}
 
 // sent-to
 if($DATA["sent_email"])
