@@ -26,7 +26,7 @@ body
 	border-bottom-color: #C0C1C2;
 	margin: 0 auto 0 auto;
 	padding: 20px 26px 19px 26px;
-	width: 800px;
+	width: 850px;
 	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
 	box-shadow: 0 5px 10px rgba(0,0,0,0.5);
@@ -76,14 +76,6 @@ body
 	white-space:nowrap;
 }
 
-#bottom
-{
-	display:block;
-	height:10px;
-	margin:0 auto;
-	width:810px;
-}
-
 .appnitro
 {
 	margin:20px 20px 0;
@@ -107,7 +99,7 @@ table th, table td
 {
 	background-color: #4B75B3;
 	background-repeat: repeat-x;
-	width: 800px;
+	width: 850px;
 	margin: 0 auto 0 auto;
 	padding: 0 25px 5px 0;
 	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
@@ -301,7 +293,7 @@ input.text
 	font-size: 100%;
 	margin: 0;
 	padding: 2px 0;
-	width: 42%;
+	width: 52%;
 }
 
 input.file, input.button
@@ -310,13 +302,13 @@ input.file, input.button
 	font-size:100%;
 	margin:0;
 	padding:2px 0;
-	width:42%;
+	width:47.5%;
 }
 
 input.addrm
 {
         padding:0;
-        width:5%;
+        width:4%;
 }
 
 textarea.textarea
@@ -334,18 +326,18 @@ textarea.textarea
 	font-size: 100%;
 	margin: 0;
 	padding: 2px 0;
-	width: 42%;
+	width: 52%;
 	resize: vertical;
 }
 
 input.element.password, #notify
 {
-	width:25%;
+	width:33.5%;
 }
 
 input.button.password
 {
-	width:16%;
+	width:18%;
 }
 
 select.select
@@ -438,14 +430,14 @@ form .guidelines
 	border:1px solid #e6e6e6;
 	color:#444;
 	font-size:80%;
-	left:48%;
+	left:52%;
 	line-height:130%;
 	margin:2em 0 0 8px;
 	padding:8px 10px 9px;
 	position:absolute;
 	top:0;
 	visibility:hidden;
-	width:52%;
+	width:48%;
 	z-index:1000;
 }
 
