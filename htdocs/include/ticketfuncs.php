@@ -130,7 +130,8 @@ function genTicket($upload, $params)
   $sql .= ", " . $db->quote($locale);
   $sql .= ")";
 
-  if($db->exec($sql) != 1)
+  try { $db->exec($sql); }
+  catch(PDOException $e)
   {
     logDBError($db, "cannot commit new ticket to database");
     return false;

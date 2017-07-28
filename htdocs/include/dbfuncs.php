@@ -6,38 +6,36 @@ require_once("confwrap.php");
 // a simple wrapper to handle some DB issues uniformly
 class XPDO extends PDO
 {
+  public function driver()
+  {
+    return $this->getAttribute(PDO::ATTR_DRIVER_NAME);
+  }
+
   public function __construct($dns, $dbUser, $dbPassword)
   {
     parent::__construct($dns, $dbUser, $dbPassword);
 
-    // put the drivers directly into ANSI mode
-    $driver = $this->getAttribute(PDO::ATTR_DRIVER_NAME);
-    switch($driver)
+    // make errors exceptional
+    $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    switch($this->driver())
     {
-    case 'sqlite':
+    case "sqlite":
+      // enforce foreign keys by default
       $ret = $this->exec('PRAGMA foreign_keys = ON');
       break;
 
-    case 'mysql':
+    case "mysql":
+      // put MySQL into ANSI mode
       $ret = $this->exec('SET SQL_MODE = ANSI_QUOTES');
       break;
-
-    default:
-      $ret = 0;
-      break;
-    }
-
-    // check status
-    if($ret === False)
-    {
-      $err = $this->errorInfo();
-      throw new PDOException('cannot switch driver into ANSI mode: ' . $err[2]);
     }
   }
 
   public function ping()
   {
-    return ($this->exec('SELECT 1') == 1);
+    try { return ($this->exec('SELECT 1') == 1); }
+    catch(PDOException $e) { return false; }
   }
 }
 

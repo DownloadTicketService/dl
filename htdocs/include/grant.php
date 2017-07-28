@@ -77,7 +77,12 @@ function useGrant($upload, $GRANT, $DATA)
   $sql .= ", " . (empty($GRANT["locale"])? 'NULL': $db->quote($GRANT['locale']));
   $sql .= ", " . $db->quote($GRANT['id']);
   $sql .= ")";
-  $db->exec($sql);
+  try { $db->exec($sql); }
+  catch(PDOException $e)
+  {
+    logDBError($db, "cannot commit new ticket to database");
+    return false;
+  }
 
   // check for validity after upload
   ++$GRANT["uploads"];
@@ -94,7 +99,8 @@ function useGrant($upload, $GRANT, $DATA)
     $db->exec($sql);
   }
 
-  if(!$db->commit())
+  try { $db->commit(); }
+  catch(PDOException $e)
   {
     logDBError($db, "cannot commit new ticket to database");
     return false;
