@@ -3,7 +3,7 @@
 require_once("prelude.php");
 require_once("confwrap.php");
 require_once("dbfuncs.php");
-require_once("PasswordHash.php");
+require_once("lib/PasswordHash.php");
 require_once("lang.php");
 
 // check data dirs

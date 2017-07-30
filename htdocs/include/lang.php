@@ -1,6 +1,6 @@
 <?php
 // language initialization and support
-require_once("gettext/gettext.inc");
+require_once("lib/gettext/gettext.inc");
 
 
 // list of available and supported translations
