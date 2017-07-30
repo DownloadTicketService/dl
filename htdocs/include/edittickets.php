@@ -117,7 +117,7 @@ infoTable($details);
       <div>
 	<input name="pass" class="element text password" type="text" maxlength="255"
 	  placeholder="<?php if($hasPass) echo str_repeat('&bull;', 5); ?>"
-	  value="<?php echo htmlEntUTF8($pass); ?>"/>
+	  value="<?php echo htmlEntUTF8($pass); ?>" autocomplete="off"/>
 	<input class="element button password" type="button" value="<?php echo T_("Generate"); ?>" onclick="passGen();"/>
       <?php if($hasPass) { ?>
 	<br/><input name="pass_clear" id="pass_clear" class="element checkbox" type="checkbox"
