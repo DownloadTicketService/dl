@@ -131,8 +131,12 @@ function genGrant($params)
   $sql .= ", " . $db->quote($locale);
   $sql .= ")";
 
-  if($db->exec($sql) != 1)
+  try { $db->exec($sql); }
+  catch(PDOException $e)
+  {
+    logDBError($db, "cannot commit new grant to database");
     return false;
+  }
 
   // fetch defaults
   $sql = "SELECT * FROM \"grant\" WHERE id = " . $db->quote($id);

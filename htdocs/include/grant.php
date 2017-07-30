@@ -77,6 +77,7 @@ function useGrant($upload, $GRANT, $DATA)
   $sql .= ", " . (empty($GRANT["locale"])? 'NULL': $db->quote($GRANT['locale']));
   $sql .= ", " . $db->quote($GRANT['id']);
   $sql .= ")";
+
   try { $db->exec($sql); }
   catch(PDOException $e)
   {
