@@ -9,7 +9,8 @@ $name = anyOf(@$_POST['name'], $DATA['name']);
 $comment = trim(anyOf(@$_POST['comment'], $DATA['cmt']), "");
 $hasPass = hasPassHash($DATA);
 $pass = anyOf(@$_POST['pass'], "");
-$clear = anyOf(@$_POST['clear'], "");
+$pass_clear = anyOf(@$_POST['pass_clear'], false);
+$pass_send = anyOf(@$_POST['pass_send'], $DATA['pass_send']);
 $permanent = anyOf(@$_POST['ticket_permanent'], !($DATA['expire'] || $DATA["last_time"] || $DATA["expire_dln"]));
 $notify = anyOf(@$_POST['notify'], join(", ", getEMailAddrs($DATA['notify_email'])));
 
@@ -118,14 +119,15 @@ infoTable($details);
 	  placeholder="<?php if($hasPass) echo str_repeat('&bull;', 5); ?>"
 	  value="<?php echo htmlEntUTF8($pass); ?>"/>
 	<input class="element button password" type="button" value="<?php echo T_("Generate"); ?>" onclick="passGen();"/>
-      </div>
       <?php if($hasPass) { ?>
-      <div>
-	 <input name="clear" id="clear" class="element checkbox" type="checkbox"
-	   <?php if($clear) echo 'checked="checked"'; ?> value="1"/>
-	<label for="clear" class="choice"><?php echo T_("Clear password"); ?></label>
-      </div>
+	<br/><input name="pass_clear" id="pass_clear" class="element checkbox" type="checkbox"
+	   <?php if($pass_clear) echo 'checked="checked"'; ?> value="1"/>
+	<label for="pass_clear" class="choice"><?php echo T_("Clear password"); ?></label>
       <?php } ?>
+        <br/><input id="pass_send" name="pass_send" class="element checkbox" type="checkbox"
+	   <?php if($pass_send) echo 'checked="checked"'; ?> value="1"/>
+        <label for="pass_send"><?php echo T_("Send <i>in clear</i> with notifications"); ?></label>
+      </div>
       <p class="guidelines"><small>
 	  <?php
 	    echo T_("Type an <em>optional</em> password that will be required"

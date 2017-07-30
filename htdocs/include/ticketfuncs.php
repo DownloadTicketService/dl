@@ -181,7 +181,7 @@ $ticketNewParams = array
 );
 
 $ticketEditParams = $ticketNewParams;
-$ticketEditParams['clear'] = 'is_numeric_int';
+$ticketEditParams['pass_clear'] = 'is_boolean';
 $ticketEditParams['ticket_permanent'] = 'is_boolean';
 $ticketEditParams['name'] = array
 (

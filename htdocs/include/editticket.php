@@ -19,7 +19,7 @@ function handleUpdate($DATA, $params)
     $values['cmt'] = (empty($comment)? 'NULL': $db->quote($comment));
   }
 
-  if(isset($params['clear']) && $params['clear'])
+  if(isset($params['pass_clear']) && $params['pass_clear'])
   {
     $values['pass_md5'] = 'NULL';
     $values['pass_ph'] = 'NULL';
@@ -29,6 +29,11 @@ function handleUpdate($DATA, $params)
     $values['pass_md5'] = 'NULL';
     $values['pass_ph'] = $db->quote($passHasher->HashPassword($params['pass']));
   }
+
+  if(isset($params['pass_send']) && $params['pass_send'])
+    $values['pass_send'] = 1;
+  else
+    $values['pass_send'] = 0;
 
   if(isset($params['ticket_permanent']) && $params['ticket_permanent'])
   {
