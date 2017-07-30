@@ -116,7 +116,7 @@ infoTable($details);
       <label class="description"><?php echo ($hasPass? T_("Change password"): T_("Password")); ?></label>
       <div>
 	<input name="pass" class="element text password" type="text" maxlength="255"
-	  placeholder="<?php if($hasPass) echo str_repeat('&bull;', 5); ?>"
+	  placeholder="<?php if($hasPass) echo str_repeat('&bull;', 16); ?>"
 	  value="<?php echo htmlEntUTF8($pass); ?>" autocomplete="off"/>
 	<input class="element button password" type="button" value="<?php echo T_("Generate"); ?>" onclick="passGen();"/>
       <?php if($hasPass) { ?>
