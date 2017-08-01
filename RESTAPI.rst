@@ -1,10 +1,10 @@
 DL REST API
 ===========
 
+.. contents::
+
 Since version 0.10 DL offers a "RESTful" HTTP API that allows inter-operation
 between other services and/or native programs easily.
-
-.. contents::
 
 
 Outline of the API
@@ -27,7 +27,7 @@ or "POST"), and must always include HTTP's "Basic" authorization credentials.
 The credentials must also be replicated in a second header "X-Authorization"
 (which follows the same syntax as a normal "Basic" authorization scheme).
 
-"POST" requests must also include:
+"POST" requests are ``x-www-form-urlencoded`` and must also include:
 
 * A JSON-encoded "msg" parameter, with arguments defined by the request. This
   parameter should always be present, even when empty.
@@ -244,10 +244,10 @@ Example answer:
   {}
 
 
-cURL examples
--------------
+``curl`` examples
+-----------------
 
-cURL_ can be used to easily fiddle with the REST API.
+curl_ can be used to easily fiddle with the REST API.
 
 A minimal request to create a new ticket can be performed with the following
 command::
@@ -257,7 +257,7 @@ command::
     -H 'Authorization: Basic dGVzdDp0ZXN0' \
     -H 'X-Authorization: Basic dGVzdDp0ZXN0'
 
-``@filename`` is a special cURL syntax that specifies the path to the
+``@filename`` is a special curl syntax that specifies the path to the
 filename to be posted. The basic authorization data is provided manually, as
 it needs to be replicated in the non-standard header "X-Authorization" anyway
 (this is used as a secondary token to prevent CSRF). You can construct the
@@ -268,7 +268,7 @@ authorization hash on the command-line as well with the following::
 Please keep in mind command-line arguments are usually visible to other users
 running on the same system, potentially exposing your password.
 
-.. _cURL: https://curl.haxx.se/
+.. _curl: https://curl.haxx.se/
 
 
 Programming APIs

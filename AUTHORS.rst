@@ -14,7 +14,9 @@ Localization
 :German:		Clemens Egger <clemens.egger@eurac.edu>
 :Italian:		Yuri D'Elia <wavexx@thregr.org>
 :Japanese:		Teruo IWAI <teruo.iwai@gmail.com>
+:Russian:		Олейник О.В <oleg_oleinik@mail.ru>
 :Spanish:		Roberto Salgado <drober@gmail.com>
+:Simplified Cinese:	Guangyu Dong <skyerce@gmail.com>
 
 
 Bundled code

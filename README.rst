@@ -705,7 +705,7 @@ Customisation and development
 
 You are encouraged to change DL as you see fit under the terms of the GNU GPL 2
 license, or (at your option) any later version. DL's GIT repository is publicly
-accessible at::
+accessible at:
 
   https://github.com/DownloadTicketService/dl
 
@@ -743,7 +743,7 @@ Authors and Copyright
 | "dl" is distributed under GNU GPL 2, WITHOUT ANY WARRANTY.
 | Copyright(c) 2007-2016 by Yuri D'Elia <wavexx@thregr.org>.
 
-dl's GIT repository is publicly accessible at::
+dl's GIT repository is publicly accessible at:
 
   https://github.com/DownloadTicketService/dl
 
