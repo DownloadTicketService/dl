@@ -5,12 +5,13 @@ $ref = pageLinkAct();
 pageHeader();
 
 // defaults update
-if(isset($_POST['update']))
+if(isset($_POST['update']) && is_email($_POST['email']))
 {
   // update user settings
-  if(userUpd($auth['name'], null, null, $_POST['email']))
+  $addr = fixEMailAddrs($_POST['email']);
+  if(userUpd($auth['name'], null, null, $addr))
   {
-    $auth['email'] = $_POST['email'];
+    $auth['email'] = $addr;
     infoMessage(T_("Settings update"), T_("Settings successfully updated."));
   }
 }
@@ -22,12 +23,12 @@ if(isset($_POST['update']))
 
     <li>
       <?php
-        $error = (isset($_POST["update"]) && empty($_POST["email"]));
+        $error = (isset($_POST["update"]) && !is_email($_POST['email']));
         $class = "description required" . ($error? " error": "");
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("E-Mail"); ?></label>
       <div>
-	<input name="email" class="element text" type="email" required maxlength="255" value="<?php echo htmlentities($auth['email']); ?>"/>
+	<input name="email" class="element text" type="email" maxlength="255" value="<?php echo htmlentities($auth['email']); ?>"/>
       </div>
       <p class="guidelines"><small>
 	  <?php

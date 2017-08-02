@@ -141,6 +141,12 @@ function getEMailAddrs($str)
 }
 
 
+function is_email($str)
+{
+  return is_string($str) && (empty($str) || filter_var($str, FILTER_VALIDATE_EMAIL));
+}
+
+
 function is_email_list($str)
 {
   if(!is_string($str)) return false;
