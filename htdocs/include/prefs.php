@@ -51,8 +51,10 @@ if(isset($_POST['update']) && is_email($_POST['email']))
 if(!$authRealm)
 {
   // password update
-  if(isset($_POST['changepw']) && !empty($_POST['oldpw'])
-  && !empty($_POST['newpw']) && !empty($_POST['newpw2']))
+  if(isset($_POST['changepw'])
+  && is_string($_POST['oldpw']) && !empty($_POST['oldpw'])
+  && is_string($_POST['newpw']) && !empty($_POST['newpw'])
+  && is_string($_POST['newpw2']) && !empty($_POST['newpw2']))
   {
     // create user
     if($_POST['newpw'] !== $_POST['newpw2'])
