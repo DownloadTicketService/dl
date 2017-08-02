@@ -17,8 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: T_(\n"
 
-#: ../../style/default/include/grantr.php:2
-#: ../newticketr.php:4
+#: ../../style/default/include/grantr.php:2 ../newticketr.php:4
 msgid "Upload result"
 msgstr "Résultat de l'envoi"
 
@@ -26,9 +25,14 @@ msgstr "Résultat de l'envoi"
 msgid "Your file has been uploaded successfully."
 msgstr "Votre fichier a été envoyé avec succès."
 
-#: ../../style/default/include/grantr.php:7
-msgid "A notification link has been sent to the grant owner. Thanks."
-msgstr "Une notification a été envoyée au propriétaire de cette invitation. Merci."
+#: ../../style/default/include/grantr.php:8
+msgid "A notification link has been sent to the grant owner."
+msgstr ""
+
+#: ../../style/default/include/grantr.php:15
+#, php-format
+msgid "The grant is still valid. You can <a href=\"%s\">upload more files</a>."
+msgstr ""
 
 #: ../../style/default/include/nogrant.php:3
 msgid "Invalid grant"
@@ -72,173 +76,275 @@ msgstr "Déconnecté"
 msgid "<em>Close the browser</em> to complete the logout."
 msgstr "<em>Fermez le navigateur</em> pour terminer la session."
 
+#: ../editgrants.php:4
+#, php-format
+msgid "Editing grant %s"
+msgstr ""
+
+#: ../editgrants.php:76 ../edittickets.php:48
+msgid "Current expiration"
+msgstr "Expiration actuelle"
+
+#: ../editgrants.php:77 ../edittickets.php:49
+msgid "Created on"
+msgstr "Créé le"
+
+#: ../editgrants.php:85 ../edittickets.php:63
+msgid "Created by"
+msgstr "Créé par"
+
+#: ../editgrants.php:88
+msgid "Upload link"
+msgstr ""
+
+#: ../editgrants.php:91
+msgid "Upload count"
+msgstr ""
+
+#: ../editgrants.php:93
+msgid "Last upload"
+msgstr ""
+
+#: ../editgrants.php:101 ../edittickets.php:80
+msgid "Initially sent to"
+msgstr "Envoyé à"
+
+#: ../editgrants.php:115 ../newgrants.php:20
+msgid "Notification e-mail"
+msgstr "Notification par e-mail"
+
+#: ../editgrants.php:121 ../newgrants.php:26
+msgid ""
+"Type a <b>mandatory</b> e-mail address (or addresses) that should be "
+"notified when the file is uploaded to the server. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"Vous devez indiquer une ou plusieurs adresses e-mail qui seront notifiées "
+"quand le fichier vous sera envoyé. Séparez les adresses par une virgule."
+
+#: ../editgrants.php:129 ../edittickets.php:107 ../grants.php:41
+#: ../newgrants.php:34 ../newtickets.php:44
+msgid "Comment"
+msgstr "Commentaire"
+
+#: ../editgrants.php:135 ../edittickets.php:113 ../newtickets.php:50
+msgid ""
+"Type an <em>optional</em> comment for your uploaded file. The comment will "
+"be shown along with the file name."
+msgstr ""
+"Insérez un commentaire <em>optionnel</em> pour l'envoi de ce fichier. Celui-"
+"ci sera intégré à l'e-mail qui sera envoyé."
+
+#: ../editgrants.php:142 ../edittickets.php:120 ../prefs.php:125
+msgid "Change password"
+msgstr "Changer le mot de passe"
+
+#: ../editgrants.php:142 ../edittickets.php:120 ../grantp.php:18
+#: ../login.php:25 ../newgrants.php:66 ../newtickets.php:75 ../prefs.php:73
+#: ../ticketp.php:18 ../users.php:107
+msgid "Password"
+msgstr "Mot de passe"
+
+#: ../editgrants.php:147 ../edittickets.php:125 ../newgrants.php:70
+#: ../newtickets.php:79
+msgid "Generate"
+msgstr "Générer"
+
+#: ../editgrants.php:151 ../edittickets.php:129
+msgid "Clear password"
+msgstr "Supprimer le mot de passe"
+
+#: ../editgrants.php:155 ../edittickets.php:133 ../newgrants.php:72
+#: ../newtickets.php:81
+msgid "Send <i>in clear</i> with notifications"
+msgstr ""
+
+#: ../editgrants.php:159 ../newgrants.php:76
+msgid ""
+"Type an <em>optional</em> password that will be required to both upload and "
+"download the file, as an additional security measure."
+msgstr ""
+"Vous pouvez protéger cette demande avec un mot de passe <em>optionnel</em> "
+"pour plus de sécurité."
+
+#: ../editgrants.php:163 ../edittickets.php:140
+msgid "Checking \"Clear password\" will remove the password."
+msgstr ""
+"Cochez la case « Supprimer le mot de passe » pour supprimer le mot de passe."
+
+#: ../editgrants.php:170 ../newgrants.php:84
+msgid "Grant expiry"
+msgstr "Expiration de l'invitation"
+
+#: ../editgrants.php:174 ../editgrants.php:235 ../edittickets.php:146
+#: ../newgrants.php:106 ../newgrants.php:173 ../newtickets.php:114
+msgid "Expire in total # of days"
+msgstr "Expirera dans # jours"
+
+#: ../editgrants.php:180 ../newgrants.php:112
+msgid ""
+"Type the <strong>maximal number of days</strong> the grant is allowed to be "
+"used. After this period is passed the grant will be deleted from the server."
+msgstr ""
+"Indiquez le <strong>nombre maximum de jours</strong> durant lequel "
+"l'invitation peut être utilisée. À l'expiration de ce délai, elle sera "
+"supprimée du serveur."
+
+#: ../editgrants.php:188 ../newgrants.php:120
+msgid "Expire in # of days after last upload"
+msgstr "Expire # jour(s) après le dernier envoi"
+
+#: ../editgrants.php:194 ../newgrants.php:126
+msgid ""
+"Type the number of days the grant is allowed to be used <strong>after any "
+"upload</strong>. After this period is passed without activity, the grant "
+"will be deleted from the server."
+msgstr ""
+"Indiquez le nombre de jours durant lequel l'inviataiont peut être utilisée "
+"<strong>après tout envoi</strong>. Une fois ce délai expiré sans activité, "
+"elle sera supprimée du serveur."
+
+#: ../editgrants.php:202 ../newgrants.php:134
+msgid "Expire after # of uploads"
+msgstr "Expire après # envoi(s)"
+
+#: ../editgrants.php:208 ../newgrants.php:140
+msgid ""
+"Type the number of times the grant file is <strong>allowed to be used in "
+"total</strong>. After this amount is reached the grant will be deleted from "
+"the server."
+msgstr ""
+"Indiquez combien de fois cette invitation <strong>peut être utilisée en "
+"tout</strong>. Une fois ce nombre atteint, elle sera supprimée du serveur."
+
+#: ../editgrants.php:216
+msgid "Permanent grant"
+msgstr ""
+
+#: ../editgrants.php:220 ../editgrants.php:284 ../edittickets.php:195
+msgid "Do not expire"
+msgstr "Pas d'expiration"
+
+#: ../editgrants.php:224
+msgid "Set this checkmark if you do not want the grant to expire."
+msgstr ""
+
+#: ../editgrants.php:231 ../newtickets.php:92
+msgid "Ticket expiry"
+msgstr "Expiration du ticket"
+
+#: ../editgrants.php:241 ../edittickets.php:152 ../newgrants.php:179
+#: ../newtickets.php:120
+msgid ""
+"Type the <strong>maximal number of days</strong> the uploaded file is "
+"allowed to be kept on the server. After this period is passed the file will "
+"be deleted from the server."
+msgstr ""
+"Indiquez le nombre maximal de jours durant lesquels le fichier envoyé pourra "
+"être conservé. Passé ce délai, le fichier sera automatiquement supprimé."
+
+#: ../editgrants.php:250 ../edittickets.php:161 ../newgrants.php:188
+#: ../newtickets.php:129
+msgid "Expire in # of days after last download"
+msgstr "Expirera # jours après le dernier téléchargement"
+
+#: ../editgrants.php:256 ../edittickets.php:167 ../newgrants.php:194
+#: ../newtickets.php:135
+msgid ""
+"Type the number of days the uploaded file is allowed to be kept on the "
+"server <strong>after being downloaded</strong>. After this period is passed "
+"without activity, the file will be deleted from the server."
+msgstr ""
+"Indiquez le nombre de jours pendant lesquels le fichier restera disponible "
+"<strong>après avoir été téléchargé</strong>. Si celui-ci n'est pas "
+"téléchargé pendant le délai indiqué, il sera automatiquement supprimé."
+
+#: ../editgrants.php:265 ../edittickets.php:176 ../newgrants.php:203
+#: ../newtickets.php:144
+msgid "Expire after # of downloads"
+msgstr "Expirera après # téléchargement "
+
+#: ../editgrants.php:271 ../edittickets.php:182 ../newgrants.php:209
+#: ../newtickets.php:150
+msgid ""
+"Type the number of times the uploaded file is <strong>allowed to be "
+"downloaded in total</strong>. After this amount is reached the file will be "
+"deleted from the server."
+msgstr ""
+"Indiquez le nombre total de téléchargements autorisés pour ce fichier. Au-"
+"delà de cette limite, le fichier sera automatiquement supprimé."
+
+#: ../editgrants.php:280 ../edittickets.php:191
+msgid "Permanent ticket / upload"
+msgstr "Ticket permanent / envoi"
+
+#: ../editgrants.php:288 ../edittickets.php:199
+msgid "Set this checkmark if you do not want the uploaded file to expire."
+msgstr "Cochez cette case si vous ne souhaitez pas d'expiration."
+
+#: ../editgrants.php:299 ../edittickets.php:221 ../prefs.php:43
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: ../editgrants.php:300 ../edittickets.php:222 ../grantl.php:112
+#: ../grantla.php:118 ../newgrants.php:225 ../newtickets.php:181
+#: ../ticketl.php:122 ../ticketla.php:130 ../ticketlr.php:133 ../users.php:159
+msgid "Reset"
+msgstr "Réinitialiser"
+
 #: ../edittickets.php:4
 #, php-format
 msgid "Editing ticket %s"
 msgstr "Édition du ticket %s"
 
-#: ../edittickets.php:47
-msgid "Current expiration"
-msgstr "Expiration actuelle"
+#: ../edittickets.php:52 ../ticketlr.php:54
+msgid "From grant"
+msgstr ""
 
-#: ../edittickets.php:48
-msgid "Created on"
-msgstr "Créé le"
-
-#: ../edittickets.php:56
-msgid "Created by"
-msgstr "Créé par"
-
-#: ../edittickets.php:59
+#: ../edittickets.php:66
 msgid "File size"
 msgstr "Taille du fichier"
 
-#: ../edittickets.php:60
+#: ../edittickets.php:67
 msgid "Download link"
 msgstr "Lien de téléchargement"
 
-#: ../edittickets.php:65
+#: ../edittickets.php:70
 msgid "Download count"
 msgstr "Nombre de Téléchargements"
 
-#: ../edittickets.php:66
+#: ../edittickets.php:72
 msgid "Last download"
 msgstr "Dernier téléchargement"
 
-#: ../edittickets.php:75
-msgid "Initially sent to"
-msgstr "Envoyé à"
-
-#: ../edittickets.php:89
+#: ../edittickets.php:94
 msgid "File name"
 msgstr "Nom du fichier"
 
-#: ../edittickets.php:96
+#: ../edittickets.php:101
 msgid "Type the file name of the ticket (<em>including the extension</em>)."
-msgstr "Renseignez le nom de fichier de ce ticket (<em>y compris l'extension</em>)."
+msgstr ""
+"Renseignez le nom de fichier de ce ticket (<em>y compris l'extension</em>)."
 
-#: ../edittickets.php:102
-#: ../grants.php:41
-#: ../newgrants.php:34
-#: ../newtickets.php:44
-msgid "Comment"
-msgstr "Commentaire"
-
-#: ../edittickets.php:108
-#: ../grants.php:47
-#: ../newtickets.php:50
-msgid "Type an <em>optional</em> comment for your uploaded file. The comment will be shown along with the file name."
-msgstr "Insérez un commentaire <em>optionnel</em> pour l'envoi de ce fichier. Celui-ci sera intégré à l'e-mail qui sera envoyé."
-
-#: ../edittickets.php:115
-#: ../prefs.php:122
-msgid "Change password"
-msgstr "Changer le mot de passe"
-
-#: ../edittickets.php:115
-#: ../grantp.php:18
-#: ../login.php:25
-#: ../newgrants.php:66
-#: ../newtickets.php:75
-#: ../prefs.php:70
-#: ../ticketp.php:18
-#: ../users.php:107
-msgid "Password"
-msgstr "Mot de passe"
-
-#: ../edittickets.php:120
-#: ../newgrants.php:69
-#: ../newtickets.php:78
-msgid "Generate"
-msgstr "Générer"
-
-#: ../edittickets.php:126
-msgid "Clear password"
-msgstr "Supprimer le mot de passe"
-
-#: ../edittickets.php:131
-#: ../newtickets.php:82
-msgid "Type an <em>optional</em> password that will be required to download the file, as an additional security measure."
+#: ../edittickets.php:137 ../newtickets.php:85
+msgid ""
+"Type an <em>optional</em> password that will be required to download the "
+"file, as an additional security measure."
 msgstr "Vous pouvez protéger ce fichier avec un mot de passe."
 
-#: ../edittickets.php:134
-msgid "Checking \"Clear password\" will remove the password."
-msgstr "Cochez la case « Supprimer le mot de passe » pour supprimer le mot de passe."
-
-#: ../edittickets.php:140
-#: ../newgrants.php:102
-#: ../newgrants.php:168
-#: ../newtickets.php:110
-msgid "Expire in total # of days"
-msgstr "Expirera dans # jours"
-
-#: ../edittickets.php:146
-#: ../newgrants.php:174
-#: ../newtickets.php:116
-msgid "Type the <strong>maximal number of days</strong> the uploaded file is allowed to be kept on the server. After this period is passed the file will be deleted from the server."
-msgstr "Indiquez le nombre maximal de jours durant lesquels le fichier envoyé pourra être conservé. Passé ce délai, le fichier sera automatiquement supprimé."
-
-#: ../edittickets.php:155
-#: ../newgrants.php:183
-#: ../newtickets.php:125
-msgid "Expire in # of days after last download"
-msgstr "Expirera # jours après le dernier téléchargement"
-
-#: ../edittickets.php:161
-#: ../newgrants.php:189
-#: ../newtickets.php:131
-msgid "Type the number of days the uploaded file is allowed to be kept on the server <strong>after being downloaded</strong>. After this period is passed without activity, the file will be deleted from the server."
-msgstr "Indiquez le nombre de jours pendant lesquels le fichier restera disponible <strong>après avoir été téléchargé</strong>. Si celui-ci n'est pas téléchargé pendant le délai indiqué, il sera automatiquement supprimé."
-
-#: ../edittickets.php:170
-#: ../newgrants.php:198
-#: ../newtickets.php:140
-msgid "Expire after # of downloads"
-msgstr "Expirera après # téléchargement "
-
-#: ../edittickets.php:176
-#: ../newgrants.php:204
-#: ../newtickets.php:146
-msgid "Type the number of times the uploaded file is <strong>allowed to be downloaded in total</strong>. After this amount is reached the file will be deleted from the server."
-msgstr "Indiquez le nombre total de téléchargements autorisés pour ce fichier. Au-delà de cette limite, le fichier sera automatiquement supprimé."
-
-#: ../edittickets.php:185
-msgid "Permanent ticket / upload"
-msgstr "Ticket permanent / envoi"
-
-#: ../edittickets.php:189
-msgid "Do not expire"
-msgstr "Pas d'expiration"
-
-#: ../edittickets.php:193
-msgid "Set this checkmark if you do not want the uploaded file to expire."
-msgstr "Cochez cette case si vous ne souhaitez pas d'expiration."
-
-#: ../edittickets.php:199
-#: ../newtickets.php:158
+#: ../edittickets.php:205 ../newtickets.php:162
 msgid "Get notified by e-mail"
 msgstr "Notification par e-mail"
 
-#: ../edittickets.php:205
-#: ../newtickets.php:165
-msgid "Type an <em>optional</em> e-mail address (or addresses) that should be notified when the file is downloaded from the server. You can separate multiple addresses with commas."
-msgstr "Vous pouvez indiquer une ou plusieurs adresses e-mail qui recevront un message lorsque le fichier sera téléchargé. Séparez les adresses par une virgule."
-
-#: ../edittickets.php:215
-#: ../prefs.php:42
-msgid "Update"
-msgstr "Mettre à jour"
-
-#: ../edittickets.php:216
-#: ../grantl.php:99
-#: ../grantla.php:100
-#: ../newgrants.php:220
-#: ../newtickets.php:177
-#: ../ticketl.php:118
-#: ../ticketla.php:119
-#: ../users.php:159
-msgid "Reset"
-msgstr "Réinitialiser"
+#: ../edittickets.php:211 ../newtickets.php:169
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should be "
+"notified when the file is downloaded from the server. You can separate "
+"multiple addresses with commas."
+msgstr ""
+"Vous pouvez indiquer une ou plusieurs adresses e-mail qui recevront un "
+"message lorsque le fichier sera téléchargé. Séparez les adresses par une "
+"virgule."
 
 #: ../funcs.php:80
 #, php-format
@@ -262,44 +368,51 @@ msgstr "%s o"
 
 #: ../funcs.php:92
 #, php-format
+msgid "%d years"
+msgstr ""
+
+#: ../funcs.php:94
+#, php-format
+msgid "%d months"
+msgstr ""
+
+#: ../funcs.php:96
+#, php-format
 msgid "%d days"
 msgstr "%d jours"
 
-#: ../funcs.php:94
+#: ../funcs.php:98
 #, php-format
 msgid "%d hours"
 msgstr "%d heures"
 
-#: ../funcs.php:96
+#: ../funcs.php:100
 #, php-format
 msgid "%d minutes"
 msgstr "%d minutes"
 
-#: ../funcs.php:97
+#: ../funcs.php:101
 #, php-format
 msgid "%d seconds"
 msgstr "%d secondes"
 
-#: ../funcs.php:210
+#: ../funcs.php:240
 msgid "file too big"
 msgstr "Ce fichier dépasse la taille maximale autorisée."
 
-#: ../funcs.php:215
+#: ../funcs.php:245
 msgid "upload interrupted"
 msgstr "envoi interrompu"
 
-#: ../funcs.php:219
+#: ../funcs.php:249
 msgid "internal error"
 msgstr "erreur interne"
 
-#: ../grant.php:49
-#: ../ticketfuncs.php:106
+#: ../grant.php:58 ../ticketfuncs.php:107
 msgid "Archive contents:"
 msgstr ""
 
-#: ../grantfuncs.php:23
-#: ../grantfuncs.php:33
-#: ../ticketfuncs.php:22
+#: ../grantfuncs.php:23 ../grantfuncs.php:33 ../ticketfuncs.php:22
 #: ../ticketfuncs.php:32
 #, php-format
 msgid "About %s"
@@ -320,97 +433,88 @@ msgstr "Après %d envoi(s)"
 msgid "%s after next upload"
 msgstr "%s après le prochain envoi"
 
-#: ../grantfuncs.php:49
-#: ../ticketfuncs.php:48
+#: ../grantfuncs.php:49 ../ticketfuncs.php:48
 #, php-format
 msgid "In %s"
 msgstr "Dans %s"
 
-#: ../grantfuncs.php:53
-#: ../ticketfuncs.php:52
+#: ../grantfuncs.php:53 ../ticketfuncs.php:52
 msgid "Never"
 msgstr "Jamais"
 
-#: ../grantl.php:33
-#: ../grantla.php:29
-#: ../ticketl.php:33
-#: ../ticketla.php:29
+#: ../grantl.php:33 ../grantla.php:29 ../ticketl.php:33 ../ticketla.php:29
+#: ../ticketlr.php:33
 msgid "Purged"
 msgstr "Supprimé"
 
-#: ../grantl.php:49
-#: ../grantla.php:45
+#: ../grantl.php:50 ../grantla.php:46
 msgid "Grant"
 msgstr "Invitation"
 
-#: ../grantl.php:50
-#: ../grantla.php:47
-#: ../ticketl.php:54
-#: ../ticketla.php:51
+#: ../grantl.php:51 ../grantla.php:48 ../ticketl.php:55 ../ticketla.php:51
+#: ../ticketlr.php:57
 msgid "Date"
 msgstr "Date"
 
-#: ../grantl.php:51
-#: ../grantla.php:48
-#: ../ticketl.php:55
-#: ../ticketla.php:52
+#: ../grantl.php:52 ../grantla.php:49 ../ticketl.php:56 ../ticketla.php:52
+#: ../ticketlr.php:58
 msgid "Expiration"
 msgstr "Expiration"
 
-#: ../grantl.php:70
-#: ../grantla.php:68
-#: ../grants.php:55
-#: ../newgrantr.php:41
-#: ../newtickets.php:176
+#: ../grantl.php:73 ../grantla.php:71
+msgid "Successfully uploaded"
+msgstr ""
+
+#: ../grantl.php:80 ../grantla.php:78 ../grants.php:55 ../newgrantr.php:41
+#: ../newtickets.php:180
 msgid "Upload"
 msgstr "Envoyer"
 
-#: ../grantl.php:75
-#: ../grantla.php:73
-#: ../ticketl.php:89
-#: ../ticketla.php:87
+#: ../grantl.php:85 ../grantla.php:83 ../ticketl.php:90 ../ticketla.php:88
+#: ../ticketlr.php:92
 msgid "Purge"
 msgstr "Purger"
 
-#: ../grantl.php:98
-#: ../grantla.php:99
-#: ../ticketl.php:117
-#: ../ticketla.php:118
-#: ../users.php:158
+#: ../grantl.php:111 ../grantla.php:117 ../ticketl.php:121 ../ticketla.php:129
+#: ../ticketlr.php:132 ../users.php:158
 msgid "Reload"
 msgstr "Actualiser"
 
-#: ../grantl.php:100
-#: ../grantla.php:101
-#: ../ticketl.php:119
-#: ../ticketla.php:120
+#: ../grantl.php:113 ../grantla.php:119 ../ticketl.php:123 ../ticketla.php:131
+#: ../ticketlr.php:134
 msgid "Select all"
 msgstr "Tout sélectionner"
 
-#: ../grantl.php:101
-#: ../grantla.php:102
-#: ../ticketl.php:120
-#: ../ticketla.php:121
+#: ../grantl.php:114 ../grantla.php:120 ../ticketl.php:124 ../ticketla.php:132
+#: ../ticketlr.php:135
 msgid "Purge selected"
 msgstr "Purger la sélection"
 
-#: ../grantla.php:46
-#: ../login.php:13
-#: ../ticketla.php:49
-#: ../users.php:70
+#: ../grantla.php:47 ../login.php:13 ../ticketla.php:49 ../users.php:70
 #: ../users.php:106
 msgid "User"
 msgstr "Utilisateur"
 
-#: ../grantp.php:3
-#: ../ticketp.php:3
+#: ../grantla.php:111
+msgid "Regular grant"
+msgstr ""
+
+#: ../grantla.php:112
+msgid "Your grant"
+msgstr ""
+
+#: ../grantp.php:3 ../ticketp.php:3
 msgid "Password required"
 msgstr "Un mot de passe est demandé"
 
 #: ../grantp.php:6
 #, php-format
-msgid "The grant %s is protected. Please enter the password to proceed to the upload."
-msgstr "L'invitation %s est protégée. Veuillez saisir le mot de passe pour procéder à l'envoi."
+msgid ""
+"The grant %s is protected. Please enter the password to proceed to the "
+"upload."
+msgstr ""
+"L'invitation %s est protégée. Veuillez saisir le mot de passe pour procéder "
+"à l'envoi."
 
 #: ../grantp.php:24
 msgid "Type the password required for the upload."
@@ -424,24 +528,30 @@ msgstr "Soumettre"
 msgid "Upload grant"
 msgstr "Invitation d'envoi"
 
-#: ../grants.php:6
-#: ../newtickets.php:8
+#: ../grants.php:6 ../newtickets.php:8
 msgid "Upload failed"
 msgstr "Échec de l'envoi"
 
-#: ../grants.php:18
-#: ../newtickets.php:21
+#: ../grants.php:18 ../newtickets.php:21
 msgid "Upload file/s"
 msgstr "Envoyer un ou plusieurs fichiers"
 
-#: ../grants.php:33
-#: ../newtickets.php:36
+#: ../grants.php:33 ../newtickets.php:36
 #, php-format
-msgid "Choose which file/s to upload. You can upload up to %d files for a total of %s."
-msgstr "Sélectionnez le ou les fichier à envoyer. Vous pouvez envoyer jusqu'à %d fichiers pour un total de %s."
+msgid ""
+"Choose which file/s to upload. You can upload up to %d files for a total of "
+"%s."
+msgstr ""
+"Sélectionnez le ou les fichier à envoyer. Vous pouvez envoyer jusqu'à %d "
+"fichiers pour un total de %s."
 
-#: ../login.php:4
-#: ../login.php:38
+#: ../grants.php:47
+msgid ""
+"Type an <em>optional</em> comment for your uploaded file/s. The comment will "
+"be sent back to the grant owner."
+msgstr ""
+
+#: ../login.php:4 ../login.php:38
 msgid "Login"
 msgstr "Login"
 
@@ -451,89 +561,95 @@ msgstr "Renseignez votre nom d'utilisateur pour accéder à ce service."
 
 #: ../login.php:31
 msgid "Type the password to access the filesharing service."
-msgstr "Renseignez votre mot de passe pour accéder au service de partage de fichiers."
+msgstr ""
+"Renseignez votre mot de passe pour accéder au service de partage de fichiers."
 
 #: ../msg.php:6
 #, php-format
 msgid "[dl] download link to %s"
 msgstr "[dl] lien pour le téléchargement de %s"
 
-#: ../msg.php:12
-#: ../msg.php:53
-#: ../msg.php:89
+#: ../msg.php:8
+msgid "Ticket comment:"
+msgstr ""
+
+#: ../msg.php:9 ../msg.php:47 ../msg.php:80
 msgid "URL:"
 msgstr "URL:"
 
-#: ../msg.php:13
-#: ../msg.php:54
-#: ../msg.php:90
+#: ../msg.php:11 ../msg.php:49 ../msg.php:82
 msgid "Password:"
 msgstr "Mot de passe:"
 
-#: ../msg.php:21
+#: ../msg.php:18
 #, php-format
 msgid "[dl] ticket %s download notification"
 msgstr "[dl] notification de téléchargement du ticket %s"
 
-#: ../msg.php:22
+#: ../msg.php:19
 #, php-format
 msgid "The ticket %s was downloaded by %s from %s"
 msgstr "Le ticket %s a été téléchargé par %s à partir de %s"
 
-#: ../msg.php:30
-#: ../msg.php:39
+#: ../msg.php:27 ../msg.php:36
 #, php-format
 msgid "[dl] ticket %s purge notification"
 msgstr "[dl] notification de suppression du ticket %s"
 
-#: ../msg.php:31
+#: ../msg.php:28
 #, php-format
 msgid "The ticket %s was purged manually after %d downloads from %s"
-msgstr "Le ticket %s a été supprimé manuellement après %d téléchargements à partir de %s"
+msgstr ""
+"Le ticket %s a été supprimé manuellement après %d téléchargements à partir "
+"de %s"
 
-#: ../msg.php:40
+#: ../msg.php:37
 #, php-format
 msgid "The ticket %s expired automatically after %d downloads from %s"
-msgstr "Le ticket %s a expiré automatiquement après %d téléchargements à partir de %s"
+msgstr ""
+"Le ticket %s a expiré automatiquement après %d téléchargements à partir de %s"
 
-#: ../msg.php:47
+#: ../msg.php:44
 msgid "[dl] upload grant link"
 msgstr "[dl] lien d'invitation d'envoi"
 
-#: ../msg.php:62
-#: ../msg.php:70
+#: ../msg.php:46 ../msg.php:77
+msgid "Grant comment:"
+msgstr ""
+
+#: ../msg.php:56 ../msg.php:64
 #, php-format
 msgid "[dl] grant %s purge notification"
 msgstr "[dl] notification de suppression de l'invitation %s"
 
-#: ../msg.php:63
+#: ../msg.php:57
 #, php-format
 msgid "The grant %s was purged manually from %s"
 msgstr "L'invitation %s a été supprimée manuellement depuis %s"
 
-#: ../msg.php:71
+#: ../msg.php:65
 #, php-format
 msgid "The grant %s expired automatically from %s"
 msgstr "L'invitation %s a expiré automatiquement à partir de %s"
 
-#: ../msg.php:78
+#: ../msg.php:72
 #, php-format
 msgid "[dl] download link for grant %s"
 msgstr "[dl] lien pour le téléchargement de l'invitation %s"
 
+#: ../msg.php:73
+#, php-format
+msgid "Your grant %s has been used on %s by %s."
+msgstr ""
+
 #: ../msg.php:79
 #, php-format
-msgid "Your grant %s has been used on %s by %s"
-msgstr "Votre invitation %s a été utilisée depuis %s par %s"
-
-#: ../msg.php:83
-#, php-format
-msgid ""
-"The uploaded file (%s) is now available to be downloaded at:\n"
-"\n"
+msgid "The uploaded file (%s) is now available to be downloaded at:"
 msgstr ""
-"Le fichier envoyé (%s) est désormais disponible au téléchargement à l'adresse :\n"
-"\n"
+
+#: ../msg.php:84
+msgid "Upload comment:"
+msgstr ""
 
 #: ../newgrantr.php:4
 msgid "Grant result"
@@ -544,8 +660,7 @@ msgstr "Résultat de l'invitation"
 msgid "Your grant %s"
 msgstr "Votre invitation %s"
 
-#: ../newgrantr.php:20
-#: ../newticketr.php:20
+#: ../newgrantr.php:20 ../newticketr.php:20
 msgid "The required password is:"
 msgstr "Le mot de passe requis est :"
 
@@ -553,8 +668,7 @@ msgstr "Le mot de passe requis est :"
 msgid "A grant link has been sent to:"
 msgstr "Un lien pour cette invitation a été envoyé à :"
 
-#: ../newgrantr.php:40
-#: ../newticketr.php:40
+#: ../newgrantr.php:40 ../newticketr.php:40
 msgid "Send via e-mail"
 msgstr "Envoyer par e-mail"
 
@@ -562,103 +676,77 @@ msgstr "Envoyer par e-mail"
 msgid "Grant parameters"
 msgstr "Paramètres de l'invitation"
 
-#: ../newgrants.php:20
-msgid "Notification e-mail"
-msgstr "Notification par e-mail"
-
-#: ../newgrants.php:26
-msgid "Type a <b>mandatory</b> e-mail address (or addresses) that should be notified when the file is uploaded to the server. You can separate multiple addresses with commas."
-msgstr "Vous devez indiquer une ou plusieurs adresses e-mail qui seront notifiées quand le fichier vous sera envoyé. Séparez les adresses par une virgule."
-
 #: ../newgrants.php:40
-msgid "Type an <em>optional</em> comment for your upload grant and resulting ticket. The comment will be shown along with the grant and ticket information."
-msgstr "Insérez un commentaire <em>optionnel</em> pour l'envoi de ce fichier. Celui-ci sera intégré à l'e-mail qui sera envoyé."
+msgid ""
+"Type an <em>optional</em> comment for your upload grant and resulting "
+"ticket. The comment will be shown along with the grant and ticket "
+"information."
+msgstr ""
+"Insérez un commentaire <em>optionnel</em> pour l'envoi de ce fichier. Celui-"
+"ci sera intégré à l'e-mail qui sera envoyé."
 
-#: ../newgrants.php:48
-#: ../newtickets.php:57
+#: ../newgrants.php:48 ../newtickets.php:57
 msgid "Send link to e-mail"
 msgstr "Envoyer le lien par e-mail"
 
 #: ../newgrants.php:54
-msgid "Type an <em>optional</em> e-mail address (or addresses) that should immediately receive the link to the upload grant. You can separate multiple addresses with commas."
-msgstr "Vous pouvez indiquer une (ou plusieurs) adresses e-mail <em>optionnelles</em> qui recevront un lien vers le formulaire d'envoi. Séparez les adresses par une virgule."
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should "
+"immediately receive the link to the upload grant. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"Vous pouvez indiquer une (ou plusieurs) adresses e-mail <em>optionnelles</"
+"em> qui recevront un lien vers le formulaire d'envoi. Séparez les adresses "
+"par une virgule."
 
-#: ../newgrants.php:62
-#: ../newtickets.php:71
+#: ../newgrants.php:62 ../newtickets.php:71
 msgid "Advanced"
 msgstr "Paramètres avancés"
 
-#: ../newgrants.php:73
-msgid "Type an <em>optional</em> password that will be required to both upload and download the file, as an additional security measure."
-msgstr "Vous pouvez protéger cette demande avec un mot de passe <em>optionnel</em> pour plus de sécurité."
-
-#: ../newgrants.php:81
-msgid "Grant expiry"
-msgstr "Expiration de l'invitation"
-
-#: ../newgrants.php:84
-#: ../newgrants.php:150
-#: ../newtickets.php:92
+#: ../newgrants.php:87 ../newgrants.php:154 ../newtickets.php:95
 msgid "Automatic"
 msgstr "Automatique"
 
-#: ../newgrants.php:85
-#: ../newgrants.php:151
-#: ../newtickets.php:93
+#: ../newgrants.php:88 ../newgrants.php:155 ../newtickets.php:96
 msgid "Single use"
 msgstr "Usage unique"
 
-#: ../newgrants.php:86
-#: ../newgrants.php:152
-#: ../newtickets.php:94
+#: ../newgrants.php:89 ../newgrants.php:156 ../newtickets.php:97
 msgid "No expiration"
 msgstr "Aucune"
 
-#: ../newgrants.php:87
-#: ../newgrants.php:153
-#: ../newtickets.php:95
+#: ../newgrants.php:90 ../newgrants.php:157 ../newtickets.php:98
 msgid "Custom"
 msgstr "Personnalisée"
 
-#: ../newgrants.php:92
-msgid "Select the expiration logic of the grant. <strong>Automatic</strong> will keep the grant as long as it's being actively used. <strong>Single use</strong> allows <em>only one upload</em> to be performed. <strong>No expiration</strong> will never remove the grant automatically."
-msgstr "Sélectionnez la logique d'expiration de l'invitation. <strong>Automatique</strong> la conserve tant qu'elle est utilisées, <strong>usage unique</strong> ne permet <em>qu'un seul envoi</em>, <strong>aucune</strong> empêche sa suppression automatique."
+#: ../newgrants.php:96
+#, php-format
+msgid ""
+"Select the expiration logic of the grant. <strong>Automatic</strong> will "
+"keep the grant as long as it's being actively used for up to %s. "
+"<strong>Single use</strong> allows <em>only one upload</em> to be performed. "
+"<strong>No expiration</strong> will never remove the grant automatically."
+msgstr ""
 
-#: ../newgrants.php:108
-msgid "Type the <strong>maximal number of days</strong> the grant is allowed to be used. After this period is passed the grant will be deleted from the server."
-msgstr "Indiquez le <strong>nombre maximum de jours</strong> durant lequel l'invitation peut être utilisée. À l'expiration de ce délai, elle sera supprimée du serveur."
-
-#: ../newgrants.php:116
-msgid "Expire in # of days after last upload"
-msgstr "Expire # jour(s) après le dernier envoi"
-
-#: ../newgrants.php:122
-msgid "Type the number of days the grant is allowed to be used <strong>after any upload</strong>. After this period is passed without activity, the grant will be deleted from the server."
-msgstr "Indiquez le nombre de jours durant lequel l'inviataiont peut être utilisée <strong>après tout envoi</strong>. Une fois ce délai expiré sans activité, elle sera supprimée du serveur."
-
-#: ../newgrants.php:130
-msgid "Expire after # of uploads"
-msgstr "Expire après # envoi(s)"
-
-#: ../newgrants.php:136
-msgid "Type the number of times the grant file is <strong>allowed to be used in total</strong>. After this amount is reached the grant will be deleted from the server."
-msgstr "Indiquez combien de fois cette invitation <strong>peut être utilisée en tout</strong>. Une fois ce nombre atteint, elle sera supprimée du serveur."
-
-#: ../newgrants.php:147
+#: ../newgrants.php:151
 msgid "Upload expiry"
 msgstr "Expiration du fichier envoyé"
 
-#: ../newgrants.php:158
-msgid "Select the expiration logic of the upload. <strong>Automatic</strong> will keep the upload as long as it's being actively downloaded/used. <strong>Single use</strong> allows <em>only one download</em> to be performed. <strong>No expiration</strong> will never remove the upload automatically."
-msgstr "Sélectionnez la logique d'expiration du fichier envoyé par cette invitation. <strong>Automatique</strong> conservera le fichier tant qu'il est utilisé, <strong>usage unique</strong> ne permet <em>qu'un seul téléchargement</em>, <strong>aucune</strong> empêche la suppression automatique du fichier envoyé."
+#: ../newgrants.php:163
+#, php-format
+msgid ""
+"Select the expiration logic of the upload. <strong>Automatic</strong> will "
+"keep the upload as long as it's being actively downloaded/used for up to %s. "
+"<strong>Single use</strong> allows <em>only one download</em> to be "
+"performed. <strong>No expiration</strong> will never remove the upload "
+"automatically."
+msgstr ""
 
-#: ../newgrants.php:219
-#: ../users.php:150
+#: ../newgrants.php:224 ../users.php:150
 msgid "Create"
 msgstr "Créer"
 
-#: ../newgrants.php:221
-#: ../newtickets.php:178
+#: ../newgrants.php:226 ../newtickets.php:182
 msgid "Set as defaults"
 msgstr "Mémoriser ces paramètres"
 
@@ -671,26 +759,31 @@ msgstr "Votre ticket %s"
 msgid "A download link has been sent to:"
 msgstr "Un lien de téléchargement a été envoyé à :"
 
-#: ../newticketr.php:41
-#: ../ticketl.php:84
-#: ../ticketla.php:82
+#: ../newticketr.php:41 ../ticketl.php:85 ../ticketla.php:83 ../ticketlr.php:87
 #: ../ticketp.php:31
 msgid "Download"
 msgstr "Télécharger"
 
 #: ../newtickets.php:63
-msgid "Type an <em>optional</em> e-mail address (or addresses) that should immediately receive the link to the ticket. You can separate multiple addresses with commas."
-msgstr "Indiquez la ou les adresses e-mail des destinataires de ce fichier <em>optionnel</em>. Séparez les adresses par une virgule."
+msgid ""
+"Type an <em>optional</em> e-mail address (or addresses) that should "
+"immediately receive the link to the ticket. You can separate multiple "
+"addresses with commas."
+msgstr ""
+"Indiquez la ou les adresses e-mail des destinataires de ce fichier "
+"<em>optionnel</em>. Séparez les adresses par une virgule."
 
-#: ../newtickets.php:89
-msgid "Ticket expiry"
-msgstr "Expiration du ticket"
+#: ../newtickets.php:104
+#, php-format
+msgid ""
+"Select the expiration logic of the ticket. <strong>Automatic</strong> will "
+"keep the ticket as long as it's being actively downloaded/used for up to %s. "
+"<strong>Single use</strong> allows <em>only one download</em> to be "
+"performed. <strong>No expiration</strong> will never remove the ticket "
+"automatically."
+msgstr ""
 
-#: ../newtickets.php:100
-msgid "Select the expiration logic of the ticket. <strong>Automatic</strong> will keep the ticket as long as it's being actively downloaded/used. <strong>Single use</strong> allows <em>only one download</em> to be performed. <strong>No expiration</strong> will never remove the ticket automatically."
-msgstr "Sélectionnez la logique d'expiration du ticket. <strong>Automatique</strong> le conservera tant qu'il est utilisé, <strong>usage unique</strong> ne permet <em>qu'un seul téléchargement</em>, <strong>aucune</strong> empêche la suppression automatique du ticket."
-
-#: ../newtickets.php:161
+#: ../newtickets.php:165
 msgid "Use my e-mail"
 msgstr "Utiliser mon adresse"
 
@@ -711,88 +804,95 @@ msgid "Active grants"
 msgstr "Invitations actives"
 
 #: ../pages.php:10
+msgid "Received files"
+msgstr ""
+
+#: ../pages.php:11
 msgid "Preferences"
 msgstr "Préférences"
 
-#: ../pages.php:11
+#: ../pages.php:12
 msgid "Manage users"
 msgstr "Gestion des utilisateurs"
 
-#: ../pages.php:12
+#: ../pages.php:13
 msgid "All tickets"
 msgstr "Tous les tickets"
 
-#: ../pages.php:13
+#: ../pages.php:14
 msgid "All grants"
 msgstr "Toutes les invitations"
 
-#: ../pages.php:60
+#: ../pages.php:61
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: ../pages.php:61
+#: ../pages.php:62
 msgid "Help"
 msgstr "Aide"
 
-#: ../prefs.php:14
+#: ../prefs.php:15
 msgid "Settings successfully updated."
 msgstr "Les paramètres ont été mis à jour avec succès"
 
-#: ../prefs.php:14
+#: ../prefs.php:15
 msgid "Settings update"
 msgstr "Mise à jour des paramètres"
 
-#: ../prefs.php:21
+#: ../prefs.php:22
 msgid "Defaults"
 msgstr "Valeurs par défaut"
 
-#: ../prefs.php:28
+#: ../prefs.php:29
 msgid "E-Mail"
 msgstr "E-mail"
 
-#: ../prefs.php:34
-msgid "Type a <b>mandatory</b> e-mail address that will be used as a default for notifications."
-msgstr "Entrez une adresse e-mail qui sera utilisée par défaut pour les notifications."
+#: ../prefs.php:35
+msgid ""
+"Type a <b>mandatory</b> e-mail address that will be used as a default for "
+"notifications."
+msgstr ""
+"Entrez une adresse e-mail qui sera utilisée par défaut pour les "
+"notifications."
 
-#: ../prefs.php:58
+#: ../prefs.php:61
 msgid "New passwords don't match! Password unchanged."
 msgstr "Votre mot de passe n'a pas été changé."
 
-#: ../prefs.php:58
-#: ../prefs.php:60
-#: ../prefs.php:64
+#: ../prefs.php:61 ../prefs.php:63 ../prefs.php:67
 msgid "Password change"
 msgstr "Modifier votre mot de passe"
 
-#: ../prefs.php:60
+#: ../prefs.php:63
 msgid "Old password doesn't match! Password unchanged."
-msgstr "L'ancien mot de passe est invalide ! Votre mot de passe n'a pas été modifié."
+msgstr ""
+"L'ancien mot de passe est invalide ! Votre mot de passe n'a pas été modifié."
 
-#: ../prefs.php:64
+#: ../prefs.php:67
 msgid "Password successfully changed."
 msgstr "Votre mot de passe a été modifié."
 
-#: ../prefs.php:77
+#: ../prefs.php:80
 msgid "Old password"
 msgstr "Ancien mot de passe"
 
-#: ../prefs.php:83
+#: ../prefs.php:86
 msgid "Please type your current password."
 msgstr "Veuillez saisir votre mot de passe actuel."
 
-#: ../prefs.php:93
+#: ../prefs.php:96
 msgid "New password"
 msgstr "Nouveau mot de passe"
 
-#: ../prefs.php:99
+#: ../prefs.php:102
 msgid "Please type the new password."
 msgstr "Veuillez saisir votre nouveau mot de passe"
 
-#: ../prefs.php:109
+#: ../prefs.php:112
 msgid "New password (retype)"
 msgstr "Nouveau mot de passe (confirmation)"
 
-#: ../prefs.php:115
+#: ../prefs.php:118
 msgid "Please <em>retype</em> the new password again."
 msgstr "Veuillez <em>resaisir</em> votre nouveau mot de passe."
 
@@ -811,31 +911,55 @@ msgstr "Après %d téléchargements"
 msgid "%s after next download"
 msgstr "%s après le prochain téléchargement"
 
-#: ../ticketl.php:52
-#: ../ticketla.php:48
+#: ../ticketl.php:53 ../ticketla.php:48 ../ticketlr.php:55
 msgid "Ticket"
 msgstr "Ticket"
 
-#: ../ticketl.php:53
-#: ../ticketla.php:50
+#: ../ticketl.php:54 ../ticketla.php:50 ../ticketlr.php:56
 msgid "Size"
 msgstr "Taille"
 
-#: ../ticketl.php:77
-#: ../ticketla.php:75
+#: ../ticketl.php:78 ../ticketla.php:76 ../ticketlr.php:80
 msgid "Successfully downloaded"
 msgstr "Téléchargement terminé avec succès"
 
-#: ../ticketl.php:125
-#: ../ticketla.php:126
+#: ../ticketl.php:129
+#, php-format
+msgid "Total ticket size: %s"
+msgstr ""
+
+#: ../ticketla.php:121
+msgid "Regular ticket"
+msgstr ""
+
+#: ../ticketla.php:122
+msgid "Regular ticket (yours)"
+msgstr ""
+
+#: ../ticketla.php:123
+msgid "Received ticket"
+msgstr ""
+
+#: ../ticketla.php:124
+msgid "Received ticket (yours)"
+msgstr ""
+
+#: ../ticketla.php:137
 #, php-format
 msgid "Total archive size: %s"
 msgstr "Taille totale de l'archive : %s"
 
+#: ../ticketlr.php:140
+#, php-format
+msgid "Total received size: %s"
+msgstr ""
+
 #: ../ticketp.php:6
 #, php-format
-msgid "The ticket %s is protected. Please enter the password to unlock the content."
-msgstr "Le ticket %s est protégé. Veuillez saisir le mot de passe pour y accéder."
+msgid ""
+"The ticket %s is protected. Please enter the password to unlock the content."
+msgstr ""
+"Le ticket %s est protégé. Veuillez saisir le mot de passe pour y accéder."
 
 #: ../ticketp.php:24
 msgid "Type the password required to unlock this ticket."
@@ -890,21 +1014,81 @@ msgstr "Supprimer la sélection"
 msgid "Apply changes"
 msgstr "Appliquer les changements"
 
+#~ msgid "A notification link has been sent to the grant owner. Thanks."
+#~ msgstr ""
+#~ "Une notification a été envoyée au propriétaire de cette invitation. Merci."
+
+#~ msgid "Your grant %s has been used on %s by %s"
+#~ msgstr "Votre invitation %s a été utilisée depuis %s par %s"
+
+#~ msgid ""
+#~ "The uploaded file (%s) is now available to be downloaded at:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Le fichier envoyé (%s) est désormais disponible au téléchargement à "
+#~ "l'adresse :\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Select the expiration logic of the grant. <strong>Automatic</strong> will "
+#~ "keep the grant as long as it's being actively used. <strong>Single use</"
+#~ "strong> allows <em>only one upload</em> to be performed. <strong>No "
+#~ "expiration</strong> will never remove the grant automatically."
+#~ msgstr ""
+#~ "Sélectionnez la logique d'expiration de l'invitation. "
+#~ "<strong>Automatique</strong> la conserve tant qu'elle est utilisées, "
+#~ "<strong>usage unique</strong> ne permet <em>qu'un seul envoi</em>, "
+#~ "<strong>aucune</strong> empêche sa suppression automatique."
+
+#~ msgid ""
+#~ "Select the expiration logic of the upload. <strong>Automatic</strong> "
+#~ "will keep the upload as long as it's being actively downloaded/used. "
+#~ "<strong>Single use</strong> allows <em>only one download</em> to be "
+#~ "performed. <strong>No expiration</strong> will never remove the upload "
+#~ "automatically."
+#~ msgstr ""
+#~ "Sélectionnez la logique d'expiration du fichier envoyé par cette "
+#~ "invitation. <strong>Automatique</strong> conservera le fichier tant qu'il "
+#~ "est utilisé, <strong>usage unique</strong> ne permet <em>qu'un seul "
+#~ "téléchargement</em>, <strong>aucune</strong> empêche la suppression "
+#~ "automatique du fichier envoyé."
+
+#~ msgid ""
+#~ "Select the expiration logic of the ticket. <strong>Automatic</strong> "
+#~ "will keep the ticket as long as it's being actively downloaded/used. "
+#~ "<strong>Single use</strong> allows <em>only one download</em> to be "
+#~ "performed. <strong>No expiration</strong> will never remove the ticket "
+#~ "automatically."
+#~ msgstr ""
+#~ "Sélectionnez la logique d'expiration du ticket. <strong>Automatique</"
+#~ "strong> le conservera tant qu'il est utilisé, <strong>usage unique</"
+#~ "strong> ne permet <em>qu'un seul téléchargement</em>, <strong>aucune</"
+#~ "strong> empêche la suppression automatique du ticket."
+
 #~ msgid "Ticket parameters"
 #~ msgstr "Paramètres du ticket"
 
-#~ msgid "Type the <strong>maximal number of days</strong> the server should wait for the upload grant to be used.  After this period is passed without activity, the grant is removed the server."
-#~ msgstr "Indiquez le <strong>nombre maximal de jours</strong> durant lesquels cette invitation pourra être utilisée. Passé ce délai le destinataire de cette demande ne pourra plus envoyer de fichier."
+#~ msgid ""
+#~ "Type the <strong>maximal number of days</strong> the server should wait "
+#~ "for the upload grant to be used.  After this period is passed without "
+#~ "activity, the grant is removed the server."
+#~ msgstr ""
+#~ "Indiquez le <strong>nombre maximal de jours</strong> durant lesquels "
+#~ "cette invitation pourra être utilisée. Passé ce délai le destinataire de "
+#~ "cette demande ne pourra plus envoyer de fichier."
 
 #~ msgid ""
-#~ "Your grant %s has been used by %s. The uploaded file is now available to be downloaded at:\n"
+#~ "Your grant %s has been used by %s. The uploaded file is now available to "
+#~ "be downloaded at:\n"
 #~ "\n"
 #~ msgstr ""
-#~ "Votre invitation %s a été utilisée par %s. Le fichier envoyé est maintenant disponible pour être téléchargé à l'adresse:\n"
+#~ "Votre invitation %s a été utilisée par %s. Le fichier envoyé est "
+#~ "maintenant disponible pour être téléchargé à l'adresse:\n"
 #~ "\n"
 
 #~ msgid "Choose which file to upload. You can upload up to %s."
-#~ msgstr "Sélectionner le fichier à envoyer. La taille maximale du fichier est %s"
+#~ msgstr ""
+#~ "Sélectionner le fichier à envoyer. La taille maximale du fichier est %s"
 
 #~ msgid "Upload a file"
 #~ msgstr "Envoyer un fichier"
