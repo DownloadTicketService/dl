@@ -14,7 +14,7 @@ pageHeader();
 
     <li>
       <?php
-        $error = ((@$_POST["submit"] === $act) && empty($_POST["nt"]));
+        $error = ((@$_POST["submit"] === $act) && empty($_POST["notify"]));
         $class = "description required" . ($error? " error": "");
       ?>
       <label class="<?php echo $class; ?>"><?php echo T_("Notification e-mail"); ?></label>

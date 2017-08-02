@@ -141,6 +141,26 @@ function getEMailAddrs($str)
 }
 
 
+function is_email_list($str)
+{
+  if(!is_string($str)) return false;
+  foreach(getEmailAddrs(fixEMailAddrs($str)) as $addr)
+  {
+    if(!filter_var($addr, FILTER_VALIDATE_EMAIL))
+      return false;
+  }
+  return true;
+}
+
+
+function is_email_list1($str)
+{
+  if(!is_string($str)) return false;
+  $addrs = getEmailAddrs(fixEMailAddrs($str));
+  return count($addrs) && filter_var($addrs[0], FILTER_VALIDATE_EMAIL);
+}
+
+
 function includeTemplate($file, $vars = array())
 {
   global $ref, $langData, $locale, $style, $banner;
@@ -264,7 +284,7 @@ function anyOf()
 
 function not_empty(&$v)
 {
-  return !empty($v);
+  return isset($v) && !empty(trim($v));
 }
 
 

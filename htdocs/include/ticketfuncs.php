@@ -160,8 +160,8 @@ $ticketRestParams = array
   'ticket_maxdl'     => 'is_numeric_int',
   'ticket_expiry'    => 'is_expiry_choice',
   'ticket_permanent' => 'is_boolean',
-  'notify'           => 'is_string',
-  'send_to'          => 'is_string',
+  'notify'           => 'is_email_list',
+  'send_to'          => 'is_email_list',
   'permanent'        => 'is_boolean',
 );
 
@@ -175,8 +175,8 @@ $ticketNewParams = array
   'ticket_maxdl'      => 'is_numeric_int',
   'ticket_expiry'     => 'is_expiry_choice',
   'ticket_permanent'  => false,
-  'notify'            => 'is_string',
-  'send_to'           => 'is_string',
+  'notify'            => 'is_email_list',
+  'send_to'           => 'is_email_list',
   'permanent'         => false,
 );
 

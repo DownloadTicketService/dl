@@ -156,7 +156,7 @@ $grantRestParams = array
   'notify'           => array
   (
     'required'	     => true,
-    'funcs'          => array('is_string', 'not_empty'),
+    'funcs'          => array('is_email_list1'),
   ),
   'comment'          => 'is_string',
   'pass'             => 'is_string',
@@ -170,7 +170,7 @@ $grantRestParams = array
   'ticket_maxdl'     => 'is_numeric_int',
   'ticket_expiry'    => 'is_expiry_choice',
   'ticket_permanent' => 'is_boolean',
-  'send_to'          => 'is_string',
+  'send_to'          => 'is_email_list',
   'permanent'        => false,
 );
 
@@ -179,7 +179,7 @@ $grantNewParams = array
   'notify'            => array
   (
     'required'	      => true,
-    'funcs'           => array('is_string', 'not_empty'),
+    'funcs'           => array('is_email_list1'),
   ),
   'comment'           => 'is_string',
   'pass'              => 'is_string',
@@ -193,7 +193,7 @@ $grantNewParams = array
   'ticket_maxdl'      => 'is_numeric_int',
   'ticket_expiry'     => 'is_expiry_choice',
   'ticket_permanent'  => false,
-  'send_to'           => 'is_string',
+  'send_to'           => 'is_email_list',
   'permanent'         => false,
 );
 
