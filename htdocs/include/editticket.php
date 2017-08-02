@@ -50,7 +50,7 @@ function handleUpdate($DATA, $params)
     if(isset($params['ticket_lastdldays']))
       $values['last_time'] = (empty($params['ticket_lastdldays'])? 'NULL': $params["ticket_lastdldays"] * 3600 * 24);
     if(isset($params['ticket_maxdl']))
-      $values['expire_dln'] = (empty($params['ticket_maxdl'])? 'NULL': (int)$params['ticket_maxdl']);
+      $values['expire_dln'] = (empty($params['ticket_maxdl'])? 'NULL': $DATA["downloads"] + (int)$params['ticket_maxdl']);
   }
 
   if(isset($params['notify']))
