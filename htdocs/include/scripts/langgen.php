@@ -9,7 +9,7 @@ require_once("lang.php");
 // regenerate reference strings
 $file = tempnam(sys_get_temp_dir(), 'dl');
 system("xgettext -L php -F --keyword=T_:1"
-    . " --from-code UTF-8 --omit-header -w 1 --no-wrap -F"
+    . " --from-code UTF-8 --omit-header -F"
     . " ../*.php ../../style/*/include/*"
     . " -o " . escapeshellarg($file), $ret);
 if($ret)
@@ -25,7 +25,7 @@ foreach($langData as $lang => $v)
   if($lang == "EN" && !file_exists($dir)) continue;
 
   echo "updating strings for locale $lang: ";
-  system("msgmerge --previous --no-wrap -w 1 -F -N"
+  system("msgmerge --previous -F -N"
       . " --lang " . escapeshellarg($v['locale'])
       . " -U " . escapeshellarg("$dir/messages.po")
       . " " . escapeshellarg($file), $ret);
