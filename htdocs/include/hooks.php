@@ -89,6 +89,12 @@ function onGrantCreate($DATA)
 }
 
 
+function onGrantUpdate($DATA)
+{
+  // stub
+}
+
+
 function onGrantPurge($DATA, $auto)
 {
   global $fromAddr;

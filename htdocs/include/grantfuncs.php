@@ -197,6 +197,11 @@ $grantNewParams = array
   'permanent'         => false,
 );
 
+$grantEditParams = $grantNewParams;
+$grantEditParams['pass_clear'] = 'is_boolean';
+$grantEditParams['grant_permanent'] = 'is_boolean';
+$grantEditParams['ticket_permanent'] = 'is_boolean';
+
 $grantUseParams = array
 (
   'comment'           => 'is_string',

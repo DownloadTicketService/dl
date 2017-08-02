@@ -84,8 +84,10 @@ foreach($db->query($sql) as $DATA)
     . "\" src=\"$style/static/cross.png\"/></a></td>";
 
   // id+cmt
-  echo '<td title="' . htmlEntUTF8($DATA["cmt"])
-     . '" class="ticketid">' . htmlEntUTF8($DATA['id']) . '</td>';
+  echo '<td><a title="' . htmlEntUTF8($DATA['cmt']) . '" href="'
+    . pageLink('gedit', array('id' => $DATA['id'], 'src' => $act))
+    . '" class="ticketid">' . htmlEntUTF8($DATA['id'])
+    . '</a></td>';
 
   // user
   echo "<td>" . htmlEntUTF8($DATA["user"]) . "</td>";

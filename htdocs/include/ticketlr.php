@@ -96,8 +96,10 @@ foreach($db->query($sql) as $DATA)
   $title = $DATA['from_grant'];
   if(!empty($DATA["grant_cmt"]))
     $title .= ": " . $DATA['grant_cmt'];
-  echo '<td title="' . htmlEntUTF8($title) . '" class="ticketid">'
-    . htmlEntUTF8($DATA['from_grant']) . '</td>';
+  echo '<td><a title="' . htmlEntUTF8($title) . '" href="'
+    . pageLink('gedit', array('id' => $DATA['from_grant'], 'src' => $act))
+    . '" class="ticketid">' . htmlEntUTF8($DATA['from_grant'])
+    . '</a></td>';
 
   // name+id+cmt
   $title = $DATA['id'];

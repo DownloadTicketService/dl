@@ -48,7 +48,11 @@ $details = array();
 $details[T_('Current expiration')] = ticketExpiration($DATA);
 $details[T_('Created on')] = date($dateFmtFull, $DATA["time"]);
 if(!empty($DATA['from_grant']))
-  $details[T_('From grant')] = "<span class=\"ticketid\">$DATA[from_grant]</span>";
+{
+  $details[T_('From grant')] =
+    '<a href="' . pageLink('gedit', array('id' => $DATA['from_grant'], 'src' => $act))
+  . '" class="ticketid">' . htmlEntUTF8($DATA['from_grant']) . '</a>';
+}
 
 // owner
 if($DATA["user_id"] != $auth["id"])
