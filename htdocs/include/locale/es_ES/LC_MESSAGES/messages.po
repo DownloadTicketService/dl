@@ -220,7 +220,7 @@ msgid ""
 "the server."
 msgstr ""
 "Introduzca el número de veces total que <strong>se permite usar</strong> una "
-"concesión de fichero<strong>. Tras alcanzar esta cuantía la concesión será "
+"concesión de fichero. Tras alcanzar esta cuantía la concesión será "
 "eliminada del servidor."
 
 #: ../editgrants.php:216
