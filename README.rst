@@ -18,7 +18,7 @@ simplicity (though can be used in other ways).
 Requirements
 ============
 
-* PHP 5.3 or higher.
+* PHP 5.5 or higher.
 * PHP SQLite module (or another PDO database module).
 * PHP mbstring module.
 * PHP OpenSSL module.
@@ -252,6 +252,9 @@ PHP Version   Upload limit
 5.4-5.5       4gb: ``post_max_size = 4294967295``
 >=5.6         no limit
 ============= ===================================
+
+Note that PHP versions before 5.5 are no longer supported, and older versions
+are shown here for reference purposes only.
 
 Finally, not all browsers support large file uploads:
 

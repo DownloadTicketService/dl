@@ -28,6 +28,7 @@ dl 0.18: 2017-07-
 * Ticket and grant invalid access or invalid password attempts are now logged.
 * Download of files larger than 2GB would previously fail when using DL with
   MySQL or Postgres. Fix by Daniel Berteaud.
+* The minimum required PHP version has been raised to 5.5 or higher.
 * Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
   file for the Apache/mod_php combination.
 * Simplified Chinese translation by Guangyu Dong.
