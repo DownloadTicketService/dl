@@ -33,6 +33,10 @@ $defaultGrantTotalDays = 365;
 $defaultGrantLastUlDays = 30;
 $defaultGrantMaxUl = 0;
 
+/**
+ * Email settings
+ */
+$emailSubjectPrefix = "[DL File Service] " ;
 
 /*
  * Advanced settings (defaults commented)
