@@ -96,7 +96,7 @@ function grantExpirationParams($params)
 
 function genGrant($params)
 {
-  global $auth, $locale, $db, $passHasher;
+  global $auth, $locale, $db;
 
   // generate new unique id
   $id = genGrantId();
@@ -119,8 +119,7 @@ function genGrant($params)
   $sql .= ", " . $grant_lastul;
   $sql .= ", " . $grant_maxul;
   $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
-  $sql .= ", " . (empty($params["pass"])? 'NULL':
-      $db->quote($passHasher->HashPassword($params["pass"])));
+  $sql .= ", " . (empty($params["pass"])? 'NULL': $db->quote(hashPassword($params["pass"])));
   $sql .= ", " . (!isset($params["pass_send"])? '1': (int)to_boolean($params["pass_send"]));
   $sql .= ", " . time();
   $sql .= ", " . $ticket_total;

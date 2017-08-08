@@ -5,7 +5,7 @@ require_once("pages.php");
 
 function handleUpdate($DATA, $params)
 {
-  global $db, $passHasher;
+  global $db;
 
   // handle parameters
   $values = array();
@@ -25,7 +25,7 @@ function handleUpdate($DATA, $params)
   elseif(!empty($params['pass']))
   {
     $values['pass_md5'] = 'NULL';
-    $values['pass_ph'] = $db->quote($passHasher->HashPassword($params['pass']));
+    $values['pass_ph'] = $db->quote(hashPassword($params['pass']));
   }
 
   if(isset($params['pass_send']) && $params['pass_send'])

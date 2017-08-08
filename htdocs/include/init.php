@@ -3,7 +3,6 @@
 require_once("prelude.php");
 require_once("confwrap.php");
 require_once("dbfuncs.php");
-require_once("lib/PasswordHash.php");
 require_once("lang.php");
 
 // check data dirs
@@ -27,7 +26,6 @@ if(@$ret === false)
 connectDB();
 
 // initial state
-$passHasher = new PasswordHash(8, false);
 $UPLOAD_ERRNO = UPLOAD_ERR_OK;
 
 // set the initial default locale/timezone

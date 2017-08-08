@@ -98,7 +98,7 @@ function ticketExpirationParams($params)
 
 function genTicket($upload, $params)
 {
-  global $auth, $locale, $db, $passHasher;
+  global $auth, $locale, $db;
 
   // populate comment with file list when empty
   if(!empty($params["comment"]))
@@ -118,8 +118,7 @@ function genTicket($upload, $params)
   $sql .= ", " . $db->quote($upload['path']);
   $sql .= ", " . $upload['size'];
   $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
-  $sql .= ", " . (empty($params["pass"])? 'NULL':
-      $db->quote($passHasher->HashPassword($params["pass"])));
+  $sql .= ", " . (empty($params["pass"])? 'NULL': $db->quote(hashPassword($params["pass"])));
   $sql .= ", " . (!isset($params["pass_send"])? '1': (int)to_boolean($params["pass_send"]));
   $sql .= ", " . time();
   $sql .= ", " . $total;

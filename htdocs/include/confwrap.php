@@ -112,6 +112,6 @@ $cookieLifetime = 1000 * 60 * 60 * 24 * 90;
 $maxUUTries = 32;
 $tokenLenght = 32;
 
-// password hasher and complexity limits
+// password complexity limits
 $maxUserLen = 60;
 $maxPassLen = 72;

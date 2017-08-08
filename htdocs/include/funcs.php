@@ -582,3 +582,13 @@ function withUpload($FILES, $func, $params)
   }
   return $ret;
 }
+
+
+function hashPassword($pass)
+{
+  // for compatibility with pass_ph (PasswordHash), we enforce PASSWORD_BCRYPT
+  $ret = password_hash($pass, PASSWORD_BCRYPT);
+  if($ret === false)
+    throw new Exception("password_hash failure");
+  return $ret;
+}

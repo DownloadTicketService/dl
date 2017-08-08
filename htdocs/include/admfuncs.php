@@ -112,7 +112,7 @@ function genGrantId()
 
 function userAdd($user, $pass, $admin, $email = false)
 {
-  global $db, $maxUserLen, $maxPassLen, $passHasher;
+  global $db, $maxUserLen, $maxPassLen;
 
   // validate user/password sizes
   if(strlen($user) > $maxUserLen || strlen($pass) > $maxPassLen)
@@ -121,8 +121,7 @@ function userAdd($user, $pass, $admin, $email = false)
   // prepare the SQL
   $sql = 'INSERT INTO "user" (name, pass_ph, role_id, email) VALUES (';
   $sql .= $db->quote($user);
-  $sql .= ", " . (empty($pass)? 'NULL':
-      $db->quote($passHasher->HashPassword($pass)));
+  $sql .= ", " . (empty($pass)? 'NULL': $db->quote(hashPassword($pass)));
   $sql .= ", (SELECT id FROM role WHERE name = '"
     . ($admin? 'admin': 'user') . "')";
   $sql .= ", " . (empty($email)? 'NULL': $db->quote($email));
@@ -148,7 +147,7 @@ function userDel($user)
 
 function userUpd($user, $pass = null, $admin = null, $email = null)
 {
-  global $db, $maxUserLen, $maxPassLen, $passHasher;
+  global $db, $maxUserLen, $maxPassLen;
 
   // validate user/password sizes
   if(strlen($user) > $maxUserLen || strlen($pass) > $maxPassLen)
@@ -159,8 +158,7 @@ function userUpd($user, $pass = null, $admin = null, $email = null)
   if(!is_null($pass))
   {
     $fields[] = "pass_md5 = NULL";
-    $fields[] = "pass_ph = " . (empty($pass)? 'NULL':
-	$db->quote($passHasher->HashPassword($pass)));
+    $fields[] = "pass_ph = " . (empty($pass)? 'NULL': $db->quote(hashPassword($pass)));
   }
   if(!is_null($admin))
   {
@@ -215,7 +213,7 @@ function hasPassHash($DATA)
 
 function checkPassHash($table, $DATA, $pass)
 {
-  global $db, $maxPassLen, $passHasher;
+  global $db, $maxPassLen;
 
   // validate password size
   if(strlen($pass) > $maxPassLen)
@@ -224,7 +222,7 @@ function checkPassHash($table, $DATA, $pass)
   if(!$DATA || empty($pass) || isset($DATA['pass_ph']))
   {
     $hash = ($DATA !== false? $DATA['pass_ph']: '*');
-    $okpass = $passHasher->CheckPassword($pass, $hash);
+    $okpass = password_verify($pass, $hash);
   }
   else
   {
@@ -234,7 +232,7 @@ function checkPassHash($table, $DATA, $pass)
     {
       $id = $DATA['id'];
       $DATA['pass_md5'] = NULL;
-      $DATA['pass_ph'] = $passHasher->HashPassword($pass);
+      $DATA['pass_ph'] = hashPassword($pass);
       $sql = "UPDATE $table"
 	. " SET pass_ph = " . $db->quote($DATA['pass_ph'])
 	. ", pass_md5 = NULL WHERE id = " . $db->quote($id);
