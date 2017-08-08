@@ -16,8 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: T_(\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 2.91.7\n"
+"X-Language: es\n"
+"X-Source-Language: en\n"
 
 #: ../../style/default/include/grantr.php:2 ../newticketr.php:4
 msgid "Upload result"
@@ -36,8 +38,8 @@ msgstr ""
 #, php-format
 msgid "The grant is still valid. You can <a href=\"%s\">upload more files</a>."
 msgstr ""
-"La concesión aún es válida. Todavía puede <a href=\"%s\">subir más ficheros</"
-"a>."
+"La concesión aún es válida. Todavía puede <a href=\"%s\">subir más "
+"ficheros</a>."
 
 #: ../../style/default/include/nogrant.php:3
 msgid "Invalid grant"
@@ -220,8 +222,8 @@ msgid ""
 "the server."
 msgstr ""
 "Introduzca el número de veces total que <strong>se permite usar</strong> una "
-"concesión de fichero. Tras alcanzar esta cuantía la concesión será "
-"eliminada del servidor."
+"concesión de fichero. Tras alcanzar esta cuantía la concesión será eliminada "
+"del servidor."
 
 #: ../editgrants.php:216
 msgid "Permanent grant"
@@ -577,87 +579,87 @@ msgid "Type the password to access the filesharing service."
 msgstr ""
 "Introduzca la clave para acceder al servicio de compartición de ficheros."
 
-#: ../msg.php:6
+#: ../msg.php:7
 #, php-format
-msgid "[dl] download link to %s"
-msgstr "[dl] enlace de descarga a %s"
+msgid "download link to %s"
+msgstr "enlace de descarga a %s"
 
-#: ../msg.php:8
+#: ../msg.php:9
 msgid "Ticket comment:"
 msgstr "Comentario del ticket:"
 
-#: ../msg.php:9 ../msg.php:47 ../msg.php:80
+#: ../msg.php:10 ../msg.php:49 ../msg.php:82
 msgid "URL:"
 msgstr "URL:"
 
-#: ../msg.php:11 ../msg.php:49 ../msg.php:82
+#: ../msg.php:12 ../msg.php:51 ../msg.php:84
 msgid "Password:"
 msgstr "Contraseña:"
 
-#: ../msg.php:18
-#, php-format
-msgid "[dl] ticket %s download notification"
-msgstr "[dl] notificación de descarga de ticket %s"
-
 #: ../msg.php:19
+#, php-format
+msgid "ticket %s download notification"
+msgstr "notificación de descarga de ticket %s"
+
+#: ../msg.php:20
 #, php-format
 msgid "The ticket %s was downloaded by %s from %s"
 msgstr "El ticket %s ha sido descargado por %s desde %s"
 
-#: ../msg.php:27 ../msg.php:36
+#: ../msg.php:28 ../msg.php:37
 #, php-format
-msgid "[dl] ticket %s purge notification"
-msgstr "[dl] notificación de purgado de ticket %s"
+msgid "ticket %s purge notification"
+msgstr "notificación de purgado de ticket %s"
 
-#: ../msg.php:28
+#: ../msg.php:29
 #, php-format
 msgid "The ticket %s was purged manually after %d downloads from %s"
 msgstr "El ticket %s ha sido purgado manualmente tras %d descargas desde %s"
 
-#: ../msg.php:37
+#: ../msg.php:38
 #, php-format
 msgid "The ticket %s expired automatically after %d downloads from %s"
 msgstr "El ticket %s expiró automáticamente tras %d descargas desde %s"
 
-#: ../msg.php:44
-msgid "[dl] upload grant link"
-msgstr "[dl] enlace de concesión de subida"
+#: ../msg.php:46
+msgid "upload grant link"
+msgstr "enlace de concesión de subida"
 
-#: ../msg.php:46 ../msg.php:77
+#: ../msg.php:48 ../msg.php:79
 msgid "Grant comment:"
 msgstr "Comentario de concesión:"
 
-#: ../msg.php:56 ../msg.php:64
+#: ../msg.php:58 ../msg.php:66
 #, php-format
-msgid "[dl] grant %s purge notification"
-msgstr "[dl] notificación de purgado de concesión %s"
+msgid "grant %s purge notification"
+msgstr "notificación de purgado de concesión %s"
 
-#: ../msg.php:57
+#: ../msg.php:59
 #, php-format
 msgid "The grant %s was purged manually from %s"
 msgstr "La concesión %s ha sido purgada manualmente desde %s"
 
-#: ../msg.php:65
+#: ../msg.php:67
 #, php-format
 msgid "The grant %s expired automatically from %s"
 msgstr "La concesión %s expiró automáticamente desde %s"
 
-#: ../msg.php:72
+#: ../msg.php:74
 #, php-format
-msgid "[dl] download link for grant %s"
-msgstr "[dl] enlace de descarga para la concesión %s"
+msgid "download link for grant %s"
+msgstr "enlace de descarga para la concesión %s"
 
-#: ../msg.php:73
+#: ../msg.php:75
 #, php-format
 msgid "Your grant %s has been used on %s by %s."
-msgstr "Tu concesión %S ha sido usada en %s por %s"
+msgstr "Tu concesión %S ha sido usada en %s por %s."
 
-#: ../msg.php:79
+#: ../msg.php:81
 #, php-format
 msgid "The uploaded file (%s) is now available to be downloaded at:"
 msgstr "El fichero subido (%s) está ahora disponible para ser descargado en:"
 
-#: ../msg.php:84
+#: ../msg.php:86
 msgid "Upload comment:"
 msgstr "Subir comentario:"
 
@@ -738,11 +740,11 @@ msgid ""
 "<strong>Single use</strong> allows <em>only one upload</em> to be performed. "
 "<strong>No expiration</strong> will never remove the grant automatically."
 msgstr ""
-"Selecciona la lógica de expiración de la concesión. <strong>Automático</"
-"strong> mantendrá la concesión mientras sea activamente descargada/usada por "
-"hasta %s. <strong>Único uso</strong> permite realizar <em>una única carga</"
-"em>. <strong>Sin expiración</strong> nunca eliminará la concesión "
-"automáticamente."
+"Selecciona la lógica de expiración de la concesión. "
+"<strong>Automático</strong> mantendrá la concesión mientras sea activamente "
+"descargada/usada por hasta %s. <strong>Único uso</strong> permite realizar "
+"<em>una única carga</em>. <strong>Sin expiración</strong> nunca eliminará la "
+"concesión automáticamente."
 
 #: ../newgrants.php:151
 msgid "Upload expiry"
@@ -779,8 +781,8 @@ msgstr "Su ticket %s"
 msgid "A download link has been sent to:"
 msgstr "Un enlace de descarga ha sido enviado a:"
 
-#: ../newticketr.php:41 ../ticketl.php:85 ../ticketla.php:83 ../ticketlr.php:87
-#: ../ticketp.php:31
+#: ../newticketr.php:41 ../ticketl.php:85 ../ticketla.php:83
+#: ../ticketlr.php:87 ../ticketp.php:31
 msgid "Download"
 msgstr "Descargar"
 
@@ -1039,23 +1041,8 @@ msgstr "Eliminar seleccionados"
 msgid "Apply changes"
 msgstr "Aplicar cambios"
 
-#~ msgid "A notification link has been sent to the grant owner. Thanks."
-#~ msgstr "Un enlace de notificación fue enviado al usuario. Gracias."
-
-#~ msgid "Upload a file"
-#~ msgstr "Seleccione un fichero"
-
-#~ msgid "Choose which file to upload. You can upload up to %s."
-#~ msgstr "Escoja qué fichero subir. Puede subir hasta %s"
-
-#~ msgid ""
-#~ "Your grant %s has been used by %s. The uploaded file is now available to "
-#~ "be downloaded at:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Su concesión %s ha sido usada por %s. Ahora, el fichero subido está "
-#~ "disponible para ser descargado en:\n"
-#~ "\n"
+#~ msgid "Ticket parameters"
+#~ msgstr "Parámetros del ticket"
 
 #~ msgid ""
 #~ "Type the <strong>maximal number of days</strong> the server should wait "
@@ -1066,5 +1053,38 @@ msgstr "Aplicar cambios"
 #~ "la concesión de subida deba ser usada. Pasado este período sin "
 #~ "inactividad, la concesión será eliminada del servidor."
 
-#~ msgid "Ticket parameters"
-#~ msgstr "Parámetros del ticket"
+#~ msgid ""
+#~ "Your grant %s has been used by %s. The uploaded file is now available to "
+#~ "be downloaded at:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Su concesión %s ha sido usada por %s. Ahora, el fichero subido está "
+#~ "disponible para ser descargado en:\n"
+#~ "\n"
+
+#~ msgid "Choose which file to upload. You can upload up to %s."
+#~ msgstr "Escoja qué fichero subir. Puede subir hasta %s"
+
+#~ msgid "Upload a file"
+#~ msgstr "Seleccione un fichero"
+
+#~ msgid "A notification link has been sent to the grant owner. Thanks."
+#~ msgstr "Un enlace de notificación fue enviado al usuario. Gracias."
+
+#~ msgid "[dl] download link for grant %s"
+#~ msgstr "[dl] enlace de descarga para la concesión %s"
+
+#~ msgid "[dl] grant %s purge notification"
+#~ msgstr "[dl] notificación de purgado de concesión %s"
+
+#~ msgid "[dl] upload grant link"
+#~ msgstr "[dl] enlace de concesión de subida"
+
+#~ msgid "[dl] ticket %s purge notification"
+#~ msgstr "[dl] notificación de purgado de ticket %s"
+
+#~ msgid "[dl] ticket %s download notification"
+#~ msgstr "[dl] notificación de descarga de ticket %s"
+
+#~ msgid "[dl] download link to %s"
+#~ msgstr "[dl] enlace de descarga a %s"
