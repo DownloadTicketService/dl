@@ -9,6 +9,9 @@ $masterPath = "http://dl.example.com/";
 // fromAddr: "From:" address for outgoing e-mails
 $fromAddr = "ticket service <nobody@example.com>";
 
+// emailSubjectPrefix: default subject prefix for outgoing e-mails
+$emailSubjectPrefix = "[dl] ";
+
 // spoolDir: spool directory for uploaded files, ticket and user databases
 $spoolDir = "/var/spool/dl/";
 
@@ -33,10 +36,6 @@ $defaultGrantTotalDays = 365;
 $defaultGrantLastUlDays = 30;
 $defaultGrantMaxUl = 0;
 
-/**
- * Email settings
- */
-$emailSubjectPrefix = "[DL File Service] " ;
 
 /*
  * Advanced settings (defaults commented)
