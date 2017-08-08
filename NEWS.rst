@@ -24,6 +24,7 @@ dl 0.18: 2017-07-
 * Ticket/grant passwords were previously always included in notifications. The
   password sending policy can now be controlled at creation time, and defaults
   to sending the password only when automatically generated.
+* The subject prefix in email notifications can now be customized.
 * Ticket and grant invalid access or invalid password attempts are now logged.
 * Download of files larger than 2GB would previously fail when using DL with
   MySQL or Postgres. Fix by Daniel Berteaud.
