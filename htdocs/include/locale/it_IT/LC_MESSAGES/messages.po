@@ -566,88 +566,88 @@ msgstr "Scrivere il nome utente richiesto per l'accesso al servizio."
 msgid "Type the password to access the filesharing service."
 msgstr "Scrivere la password per l'accesso al servizio."
 
-#: ../msg.php:6
+#: ../msg.php:7
 #, php-format
-msgid "[dl] download link to %s"
-msgstr "[dl] collegamento a %s"
+msgid "download link to %s"
+msgstr "collegamento a %s"
 
-#: ../msg.php:8
+#: ../msg.php:9
 msgid "Ticket comment:"
 msgstr "Commento ticket:"
 
-#: ../msg.php:9 ../msg.php:47 ../msg.php:80
+#: ../msg.php:10 ../msg.php:49 ../msg.php:82
 msgid "URL:"
 msgstr "URL:"
 
-#: ../msg.php:11 ../msg.php:49 ../msg.php:82
+#: ../msg.php:12 ../msg.php:51 ../msg.php:84
 msgid "Password:"
 msgstr "Password:"
 
-#: ../msg.php:18
-#, php-format
-msgid "[dl] ticket %s download notification"
-msgstr "[dl] notifica scaricamento del ticket %s"
-
 #: ../msg.php:19
+#, php-format
+msgid "ticket %s download notification"
+msgstr "notifica scaricamento del ticket %s"
+
+#: ../msg.php:20
 #, php-format
 msgid "The ticket %s was downloaded by %s from %s"
 msgstr "Il ticket %s è stato scaricato da %s tramite %s"
 
-#: ../msg.php:27 ../msg.php:36
+#: ../msg.php:28 ../msg.php:37
 #, php-format
-msgid "[dl] ticket %s purge notification"
-msgstr "[dl] notifica eliminazione del ticket %s"
+msgid "ticket %s purge notification"
+msgstr "notifica eliminazione del ticket %s"
 
-#: ../msg.php:28
+#: ../msg.php:29
 #, php-format
 msgid "The ticket %s was purged manually after %d downloads from %s"
 msgstr "Il ticket %s è stato eliminato manualmente dopo %d scaricamenti da %s"
 
-#: ../msg.php:37
+#: ../msg.php:38
 #, php-format
 msgid "The ticket %s expired automatically after %d downloads from %s"
 msgstr ""
 "Il ticket %s è stato eliminato automaticamente dopo %d scaricamenti da %s"
 
-#: ../msg.php:44
-msgid "[dl] upload grant link"
-msgstr "[dl] collegamento alla concessione"
+#: ../msg.php:46
+msgid "upload grant link"
+msgstr "collegamento alla concessione"
 
-#: ../msg.php:46 ../msg.php:77
+#: ../msg.php:48 ../msg.php:79
 msgid "Grant comment:"
 msgstr "Commento concessione:"
 
-#: ../msg.php:56 ../msg.php:64
+#: ../msg.php:58 ../msg.php:66
 #, php-format
-msgid "[dl] grant %s purge notification"
-msgstr "[dl] notifica eliminazione della concessione %s"
+msgid "grant %s purge notification"
+msgstr "notifica eliminazione della concessione %s"
 
-#: ../msg.php:57
+#: ../msg.php:59
 #, php-format
 msgid "The grant %s was purged manually from %s"
 msgstr "La concessione %s è stata eliminata manualmente da %s"
 
-#: ../msg.php:65
+#: ../msg.php:67
 #, php-format
 msgid "The grant %s expired automatically from %s"
 msgstr "La concessione %s è stata eliminata automaticamente da %s"
 
-#: ../msg.php:72
+#: ../msg.php:74
 #, php-format
-msgid "[dl] download link for grant %s"
-msgstr "[dl] collegamento alla concessione %s"
+msgid "download link for grant %s"
+msgstr "collegamento alla concessione %s"
 
-#: ../msg.php:73
+#: ../msg.php:75
 #, php-format
 msgid "Your grant %s has been used on %s by %s."
 msgstr "La concessione %s è stata utilizzata in data %s da %s."
 
-#: ../msg.php:79
+#: ../msg.php:81
 #, php-format
 msgid "The uploaded file (%s) is now available to be downloaded at:"
 msgstr "Il file inviato (%s) è ora disponibile per essere scaricato da:"
 
-#: ../msg.php:84
+#: ../msg.php:86
 msgid "Upload comment:"
 msgstr "Commento invio:"
 
