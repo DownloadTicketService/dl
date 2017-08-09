@@ -113,11 +113,8 @@ SQLite, MySQL and PostgreSQL.
 PHP setup
 ---------
 
-The following parameters are *required* to be set in your ``php.ini`` (these
-values are defaults since PHP 5.0, but they might be different in your setup):
+The following parameters are *required* to be set in your ``php.ini``:
 
-* ``magic_quotes_gpc``: must be "Off".
-* ``magic_quotes_runtime``: must be "Off".
 * ``date.timezone``: must be set to your system preference.
 * ``session.auto_start``: must be "Off".
 
