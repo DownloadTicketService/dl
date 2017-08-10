@@ -684,7 +684,7 @@ General/support mailing list
   subscribe to `dl-ticket-service` by either sending an empty email to
   <dl-ticket-service+subscribe@thregr.org> or by using GMane_ (group
   "gmane.comp.web.dl-ticket-service.general"). The archives are accessible via
-  web through http://news.gmane.org/gmane.comp.web.dl-ticket-service.general or
+  web through https://www.mail-archive.com/dl-ticket-service@thregr.org/ or
   via news directly.
 
 <dl-announces@thregr.org>:
@@ -709,7 +709,7 @@ accessible at:
 
   https://github.com/DownloadTicketService/dl
 
-or at git://src.thregr.org/dl
+or at ``git://src.thregr.org/dl``
 
 
 Development releases
