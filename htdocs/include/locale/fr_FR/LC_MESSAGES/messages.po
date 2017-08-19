@@ -5,17 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-14 20:01+0100\n"
-"PO-Revision-Date: 2012-01-18 15:11+0100\n"
+"PO-Revision-Date: 2017-08-19 12:19+0200\n"
 "Last-Translator: \n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: T_(\n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.0.3\n"
 
 #: ../../style/default/include/grantr.php:2 ../newticketr.php:4
 msgid "Upload result"
@@ -27,12 +28,14 @@ msgstr "Votre fichier a été envoyé avec succès."
 
 #: ../../style/default/include/grantr.php:8
 msgid "A notification link has been sent to the grant owner."
-msgstr ""
+msgstr "Une notification a été envoyée au créateur de cette invitation."
 
 #: ../../style/default/include/grantr.php:15
 #, php-format
 msgid "The grant is still valid. You can <a href=\"%s\">upload more files</a>."
 msgstr ""
+"L'invitation est toujours valide. Vous pouvez <a href=\"%s\">envoyer "
+"d'autres fichiers</a>."
 
 #: ../../style/default/include/nogrant.php:3
 msgid "Invalid grant"
@@ -79,7 +82,7 @@ msgstr "<em>Fermez le navigateur</em> pour terminer la session."
 #: ../editgrants.php:4
 #, php-format
 msgid "Editing grant %s"
-msgstr ""
+msgstr "Éditer l'invitation %s"
 
 #: ../editgrants.php:76 ../edittickets.php:48
 msgid "Current expiration"
@@ -95,15 +98,15 @@ msgstr "Créé par"
 
 #: ../editgrants.php:88
 msgid "Upload link"
-msgstr ""
+msgstr "Lien d'envoi"
 
 #: ../editgrants.php:91
 msgid "Upload count"
-msgstr ""
+msgstr "Compteur d'envoi"
 
 #: ../editgrants.php:93
 msgid "Last upload"
-msgstr ""
+msgstr "Dernier envoi"
 
 #: ../editgrants.php:101 ../edittickets.php:80
 msgid "Initially sent to"
@@ -157,7 +160,7 @@ msgstr "Supprimer le mot de passe"
 #: ../editgrants.php:155 ../edittickets.php:133 ../newgrants.php:72
 #: ../newtickets.php:81
 msgid "Send <i>in clear</i> with notifications"
-msgstr ""
+msgstr "Envoyé <i>en clair</i> dans les notifications"
 
 #: ../editgrants.php:159 ../newgrants.php:76
 msgid ""
@@ -219,7 +222,7 @@ msgstr ""
 
 #: ../editgrants.php:216
 msgid "Permanent grant"
-msgstr ""
+msgstr "Invitation permanente"
 
 #: ../editgrants.php:220 ../editgrants.php:284 ../edittickets.php:195
 msgid "Do not expire"
@@ -227,7 +230,7 @@ msgstr "Pas d'expiration"
 
 #: ../editgrants.php:224
 msgid "Set this checkmark if you do not want the grant to expire."
-msgstr ""
+msgstr "Cocher cette case si vous ne souhaitez pas que l'invitation expire."
 
 #: ../editgrants.php:231 ../newtickets.php:92
 msgid "Ticket expiry"
@@ -262,7 +265,7 @@ msgstr ""
 #: ../editgrants.php:265 ../edittickets.php:176 ../newgrants.php:203
 #: ../newtickets.php:144
 msgid "Expire after # of downloads"
-msgstr "Expirera après # téléchargement "
+msgstr "Expirera après # téléchargements"
 
 #: ../editgrants.php:271 ../edittickets.php:182 ../newgrants.php:209
 #: ../newtickets.php:150
@@ -299,7 +302,7 @@ msgstr "Édition du ticket %s"
 
 #: ../edittickets.php:52 ../ticketlr.php:54
 msgid "From grant"
-msgstr ""
+msgstr "Depuis l'invitation"
 
 #: ../edittickets.php:66
 msgid "File size"
@@ -369,12 +372,12 @@ msgstr "%s o"
 #: ../funcs.php:92
 #, php-format
 msgid "%d years"
-msgstr ""
+msgstr "%d ans"
 
 #: ../funcs.php:94
 #, php-format
 msgid "%d months"
-msgstr ""
+msgstr "%d mois"
 
 #: ../funcs.php:96
 #, php-format
@@ -398,7 +401,7 @@ msgstr "%d secondes"
 
 #: ../funcs.php:240
 msgid "file too big"
-msgstr "Ce fichier dépasse la taille maximale autorisée."
+msgstr "Ce fichier dépasse la taille maximale autorisée"
 
 #: ../funcs.php:245
 msgid "upload interrupted"
@@ -410,7 +413,7 @@ msgstr "erreur interne"
 
 #: ../grant.php:58 ../ticketfuncs.php:107
 msgid "Archive contents:"
-msgstr ""
+msgstr "Contenus de l'archive:"
 
 #: ../grantfuncs.php:23 ../grantfuncs.php:33 ../ticketfuncs.php:22
 #: ../ticketfuncs.php:32
@@ -463,7 +466,7 @@ msgstr "Expiration"
 
 #: ../grantl.php:73 ../grantla.php:71
 msgid "Successfully uploaded"
-msgstr ""
+msgstr "Envoyé avec succès"
 
 #: ../grantl.php:80 ../grantla.php:78 ../grants.php:55 ../newgrantr.php:41
 #: ../newtickets.php:180
@@ -497,11 +500,11 @@ msgstr "Utilisateur"
 
 #: ../grantla.php:111
 msgid "Regular grant"
-msgstr ""
+msgstr "Invitation standard"
 
 #: ../grantla.php:112
 msgid "Your grant"
-msgstr ""
+msgstr "Votre invitation"
 
 #: ../grantp.php:3 ../ticketp.php:3
 msgid "Password required"
@@ -550,6 +553,8 @@ msgid ""
 "Type an <em>optional</em> comment for your uploaded file/s. The comment will "
 "be sent back to the grant owner."
 msgstr ""
+"Saisissez une commentaire <em>optionnel</em> pour les fichiers envoyés. Ce "
+"commentaire sera transmis au créateur de l'invitation."
 
 #: ../login.php:4 ../login.php:38
 msgid "Login"
@@ -564,92 +569,92 @@ msgid "Type the password to access the filesharing service."
 msgstr ""
 "Renseignez votre mot de passe pour accéder au service de partage de fichiers."
 
-#: ../msg.php:6
+#: ../msg.php:7
 #, php-format
-msgid "[dl] download link to %s"
-msgstr "[dl] lien pour le téléchargement de %s"
+msgid "download link to %s"
+msgstr "lien de téléchargement pour %s"
 
-#: ../msg.php:8
+#: ../msg.php:9
 msgid "Ticket comment:"
-msgstr ""
+msgstr "Commentaire du ticket:"
 
-#: ../msg.php:9 ../msg.php:47 ../msg.php:80
+#: ../msg.php:10 ../msg.php:49 ../msg.php:82
 msgid "URL:"
 msgstr "URL:"
 
-#: ../msg.php:11 ../msg.php:49 ../msg.php:82
+#: ../msg.php:12 ../msg.php:51 ../msg.php:84
 msgid "Password:"
 msgstr "Mot de passe:"
 
-#: ../msg.php:18
-#, php-format
-msgid "[dl] ticket %s download notification"
-msgstr "[dl] notification de téléchargement du ticket %s"
-
 #: ../msg.php:19
+#, php-format
+msgid "ticket %s download notification"
+msgstr "notification de téléchargement pour le ticket %s"
+
+#: ../msg.php:20
 #, php-format
 msgid "The ticket %s was downloaded by %s from %s"
 msgstr "Le ticket %s a été téléchargé par %s à partir de %s"
 
-#: ../msg.php:27 ../msg.php:36
+#: ../msg.php:28 ../msg.php:37
 #, php-format
-msgid "[dl] ticket %s purge notification"
-msgstr "[dl] notification de suppression du ticket %s"
+msgid "ticket %s purge notification"
+msgstr "notification de purge du ticket %s"
 
-#: ../msg.php:28
+#: ../msg.php:29
 #, php-format
 msgid "The ticket %s was purged manually after %d downloads from %s"
 msgstr ""
 "Le ticket %s a été supprimé manuellement après %d téléchargements à partir "
 "de %s"
 
-#: ../msg.php:37
+#: ../msg.php:38
 #, php-format
 msgid "The ticket %s expired automatically after %d downloads from %s"
 msgstr ""
 "Le ticket %s a expiré automatiquement après %d téléchargements à partir de %s"
 
-#: ../msg.php:44
-msgid "[dl] upload grant link"
-msgstr "[dl] lien d'invitation d'envoi"
+#: ../msg.php:46
+msgid "upload grant link"
+msgstr "lien d'envoi de l'invitation"
 
-#: ../msg.php:46 ../msg.php:77
+#: ../msg.php:48 ../msg.php:79
 msgid "Grant comment:"
-msgstr ""
+msgstr "Commentaire de l'invitation:"
 
-#: ../msg.php:56 ../msg.php:64
+#: ../msg.php:58 ../msg.php:66
 #, php-format
-msgid "[dl] grant %s purge notification"
-msgstr "[dl] notification de suppression de l'invitation %s"
+msgid "grant %s purge notification"
+msgstr "notification de purge de l'invitation %s"
 
-#: ../msg.php:57
+#: ../msg.php:59
 #, php-format
 msgid "The grant %s was purged manually from %s"
 msgstr "L'invitation %s a été supprimée manuellement depuis %s"
 
-#: ../msg.php:65
+#: ../msg.php:67
 #, php-format
 msgid "The grant %s expired automatically from %s"
 msgstr "L'invitation %s a expiré automatiquement à partir de %s"
 
-#: ../msg.php:72
+#: ../msg.php:74
 #, php-format
-msgid "[dl] download link for grant %s"
-msgstr "[dl] lien pour le téléchargement de l'invitation %s"
+msgid "download link for grant %s"
+msgstr "lien de téléchargement pour l'invitation %s"
 
-#: ../msg.php:73
+#: ../msg.php:75
 #, php-format
 msgid "Your grant %s has been used on %s by %s."
-msgstr ""
+msgstr "Votre invitation %s a été utilisée le %s par %s."
 
-#: ../msg.php:79
+#: ../msg.php:81
 #, php-format
 msgid "The uploaded file (%s) is now available to be downloaded at:"
-msgstr ""
+msgstr "Le fichier envoyé (%s) peut maintenant être téléchargé à l'adresse:"
 
-#: ../msg.php:84
+#: ../msg.php:86
 msgid "Upload comment:"
-msgstr ""
+msgstr "Commentaire de l'envoi:"
 
 #: ../newgrantr.php:4
 msgid "Grant result"
@@ -713,7 +718,7 @@ msgstr "Usage unique"
 
 #: ../newgrants.php:89 ../newgrants.php:156 ../newtickets.php:97
 msgid "No expiration"
-msgstr "Aucune"
+msgstr "Pas d'expiration"
 
 #: ../newgrants.php:90 ../newgrants.php:157 ../newtickets.php:98
 msgid "Custom"
@@ -727,6 +732,11 @@ msgid ""
 "<strong>Single use</strong> allows <em>only one upload</em> to be performed. "
 "<strong>No expiration</strong> will never remove the grant automatically."
 msgstr ""
+"Sélectionner la logique d'expiration de l'invitation. <strong>Automatique</"
+"strong> conservera l'invitation tant qu'elle est utilisée jusqu'à %s. "
+"<strong>Usage unique</strong> n'autorise <em>qu'un seul envoi</em>. "
+"<strong>Pas d'expiration</strong> ne supprimera jamais l'invitation "
+"automatiquement."
 
 #: ../newgrants.php:151
 msgid "Upload expiry"
@@ -741,6 +751,11 @@ msgid ""
 "performed. <strong>No expiration</strong> will never remove the upload "
 "automatically."
 msgstr ""
+"Sélectionner la logique d'expiration de l'envoi. <strong>Automatique</"
+"strong> conservera l'envoi tant qu'il est téléchargé/utilisé jusqu'à %s. "
+"<strong>Usage unique</strong> n'autorise <em>qu'un seul téléchargement</em>. "
+"<strong>Pas d'expiration</strong> ne supprimera jamais l'envoi "
+"automatiquement."
 
 #: ../newgrants.php:224 ../users.php:150
 msgid "Create"
@@ -782,6 +797,11 @@ msgid ""
 "performed. <strong>No expiration</strong> will never remove the ticket "
 "automatically."
 msgstr ""
+"Sélectionner la logique d'expiration du ticket. <strong>Automatique</strong> "
+"conservera le ticket tant qu'il est téléchargé/utilisée jusqu'à %s. "
+"<strong>Usage unique</strong> n'autorise <em>qu'un seul téléchargement</em>. "
+"<strong>Pas d'expiration</strong> ne supprimera jamais le ticket "
+"automatiquement."
 
 #: ../newtickets.php:165
 msgid "Use my e-mail"
@@ -805,7 +825,7 @@ msgstr "Invitations actives"
 
 #: ../pages.php:10
 msgid "Received files"
-msgstr ""
+msgstr "Fichiers reçus"
 
 #: ../pages.php:11
 msgid "Preferences"
@@ -833,7 +853,7 @@ msgstr "Aide"
 
 #: ../prefs.php:15
 msgid "Settings successfully updated."
-msgstr "Les paramètres ont été mis à jour avec succès"
+msgstr "Les paramètres ont été mis à jour avec succès."
 
 #: ../prefs.php:15
 msgid "Settings update"
@@ -886,7 +906,7 @@ msgstr "Nouveau mot de passe"
 
 #: ../prefs.php:102
 msgid "Please type the new password."
-msgstr "Veuillez saisir votre nouveau mot de passe"
+msgstr "Veuillez saisir votre nouveau mot de passe."
 
 #: ../prefs.php:112
 msgid "New password (retype)"
@@ -926,23 +946,23 @@ msgstr "Téléchargement terminé avec succès"
 #: ../ticketl.php:129
 #, php-format
 msgid "Total ticket size: %s"
-msgstr ""
+msgstr "Taille totale du ticket: %s"
 
 #: ../ticketla.php:121
 msgid "Regular ticket"
-msgstr ""
+msgstr "Ticket standard"
 
 #: ../ticketla.php:122
 msgid "Regular ticket (yours)"
-msgstr ""
+msgstr "Ticket standard (les vôtres)"
 
 #: ../ticketla.php:123
 msgid "Received ticket"
-msgstr ""
+msgstr "Ticket reçus"
 
 #: ../ticketla.php:124
 msgid "Received ticket (yours)"
-msgstr ""
+msgstr "Ticket reçus (les vôtres)"
 
 #: ../ticketla.php:137
 #, php-format
@@ -952,7 +972,7 @@ msgstr "Taille totale de l'archive : %s"
 #: ../ticketlr.php:140
 #, php-format
 msgid "Total received size: %s"
-msgstr ""
+msgstr "Taille totale reçue: %s"
 
 #: ../ticketp.php:6
 #, php-format
@@ -1014,31 +1034,45 @@ msgstr "Supprimer la sélection"
 msgid "Apply changes"
 msgstr "Appliquer les changements"
 
-#~ msgid "A notification link has been sent to the grant owner. Thanks."
-#~ msgstr ""
-#~ "Une notification a été envoyée au propriétaire de cette invitation. Merci."
+#~ msgid "Upload a file"
+#~ msgstr "Envoyer un fichier"
 
-#~ msgid "Your grant %s has been used on %s by %s"
-#~ msgstr "Votre invitation %s a été utilisée depuis %s par %s"
-
-#~ msgid ""
-#~ "The uploaded file (%s) is now available to be downloaded at:\n"
-#~ "\n"
+#~ msgid "Choose which file to upload. You can upload up to %s."
 #~ msgstr ""
-#~ "Le fichier envoyé (%s) est désormais disponible au téléchargement à "
-#~ "l'adresse :\n"
-#~ "\n"
+#~ "Sélectionner le fichier à envoyer. La taille maximale du fichier est %s"
 
 #~ msgid ""
-#~ "Select the expiration logic of the grant. <strong>Automatic</strong> will "
-#~ "keep the grant as long as it's being actively used. <strong>Single use</"
-#~ "strong> allows <em>only one upload</em> to be performed. <strong>No "
-#~ "expiration</strong> will never remove the grant automatically."
+#~ "Your grant %s has been used by %s. The uploaded file is now available to "
+#~ "be downloaded at:\n"
+#~ "\n"
 #~ msgstr ""
-#~ "Sélectionnez la logique d'expiration de l'invitation. "
-#~ "<strong>Automatique</strong> la conserve tant qu'elle est utilisées, "
-#~ "<strong>usage unique</strong> ne permet <em>qu'un seul envoi</em>, "
-#~ "<strong>aucune</strong> empêche sa suppression automatique."
+#~ "Votre invitation %s a été utilisée par %s. Le fichier envoyé est "
+#~ "maintenant disponible pour être téléchargé à l'adresse:\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Type the <strong>maximal number of days</strong> the server should wait "
+#~ "for the upload grant to be used.  After this period is passed without "
+#~ "activity, the grant is removed the server."
+#~ msgstr ""
+#~ "Indiquez le <strong>nombre maximal de jours</strong> durant lesquels "
+#~ "cette invitation pourra être utilisée. Passé ce délai le destinataire de "
+#~ "cette demande ne pourra plus envoyer de fichier."
+
+#~ msgid "Ticket parameters"
+#~ msgstr "Paramètres du ticket"
+
+#~ msgid ""
+#~ "Select the expiration logic of the ticket. <strong>Automatic</strong> "
+#~ "will keep the ticket as long as it's being actively downloaded/used. "
+#~ "<strong>Single use</strong> allows <em>only one download</em> to be "
+#~ "performed. <strong>No expiration</strong> will never remove the ticket "
+#~ "automatically."
+#~ msgstr ""
+#~ "Sélectionnez la logique d'expiration du ticket. <strong>Automatique</"
+#~ "strong> le conservera tant qu'il est utilisé, <strong>usage unique</"
+#~ "strong> ne permet <em>qu'un seul téléchargement</em>, <strong>aucune</"
+#~ "strong> empêche la suppression automatique du ticket."
 
 #~ msgid ""
 #~ "Select the expiration logic of the upload. <strong>Automatic</strong> "
@@ -1054,41 +1088,45 @@ msgstr "Appliquer les changements"
 #~ "automatique du fichier envoyé."
 
 #~ msgid ""
-#~ "Select the expiration logic of the ticket. <strong>Automatic</strong> "
-#~ "will keep the ticket as long as it's being actively downloaded/used. "
-#~ "<strong>Single use</strong> allows <em>only one download</em> to be "
-#~ "performed. <strong>No expiration</strong> will never remove the ticket "
-#~ "automatically."
+#~ "Select the expiration logic of the grant. <strong>Automatic</strong> will "
+#~ "keep the grant as long as it's being actively used. <strong>Single use</"
+#~ "strong> allows <em>only one upload</em> to be performed. <strong>No "
+#~ "expiration</strong> will never remove the grant automatically."
 #~ msgstr ""
-#~ "Sélectionnez la logique d'expiration du ticket. <strong>Automatique</"
-#~ "strong> le conservera tant qu'il est utilisé, <strong>usage unique</"
-#~ "strong> ne permet <em>qu'un seul téléchargement</em>, <strong>aucune</"
-#~ "strong> empêche la suppression automatique du ticket."
-
-#~ msgid "Ticket parameters"
-#~ msgstr "Paramètres du ticket"
+#~ "Sélectionnez la logique d'expiration de l'invitation. "
+#~ "<strong>Automatique</strong> la conserve tant qu'elle est utilisées, "
+#~ "<strong>usage unique</strong> ne permet <em>qu'un seul envoi</em>, "
+#~ "<strong>aucune</strong> empêche sa suppression automatique."
 
 #~ msgid ""
-#~ "Type the <strong>maximal number of days</strong> the server should wait "
-#~ "for the upload grant to be used.  After this period is passed without "
-#~ "activity, the grant is removed the server."
-#~ msgstr ""
-#~ "Indiquez le <strong>nombre maximal de jours</strong> durant lesquels "
-#~ "cette invitation pourra être utilisée. Passé ce délai le destinataire de "
-#~ "cette demande ne pourra plus envoyer de fichier."
-
-#~ msgid ""
-#~ "Your grant %s has been used by %s. The uploaded file is now available to "
-#~ "be downloaded at:\n"
+#~ "The uploaded file (%s) is now available to be downloaded at:\n"
 #~ "\n"
 #~ msgstr ""
-#~ "Votre invitation %s a été utilisée par %s. Le fichier envoyé est "
-#~ "maintenant disponible pour être téléchargé à l'adresse:\n"
+#~ "Le fichier envoyé (%s) est désormais disponible au téléchargement à "
+#~ "l'adresse :\n"
 #~ "\n"
 
-#~ msgid "Choose which file to upload. You can upload up to %s."
-#~ msgstr ""
-#~ "Sélectionner le fichier à envoyer. La taille maximale du fichier est %s"
+#~ msgid "Your grant %s has been used on %s by %s"
+#~ msgstr "Votre invitation %s a été utilisée depuis %s par %s"
 
-#~ msgid "Upload a file"
-#~ msgstr "Envoyer un fichier"
+#~ msgid "A notification link has been sent to the grant owner. Thanks."
+#~ msgstr ""
+#~ "Une notification a été envoyée au propriétaire de cette invitation. Merci."
+
+#~ msgid "[dl] download link for grant %s"
+#~ msgstr "[dl] lien pour le téléchargement de l'invitation %s"
+
+#~ msgid "[dl] grant %s purge notification"
+#~ msgstr "[dl] notification de suppression de l'invitation %s"
+
+#~ msgid "[dl] upload grant link"
+#~ msgstr "[dl] lien d'invitation d'envoi"
+
+#~ msgid "[dl] ticket %s purge notification"
+#~ msgstr "[dl] notification de suppression du ticket %s"
+
+#~ msgid "[dl] ticket %s download notification"
+#~ msgstr "[dl] notification de téléchargement du ticket %s"
+
+#~ msgid "[dl] download link to %s"
+#~ msgstr "[dl] lien pour le téléchargement de %s"
