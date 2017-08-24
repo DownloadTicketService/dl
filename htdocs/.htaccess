@@ -12,6 +12,9 @@
     </FilesMatch>
 </IfModule>
 
+# Upload limit (should be the same as the following post_max_size)
+LimitRequestBody 1073741824
+
 <IfModule mod_php5.c>
   # Required minimal configuration for DL
   php_value session.auto_start 0
