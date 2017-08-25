@@ -28,7 +28,7 @@ Seite:
 Bei Verwendung der Standardeinstellungen hat der Empfänger eine Woche Zeit, um
 die Datei herunterzuladen, bevor diese automatisch gelöscht wird. Diese Frist
 kann jedoch geändert werden indem Sie die entsprechenden Parameter vor dem
-hochladen angepassen.
+hochladen anpassen.
 
 Durch einen Klick auf "Aktive Tickets" am unteren Ende der Seite, kann die
 Liste der hochgeladenen Dateien eingesehen und einzelne Tickets verwaltet
