@@ -68,13 +68,13 @@ class Request(Thread):
                                 'User-agent: ' + self.dl.service.agent,
                                 'X-Authorization: Basic ' + base64.b64encode(auth)])
 
-	if self.file or self.msg is not None:
-	  post_data = []
-          if self.file:
-              post_data.append(("file", (c.FORM_FILE, self.file)))
-	  if self.msg is not None:
-	      post_data.append(("msg", json.dumps(self.msg)))
-	  c.setopt(c.HTTPPOST, post_data)
+        if self.file or self.msg is not None:
+            post_data = []
+            if self.file:
+                post_data.append(("file", (c.FORM_FILE, self.file)))
+            if self.msg is not None:
+                post_data.append(("msg", json.dumps(self.msg)))
+            c.setopt(c.HTTPPOST, post_data)
 
         if not self.dl.service.verify:
             c.setopt(c.SSL_VERIFYPEER, False)

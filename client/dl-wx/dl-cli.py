@@ -52,7 +52,7 @@ def main():
             answ = dl.new_grant(args.grant)
         print(answ['url'])
     except KeyboardInterrupt:
-	pass
+        pass
     except DLError as e:
         die(str(e))
 
