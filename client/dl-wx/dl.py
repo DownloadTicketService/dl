@@ -1,9 +1,16 @@
+from __future__ import unicode_literals, print_function, generators, absolute_import
+
 import pycurl
-import httplib
-import StringIO
-import base64
+import binascii
 import json
+import io
+from io import BytesIO
 from threading import Thread
+
+try:
+    from http import client as httplib
+except ImportError:
+    import httplib
 
 
 class Service:
@@ -57,16 +64,19 @@ class Request(Thread):
                          upload_t, upload_d, self.speed_upload)
 
     def run(self):
-        s = StringIO.StringIO()
+        s = BytesIO()
         c = pycurl.Curl()
         c.setopt(c.URL, self.dl.service.url + "/" + self.request)
         c.setopt(c.WRITEFUNCTION, s.write)
-        c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
+
         auth = self.dl.service.username + ':' + self.dl.service.password
+        xauth = binascii.b2a_base64(auth.encode('utf8')).decode('ascii')[:-1]
+
+        c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
         c.setopt(c.USERPWD, auth)
         c.setopt(c.HTTPHEADER, ['Expect:',
                                 'User-agent: ' + self.dl.service.agent,
-                                'X-Authorization: Basic ' + base64.b64encode(auth)])
+                                'X-Authorization: Basic ' + xauth])
 
         if self.file or self.msg is not None:
             post_data = []
@@ -113,7 +123,7 @@ class Request(Thread):
         if s.tell():
             s.seek(0)
             try:
-                ret = json.load(s)
+                ret = json.load(io.TextIOWrapper(s, 'utf8'))
             except ValueError:
                 pass
 

@@ -1,4 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+from __future__ import unicode_literals, print_function, generators, absolute_import
+
 import configobj
 import validate
 import argparse
@@ -6,12 +8,12 @@ import os.path
 import sys
 from dl import *
 
-DL_VERSION = "0.13"
+DL_VERSION = "0.18"
 DL_AGENT = "dl-cli/" + DL_VERSION
 
 
 def die(descr, code=1):
-    print >> sys.stderr, sys.argv[0] + ": " + descr
+    print(sys.argv[0] + ": " + descr, file=sys.stderr)
     exit(code)
 
 
@@ -19,7 +21,8 @@ def progress(download_t, download_d, download_s, upload_t, upload_d, upload_s):
     if upload_d > 0:
         prc = upload_d * 100 / upload_t
         ks = upload_s / 1024
-        print >> sys.stderr, "uploading: {:-7.3f}% {:-10.3f}KiB/s\r".format(prc, ks),
+        print("uploading: {:-7.3f}% {:-10.3f}KiB/s".format(prc, ks),
+              file=sys.stderr, end='\r')
 
 
 def main():
