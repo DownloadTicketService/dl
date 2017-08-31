@@ -241,8 +241,12 @@ class NewTicket(wx.Dialog):
 
 class DLApp(wx.App):
     def OnInit(self):
-        self.dl = DL()
+        if not wx.TaskBarIcon.IsAvailable():
+            wx.MessageBox('A system tray is required for ' + DL_DESCRIPTION,
+                          'dl-wx', wx.OK | wx.ICON_ERROR)
+            return False
 
+        self.dl = DL()
         self.load_prefs()
         self.prefs = Prefs(self.dl.service, self.save_prefs)
         if not self.dl.service.url:
