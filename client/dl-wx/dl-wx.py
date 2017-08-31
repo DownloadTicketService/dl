@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from __future__ import unicode_literals, print_function, generators, absolute_import
+
 import configobj
 import validate
 import argparse
@@ -10,7 +12,7 @@ import wx
 import wx.xrc as xrc
 from dl import *
 
-DL_VERSION = "0.13"
+DL_VERSION = "0.18"
 DL_AGENT = "dl-wx/" + DL_VERSION
 DL_DESCRIPTION = "Download Ticket Service"
 DL_URL = "https://www.thregr.org/~wavexx/software/dl/"
@@ -232,8 +234,8 @@ class NewTicket(wx.Dialog):
             wx.MessageBox('Please select a file!', 'New Ticket', wx.OK | wx.ICON_ERROR)
         else:
             self.get_ticket_params(self.ticket_params)
-            Upload(path, self.dl, self.ticket_params)
             self.on_close()
+            Upload(path, self.dl, self.ticket_params)
 
     def on_close(self, evt=None):
         self.Destroy()
