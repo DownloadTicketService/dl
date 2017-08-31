@@ -37,7 +37,7 @@ class TaskBarIcon(wx.TaskBarIcon):
         self.dlapp = dlapp
         img = wx.Bitmap(os.path.join(RC_PATH, DL_ICON))
         self.SetIcon(wx.IconFromBitmap(img), DL_DESCRIPTION)
-        self.Bind(wx.EVT_TASKBAR_LEFT_UP, self.dlapp.express_ticket)
+        self.Bind(wx.EVT_TASKBAR_LEFT_DOWN, self.dlapp.express_ticket)
 
     def CreatePopupMenu(self):
         menu = wx.Menu()
