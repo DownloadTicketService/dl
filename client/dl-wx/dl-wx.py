@@ -180,7 +180,7 @@ class Upload(wx.Dialog):
         wx.TheClipboard.Open()
         wx.TheClipboard.SetData(wx.TextDataObject(self.url))
         wx.TheClipboard.Close()
-        self.Destroy()
+        self.on_close()
 
 
 class NewTicket(wx.Dialog):
@@ -190,6 +190,7 @@ class NewTicket(wx.Dialog):
         self.change_fn = change_fn
         self.xrc = xrc.XmlResource(os.path.join(RC_PATH, 'newticket.xrc'))
         self.PostCreate(self.xrc.LoadDialog(None, 'newticket'))
+        self.Bind(wx.EVT_SHOW, self.on_show)
         self.Bind(wx.EVT_CLOSE, self.on_close)
         self.file = xrc.XRCCTRL(self, 'file')
         self.perm = xrc.XRCCTRL(self, 'perm')
@@ -203,7 +204,6 @@ class NewTicket(wx.Dialog):
         self.set_defaults.Bind(wx.EVT_BUTTON, self.on_set_defaults)
         self.ticket_params = copy.copy(self.def_ticket_params)
         self.set_ticket_params(self.ticket_params)
-        self.Show()
 
     def on_perm(self, evt=None):
         enable = not self.perm.GetValue()
@@ -237,8 +237,11 @@ class NewTicket(wx.Dialog):
             self.on_close()
             Upload(path, self.dl, self.ticket_params)
 
+    def on_show(self, evt):
+        self.file.SetPath('')
+
     def on_close(self, evt=None):
-        self.Destroy()
+        self.Hide()
 
 
 class DLApp(wx.App):
@@ -257,6 +260,7 @@ class DLApp(wx.App):
                           'Preferences', wx.OK | wx.ICON_INFORMATION)
             self.prefs.ShowModal()
 
+        self.nt = NewTicket(self.dl, self.ticket_params, self.save_prefs)
         self.tbi = TaskBarIcon(self)
         stub = wx.Frame(None)
         menu = wx.MenuBar()
@@ -299,7 +303,7 @@ class DLApp(wx.App):
             Upload(path, self.dl, self.ticket_params)
 
     def new_ticket(self, evt=None):
-        NewTicket(self.dl, self.ticket_params, self.save_prefs)
+        self.nt.Show()
 
     def show_prefs(self, evt=None):
         self.prefs.Show()
