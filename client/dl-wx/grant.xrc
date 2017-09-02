@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<resource>
+  <object class="wxDialog" name="grant">
+    <title>Upload</title>
+    <style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxCLOSE_BOX</style>
+    <object class="wxFlexGridSizer">
+      <object class="sizeritem">
+        <object class="wxStaticText" name="status"/>
+        <flag>wxALIGN_CENTRE_VERTICAL</flag>
+      </object>
+      <object class="sizeritem">
+        <object class="wxButton" name="action">
+          <default>1</default>
+        </object>
+        <flag>wxALIGN_BOTTOM</flag>
+      </object>
+      <cols>2</cols>
+      <rows>1</rows>
+      <vgap>5</vgap>
+      <hgap>5</hgap>
+      <growablecols>0</growablecols>
+    </object>
+  </object>
+</resource>

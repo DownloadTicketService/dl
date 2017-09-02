@@ -45,6 +45,16 @@
             </object>
             <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
           </object>
+          <object class="sizeritem">
+            <object class="wxStaticText">
+              <label>E-Mail</label>
+            </object>
+            <flag>wxALIGN_CENTRE_VERTICAL</flag>
+          </object>
+          <object class="sizeritem">
+            <object class="wxTextCtrl" name="email"/>
+            <flag>wxEXPAND|wxALIGN_CENTRE_VERTICAL</flag>
+          </object>
           <object class="spacer"/>
           <object class="sizeritem">
             <object class="wxFlexGridSizer">
@@ -69,11 +79,11 @@
             <flag>wxALIGN_RIGHT|wxALIGN_BOTTOM</flag>
           </object>
           <cols>2</cols>
-          <rows>5</rows>
+          <rows>6</rows>
           <vgap>5</vgap>
           <hgap>5</hgap>
           <growablecols>1</growablecols>
-          <growablerows>4</growablerows>
+          <growablerows>5</growablerows>
         </object>
         <flag>wxALL|wxEXPAND</flag>
         <border>5</border>

@@ -44,6 +44,7 @@ class TaskBarIcon(wx.TaskBarIcon):
     def CreatePopupMenu(self):
         menu = wx.Menu()
         create_menu_item(menu, "New Ticket", self.dlapp.new_ticket, wx.ID_NEW)
+        create_menu_item(menu, "New Grant", self.dlapp.new_grant)
         create_menu_item(menu, "Preferences", self.dlapp.show_prefs, wx.ID_PREFERENCES)
         menu.AppendSeparator()
         create_menu_item(menu, "About", self.dlapp.show_about, wx.ID_ABOUT)
@@ -52,10 +53,12 @@ class TaskBarIcon(wx.TaskBarIcon):
 
 
 class Preferences(object):
-    def __init__(self, service=None, ticket_params=None, grant_params=None):
+    def __init__(self, service=None, ticket_params=None,
+                 grant_params=None, email=None):
         self.service = Service() if service is None else service
         self.ticket_params = TicketParams() if ticket_params is None else ticket_params
         self.grant_params = GrantParams() if grant_params is None else grant_params
+        self.email = email
 
 
 class PrefDialog(wx.Dialog):
@@ -68,6 +71,7 @@ class PrefDialog(wx.Dialog):
         self.username = xrc.XRCCTRL(self, 'username')
         self.password = xrc.XRCCTRL(self, 'password')
         self.verify = xrc.XRCCTRL(self, 'verify')
+        self.email = xrc.XRCCTRL(self, 'email')
         self.cancel = xrc.XRCCTRL(self, 'cancel')
         self.cancel.Bind(wx.EVT_BUTTON, self.on_close)
         self.save = xrc.XRCCTRL(self, 'save')
@@ -88,12 +92,14 @@ class PrefDialog(wx.Dialog):
         self.username.SetValue(self.prefs.service.username)
         self.password.SetValue(self.prefs.service.password)
         self.verify.SetValue(self.prefs.service.verify)
+        self.email.SetValue(self.prefs.email)
 
     def get_prefs(self, prefs):
         prefs.service.url = self.url.GetValue().encode('utf8')
         prefs.service.username = self.username.GetValue().encode('utf8')
         prefs.service.password = self.password.GetValue().encode('utf8')
         prefs.service.verify = self.verify.GetValue()
+        prefs.email = self.email.GetValue().encode('utf8')
 
     def on_close(self, evt=None):
         self.Hide()
@@ -108,6 +114,8 @@ class PrefDialog(wx.Dialog):
             error = "The username is mandatory"
         elif not prefs.service.password:
             error = "The password is mandatory"
+        elif not prefs.email:
+            error = "The e-mail is mandatory"
         if error is not None:
             wx.MessageBox(error, 'Preferences', wx.OK | wx.ICON_ERROR)
         else:
@@ -203,6 +211,63 @@ class Upload(wx.Dialog):
         self.on_close()
 
 
+class Grant(wx.Dialog):
+    def __init__(self, email, dl, params):
+        self.xrc = xrc.XmlResource(os.path.join(RC_PATH, 'grant.xrc'))
+        self.PostCreate(self.xrc.LoadDialog(None, 'grant'))
+        self.Bind(wx.EVT_CLOSE, self.on_cancel)
+        self.status = xrc.XRCCTRL(self, 'status')
+        self.status.SetLabel("Generating grant ...")
+        self.request = dl.new_grant(email, params, async=True,
+                                    complete_fn=self.completed,
+                                    failed_fn=self.failed)
+        self.action = xrc.XRCCTRL(self, 'action')
+        self.action.SetLabel("Cancel")
+        self.action.Bind(wx.EVT_BUTTON, self.on_cancel)
+        self.Fit()
+        self.Show()
+        self.request.start()
+
+    def on_cancel(self, evt):
+        self.status.SetLabel("Cancelling ...")
+        self.request.cancel()
+
+    def on_close(self, evt=None):
+        self.Destroy()
+
+    def on_completed(self, ret):
+        self.url = ret['url']
+        self.status.SetLabel(self.url)
+        self.action.SetLabel("Copy")
+        self.action.Bind(wx.EVT_BUTTON, self.on_copy)
+        self.Bind(wx.EVT_CLOSE, self.on_close)
+        self.Fit()
+
+    def completed(self, ret):
+        wx.CallAfter(self.on_completed, ret)
+
+    def on_failed(self, ex):
+        if ex is None:
+            self.on_close()
+        else:
+            error = str(ex)
+            self.status.SetLabel(error)
+            self.action.SetLabel("Close")
+            self.action.Bind(wx.EVT_BUTTON, self.on_close)
+            self.Bind(wx.EVT_CLOSE, self.on_close)
+            self.Fit()
+            wx.MessageBox(error, 'Upload error', wx.OK | wx.ICON_ERROR)
+
+    def failed(self, ex):
+        wx.CallAfter(self.on_failed, ex)
+
+    def on_copy(self, evt=None):
+        wx.TheClipboard.Open()
+        wx.TheClipboard.SetData(wx.TextDataObject(self.url))
+        wx.TheClipboard.Close()
+        self.on_close()
+
+
 class NewTicket(wx.Dialog):
     def __init__(self, dl, prefs, change_fn):
         self.dl = dl
@@ -273,7 +338,7 @@ class DLApp(wx.App):
 
         self.load_prefs()
         self.pd = PrefDialog(self.prefs, self.save_prefs)
-        if not self.prefs.service.url:
+        if not self.prefs.service.url or not self.prefs.email:
             wx.MessageBox('This is the first time you run ' + DL_DESCRIPTION +
                           '. You need to configure it first.',
                           'Preferences', wx.OK | wx.ICON_INFORMATION)
@@ -295,6 +360,7 @@ class DLApp(wx.App):
         v = validate.Validator()
 
         self.prefs = Preferences()
+        self.prefs.email = v.check('string', self.cfg.get('email', ''))
 
         self.prefs.service.url = v.check('string', self.cfg.get('url', ''))
         self.prefs.service.username = v.check('string', self.cfg.get('user', ''))
@@ -313,6 +379,7 @@ class DLApp(wx.App):
         self.cfg['pass'] = self.prefs.service.password
         self.cfg['verify'] = self.prefs.service.verify
         self.cfg['perm'] = self.prefs.ticket_params.permanent
+        self.cfg['email'] = self.prefs.email
         self.cfg['total_days'] = self.prefs.ticket_params.total / (3600 * 24)
         self.cfg['days_after_dl'] = self.prefs.ticket_params.lastdl / (3600 * 24)
         self.cfg['downloads'] = self.prefs.ticket_params.downloads
@@ -325,6 +392,9 @@ class DLApp(wx.App):
 
     def new_ticket(self, evt=None):
         self.nt.Show()
+
+    def new_grant(self, evt=None):
+        Grant(self.prefs.email, self.dl, self.prefs.grant_params)
 
     def show_prefs(self, evt=None):
         self.pd.Show()
