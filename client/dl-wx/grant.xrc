@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <resource>
   <object class="wxDialog" name="grant">
-    <title>Upload</title>
+    <title>Grant</title>
     <style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxCLOSE_BOX</style>
     <object class="wxFlexGridSizer">
       <object class="sizeritem">
