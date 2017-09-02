@@ -1,5 +1,7 @@
-dl 0.18: 2017-07-
+dl 0.18: 2017-09-
 -------------------
+
+Major new features:
 
 * Support for multiple file uploads in both tickets and grants. When multiple
   files are attached, a Zip archive is automatically created with the contents.
@@ -8,32 +10,23 @@ dl 0.18: 2017-07-
   restricted to a single use/file per grant, but can keep reusing the same link
   as needed. The grant, just like a ticket, is then automatically expired when
   left unused for a certain amount of time.
-* The grant comment assigned during creation is now shown in both the tooltip
-  of the grant list and in email notifications involving grant usage.
-* When using a grant, the user can now attach a comment alongside the uploaded
-  file/s. The comment is sent back to the grant owner in the notification.
-* Tickets generated while using a grant were incorrectly calculating the expiry
-  from the grant *creation* time, resulting in premature expiration. Ticket
-  expiry is now calculated starting at actual *upload* time.
-* Tickets now show the generating grant ID in the edit/detailed view.
 * Tickets generated while using a grant are now split into a separated
   "Received files" page. The "All tickets" page reserved to administrators
   still shows all tickets combined and color-coded.
+* A new Android client is now available: ``PokéDL``.
+
+Enhancements:
+
 * The ticket and grant expiration parameters have been streamlined for common
   usage patterns, becoming mostly self-explanatory.
+* When using a grant, the user can now attach a comment alongside the uploaded
+  file/s. The comment is sent back to the grant owner in the notification.
+* Tickets now show the generating grant ID in the edit/detailed view.
 * Ticket/grant passwords were previously always included in notifications. The
   password sending policy can now be controlled at creation time, and defaults
   to sending the password only when automatically generated.
 * The subject prefix in email notifications can now be customized.
-* Ticket and grant invalid access or invalid password attempts are now logged.
-* Download of files larger than 2GB would previously fail when using DL with
-  MySQL or Postgres. Fix by Daniel Berteaud.
-* The minimum required PHP version has been raised to 5.5 or higher.
-* Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
-  file for the Apache/mod_php combination.
-* Simplified Chinese translation by Guangyu Dong.
-* Russian translation by Олейник О.В.
-* The Thunderbird add-on has been updated to support Thunderbird 52.
+* ``dl-wx`` now allows to generate grants.
 * General ``dl-cli`` overhaul:
 
   - dl-cli now runs under both python 3 and python 2.7, preferring python 3
@@ -41,7 +34,31 @@ dl 0.18: 2017-07-
   - Public-key pinning is now supported through the ``fingerprint`` option
   - Multiple files can now be uploaded in a single ticket (for efficiency,
     dl-cli generates a Zip archive locally before uploading)
+  - When generating a grant, the email address is now optional if available
+    in the configuration file
   - The ConfigObj module is now required
+
+Bug fixes:
+
+* Tickets generated while using a grant were incorrectly calculating the expiry
+  from the grant *creation* time, resulting in premature expiration. Ticket
+  expiry is now calculated starting at actual *upload* time.
+* Download of files larger than 2GB would previously fail when using DL with
+  MySQL or Postgres. Fix by Daniel Berteaud.
+* Ticket and grant invalid access or invalid password attempts are now logged.
+* Left-clicking on the ``dl-wx`` tray's icon on Linux now works as expected.
+
+Other changes:
+
+* The grant comment assigned during creation is now shown in both the tooltip
+  of the grant list and in email notifications involving grant usage.
+* The minimum required PHP version has been raised to 5.5 or higher.
+* Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
+  file for the Apache/mod_php combination.
+* Simplified Chinese translation by Guangyu Dong.
+* Russian translation by Олейник О.В.
+* The Thunderbird add-on has been updated to support Thunderbird 52.
+* The Windows ``dl-wx`` executable has been rebuilt with SNI support.
 
 Please note: DL 0.18 requires a database schema update! Please read the
 database upgrade procedure in the README!

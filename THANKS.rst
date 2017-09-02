@@ -1,8 +1,8 @@
 Download Ticket Service credits
 -------------------------------
 
-  "Download Ticket Service" development has been sponsored in large part by the
-  EURAC's `Institute of Genetic Medicine`_.
+  Development for "Download Ticket Service" has been sponsored in large part by
+  the EURAC's `Institute of Genetic Medicine`_.
 
 .. _Institute of Genetic Medicine: http://www.eurac.edu/en/research/health/biomed/Pages/default.aspx
 

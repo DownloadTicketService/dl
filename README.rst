@@ -4,15 +4,14 @@ dl: download ticket service
 
 .. contents::
 
-dl is a file exchange service that allows you to upload any file to a web
-server and generate a unique ticket for others to download. The ticket is
-automatically expired according to the specified rules, so that you don't need
-to keep track or cleanup afterward. dl also allows you to grant an anonymous,
-one-time upload for others to send *you* a file, without the requirement of
-account management.
+"dl" is a simple file sharing service for quick/one-off file transfers. Upload
+a file to get a link you can share. Or create a sharing link to receive files
+from others. The uploaded files are automatically removed when left unused,
+requiring zero additional maintenance.
 
-dl is usually installed as a "email attachments replacement" due to its
-simplicity (though can be used in other ways).
+"dl" is *built for your users*: easy to use with any browser, integrates
+smoothly with Thunderbird for large attachments, works on Android, on Windows
+and OSX or straight from the command line for maximum convenience.
 
 
 Requirements
