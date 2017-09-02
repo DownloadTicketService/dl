@@ -5,10 +5,10 @@
       <object class="sizeritem">
         <object class="wxFlexGridSizer">
           <object class="sizeritem">
-            <object class="wxStaticText" name="file"/>
+            <object class="wxStaticText" name="descr"/>
           </object>
           <object class="sizeritem">
-            <object class="wxGauge" name="progress">
+            <object class="wxGauge" name="gauge">
               <style>wxGA_SMOOTH</style>
             </object>
             <flag>wxEXPAND</flag>

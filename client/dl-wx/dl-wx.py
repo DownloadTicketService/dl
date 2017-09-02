@@ -114,18 +114,22 @@ class Upload(wx.Dialog):
         self.xrc = xrc.XmlResource(os.path.join(RC_PATH, 'upload.xrc'))
         self.PostCreate(self.xrc.LoadDialog(None, 'upload'))
         self.Bind(wx.EVT_CLOSE, self.on_cancel)
-        self.file = xrc.XRCCTRL(self, 'file')
-        self.gauge = xrc.XRCCTRL(self, 'progress')
+        self.descr = xrc.XRCCTRL(self, 'descr')
+        self.gauge = xrc.XRCCTRL(self, 'gauge')
         self.status = xrc.XRCCTRL(self, 'status')
+        self.status.SetLabel("Starting upload ...")
         self.request = dl.new_ticket(file, params, async=True,
                                      complete_fn=self.completed,
                                      failed_fn=self.failed,
                                      progress_fn=self.progress)
-        self.file.SetLabel(os.path.basename(file))
+        self.descr.SetLabel(os.path.basename(file))
         self.action = xrc.XRCCTRL(self, 'action')
         self.action.SetLabel("Cancel")
         self.action.Bind(wx.EVT_BUTTON, self.on_cancel)
         self.stamp = time.time()
+        self.timer = wx.Timer()
+        self.timer.Bind(wx.EVT_TIMER, lambda _: self.gauge.Pulse())
+        self.timer.Start(100)
         self.Fit()
         self.Show()
         self.request.start()
@@ -133,13 +137,18 @@ class Upload(wx.Dialog):
     def on_cancel(self, evt):
         self.status.SetLabel("Cancelling upload ...")
         self.request.cancel()
+        self.timer.Start()
 
     def on_close(self, evt=None):
+        self.timer.Stop()
         self.Destroy()
 
     def on_progress(self, upload_t, upload_d, upload_s):
         prc = upload_d * 100 / upload_t
         ks = upload_s / 1024
+        if self.timer.IsRunning():
+            self.timer.Stop()
+            self.gauge.SetRange(100)
         self.gauge.SetValue(prc)
         stamp = time.time()
         if stamp - self.stamp >= 1:
@@ -155,6 +164,9 @@ class Upload(wx.Dialog):
         self.status.SetLabel(self.url)
         self.action.SetLabel("Copy")
         self.action.Bind(wx.EVT_BUTTON, self.on_copy)
+        self.timer.Stop()
+        self.gauge.SetRange(100)
+        self.gauge.SetValue(100)
         self.Bind(wx.EVT_CLOSE, self.on_close)
         self.Fit()
 
@@ -169,6 +181,7 @@ class Upload(wx.Dialog):
             self.status.SetLabel(error)
             self.action.SetLabel("Close")
             self.action.Bind(wx.EVT_BUTTON, self.on_close)
+            self.timer.Stop()
             self.Bind(wx.EVT_CLOSE, self.on_close)
             self.Fit()
             wx.MessageBox(error, 'Upload error', wx.OK | wx.ICON_ERROR)
