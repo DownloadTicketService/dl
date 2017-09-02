@@ -584,6 +584,7 @@ default stored in ``~/.dl.rc``, containing the following values:
 * passcmd (optional): invoke the supplied command to obtain the password
 * verify (optional): "true" or "false": enable/disable SSL verification
   (might be required for testing, but defaults to true)
+* email (optional): default email address for grant notifications
 * fingerprint: Validate the server against the specified certificate or
   fingerprint (See `Public key pinning`_).
 

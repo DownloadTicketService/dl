@@ -170,7 +170,7 @@ def main():
     parser.add_argument('-r', metavar="file", dest="rc",
                         default="~/.dl.rc", help="Use alternate RC file")
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('-g', metavar="email", dest="grant",
+    group.add_argument('-g', metavar="email", dest="grant", nargs='?', default=False,
                        help="Generate a grant with notification sent to 'email'")
     group.add_argument('file', nargs='*', default=[], help="File/s to upload")
     args = parser.parse_args()
@@ -188,6 +188,13 @@ def main():
             cfg[param] = None
         else:
             cfg[param] = v.check('string', cfg[param])
+
+    # Check if an email has been provided
+    if args.grant is None:
+        if 'email' not in cfg:
+            die("email missing but \"email\" not configured")
+        else:
+            args.grant = v.check('string', cfg['email'])
 
     # Obtain a password
     if cfg['passcmd']:
