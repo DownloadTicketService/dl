@@ -3,7 +3,6 @@ from __future__ import unicode_literals, print_function, generators
 
 import argparse
 import io, sys
-import itertools
 from datetime import datetime
 
 import os.path

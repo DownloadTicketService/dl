@@ -3,7 +3,6 @@ from __future__ import unicode_literals, print_function, generators, absolute_im
 
 import configobj
 import validate
-import argparse
 import os.path
 import copy
 import time
