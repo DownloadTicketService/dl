@@ -1,4 +1,4 @@
-dl 0.18: 2017-09-
+dl 0.18: 2017-09-04
 -------------------
 
 Major new features:
@@ -22,6 +22,8 @@ Enhancements:
 * When using a grant, the user can now attach a comment alongside the uploaded
   file/s. The comment is sent back to the grant owner in the notification.
 * Tickets now show the generating grant ID in the edit/detailed view.
+* The grant comment assigned during creation is now shown in both the tooltip
+  of the grant list and in email notifications involving grant usage.
 * Ticket/grant passwords were previously always included in notifications. The
   password sending policy can now be controlled at creation time, and defaults
   to sending the password only when automatically generated.
@@ -50,8 +52,6 @@ Bug fixes:
 
 Other changes:
 
-* The grant comment assigned during creation is now shown in both the tooltip
-  of the grant list and in email notifications involving grant usage.
 * The minimum required PHP version has been raised to 5.5 or higher.
 * Important PHP settings are now preset in the bundled ``htdocs/.htaccess``
   file for the Apache/mod_php combination.

@@ -10,7 +10,7 @@ from others. The uploaded files are automatically removed when left unused,
 requiring zero additional maintenance.
 
 "dl" is *built for your users*: easy to use with any browser, integrates
-smoothly with Thunderbird for large attachments, works on Android, on Windows
+smoothly with Thunderbird for large attachments, works on Android, Windows
 and OSX or straight from the command line for maximum convenience.
 
 
