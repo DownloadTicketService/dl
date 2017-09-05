@@ -72,13 +72,13 @@ function handleUpdate($DATA, $params)
   // prepare the query
   $tmp = array();
   foreach($values as $k => $v) $tmp[] = "$k = $v";
-  $sql = "UPDATE grant SET " . join(", ", $tmp)
+  $sql = "UPDATE \"grant\" SET " . join(", ", $tmp)
     . " WHERE id = " . $db->quote($DATA["id"]);
   if($db->exec($sql) != 1)
     return false;
 
   // fetch defaults
-  $sql = "SELECT * FROM grant WHERE id = " . $db->quote($DATA["id"]);
+  $sql = "SELECT * FROM \"grant\" WHERE id = " . $db->quote($DATA["id"]);
   $DATA = $db->query($sql)->fetch();
   $DATA['pass'] = (empty($params["pass"])? NULL: $_POST["pass"]);
 
@@ -96,7 +96,7 @@ if(empty($id) || !isGrantId($id))
   $id = false;
 else
 {
-  $sql = "SELECT * FROM grant WHERE id = " . $db->quote($id);
+  $sql = "SELECT * FROM \"grant\" WHERE id = " . $db->quote($id);
   $DATA = $db->query($sql)->fetch();
   if($DATA === false || isGrantExpired($DATA)
   || (!$auth["admin"] && $DATA["user_id"] != $auth["id"]))

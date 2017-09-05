@@ -37,7 +37,7 @@ if(isset($_REQUEST["purge"]) && !empty($_REQUEST["sel"]))
 $totalSize = 0;
 
 $sql = 'SELECT t.*, g.cmt AS grant_cmt FROM ticket t'
-     . ' LEFT JOIN grant g ON g.id = t.from_grant'
+     . ' LEFT JOIN "grant" g ON g.id = t.from_grant'
      . ' WHERE t.user_id = ' . $auth["id"]
      . ' AND t.from_grant IS NOT NULL'
      . ' ORDER BY t.time DESC';
