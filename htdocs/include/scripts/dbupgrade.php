@@ -93,7 +93,11 @@ if(version_compare($version, "0.18", "<"))
   $db->exec("ALTER TABLE \"grant\" ADD grant_expire_uln INTEGER");
   $db->exec("ALTER TABLE \"grant\" ADD uploads INTEGER NOT NULL DEFAULT 0");
   $db->exec("ALTER TABLE \"grant\" ADD last_stamp INTEGER");
-  $db->exec("DROP INDEX i_grant ON \"grant\"");
+
+  if ($db->driver() == "mysql")
+    $db->exec("DROP INDEX i_grant ON \"grant\"");
+  else
+    $db->exec("DROP INDEX i_grant");
   $db->exec("CREATE INDEX i_grant on \"grant\" ( grant_expire, grant_expire_uln, uploads )");
 
   // match previous defaults
