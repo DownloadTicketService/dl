@@ -102,7 +102,7 @@ if(version_compare($version, "0.18", "<"))
   $db->exec("UPDATE grant SET grant_expire_uln = 1");
 
   // Allow size >2GB
-  switch($driver)
+  switch($db->driver())
   {
   case "mysql":
     $db->exec("ALTER TABLE ticket MODIFY size BIGINT NOT NULL");
