@@ -1,3 +1,10 @@
+dl 0.18.1: 2017-09-06
+---------------------
+
+* Fix upgrade script and incompatibilities when using MySQL.
+  Thanks to Daniel Berteaud.
+
+
 dl 0.18: 2017-09-04
 -------------------
 
