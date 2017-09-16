@@ -1,0 +1,20 @@
+<VirtualHost *:80>
+  ServerName localhost
+  DocumentRoot %TRAVIS_BUILD_DIR%/htdocs
+
+  <Directory %TRAVIS_BUILD_DIR%/htdocs>
+    DirectoryIndex index.php
+    Options +ExecCGI
+    Require all granted
+    AllowOverride all
+    AddHandler php-fcgi .php
+  </Directory>
+
+  <Directory /usr/lib/cgi-bin>
+    Require all granted
+  </Directory>
+
+  Action php-fcgi /php-fcgi
+  Alias /php-fcgi /usr/lib/cgi-bin/php-fcgi
+  FastCgiExternalServer /usr/lib/cgi-bin/php-fcgi -host 127.0.0.1:9000 -pass-header Authorization
+</VirtualHost>
