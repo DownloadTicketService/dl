@@ -27,7 +27,7 @@ class XPDO extends PDO
 
     case "mysql":
       // put MySQL into ANSI mode
-      $ret = $this->exec('SET SQL_MODE = ANSI_QUOTES');
+      $ret = $this->exec('SET SQL_MODE = ANSI');
       break;
     }
   }
