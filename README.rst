@@ -302,7 +302,6 @@ With external authentication::
       AuthType Basic
       AuthName "Restricted Area"
       Require valid-user
-      Satisfy any
 
       # You'll need to provide a valid source for passwords using either the
       # following or some other authentication source (such as LDAP)
@@ -326,7 +325,6 @@ With LDAP or ActiveDirectory authentication::
       AuthType Basic
       AuthName "Restricted Area"
       Require valid-user
-      Satisfy any
 
       # Use the LDAP provider (just an example query)
       AuthBasicProvider ldap
