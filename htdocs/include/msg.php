@@ -5,6 +5,7 @@ function msgTicketCreate($DATA, &$subject, &$body)
 {
   global $emailSubjectPrefix;
   $subject = $emailSubjectPrefix . sprintf(T_("download link to %s"), $DATA['name']);
+  $body = "";
   if(!empty($DATA['cmt']))
     $body .= T_("Ticket comment:") . " " . $DATA['cmt'] . ".\n\n";
   $body .= T_("URL:") . " " . ticketUrl($DATA) . "\n";
@@ -44,6 +45,7 @@ function msgGrantCreate($DATA, &$subject, &$body)
 {
   global $emailSubjectPrefix;
   $subject = $emailSubjectPrefix . T_("upload grant link");
+  $body = "";
   if(!empty($DATA['cmt']))
     $body .= T_("Grant comment:") . " " . $DATA['cmt'] . ".\n\n";
   $body .= T_("URL:") . " " . grantUrl($DATA) . "\n";
