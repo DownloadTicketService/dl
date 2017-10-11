@@ -7,7 +7,7 @@ services:
   - postgresql
 
 php:
-  - 5.4
+  - 5.5
   - 7
  
 env:
@@ -23,6 +23,7 @@ install:
   - if [ -d ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d ]; then sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d/www.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d/www.conf; fi
   - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
   # configure apache virtual hosts
+  - sudo chmod o+x "$HOME"
   - sudo cp -f test/travis-ci-apache /etc/apache2/sites-available/000-default.conf
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/000-default.conf
   - sudo service apache2 restart
