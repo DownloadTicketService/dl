@@ -27,7 +27,7 @@ if(!isset($gcInternal)) $gcInternal = true;
 if(!isset($gcLimit)) $gcLimit = 0;
 if(!isset($defTimezone)) $defTimezone = @date_default_timezone_get();
 if(!isset($dateFmtShort)) $dateFmtShort = "Y-m-d";
-if(!isset($dateFmtFull)) $dateFmtFull = "Y-m-d H:m:s T";
+if(!isset($dateFmtFull)) $dateFmtFull = "Y-m-d H:i:s T";
 if(!isset($emailSubjectPrefix)) $emailSubjectPrefix = "[dl] ";
 
 // default style
