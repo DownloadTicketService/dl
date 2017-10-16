@@ -12,9 +12,10 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
 <div>
   <label class="description">
     <?php printf(T_("Your grant %s"), htmlEntUTF8(grantStr($DATA))); ?>
-  </label>
-  <p><span class="ticketid"><?php echo htmlentities($url); ?></span></p>
-<?php
+  </label><p><a class="ticketid" href="<?php echo $url; ?>">
+    <?php echo htmlentities($url); ?>
+  </a></p>
+  <?php
   if($DATA['pass'])
   {
     echo "<p>" . T_("The required password is:") . " <tt>"
