@@ -19,7 +19,7 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
   if($DATA['pass'])
   {
     echo "<p>" . T_("The required password is:") . " <tt>"
-      . htmlEntUTF8($DATA['pass']) . "</tt></p>";
+       . htmlEntUTF8($DATA['pass']) . "</tt></p>";
   }
 
   if($DATA['sent_email'])
@@ -29,12 +29,12 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
     foreach($addrs as &$addr)
     {
       $addr = '<a href="mailto:' . rawurlencode($addr) . '">'
-	. htmlentities($addr) . '</a>';
+	    . htmlentities($addr) . '</a>';
     }
     echo join(', ', $addrs);
     echo '</p>';
   }
-?>
+  ?>
 </div>
 
 <span class="buttons">
