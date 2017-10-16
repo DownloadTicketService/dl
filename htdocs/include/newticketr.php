@@ -27,7 +27,7 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
     $addrs = getEMailAddrs($DATA['sent_email']);
     foreach($addrs as &$addr)
     {
-      $addr = '<a href="mailto:' . urlencode($addr) . '">'
+      $addr = '<a href="mailto:' . rawurlencode($addr) . '">'
 	. htmlentities($addr) . '</a>';
     }
     echo join(', ', $addrs);

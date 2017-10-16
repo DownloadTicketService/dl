@@ -308,12 +308,12 @@ function check_token()
 
 function tokenUrl($url, $params = array())
 {
-  $url .= '?token=' . urlencode($_SESSION['token']);
+  $url .= '?token=' . rawurlencode($_SESSION['token']);
   foreach($params as $k => $v)
   {
-    $url .= '&' . urlencode($k);
+    $url .= '&' . rawurlencode($k);
     if(!is_null($v))
-      $url .= '=' . urlencode($v);
+      $url .= '=' . rawurlencode($v);
   }
   return $url;
 }

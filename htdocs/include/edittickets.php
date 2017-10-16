@@ -76,7 +76,7 @@ if($DATA["sent_email"])
 {
   $addrs = array();
   foreach(getEMailAddrs($DATA['sent_email']) as $email)
-    $addrs[] = '<a href="mailto:' . urlencode($email) . '">' . htmlEntUTF8($email) . '</a>';
+    $addrs[] = '<a href="mailto:' . rawurlencode($email) . '">' . htmlEntUTF8($email) . '</a>';
   $details[T_("Initially sent to")] = implode(", ", $addrs);
 }
 
