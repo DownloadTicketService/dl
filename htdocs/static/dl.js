@@ -117,6 +117,28 @@ function T_(text)
 }
 
 
+// clipboard related
+function copyToClipboard(str)
+{
+  if('queryCommandSupported' in document && document.queryCommandSupported("copy"))
+  {
+    // the "proper" way
+    var el = document.createElement('textarea');
+    el.value = str;
+    document.body.appendChild(el);
+    el.focus();
+    el.setSelectionRange(0, str.length);
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  }
+  else if("clipboardData" in window)
+  {
+    // the way it *should* be
+    window.clipboardData.setData('Text', str);
+  }
+}
+
+
 // UI/form
 function toggleAdvanced(set)
 {

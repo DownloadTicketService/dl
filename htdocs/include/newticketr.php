@@ -38,8 +38,8 @@ $mailto = "mailto:?subject=" . rawurlencode($subject) . "&body=" . rawurlencode(
 </div>
 
 <span class="buttons">
+  <input type="button" onclick="copyToClipboard('<?php echo htmlentities($url); ?>');" value="<?php echo T_("Copy to clipboard"); ?>"/>
   <input type="button" onclick="document.location='<?php echo htmlentities($mailto); ?>';" value="<?php echo T_("Send via e-mail"); ?>"/>
-  <input type="button" onclick="document.location='<?php echo htmlentities($url); ?>';" value="<?php echo T_("Download"); ?>"/>
 </span>
 
 <?php
