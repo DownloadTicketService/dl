@@ -29,6 +29,10 @@ Daniele Di Domizio <daniele.didomizio@eurac.edu>:
 
 * Additional testing.
 
+Dirk Reimers <dirk.reimers@secunet.com>:
+
+* Code auditing
+
 Emanuele Rosati <emanuele.rosati@gmail.com>:
 
 * Suggestions and layout fixes.
