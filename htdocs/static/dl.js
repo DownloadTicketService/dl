@@ -260,6 +260,7 @@ function autoProgressState(ev, data)
 
   // replace current document with response
   document.documentElement.innerHTML = ev.target.response;
+  window.scrollTo(0, 0);
   $.cache = {};
 }
 
