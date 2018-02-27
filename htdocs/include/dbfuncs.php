@@ -34,7 +34,7 @@ class XPDO extends PDO
 
   public function ping()
   {
-    try { return ($this->exec('SELECT 1') == 1); }
+    try { return (@$this->exec('SELECT 1') == 1); }
     catch(PDOException $e) { return false; }
   }
 }
