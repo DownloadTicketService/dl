@@ -22,12 +22,12 @@ class XPDO extends PDO
     {
     case "sqlite":
       // enforce foreign keys by default
-      $ret = $this->exec('PRAGMA foreign_keys = ON');
+      $this->exec('PRAGMA foreign_keys = ON');
       break;
 
     case "mysql":
       // put MySQL into ANSI mode
-      $ret = $this->exec('SET SQL_MODE = ANSI');
+      $this->exec('SET SQL_MODE = ANSI');
       break;
     }
   }
