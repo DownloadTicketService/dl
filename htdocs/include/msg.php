@@ -75,7 +75,7 @@ function msgGrantUse($GRANT, $TICKET, &$subject, &$body)
   global $dateFmtShort, $emailSubjectPrefix;
   $subject = $emailSubjectPrefix . sprintf(T_("download link for grant %s"), grantStr($GRANT));
   $body = sprintf(T_("Your grant %s has been used on %s by %s."),
-		  grantStr($GRANT), date($dateFmtShort, $GRANT["time"]),
+		  grantStr($GRANT), date($dateFmtShort, $GRANT["last_stamp"]),
 		  $_SERVER["REMOTE_ADDR"]) . "\n";
   if(!empty($GRANT['cmt']))
     $body .= T_("Grant comment:") . " " . $GRANT['cmt'] . ".\n\n";
