@@ -4,6 +4,7 @@ from __future__ import unicode_literals, print_function, generators
 import argparse
 import io, sys
 from datetime import datetime
+import locale
 
 import os.path
 from io import BytesIO
@@ -69,7 +70,7 @@ def newticket(path, params, filename=None):
     if not filename:
         filename = os.path.basename(path)
     c.setopt(c.HTTPPOST, [
-        ("file", (c.FORM_FILE, path, c.FORM_FILENAME, filename)),
+        ("file", (c.FORM_FILE, path.encode(locale.getlocale()[1]), c.FORM_FILENAME, filename.encode(locale.getlocale()[1]))),
         ("msg", json.dumps({}))])
 
     try:
