@@ -124,7 +124,7 @@ foreach($db->query($sql) as $DATA)
   echo "<td>" . htmlEntUTF8($DATA['name']) . "</td>";
   echo "<td><input type=\"hidden\" name=\"user[]\" value=\""
     . htmlEntUTF8($DATA['name']) . "\"/><input class=\"element text\""
-    . " type=\"text\" name=\"pass[]\"></td>";
+    . " type=\"password\" name=\"pass[]\"></td>";
 
   // role
   echo '<td data-sort-value="' . $DATA['admin'] . '">'
