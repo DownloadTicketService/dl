@@ -111,25 +111,28 @@ function genTicket($upload, $params)
 
   // prepare data
   $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph, pass_send"
-    . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) VALUES (";
-  $sql .= $db->quote($upload['id']);
-  $sql .= ", " . $auth['id'];
-  $sql .= ", " . $db->quote($upload['name']);
-  $sql .= ", " . $db->quote($upload['path']);
-  $sql .= ", " . $upload['size'];
-  $sql .= ", " . (empty($params["comment"])? 'NULL': $db->quote($params["comment"]));
-  $sql .= ", " . (empty($params["pass"])? 'NULL': $db->quote(hashPassword($params["pass"])));
-  $sql .= ", " . (!isset($params["pass_send"])? '1': (int)to_boolean($params["pass_send"]));
-  $sql .= ", " . time();
-  $sql .= ", " . $total;
-  $sql .= ", " . $lastdl;
-  $sql .= ", " . $maxdl;
-  $sql .= ", " . (empty($params["notify"])? 'NULL': $db->quote(fixEMailAddrs($params["notify"])));
-  $sql .= ", " . (empty($params["send_to"])? 'NULL': $db->quote(fixEMailAddrs($params["send_to"])));
-  $sql .= ", " . $db->quote($locale);
-  $sql .= ")";
-
-  try { $db->exec($sql); }
+                        . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) ".
+                        "VALUES (:id,:user_id,:name,:path,:size,:cmt,:pass_ph, :pass_send,:time,:expire,".
+                        ":last_time,:expire_dln,:notify_email,:sent_email,:locale)";
+  try {
+    $statement = $db->prepare($sql);
+    if (!$statement) { throw new Exception("failed to prepare SQL query"); }
+    $result = $statement->execute( array( ":id" => $upload['id'],   
+                                          ":user_id" => $auth['id'],
+                                          ":name" => $upload['name'],
+                                          ":path" => $upload['path'],
+                                          ":size" => $upload['size'],
+                                          ":cmt" => $params["comment"],
+                                          ":pass_ph" => (empty($params["pass"]) ? NULL : hashPassword($params["pass"])),
+                                          ":pass_send" => $params["pass_send"],
+                                          ":time" => time(),
+                                          ":expire" => $total,
+                                          ":last_time" => $lastdl,
+                                          ":expire_dln" => $maxdl,
+                                          ":notify_email" => (empty($params["notify"])? 'NULL': fixEMailAddrs($params["notify"])),
+                                          ":sent_email" => (empty($params["send_to"])? 'NULL': fixEMailAddrs($params["send_to"])),
+                                          ":locale" => $locale ) );
+  }
   catch(PDOException $e)
   {
     logDBError($db, "cannot commit new ticket to database");
