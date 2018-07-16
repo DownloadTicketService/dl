@@ -2,7 +2,6 @@
 // new ticket shared functions
 require_once("funcs.php");
 
-
 function isTicketExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
@@ -98,7 +97,7 @@ function ticketExpirationParams($params)
 
 function genTicket($upload, $params)
 {
-  global $auth, $locale, $db;
+  global $auth, $locale;
 
   // populate comment with file list when empty
   if(!empty($params["comment"]))
@@ -109,45 +108,27 @@ function genTicket($upload, $params)
   // expiration values
   list($total, $lastdl, $maxdl) = ticketExpirationParams($params);
 
-  // prepare data
-  $sql = "INSERT INTO ticket (id, user_id, name, path, size, cmt, pass_ph, pass_send"
-                        . ", time, expire, last_time, expire_dln, notify_email, sent_email, locale) ".
-                        "VALUES (:id,:user_id,:name,:path,:size,:cmt,:pass_ph, :pass_send,:time,:expire,".
-                        ":last_time,:expire_dln,:notify_email,:sent_email,:locale)";
-  try {
-    $statement = $db->prepare($sql);
-    if (!$statement) { throw new Exception("failed to prepare SQL query"); }
-    $result = $statement->execute( array( ":id" => $upload['id'],   
-                                          ":user_id" => $auth['id'],
-                                          ":name" => $upload['name'],
-                                          ":path" => $upload['path'],
-                                          ":size" => $upload['size'],
-                                          ":cmt" => $params["comment"],
-                                          ":pass_ph" => (empty($params["pass"]) ? NULL : hashPassword($params["pass"])),
-                                          ":pass_send" => $params["pass_send"],
-                                          ":time" => time(),
-                                          ":expire" => $total,
-                                          ":last_time" => $lastdl,
-                                          ":expire_dln" => $maxdl,
-                                          ":notify_email" => (empty($params["notify"])? 'NULL': fixEMailAddrs($params["notify"])),
-                                          ":sent_email" => (empty($params["send_to"])? 'NULL': fixEMailAddrs($params["send_to"])),
-                                          ":locale" => $locale ) );
-  }
-  catch(PDOException $e)
-  {
-    logDBError($db, "cannot commit new ticket to database");
-    return false;
-  }
+  $success = DBConnection::getInstance()->getGenTicketQuery()->setParameter(0,$upload['id'])->
+                                                              setParameter(1,$auth['id'])->
+                                                              setParameter(2,$upload['name'])->
+                                                              setParameter(3,$upload['path'])->
+                                                              setParameter(4,$upload['size'])->
+                                                              setParameter(5,$params["comment"])->
+                                                              setParameter(6, (empty($params["pass"]) ? NULL : hashPassword($params["pass"])))->
+                                                              setParameter(7,$params["pass_send"])->
+                                                              setParameter(8,time())->
+                                                              setParameter(9,$total)->
+                                                              setParameter(10,$lastdl)->
+                                                              setParameter(11,$maxdl)->
+                                                              setParameter(12,(empty($params["notify"])? NULL : fixEMailAddrs($params["notify"])))->
+                                                              setParameter(13,(empty($params["send_to"])? NULL : fixEMailAddrs($params["send_to"])))->
+                                                              setParameter(14,$locale)->execute();
+ $DATA = DBConnection::getInstance()->getTicketById($upload['id']);
+ $DATA['pass'] = (empty($params["pass"])? NULL : $params["pass"]);
+ 
+ Hooks::getInstance()->callHook('onTicketCreate',$DATA);
 
-  // fetch defaults
-  $sql = "SELECT * FROM ticket WHERE id = " . $db->quote($upload['id']);
-  $DATA = $db->query($sql)->fetch();
-  $DATA['pass'] = (empty($params["pass"])? NULL: $params["pass"]);
-
-  // trigger creation hooks
-  onTicketCreate($DATA);
-
-  return $DATA;
+ return $DATA;
 }
 
 

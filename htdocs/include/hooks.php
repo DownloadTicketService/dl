@@ -2,6 +2,55 @@
 // dl ticket event hooks
 require_once("msg.php");
 
+final class Hooks {
+    protected static $instance = null;
+    protected $hooks;
+    
+    public static function getInstance() {
+        if (!isset(static::$instance)) {
+            static::$instance = new static;
+        }
+        return static::$instance;
+    }
+    
+    protected function __construct() {
+        $this->hooks =
+        [
+            'onTicketCreate' => [onTicketCreate],
+            'onTicketUpdate' => [],
+            'onTicketDownload' => [onTicketDownload],
+            'onTicketPurge' => [onTicketPurge],
+            'onGrantCreate' => [onGrantCreate],
+            'onGrantUpdate' => [],
+            'onGrantPurge'  => [onGrantPurge],
+            'onGrantUse'    => [onGrantUse]
+        ];
+    }
+    
+    /**
+     * Me not like clones! Me smash clones!
+     */
+    protected function __clone() { }
+    
+    public function registerHook($hookName, $callable) {
+        if (!in_array($hookName,array_keys($this->hooks))) {
+            throw new \Exception("Hook name unkown");
+        }
+        $this->hooks[$hookName][] = $callable;
+        return $this;
+    }
+    
+    public function callHook($hookName,$DATA1,$DATA2 = null,$DATA3 = null) {
+        if (!in_array($hookName,array_keys($this->hooks))) {
+            throw new \Exception("Hook name unkown");
+        }
+        foreach($this->hooks[$hookName] as $a) {
+            $a($DATA1,$DATA2,$DATA3);
+        }
+    }
+}
+
+
 
 function onTicketCreate($DATA)
 {

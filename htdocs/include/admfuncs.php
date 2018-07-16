@@ -13,22 +13,18 @@ function restart_session()
 
 function ticketPurge($DATA, $auto = true)
 {
-  global $db;
-
-  if($db->exec("DELETE FROM ticket WHERE id = ". $db->quote($DATA["id"])) == 1)
-  {
-    unlink($DATA["path"]);
-    onTicketPurge($DATA, $auto);
+   if (DBConnection::getInstance()->purgeTicketById($DATA['id'])) {
+      unlink($DATA["path"]);
+      Hooks::getInstance()->callHook('onTicketPurge',$DATA,$auto);
   }
 }
 
 
 function grantPurge($DATA, $auto = true)
 {
-  global $db;
-
-  if($db->exec("DELETE FROM \"grant\" WHERE id = ". $db->quote($DATA["id"])) == 1)
-    onGrantPurge($DATA, $auto);
+  if (DBConnection::getInstance()->purgeGrantById($DATA['id'])) {
+      Hooks::getInstance()->callHook('onGrantPurge',$DATA,$auto);
+  }
 }
 
 
@@ -45,24 +41,14 @@ function init()
 
 function runGc()
 {
-  global $db, $gcLimit;
-
-  $now = time();
-
-  $sql = "SELECT * FROM ticket WHERE (expire + time) < $now";
-  $sql .= " OR (last_stamp + last_time) < $now";
-  $sql .= " OR expire_dln <= downloads";
-  if($gcLimit) $sql .= " LIMIT $gcLimit";
-  foreach($db->query($sql)->fetchAll() as $DATA)
+  global $gcLimit;
+  foreach(DBConnection::getInstance()->getTicketsToPurge(time(),$gcLimit) as $DATA) {
     ticketPurge($DATA);
-
-  // expire grants
-  $sql = "SELECT * FROM \"grant\" WHERE (grant_expire + time) < $now";
-  $sql .= " OR (last_stamp + grant_last_time) < $now";
-  $sql .= " OR grant_expire_uln <= uploads";
-  if($gcLimit) $sql .= " LIMIT $gcLimit";
-  foreach($db->query($sql)->fetchAll() as $DATA)
+  }
+  
+  foreach(DBConnection::getInstance()->getGrantsToPurge(time(),$gcLimit) as $DATA) {
     grantPurge($DATA);
+  }
 }
 
 
