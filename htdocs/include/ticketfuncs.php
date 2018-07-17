@@ -5,9 +5,11 @@ require_once("funcs.php");
 function isTicketExpired($DATA, $now = NULL)
 {
   if(!isset($now)) $now = time();
-  return (($DATA["expire"] && ($DATA["expire"] + $DATA["time"]) < $now)
-       || ($DATA["last_stamp"] && $DATA["last_time"] && ($DATA["last_stamp"] + $DATA["last_time"]) < $now)
-       || ($DATA["expire_dln"] && $DATA["expire_dln"] <= $DATA["downloads"]));
+
+  $expire1 = (($DATA["expire"]<>0) && ($DATA["expire"] + $DATA["time"]) < $now);
+  $expire2 = ($DATA["last_stamp"]<>0) && ($DATA["last_time"]<>0) && (($DATA["last_stamp"] + $DATA["last_time"]) < $now);
+  $expire3 = ($DATA["expire_dln"]<>0) && ($DATA["expire_dln"] <= $DATA["downloads"]);
+  return $expire1 || $expire2 || $expire3;
 }
 
 
@@ -108,25 +110,26 @@ function genTicket($upload, $params)
   // expiration values
   list($total, $lastdl, $maxdl) = ticketExpirationParams($params);
 
-  $success = DBConnection::getInstance()->getGenTicketQuery()->setParameter(0,$upload['id'])->
-                                                              setParameter(1,$auth['id'])->
-                                                              setParameter(2,$upload['name'])->
-                                                              setParameter(3,$upload['path'])->
-                                                              setParameter(4,$upload['size'])->
-                                                              setParameter(5,$params["comment"])->
-                                                              setParameter(6, (empty($params["pass"]) ? NULL : hashPassword($params["pass"])))->
-                                                              setParameter(7,$params["pass_send"])->
-                                                              setParameter(8,time())->
-                                                              setParameter(9,$total)->
-                                                              setParameter(10,$lastdl)->
-                                                              setParameter(11,$maxdl)->
-                                                              setParameter(12,(empty($params["notify"])? NULL : fixEMailAddrs($params["notify"])))->
-                                                              setParameter(13,(empty($params["send_to"])? NULL : fixEMailAddrs($params["send_to"])))->
-                                                              setParameter(14,$locale)->execute();
+  $success = DBConnection::getInstance()->generateTicket($upload['id'],
+                                                       $auth['id'],
+                                                       $upload['name'],
+                                                       $upload['path'],
+                                                       $upload['size'],
+                                                       $params["comment"],
+                                                       (empty($params["pass"]) ? NULL : hashPassword($params["pass"])),
+                                                       $params["pass_send"],
+                                                       time(),
+                                                       $total,
+                                                       $lastdl,
+                                                       $maxdl,
+                                                       (empty($params["notify"])? NULL : fixEMailAddrs($params["notify"])),
+                                                       (empty($params["send_to"])? NULL : fixEMailAddrs($params["send_to"])),
+                                                       $locale);
+
  $DATA = DBConnection::getInstance()->getTicketById($upload['id']);
  $DATA['pass'] = (empty($params["pass"])? NULL : $params["pass"]);
  
- Hooks::getInstance()->callHook('onTicketCreate',$DATA);
+ Hooks::getInstance()->callHook('onTicketCreate',['ticket' => $DATA]);
 
  return $DATA;
 }

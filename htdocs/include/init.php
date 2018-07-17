@@ -22,9 +22,6 @@ elseif(!empty($logFile))
 if(@$ret === false)
   die("cannot initialize logging\n");
 
-// initialize the db
-connectDB();
-
 // initial state
 $UPLOAD_ERRNO = UPLOAD_ERR_OK;
 

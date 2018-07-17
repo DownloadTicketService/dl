@@ -13,9 +13,10 @@ function restart_session()
 
 function ticketPurge($DATA, $auto = true)
 {
+   error_log(print_r($DATA,true));
    if (DBConnection::getInstance()->purgeTicketById($DATA['id'])) {
       unlink($DATA["path"]);
-      Hooks::getInstance()->callHook('onTicketPurge',$DATA,$auto);
+      Hooks::getInstance()->callHook('onTicketPurge',['ticket' => $DATA,'auto' => $auto]);
   }
 }
 
@@ -23,7 +24,7 @@ function ticketPurge($DATA, $auto = true)
 function grantPurge($DATA, $auto = true)
 {
   if (DBConnection::getInstance()->purgeGrantById($DATA['id'])) {
-      Hooks::getInstance()->callHook('onGrantPurge',$DATA,$auto);
+      Hooks::getInstance()->callHook('onGrantPurge',['grant' => $DATA,'auto' => $auto]);
   }
 }
 
@@ -43,6 +44,7 @@ function runGc()
 {
   global $gcLimit;
   foreach(DBConnection::getInstance()->getTicketsToPurge(time(),$gcLimit) as $DATA) {
+    print_r($DATA);
     ticketPurge($DATA);
   }
   
@@ -145,20 +147,25 @@ function userUpd($user, $pass = null, $admin = null, $email = null)
     return false;
 
   // prepare the SQL
-  $ret = true;
+  $values = array();
   if(!is_null($pass))
   {
-      $ret |= DBConnection::getInstance()->updateUserPassword($user,hashPassword($pass));
+      $values['pass_ph'] = hashPassword($pass);
   }
   if(!is_null($admin))
   {
       $role = DBConnection::getInstance()->getRoleByName(($admin? 'admin': 'user'));
-      $ret |= DBConnection::getInstance()->updateUserRole($user,$role['id']);
+      $values['role_id'] = $role['id'];
   }
   if(!is_null($email))
   {
-      $ret |= DBConnection::getInstance()->updateUserEmail($user,(empty($email)? NULL: $email));
+      $values['email'] = (empty($email)? NULL: $email);
   }
+  
+  if (count(array_keys($values))==0) {
+      return false;
+  }
+  $ret = DBConnection::getInstance()->updateUser($user, $values);
   
   $msg = array();
   if(!is_null($pass)) $msg[] = "password";
