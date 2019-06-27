@@ -4,8 +4,8 @@
   <Description about="urn:mozilla:install-manifest">
     <!-- Front End MetaData -->
     <em:id>thunderbird-filelink-dl@thregr.org</em:id>
-    <em:name>DL for Thunderbird</em:name>
-    <em:description>DL support for Thunderbird's Filelink</em:description>
+    <em:name>DL FileLink Provider for Thunderbird</em:name>
+    <em:description>Convert large attachments to links automatically, directly within the Composer window, using your own “DL” server/service instead of relying on 3rd-party providers</em:description>
     <em:homepageURL>https://www.thregr.org/~wavexx/software/dl/</em:homepageURL>
     <em:creator>Yuri D'Elia</em:creator>
     <em:version>0.17.2</em:version>
