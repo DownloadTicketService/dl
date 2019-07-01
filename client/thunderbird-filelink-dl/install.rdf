@@ -4,10 +4,12 @@
   <Description about="urn:mozilla:install-manifest">
     <!-- Front End MetaData -->
     <em:id>thunderbird-filelink-dl@thregr.org</em:id>
-    <em:name>DL for Thunderbird</em:name>
-    <em:description>DL support for Thunderbird's Filelink</em:description>
+    <em:name>DL FileLink Provider for Thunderbird</em:name>
+    <em:description>Convert large attachments to links automatically, directly within the Composer window, using your own “DL” server/service instead of relying on 3rd-party providers</em:description>
     <em:homepageURL>https://www.thregr.org/~wavexx/software/dl/</em:homepageURL>
     <em:creator>Yuri D'Elia</em:creator>
+    <em:translator>Yuri D'Elia (en-US)</em:translator>
+    <em:translator>Óvári (hu)</em:translator>
     <em:version>0.17.2</em:version>
     <em:type>2</em:type>
 
@@ -19,5 +21,17 @@
         <em:maxVersion>52.*</em:maxVersion>
       </Description>
     </em:targetApplication>
+    
+    <!-- Hungarian -->
+    <em:localized>
+      <Description>
+        <em:locale>hu</em:locale>
+        <em:name>A „DL” fájlhivatkozás szolgáltató a Thunderbird számára (DL FileLink Provider for Thunderbird)</em:name>
+        <em:description>Átalakítja a nagy mellékleteket önműködően az üzenetszerkesztő ablakban lévő hivatkozásoké, saját „DL” kiszolgálóéval/szolgáltatásával, a harmadik féltől származó szolgáltatókra való hivatkozás helyett</em:description>
+        <em:translator>Yuri D'Elia (en-US)</em:translator>
+        <em:translator>Óvári (hu)</em:translator>
+      </Description>
+    </em:localized>
+
   </Description>
 </RDF>
