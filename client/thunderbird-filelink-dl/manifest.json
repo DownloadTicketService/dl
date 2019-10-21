@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.0.0",
+  "applications": {
+    "gecko": {
+      "id": "thunderbird-filelink-dl@thregr.org",
+      "strict_min_version": "68.1"
+    }
+  },
+  "default_locale": "en",
+
+  "icons": {
+    "24": "images/dl-icon.png"
+  },
+
+  "cloud_file": {
+    "name": "__MSG_serviceName__",
+    "management_url": "/content/management.html"
+  },
+
+  "permissions": [
+    "storage",
+    "<all_urls>",
+    "http://localhost:8080/*"
+  ],
+
+  "background": {
+    "scripts": [
+      "background/background.js"
+    ]
+  }
+}
