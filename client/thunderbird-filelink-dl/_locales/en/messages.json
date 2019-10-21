@@ -8,6 +8,9 @@
   "serviceName": {
     "message": "DL"
   },
+  "insertUploadGrant": {
+    "message": "Insert Upload Grant"
+  },
   "serviceURL": {
     "message": "Service URL"
   },

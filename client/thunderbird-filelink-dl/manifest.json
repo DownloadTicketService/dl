@@ -6,7 +6,7 @@
   "applications": {
     "gecko": {
       "id": "thunderbird-filelink-dl@thregr.org",
-      "strict_min_version": "68.1"
+      "strict_min_version": "68.1.1"
     }
   },
   "default_locale": "en",
@@ -20,6 +20,13 @@
     "management_url": "/content/management.html"
   },
 
+  "compose_action": {
+    "default_title": "__MSG_insertUploadGrant__",
+    "default_icon": {
+      "24" : "/images/dl-icon.png"
+    }
+  },
+
   "permissions": [
     "storage",
     "<all_urls>",
@@ -30,5 +37,17 @@
     "scripts": [
       "background/background.js"
     ]
+  },
+  "experiment_apis": {
+    "dl": {
+      "schema": "api/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "script": "api/api.js",
+        "paths": [
+          ["dl"]
+        ]
+      }
+    }
   }
 }

@@ -447,6 +447,7 @@
     "id-length": [2, {
       "min": 3,
       "exceptions": [
+        /* dl */ "dl",
         /* jQuery */ "$",
         /* sorting */ "a", "b",
         /* exceptions */ "e", "ex",

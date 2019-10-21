@@ -122,3 +122,29 @@ messenger.cloudFile.getAllAccounts().then(async accounts => {
 });
 
 messenger.cloudFile.onAccountAdded.addListener(account => updateAccount(account));
+
+messenger.composeAction.onClicked.addListener(async (...args) => {
+  // getLastFocused doesn't return compose windows for some reson
+  let windows = await messenger.windows.getAll({ windowTypes: ["messageCompose"] });
+  let focusedWindow = windows.find(window => window.focused);
+
+  // TODO you might want to add a popup to select which account to create the grant for. Right now
+  // Thunderbird just supports one account, so this is fine (tm).
+  let accounts = await messenger.cloudFile.getAllAccounts();
+
+  let identity = await messenger.dl.composeCurrentIdentity(focusedWindow.id);
+
+  let formData = new FormData();
+  formData.append("msg", JSON.stringify({ notify: identity.email }));
+
+  let response = await request({
+    account: accounts[0],
+    url: "newgrant",
+    formData: formData
+  });
+
+  let json = await response.json();
+
+  let url = encodeURI(json.url);
+  messenger.dl.composeInsertHTML(focusedWindow.id, `<a href="${url}">${url}</a>`);
+});
