@@ -695,7 +695,7 @@ General/support mailing list
 You can contact the main author directly at <wavexx@thregr.org>, though using
 the general list is encouraged.
 
-.. _GMane: http://www.gmane.org/
+.. _GMane: https://news.gmane.io/
 
 
 Customisation and development
