@@ -21,6 +21,8 @@ elseif(!empty($logFile))
   $ret = $logFd = fopen($logFile, "at");
 if(@$ret === false)
   die("cannot initialize logging\n");
+else
+  ini_set('display_errors', 0);
 
 // initialize the db
 connectDB();
