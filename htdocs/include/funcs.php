@@ -545,7 +545,7 @@ function handleUpload($FILES)
   else
   {
     $zip = new ZipArchive();
-    if($zip->open($tmpFile, ZipArchive::CREATE) !== true)
+    if($zip->open($tmpFile, ZipArchive::CREATE|ZipArchive::OVERWRITE) !== true)
       goto error;
     foreach($FILES as $FILE)
     {
