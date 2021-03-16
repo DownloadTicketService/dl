@@ -24,9 +24,10 @@ Bundled code
 
 * PHP-Gettext:
 
-  | Copyright(c) 2005 Steven Armstrong <sa at c-area dot ch>
-  | Copyright(c) 2003, 2009 Danilo Segan <danilo@kvota.net>
+  | Copyright(c) 2005-2006 Steven Armstrong <sa at c-area dot ch>
+  | Copyright(c) 2003-2009 Danilo Segan <danilo@kvota.net>
   | Copyright(c) 2005 Nico Kaiser <nico@siriux.net>
+  | Copyright(c) 2006 Marcelo Jorge Vieira <metal@debian.org>
   | License: GNU GPL 2+ (see COPYING)
   | https://launchpad.net/php-gettext/
 

@@ -71,9 +71,11 @@ function switchLocale($locale)
 {
   global $helpPath, $helpRoot, $masterPath, $defLocale, $incPath;
 
-  T_setlocale(LC_ALL, $locale . ".utf8");
-  T_bindtextdomain('messages', "$incPath/locale");
-  T_textdomain('messages');
+  $domain = 'messages';
+  T_setlocale(LC_ALL, $locale);
+  T_bindtextdomain($domain, "$incPath/locale");
+  T_bind_textdomain_codeset($domain, 'UTF-8');
+  T_textdomain($domain);
 
   if(file_exists("$helpRoot/$locale"))
     $helpPath = "$masterPath$helpRoot/$locale/";
