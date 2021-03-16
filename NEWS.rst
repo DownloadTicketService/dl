@@ -1,3 +1,14 @@
+dl 0.19: 2021-??-??
+-------------------
+
+* Fix compatibility with PHP 8 (includes an update of the built-in
+  PHP-Gettext to 1.0.12).
+* Enforce display_errors=Off once logging is setup.
+* Fix temporary ZIP file creation (thanks to @SQ-SEN).
+* Fix spurious notices in basefuncs.php (thanks to Emanuele Rosati).
+* Fix warning in parameter validation with PHP 8.
+
+
 dl 0.18.1: 2017-09-06
 ---------------------
 
