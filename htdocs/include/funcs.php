@@ -359,7 +359,7 @@ function validateParams(&$params, &$array)
 
       foreach($v['funcs'] as $i)
       {
-	if(!call_user_func($i, $p))
+	if(!call_user_func_array($i, array(&$p)))
 	{
 	  $error = true;
 	  unset($array[$k]);
