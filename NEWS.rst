@@ -7,6 +7,7 @@ dl 0.19: 2021-??-??
 * Fix temporary ZIP file creation (thanks to @SQ-SEN).
 * Fix spurious notices in basefuncs.php (thanks to Emanuele Rosati).
 * Fix warning in parameter validation with PHP 8.
+* Allow unicode filenames in ``dl-cli`` (thanks to @mjg)
 
 
 dl 0.18.1: 2017-09-06

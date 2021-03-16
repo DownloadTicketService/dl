@@ -26,7 +26,7 @@ except ImportError:
     import httplib
 
 
-DL_VERSION = "0.18"
+DL_VERSION = "0.19"
 DL_AGENT = "dl-cli/" + DL_VERSION
 
 
@@ -69,7 +69,8 @@ def newticket(path, params, filename=None):
     if not filename:
         filename = os.path.basename(path)
     c.setopt(c.HTTPPOST, [
-        ("file", (c.FORM_FILE, path, c.FORM_FILENAME, filename)),
+        ("file", (c.FORM_FILE, path.encode(sys.getfilesystemencoding()),
+                  c.FORM_FILENAME, filename.encode('utf8'))),
         ("msg", json.dumps({}))])
 
     try:
