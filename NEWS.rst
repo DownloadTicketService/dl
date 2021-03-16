@@ -266,7 +266,7 @@ dl 0.9: 2011-04-06
 dl 0.8: 2010-07-10
 ------------------
 
-* Update PHP-Gettext to 1.1.10 (fixing several PHP Notices).
+* Update PHP-Gettext to 1.0.10 (fixing several PHP Notices).
 * Fix browser language autodetection (typo, thanks to Bert-Jan Kamp).
 * Fix ticket expiration when using sqlite3 (table locking issues).
 * Do not purge tickets prematurely after an unsuccessful download.
