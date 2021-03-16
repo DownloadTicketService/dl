@@ -546,15 +546,24 @@ function handleUpload($FILES)
   {
     $zip = new ZipArchive();
     if($zip->open($tmpFile, ZipArchive::CREATE|ZipArchive::OVERWRITE) !== true)
+    {
+      logError("cannot create ZIP file $tmpFile");
       goto error;
+    }
     foreach($FILES as $FILE)
     {
       $name = uniqueFileName(mb_sane_base($FILE["name"]), $files);
       if(!$zip->addFile($FILE["tmp_name"], $name))
+      {
+	logError("cannot add file " . $FILE["tmp_name"] . " to $tmpFile");
 	goto error;
+      }
     }
     if(!$zip->close())
+    {
+      logError("cannot close ZIP file $tmpFile");
       goto error;
+    }
     $name = "Archive-" . date("Y-m-d") . ".zip";
     $size = filesize($tmpFile);
   }
