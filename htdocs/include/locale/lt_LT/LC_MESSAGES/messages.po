@@ -1,0 +1,948 @@
+# Lithuanian translation for DL: download ticket service
+# Copyright (C) 2021
+# This file is distributed under the same license as the dl package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-28 08:01+0100\n"
+"PO-Revision-Date: 2021-04-28 12:54+0300\n"
+"Last-Translator: Marius <marius@svarcas.lt>\n"
+"Language: lt_LT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.2\n"
+
+#: ../../style/default/include/grantr.php:2 ../newticketr.php:4
+msgid "Upload result"
+msgstr "Įkėlimo rezultatas"
+
+#: ../../style/default/include/grantr.php:5
+msgid "Your file has been uploaded successfully."
+msgstr "Jūsų failas buvo sėkmingai įkeltas."
+
+#: ../../style/default/include/grantr.php:8
+msgid "A notification link has been sent to the grant owner."
+msgstr "Pranešimas išsiųstas užklausos savininkui."
+
+#: ../../style/default/include/grantr.php:15
+#, php-format
+msgid "The grant is still valid. You can <a href=\"%s\">upload more files</a>."
+msgstr "Užklausa galiojanti. Jūs galite <a href=\"%s\">įkelti daugiau failų</a>."
+
+#: ../../style/default/include/nogrant.php:3
+msgid "Invalid grant"
+msgstr "Neteisinga užklausa"
+
+#: ../../style/default/include/nogrant.php:3
+msgid "Unknown grant"
+msgstr "Nežinoma užklausa"
+
+#: ../../style/default/include/nogrant.php:9
+msgid "Sorry, the grant is invalid."
+msgstr "Atsiprašome, užklausa neteisinga."
+
+#: ../../style/default/include/nogrant.php:11
+#, php-format
+msgid "Sorry, the grant %s does not exist or is expired."
+msgstr "Atsiprašome, užklausa %s neegzistuoja arba nebegalioja."
+
+#: ../../style/default/include/noticket.php:3
+msgid "Invalid ticket"
+msgstr "Neteisinga nuoroda"
+
+#: ../../style/default/include/noticket.php:3
+msgid "Unknown ticket"
+msgstr "Nežinoma nuoroda"
+
+#: ../../style/default/include/noticket.php:9
+msgid "Sorry, the ticket is invalid."
+msgstr "Atsiprašome, nuoroda neteisinga."
+
+#: ../../style/default/include/noticket.php:11
+#, php-format
+msgid "Sorry, the ticket %s does not exist or is expired."
+msgstr "Atsiprašome, nuoroda %s neegzistuoja arba nebegalioja."
+
+#: ../../style/default/include/rmtlogout.php:2
+msgid "Logged-out"
+msgstr "Atsijungta"
+
+#: ../../style/default/include/rmtlogout.php:6
+msgid "<em>Close the browser</em> to complete the logout."
+msgstr "Norėdami atsijungti <em>uždarykite naršyklę</em>."
+
+#: ../editgrants.php:4
+#, php-format
+msgid "Editing grant %s"
+msgstr "Redaguojama užklausa %s"
+
+#: ../editgrants.php:76 ../edittickets.php:48
+msgid "Current expiration"
+msgstr "Galiojimo laikas"
+
+#: ../editgrants.php:77 ../edittickets.php:49
+msgid "Created on"
+msgstr "Sukurta"
+
+#: ../editgrants.php:85 ../edittickets.php:63
+msgid "Created by"
+msgstr "Sukūrė"
+
+#: ../editgrants.php:88
+msgid "Upload link"
+msgstr "Įkėlimo nuoroda"
+
+#: ../editgrants.php:91
+msgid "Upload count"
+msgstr "Įkėlimų kiekis"
+
+#: ../editgrants.php:93
+msgid "Last upload"
+msgstr "Paskutinis įkėlimas"
+
+#: ../editgrants.php:101 ../edittickets.php:80
+msgid "Initially sent to"
+msgstr "Pirmiausia išsiųsta"
+
+#: ../editgrants.php:115 ../newgrants.php:20
+msgid "Notification e-mail"
+msgstr "El. paštas pranešimams"
+
+#: ../editgrants.php:121 ../newgrants.php:26
+msgid "Type a <b>mandatory</b> e-mail address (or addresses) that should be notified when the file is uploaded to the server. You can separate multiple addresses with commas."
+msgstr "Įrašykite <b>galiojantį</b> el. pašto adresą (ar adresus), kuriais siųsti pranešimus apie įkeltus failus. Adresus atskirkite kableliais."
+
+#: ../editgrants.php:129 ../edittickets.php:107 ../grants.php:41
+#: ../newgrants.php:34 ../newtickets.php:44
+msgid "Comment"
+msgstr "Komentaras"
+
+#: ../editgrants.php:135 ../edittickets.php:113 ../newtickets.php:50
+msgid "Type an <em>optional</em> comment for your uploaded file. The comment will be shown along with the file name."
+msgstr "Galite įrašyti komentarą. Jis bus rodomas prie failo pavadinimo."
+
+#: ../editgrants.php:142 ../edittickets.php:120 ../prefs.php:125
+msgid "Change password"
+msgstr "Keisti slaptažodį"
+
+#: ../editgrants.php:142 ../edittickets.php:120 ../grantp.php:18
+#: ../login.php:25 ../newgrants.php:66 ../newtickets.php:75 ../prefs.php:73
+#: ../ticketp.php:18 ../users.php:107
+msgid "Password"
+msgstr "Slaptažodis"
+
+#: ../editgrants.php:147 ../edittickets.php:125 ../newgrants.php:70
+#: ../newtickets.php:79
+msgid "Generate"
+msgstr "Generuoti"
+
+#: ../editgrants.php:151 ../edittickets.php:129
+msgid "Clear password"
+msgstr "Pašalinti slaptažodį"
+
+#: ../editgrants.php:155 ../edittickets.php:133 ../newgrants.php:72
+#: ../newtickets.php:81
+msgid "Send <i>in clear</i> with notifications"
+msgstr "Siųsti slaptažodį el. paštu"
+
+#: ../editgrants.php:159 ../newgrants.php:76
+msgid "Type an <em>optional</em> password that will be required to both upload and download the file, as an additional security measure."
+msgstr "Dėl saugumo, galite įvesti slaptažodį, kuris bus reikalingas tiek įkeliant, tiek atsisiunčiant failą."
+
+#: ../editgrants.php:163 ../edittickets.php:140
+msgid "Checking \"Clear password\" will remove the password."
+msgstr "Pažymėjus \"Pašalinti slaptažodį\" slaptažodis bus pašalintas."
+
+#: ../editgrants.php:170 ../newgrants.php:84
+msgid "Grant expiry"
+msgstr "Užklausos galiojimas"
+
+#: ../editgrants.php:174 ../editgrants.php:235 ../edittickets.php:146
+#: ../newgrants.php:106 ../newgrants.php:173 ../newtickets.php:114
+msgid "Expire in total # of days"
+msgstr "Galiojimas dienomis"
+
+#: ../editgrants.php:180 ../newgrants.php:112
+msgid "Type the <strong>maximal number of days</strong> the grant is allowed to be used. After this period is passed the grant will be deleted from the server."
+msgstr "Įrašykite <strong>maksimalų dienų kiekį</strong> užklausos galiojimui. Pasibaigus šiam laikui, užklausa bus pašalinta iš serverio."
+
+#: ../editgrants.php:188 ../newgrants.php:120
+msgid "Expire in # of days after last upload"
+msgstr "Galiojimas dienomis po paskutinio įkėlimo"
+
+#: ../editgrants.php:194 ../newgrants.php:126
+msgid "Type the number of days the grant is allowed to be used <strong>after any upload</strong>. After this period is passed without activity, the grant will be deleted from the server."
+msgstr "Įrašykite užklausos galiojimo laiką dienomis po <strong>paskutinio įkėlimo</strong>. Pasibaigus šiam laikui, užklausa bus pašalinta iš serverio."
+
+#: ../editgrants.php:202 ../newgrants.php:134
+msgid "Expire after # of uploads"
+msgstr "Galiojimas pagal įkėlimus"
+
+#: ../editgrants.php:208 ../newgrants.php:140
+msgid "Type the number of times the grant file is <strong>allowed to be used in total</strong>. After this amount is reached the grant will be deleted from the server."
+msgstr "Įrašykite kiek kartų užklausą galima naudoti. Kai bus išnaudotas šis limitas, užklausa bus pašalinta iš serverio."
+
+#: ../editgrants.php:216
+msgid "Permanent grant"
+msgstr "Neribota užklausa"
+
+#: ../editgrants.php:220 ../editgrants.php:284 ../edittickets.php:195
+msgid "Do not expire"
+msgstr "Galiojimas neribojamas"
+
+#: ../editgrants.php:224
+msgid "Set this checkmark if you do not want the grant to expire."
+msgstr "Pažymėkite, jeigu norite, kad užklausos galiojimas nesibaigtų."
+
+#: ../editgrants.php:231 ../newtickets.php:92
+msgid "Ticket expiry"
+msgstr "Nuorodos galiojimas"
+
+#: ../editgrants.php:241 ../edittickets.php:152 ../newgrants.php:179
+#: ../newtickets.php:120
+msgid "Type the <strong>maximal number of days</strong> the uploaded file is allowed to be kept on the server. After this period is passed the file will be deleted from the server."
+msgstr "Įrašykite maksimalų failo saugojimo serveryje <strong>dienų skaičių</strong>. Pasibaigus šiam laikui failas bus pašalintas."
+
+#: ../editgrants.php:250 ../edittickets.php:161 ../newgrants.php:188
+#: ../newtickets.php:129
+msgid "Expire in # of days after last download"
+msgstr "Galiojimas dienomis po paskutinio atsisiuntimo"
+
+#: ../editgrants.php:256 ../edittickets.php:167 ../newgrants.php:194
+#: ../newtickets.php:135
+msgid "Type the number of days the uploaded file is allowed to be kept on the server <strong>after being downloaded</strong>. After this period is passed without activity, the file will be deleted from the server."
+msgstr "Įrašykite nuorodos galiojimo laiką dienomis po <strong>paskutinio įkėlimo</strong>. Pasibaigus šiam laikui, nuoroda bus pašalinta iš serverio."
+
+#: ../editgrants.php:265 ../edittickets.php:176 ../newgrants.php:203
+#: ../newtickets.php:144
+msgid "Expire after # of downloads"
+msgstr "Galiojimas pagal atsisiuntimus"
+
+#: ../editgrants.php:271 ../edittickets.php:182 ../newgrants.php:209
+#: ../newtickets.php:150
+msgid "Type the number of times the uploaded file is <strong>allowed to be downloaded in total</strong>. After this amount is reached the file will be deleted from the server."
+msgstr "Įrašykite kiek kartų nuorodą galima naudoti. Kai bus išnaudotas šis limitas, nuoroda bus pašalinta."
+
+#: ../editgrants.php:280 ../edittickets.php:191
+msgid "Permanent ticket / upload"
+msgstr "Neribojama nuoroda / įkėlimas"
+
+#: ../editgrants.php:288 ../edittickets.php:199
+msgid "Set this checkmark if you do not want the uploaded file to expire."
+msgstr "Pažymėkite, jeigu norite, kad nuorodos galiojimas nesibaigtų."
+
+#: ../editgrants.php:299 ../edittickets.php:221 ../prefs.php:43
+msgid "Update"
+msgstr "Atnaujinti"
+
+#: ../editgrants.php:300 ../edittickets.php:222 ../grantl.php:112
+#: ../grantla.php:118 ../newgrants.php:225 ../newtickets.php:181
+#: ../ticketl.php:122 ../ticketla.php:130 ../ticketlr.php:133 ../users.php:159
+msgid "Reset"
+msgstr "Atstatyti"
+
+#: ../edittickets.php:4
+#, php-format
+msgid "Editing ticket %s"
+msgstr "Redaguojama nuoroda %s"
+
+#: ../edittickets.php:52 ../ticketlr.php:54
+msgid "From grant"
+msgstr "Užklausa"
+
+#: ../edittickets.php:66
+msgid "File size"
+msgstr "Failo dydis"
+
+#: ../edittickets.php:67
+msgid "Download link"
+msgstr "Atsisiuntimo nuoroda"
+
+#: ../edittickets.php:70
+msgid "Download count"
+msgstr "Atsisiuntimų skaičius"
+
+#: ../edittickets.php:72
+msgid "Last download"
+msgstr "Paskutinis atsisiuntimas"
+
+#: ../edittickets.php:94
+msgid "File name"
+msgstr "Failo pavadinimas"
+
+#: ../edittickets.php:101
+msgid "Type the file name of the ticket (<em>including the extension</em>)."
+msgstr "Įrašykite failo pavadinimą (<em>nepamirškite failo plėtinio</em>)."
+
+#: ../edittickets.php:137 ../newtickets.php:85
+msgid "Type an <em>optional</em> password that will be required to download the file, as an additional security measure."
+msgstr "Galite įrašyti slaptažodį, kurio reikės failo atsisiuntimui."
+
+#: ../edittickets.php:205 ../newtickets.php:162
+msgid "Get notified by e-mail"
+msgstr "Gauti pranešimus el. paštu"
+
+#: ../edittickets.php:211 ../newtickets.php:169
+msgid "Type an <em>optional</em> e-mail address (or addresses) that should be notified when the file is downloaded from the server. You can separate multiple addresses with commas."
+msgstr "Galite įrašyti el. pašto adresą (ar adresus), kuriuo išsiųsime pranešimą apie failo atsisiuntimą. Adresus atskirkite kableliu."
+
+#: ../funcs.php:80
+#, php-format
+msgid "%s GiB"
+msgstr "%s GiB"
+
+#: ../funcs.php:82
+#, php-format
+msgid "%s MiB"
+msgstr "%s MiB"
+
+#: ../funcs.php:84
+#, php-format
+msgid "%s KiB"
+msgstr "%s KiB"
+
+#: ../funcs.php:85
+#, php-format
+msgid "%s B"
+msgstr "%s B"
+
+#: ../funcs.php:92
+#, php-format
+msgid "%d years"
+msgstr "%d metai"
+
+#: ../funcs.php:94
+#, php-format
+msgid "%d months"
+msgstr "%d mėnesiai"
+
+#: ../funcs.php:96
+#, php-format
+msgid "%d days"
+msgstr "%d dienos"
+
+#: ../funcs.php:98
+#, php-format
+msgid "%d hours"
+msgstr "%d valandos"
+
+#: ../funcs.php:100
+#, php-format
+msgid "%d minutes"
+msgstr "%d minutės"
+
+#: ../funcs.php:101
+#, php-format
+msgid "%d seconds"
+msgstr "%d sekundės"
+
+#: ../funcs.php:240
+msgid "file too big"
+msgstr "failas per didelis"
+
+#: ../funcs.php:245
+msgid "upload interrupted"
+msgstr "įkėlimas nutrūko"
+
+#: ../funcs.php:249
+msgid "internal error"
+msgstr "vidinė klaida"
+
+#: ../grant.php:58 ../ticketfuncs.php:107
+msgid "Archive contents:"
+msgstr "Archyvo sudėtis:"
+
+#: ../grantfuncs.php:23 ../grantfuncs.php:33 ../ticketfuncs.php:22
+#: ../ticketfuncs.php:32
+#, php-format
+msgid "About %s"
+msgstr "Apie %s"
+
+#: ../grantfuncs.php:28
+#, php-format
+msgid "About %d uploads"
+msgstr "Apie %d įkėlimai"
+
+#: ../grantfuncs.php:38
+#, php-format
+msgid "After %d uploads"
+msgstr "Po %d įkėlimų"
+
+#: ../grantfuncs.php:43
+#, php-format
+msgid "%s after next upload"
+msgstr "%s po kito įkėlimo"
+
+#: ../grantfuncs.php:49 ../ticketfuncs.php:48
+#, php-format
+msgid "In %s"
+msgstr "Už %s"
+
+#: ../grantfuncs.php:53 ../ticketfuncs.php:52
+msgid "Never"
+msgstr "Niekada"
+
+#: ../grantl.php:33 ../grantla.php:29 ../ticketl.php:33 ../ticketla.php:29
+#: ../ticketlr.php:33
+msgid "Purged"
+msgstr "Ištrinta"
+
+#: ../grantl.php:50 ../grantla.php:46
+msgid "Grant"
+msgstr "Užklausa"
+
+#: ../grantl.php:51 ../grantla.php:48 ../ticketl.php:55 ../ticketla.php:51
+#: ../ticketlr.php:57
+msgid "Date"
+msgstr "Data"
+
+#: ../grantl.php:52 ../grantla.php:49 ../ticketl.php:56 ../ticketla.php:52
+#: ../ticketlr.php:58
+msgid "Expiration"
+msgstr "Galiojimas"
+
+#: ../grantl.php:73 ../grantla.php:71
+msgid "Successfully uploaded"
+msgstr "Įkelta sėkmingai"
+
+#: ../grantl.php:80 ../grantla.php:78 ../grants.php:55 ../newgrantr.php:41
+#: ../newtickets.php:180
+msgid "Upload"
+msgstr "Įkelti"
+
+#: ../grantl.php:85 ../grantla.php:83 ../ticketl.php:90 ../ticketla.php:88
+#: ../ticketlr.php:92
+msgid "Purge"
+msgstr "Trinti"
+
+#: ../grantl.php:111 ../grantla.php:117 ../ticketl.php:121 ../ticketla.php:129
+#: ../ticketlr.php:132 ../users.php:158
+msgid "Reload"
+msgstr "Perkrauti"
+
+#: ../grantl.php:113 ../grantla.php:119 ../ticketl.php:123 ../ticketla.php:131
+#: ../ticketlr.php:134
+msgid "Select all"
+msgstr "Pasirinkti visus"
+
+#: ../grantl.php:114 ../grantla.php:120 ../ticketl.php:124 ../ticketla.php:132
+#: ../ticketlr.php:135
+msgid "Purge selected"
+msgstr "Trinti pasirinktus"
+
+#: ../grantla.php:47 ../login.php:13 ../ticketla.php:49 ../users.php:70
+#: ../users.php:106
+msgid "User"
+msgstr "Vartotojas"
+
+#: ../grantla.php:111
+msgid "Regular grant"
+msgstr "Užklausa"
+
+#: ../grantla.php:112
+msgid "Your grant"
+msgstr "Jūsų užklausa"
+
+#: ../grantp.php:3 ../ticketp.php:3
+msgid "Password required"
+msgstr "Reikalingas slaptažodis"
+
+#: ../grantp.php:6
+#, php-format
+msgid "The grant %s is protected. Please enter the password to proceed to the upload."
+msgstr "Užklausa %s yra apsaugota. Prašome įvesti slaptažodį, kad tęstumėte įkėlimą."
+
+#: ../grantp.php:24
+msgid "Type the password required for the upload."
+msgstr "Įrašykite slaptažodį įkėlimui."
+
+#: ../grantp.php:31
+msgid "Submit"
+msgstr "Patvirtinti"
+
+#: ../grants.php:3
+msgid "Upload grant"
+msgstr "Įkėlimo užklausa"
+
+#: ../grants.php:6 ../newtickets.php:8
+msgid "Upload failed"
+msgstr "Įkėlimas nepavyko"
+
+#: ../grants.php:18 ../newtickets.php:21
+msgid "Upload file/s"
+msgstr "Įkelti failą(us)"
+
+#: ../grants.php:33 ../newtickets.php:36
+#, php-format
+msgid "Choose which file/s to upload. You can upload up to %d files for a total of %s."
+msgstr "Pasirinkite kuriuos failus įkelti. Galite įkelti %d failų, kurie užimtų iki %s."
+
+#: ../grants.php:47
+msgid "Type an <em>optional</em> comment for your uploaded file/s. The comment will be sent back to the grant owner."
+msgstr "Galite įrašyti komentarą. Komentaras bus nusiųstas užklausos savininkui."
+
+#: ../login.php:4 ../login.php:38
+msgid "Login"
+msgstr "Prisijungti"
+
+#: ../login.php:19
+msgid "Type the user name to access the filesharing service."
+msgstr "Įrašykite prisijungimo vardą."
+
+#: ../login.php:31
+msgid "Type the password to access the filesharing service."
+msgstr "Įrašykite slaptažodį."
+
+#: ../msg.php:7
+#, php-format
+msgid "download link to %s"
+msgstr "%s atsisiuntimo nuoroda"
+
+#: ../msg.php:9
+msgid "Ticket comment:"
+msgstr "Nuorodos komentaras:"
+
+#: ../msg.php:10 ../msg.php:49 ../msg.php:82
+msgid "URL:"
+msgstr "URL:"
+
+#: ../msg.php:12 ../msg.php:51 ../msg.php:84
+msgid "Password:"
+msgstr "Slaptažodis:"
+
+#: ../msg.php:19
+#, php-format
+msgid "ticket %s download notification"
+msgstr "%s nuorodos pranešimas"
+
+#: ../msg.php:20
+#, php-format
+msgid "The ticket %s was downloaded by %s from %s"
+msgstr "Failas %s buvo parsisiųstas %s iš %s"
+
+#: ../msg.php:28 ../msg.php:37
+#, php-format
+msgid "ticket %s purge notification"
+msgstr "%s nuorodos pašalinimo pranešimas"
+
+#: ../msg.php:29
+#, php-format
+msgid "The ticket %s was purged manually after %d downloads from %s"
+msgstr "%s nuoroda buvo pašalinta rankiniu būdu po %d atsisiuntimų iš %s"
+
+#: ../msg.php:38
+#, php-format
+msgid "The ticket %s expired automatically after %d downloads from %s"
+msgstr "%s nuorodos galiojimas pasibaigė po %d atsisiuntimų iš %s"
+
+#: ../msg.php:46
+msgid "upload grant link"
+msgstr "įkėlimo užklausos nuoroda"
+
+#: ../msg.php:48 ../msg.php:79
+msgid "Grant comment:"
+msgstr "Užklausos komentaras:"
+
+#: ../msg.php:58 ../msg.php:66
+#, php-format
+msgid "grant %s purge notification"
+msgstr "%s užklausos pašalinimo pranešimas"
+
+#: ../msg.php:59
+#, php-format
+msgid "The grant %s was purged manually from %s"
+msgstr "%s užklausa pašalinta rankiniu būdu iš %s"
+
+#: ../msg.php:67
+#, php-format
+msgid "The grant %s expired automatically from %s"
+msgstr "%s užklausos galiojimas pasibaigė iš %s"
+
+#: ../msg.php:74
+#, php-format
+msgid "download link for grant %s"
+msgstr "užklausos nuoroda %s"
+
+#: ../msg.php:75
+#, php-format
+msgid "Your grant %s has been used on %s by %s."
+msgstr "Jūsų užklausa %s buvo panaudota %s vartotojo %s."
+
+#: ../msg.php:81
+#, php-format
+msgid "The uploaded file (%s) is now available to be downloaded at:"
+msgstr "Įkeltas failas (%s), kurį galima atsisiųsti iš:"
+
+#: ../msg.php:86
+msgid "Upload comment:"
+msgstr "Įkėlimo komentaras:"
+
+#: ../newgrantr.php:4
+msgid "Grant result"
+msgstr "Užklausos rezultatas"
+
+#: ../newgrantr.php:14
+#, php-format
+msgid "Your grant %s"
+msgstr "Jūsų užklausa %s"
+
+#: ../newgrantr.php:20 ../newticketr.php:20
+msgid "The required password is:"
+msgstr "Būtinas slaptažodis:"
+
+#: ../newgrantr.php:26
+msgid "A grant link has been sent to:"
+msgstr "Užklausa išsiųsta:"
+
+#: ../newgrantr.php:40 ../newticketr.php:40
+msgid "Send via e-mail"
+msgstr "Siųsti el. paštu"
+
+#: ../newgrants.php:13
+msgid "Grant parameters"
+msgstr "Užklausos parametrai"
+
+#: ../newgrants.php:40
+msgid "Type an <em>optional</em> comment for your upload grant and resulting ticket. The comment will be shown along with the grant and ticket information."
+msgstr "Galite įrašyti komentarą. Komentaras bus rodomas prie užklausos ir nuorodos."
+
+#: ../newgrants.php:48 ../newtickets.php:57
+msgid "Send link to e-mail"
+msgstr "Siųsti nuorodą el. paštu"
+
+#: ../newgrants.php:54
+msgid "Type an <em>optional</em> e-mail address (or addresses) that should immediately receive the link to the upload grant. You can separate multiple addresses with commas."
+msgstr "Galite įrašyti el. pašto adresą (ar adresus), kuris gautų užklausos nuorodą. Adresus atskirkite kableliais."
+
+#: ../newgrants.php:62 ../newtickets.php:71
+msgid "Advanced"
+msgstr "Daugiau"
+
+#: ../newgrants.php:87 ../newgrants.php:154 ../newtickets.php:95
+msgid "Automatic"
+msgstr "Automatinis"
+
+#: ../newgrants.php:88 ../newgrants.php:155 ../newtickets.php:96
+msgid "Single use"
+msgstr "Vienkartinis"
+
+#: ../newgrants.php:89 ../newgrants.php:156 ../newtickets.php:97
+msgid "No expiration"
+msgstr "Be pabaigos"
+
+#: ../newgrants.php:90 ../newgrants.php:157 ../newtickets.php:98
+msgid "Custom"
+msgstr "Parinkti"
+
+#: ../newgrants.php:96
+#, php-format
+msgid "Select the expiration logic of the grant. <strong>Automatic</strong> will keep the grant as long as it's being actively used for up to %s. <strong>Single use</strong> allows <em>only one upload</em> to be performed. <strong>No expiration</strong> will never remove the grant automatically."
+msgstr "Pasirinkite užklausos galiojimo logiką. <strong>Automatinis</strong> galios iki %s. <strong>Vienkartinis</strong> leidžia <em>tik vieną įkėlimą</em>. <strong>Be pabaigos</strong> galios visada."
+
+#: ../newgrants.php:151
+msgid "Upload expiry"
+msgstr "Įkėlimo galiojimas"
+
+#: ../newgrants.php:163
+#, php-format
+msgid "Select the expiration logic of the upload. <strong>Automatic</strong> will keep the upload as long as it's being actively downloaded/used for up to %s. <strong>Single use</strong> allows <em>only one download</em> to be performed. <strong>No expiration</strong> will never remove the upload automatically."
+msgstr "Pasirinkite įkėlimo galiojimo logiką. <strong>Automatinis</strong> galios iki %s. <strong>Vienkartinis</strong> leidžia <em>tik vieną atsisiuntimą/panaudojimą</em>. <strong>Be pabaigos</strong> galios visada."
+
+#: ../newgrants.php:224 ../users.php:150
+msgid "Create"
+msgstr "Kurti"
+
+#: ../newgrants.php:226 ../newtickets.php:182
+msgid "Set as defaults"
+msgstr "Nustatyti kaip numatytuosius"
+
+#: ../newticketr.php:14
+#, php-format
+msgid "Your ticket %s"
+msgstr "Jūsų nuoroda %s"
+
+#: ../newticketr.php:26
+msgid "A download link has been sent to:"
+msgstr "Atsisiuntimo nuoroda nusiųsta:"
+
+#: ../newticketr.php:41 ../ticketl.php:85 ../ticketla.php:83 ../ticketlr.php:87
+#: ../ticketp.php:31
+msgid "Download"
+msgstr "Atsisiųsti"
+
+#: ../newtickets.php:63
+msgid "Type an <em>optional</em> e-mail address (or addresses) that should immediately receive the link to the ticket. You can separate multiple addresses with commas."
+msgstr "Galite įrašyti el. pašto adresą (ar adresus), kuris gautų nuorodą. Adresus atskirkite kableliais."
+
+#: ../newtickets.php:104
+#, php-format
+msgid "Select the expiration logic of the ticket. <strong>Automatic</strong> will keep the ticket as long as it's being actively downloaded/used for up to %s. <strong>Single use</strong> allows <em>only one download</em> to be performed. <strong>No expiration</strong> will never remove the ticket automatically."
+msgstr "Pasirinkite nuorodos galiojimo logiką. <strong>Automatinis</strong> galios iki %s. <strong>Vienkartinis</strong> leidžia <em>tik vieną atsisiuntimą</em>. <strong>Be pabaigos</strong> galios visada."
+
+#: ../newtickets.php:165
+msgid "Use my e-mail"
+msgstr "Naudoti mano el. paštą"
+
+#: ../pages.php:6
+msgid "New ticket"
+msgstr "Nauja nuoroda"
+
+#: ../pages.php:7
+msgid "Active tickets"
+msgstr "Aktyvios nuorodos"
+
+#: ../pages.php:8
+msgid "New grant"
+msgstr "Nauja užklausa"
+
+#: ../pages.php:9
+msgid "Active grants"
+msgstr "Aktyvios užklausos"
+
+#: ../pages.php:10
+msgid "Received files"
+msgstr "Gauti failai"
+
+#: ../pages.php:11
+msgid "Preferences"
+msgstr "Nustatymai"
+
+#: ../pages.php:12
+msgid "Manage users"
+msgstr "Vartotojų valdymas"
+
+#: ../pages.php:13
+msgid "All tickets"
+msgstr "Visos nuorodos"
+
+#: ../pages.php:14
+msgid "All grants"
+msgstr "Visos užklausos"
+
+#: ../pages.php:61
+msgid "Logout"
+msgstr "Atsijungti"
+
+#: ../pages.php:62
+msgid "Help"
+msgstr "Pagalba"
+
+#: ../prefs.php:15
+msgid "Settings successfully updated."
+msgstr "Nustatymai sėkmingai įkelti."
+
+#: ../prefs.php:15
+msgid "Settings update"
+msgstr "Nustatymų atnaujinimas"
+
+#: ../prefs.php:22
+msgid "Defaults"
+msgstr "Numatyti"
+
+#: ../prefs.php:29
+msgid "E-Mail"
+msgstr "El. paštas"
+
+#: ../prefs.php:35
+msgid "Type a <b>mandatory</b> e-mail address that will be used as a default for notifications."
+msgstr "Įveskite <b>galiojantį</b> el. pašto adresą, kuriam pagal nutylėjimą bus siunčiami pranešimai."
+
+#: ../prefs.php:61
+msgid "New passwords don't match! Password unchanged."
+msgstr "Slaptažodžiai nesutampa! Slaptažodis nepakeistas."
+
+#: ../prefs.php:61 ../prefs.php:63 ../prefs.php:67
+msgid "Password change"
+msgstr "Keisti slaptažodį"
+
+#: ../prefs.php:63
+msgid "Old password doesn't match! Password unchanged."
+msgstr "Senas slaptažodis neatitinka! Slaptažodis nepakeistas."
+
+#: ../prefs.php:67
+msgid "Password successfully changed."
+msgstr "Slaptažodis sėkmingai pakeistas."
+
+#: ../prefs.php:80
+msgid "Old password"
+msgstr "Senas slaptažodis"
+
+#: ../prefs.php:86
+msgid "Please type your current password."
+msgstr "Įveskite esamą slaptažodį."
+
+#: ../prefs.php:96
+msgid "New password"
+msgstr "Naujas slaptažodis"
+
+#: ../prefs.php:102
+msgid "Please type the new password."
+msgstr "Įveskite naują slaptažodį."
+
+#: ../prefs.php:112
+msgid "New password (retype)"
+msgstr "Naujas slaptažodis (pakartokite)"
+
+#: ../prefs.php:118
+msgid "Please <em>retype</em> the new password again."
+msgstr "Prašome <em>pakartoti</em> naują slaptažodį."
+
+#: ../ticketfuncs.php:27
+#, php-format
+msgid "About %d downloads"
+msgstr "Apie %d atsisiuntimų"
+
+#: ../ticketfuncs.php:37
+#, php-format
+msgid "After %d downloads"
+msgstr "Po %d atsisiuntimų"
+
+#: ../ticketfuncs.php:42
+#, php-format
+msgid "%s after next download"
+msgstr "%s po kito atsisiuntimo"
+
+#: ../ticketl.php:53 ../ticketla.php:48 ../ticketlr.php:55
+msgid "Ticket"
+msgstr "Nuoroda"
+
+#: ../ticketl.php:54 ../ticketla.php:50 ../ticketlr.php:56
+msgid "Size"
+msgstr "Dydis"
+
+#: ../ticketl.php:78 ../ticketla.php:76 ../ticketlr.php:80
+msgid "Successfully downloaded"
+msgstr "Atsisiuntimas sėkmingas"
+
+#: ../ticketl.php:129
+#, php-format
+msgid "Total ticket size: %s"
+msgstr "Nuorodos dydis: %s"
+
+#: ../ticketla.php:121
+msgid "Regular ticket"
+msgstr "Nuoroda"
+
+#: ../ticketla.php:122
+msgid "Regular ticket (yours)"
+msgstr "Nuoroda (jūsų)"
+
+#: ../ticketla.php:123
+msgid "Received ticket"
+msgstr "Gauta nuoroda"
+
+#: ../ticketla.php:124
+msgid "Received ticket (yours)"
+msgstr "Gauta nuoroda (jūsų)"
+
+#: ../ticketla.php:137
+#, php-format
+msgid "Total archive size: %s"
+msgstr "Archyvo dydis: %s"
+
+#: ../ticketlr.php:140
+#, php-format
+msgid "Total received size: %s"
+msgstr "Viso gauta: %s"
+
+#: ../ticketp.php:6
+#, php-format
+msgid "The ticket %s is protected. Please enter the password to unlock the content."
+msgstr "%s nuoroda apsaugota. Norėdami atrakinti, įveskite slaptažodį."
+
+#: ../ticketp.php:24
+msgid "Type the password required to unlock this ticket."
+msgstr "Įveskite slaptažodį nuorodai atrakinti."
+
+#: ../users.php:15
+msgid "Created"
+msgstr "Sukurta"
+
+#: ../users.php:17
+msgid "Creation failed"
+msgstr "Sukūrimas nepavyko"
+
+#: ../users.php:18
+#, php-format
+msgid "user \"%s\" already exists"
+msgstr "vartotojas \"%s\" jau yra"
+
+#: ../users.php:31
+msgid "Deleted"
+msgstr "Ištrinta"
+
+#: ../users.php:63
+msgid "Updated"
+msgstr "Atnaujinta"
+
+#: ../users.php:70
+msgid "Administrator"
+msgstr "Administratorius"
+
+#: ../users.php:108
+msgid "Role"
+msgstr "Rolė"
+
+#: ../users.php:109
+msgid "Tickets"
+msgstr "Nuorodos"
+
+#: ../users.php:110
+msgid "Grants"
+msgstr "Užklausos"
+
+#: ../users.php:111
+msgid "Total size"
+msgstr "Viso"
+
+#: ../users.php:160
+msgid "Delete selected"
+msgstr "Ištrinti pasirinktą"
+
+#: ../users.php:161
+msgid "Apply changes"
+msgstr "Tvirtinti pakeitimus"
+
+#~ msgid "Ticket parameters"
+#~ msgstr "Ticket-Einstellungen (Download)"
+
+#~ msgid "Type the <strong>maximal number of days</strong> the server should wait for the upload grant to be used.  After this period is passed without activity, the grant is removed the server."
+#~ msgstr "Geben Sie die <strong>maximale Anzahl von Tagen</strong> an, innerhalb der die Upload-Erlaubnis verwendet werden kann. Nach Ablauf kann die Erlaubnis nicht mehr verwendet werden."
+
+#~ msgid ""
+#~ "Your grant %s has been used by %s. The uploaded file is now available to be downloaded at:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Ihre Upload-Erlaubnis %s wurde von %s verwendet. Die hochgeladene Datei kann nun unter folgender URL heruntergeladen werden:\n"
+#~ "\n"
+
+#~ msgid "Choose which file to upload. You can upload up to %s."
+#~ msgstr "Wählen Sie eine Datei für den Upload aus. Es können bis zu %s hochgeladen werden."
+
+#~ msgid "Upload a file"
+#~ msgstr "Datei"
+
+#~ msgid "A notification link has been sent to the grant owner. Thanks."
+#~ msgstr "Ein Hinweis wurde an den Versender der Upload-Erlaubnis verschickt."
+
+#~ msgid "[dl] download link for grant %s"
+#~ msgstr "[dl] Upload-Link für %s"
+
+#~ msgid "[dl] grant %s purge notification"
+#~ msgstr "[dl] Löschbenachrichtigung für Upload-Erlaubnis %s"
+
+#~ msgid "[dl] upload grant link"
+#~ msgstr "[dl] Upload-Link"
+
+#~ msgid "[dl] ticket %s purge notification"
+#~ msgstr "[dl] Löschbenachrichtigung für Ticket %s"
+
+#~ msgid "[dl] ticket %s download notification"
+#~ msgstr "[dl] Downloadbenachrichtigung für Ticket %s"
+
+#~ msgid "[dl] download link to %s"
+#~ msgstr "[dl] Download-Link für %s"
