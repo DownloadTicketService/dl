@@ -280,14 +280,6 @@ function is_expiry_choice($v)
 }
 
 
-function anyOf()
-{
-  foreach(func_get_args() as $arg)
-    if(isset($arg)) return $arg;
-  return NULL;
-}
-
-
 function not_empty(&$v)
 {
   return isset($v) && !empty(trim($v));

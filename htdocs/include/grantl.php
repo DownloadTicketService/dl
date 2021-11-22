@@ -86,7 +86,7 @@ foreach($db->query($sql) as $DATA)
     . "\" src=\"$style/static/cross.png\"/></a></td>";
 
   // id+cmt
-  echo '<td><a title="' . htmlEntUTF8($DATA['cmt']) . '" href="'
+  echo '<td><a title="' . htmlEntUTF8($DATA['cmt'] ?? '') . '" href="'
     . pageLink('gedit', array('id' => $DATA['id'], 'src' => $act))
     . '" class="ticketid">' . htmlEntUTF8($DATA['id'])
     . '</a></td>';

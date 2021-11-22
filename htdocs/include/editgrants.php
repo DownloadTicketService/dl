@@ -5,14 +5,14 @@ $title = sprintf(T_("Editing grant %s"), "<span class=\"ticketid\">$id</span>");
 pageHeader(array('title' => $title));
 
 // form values
-$notify = anyOf(@$_POST['notify'], join(", ", getEMailAddrs($DATA['notify_email'])));
-$comment = trim(anyOf(@$_POST['comment'], $DATA['cmt'], ""));
+$notify = @$_POST['notify'] ?? join(", ", getEMailAddrs($DATA['notify_email']));
+$comment = trim(@$_POST['comment'] ?? $DATA['cmt'] ?? '');
 $hasPass = hasPassHash($DATA);
-$pass = anyOf(@$_POST['pass'], "");
-$pass_clear = anyOf(@$_POST['pass_clear'], false);
-$pass_send = anyOf(@$_POST['pass_send'], $DATA['pass_send']);
-$grant_permanent = anyOf(@$_POST['grant_permanent'], !($DATA['grant_expire'] || $DATA["grant_last_time"] || $DATA["grant_expire_uln"]));
-$ticket_permanent = anyOf(@$_POST['ticket_permanent'], !($DATA['expire'] || $DATA["last_time"] || $DATA["expire_dln"]));
+$pass = @$_POST['pass'] ?? '';
+$pass_clear = @$_POST['pass_clear'] ?? false;
+$pass_send = @$_POST['pass_send'] ?? $DATA['pass_send'];
+$grant_permanent = @$_POST['grant_permanent'] ?? !($DATA['grant_expire'] || $DATA["grant_last_time"] || $DATA["grant_expire_uln"]);
+$ticket_permanent = @$_POST['ticket_permanent'] ?? !($DATA['expire'] || $DATA["last_time"] || $DATA["expire_dln"]);
 
 // current grant expiration values
 if(isset($_POST['grant_totaldays']))
