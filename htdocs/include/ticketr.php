@@ -84,6 +84,9 @@ $left = $size;
 fseek($fd, $range[1]);
 while($left)
 {
+  if(connection_aborted())
+    break;
+
   $data = fread($fd, 16384);
   $left -= strlen($data);
   print($data);
