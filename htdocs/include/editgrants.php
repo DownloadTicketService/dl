@@ -6,7 +6,7 @@ pageHeader(array('title' => $title));
 
 // form values
 $notify = anyOf(@$_POST['notify'], join(", ", getEMailAddrs($DATA['notify_email'])));
-$comment = trim(anyOf(@$_POST['comment'], $DATA['cmt']), "");
+$comment = trim(anyOf(@$_POST['comment'], $DATA['cmt'], ""));
 $hasPass = hasPassHash($DATA);
 $pass = anyOf(@$_POST['pass'], "");
 $pass_clear = anyOf(@$_POST['pass_clear'], false);
