@@ -17,7 +17,7 @@ and OSX or straight from the command line for maximum convenience.
 Requirements
 ============
 
-* PHP 5.5 or higher.
+* PHP 7.0 or higher.
 * PHP SQLite module (or another PDO database module).
 * PHP mbstring module.
 * PHP OpenSSL module.
