@@ -453,7 +453,7 @@ installed as a subdirectory in the document root::
 
 	  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 	  fastcgi_index index.php;
-	  fastcgi_pass unix:/var/run/php5-fpm.sock;
+	  fastcgi_pass unix:/var/run/php7-fpm.sock;
       }
   }
 
