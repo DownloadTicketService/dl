@@ -42,7 +42,7 @@ $defaultGrantMaxUl = 0;
  */
 
 // cfgVersion: configuration file version
-$cfgVersion = "0.18";
+$cfgVersion = "0.19";
 
 // logFile: set this if you want new tickets, downloads and purges logged to a
 //          file. If the setting contains no slashes, it will be used as a tag

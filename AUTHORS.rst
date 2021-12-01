@@ -10,13 +10,15 @@ Localization
 :Brazilian Portuguese:	Guilherme Benkenstein <gb@gbti.com.br>
 :Czech:			Jan Štětina <zaantar@gmail.com>
 :Dutch:			Maarten Schoonman <m.s.schoonman@home.nl>
-:French:		Daniel Berteaud <daniel@firewall-services.com>
+:French:		Daniel Berteaud <daniel@firewall-services.com>,
+			Sébastien Le Ray <sebastien.le_ray@finsecur.com>
 :German:		Clemens Egger <clemens.egger@eurac.edu>
 :Italian:		Yuri D'Elia <wavexx@thregr.org>
 :Japanese:		Teruo IWAI <teruo.iwai@gmail.com>
+:Lithuanian:		Marius Švarcas <marius@svarcas.lt>
 :Russian:		Олейник О.В <oleg_oleinik@mail.ru>
-:Spanish:		Roberto Salgado <drober@gmail.com>
 :Simplified Cinese:	Guangyu Dong <skyerce@gmail.com>
+:Spanish:		Roberto Salgado <drober@gmail.com>
 
 
 Bundled code
