@@ -437,4 +437,4 @@ function init()
   $('form.autoprogress').each(function(i, t) { setupAutoProgress(t); });
 }
 
-$(document).ready(init);
+$(document).on('ready', init);
