@@ -7,17 +7,15 @@ function authenticate()
   global $db, $authRealm, $style;
 
   $rmt = ($authRealm != false);
-  $extAuth = externalAuth();
-
-  if(!$rmt || $extAuth === false)
+  if(!$rmt)
   {
-    // built-in authentication attempt
     if(empty($_REQUEST['u']) || !isset($_POST['p']))
     {
       // simple logout
       return false;
     }
 
+    // built-in authentication attempt
     $authData = Array
     (
       "user" => $_REQUEST['u'],
@@ -27,7 +25,6 @@ function authenticate()
   }
   else
   {
-    // external authentication
     if(isset($_REQUEST['u']) && empty($_REQUEST['u']))
     {
       // remote logout
@@ -37,7 +34,14 @@ function authenticate()
       return null;
     }
 
-    $authData = $extAuth;
+    // external authentication
+    $authData = externalAuth();
+    if($authData === false)
+    {
+      // missing remote authentication data
+      logError('missing remote authentication data');
+      httpInternalError();
+    }
   }
 
   // verify if we have administration rights
