@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).on('ready', function()
 {
   $(".element").each(function()
