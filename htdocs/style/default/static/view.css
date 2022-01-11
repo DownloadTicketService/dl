@@ -101,7 +101,7 @@ table th, table td
 	background-repeat: repeat-x;
 	width: 850px;
 	margin: 0 auto 0 auto;
-	padding: 0 25px 5px 0;
+	padding: 0 25px 0 0;
 	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
 	box-shadow: 0 5px 10px rgba(0,0,0,0.5);
@@ -123,7 +123,9 @@ h1 img
 
 h1 a
 {
+	padding: 5px 0 5px 0;
 	color: #182539;
+	display: inline-block;
 }
 
 
