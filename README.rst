@@ -97,9 +97,9 @@ need to properly configure the ``$dsn`` parameters in ``include/config.php``
 according to your setup. The DSN string changes according to the PDO module
 that you want to use. Please see one of:
 
-* `SQLite DSN <http://www.php.net/manual/en/ref.pdo-sqlite.connection.php>`_
-* `MySQL DSN <http://php.net/manual/en/ref.pdo-mysql.connection.php>`_
-* `PostgreSQL DSN <http://www.php.net/manual/en/ref.pdo-pgsql.connection.php>`_
+* `SQLite DSN <https://www.php.net/manual/en/ref.pdo-sqlite.connection.php>`_
+* `MySQL DSN <https://www.php.net/manual/en/ref.pdo-mysql.connection.php>`_
+* `PostgreSQL DSN <https://www.php.net/manual/en/ref.pdo-pgsql.connection.php>`_
 
 for the most popular configuration choices. When a username/password is
 required, using the appropriate variables ``$dbUser``/``$dbPassword`` is
@@ -145,9 +145,9 @@ connection can take as much as 12 hours, so set it to *at least* 43200.
 
 If PHP was built as an Apache module you can set per-directory parameters
 through ``.htaccess`` (see
-http://www.php.net/manual/en/configuration.changes.php) or directly inside your
-Apache's configuration (see `Apache/mod_php`_ for an example). The provided
-``htdocs/.htaccess`` contains a reasonable pre-set, but requires
+https://www.php.net/manual/en/configuration.changes.php) or directly inside
+your Apache's configuration (see `Apache/mod_php`_ for an example). The
+provided ``htdocs/.htaccess`` contains a reasonable pre-set, but requires
 ``AllowOverride All`` to be set for the directory in your main configuration.
 
 
@@ -267,9 +267,9 @@ Opera >= 10   no limit
 
 Sources:
 
-* http://www.motobit.com/help/scptutl/pa98.htm
+* https://www.motobit.com/help/scptutl/pa98.htm
 * https://bugzilla.mozilla.org/show_bug.cgi?id=215450
-* http://blogs.msdn.com/b/ieinternals/archive/2011/03/10/wininet-internet-explorer-file-download-and-upload-maximum-size-limits.aspx
+* https://web.archive.org/web/20151107135517/http://blogs.msdn.com/b/ieinternals/archive/2011/03/10/wininet-internet-explorer-file-download-and-upload-maximum-size-limits.aspx
 
 
 Web-server Configuration
@@ -353,7 +353,7 @@ Apache's ``mod_fcgi``) and ``mod_fastcgi``.
 * ``mod_fastcgi`` has been proved to be slow (and sometimes unstable) in most
   configurations. It is not advisable to use PHP with ``mod_fastcgi``.
 
-.. _bug: http://sourceforge.net/mailarchive/forum.php?thread_name=48485BDC.1020204@oxeva.fr&forum_name=mod-fcgid-users
+.. _bug: https://sourceforge.net/p/mod-fcgid/mailman/mod-fcgid-users/thread/48485BDC.1020204@oxeva.fr/
 
 For the REST service to work, independently of the authentication method,
 ``mod_rewrite`` needs to be enabled and configured as follows::
@@ -444,7 +444,7 @@ installed as a subdirectory in the document root::
 	  # Set maximum body size (should be the same as PHP's post_max_size)
 	  client_max_body_size 512M;
 
-	  # Setup PATH_INFO (http://trac.nginx.org/nginx/ticket/321)
+	  # Setup PATH_INFO (https://trac.nginx.org/nginx/ticket/321)
 	  fastcgi_split_path_info ^(.+\.php)(/.+)$;
 	  set $path_info          $fastcgi_path_info;
 	  fastcgi_param PATH_INFO $path_info;
@@ -647,7 +647,7 @@ The quickest way to obtain the fingerprint is to use curl directly::
 
 Look for the "public key hash" in the generated output.
 
-.. _cURL: https://curl.haxx.se/libcurl/c/CURLOPT_PINNEDPUBLICKEY.html
+.. _cURL: https://curl.se/libcurl/c/CURLOPT_PINNEDPUBLICKEY.html
 
 
 Thunderbird integration
@@ -670,7 +670,7 @@ as provided in the distribution.
 
 See full installation and usage instructions on the extension_ web page.
 
-.. _Filelink: https://support.mozillamessaging.com/en-US/kb/filelink-large-attachments
+.. _Filelink: https://support.mozilla.org/en-US/kb/filelink-large-attachments
 .. _extension: https://www.thregr.org/wavexx/software/dl/thunderbird.html
 
 
@@ -744,5 +744,5 @@ dl's GIT repository is publicly accessible at:
 https://github.com/DownloadTicketService/dl
 
 
-.. _PoEdit: http://poedit.sourceforge.net/
-.. _docutils: http://docutils.sourceforge.net/
+.. _PoEdit: https://poedit.net/
+.. _docutils: https://docutils.sourceforge.io/

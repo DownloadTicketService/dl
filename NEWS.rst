@@ -336,7 +336,7 @@ dl 0.3: 2009-09-02
 ------------------
 
 * CSS-ification, with new skin from Kim Thostrup <kim@thostrup.dk>.
-* Include IE5/6 PNG fix from Angus Turnbull http://www.twinhelix.com
+* Include IE5/6 PNG fix from Angus Turnbull https://www.twinhelix.com
 * Multiuser support with HTTP authentication or internal user database.
 * License changed to LGPL 3
 

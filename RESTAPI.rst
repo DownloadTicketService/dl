@@ -268,7 +268,7 @@ authorization hash on the command-line as well with the following::
 Please keep in mind command-line arguments are usually visible to other users
 running on the same system, potentially exposing your password.
 
-.. _curl: https://curl.haxx.se/
+.. _curl: https://curl.se/
 
 
 Programming APIs
