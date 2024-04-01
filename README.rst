@@ -627,7 +627,7 @@ A ``dl-wx`` pre-built binary is also available online on the dl-wx_ page, which
 includes installation instructions and a simple tutorial.
 
 .. _executable client:
-.. _dl-wx: https://www.thregr.org/~wavexx/software/dl/dl-wx.html
+.. _dl-wx: https://www.thregr.org/wavexx/software/dl/dl-wx.html
 
 
 Public key pinning
@@ -671,7 +671,7 @@ as provided in the distribution.
 See full installation and usage instructions on the extension_ web page.
 
 .. _Filelink: https://support.mozillamessaging.com/en-US/kb/filelink-large-attachments
-.. _extension: https://www.thregr.org/~wavexx/software/dl/thunderbird.html
+.. _extension: https://www.thregr.org/wavexx/software/dl/thunderbird.html
 
 
 General/support mailing list
@@ -705,9 +705,7 @@ You are encouraged to change DL as you see fit under the terms of the GNU GPL 2
 license, or (at your option) any later version. DL's GIT repository is publicly
 accessible at:
 
-  https://github.com/DownloadTicketService/dl
-
-or at ``git://src.thregr.org/dl``
+https://github.com/DownloadTicketService/dl
 
 
 Development releases
@@ -736,16 +734,14 @@ environment.
 Authors and Copyright
 =====================
 
-"dl" can be found at https://www.thregr.org/~wavexx/software/dl/
+"dl" can be found at https://www.thregr.org/wavexx/software/dl/
 
 | "dl" is distributed under GNU GPLv2+, WITHOUT ANY WARRANTY.
 | Copyright(c) 2007-2017 by Yuri D'Elia <wavexx@thregr.org>.
 
 dl's GIT repository is publicly accessible at:
 
-  https://github.com/DownloadTicketService/dl
-
-or at ``git://src.thregr.org/dl``
+https://github.com/DownloadTicketService/dl
 
 
 .. _PoEdit: http://poedit.sourceforge.net/
