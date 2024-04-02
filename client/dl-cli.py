@@ -68,10 +68,17 @@ def newticket(path, params, filename=None):
 
     if not filename:
         filename = os.path.basename(path)
+
+    msg = {}
+    # add ticket parameters, if present/configured
+    for p in ['ticket_total', 'ticket_lastdl', 'ticket_maxdl']:
+        if p in params:
+            msg[p] = params[p]
+
     c.setopt(c.HTTPPOST, [
         ("file", (c.FORM_FILE, path.encode(sys.getfilesystemencoding()),
                   c.FORM_FILENAME, filename.encode('utf8'))),
-        ("msg", json.dumps({}))])
+        ("msg", json.dumps(msg))])
 
     try:
         c.perform()
@@ -211,6 +218,25 @@ def main():
         if len(fp) != 64:
             die("fingerprint doesn't look like a valid hex-encoded SHA256 hash")
         cfg['fingerprint'] = 'sha256//' + binascii.b2a_base64(binascii.a2b_hex(fp))[:-1]
+
+    # Parameters for ticket validity
+    if 'total_days' in cfg:
+        try:
+            cfg['ticket_total'] = v.check('integer(min=0)', cfg['total_days']) * 86400
+        except validate.ValidateError:
+            die("Value for \"total_days\" in configuration file is not a positive integer.")
+
+    if 'days_after_dl' in cfg:
+        try:
+            cfg['ticket_lastdl'] = v.check('integer(min=0)', cfg['days_after_dl']) * 86400
+        except validate.ValidateError:
+            die("Value for \"days_after_dl\" in configuration file is not a positive integer.")
+
+    if 'downloads' in cfg:
+        try:
+            cfg['ticket_maxdl'] = v.check('integer(min=0)', cfg['downloads'])
+        except validate.ValidateError:
+            die("Value for \"downloads\" in configuration file is not a positive integer.")
 
     try:
         if args.file:
