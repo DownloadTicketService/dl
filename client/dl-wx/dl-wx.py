@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from __future__ import unicode_literals, print_function, generators, absolute_import
 
 import configobj
@@ -8,6 +8,7 @@ import copy
 import time
 import sys
 import wx
+import wx.adv as adv
 import wx.xrc as xrc
 from dl import *
 
@@ -28,17 +29,25 @@ else:
 def create_menu_item(menu, label, func, id=wx.ID_ANY):
     item = wx.MenuItem(menu, id, label)
     menu.Bind(wx.EVT_MENU, func, item)
-    menu.AppendItem(item)
+    menu.Append(item)  # Phoenix: AppendItem removed
     return item
 
 
-class TaskBarIcon(wx.TaskBarIcon):
+class TaskBarIcon(adv.TaskBarIcon):
     def __init__(self, dlapp):
         super(TaskBarIcon, self).__init__()
         self.dlapp = dlapp
         img = wx.Bitmap(os.path.join(RC_PATH, DL_ICON))
-        self.SetIcon(wx.IconFromBitmap(img), DL_DESCRIPTION)
-        self.Bind(wx.EVT_TASKBAR_LEFT_DOWN, self.dlapp.express_ticket)
+        icon = wx.Icon()
+        icon.CopyFromBitmap(img)  # Phoenix replacement for IconFromBitmap
+        self.SetIcon(icon, DL_DESCRIPTION)
+        #self.Bind(wx.EVT_TASKBAR_LEFT_DOWN, self.dlapp.express_ticket)
+        event = getattr(adv, "EVT_TASKBAR_LEFT_DOWN",
+        getattr(adv, "EVT_TASKBAR_LEFT_UP", None))
+        if event:
+         self.Bind(event, self.dlapp.express_ticket)
+        if hasattr(adv, "EVT_TASKBAR_LEFT_DCLICK"):
+         self.Bind(adv.EVT_TASKBAR_LEFT_DCLICK, self.dlapp.express_ticket)
 
     def CreatePopupMenu(self):
         menu = wx.Menu()
@@ -60,45 +69,61 @@ class Preferences(object):
         self.email = email
 
 
-class PrefDialog(wx.Dialog):
+# ---------- Dialog wrappers (composition, no subclassing) ----------
+
+class PrefDialog(object):
     def __init__(self, prefs, change_fn):
         self.prefs = prefs
         self.change_fn = change_fn
         self.xrc = xrc.XmlResource(os.path.join(RC_PATH, 'preferences.xrc'))
-        self.PostCreate(self.xrc.LoadDialog(None, 'preferences'))
-        self.url = xrc.XRCCTRL(self, 'url')
-        self.username = xrc.XRCCTRL(self, 'username')
-        self.password = xrc.XRCCTRL(self, 'password')
-        self.verify = xrc.XRCCTRL(self, 'verify')
-        self.email = xrc.XRCCTRL(self, 'email')
-        self.cancel = xrc.XRCCTRL(self, 'cancel')
+        self.dlg = self.xrc.LoadDialog(None, 'preferences')
+
+        # Controls
+        self.url = xrc.XRCCTRL(self.dlg, 'url')
+        self.username = xrc.XRCCTRL(self.dlg, 'username')
+        self.password = xrc.XRCCTRL(self.dlg, 'password')
+        self.verify = xrc.XRCCTRL(self.dlg, 'verify')
+        self.email = xrc.XRCCTRL(self.dlg, 'email')
+        self.cancel = xrc.XRCCTRL(self.dlg, 'cancel')
+        self.save = xrc.XRCCTRL(self.dlg, 'save')
+
+        # Events
+        self.dlg.Bind(wx.EVT_SHOW, self.on_show)
         self.cancel.Bind(wx.EVT_BUTTON, self.on_close)
-        self.save = xrc.XRCCTRL(self, 'save')
         self.save.Bind(wx.EVT_BUTTON, self.on_save)
-        self.Bind(wx.EVT_SHOW, self.on_show)
+
         if prefs.service.url:
             self.cancel.Show()
-            self.Bind(wx.EVT_CLOSE, self.on_close)
+            self.dlg.Bind(wx.EVT_CLOSE, self.on_close)
         else:
             self.cancel.Hide()
-            self.Bind(wx.EVT_CLOSE, self.on_save)
+            self.dlg.Bind(wx.EVT_CLOSE, self.on_save)
+
+        self.dlg.Fit()
+
+    # delegate helpers
+    def Show(self): return self.dlg.Show()
+    def ShowModal(self): return self.dlg.ShowModal()
+    def Hide(self): return self.dlg.Hide()
+    def Bind(self, evt, fn): return self.dlg.Bind(evt, fn)
+    def Destroy(self): return self.dlg.Destroy()
 
     def on_show(self, evt):
         self.set_prefs()
 
     def set_prefs(self):
-        self.url.SetValue(self.prefs.service.url)
-        self.username.SetValue(self.prefs.service.username)
-        self.password.SetValue(self.prefs.service.password)
-        self.verify.SetValue(self.prefs.service.verify)
-        self.email.SetValue(self.prefs.email)
+        self.url.SetValue(self.prefs.service.url or "")
+        self.username.SetValue(self.prefs.service.username or "")
+        self.password.SetValue(self.prefs.service.password or "")
+        self.verify.SetValue(bool(self.prefs.service.verify))
+        self.email.SetValue(self.prefs.email or "")
 
     def get_prefs(self, prefs):
-        prefs.service.url = self.url.GetValue().encode('utf8')
-        prefs.service.username = self.username.GetValue().encode('utf8')
-        prefs.service.password = self.password.GetValue().encode('utf8')
+        prefs.service.url = self.url.GetValue()
+        prefs.service.username = self.username.GetValue()
+        prefs.service.password = self.password.GetValue()
         prefs.service.verify = self.verify.GetValue()
-        prefs.email = self.email.GetValue().encode('utf8')
+        prefs.email = self.email.GetValue()
 
     def on_close(self, evt=None):
         self.Hide()
@@ -123,43 +148,59 @@ class PrefDialog(wx.Dialog):
             self.on_close()
 
 
-class Upload(wx.Dialog):
+class Upload(object):
     def __init__(self, file, dl, params):
         self.xrc = xrc.XmlResource(os.path.join(RC_PATH, 'upload.xrc'))
-        self.PostCreate(self.xrc.LoadDialog(None, 'upload'))
-        self.Bind(wx.EVT_CLOSE, self.on_cancel)
-        self.descr = xrc.XRCCTRL(self, 'descr')
-        self.gauge = xrc.XRCCTRL(self, 'gauge')
-        self.status = xrc.XRCCTRL(self, 'status')
+        self.dlg = self.xrc.LoadDialog(None, 'upload')
+
+        self.dlg.Bind(wx.EVT_CLOSE, self.on_cancel)
+        self.descr = xrc.XRCCTRL(self.dlg, 'descr')
+        self.gauge = xrc.XRCCTRL(self.dlg, 'gauge')
+        self.status = xrc.XRCCTRL(self.dlg, 'status')
+        self.action = xrc.XRCCTRL(self.dlg, 'action')
+
         self.status.SetLabel("Starting upload ...")
-        self.request = dl.new_ticket(file, params, async=True,
+        self.descr.SetLabel(os.path.basename(file))
+        self.action.SetLabel("Cancel")
+        self.action.Bind(wx.EVT_BUTTON, self.on_cancel)
+
+        self.stamp = time.time()
+        self.timer = wx.Timer(self.dlg)  # parented to dialog
+        self.timer.Bind(wx.EVT_TIMER, lambda _: self.gauge.Pulse())
+        self.timer.Start(100)
+
+        # Start async request
+        self.request = dl.new_ticket(file, params, asynchronous=True,
                                      complete_fn=self.completed,
                                      failed_fn=self.failed,
                                      progress_fn=self.progress)
-        self.descr.SetLabel(os.path.basename(file))
-        self.action = xrc.XRCCTRL(self, 'action')
-        self.action.SetLabel("Cancel")
-        self.action.Bind(wx.EVT_BUTTON, self.on_cancel)
-        self.stamp = time.time()
-        self.timer = wx.Timer()
-        self.timer.Bind(wx.EVT_TIMER, lambda _: self.gauge.Pulse())
-        self.timer.Start(100)
-        self.Fit()
-        self.Show()
+
+        self.dlg.Fit()
+        self.dlg.Show()
         self.request.start()
+
+    # delegate helpers
+    def Show(self): return self.dlg.Show()
+    def Hide(self): return self.dlg.Hide()
+    def Destroy(self): return self.dlg.Destroy()
+    def Bind(self, evt, fn): return self.dlg.Bind(evt, fn)
 
     def on_cancel(self, evt):
         self.status.SetLabel("Cancelling upload ...")
         self.request.cancel()
-        self.timer.Start()
+        if not self.timer.IsRunning():
+            self.timer.Start()
 
     def on_close(self, evt=None):
-        self.timer.Stop()
+        if self.timer.IsRunning():
+            self.timer.Stop()
         self.Destroy()
 
     def on_progress(self, upload_t, upload_d, upload_s):
-        prc = upload_d * 100 / upload_t
-        ks = upload_s / 1024
+        if not upload_t:
+            return
+        prc = int(upload_d * 100 / upload_t)
+        ks = upload_s / 1024.0
         if self.timer.IsRunning():
             self.timer.Stop()
             self.gauge.SetRange(100)
@@ -178,11 +219,12 @@ class Upload(wx.Dialog):
         self.status.SetLabel(self.url)
         self.action.SetLabel("Copy")
         self.action.Bind(wx.EVT_BUTTON, self.on_copy)
-        self.timer.Stop()
+        if self.timer.IsRunning():
+            self.timer.Stop()
         self.gauge.SetRange(100)
         self.gauge.SetValue(100)
-        self.Bind(wx.EVT_CLOSE, self.on_close)
-        self.Fit()
+        self.dlg.Bind(wx.EVT_CLOSE, self.on_close)
+        self.dlg.Fit()
 
     def completed(self, ret):
         wx.CallAfter(self.on_completed, ret)
@@ -195,37 +237,49 @@ class Upload(wx.Dialog):
             self.status.SetLabel(error)
             self.action.SetLabel("Close")
             self.action.Bind(wx.EVT_BUTTON, self.on_close)
-            self.timer.Stop()
-            self.Bind(wx.EVT_CLOSE, self.on_close)
-            self.Fit()
+            if self.timer.IsRunning():
+                self.timer.Stop()
+            self.dlg.Bind(wx.EVT_CLOSE, self.on_close)
+            self.dlg.Fit()
             wx.MessageBox(error, 'Upload error', wx.OK | wx.ICON_ERROR)
 
     def failed(self, ex):
         wx.CallAfter(self.on_failed, ex)
 
     def on_copy(self, evt=None):
-        wx.TheClipboard.Open()
-        wx.TheClipboard.SetData(wx.TextDataObject(self.url))
-        wx.TheClipboard.Close()
+        if wx.TheClipboard.Open():
+            try:
+                wx.TheClipboard.SetData(wx.TextDataObject(self.url))
+            finally:
+                wx.TheClipboard.Close()
         self.on_close()
 
 
-class Grant(wx.Dialog):
+class Grant(object):
     def __init__(self, email, dl, params):
         self.xrc = xrc.XmlResource(os.path.join(RC_PATH, 'grant.xrc'))
-        self.PostCreate(self.xrc.LoadDialog(None, 'grant'))
-        self.Bind(wx.EVT_CLOSE, self.on_cancel)
-        self.status = xrc.XRCCTRL(self, 'status')
+        self.dlg = self.xrc.LoadDialog(None, 'grant')
+
+        self.dlg.Bind(wx.EVT_CLOSE, self.on_cancel)
+        self.status = xrc.XRCCTRL(self.dlg, 'status')
+        self.action = xrc.XRCCTRL(self.dlg, 'action')
+
         self.status.SetLabel("Generating grant ...")
-        self.request = dl.new_grant(email, params, async=True,
-                                    complete_fn=self.completed,
-                                    failed_fn=self.failed)
-        self.action = xrc.XRCCTRL(self, 'action')
         self.action.SetLabel("Cancel")
         self.action.Bind(wx.EVT_BUTTON, self.on_cancel)
-        self.Fit()
-        self.Show()
+
+        self.request = dl.new_grant(email, params, asynchronous=True,
+                                    complete_fn=self.completed,
+                                    failed_fn=self.failed)
+
+        self.dlg.Fit()
+        self.dlg.Show()
         self.request.start()
+
+    def Show(self): return self.dlg.Show()
+    def Hide(self): return self.dlg.Hide()
+    def Destroy(self): return self.dlg.Destroy()
+    def Bind(self, evt, fn): return self.dlg.Bind(evt, fn)
 
     def on_cancel(self, evt):
         self.status.SetLabel("Cancelling ...")
@@ -239,8 +293,8 @@ class Grant(wx.Dialog):
         self.status.SetLabel(self.url)
         self.action.SetLabel("Copy")
         self.action.Bind(wx.EVT_BUTTON, self.on_copy)
-        self.Bind(wx.EVT_CLOSE, self.on_close)
-        self.Fit()
+        self.dlg.Bind(wx.EVT_CLOSE, self.on_close)
+        self.dlg.Fit()
 
     def completed(self, ret):
         wx.CallAfter(self.on_completed, ret)
@@ -253,41 +307,49 @@ class Grant(wx.Dialog):
             self.status.SetLabel(error)
             self.action.SetLabel("Close")
             self.action.Bind(wx.EVT_BUTTON, self.on_close)
-            self.Bind(wx.EVT_CLOSE, self.on_close)
-            self.Fit()
+            self.dlg.Bind(wx.EVT_CLOSE, self.on_close)
+            self.dlg.Fit()
             wx.MessageBox(error, 'Upload error', wx.OK | wx.ICON_ERROR)
 
     def failed(self, ex):
         wx.CallAfter(self.on_failed, ex)
 
     def on_copy(self, evt=None):
-        wx.TheClipboard.Open()
-        wx.TheClipboard.SetData(wx.TextDataObject(self.url))
-        wx.TheClipboard.Close()
+        if wx.TheClipboard.Open():
+            try:
+                wx.TheClipboard.SetData(wx.TextDataObject(self.url))
+            finally:
+                wx.TheClipboard.Close()
         self.on_close()
 
 
-class NewTicket(wx.Dialog):
+class NewTicket(object):
     def __init__(self, dl, prefs, change_fn):
         self.dl = dl
         self.prefs = prefs
         self.change_fn = change_fn
         self.xrc = xrc.XmlResource(os.path.join(RC_PATH, 'newticket.xrc'))
-        self.PostCreate(self.xrc.LoadDialog(None, 'newticket'))
-        self.Bind(wx.EVT_SHOW, self.on_show)
-        self.Bind(wx.EVT_CLOSE, self.on_close)
-        self.file = xrc.XRCCTRL(self, 'file')
-        self.perm = xrc.XRCCTRL(self, 'perm')
+        self.dlg = self.xrc.LoadDialog(None, 'newticket')
+
+        self.dlg.Bind(wx.EVT_SHOW, self.on_show)
+        self.dlg.Bind(wx.EVT_CLOSE, self.on_close)
+        self.file = xrc.XRCCTRL(self.dlg, 'file')
+        self.perm = xrc.XRCCTRL(self.dlg, 'perm')
         self.perm.Bind(wx.EVT_CHECKBOX, self.on_perm)
-        self.total_days = xrc.XRCCTRL(self, 'total_days')
-        self.days_after_dl = xrc.XRCCTRL(self, 'days_after_dl')
-        self.downloads = xrc.XRCCTRL(self, 'downloads')
-        self.upload = xrc.XRCCTRL(self, 'upload')
+        self.total_days = xrc.XRCCTRL(self.dlg, 'total_days')
+        self.days_after_dl = xrc.XRCCTRL(self.dlg, 'days_after_dl')
+        self.downloads = xrc.XRCCTRL(self.dlg, 'downloads')
+        self.upload = xrc.XRCCTRL(self.dlg, 'upload')
         self.upload.Bind(wx.EVT_BUTTON, self.on_upload)
-        self.set_defaults = xrc.XRCCTRL(self, 'set_defaults')
+        self.set_defaults = xrc.XRCCTRL(self.dlg, 'set_defaults')
         self.set_defaults.Bind(wx.EVT_BUTTON, self.on_set_defaults)
         self.ticket_params = copy.copy(self.prefs.ticket_params)
         self.set_ticket_params(self.ticket_params)
+        self.dlg.Fit()
+
+    def Show(self): return self.dlg.Show()
+    def Hide(self): return self.dlg.Hide()
+    def Bind(self, evt, fn): return self.dlg.Bind(evt, fn)
 
     def on_perm(self, evt=None):
         enable = not self.perm.GetValue()
@@ -297,23 +359,23 @@ class NewTicket(wx.Dialog):
 
     def set_ticket_params(self, ticket_params):
         self.perm.SetValue(ticket_params.permanent)
-        self.total_days.SetValue(ticket_params.total / (3600 * 24))
-        self.days_after_dl.SetValue(ticket_params.lastdl / (3600 * 24))
+        self.total_days.SetValue(int(ticket_params.total / (3600 * 24)))
+        self.days_after_dl.SetValue(int(ticket_params.lastdl / (3600 * 24)))
         self.downloads.SetValue(ticket_params.downloads)
         self.on_perm()
 
     def get_ticket_params(self, ticket_params):
         ticket_params.permanent = self.perm.GetValue()
-        ticket_params.total = self.total_days.GetValue() * 3600 * 24
-        ticket_params.lastdl = self.days_after_dl.GetValue() * 3600 * 24
-        ticket_params.downloads = self.downloads.GetValue()
+        ticket_params.total = int(self.total_days.GetValue()) * 3600 * 24
+        ticket_params.lastdl = int(self.days_after_dl.GetValue()) * 3600 * 24
+        ticket_params.downloads = int(self.downloads.GetValue())
 
     def on_set_defaults(self, evt):
         self.get_ticket_params(self.prefs.ticket_params)
         self.change_fn()
 
     def on_upload(self, evt):
-        path = self.file.GetPath().encode('utf8')
+        path = self.file.GetPath()
         if not path:
             wx.MessageBox('Please select a file!', 'New Ticket', wx.OK | wx.ICON_ERROR)
         else:
@@ -328,9 +390,11 @@ class NewTicket(wx.Dialog):
         self.Hide()
 
 
+# -------------------- App --------------------
+
 class DLApp(wx.App):
     def OnInit(self):
-        if not wx.TaskBarIcon.IsAvailable():
+        if not adv.TaskBarIcon.IsAvailable():
             wx.MessageBox('A system tray is required for ' + DL_DESCRIPTION,
                           'dl-wx', wx.OK | wx.ICON_ERROR)
             return False
@@ -347,9 +411,9 @@ class DLApp(wx.App):
         self.nt = NewTicket(self.dl, self.prefs, self.save_prefs)
         self.tbi = TaskBarIcon(self)
         stub = wx.Frame(None)
-        menu = wx.MenuBar()
-        menu.Append(self.tbi.CreatePopupMenu(), "&File")
-        stub.SetMenuBar(menu)
+        menu_bar = wx.MenuBar()
+        menu_bar.Append(self.tbi.CreatePopupMenu(), "&File")
+        stub.SetMenuBar(menu_bar)
         self.SetTopWindow(stub)
         return True
 
@@ -379,15 +443,19 @@ class DLApp(wx.App):
         self.cfg['verify'] = self.prefs.service.verify
         self.cfg['perm'] = self.prefs.ticket_params.permanent
         self.cfg['email'] = self.prefs.email
-        self.cfg['total_days'] = self.prefs.ticket_params.total / (3600 * 24)
-        self.cfg['days_after_dl'] = self.prefs.ticket_params.lastdl / (3600 * 24)
+        self.cfg['total_days'] = self.prefs.ticket_params.total // (3600 * 24)
+        self.cfg['days_after_dl'] = self.prefs.ticket_params.lastdl // (3600 * 24)
         self.cfg['downloads'] = self.prefs.ticket_params.downloads
         self.cfg.write()
 
     def express_ticket(self, evt=None):
-        path = wx.FileSelector(flags=wx.FD_OPEN|wx.FD_FILE_MUST_EXIST).encode('utf8')
+        path = wx.FileSelector(
+          "Choose a file", "", "", "",
+          "*",
+          wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
+        )
         if path:
-            Upload(path, self.dl, self.prefs.ticket_params)
+          Upload(path, self.dl, self.prefs.ticket_params) 
 
     def new_ticket(self, evt=None):
         self.nt.Show()
@@ -406,7 +474,7 @@ class DLApp(wx.App):
         self.ExitMainLoop()
 
     def MacOpenFile(self, path):
-        Upload(path.encode('utf8'), self.dl, self.prefs.ticket_params)
+        Upload(path, self.dl, self.prefs.ticket_params)
 
     def MacReopenApp(self):
         self.express_ticket()
@@ -415,4 +483,4 @@ class DLApp(wx.App):
 if __name__ == '__main__':
     main = DLApp()
     main.MainLoop()
-    main.Destroy()
+    # TaskBarIcon cleans up with the app; no explicit Destroy needed for wrappers
