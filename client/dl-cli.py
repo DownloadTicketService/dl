@@ -2,6 +2,7 @@
 from __future__ import unicode_literals, print_function, generators
 
 import argparse
+import secrets
 import io, sys
 from datetime import datetime
 
@@ -72,6 +73,10 @@ def newticket(path, params, filename=None):
         ("file", (c.FORM_FILE, path.encode(sys.getfilesystemencoding()),
                   c.FORM_FILENAME, filename.encode('utf8'))),
         ("msg", json.dumps({}))])
+
+    if 'ticket_pass' in params and params['ticket_pass'] == 1:
+        msg['pass'] = secrets.token_urlsafe(16)
+        print(msg['pass'])
 
     try:
         c.perform()
@@ -211,6 +216,13 @@ def main():
         if len(fp) != 64:
             die("fingerprint doesn't look like a valid hex-encoded SHA256 hash")
         cfg['fingerprint'] = 'sha256//' + binascii.b2a_base64(binascii.a2b_hex(fp))[:-1]
+
+    # Ticket password parameter
+    if 'ticket_pass' in cfg:
+        try:
+            cfg['ticket_pass'] = v.check('boolean', cfg['ticket_pass'])
+        except validate.ValidateError:
+            die("Value for \"ticket_pass\" in configuration file is not a boolean.")
 
     try:
         if args.file:
