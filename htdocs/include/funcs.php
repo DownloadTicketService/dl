@@ -255,7 +255,7 @@ function uploadErrorStr()
 
 function is_numeric_int($str)
 {
-  return (is_int($str) || (int)$str == $str);
+  return (is_int($str) || (string)(int)$str === trim($str));
 }
 
 
