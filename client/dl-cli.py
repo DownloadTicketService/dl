@@ -2,7 +2,6 @@
 from __future__ import unicode_literals, print_function, generators
 
 import argparse
-import secrets
 import io, sys
 from datetime import datetime
 
@@ -69,14 +68,16 @@ def newticket(path, params, filename=None):
 
     if not filename:
         filename = os.path.basename(path)
+
+    msg = {}
+    # add ticket parameters, if present/configured
+    if 'ticket_password' in params:
+        msg['pass'] = params['ticket_password']
+
     c.setopt(c.HTTPPOST, [
         ("file", (c.FORM_FILE, path.encode(sys.getfilesystemencoding()),
                   c.FORM_FILENAME, filename.encode('utf8'))),
-        ("msg", json.dumps({}))])
-
-    if 'ticket_pass' in params and params['ticket_pass'] == 1:
-        msg['pass'] = secrets.token_urlsafe(16)
-        print(msg['pass'])
+        ("msg", json.dumps(msg))])
 
     try:
         c.perform()
@@ -170,10 +171,28 @@ def die(descr, code=1):
     exit(code)
 
 
+def read_ticket_password(password_file):
+    if password_file == '-':
+        password = sys.stdin.read()
+    else:
+        try:
+            with io.open(password_file, 'r', encoding='utf8') as f:
+                password = f.read()
+        except IOError as e:
+            die("cannot read password file \"{0}\": {1}".format(password_file, e))
+
+    password = password.rstrip('\r\n')
+    if not password:
+        die("ticket password is empty")
+    return password
+
+
 def main():
     parser = argparse.ArgumentParser(description="Upload a file to DL", epilog=DL_AGENT)
     parser.add_argument('-r', metavar="file", dest="rc",
                         default="~/.dl.rc", help="Use alternate RC file")
+    parser.add_argument('--password-file', metavar="file", dest="ticket_password_file",
+                        help="Read download ticket password from file ('-' for stdin)")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-g', metavar="email", dest="grant", nargs='?', default=False,
                        help="Generate a grant with notification sent to 'email'")
@@ -209,6 +228,11 @@ def main():
     if not cfg['verify']:
         print("WARNING: SSL validation is disabled (use fingerprint for self-signed certs instead!)")
 
+    if args.ticket_password_file:
+        if not args.file:
+            die("--password-file can only be used when uploading files")
+        cfg['ticket_password'] = read_ticket_password(args.ticket_password_file)
+
     # Pre-process the fingerprint
     if cfg['fingerprint'] and cfg['fingerprint'][0] not in '~./' \
        and len(cfg['fingerprint']) in [64, 95]:
@@ -216,13 +240,6 @@ def main():
         if len(fp) != 64:
             die("fingerprint doesn't look like a valid hex-encoded SHA256 hash")
         cfg['fingerprint'] = 'sha256//' + binascii.b2a_base64(binascii.a2b_hex(fp))[:-1]
-
-    # Ticket password parameter
-    if 'ticket_pass' in cfg:
-        try:
-            cfg['ticket_pass'] = v.check('boolean', cfg['ticket_pass'])
-        except validate.ValidateError:
-            die("Value for \"ticket_pass\" in configuration file is not a boolean.")
 
     try:
         if args.file:
