@@ -7,14 +7,22 @@ $DATA = false;
 if(validateParams($grantNewParams, $_POST))
 {
   // uniform the request parameters to the REST api
+  unset($_POST['grant_total']);
   if(isset($_POST['grant_totaldays']))
     $_POST['grant_total'] = (int)($_POST['grant_totaldays'] * 3600 * 24);
+
+  unset($_POST['grant_lastul']);
   if(isset($_POST['grant_lastuldays']))
     $_POST['grant_lastul'] = (int)($_POST['grant_lastuldays'] * 3600 * 24);
+
+  unset($_POST['ticket_total']);
   if(isset($_POST['ticket_totaldays']))
     $_POST['ticket_total'] = (int)($_POST['ticket_totaldays'] * 3600 * 24);
+
+  unset($_POST['ticket_lastdl']);
   if(isset($_POST['ticket_lastdldays']))
     $_POST['ticket_lastdl'] = (int)($_POST['ticket_lastdldays'] * 3600 * 24);
+
   if(!isset($_POST['pass_send']))
     $_POST['pass_send'] = false;
 
