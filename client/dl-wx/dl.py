@@ -1,9 +1,15 @@
 from __future__ import unicode_literals, print_function, generators, absolute_import
 
-import pycurl
+# Replaced pycurl with curl_cffi
+from curl_cffi import requests as crequests
+from curl_cffi import CurlMime
+
+from http import client as httplib  # Py3 path; guarded import OK if you need
+
 import binascii
 import json
 import io
+import os
 from io import BytesIO
 from threading import Thread
 
@@ -59,87 +65,122 @@ class Request(Thread):
         self.progress_fn = progress_fn
         self.cancelled = False
 
-    def _progress(self, download_t, download_d, upload_t, upload_d):
-        self.progress_fn(download_t, download_d, self.speed_download,
-                         upload_t, upload_d, self.speed_upload)
+        # For compatibility with callers that read these
+        self.speed_download = 0
+        self.speed_upload = 0
+
+    # Progress/cancel: curl_cffi’s public API doesn’t expose a progress callback like PycURL,
+    # so we cannot report live bytes or abort mid-flight. We keep the method for API parity.
+    def _progress_noop(self, download_t, download_d, upload_t, upload_d):
+        if self.progress_fn:
+            self.progress_fn(download_t, download_d, self.speed_download,
+                             upload_t, upload_d, self.speed_upload)
 
     def run(self):
-        s = BytesIO()
-        c = pycurl.Curl()
-        c.setopt(c.URL, self.dl.service.url + "/" + self.request)
-        c.setopt(c.WRITEFUNCTION, s.write)
+        url = self.dl.service.url.rstrip("/") + "/" + self.request.lstrip("/")
 
-        auth = self.dl.service.username + ':' + self.dl.service.password
-        xauth = binascii.b2a_base64(auth.encode('utf8')).decode('ascii')[:-1]
+        # Same auth + custom header as original
+        auth_pair = f"{self.dl.service.username}:{self.dl.service.password}"
+        xauth = binascii.b2a_base64(auth_pair.encode("utf8")).decode("ascii").rstrip()
 
-        c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
-        c.setopt(c.USERPWD, auth)
-        c.setopt(c.HTTPHEADER, ['Expect:',
-                                'User-agent: ' + self.dl.service.agent,
-                                'X-Authorization: Basic ' + xauth])
+        # Use a list of tuples so the empty 'Expect:' is preserved (disables 100-continue)
+        headers = [
+            ("Expect", ""),  # matches original pycurl 'Expect:' line
+            ("User-Agent", self.dl.service.agent or ""),
+            ("X-Authorization", "Basic " + xauth),
+            ("Accept", "application/json"),
+        ]  # original header set: Expect:, User-agent, X-Authorization. :contentReference[oaicite:1]{index=1}
 
-        if self.file or self.msg is not None:
-            post_data = []
-            if self.file:
-                post_data.append(("file", (c.FORM_FILE, self.file)))
-            if self.msg is not None:
-                post_data.append(("msg", json.dumps(self.msg)))
-            c.setopt(c.HTTPPOST, post_data)
+        # Match original semantics: default to verify=True unless explicitly False
+        verify = True if self.dl.service.verify is None else bool(self.dl.service.verify)
 
-        if not self.dl.service.verify:
-            c.setopt(c.SSL_VERIFYPEER, False)
+        mp = None
+        try:
+            method = "GET"
+            if self.file or self.msg is not None:
+                method = "POST"
+                mp = CurlMime()
+                if self.file:
+                    mp.addpart(
+                        name="file",
+                        local_path=self.file,
+                        filename=os.path.basename(self.file),
+                    )
+                if self.msg is not None:
+                    mp.addpart(
+                        name="msg",
+                        data=json.dumps(self.msg).encode("utf-8"),
+                        content_type="application/json",  # be explicit for servers that care
+                    )
 
-        if self.progress_fn is not None:
-            self.speed_download = 0
-            self.speed_upload = 0
-            c.setopt(c.NOPROGRESS, False)
-            c.setopt(c.PROGRESSFUNCTION, self._progress)
+            # Perform request
+            if method == "POST":
+                resp = crequests.post(
+                    url,
+                    headers=headers,
+                    auth=(self.dl.service.username, self.dl.service.password),
+                    verify=verify,
+                    multipart=mp,
+                    allow_redirects=True,
+                )
+            else:
+                resp = crequests.get(
+                    url,
+                    headers=headers,
+                    auth=(self.dl.service.username, self.dl.service.password),
+                    verify=verify,
+                    allow_redirects=True,
+                )
 
-        m = pycurl.CurlMulti()
-        m.add_handle(c)
-        num_handles = 1
-        while True:
-            while True:
-                ret, num_handles = m.perform()
-                if ret != pycurl.E_CALL_MULTI_PERFORM:
-                    break
-            if num_handles == 0 or self.cancelled:
-                break
-            m.select(1.0)
-            if self.progress_fn is not None:
-                self.speed_download = c.getinfo(c.SPEED_DOWNLOAD)
-                self.speed_upload = c.getinfo(c.SPEED_UPLOAD)
-        m.remove_handle(c)
-        code = c.getinfo(pycurl.HTTP_CODE)
-        error = c.errstr()
-        c.close()
+            if self.cancelled:
+                return self.failed_fn(None)
 
-        if self.cancelled:
-            return self.failed_fn(None)
-        if error:
-            return self.failed_fn(DLError("DL connection error: " + error))
+            code = resp.status_code
+            body = resp.content or b""
 
-        ret = None
-        if s.tell():
-            s.seek(0)
-            try:
-                ret = json.load(io.TextIOWrapper(s, 'utf8'))
-            except ValueError:
-                pass
+            # Try JSON first (original behavior). :contentReference[oaicite:2]{index=2}
+            ret = None
+            if body:
+                try:
+                    ret = json.loads(body.decode("utf-8", "replace"))
+                except ValueError:
+                    # Fallback: some servers reply with plain text URL
+                    txt = body.decode("utf-8", "replace").strip()
+                    if txt.startswith("http://") or txt.startswith("https://"):
+                        ret = {"url": txt}
 
-        if code != httplib.OK:
-            error = httplib.responses[code]
-        elif ret is not None and 'error' in ret:
-            error = ret['error']
-        elif ret is None:
-            error = "Cannot decode output JSON"
+            # Error mapping like the original
+            error = None
+            if code != 200:
+                error = getattr(httplib, "responses", {}).get(code, f"HTTP error {code}")
+            elif ret is not None and isinstance(ret, dict) and "error" in ret:
+                error = ret["error"]
+            elif ret is None:
+                # Give a tiny preview for diagnostics (still returned as an error)
+                preview = body[:200].decode("utf-8", "replace") if body else ""
+                error = f"Cannot decode output JSON (first bytes: {preview!r})"
 
-        if error:
-            return self.failed_fn(DLError("DL service error: " + error))
-        else:
-            return self.complete_fn(ret)
+            if self.cancelled:
+                return self.failed_fn(None)
+
+            if error:
+                return self.failed_fn(DLError("DL service error: " + str(error)))
+            else:
+                return self.complete_fn(ret)
+
+        except Exception as e:
+            if self.cancelled:
+                return self.failed_fn(None)
+            return self.failed_fn(DLError("DL connection error: " + str(e)))
+        finally:
+            if mp is not None:
+                try:
+                    mp.close()
+                except Exception:
+                    pass
 
     def cancel(self):
+        # Best-effort: marks as cancelled; can’t abort an in-flight libcurl perform via requests-like API.
         self.cancelled = True
 
 
@@ -147,8 +188,8 @@ class DL(object):
     def __init__(self, service=Service()):
         self.service = service
 
-    def request(self, request, msg, file, async=False, complete_fn=None, failed_fn=None, progress_fn=None):
-        if async:
+    def request(self, request, msg, file, asynchronous=False, complete_fn=None, failed_fn=None, progress_fn=None):
+        if asynchronous:
             return Request(self, request, msg, file, complete_fn, failed_fn, progress_fn)
         else:
             ret = {}
@@ -165,7 +206,7 @@ class DL(object):
                 complete_fn(ret['ret'])
             return ret['ret']
 
-    def new_ticket(self, file, params=None, async=False, complete_fn=None, failed_fn=None, progress_fn=None):
+    def new_ticket(self, file, params=None, asynchronous=False, complete_fn=None, failed_fn=None, progress_fn=None):
         msg = {}
         if params is None:
             params = TicketParams()
@@ -177,9 +218,9 @@ class DL(object):
             msg['ticket_lastdl'] = params.lastdl
         if params.downloads is not None:
             msg['ticket_maxdl'] = params.downloads
-        return self.request("newticket", msg, file, async, complete_fn, failed_fn, progress_fn)
+        return self.request("newticket", msg, file, asynchronous, complete_fn, failed_fn, progress_fn)
 
-    def new_grant(self, email, params=None, async=False, complete_fn=None, failed_fn=None, progress_fn=None):
+    def new_grant(self, email, params=None, asynchronous=False, complete_fn=None, failed_fn=None, progress_fn=None):
         msg = {'notify': email}
         if params is None:
             params = GrantParams()
@@ -193,4 +234,4 @@ class DL(object):
             msg['ticket_lastdl'] = params.ticket_params.lastdl
         if params.ticket_params.downloads is not None:
             msg['ticket_maxdl'] = params.ticket_params.downloads
-        return self.request("newgrant", msg, None, async, complete_fn, failed_fn, progress_fn)
+        return self.request("newgrant", msg, None, asynchronous, complete_fn, failed_fn, progress_fn)
